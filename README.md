@@ -1,11 +1,10 @@
 CS 426 Project
 ==============
 
-Features 
---------
+Implemented 
+-----------
 
-Implemented:  
-PNG Loading (Use FileHelper::loadPNG(char* file))
+* PNG Loading (Use FileHelper::loadPNG(char* file))
 
 Notes on commits
 ----------------
@@ -26,6 +25,6 @@ Used to access newer OpenGL functions
 [http://glm.g-truc.net/0.9.5/index.html](http://glm.g-truc.net/0.9.5/index.html)  
 Used for matrix math
 
-**SOIL**
+**SOIL**  
 [http://www.lonesock.net/soil.html](http://www.lonesock.net/soil.html)  
 Used to load texture files 
