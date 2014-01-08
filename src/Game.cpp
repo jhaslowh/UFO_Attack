@@ -31,9 +31,30 @@ int init_resources(void)
 	mgl.setupShaders();
 	glUseProgram(mgl.program);
 
-	sprite.setup(64,64,"test.png");
+	sprite.setup(64.f,64.f,"test.png");
+	sprite.setPosition(64.f,64.f);
+	sprite.setRotation(45.0f);
+	sprite.setScale(1.5f);
+	sprite.setOrigin(32.0f,32.0f);
+	sprite.setAlpha(.5f);
 
 	return 1;
+}
+
+/**
+* Called when finished to free resources 
+*/
+void free_resources()
+{
+	printf("Free Resources\n");
+	glDeleteProgram(mgl.program);
+}
+
+/** 
+ * Update game state 
+ */
+void onUpdate(){
+	// TODO 
 }
  
 /*
@@ -63,14 +84,6 @@ void onDisplay()
 	mgl.endGL();
 }
  
-/**
-* Called when finished to free resources 
-*/
-void free_resources()
-{
-	printf("Free Resources\n");
-	glDeleteProgram(mgl.program);
-}
  
 int main(int argc, char* argv[])
 {
@@ -97,6 +110,8 @@ int main(int argc, char* argv[])
 		/* We can display it if everything goes OK */
 		glutDisplayFunc(onDisplay);
 		glutMainLoop();
+
+		// TODO make game thread 
 	}
  
 	/* If the program exits in the usual way,

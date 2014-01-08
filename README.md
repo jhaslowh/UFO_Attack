@@ -5,6 +5,9 @@ Implemented
 -----------
 
 * PNG Loading (Use FileHelper::loadPNG(char* file))
+* Orthographic Projection 
+* 2D Sprites 
+* Matrix Transforms (Use GLM) 
 
 Notes on commits
 ----------------

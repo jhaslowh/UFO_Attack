@@ -18,6 +18,8 @@ private:
 	float pos_y;
 	float rotation;
 	float scale;
+	float origin_x;
+	float origin_y;
 	GLfloat color[4];
 
 public:
@@ -27,12 +29,22 @@ public:
 	// Setup the sprites verticies, coords, and texture 
 	void setup(float, float, char*);
 
-	// Set position of the sprite 
+	// Set the position of the sprite 
 	void setPosition(float,float);
+	// Set the rotation of the sprite 
+	void setRotation(float);
+	// Set the scale of the sprite 
+	void setScale(float);
+	// Set the origin of the sprite 
+	void setOrigin(float,float);
+	// Set the RGB color 
+	void setColor(const float,const float,const float);
+	// Set the RGBA color
+	void setColor(const float,const float,const float,const float);
+	// Set the alpha value 
+	void setAlpha(const float);
 
 	// Call to draw the sprite 
 	void draw(GLHandler);
-
-
 };
 

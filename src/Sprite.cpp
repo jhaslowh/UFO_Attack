@@ -9,6 +9,8 @@ Sprite::Sprite(){
 	color[1] = 1.0f;
 	color[2] = 1.0f;
 	color[3] = 1.0f;
+	origin_x = 0;
+	origin_y = 0;
 }
 Sprite::~Sprite(){}
 
@@ -44,13 +46,55 @@ void Sprite::setPosition(float x, float y){
 	pos_x = x; pos_y = y;
 }
 
+// Set the rotation of the sprite 
+void Sprite::setRotation(float degrees){
+	rotation = degrees;
+}
+
+// Set the scale of the sprite 
+void Sprite::setScale(float value){
+	scale = value;
+}
+
+// Set the origin of the sprite 
+void Sprite::setOrigin(float x,float y){
+	origin_x = x;
+	origin_y = y;
+}
+
+// Set the RGB color 
+void Sprite::setColor(const float r,const float g,const float b){
+	color[0] = r; color[1] = g; color[2] = b;
+}
+
+// Set the RGBA color
+void Sprite::setColor(const float r,const float g,const float b,const float a){
+	color[0] = r; color[1] = g; color[2] = b; color[3] = a;
+}
+
+// Set the alpha value 
+void Sprite::setAlpha(const float a){
+	color[3] = a;
+}
+
 // Draw the sprite to the screen
 void Sprite::draw(GLHandler mgl){
 	/** Matrix transform **/
+	// Starting matrix 
 	glm::mat4 mMatrix;
 	// Translate 
 	mMatrix = glm::translate(mMatrix, glm::vec3(pos_x, pos_y, 0.0f));
+	// Rotation
+	mMatrix = glm::rotate(mMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
+	// Scale 
+	mMatrix = glm::scale(mMatrix, glm::vec3(scale));
+	// Origin
+	mMatrix = glm::translate(mMatrix, glm::vec3(-origin_x, -origin_y, 0.0f));
+	// Send the rotation matrix to the shader 
 	mgl.setModelMatrix(mMatrix);
+
+	/** Set shader flat color **/
+	mgl.setFlatColor(color);
 
 	/* Set up vertex and coord buffers **/
 	glEnableVertexAttribArray(mgl.mPositionHandle);
