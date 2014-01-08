@@ -1,8 +1,10 @@
 #pragma once
-#define GLEW_STATIC
 #include <glew.h>
 #include "FileHelper.h"
 #include "GLHandler.h"
+#include <glm\glm.hpp>
+#include <glm\gtx\transform.hpp>
+#include <glm\gtc\matrix_transform.hpp>
 
 class Sprite
 {
@@ -22,9 +24,15 @@ public:
 	Sprite();
 	~Sprite();
 
-	void set(float, float, float, float, char*);
+	// Setup the sprites verticies, coords, and texture 
+	void setup(float, float, char*);
+
+	// Set position of the sprite 
+	void setPosition(float,float);
 
 	// Call to draw the sprite 
 	void draw(GLHandler);
+
+
 };
 

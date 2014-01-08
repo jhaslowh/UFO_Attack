@@ -6,8 +6,6 @@
 /* Using the standard output for fprintf */
 #include <stdio.h>
 #include <stdlib.h>
-/* Statically link glew */
-#define GLEW_STATIC
 /* Use glew.h instead of gl.h to get all the GL prototypes declared */
 #include <glew.h>
 /* Using the GLUT library for the base windowing setup */
@@ -20,6 +18,7 @@
 // Our gl wrapping class 
 GLHandler mgl;
 
+// Testing sprite 
 Sprite sprite;
 
 /**
@@ -32,7 +31,7 @@ int init_resources(void)
 	mgl.setupShaders();
 	glUseProgram(mgl.program);
 
-	sprite.set(50,50,64,64,"test.png");
+	sprite.setup(64,64,"test.png");
 
 	return 1;
 }

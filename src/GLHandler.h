@@ -2,7 +2,6 @@
 /* Using the standard output for fprintf */
 #include <stdio.h>
 #include <stdlib.h>
-#define GLEW_STATIC
 #include <glew.h>
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
