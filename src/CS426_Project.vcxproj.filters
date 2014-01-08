@@ -42,11 +42,11 @@
     <ClInclude Include="GLHandler.h">
       <Filter>Header Files\gfx</Filter>
     </ClInclude>
-    <ClInclude Include="FileHelper.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>Header Files\geom</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHelper.h">
+      <Filter>Header Files\io</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

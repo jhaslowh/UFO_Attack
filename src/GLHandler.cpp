@@ -29,7 +29,7 @@ int GLHandler::setupShaders(){
 	"uniform mat4 worldm;            " // World Matrix handle
 	"void main() {                    "
 	"  v_TexCoordinate = a_TexCoordinate; "
-	"  gl_Position = position;  "//worldm * modelm * position;"
+	"  gl_Position = worldm * modelm * position;"
 	"}";
 	glShaderSource(vs, 1, &vs_source, NULL);
 	glCompileShader(vs);
@@ -51,7 +51,7 @@ int GLHandler::setupShaders(){
 	"uniform vec4 color;           " // Color handle
 	"varying vec2 v_TexCoordinate;  " // Texture coord handle that both shaders use 
 	"void main() {                  "
-	"  gl_FragColor = color;           "//(color * texture2D(texture, v_TexCoordinate));"
+	"  gl_FragColor = (color * texture2D(texture, v_TexCoordinate));"
 	"}";
 	glShaderSource(fs, 1, &fs_source, NULL);
 	glCompileShader(fs);
@@ -122,8 +122,8 @@ void GLHandler::setupGL(){
 	glCullFace(GL_BACK);
 
 	// Setup alpha blending 
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 // Disable all setup 
@@ -131,7 +131,7 @@ void GLHandler::endGL(){
 	// Disable cull face
 	glDisable(GL_CULL_FACE);
 	// Disable blend
-	//glDisable(GL_BLEND);
+	glDisable(GL_BLEND);
 }
 
 // Set the flat color of the face 

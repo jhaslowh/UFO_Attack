@@ -15,10 +15,12 @@
 
 #include "GLHandler.h"
 #include "Game.h"
-
+#include "Sprite.h"
 
 // Our gl wrapping class 
 GLHandler mgl;
+
+Sprite sprite;
 
 /**
 * Called at the begining of the game to load resources 
@@ -30,6 +32,7 @@ int init_resources(void)
 	mgl.setupShaders();
 	glUseProgram(mgl.program);
 
+	sprite.set(50,50,64,64,"test.png");
 
 	return 1;
 }
@@ -45,35 +48,16 @@ void onDisplay()
 	mgl.setupGL();
 	// Set the current matrix 
 	mgl.setWorldMatrix(mgl.orthoMatrix);
+	mgl.setModelMatrix(glm::mat4(1));
 	/* Clear the background as white */
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 
-	GLfloat color[] = {0.0f,1.0f,0.0f,1.0f};
+	GLfloat color[] = {1.0f,1.0f,1.0f,1.0f};
 	mgl.setFlatColor(color);
 
-	glEnableVertexAttribArray(mgl.mPositionHandle);
-	GLfloat triangle_vertices[] = {
-		0.0f,  0.8f,
-		-0.8f, -0.8f,
-		0.8f, -0.8f,
-	};
-
-	/* Describe our vertices array to OpenGL (it can't guess its format automatically) */
-	glVertexAttribPointer(
-	mgl.mPositionHandle, // attribute
-	2,                 // number of elements per vertex, here (x,y)
-	GL_FLOAT,          // the type of each element
-	GL_FALSE,          // take our values as-is
-	0,                 // no extra data between each position
-	triangle_vertices  // pointer to the C array
-	);
- 
-	/* Push each element in buffer_vertices to the vertex shader */
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-	glDisableVertexAttribArray(mgl.mPositionHandle);
- 
+	sprite.draw(mgl);
 
 	/* Display the result */
 	glutSwapBuffers();
