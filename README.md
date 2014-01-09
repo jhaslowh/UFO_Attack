@@ -11,14 +11,18 @@ Implemented
 
 Notes on commits
 ----------------
+
 Please do not commit anything from the release or debug directories that can be compiled. You can do this by cleaning the build before committing or just not committing those files. Also, do not commit the SQL file or the "ipch" folder.
 
 Libraries
 ---------
 
-**GLFW**  
-[http://www.glfw.org/](http://www.glfw.org/)  
-Used for GUI's
+**SDL**  
+[http://www.libsdl.org/](http://www.libsdl.org/)  
+Used for 
+- GUI's   
+- Threads  
+- Timing  
 
 **GLEW**   
 [http://glew.sourceforge.net/](http://glew.sourceforge.net/)  
