@@ -16,8 +16,8 @@ Please do not commit anything from the release or debug directories that can be 
 Libraries
 ---------
 
-**FreeGLUT**  
-[http://www.transmissionzero.co.uk/software/freeglut-devel/](http://www.transmissionzero.co.uk/software/freeglut-devel/)  
+**GLFW**  
+[http://www.glfw.org/](http://www.glfw.org/)  
 Used for GUI's
 
 **GLEW**   

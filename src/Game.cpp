@@ -8,8 +8,8 @@
 #include <stdlib.h>
 /* Use glew.h instead of gl.h to get all the GL prototypes declared */
 #include <glew.h>
-/* Using the GLUT library for the base windowing setup */
-#include <glut.h>
+/* Using the GLFW library for the base windowing setup */
+#include <GLFW/glfw3.h>
 
 #include "GLHandler.h"
 #include "Game.h"
@@ -53,17 +53,19 @@ void free_resources()
 /** 
  * Update game state 
  */
+float rotstat = 0;
 void onUpdate(){
 	// TODO 
+	
+	rotstat+=1.0f;
+	sprite.setRotation(rotstat);
 }
  
 /*
 * Render game to screen 
 */
-void onDisplay()
+void onDraw()
 {
-	printf("Render\n");
-
 	// Setup gl states 
 	mgl.setupGL();
 	// Set the current matrix 
@@ -73,28 +75,49 @@ void onDisplay()
 	glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-
-	GLfloat color[] = {1.0f,1.0f,1.0f,1.0f};
-	mgl.setFlatColor(color);
-
 	sprite.draw(mgl);
 
-	/* Display the result */
-	glutSwapBuffers();
+	// Disable gl states 
 	mgl.endGL();
 }
  
- 
+/** Game loop to update game state **/
+void gameLoop(){
+
+}
+
+static void error_callback(int error, const char* description)
+{
+    fputs(description, stderr);
+}
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, GL_TRUE);
+}
+
 int main(int argc, char* argv[])
 {
-	/* Glut-related initialising functions */
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA|GLUT_DOUBLE|GLUT_DEPTH);
-	glutInitWindowSize(640, 480);
-	glutCreateWindow("CS 426 Project");
- 
-	/* Extension wrangler initialising */
-	// Tell glew to use modern methods 
+	GLFWwindow* window;
+	// Set error method 
+    glfwSetErrorCallback(error_callback);
+	// Initialize GLFW and exit if error 
+    if (!glfwInit())
+        exit(EXIT_FAILURE);
+	// Make the GLFW Window 
+    window = glfwCreateWindow(640, 480, "CS 426 Project", NULL, NULL);
+	// If window could not be created, exit 
+    if (!window){
+        glfwTerminate();
+        exit(EXIT_FAILURE);
+    }
+
+	// Set the GLFW context as this winow 
+    glfwMakeContextCurrent(window);
+	// Set the keyboard callback 
+    glfwSetKeyCallback(window, key_callback);
+	
+	// Extension wrangler initialising  
 	glewExperimental = GL_TRUE; 
 	GLenum glew_status = glewInit();
 	if (glew_status != GLEW_OK)
@@ -102,20 +125,25 @@ int main(int argc, char* argv[])
 		fprintf(stderr, "Error: %s\n", glewGetErrorString(glew_status));
 		return EXIT_FAILURE;
 	}
- 
-	/* When all init functions run without errors,
-	the program can initialise the resources */
-	if (1 == init_resources())
-	{
-		/* We can display it if everything goes OK */
-		glutDisplayFunc(onDisplay);
-		glutMainLoop();
 
-		// TODO make game thread 
-	}
- 
-	/* If the program exits in the usual way,
-	free resources and exit with a success */
+	// Load resources 
+	init_resources();
+	
+	// Window loop 
+    while (!glfwWindowShouldClose(window))
+	{
+		onUpdate();
+		onDraw();
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+	// Destoy window context 
+    glfwDestroyWindow(window);
+	// Free resoruces 
 	free_resources();
-	return EXIT_SUCCESS;
+	// Terminate GLFW
+    glfwTerminate();
+	// Exit app 
+    exit(EXIT_SUCCESS);
 }
