@@ -15,7 +15,9 @@
 #include <SDL\SDL_timer.h>
 
 #include "GLHandler.h"
+#include "KeyHandler.h"
 #include "Sprite.h"
+#include "Cube.h"
 
 // Global screen size references 
 int SCREEN_WIDTH = 640;
@@ -32,8 +34,9 @@ float deltaTime = 0;		// Used in game loop to tell how much time has passed
 bool running = true;		
 bool render = false;        // Set to true each time game needs to be rendered 
 
-// GL handling class 
+// Handlers
 GLHandler mgl;
+KeyHandler mKeyH;
 // Main window 
 SDL_Window* window;
 SDL_Thread* thread;
@@ -41,18 +44,20 @@ SDL_Thread* thread;
 // Testing sprite 
 Sprite sprite;
 float rotstat = 0;
+Cube cube;
 
 /**
 * Called at the begining of the game to load resources 
 */
 int init_resources(void)
 {
-	printf("Load Resources\n");
+	printf("Loading Resources...\n");
 	// Set up shaders 
 	mgl.setupShaders();
 	glUseProgram(mgl.program);
 	// Setup ortho matrix
 	mgl.setOrthoMatrix((float)SCREEN_WIDTH,(float)SCREEN_HEIGHT);
+	mgl.setCamera3DMatrix(glm::vec3(0,20,50), glm::vec3(0,0,0), (float)SCREEN_WIDTH/(float)SCREEN_HEIGHT);
 
 	sprite.setup(64.f,64.f,"test.png");
 	sprite.setPosition(64.f,64.f);
@@ -61,6 +66,9 @@ int init_resources(void)
 	sprite.setOrigin(32.0f,32.0f);
 	sprite.setAlpha(1.0f);
 
+	cube.setScale(5.0f);
+
+	printf("Resources loaded\n");
 	return 1;
 }
 
@@ -71,6 +79,7 @@ void free_resources()
 {
 	printf("Free Resources\n");
 	glDeleteProgram(mgl.program);
+	printf("Resources Freed\n");
 }
 
 /** 
@@ -88,6 +97,15 @@ void onUpdate(){
 
 	rotstat += 90.0f * deltaTime;
 	sprite.setRotation(rotstat);
+
+	if (mKeyH.keyDown(KEY_W))
+		cube.setRotationX(cube.getRotationX() - 5.0f);
+	if (mKeyH.keyDown(KEY_S))
+		cube.setRotationX(cube.getRotationX() + 5.0f);
+	if (mKeyH.keyDown(KEY_A))
+		cube.setRotationY(cube.getRotationY() - 5.0f);
+	if (mKeyH.keyDown(KEY_D))
+		cube.setRotationY(cube.getRotationY() + 5.0f);
 }
  
 /*
@@ -97,13 +115,15 @@ void onDraw()
 {
 	// Setup gl states 
 	mgl.setupGL();
-	// Set the current matrix 
-	mgl.setWorldMatrix(mgl.orthoMatrix);
 	// Clear screen
 	glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
-
+	
+	mgl.setWorldMatrix(mgl.orthoMatrix);
 	sprite.draw(mgl);
+
+	mgl.setWorldMatrix(mgl.camera3DMatrix);
+	cube.draw(mgl);
 
 	// Disable gl states 
 	mgl.endGL();
@@ -128,8 +148,6 @@ int gameLoop(void *ptr){
 		// Draws Game
 		if (!render)
 			render = true;
-		//else 
-		//	printf("Requested render while drawing\n");
 					
 		// calculate how long the cycle took in miliseconds 
 		timeDiff = SDL_GetTicks() - beginTime;
@@ -159,7 +177,8 @@ int main(int argc, char* argv[])
 	// Setup SDL
 	SDL_Init(SDL_INIT_VIDEO);
 	// Create Window 
-	window = SDL_CreateWindow("CS 426 Project", 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+	window = SDL_CreateWindow("CS 426 Project", 
+		100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
 	// Create the window context 
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
@@ -182,18 +201,28 @@ int main(int argc, char* argv[])
 	SDL_Event windowEvent;
 	while (running)
 	{
-		// Check evenets 
-		if (SDL_PollEvent(&windowEvent))
-		{
+		// Check events 
+        while( SDL_PollEvent( &windowEvent ) ){
+                
 			if (windowEvent.type == SDL_QUIT) running = false;
 			if (windowEvent.type == SDL_KEYUP &&
 				windowEvent.key.keysym.sym == SDLK_ESCAPE) running = false;
-		}
+
+			// Update keyboard handler 
+			mKeyH.updateState(windowEvent);
+        }
 
 		// Render if requested 
 		if (render){
 			// Call main drawing function 
 			onDraw();
+			
+			// check OpenGL error
+			GLenum err;
+			while ((err = glGetError()) != GL_NO_ERROR) {
+				printf("OpenGL error: %d\n", err);
+			}
+
 			// Swap buffers 
 			SDL_GL_SwapWindow(window);
 			render = false;

@@ -6,8 +6,10 @@ Implemented
 
 * PNG Loading (Use FileHelper::loadPNG(char* file))
 * Orthographic Projection 
+* Perspective Projection
 * 2D Sprites 
 * Matrix Transforms (Use GLM) 
+* KeyBoard IO
 
 Notes on commits
 ----------------

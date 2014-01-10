@@ -45,6 +45,9 @@
     <ClInclude Include="FileHelper.h">
       <Filter>Header Files\io</Filter>
     </ClInclude>
+    <ClInclude Include="KeyHandler.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -61,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files\geom</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyHandler.cpp">
+      <Filter>Source Files\io</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

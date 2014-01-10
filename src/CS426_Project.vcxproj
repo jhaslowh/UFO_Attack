@@ -14,6 +14,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="FileHelper.h" />
     <ClInclude Include="GLHandler.h" />
+    <ClInclude Include="KeyHandler.h" />
     <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <ItemGroup>
@@ -21,6 +22,7 @@
     <ClCompile Include="FileHelper.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GLHandler.cpp" />
+    <ClCompile Include="KeyHandler.cpp" />
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

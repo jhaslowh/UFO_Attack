@@ -106,7 +106,7 @@ void Sprite::draw(GLHandler mgl){
 
 	/* Set up vertex and coord buffers **/
 	glEnableVertexAttribArray(mgl.mPositionHandle);
-	// Describe our vertices array to OpenGL (it can't guess its format automatically) 
+	// Describe our vertices array to OpenGL
 	glVertexAttribPointer(
 		mgl.mPositionHandle, // attribute
 		2,                 // number of elements per vertex, here (x,y)
