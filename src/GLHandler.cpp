@@ -1,10 +1,6 @@
 #include "GLHandler.h"
 
-
-GLHandler::GLHandler(){
-	// left, width, height, top
-	orthoMatrix = glm::ortho( 0.0f, 640.0f, 480.0f, 0.0f, 1.0f, -1.0f);
-}
+GLHandler::GLHandler(){}
 GLHandler::~GLHandler(void){}
 
 /**
@@ -149,3 +145,9 @@ void GLHandler::setWorldMatrix(glm::mat4 matrix){
 	glUniformMatrix4fv(mWorldMatrixHandle, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
+
+// Call to fix the ortho matrix if screen size has changed 
+void GLHandler::setOrthoMatrix(const float w,const float h){
+	// left, width, height, top
+	orthoMatrix = glm::ortho( 0.0f, w, h, 0.0f, 1.0f, -1.0f);
+}

@@ -15,8 +15,11 @@
 #include <SDL\SDL_timer.h>
 
 #include "GLHandler.h"
-#include "Game.h"
 #include "Sprite.h"
+
+// Global screen size references 
+int SCREEN_WIDTH = 640;
+int SCREEN_HEIGHT = 480;  
 
 /** Game loop and FPS timing **/
 int FPS = 60;				// number of frames per second
@@ -48,6 +51,8 @@ int init_resources(void)
 	// Set up shaders 
 	mgl.setupShaders();
 	glUseProgram(mgl.program);
+	// Setup ortho matrix
+	mgl.setOrthoMatrix((float)SCREEN_WIDTH,(float)SCREEN_HEIGHT);
 
 	sprite.setup(64.f,64.f,"test.png");
 	sprite.setPosition(64.f,64.f);
@@ -154,7 +159,7 @@ int main(int argc, char* argv[])
 	// Setup SDL
 	SDL_Init(SDL_INIT_VIDEO);
 	// Create Window 
-	window = SDL_CreateWindow("CS 426 Project", 100, 100, 640, 480, SDL_WINDOW_OPENGL);
+	window = SDL_CreateWindow("CS 426 Project", 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
 	// Create the window context 
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 

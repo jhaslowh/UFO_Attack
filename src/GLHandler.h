@@ -8,7 +8,6 @@
 #include <glm\gtx\transform.hpp>
 #include <glm\gtc\type_ptr.hpp>
 
-
 class GLHandler
 {
 public:
@@ -23,6 +22,7 @@ public:
 
 	// Matrix's
 	glm::mat4 orthoMatrix;
+	glm::mat4 camera3DMatrix;
 
 	// Functions
 	GLHandler();
@@ -40,4 +40,7 @@ public:
 
 	void setModelMatrix(glm::mat4);
 	void setWorldMatrix(glm::mat4);
+
+	// Call to fix the ortho matrix if screen size has changed 
+	void setOrthoMatrix(const float,const float);
 };

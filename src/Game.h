@@ -1,2 +1,1 @@
 #pragma once
-class Game{};
