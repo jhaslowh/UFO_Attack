@@ -30,7 +30,7 @@ float deltaTime = 0;		// Used in game loop to tell how much time has passed
 
 // States 
 bool running = true;		
-bool render = false;		// Set to true each time game needs to be rendered 
+bool render = false;        // Set to true each time game needs to be rendered 
 
 // GL handling class 
 GLHandler mgl;
@@ -59,7 +59,7 @@ int init_resources(void)
 	sprite.setRotation(45.0f);
 	sprite.setScale(1.5f);
 	sprite.setOrigin(32.0f,32.0f);
-	sprite.setAlpha(.5f);
+	sprite.setAlpha(1.0f);
 
 	return 1;
 }

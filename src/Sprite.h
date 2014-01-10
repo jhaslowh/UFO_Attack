@@ -28,6 +28,7 @@ public:
 	~Sprite();
 
 	// Setup the sprites verticies, coords, and texture 
+	void setup(float, float);
 	void setup(float, float, char*);
 
 	// Set the position of the sprite 

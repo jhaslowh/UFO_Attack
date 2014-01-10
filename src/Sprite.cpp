@@ -11,11 +11,12 @@ Sprite::Sprite(){
 	color[3] = 1.0f;
 	origin_x = 0;
 	origin_y = 0;
+	textureID = -1;
 }
 Sprite::~Sprite(){}
 
 // Setup the sprites verticies, coords, and texture 
-void Sprite::setup(float w,float h,char* file)
+void Sprite::setup(float w,float h)
 {
 	// Set indicies
 	indicies[0] = 0;
@@ -36,9 +37,16 @@ void Sprite::setup(float w,float h,char* file)
 	cords[2] = 0.0f; cords[3] = 1.0f;
 	cords[4] = 1.0f; cords[5] = 1.0f;
 	cords[6] = 1.0f; cords[7] = 0.0f;
+}
+
+// Setup the sprites verticies, coords, and texture 
+void Sprite::setup(float w,float h,char* file)
+{
+	setup(w,h);
 
 	// Load texture
-	textureID = FileHelper::loadPNG(file);
+	if (file != NULL)
+		textureID = FileHelper::loadPNG(file);
 }
 
 // Set position of the sprite 
@@ -108,24 +116,29 @@ void Sprite::draw(GLHandler mgl){
 		verts  // pointer to the C array
 	);
  
-    // Bind textures 
-    glEnableVertexAttribArray(mgl.mTextCordHandle);
-    glVertexAttribPointer(
-        mgl.mTextCordHandle, 
-		2,                 // number of elements per coord, here (x,y)
-		GL_FLOAT,          // the type of each element
-		GL_FALSE,          // take our values as-is
-		0,                 // no extra data between each position
-		cords			  // pointer to the C array
-	);
+	if (textureID != -1){
+		// Bind textures 
+		glEnableVertexAttribArray(mgl.mTextCordHandle);
+		glVertexAttribPointer(
+			mgl.mTextCordHandle, 
+			2,                 // number of elements per coord, here (x,y)
+			GL_FLOAT,          // the type of each element
+			GL_FALSE,          // take our values as-is
+			0,                 // no extra data between each position
+			cords			  // pointer to the C array
+		);
 
-	/** Bind Texture **/
-	// Set the active texture unit to texture unit 0.
-    glActiveTexture(GL_TEXTURE0);
-    // Bind the texture to this unit.
-    glBindTexture(GL_TEXTURE_2D, textureID);
-    // Tell the texture uniform sampler to use this texture in the shader by binding to texture unit 0.
-    glUniform1i(mgl.mTextureHandle, 0);
+		/** Bind Texture **/
+		mgl.toggleTextures(true);
+		// Set the active texture unit to texture unit 0.
+		glActiveTexture(GL_TEXTURE0);
+		// Bind the texture to this unit.
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		// Tell the texture uniform sampler to use this texture in the shader by binding to texture unit 0.
+		glUniform1i(mgl.mTextureHandle, 0);
+	}
+	else 
+		mgl.toggleTextures(false);
 
 	// Draw the sent indicies 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indicies);

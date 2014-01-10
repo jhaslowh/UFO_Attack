@@ -19,6 +19,7 @@ public:
 	GLint mTextCordHandle;
 	GLint mWorldMatrixHandle;
 	GLint mModelMatrixHandle;
+	GLint mUseTextureHandle;
 
 	// Matrix's
 	glm::mat4 orthoMatrix;
@@ -42,5 +43,13 @@ public:
 	void setWorldMatrix(glm::mat4);
 
 	// Call to fix the ortho matrix if screen size has changed 
-	void setOrthoMatrix(const float,const float);
+	void setOrthoMatrix(const float width,const float height);
+
+	// Set the 3d camera matrix settings 
+	// Camera location  : glm::vec(0,0,0)
+	// Target           : glm::vec(0,0,0)
+	void setCamera3DMatrix(const glm::vec3 cameraLocation, const glm::vec3 targetLocation, const float aspectRatio);
+
+	// Call to turn on and off textures
+	void toggleTextures(bool);
 };
