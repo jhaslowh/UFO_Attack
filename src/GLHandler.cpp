@@ -124,6 +124,8 @@ void GLHandler::setupGL(){
 	glEnable(GL_CULL_FACE);
 	// Set which cull face to use 
 	glCullFace(GL_BACK);
+	// Turn on depth test so objects are drawn in order
+	glEnable(GL_DEPTH_TEST);
 
 	// Setup alpha blending 
 	glEnable(GL_BLEND);
@@ -132,10 +134,9 @@ void GLHandler::setupGL(){
 
 // Disable all setup 
 void GLHandler::endGL(){
-	// Disable cull face
 	glDisable(GL_CULL_FACE);
-	// Disable blend
 	glDisable(GL_BLEND);
+	glDisable(GL_DEPTH_TEST);
 }
 
 // Set the flat color of the face 

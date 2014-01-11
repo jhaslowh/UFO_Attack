@@ -11,9 +11,9 @@ class Cube
 {
 private:
 	// Drawing variables 
-	GLushort indicies[12];
-	GLfloat verts[24];
-	GLfloat cords[8];
+	GLushort indicies[36];
+	GLfloat verts[72];
+	GLfloat cords[48];
 	GLint textureID;
 	float pos_x;
 	float pos_y;

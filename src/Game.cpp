@@ -61,12 +61,13 @@ int init_resources(void)
 
 	sprite.setup(64.f,64.f,"test.png");
 	sprite.setPosition(64.f,64.f);
-	sprite.setRotation(45.0f);
-	sprite.setScale(1.5f);
+	sprite.setScale(1.0f);
 	sprite.setOrigin(32.0f,32.0f);
 	sprite.setAlpha(1.0f);
 
 	cube.setScale(5.0f);
+	//cube.setColor(0.0f,0.0f,1.0f,0.4f);
+	cube.setTexture("test.png");
 
 	printf("Resources loaded\n");
 	return 1;
@@ -117,7 +118,7 @@ void onDraw()
 	mgl.setupGL();
 	// Clear screen
 	glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	mgl.setWorldMatrix(mgl.orthoMatrix);
 	sprite.draw(mgl);
