@@ -3,7 +3,7 @@
 
 KeyHandler::KeyHandler()
 {
-	for (int i = 0; i < 43; i++)
+	for (int i = 0; i < KEY_COUNT; i++)
 		keys[i] = false;
 }
 
@@ -14,10 +14,10 @@ void KeyHandler::updateState(SDL_Event windowEvent){
 	switch( windowEvent.type ){
         /* Keyboard event */
         case SDL_KEYDOWN:
-			keys[keyIndex(windowEvent.key.keysym.scancode)] = true;
+			keys[keyIndex((int)windowEvent.key.keysym.scancode)] = true;
 			break;
         case SDL_KEYUP:
-			keys[keyIndex(windowEvent.key.keysym.scancode)] = false;
+			keys[keyIndex((int)windowEvent.key.keysym.scancode)] = false;
             break;
         default:
             break;
@@ -32,7 +32,7 @@ bool KeyHandler::keyDown(int key){
 // Get the key index from sent scancode 
 // For list of scancodes's, please see 
 // http://wiki.libsdl.org/SDL_Scancode
-int KeyHandler::keyIndex(Uint8 scancode){
+int KeyHandler::keyIndex(int scancode){
 	switch (scancode){
 	case SDL_SCANCODE_SPACE:
 		return KEY_SPACE;

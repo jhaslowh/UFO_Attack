@@ -20,9 +20,11 @@
 #include "Sprite.h"
 #include "Cube.h"
 
-// Global screen size references 
+// Global Window Settings
 int SCREEN_WIDTH = 640;
-int SCREEN_HEIGHT = 480;  
+int SCREEN_HEIGHT = 480;
+bool FULLSCREEN = false;
+bool WINDOW_VISIBLE = false;
 
 /** Game loop and FPS timing **/
 int FPS = 60;				// number of frames per second
@@ -101,17 +103,20 @@ void onUpdate(){
 	// Set this time as the last time 
 	lastTime = mTime;
 
-	rotstat += 90.0f * deltaTime;
-	sprite.setRotation(rotstat);
+	// Do main updates if window is visible 
+	if (WINDOW_VISIBLE){
+		rotstat += 90.0f * deltaTime;
+		sprite.setRotation(rotstat);
 
-	if (mKeyH.keyDown(KEY_W))
-		cube.setRotationX(cube.getRotationX() - 5.0f);
-	if (mKeyH.keyDown(KEY_S))
-		cube.setRotationX(cube.getRotationX() + 5.0f);
-	if (mKeyH.keyDown(KEY_A))
-		cube.setRotationY(cube.getRotationY() - 5.0f);
-	if (mKeyH.keyDown(KEY_D))
-		cube.setRotationY(cube.getRotationY() + 5.0f);
+		if (mKeyH.keyDown(KEY_W))
+			cube.setRotationX(cube.getRotationX() - 5.0f);
+		if (mKeyH.keyDown(KEY_S))
+			cube.setRotationX(cube.getRotationX() + 5.0f);
+		if (mKeyH.keyDown(KEY_A))
+			cube.setRotationY(cube.getRotationY() - 5.0f);
+		if (mKeyH.keyDown(KEY_D))
+			cube.setRotationY(cube.getRotationY() + 5.0f);
+	}
 }
  
 /*
@@ -182,13 +187,12 @@ int gameLoop(void *ptr){
 		if (sleepTime > 0)
 			SDL_Delay(sleepTime);
 		
-		// Behind 
-		framesSkipped = 0; // resetting the frames skipped
+		// Update if behind 
+		framesSkipped = 0; // reset the frames skipped
 		while (sleepTime < 0 && framesSkipped < MAX_FRAME_SKIPS){
 			printf("Skipped Frame\n");
 			// We need to catch up, update without rendering
 			onUpdate();
-			// add frame period to check if in next frame
 			sleepTime += FRAME_PERIOD;
 			framesSkipped++;
 		}
@@ -202,8 +206,12 @@ int main(int argc, char* argv[])
 	// Setup SDL
 	SDL_Init(SDL_INIT_VIDEO);
 	// Create Window 
-	window = SDL_CreateWindow("CS 426 Project", 
-		100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+	if (FULLSCREEN)
+		window = SDL_CreateWindow("CS 426 Project", 
+			400, 40, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
+	else 
+		window = SDL_CreateWindow("CS 426 Project", 
+			400, 40, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
 	// Create the window context 
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
@@ -212,7 +220,7 @@ int main(int argc, char* argv[])
 	GLenum glew_status = glewInit();
 	// Close if glew could not be set up 
 	if (glew_status != GLEW_OK){
-		fprintf(stderr, "Error: %s\n", glewGetErrorString(glew_status));
+		fprintf(stderr, "Error Setting up GLEW: %s\n", glewGetErrorString(glew_status));
         exit(EXIT_FAILURE);
 	}
 
@@ -228,17 +236,36 @@ int main(int argc, char* argv[])
 	{
 		// Check events 
         while( SDL_PollEvent( &windowEvent ) ){
-                
 			if (windowEvent.type == SDL_QUIT) running = false;
 			if (windowEvent.type == SDL_KEYUP &&
 				windowEvent.key.keysym.sym == SDLK_ESCAPE) running = false;
+
+			if (windowEvent.type == SDL_WINDOWEVENT) {
+				switch (windowEvent.window.event) {
+				case SDL_WINDOWEVENT_SHOWN:
+				//case SDL_WINDOWEVENT_EXPOSED:
+				//case SDL_WINDOWEVENT_RESTORED:
+				case SDL_WINDOWEVENT_FOCUS_GAINED:
+					WINDOW_VISIBLE = true;
+					break;
+				case SDL_WINDOWEVENT_HIDDEN:
+				case SDL_WINDOWEVENT_MINIMIZED:
+				case SDL_WINDOWEVENT_FOCUS_LOST:
+					WINDOW_VISIBLE = false;
+					break;
+				case SDL_WINDOWEVENT_RESIZED:
+					break;
+				default:
+					break;
+				}
+			}
 
 			// Update keyboard handler 
 			mKeyH.updateState(windowEvent);
         }
 
 		// Render if requested 
-		if (render){
+		if (render && WINDOW_VISIBLE){
 			// Call main drawing function 
 			onDraw();
 			

@@ -25,7 +25,7 @@ void TextRender::init(){
 void TextRender::drawText(GLHandler mgl, char* text, float x, float y, float rotation, float fontSize){
 	if (setup){
 		float scale = fontSize / TR_FONT_SIZE;
-		float length = strlen(text);
+		float length = (float)strlen(text);
 
 		/** Matrix transform **/
 		// Starting matrix 
@@ -405,12 +405,12 @@ float TextRender::getLetterWidth(char c){
 void TextRender::setIndicies(char c){
 	int index = getCharIndex(c);
 
-	indicies[0] = 4 * index;
-	indicies[1] = (4 * index) + 1;
-	indicies[2] = (4 * index) + 2;
-	indicies[3] = (4 * index) + 2;
-	indicies[4] = (4 * index) + 3;
-	indicies[5] = 4 * index;
+	indicies[0] = (GLushort)(4 * index);
+	indicies[1] = (GLushort)((4 * index) + 1);
+	indicies[2] = (GLushort)((4 * index) + 2);
+	indicies[3] = (GLushort)((4 * index) + 2);
+	indicies[4] = (GLushort)((4 * index) + 3);
+	indicies[5] = (GLushort)(4 * index);
 }
 
 // Setup the buffers for the font 

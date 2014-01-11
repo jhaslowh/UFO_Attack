@@ -43,10 +43,12 @@
 #define KEY_RIGHT 39
 #define KEY_LEFT 40
 
+#define KEY_COUNT 41
+
 class KeyHandler
 {
 	// List of keys 
-	bool keys[41];
+	bool keys[KEY_COUNT];
 	
 public:
 	KeyHandler();
@@ -62,6 +64,6 @@ private:
 	// Get the key index from sent scancode 
 // For list of scancodes's, please see 
 // http://wiki.libsdl.org/SDL_Scancode
-	int keyIndex(Uint8 scancode);
+	int keyIndex(int scancode);
 };
 
