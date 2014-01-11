@@ -3,7 +3,7 @@
 //#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
 #endif
 
-// Using the standard output for fprintf 
+// Using the standard output for printf 
 #include <stdio.h>
 #include <stdlib.h>
 // Use glew.h instead of gl.h to get all the GL prototypes declared 
@@ -15,6 +15,7 @@
 #include <SDL\SDL_timer.h>
 
 #include "GLHandler.h"
+#include "TextRender.h"
 #include "KeyHandler.h"
 #include "Sprite.h"
 #include "Cube.h"
@@ -37,6 +38,7 @@ bool render = false;        // Set to true each time game needs to be rendered
 // Handlers
 GLHandler mgl;
 KeyHandler mKeyH;
+TextRender* mTR;
 // Main window 
 SDL_Window* window;
 SDL_Thread* thread;
@@ -59,14 +61,16 @@ int init_resources(void)
 	mgl.setOrthoMatrix((float)SCREEN_WIDTH,(float)SCREEN_HEIGHT);
 	mgl.setCamera3DMatrix(glm::vec3(0,20,50), glm::vec3(0,0,0), (float)SCREEN_WIDTH/(float)SCREEN_HEIGHT);
 
-	sprite.setup(64.f,64.f,"test.png");
+	mTR = new TextRender();
+	mTR->init();
+
+	sprite.setup(64.f,64.f,"test2.png");
 	sprite.setPosition(64.f,64.f);
 	sprite.setScale(1.0f);
 	sprite.setOrigin(32.0f,32.0f);
 	sprite.setAlpha(1.0f);
 
 	cube.setScale(5.0f);
-	//cube.setColor(0.0f,0.0f,1.0f,0.4f);
 	cube.setTexture("test.png");
 
 	printf("Resources loaded\n");
@@ -80,6 +84,7 @@ void free_resources()
 {
 	printf("Free Resources\n");
 	glDeleteProgram(mgl.program);
+	delete(mTR);
 	printf("Resources Freed\n");
 }
 
@@ -121,6 +126,25 @@ void onDraw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	mgl.setWorldMatrix(mgl.orthoMatrix);
+
+	
+	GLfloat color[] = {1.0f,0.0f,0.0f,1.0f};
+	mgl.setFlatColor(color);
+	mTR->drawText(mgl,
+		"AaBbCcDdEeFf\n"
+		"GgHhIiJjKkLlMm\n"
+		"NnOoPpQqRrSs\n"
+		"TtUuVvWwXxYyZz\n"
+		"0123456789:.%-/?\n"
+		,150,10,0,20);
+	GLfloat color2[] = {.5,.5f,.5f,1.0f};
+	mgl.setFlatColor(color2);
+	mTR->drawText(mgl, 
+		"This is an example sentence.",
+		50,150,0,25);
+	mTR->drawText(mgl, 
+		"This is an example rotated sentence.",
+		50,200,20,25);
 	sprite.draw(mgl);
 
 	mgl.setWorldMatrix(mgl.camera3DMatrix);

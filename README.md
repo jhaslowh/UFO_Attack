@@ -11,6 +11,7 @@ Implemented
 * 3D Cube
 * Matrix Transforms (Use GLM) 
 * KeyBoard IO
+* Text Rendering 
 
 Notes on commits
 ----------------

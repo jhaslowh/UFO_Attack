@@ -48,6 +48,12 @@
     <ClInclude Include="KeyHandler.h">
       <Filter>Header Files\io</Filter>
     </ClInclude>
+    <ClInclude Include="VertCordGenerator.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRender.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -67,6 +73,12 @@
     </ClCompile>
     <ClCompile Include="KeyHandler.cpp">
       <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="VertCordGenerator.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRender.cpp">
+      <Filter>Source Files\gfx</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -16,6 +16,8 @@
     <ClInclude Include="GLHandler.h" />
     <ClInclude Include="KeyHandler.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TextRender.h" />
+    <ClInclude Include="VertCordGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
@@ -24,6 +26,8 @@
     <ClCompile Include="GLHandler.cpp" />
     <ClCompile Include="KeyHandler.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TextRender.cpp" />
+    <ClCompile Include="VertCordGenerator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{55A1C19C-B44B-4905-8CB9-3662761445ED}</ProjectGuid>

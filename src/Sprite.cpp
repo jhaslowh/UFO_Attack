@@ -117,7 +117,7 @@ void Sprite::draw(GLHandler mgl){
 	);
  
 	if (textureID != -1){
-		// Bind textures 
+		// Bind texture
 		glEnableVertexAttribArray(mgl.mTextCordHandle);
 		glVertexAttribPointer(
 			mgl.mTextCordHandle, 
@@ -143,7 +143,7 @@ void Sprite::draw(GLHandler mgl){
 	// Draw the sent indicies 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indicies);
 
-	// Disable vertexes 
+	// Disable arrays
 	glDisableVertexAttribArray(mgl.mPositionHandle);
 	glDisableVertexAttribArray(mgl.mTextCordHandle);
 }
