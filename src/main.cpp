@@ -15,7 +15,7 @@
 #include <SDL\SDL_timer.h>
 
 #include "GLHandler.h"
-#include "TextRender.h"
+#include "UIAtlas.h"
 #include "KeyHandler.h"
 #include "UIScreen.h"
 #include "TestScreen.h"
@@ -26,7 +26,7 @@ int SCREEN_HEIGHT = 480;
 bool FULLSCREEN = false;
 bool WINDOW_VISIBLE = false;
 
-/** Game loop and FPS timing **/
+/// Game loop and FPS timing 
 int FPS = 60;				// number of frames per second
 int MAX_FRAME_SKIPS = 12;	// maximum number of frames to be skipped
 int FRAME_PERIOD = 1000/FPS;// the number of milliseconds per frame
@@ -40,12 +40,11 @@ bool render = false;        // Set to true each time game needs to be rendered
 // Handlers
 GLHandler mgl;
 KeyHandler mKeyH;
-TextRender* mTR;
+UIAtlas* mUIAtlas;
 
-// Main window 
+// GUI Stuff
 SDL_Window* window;
 SDL_Thread* thread;
-
 UIScreen* screen = NULL;
 
 /**
@@ -61,8 +60,8 @@ int init_resources(void)
 	mgl.setOrthoMatrix((float)SCREEN_WIDTH,(float)SCREEN_HEIGHT);
 	mgl.setCamera3DMatrix(glm::vec3(0,20,50), glm::vec3(0,0,0), (float)SCREEN_WIDTH/(float)SCREEN_HEIGHT);
 
-	mTR = new TextRender();
-	mTR->init();
+	mUIAtlas = new UIAtlas();
+	mUIAtlas->init();
 
 	// Set current screen as test screen 
 	screen = (UIScreen*)new TestScreen();
@@ -79,7 +78,7 @@ void free_resources()
 {
 	printf("Free Resources\n");
 	glDeleteProgram(mgl.program);
-	delete(mTR);
+	delete(mUIAtlas);
 	if (screen != NULL)
 		delete(screen);
 	printf("Resources Freed\n");
@@ -122,7 +121,7 @@ void onDraw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	// Draw Screen
-	if (screen != NULL) screen->draw(&mgl, mTR);
+	if (screen != NULL) screen->draw(&mgl, (TextureAtlas*)mUIAtlas);
 	
 	// Disable gl states 
 	mgl.endGL();

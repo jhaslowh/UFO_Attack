@@ -13,6 +13,7 @@ Implemented
 * KeyBoard IO
 * Text Rendering 
 * UI Screens
+* Texture Atlas Stucture
 
 Notes on commits
 ----------------

@@ -1,90 +1,65 @@
 #include "TextRender.h"
 
 
-TextRender::TextRender(){
-	setup = false;
-	textureID = -1;
-
-	verts = NULL;
-	cords = NULL;
-}
-
-TextRender::~TextRender(){
-	if (verts != NULL) free(verts);
-	if (cords != NULL) free(cords);
-}
-
-// Must be called before the renderer can be used 
-void TextRender::init(){
-	textureID = FileHelper::loadPNG("text.png");
-	createFontBuffers();
-	setup = true;
-}
+TextRender::TextRender(){}
+TextRender::~TextRender(){}
 
 // Draw text to the screen with the following properties 
 void TextRender::drawText(GLHandler mgl, char* text, float x, float y, float rotation, float fontSize){
-	if (setup){
-		float scale = fontSize / TR_FONT_SIZE;
-		float length = (float)strlen(text);
+	float scale = fontSize / TR_FONT_SIZE;
+	float length = (float)strlen(text);
 
-		/** Matrix transform **/
-		// Starting matrix 
-		glm::mat4 mMatrix;
-		// Translate 
-		mMatrix = glm::translate(mMatrix, glm::vec3(x, y, 0.0f));
-		// Rotation
-		if (rotation != 0)
-			mMatrix = glm::rotate(mMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
-		// Scale 
-		mMatrix = glm::scale(mMatrix, glm::vec3(scale));
+	/** Matrix transform **/
+	// Starting matrix 
+	glm::mat4 mMatrix;
+	// Translate 
+	mMatrix = glm::translate(mMatrix, glm::vec3(x, y, 0.0f));
+	// Rotation
+	if (rotation != 0)
+		mMatrix = glm::rotate(mMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
+	// Scale 
+	mMatrix = glm::scale(mMatrix, glm::vec3(scale));
         
-		/// Set up vertex and coord buffers 
-		glEnableVertexAttribArray(mgl.mPositionHandle);
-		glVertexAttribPointer(mgl.mPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, verts );
+	/// Set up vertex and coord buffers 
+	/*glEnableVertexAttribArray(mgl.mPositionHandle);
+	glVertexAttribPointer(mgl.mPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, verts );
 
-		/// Bind texture
-		glEnableVertexAttribArray(mgl.mTextCordHandle);
-		glVertexAttribPointer(mgl.mTextCordHandle, 2,GL_FLOAT, GL_FALSE, 0, cords);
+	/// Bind texture
+	glEnableVertexAttribArray(mgl.mTextCordHandle);
+	glVertexAttribPointer(mgl.mTextCordHandle, 2,GL_FLOAT, GL_FALSE, 0, cords);
 
-		mgl.toggleTextures(true);
-		// Set the active texture unit to texture unit 0.
-		glActiveTexture(GL_TEXTURE0);
-		// Bind the texture to this unit.
-		glBindTexture(GL_TEXTURE_2D, textureID);
-		// Tell the texture uniform sampler to use this texture in the shader by binding to texture unit 0.
-		glUniform1i(mgl.mTextureHandle, 0);
+	mgl.toggleTextures(true);
+	// Set the active texture unit to texture unit 0.
+	glActiveTexture(GL_TEXTURE0);
+	// Bind the texture to this unit.
+	glBindTexture(GL_TEXTURE_2D, textureID);
+	// Tell the texture uniform sampler to use this texture in the shader by binding to texture unit 0.
+	glUniform1i(mgl.mTextureHandle, 0);*/
 
-		if (length > 0){
-			float size = 0;
+	if (length > 0){
+		float size = 0;
 
-			for (int i =0; i < length; i++){
-				char c = text[i];
-				if (c  != '\n' && c != ' '){
-					// Translate
-					glm::mat4 matrix;
-					matrix = glm::translate(mMatrix, glm::vec3(size, 0.0f, 0.0f));
-					mgl.setModelMatrix(matrix);
+		for (int i =0; i < length; i++){
+			char c = text[i];
+			if (c  != '\n' && c != ' '){
+				// Translate
+				glm::mat4 matrix;
+				matrix = glm::translate(mMatrix, glm::vec3(size, 0.0f, 0.0f));
+				mgl.setModelMatrix(matrix);
 					
-					// Draw Letter
-					setIndicies(c);
-					glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indicies);
+				// Draw Letter
+				setIndicies(c);
+				glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indicies);
 					
-					size += getLetterWidth(c);
-				}else if (c == ' '){
-					size += TR_SPACE_LENGTH;
-				}
-				else if (c == '\n'){
-					mMatrix = glm::translate(mMatrix, glm::vec3(0.0f, TR_FONT_SIZE, 0.0f));
-					size = 0;
-				}
+				size += getLetterWidth(c);
+			}else if (c == ' '){
+				size += TR_SPACE_LENGTH;
+			}
+			else if (c == '\n'){
+				mMatrix = glm::translate(mMatrix, glm::vec3(0.0f, TR_FONT_SIZE, 0.0f));
+				size = 0;
 			}
 		}
-
-		glDisableVertexAttribArray(mgl.mPositionHandle);
-		glDisableVertexAttribArray(mgl.mTextCordHandle);
-	}
-	else{
-		printf("Error: Font not initialized\n");
 	}
 }
 
@@ -414,9 +389,7 @@ void TextRender::setIndicies(char c){
 }
 
 // Setup the buffers for the font 
-void TextRender::createFontBuffers(){
-	VertCordGenerator* vcg = new VertCordGenerator(1024,1024);
-
+void TextRender::createFontBuffers(VertCordGenerator* vcg){
 	// A 
 	vcg->addFrame(0.0f, 0.0f, 52.7f, 71.0f);
 	letterWidth[0] = 52.7f;
@@ -693,7 +666,7 @@ void TextRender::createFontBuffers(){
 	vcg->addFrame(564.0f, 288.0f, 43.0f, 54.0f);
 	letterWidth[67] = 43.0f;
 
-	verts = vcg->getVertices();
+	/*verts = vcg->getVertices();
 	cords = vcg->getCoords();
-	delete(vcg);
+	delete(vcg);*/
 }

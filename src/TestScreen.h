@@ -2,8 +2,9 @@
 #include "UIScreen.h"
 #include "Sprite.h"
 #include "Cube.h"
+#include "UIAtlas.h"
 
-class TestScreen : UIScreen
+class TestScreen : public UIScreen
 {
 	// Testing sprite 
 	Sprite sprite;
@@ -12,7 +13,7 @@ class TestScreen : UIScreen
 
 public:
 	TestScreen();
-	virtual ~TestScreen();
+	~TestScreen();
 
 	// Initialize screen
 	virtual void init();
@@ -24,6 +25,6 @@ public:
 	virtual void updateInput(KeyHandler);
 
 	// Draw the screen
-	virtual void draw(GLHandler* mgl, TextRender* mTR);
+	virtual void draw(GLHandler* mgl,  TextureAtlas* mAtlas);
 };
 

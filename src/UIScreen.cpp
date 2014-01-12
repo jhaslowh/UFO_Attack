@@ -19,6 +19,6 @@ void UIScreen::updateInput(KeyHandler){
 }
 
 // Draw the screen
-void UIScreen::draw(GLHandler* mgl, TextRender* mTR){
+void UIScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Nothing to do
 }

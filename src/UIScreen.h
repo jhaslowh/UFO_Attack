@@ -2,12 +2,13 @@
 #include "GLHandler.h"
 #include "TextRender.h"
 #include "KeyHandler.h"
+#include "TextureAtlas.h"
 
 class UIScreen
 {
 public:
 	UIScreen();
-	virtual ~UIScreen();
+	~UIScreen();
 
 	// Initialize screen
 	virtual void init();
@@ -19,6 +20,6 @@ public:
 	virtual void updateInput(KeyHandler);
 
 	// Draw the screen
-	virtual void draw(GLHandler* mgl, TextRender* mTR);
+	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
 };
 

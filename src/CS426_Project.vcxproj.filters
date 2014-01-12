@@ -70,7 +70,13 @@
       <Filter>Header Files\ui\screens</Filter>
     </ClInclude>
     <ClInclude Include="TestScreen.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAtlas.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="UIAtlas.h">
+      <Filter>Header Files\gfx</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -102,7 +108,13 @@
       <Filter>Source Files\ui\screens</Filter>
     </ClCompile>
     <ClCompile Include="TestScreen.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAtlas.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="UIAtlas.cpp">
+      <Filter>Source Files\gfx</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

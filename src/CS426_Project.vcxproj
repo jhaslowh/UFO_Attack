@@ -18,6 +18,8 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestScreen.h" />
     <ClInclude Include="TextRender.h" />
+    <ClInclude Include="TextureAtlas.h" />
+    <ClInclude Include="UIAtlas.h" />
     <ClInclude Include="UIScreen.h" />
     <ClInclude Include="VertCordGenerator.h" />
   </ItemGroup>
@@ -30,6 +32,8 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestScreen.cpp" />
     <ClCompile Include="TextRender.cpp" />
+    <ClCompile Include="TextureAtlas.cpp" />
+    <ClCompile Include="UIAtlas.cpp" />
     <ClCompile Include="UIScreen.cpp" />
     <ClCompile Include="VertCordGenerator.cpp" />
   </ItemGroup>
