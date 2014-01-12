@@ -78,6 +78,9 @@
     <ClInclude Include="UIAtlas.h">
       <Filter>Header Files\gfx</Filter>
     </ClInclude>
+    <ClInclude Include="MouseHandler.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="UIAtlas.cpp">
       <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseHandler.cpp">
+      <Filter>Source Files\io</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

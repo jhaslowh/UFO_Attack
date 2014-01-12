@@ -17,12 +17,13 @@
 #include "GLHandler.h"
 #include "UIAtlas.h"
 #include "KeyHandler.h"
+#include "MouseHandler.h"
 #include "UIScreen.h"
 #include "TestScreen.h"
 
 // Global Window Settings
-int SCREEN_WIDTH = 640;
-int SCREEN_HEIGHT = 480;
+int SCREEN_WIDTH = 1280;
+int SCREEN_HEIGHT = 720;
 bool FULLSCREEN = false;
 bool WINDOW_VISIBLE = false;
 
@@ -40,6 +41,7 @@ bool render = false;        // Set to true each time game needs to be rendered
 // Handlers
 GLHandler mgl;
 KeyHandler mKeyH;
+MouseHandler mMouseH;
 UIAtlas* mUIAtlas;
 
 // GUI Stuff
@@ -106,6 +108,8 @@ void onUpdate(){
 			// Update screen 
 			screen->update(deltaTime);
 		}
+
+		mMouseH.update();
 	}
 }
  
@@ -200,8 +204,9 @@ void eventAndRenderLoop(){
 				}
 			}
 
-			// Update keyboard handler 
+			// Update IO handler 
 			mKeyH.updateState(windowEvent);
+			mMouseH.updateState(windowEvent);
         }
 
 		// Render if requested 
@@ -230,10 +235,10 @@ int main(int argc, char* argv[])
 	// Create Window 
 	if (FULLSCREEN)
 		window = SDL_CreateWindow("CS 426 Project", 
-			400, 40, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
+			40, 40, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
 	else 
 		window = SDL_CreateWindow("CS 426 Project", 
-			400, 40, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+			40, 40, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
 	// Create the window context 
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 

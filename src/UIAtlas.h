@@ -3,6 +3,10 @@
 #include "TextRender.h"
 #include "VertCordGenerator.h"
 
+// UI Index's
+#define UII_BUTTON_NORMAL 0
+#define UII_BUTTON_HOVER 1
+
 class UIAtlas : public TextureAtlas
 {
 	

@@ -32,5 +32,13 @@ public:
 	void bindTexture(GLHandler* mgl);
 	// Set the indicies for the atlas 
 	void setIndicies(int index);
+
+	// Draw functions 
+	// Buffers and texture muse be bound before calling 
+	// these functions or they will not work correctly. 
+	void draw(GLHandler* mgl, int item, float x, float y);
+	void draw(GLHandler* mgl, int item, float x, float y, float scale);
+	void draw(GLHandler* mgl, int item, float x, float y, float scale, float rotation);
+	void draw(GLHandler* mgl, int item, float x, float y, float scale, float rotation, float origin_x, float origin_y);
 };
 

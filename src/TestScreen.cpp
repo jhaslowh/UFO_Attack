@@ -44,7 +44,7 @@ void TestScreen::draw(GLHandler* mgl,  TextureAtlas* mAtlas){
 
 	mgl->setWorldMatrix(mgl->orthoMatrix);
 
-	GLfloat color[] = {1.0f,0.0f,0.0f,1.0f};
+	GLfloat color[] = {0.7f,0.0f,0.0f,1.0f};
 	mgl->setFlatColor(color);
 	mUI->bindBuffers(mgl);
 	mUI->bindTexture(mgl);
@@ -63,6 +63,14 @@ void TestScreen::draw(GLHandler* mgl,  TextureAtlas* mAtlas){
 	mUI->mTextRender->drawText(*mgl, 
 		"This is an example rotated sentence.",
 		50,200,20,25);
+	
+	GLfloat color1[] = {1.0,1.0f,1.0f,1.0f};
+	mgl->setFlatColor(color1);
+	mUI->draw(mgl, 0, 400,100);
+	mUI->draw(mgl, 1, 400,200);
+	mUI->draw(mgl, 0, 600,100,.5);
+	mUI->draw(mgl, 1, 600,200,.5);
+
 	sprite.draw(*mgl);
 
 	mgl->setWorldMatrix(mgl->camera3DMatrix);
