@@ -31,6 +31,18 @@
     <Filter Include="Source Files\geom">
       <UniqueIdentifier>{3528a001-04a8-4bf8-8cef-d000ee0f71c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ui">
+      <UniqueIdentifier>{da72781d-ddd4-4912-a831-29e390b28200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ui">
+      <UniqueIdentifier>{3852e5b3-9079-46c0-8d00-3432df21719c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ui\screens">
+      <UniqueIdentifier>{852e3f07-0dfe-4371-ac13-b7ee103adc73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ui\screens">
+      <UniqueIdentifier>{c1524971-0e50-4779-9433-01df62409bab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
@@ -54,11 +66,14 @@
     <ClInclude Include="TextRender.h">
       <Filter>Header Files\gfx</Filter>
     </ClInclude>
+    <ClInclude Include="UIScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Cube.cpp">
       <Filter>Source Files\geom</Filter>
     </ClCompile>
@@ -79,6 +94,15 @@
     </ClCompile>
     <ClCompile Include="TextRender.cpp">
       <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScreen.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

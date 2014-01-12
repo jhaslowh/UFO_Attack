@@ -16,17 +16,21 @@
     <ClInclude Include="GLHandler.h" />
     <ClInclude Include="KeyHandler.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TestScreen.h" />
     <ClInclude Include="TextRender.h" />
+    <ClInclude Include="UIScreen.h" />
     <ClInclude Include="VertCordGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="FileHelper.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="GLHandler.cpp" />
     <ClCompile Include="KeyHandler.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TestScreen.cpp" />
     <ClCompile Include="TextRender.cpp" />
+    <ClCompile Include="UIScreen.cpp" />
     <ClCompile Include="VertCordGenerator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
