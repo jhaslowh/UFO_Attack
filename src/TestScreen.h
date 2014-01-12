@@ -3,6 +3,7 @@
 #include "Sprite.h"
 #include "Cube.h"
 #include "UIAtlas.h"
+#include "UIButton.h"
 
 class TestScreen : public UIScreen
 {
@@ -10,6 +11,7 @@ class TestScreen : public UIScreen
 	Sprite sprite;
 	float rotstat;
 	Cube cube;
+	UIButton* button1;
 
 public:
 	TestScreen();
@@ -18,11 +20,14 @@ public:
 	// Initialize screen
 	virtual void init();
 
+	// Load screen
+	virtual void load(TextureAtlas* mAtlas);
+
 	// Update the state of the screen
 	virtual void update(float deltaTime);
 
 	// Update input to the screen 
-	virtual void updateInput(KeyHandler);
+	virtual void updateInput(KeyHandler*, MouseHandler*);
 
 	// Draw the screen
 	virtual void draw(GLHandler* mgl,  TextureAtlas* mAtlas);

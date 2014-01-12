@@ -19,22 +19,6 @@ void TextRender::drawText(GLHandler mgl, char* text, float x, float y, float rot
 		mMatrix = glm::rotate(mMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
 	// Scale 
 	mMatrix = glm::scale(mMatrix, glm::vec3(scale));
-        
-	/// Set up vertex and coord buffers 
-	/*glEnableVertexAttribArray(mgl.mPositionHandle);
-	glVertexAttribPointer(mgl.mPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, verts );
-
-	/// Bind texture
-	glEnableVertexAttribArray(mgl.mTextCordHandle);
-	glVertexAttribPointer(mgl.mTextCordHandle, 2,GL_FLOAT, GL_FALSE, 0, cords);
-
-	mgl.toggleTextures(true);
-	// Set the active texture unit to texture unit 0.
-	glActiveTexture(GL_TEXTURE0);
-	// Bind the texture to this unit.
-	glBindTexture(GL_TEXTURE_2D, textureID);
-	// Tell the texture uniform sampler to use this texture in the shader by binding to texture unit 0.
-	glUniform1i(mgl.mTextureHandle, 0);*/
 
 	if (length > 0){
 		float size = 0;
@@ -399,7 +383,7 @@ void TextRender::createFontBuffers(VertCordGenerator* vcg){
 	letterWidth[1] =  40.0f;
 		
 	// B 
-	vcg->addFrame(97.79f, 0.0f, 43.8f, 72.0f);
+	vcg->addFrame(97.79f, 0.0f, 43.8f, 71.0f);
 	letterWidth[2] = 43.8f;
 		
 	// b  
@@ -550,7 +534,7 @@ void TextRender::createFontBuffers(VertCordGenerator* vcg){
 	letterWidth[38] = 40.6f;
 		
 	// t 
-	vcg->addFrame(41.91f, 216.0f, 26.0f, 72.0f);
+	vcg->addFrame(41.91f, 216.0f, 26.0f, 71.0f);
 	letterWidth[39] = 26.0f;
 		
 	// U 
@@ -558,7 +542,7 @@ void TextRender::createFontBuffers(VertCordGenerator* vcg){
 	letterWidth[40] = 42.5f;
 		
 	// u
-	vcg->addFrame(114.3f, 216.0f, 46.0f, 72.0f);
+	vcg->addFrame(114.3f, 216.0f, 46.0f, 71.0f);
 	letterWidth[41] = 46.0f;
 		
 	// V 

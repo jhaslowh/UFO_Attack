@@ -81,6 +81,9 @@
     <ClInclude Include="MouseHandler.h">
       <Filter>Header Files\io</Filter>
     </ClInclude>
+    <ClInclude Include="UIButton.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -121,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="MouseHandler.cpp">
       <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButton.cpp">
+      <Filter>Source Files\ui\screens</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

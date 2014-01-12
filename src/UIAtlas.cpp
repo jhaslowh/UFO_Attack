@@ -30,6 +30,8 @@ void UIAtlas::init(){
 	vcg->addFrame(631,0,100,35);
 	// Button Hover
 	vcg->addFrame(631,35,100,35);
+	// Button Click
+	vcg->addFrame(631,70,100,35);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

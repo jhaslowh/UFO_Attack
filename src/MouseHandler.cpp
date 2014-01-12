@@ -21,7 +21,9 @@ float MouseHandler::getY(){return mouse_loc[1];}
 
 // Check button states 
 bool MouseHandler::isLeftDown(){return left_down;}
+bool MouseHandler::wasLeftDown(){return last_left_down;}
 bool MouseHandler::isRightDown(){return right_down;}
+bool MouseHandler::wasRightDown(){return last_right_down;}
 
 // Call to update the mouse state
 void MouseHandler::updateState(SDL_Event windowEvent){

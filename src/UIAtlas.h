@@ -6,6 +6,7 @@
 // UI Index's
 #define UII_BUTTON_NORMAL 0
 #define UII_BUTTON_HOVER 1
+#define UII_BUTTON_CLICK 2
 
 class UIAtlas : public TextureAtlas
 {

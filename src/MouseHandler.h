@@ -21,7 +21,9 @@ public:
 	float getY();
 	// Check button states 
 	bool isLeftDown();
+	bool wasLeftDown();
 	bool isRightDown();
+	bool wasRightDown();
 
 	// Call to update the mouse state
 	void updateState(SDL_Event windowEvent);

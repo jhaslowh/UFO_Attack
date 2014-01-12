@@ -104,7 +104,7 @@ void onUpdate(){
 		// Update Screen 
 		if (screen != NULL) {
 			// Update screen input 
-			screen->updateInput(mKeyH);
+			screen->updateInput(&mKeyH, &mMouseH);
 			// Update screen 
 			screen->update(deltaTime);
 		}
