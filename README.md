@@ -1,8 +1,10 @@
 CS 426 Project
 ==============
 
-Implemented 
------------
+Technical Information
+---------------------
+
+### Implemented  
 
 * PNG Loading (Use FileHelper::loadPNG(char* file))
 * Orthographic Projection 
@@ -18,13 +20,11 @@ Implemented
 * UI Checkbox
 * Texture Atlas Stucture
 
-Notes on commits
-----------------
+### Notes on commits
 
 Please do not commit anything from the release or debug directories that can be compiled. You can do this by cleaning the build before committing or just not committing those files. Also, do not commit the SQL file or the "ipch" folder.
 
-Libraries
----------
+### Libraries
 
 **SDL**  
 [http://www.libsdl.org/](http://www.libsdl.org/)  
