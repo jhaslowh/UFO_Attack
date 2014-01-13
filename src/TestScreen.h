@@ -4,6 +4,7 @@
 #include "Cube.h"
 #include "UIAtlas.h"
 #include "UIButton.h"
+#include "UICheckbox.h"
 
 class TestScreen : public UIScreen
 {
@@ -12,6 +13,7 @@ class TestScreen : public UIScreen
 	float rotstat;
 	Cube cube;
 	UIButton* button1;
+	UICheckbox* checkbox1;
 
 public:
 	TestScreen();

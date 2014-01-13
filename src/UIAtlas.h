@@ -7,6 +7,8 @@
 #define UII_BUTTON_NORMAL 0
 #define UII_BUTTON_HOVER 1
 #define UII_BUTTON_CLICK 2
+#define UII_CHECKBOX_NORMAL 3
+#define UII_CHECKBOX_CHECKED 4
 
 class UIAtlas : public TextureAtlas
 {

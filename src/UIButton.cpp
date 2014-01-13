@@ -113,7 +113,6 @@ bool UIButton::contains(float x, float y){
 // Center label text 
 void UIButton::centerText(TextRender* mTR){
 	float offset = mTR->measureString(label, UIB_TEXT_SIZE) /2.0f;
-	printf("Offset: %f\n", offset);
 	text_x = (width/2.0f) - offset;
 	text_y = 
 		((height/2.0f) - (UIB_TEXT_SIZE/2.0f)) +	// Position to center of text

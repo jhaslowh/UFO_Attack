@@ -1,7 +1,10 @@
 #include "TestScreen.h"
 
 TestScreen::TestScreen() : UIScreen(){}
-TestScreen::~TestScreen(){}
+TestScreen::~TestScreen(){
+	delete(button1);
+	delete(checkbox1);
+}
 
 // Initialize screen
 void TestScreen::init(){
@@ -17,6 +20,7 @@ void TestScreen::init(){
 	cube.setTexture("test.png");
 
 	button1 = new UIButton(500,100,100,35,"Button1");
+	checkbox1 = new UICheckbox(620,100,35,35,"Checkbox1");
 
 	printf("Screen initalized \n");
 }
@@ -39,6 +43,7 @@ void TestScreen::update(float deltaTime)
 	sprite.setRotation(rotstat);
 
 	button1->update(deltaTime);
+	checkbox1->update(deltaTime);
 }
 
 // Update input to the screen 
@@ -55,6 +60,7 @@ void TestScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		cube.setRotationY(cube.getRotationY() + 5.0f);
 
 	button1->updateInput(mKeyH, mMouseH);
+	checkbox1->updateInput(mKeyH, mMouseH);
 
 	if (button1->wasClicked())
 		printf("Button 1 Clicked\n");
@@ -97,6 +103,7 @@ void TestScreen::draw(GLHandler* mgl,  TextureAtlas* mAtlas){
 		50,200,20,25);
 
 	button1->draw(mgl, mUI);
+	checkbox1->draw(mgl, mUI);
 
 	sprite.draw(*mgl);
 

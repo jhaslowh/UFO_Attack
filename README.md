@@ -15,6 +15,7 @@ Implemented
 * Text Rendering 
 * UI Screens
 * UI Buttons 
+* UI Checkbox
 * Texture Atlas Stucture
 
 Notes on commits

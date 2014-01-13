@@ -82,7 +82,10 @@
       <Filter>Header Files\io</Filter>
     </ClInclude>
     <ClInclude Include="UIButton.h">
-      <Filter>Header Files\ui\screens</Filter>
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="UICheckbox.h">
+      <Filter>Header Files\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -126,7 +129,10 @@
       <Filter>Source Files\io</Filter>
     </ClCompile>
     <ClCompile Include="UIButton.cpp">
-      <Filter>Source Files\ui\screens</Filter>
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UICheckbox.cpp">
+      <Filter>Source Files\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

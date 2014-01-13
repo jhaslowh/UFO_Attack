@@ -32,6 +32,10 @@ void UIAtlas::init(){
 	vcg->addFrame(631,35,100,35);
 	// Button Click
 	vcg->addFrame(631,70,100,35);
+	// Checkbox Normal
+	vcg->addFrame(631,105,35,35);
+	// Checkbox Checked 
+	vcg->addFrame(666,105,35,35);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();
