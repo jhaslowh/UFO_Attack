@@ -1,7 +1,7 @@
 #include "UIButton.h"
 
 
-UIButton::UIButton()
+UIButton::UIButton() : UIObject()
 {
 	loc_x = 0;
 	loc_y = 0;
@@ -22,7 +22,8 @@ UIButton::UIButton()
 	textColor[3] = 1.0f;
 }
 
-UIButton::UIButton(float x, float y, float w, float h, char* l){
+UIButton::UIButton(float x, float y, float w, float h, char* l) : UIObject()
+{
 	loc_x = x;
 	loc_y = y;
 	width = w;
@@ -43,20 +44,8 @@ UIButton::UIButton(float x, float y, float w, float h, char* l){
 }
 UIButton::~UIButton(){}
 
-// Getters and Setters 
-void UIButton::setLocation(float x, float y){loc_x = x; loc_y = y;}
-float UIButton::getX(){return loc_x;}
-float UIButton::getY(){return loc_y;}
-void UIButton::setSize(float w, float h){width = w; height = h;}
-float UIButton::getWidth(){return width;}
-float UIButton::getHeight(){return height;}
 void UIButton::setLabel(char* l){label = l;}
 char* UIButton::getLabel(){return label;}
-
-// Update the button 
-void UIButton::update(float deltaTime){
-	// Nothing to do 
-}
 
 // Update button input 
 void UIButton::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
@@ -99,14 +88,6 @@ bool UIButton::wasClicked(){
 		clicked = false;
 		return true;
 	}
-	return false;
-}
-
-// Check if the sent location is inside the button 
-bool UIButton::contains(float x, float y){
-	if (x > loc_x && x < loc_x + width &&
-			y > loc_y && y < loc_y + height)
-		return true;
 	return false;
 }
 

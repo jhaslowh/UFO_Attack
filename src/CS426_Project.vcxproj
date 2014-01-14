@@ -23,6 +23,7 @@
     <ClInclude Include="UIAtlas.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UICheckbox.h" />
+    <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIScreen.h" />
     <ClInclude Include="VertCordGenerator.h" />
   </ItemGroup>
@@ -40,6 +41,7 @@
     <ClCompile Include="UIAtlas.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UICheckbox.cpp" />
+    <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="UIScreen.cpp" />
     <ClCompile Include="VertCordGenerator.cpp" />
   </ItemGroup>

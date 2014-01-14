@@ -20,11 +20,11 @@ void TestScreen::init(){
 	cube.setTexture("test.png");
 
 	button1 = new UIButton(500,100,100,35,"Button1");
+	button1->setLocation(500,200);
 	checkbox1 = new UICheckbox(620,100,35,35,"Checkbox1");
 
 	printf("Screen initalized \n");
 }
-
 
 // Load screen
 void TestScreen::load(TextureAtlas* mAtlas){

@@ -87,6 +87,9 @@
     <ClInclude Include="UICheckbox.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
+    <ClInclude Include="UIObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="UICheckbox.cpp">
       <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UIObject.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "UICheckbox.h"
 
-UICheckbox::UICheckbox(){
+UICheckbox::UICheckbox() : UIObject() {
 	loc_x = 0;
 	loc_y = 0;
 	width = 0;
@@ -18,7 +18,7 @@ UICheckbox::UICheckbox(){
 	textColor[2] = 0.2f;
 	textColor[3] = 1.0f;
 }
-UICheckbox::UICheckbox(float x, float y, float w, float h, char* l){
+UICheckbox::UICheckbox(float x, float y, float w, float h, char* l) : UIObject(){
 	loc_x = x;
 	loc_y = y;
 	width = w;
@@ -44,19 +44,8 @@ UICheckbox::UICheckbox(float x, float y, float w, float h, char* l){
 UICheckbox::~UICheckbox(){}
 
 // Getters and Setters 
-void UICheckbox::setLocation(float x, float y){loc_x = x; loc_y = y;}
-float UICheckbox::getX(){return loc_x;}
-float UICheckbox::getY(){return loc_y;}
-void UICheckbox::setSize(float w, float h){width = w; height = h;}
-float UICheckbox::getWidth(){return width;}
-float UICheckbox::getHeight(){return height;}
 void UICheckbox::setLabel(char* l){label = l;}
 char* UICheckbox::getLabel(){return label;}
-
-// Update the button 
-void UICheckbox::update(float deltaTime){
-	// Nothing to do 
-}
 
 // Update button input 
 void UICheckbox::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
@@ -88,12 +77,4 @@ void UICheckbox::draw(GLHandler* mgl, UIAtlas* mAtlas){
 // Check if the button was clicked 
 bool UICheckbox::Checked(){
 	return checked;
-}
-
-// Check if the sent location is inside the button 
-bool UICheckbox::contains(float x, float y){
-	if (x > loc_x && x < loc_x + width &&
-			y > loc_y && y < loc_y + height)
-		return true;
-	return false;
 }
