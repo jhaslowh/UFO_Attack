@@ -9,6 +9,7 @@ class UIObject
 protected:
 	// Location settings 
 	float loc_x,loc_y,width,height;
+	GLfloat flatColor[4];
 
 public:
 	UIObject();

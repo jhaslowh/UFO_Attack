@@ -25,6 +25,7 @@
     <ClInclude Include="UICheckbox.h" />
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIScreen.h" />
+    <ClInclude Include="UITransitionObject.h" />
     <ClInclude Include="VertCordGenerator.h" />
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +44,7 @@
     <ClCompile Include="UICheckbox.cpp" />
     <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="UIScreen.cpp" />
+    <ClCompile Include="UITransitionObject.cpp" />
     <ClCompile Include="VertCordGenerator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

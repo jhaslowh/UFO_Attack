@@ -1,6 +1,15 @@
 #include "UIObject.h"
 
-UIObject::UIObject(){}
+UIObject::UIObject(){	
+	loc_x = 0;
+	loc_y = 0;
+	width = 0;
+	height = 0;
+	flatColor[0] = 1.0f;
+	flatColor[1] = 1.0f;
+	flatColor[2] = 1.0f;
+	flatColor[3] = 1.0f;
+}
 UIObject::~UIObject(){}
 
 // Getters and Setters 

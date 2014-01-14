@@ -88,7 +88,10 @@
       <Filter>Header Files\ui</Filter>
     </ClInclude>
     <ClInclude Include="UIObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="UITransitionObject.h">
+      <Filter>Header Files\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +141,10 @@
       <Filter>Source Files\ui</Filter>
     </ClCompile>
     <ClCompile Include="UIObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UITransitionObject.cpp">
+      <Filter>Source Files\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

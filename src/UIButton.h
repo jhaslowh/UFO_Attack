@@ -1,15 +1,14 @@
 #pragma once
-#include "UIObject.h"
+#include "UITransitionObject.h"
 
 #define UIB_TEXT_SIZE 20.0f
 
-class UIButton : public UIObject
+class UIButton : public UITransitionObject
 {
 	float text_x, text_y;
 	bool clicked, hovered, down;
 	char* label;
 	
-	GLfloat flatColor[4];
 	GLfloat textColor[4];
 
 public:
@@ -21,6 +20,8 @@ public:
 	void setLabel(char* l);
 	char* getLabel();
 
+	// Update button 
+	virtual void update(float deltaTime);
 	// Update button input 
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
 	// Draw the button to the screen

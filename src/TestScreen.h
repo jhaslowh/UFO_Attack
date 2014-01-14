@@ -13,6 +13,8 @@ class TestScreen : public UIScreen
 	float rotstat;
 	Cube cube;
 	UIButton* button1;
+	UIButton* button2;
+	UIButton* button3;
 	UICheckbox* checkbox1;
 
 public:

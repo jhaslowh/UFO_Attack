@@ -1,16 +1,15 @@
 #pragma once
-#include "UIObject.h"
+#include "UITransitionObject.h"
 
 #define UIC_TEXT_SIZE 20.0f
 
-class UICheckbox : public UIObject
+class UICheckbox : public UITransitionObject
 {
 	// Location settings 
 	float text_x, text_y;
 	bool checked, hovered;
 	char* label;
 	
-	GLfloat flatColor[4];
 	GLfloat textColor[4];
 
 public:
@@ -22,6 +21,8 @@ public:
 	void setLabel(char* l);
 	char* getLabel();
 
+	// Update Checkbox
+	virtual void update(float deltaTime);
 	// Update button input 
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
 	// Draw the button to the screen

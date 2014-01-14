@@ -3,6 +3,8 @@
 TestScreen::TestScreen() : UIScreen(){}
 TestScreen::~TestScreen(){
 	delete(button1);
+	delete(button2);
+	delete(button3);
 	delete(checkbox1);
 }
 
@@ -20,8 +22,13 @@ void TestScreen::init(){
 	cube.setTexture("test.png");
 
 	button1 = new UIButton(500,100,100,35,"Button1");
-	button1->setLocation(500,200);
-	checkbox1 = new UICheckbox(620,100,35,35,"Checkbox1");
+	button1->setupHide(HT_VERTICAL,200.0f,.4f,true);
+	button2 = new UIButton(500,150,100,35,"Button2");
+	button2->setupHide(HT_VERTICAL,250.0f,.4f,true);
+	button3 = new UIButton(500,200,100,35,"Button3");
+	button3->setupHide(HT_VERTICAL,300.0f,.4f,true);
+
+	checkbox1 = new UICheckbox(620,100,35,35,"Test Transitions");
 
 	printf("Screen initalized \n");
 }
@@ -31,6 +38,8 @@ void TestScreen::load(TextureAtlas* mAtlas){
 	UIScreen::load(mAtlas);
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 	button1->centerText(mUI->mTextRender);
+	button2->centerText(mUI->mTextRender);
+	button3->centerText(mUI->mTextRender);
 	printf("Screen Loaded \n");
 }
 
@@ -39,11 +48,24 @@ void TestScreen::update(float deltaTime)
 {
 	UIScreen::update(deltaTime);
 
+
 	rotstat += 90.0f * deltaTime;
 	sprite.setRotation(rotstat);
 
 	button1->update(deltaTime);
+	button2->update(deltaTime);
+	button3->update(deltaTime);
 	checkbox1->update(deltaTime);
+	if (!checkbox1->Checked()){
+		button1->show();
+		button2->show();
+		button3->show();
+	}
+	else {
+		button1->hide();
+		button2->hide();
+		button3->hide();
+	}
 }
 
 // Update input to the screen 
@@ -60,6 +82,8 @@ void TestScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		cube.setRotationY(cube.getRotationY() + 5.0f);
 
 	button1->updateInput(mKeyH, mMouseH);
+	button2->updateInput(mKeyH, mMouseH);
+	button3->updateInput(mKeyH, mMouseH);
 	checkbox1->updateInput(mKeyH, mMouseH);
 
 	if (button1->wasClicked())
@@ -103,6 +127,8 @@ void TestScreen::draw(GLHandler* mgl,  TextureAtlas* mAtlas){
 		50,200,20,25);
 
 	button1->draw(mgl, mUI);
+	button2->draw(mgl, mUI);
+	button3->draw(mgl, mUI);
 	checkbox1->draw(mgl, mUI);
 
 	sprite.draw(*mgl);

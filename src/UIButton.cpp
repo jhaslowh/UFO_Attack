@@ -1,28 +1,23 @@
 #include "UIButton.h"
 
 
-UIButton::UIButton() : UIObject()
+UIButton::UIButton() : UITransitionObject()
 {
-	loc_x = 0;
-	loc_y = 0;
-	width = 0;
-	height = 0;
 	label = "none";
 	clicked = false;
 	hovered = false;
 	down = false;
 	
-	flatColor[0] = 1.0f;
-	flatColor[1] = 1.0f;
-	flatColor[2] = 1.0f;
-	flatColor[3] = 1.0f;
 	textColor[0] = 0.2f;
 	textColor[1] = 0.2f;
 	textColor[2] = 0.2f;
 	textColor[3] = 1.0f;
+
+	setHideType(HT_VERTICAL);
+	setHideLocByDistance(100.0f);
 }
 
-UIButton::UIButton(float x, float y, float w, float h, char* l) : UIObject()
+UIButton::UIButton(float x, float y, float w, float h, char* l) : UITransitionObject()
 {
 	loc_x = x;
 	loc_y = y;
@@ -33,53 +28,62 @@ UIButton::UIButton(float x, float y, float w, float h, char* l) : UIObject()
 	hovered = false;
 	down = false;
 
-	flatColor[0] = 1.0f;
-	flatColor[1] = 1.0f;
-	flatColor[2] = 1.0f;
-	flatColor[3] = 1.0f;
 	textColor[0] = 0.2f;
 	textColor[1] = 0.2f;
 	textColor[2] = 0.2f;
 	textColor[3] = 1.0f;
+
+	setHideType(HT_VERTICAL);
+	setHideLocByDistance(100.0f);
 }
 UIButton::~UIButton(){}
 
 void UIButton::setLabel(char* l){label = l;}
 char* UIButton::getLabel(){return label;}
 
+// Update Button
+void UIButton::update(float deltaTime){
+	UITransitionObject::update(deltaTime);
+	if (mFadeOut) textColor[3] = flatColor[3];
+}
+
 // Update button input 
 void UIButton::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
-	// Check if button is hovered
-	if (contains(mMouseH->getX(), mMouseH->getY()))
-		hovered = true;
-	else 
-		hovered = false;
+	if (shown()){
+		// Check if button is hovered
+		if (contains(mMouseH->getX(), mMouseH->getY()))
+			hovered = true;
+		else 
+			hovered = false;
 
-	// Check to see if mouse is pressing button 
-	if (hovered && mMouseH->isLeftDown())
-		down = true;
-	else 
-		down = false;
+		// Check to see if mouse is pressing button 
+		if (hovered && mMouseH->isLeftDown())
+			down = true;
+		else 
+			down = false;
 
-	// Check if button is clicked
-	if (hovered && !mMouseH->isLeftDown() && mMouseH->wasLeftDown())
-		clicked = true;
+		// Check if button is clicked
+		if (hovered && !mMouseH->isLeftDown() && mMouseH->wasLeftDown())
+			clicked = true;
+	}
 }
 
 // Draw the button to the screen
 // UIAtles must be bound first.
 void UIButton::draw(GLHandler* mgl, UIAtlas* mAtlas){
-	mgl->setFlatColor(flatColor);
-	if (down)
-		mAtlas->draw(mgl, UII_BUTTON_CLICK, loc_x, loc_y);
-	else if (hovered)
-		mAtlas->draw(mgl, UII_BUTTON_HOVER, loc_x, loc_y);
-	else 
-		mAtlas->draw(mgl, UII_BUTTON_NORMAL, loc_x, loc_y);
+	if (flatColor[3] != 0.0f){
+		mgl->setFlatColor(flatColor);
+		if (down)
+			mAtlas->draw(mgl, UII_BUTTON_CLICK, loc_x, loc_y);
+		else if (hovered)
+			mAtlas->draw(mgl, UII_BUTTON_HOVER, loc_x, loc_y);
+		else 
+			mAtlas->draw(mgl, UII_BUTTON_NORMAL, loc_x, loc_y);
 
-	mgl->setFlatColor(textColor);
-	mAtlas->mTextRender->drawText(*mgl, label, 
-		loc_x + text_x, loc_y + text_y, 0, UIB_TEXT_SIZE);
+		mgl->setFlatColor(textColor);
+		mAtlas->mTextRender->drawText(*mgl, label, 
+			loc_x + text_x, loc_y + text_y, 0, UIB_TEXT_SIZE);
+	}
 }
 
 // Check if the button was clicked 
