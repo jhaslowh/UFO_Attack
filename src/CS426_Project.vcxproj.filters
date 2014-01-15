@@ -43,6 +43,12 @@
     <Filter Include="Source Files\ui\screens">
       <UniqueIdentifier>{c1524971-0e50-4779-9433-01df62409bab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\phys">
+      <UniqueIdentifier>{0ff39a66-6552-4dfd-b47d-ed7973c65d59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\phys">
+      <UniqueIdentifier>{37ed4b7f-9088-4300-accc-8cb8fdd5a020}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
@@ -92,6 +98,15 @@
     </ClInclude>
     <ClInclude Include="UITransitionObject.h">
       <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Header Files\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="Rec.h">
+      <Filter>Header Files\phys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +160,15 @@
     </ClCompile>
     <ClCompile Include="UITransitionObject.cpp">
       <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Source Files\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="Rec.cpp">
+      <Filter>Source Files\phys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

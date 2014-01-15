@@ -19,6 +19,7 @@ Technical Information
 * UI Buttons 
 * UI Checkbox
 * Texture Atlas Stucture
+* Basic Collision Detection Functions 
 
 ### Notes on commits
 
