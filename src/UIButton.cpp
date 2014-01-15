@@ -53,18 +53,20 @@ void UIButton::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		// Check if button is hovered
 		if (contains(mMouseH->getX(), mMouseH->getY()))
 			hovered = true;
-		else 
+		else {
 			hovered = false;
+			down = false;
+		}
 
 		// Check to see if mouse is pressing button 
-		if (hovered && mMouseH->isLeftDown())
+		if (hovered && mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
 			down = true;
-		else 
-			down = false;
 
 		// Check if button is clicked
-		if (hovered && !mMouseH->isLeftDown() && mMouseH->wasLeftDown())
+		if (hovered && down && !mMouseH->isLeftDown()){
 			clicked = true;
+			down = false;
+		}
 	}
 }
 
