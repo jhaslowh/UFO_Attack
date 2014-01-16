@@ -61,6 +61,8 @@ int init_resources(void)
 	// Setup ortho matrix
 	mgl.setOrthoMatrix((float)SCREEN_WIDTH,(float)SCREEN_HEIGHT);
 	mgl.setCamera3DMatrix(glm::vec3(0,20,50), glm::vec3(0,0,0), (float)SCREEN_WIDTH/(float)SCREEN_HEIGHT);
+	// Setup gl states 
+	mgl.setupGL();
 
 	mUIAtlas = new UIAtlas();
 	mUIAtlas->init();
@@ -79,6 +81,8 @@ int init_resources(void)
 void free_resources()
 {
 	printf("Free Resources\n");
+	// Disable gl states 
+	mgl.endGL();
 	glDeleteProgram(mgl.program);
 	delete(mUIAtlas);
 	if (screen != NULL)
@@ -118,17 +122,13 @@ void onUpdate(){
 */
 void onDraw()
 {
-	// Setup gl states 
-	mgl.setupGL();
 	// Clear screen
 	glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);
 	
 	// Draw Screen
-	if (screen != NULL) screen->draw(&mgl, (TextureAtlas*)mUIAtlas);
-	
-	// Disable gl states 
-	mgl.endGL();
+	if (screen != NULL) 
+		screen->draw(&mgl, (TextureAtlas*)mUIAtlas);
 }
  
 /** Game loop to update game state **/
