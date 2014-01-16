@@ -92,7 +92,7 @@ void UITransitionObject::update(float deltaTime){
 			}
 		}
 		if (mFadeOut) 
-			flatColor[3] = abs(loc_x - mHideLoc) / abs(mNormalLoc - mHideLoc);
+			flatColor[3] = (float)abs(loc_x - mHideLoc) / (float)abs(mNormalLoc - mHideLoc);
 	}
 	else if (mHideType == HT_VERTICAL){
 		if (mNormalLoc > mHideLoc){
@@ -134,7 +134,7 @@ void UITransitionObject::update(float deltaTime){
 		}
 	
 		if (mFadeOut) 
-			flatColor[3] = abs(mHideLoc - loc_y) / abs(mHideLoc - mNormalLoc);
+			flatColor[3] = (float)abs(loc_y - mHideLoc) / (float)abs(mHideLoc - mNormalLoc);
 	}
 }
 

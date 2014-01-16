@@ -16,7 +16,7 @@ void TestScreen::init(){
 	sprite.setPosition(64.f,64.f);
 	sprite.setScale(1.0f);
 	sprite.setOrigin(32.0f,32.0f);
-	sprite.setAlpha(1.0f);
+	sprite.setAlpha(.2f);
 
 	cube.setScale(5.0f);
 	cube.setTexture("test.png");
