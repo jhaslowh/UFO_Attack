@@ -1,8 +1,4 @@
-TOP := $(dir $(lastword $(MAKEFILE_LIST)))
-
 #
-# 'make depend' uses makedepend to automatically generate dependencies 
-#               (dependencies are added to end of Makefile)
 # 'make'        build executable file 'mycc'
 # 'make clean'  removes all .o and executable files
 #
@@ -14,20 +10,16 @@ CC = g++
 CFLAGS = -Wall -g
 
 # define any directories containing header files other than /usr/include
-INCLUDES = -I $(TOP)include 
+INCLUDES = -I ./include
 
 # define library paths in addition to /usr/lib
-#   if I wanted to include libraries not in /usr/lib I'd specify
-#   their path using -Lpath, something like:
-LFLAGS = -L $(TOP)lib
+LFLAGS = -L ./lib
 
 # define any libraries to link into executable:
-#   if I want to link in libraries (libx.so or libx.a) I use the -llibname 
-#   option, something like (this will link in libmylib.so and libm.so:
-LIBS = -lglew32 -lSOIL -lSDL2 -lSDL2main -lGL
+LIBS = -lSOIL -lGLEW -lSDL2 -lGL 
 
 # define the C++ source files
-SRCS = Collision.cpp Cube.cpp FileHelper.cpp GLHandler.cpp glm.cpp KeyHandler.cpp main.cpp MouseHandler.cpp Point.cpp Rec.cpp Sprite.cpp TestScreen.cpp TextRender.cpp TextureAtlas.cpp UIAtlas.cpp UIButton.cpp UICheckbox.cpp UIObject.cpp UIScreen.cpp UITransitionObject.cpp VertCordGenerator.cpp 
+SRCS = $(wildcard *.cpp)
 
 # define the C++ object files 
 #
@@ -40,7 +32,7 @@ SRCS = Collision.cpp Cube.cpp FileHelper.cpp GLHandler.cpp glm.cpp KeyHandler.cp
 OBJS = $(SRCS:.cpp=.o)
 
 # define the executable file 
-MAIN = CS426Project
+MAIN = Build/CS426Project
 
 #
 # The following part of the makefile is generic; it can be used to 
@@ -48,25 +40,20 @@ MAIN = CS426Project
 # deleting dependencies appended to the file from 'make depend'
 #
 
-.PHONY: depend clean
+.PHONY: clean
 
-all:    $(MAIN)
+all: $(MAIN)
 	@echo  CS 426 Project has been compiled
 
 $(MAIN): $(OBJS) 
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
 
-# this is a suffix replacement rule for building .o's from .c's
+# this is a suffix replacement rule for building .o's from .cpp's
 # it uses automatic variables $<: the name of the prerequisite of
-# the rule(a .c file) and $@: the name of the target of the rule (a .o file) 
+# the rule(a .cpp file) and $@: the name of the target of the rule (a .o file) 
 # (see the gnu make manual section about automatic variables)
 .cpp.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
 clean:
-	$(RM) *.o *~ $(MAIN)
-
-depend: $(SRCS)
-	makedepend $(INCLUDES) $^
-
-# DO NOT DELETE THIS LINE -- make depend needs it
+	$(RM) *.o
