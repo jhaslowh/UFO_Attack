@@ -16,7 +16,7 @@ UIButton::UIButton() : UITransitionObject()
 	setHideLocByDistance(100.0f);
 }
 
-UIButton::UIButton(float x, float y, float w, float h, char* l) : UITransitionObject()
+UIButton::UIButton(float x, float y, float w, float h, std::string l) : UITransitionObject()
 {
 	loc_x = x;
 	loc_y = y;
@@ -37,8 +37,8 @@ UIButton::UIButton(float x, float y, float w, float h, char* l) : UITransitionOb
 }
 UIButton::~UIButton(){}
 
-void UIButton::setLabel(char* l){label = l;}
-char* UIButton::getLabel(){return label;}
+void UIButton::setLabel(std::string l){label = l;}
+std::string UIButton::getLabel(){return label;}
 
 // Update Button
 void UIButton::update(float deltaTime){

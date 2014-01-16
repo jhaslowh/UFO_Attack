@@ -40,13 +40,12 @@ void Sprite::setup(float w,float h)
 }
 
 // Setup the sprites verticies, coords, and texture 
-void Sprite::setup(float w,float h,char* file)
+void Sprite::setup(float w,float h, std::string file)
 {
 	setup(w,h);
 
 	// Load texture
-	if (file != NULL)
-		textureID = FileHelper::loadPNG(file);
+	textureID = FileHelper::loadPNG(file);
 }
 
 // Set position of the sprite 

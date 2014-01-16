@@ -5,9 +5,9 @@ TextRender::TextRender(){}
 TextRender::~TextRender(){}
 
 // Draw text to the screen with the following properties 
-void TextRender::drawText(GLHandler mgl, char* text, float x, float y, float rotation, float fontSize){
+void TextRender::drawText(GLHandler mgl, std::string text, float x, float y, float rotation, float fontSize){
 	float scale = fontSize / TR_FONT_SIZE;
-	float length = (float)strlen(text);
+	float length = (float)text.length();
 
 	/** Matrix transform **/
 	// Starting matrix 
@@ -24,7 +24,7 @@ void TextRender::drawText(GLHandler mgl, char* text, float x, float y, float rot
 		float size = 0;
 
 		for (int i =0; i < length; i++){
-			char c = text[i];
+			char c = text.at(i);
 			if (c  != '\n' && c != ' '){
 				// Translate
 				glm::mat4 matrix;
@@ -48,18 +48,30 @@ void TextRender::drawText(GLHandler mgl, char* text, float x, float y, float rot
 }
 
 // Measure how long the text will be on screen
-float TextRender::measureString(char* text, float size){
+float TextRender::measureString(std::string text, float size){
 	float scale = size/72.0f;
 	float length = 0;
-	int textLength = strlen(text);
+	int textLength = text.length();
 	char c; 
 
 	for (int i = 0; i < textLength; i++){
-		c = text[i];
+		c = text.at(i);
 		length += getLetterWidth(c);
 	}
 		
 	return (length * scale);
+}
+
+// Set the indexes based off a char
+void TextRender::setIndicies(char c){
+	int index = getCharIndex(c);
+
+	indicies[0] = (GLushort)(4 * index);
+	indicies[1] = (GLushort)((4 * index) + 1);
+	indicies[2] = (GLushort)((4 * index) + 2);
+	indicies[3] = (GLushort)((4 * index) + 2);
+	indicies[4] = (GLushort)((4 * index) + 3);
+	indicies[5] = (GLushort)(4 * index);
 }
 
 // Get the index for the sent char
@@ -358,18 +370,6 @@ float TextRender::getLetterWidth(char c){
 	default:
 		return 30.0f;
 	}
-}
-
-// Set the indexes based off a char
-void TextRender::setIndicies(char c){
-	int index = getCharIndex(c);
-
-	indicies[0] = (GLushort)(4 * index);
-	indicies[1] = (GLushort)((4 * index) + 1);
-	indicies[2] = (GLushort)((4 * index) + 2);
-	indicies[3] = (GLushort)((4 * index) + 2);
-	indicies[4] = (GLushort)((4 * index) + 3);
-	indicies[5] = (GLushort)(4 * index);
 }
 
 // Setup the buffers for the font 

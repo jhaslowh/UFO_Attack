@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "TextureAtlas.h"
 #include "TextRender.h"
 #include "VertCordGenerator.h"

@@ -1,5 +1,6 @@
 #pragma once
 #include "UITransitionObject.h"
+#include <string>
 
 #define UIB_TEXT_SIZE 20.0f
 
@@ -7,18 +8,18 @@ class UIButton : public UITransitionObject
 {
 	float text_x, text_y;
 	bool clicked, hovered, down;
-	char* label;
+	std::string label;
 	
 	GLfloat textColor[4];
 
 public:
 	UIButton();
-	UIButton(float x, float y, float w, float h, char* l);
+	UIButton(float x, float y, float w, float h, std::string l);
 	~UIButton();
 
 	// Getters and Setters 
-	void setLabel(char* l);
-	char* getLabel();
+	void setLabel(std::string l);
+	std::string getLabel();
 
 	// Update button 
 	virtual void update(float deltaTime);

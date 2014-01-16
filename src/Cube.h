@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <string>
 
 #include "FileHelper.h"
 #include "GLHandler.h"
@@ -31,7 +32,7 @@ public:
 	~Cube(void);
 
 	// Setup the cubes texture 
-	void setTexture(char*);
+	void setTexture(std::string);
 
 	// Set the position of the cube 
 	void setPosition(float,float,float);

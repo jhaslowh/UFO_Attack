@@ -1,11 +1,6 @@
 #include "UIAtlas.h"
 
-
-UIAtlas::UIAtlas()
-{
-
-}
-
+UIAtlas::UIAtlas(){}
 UIAtlas::~UIAtlas()
 {
 	if (mTextRender != NULL)
@@ -15,7 +10,7 @@ UIAtlas::~UIAtlas()
 // Set up the stucture of this atlas 
 void UIAtlas::init(){
 	// Load texture
-	textureID = FileHelper::loadPNG("UI-Sheet.png");
+	textureID = FileHelper::loadPNG( std::string("UI-Sheet.png"));
 	// Set offset to the number of characters
 	// becaue the text renderer shares these buffers
 	setIndiceOffset(TR_CHARACTERS);

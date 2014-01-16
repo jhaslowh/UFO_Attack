@@ -12,23 +12,23 @@ TestScreen::~TestScreen(){
 void TestScreen::init(){
 	UIScreen::init();
 	// Testing 
-	sprite.setup(64.f,64.f,"test2.png");
+	sprite.setup(64.f,64.f, std::string("test2.png"));
 	sprite.setPosition(64.f,64.f);
 	sprite.setScale(1.0f);
 	sprite.setOrigin(32.0f,32.0f);
 	sprite.setAlpha(.2f);
 
 	cube.setScale(5.0f);
-	cube.setTexture("test.png");
+	cube.setTexture( std::string("test.png"));
 
-	button1 = new UIButton(500,100,100,35,"Button1");
+	button1 = new UIButton(500,100,100,35, std::string("Button1"));
 	button1->setupHide(HT_VERTICAL,200.0f,.4f,true);
-	button2 = new UIButton(500,150,100,35,"Button2");
+	button2 = new UIButton(500,150,100,35, std::string("Button2"));
 	button2->setupHide(HT_VERTICAL,250.0f,.4f,true);
-	button3 = new UIButton(500,200,100,35,"Button3");
+	button3 = new UIButton(500,200,100,35, std::string("Button3"));
 	button3->setupHide(HT_VERTICAL,300.0f,.4f,true);
 
-	checkbox1 = new UICheckbox(620,100,35,35,"Test Transitions");
+	checkbox1 = new UICheckbox(620,100,35,35, std::string("Test Transitions"));
 
 	printf("Screen initalized \n");
 }
@@ -102,29 +102,27 @@ void TestScreen::draw(GLHandler* mgl,  TextureAtlas* mAtlas){
 	// Bind bufferes
 	mUI->bindBuffers(mgl);
 	mUI->bindTexture(mgl);
+
+	std::string s1("AaBbCcDdEeFf\n"
+		"GgHhIiJjKkLlMm\n"
+		"NnOoPpQqRrSs\n"
+		"TtUuVvWwXxYyZz\n"
+		"0123456789:.%-/?\n");
+	std::string s2("This is an example sentence.");
+	std::string s3("This is an example rotated sentence.");
 	
 	// Draw test text 1 
 	GLfloat color[] = {0.7f,0.0f,0.0f,1.0f};
 	mgl->setFlatColor(color);
-	mUI->mTextRender->drawText(*mgl,
-		"AaBbCcDdEeFf\n"
-		"GgHhIiJjKkLlMm\n"
-		"NnOoPpQqRrSs\n"
-		"TtUuVvWwXxYyZz\n"
-		"0123456789:.%-/?\n"
-		,150,10,0,20);
+	mUI->mTextRender->drawText(*mgl,s1,150,10,0,20);
 
 	// Draw test text 2
 	GLfloat color2[] = {.5,.5f,.5f,1.0f};
 	mgl->setFlatColor(color2);
-	mUI->mTextRender->drawText(*mgl, 
-		"This is an example sentence.",
-		50,150,0,25);
+	mUI->mTextRender->drawText(*mgl, s2,50,150,0,25);
 
 	// Draw test text 3
-	mUI->mTextRender->drawText(*mgl, 
-		"This is an example rotated sentence.",
-		50,200,20,25);
+	mUI->mTextRender->drawText(*mgl, s3,50,200,20,25);
 
 	button1->draw(mgl, mUI);
 	button2->draw(mgl, mUI);

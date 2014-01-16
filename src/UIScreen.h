@@ -4,6 +4,7 @@
 #include "KeyHandler.h"
 #include "MouseHandler.h"
 #include "TextureAtlas.h"
+#include <string>
 
 class UIScreen
 {

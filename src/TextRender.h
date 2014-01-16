@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <string>
 #include "GLHandler.h"
 #include "FileHelper.h"
 #include "VertCordGenerator.h"
@@ -26,10 +27,10 @@ public:
 	~TextRender();
 
 	// Draw text to the screen with the following properties 
-	void drawText(GLHandler mgl, char* text, float x, float y, float rotation, float fontSize);
+	void drawText(GLHandler mgl, std::string text, float x, float y, float rotation, float fontSize);
 
 	// Measure how long the text will be on screen
-	float measureString(char* text, float size);
+	float measureString(std::string text, float size);
 
 	// Get the index for the sent char
 	int getCharIndex(char c);

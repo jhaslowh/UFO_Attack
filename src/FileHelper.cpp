@@ -1,6 +1,6 @@
 #include "FileHelper.h"
 
-int FileHelper::loadPNG(char* file){
+int FileHelper::loadPNG(std::string file){
 
 	// Generate opengl textures
 	GLuint textureHandle;
@@ -9,7 +9,7 @@ int FileHelper::loadPNG(char* file){
 	// Load texture with soil 
 	int width, height;
 	unsigned char* image =
-		SOIL_load_image(file, &width, &height, 0, SOIL_LOAD_RGBA);
+		SOIL_load_image(file.c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
 
 	// Bind to the texture in OpenGL
 	glBindTexture(GL_TEXTURE_2D, textureHandle);

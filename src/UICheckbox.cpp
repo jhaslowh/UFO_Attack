@@ -13,7 +13,7 @@ UICheckbox::UICheckbox() : UITransitionObject() {
 	setHideType(HT_VERTICAL);
 	setHideLocByDistance(100.0f);
 }
-UICheckbox::UICheckbox(float x, float y, float w, float h, char* l) : UITransitionObject(){
+UICheckbox::UICheckbox(float x, float y, float w, float h, std::string l) : UITransitionObject(){
 	loc_x = x;
 	loc_y = y;
 	width = w;
@@ -38,8 +38,8 @@ UICheckbox::UICheckbox(float x, float y, float w, float h, char* l) : UITransiti
 UICheckbox::~UICheckbox(){}
 
 // Getters and Setters 
-void UICheckbox::setLabel(char* l){label = l;}
-char* UICheckbox::getLabel(){return label;}
+void UICheckbox::setLabel(std::string l){label = l;}
+std::string UICheckbox::getLabel(){return label;}
 
 // Update Checkbox
 void UICheckbox::update(float deltaTime){

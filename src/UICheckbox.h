@@ -1,5 +1,6 @@
 #pragma once
 #include "UITransitionObject.h"
+#include <string>
 
 #define UIC_TEXT_SIZE 20.0f
 
@@ -8,18 +9,18 @@ class UICheckbox : public UITransitionObject
 	// Location settings 
 	float text_x, text_y;
 	bool checked, hovered;
-	char* label;
+	std::string label;
 	
 	GLfloat textColor[4];
 
 public:
 	UICheckbox();
-	UICheckbox(float x, float y, float w, float h, char* l);
+	UICheckbox(float x, float y, float w, float h, std::string l);
 	~UICheckbox();
 
 	// Getters and Setters 
-	void setLabel(char* l);
-	char* getLabel();
+	void setLabel(std::string l);
+	std::string getLabel();
 
 	// Update Checkbox
 	virtual void update(float deltaTime);

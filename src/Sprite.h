@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-
+#include <string>
 #include "FileHelper.h"
 #include "GLHandler.h"
 
@@ -29,7 +29,7 @@ public:
 
 	// Setup the sprites verticies, coords, and texture 
 	void setup(float, float);
-	void setup(float, float, char*);
+	void setup(float, float, std::string file);
 
 	// Set the position of the sprite 
 	void setPosition(float,float);
