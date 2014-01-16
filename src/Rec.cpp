@@ -1,6 +1,5 @@
 #include "Rec.h"
 
-
 Rec::Rec()
 {
 	mX = 0;

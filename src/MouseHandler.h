@@ -1,5 +1,5 @@
 #pragma once
-#include <SDL\SDL.h>
+#include <SDL/SDL.h>
 
 class MouseHandler
 {

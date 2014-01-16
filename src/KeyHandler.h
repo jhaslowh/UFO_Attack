@@ -1,5 +1,5 @@
 #pragma once
-#include <SDL\SDL.h>
+#include <SDL/SDL.h>
 
 #define KEY_SPACE 0
 #define KEY_0 1

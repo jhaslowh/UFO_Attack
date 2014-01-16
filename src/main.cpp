@@ -9,10 +9,10 @@
 // Use glew.h instead of gl.h to get all the GL prototypes declared 
 #include <glew.h>
 // Using the SDL library for the base windowing setup 
-#include <SDL\SDL.h>
-#include <SDL\SDL_opengl.h>
-#include <SDL\SDL_thread.h>
-#include <SDL\SDL_timer.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_opengl.h>
+#include <SDL/SDL_thread.h>
+#include <SDL/SDL_timer.h>
 
 #include "GLHandler.h"
 #include "UIAtlas.h"

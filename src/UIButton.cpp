@@ -1,6 +1,5 @@
 #include "UIButton.h"
 
-
 UIButton::UIButton() : UITransitionObject()
 {
 	label = "none";

@@ -1,6 +1,5 @@
 #include "MouseHandler.h"
 
-
 MouseHandler::MouseHandler(){
 	left_down = false;
 	right_down = false;

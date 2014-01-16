@@ -1,6 +1,5 @@
 #include "UITransitionObject.h"
 
-
 UITransitionObject::UITransitionObject() : UIObject(){
 	mState = SHOWN;
 	mNormalLoc = 0;

@@ -1,6 +1,5 @@
 #include "Point.h"
 
-
 Point::Point()
 {
 	mX = 0;
