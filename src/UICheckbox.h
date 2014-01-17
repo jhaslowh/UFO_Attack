@@ -2,13 +2,14 @@
 #include "UITransitionObject.h"
 #include <string>
 
-#define UIC_TEXT_SIZE 20.0f
+#define UIC_TEXT_SIZE 16.0f
 
 class UICheckbox : public UITransitionObject
 {
 	// Location settings 
 	float text_x, text_y;
 	bool checked, hovered;
+	bool down;
 	std::string label;
 	
 	GLfloat textColor[4];

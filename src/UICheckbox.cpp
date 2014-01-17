@@ -4,6 +4,7 @@ UICheckbox::UICheckbox() : UITransitionObject() {
 	label = "none";
 	checked = false;
 	hovered = false;
+	down = false;
 
 	textColor[0] = 0.2f;
 	textColor[1] = 0.2f;
@@ -21,8 +22,9 @@ UICheckbox::UICheckbox(float x, float y, float w, float h, std::string l) : UITr
 	label = l;
 	checked = false;
 	hovered = false;
+	down = false;
 
-	text_x = w + 10;
+	text_x = w + 4.0f;
 	text_y = (h/2.0f) - 
 		(UIC_TEXT_SIZE/2.0f)+ 
 		((UIC_TEXT_SIZE/TR_FONT_SIZE) * TR_FONT_BOTTOM_SPACE);
@@ -53,12 +55,20 @@ void UICheckbox::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		// Check if button is hovered
 		if (contains(mMouseH->getX(), mMouseH->getY()))
 			hovered = true;
-		else 
+		else {
 			hovered = false;
+			down = false;
+		}
+
+		// Check to see if mouse is pressing checkbox 
+		if (hovered && mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
+			down = true;
 
 		// Check if button is clicked
-		if (hovered && !mMouseH->isLeftDown() && mMouseH->wasLeftDown())
+		if (hovered && down && !mMouseH->isLeftDown()){
 			checked = !checked;
+			down = false;
+		}
 	}
 }
 

@@ -28,7 +28,7 @@ void TestScreen::init(){
 	button3 = new UIButton(500,200,100,35, std::string("Button3"));
 	button3->setupHide(HT_VERTICAL,300.0f,.4f,true);
 
-	checkbox1 = new UICheckbox(620,100,35,35, std::string("Test Transitions"));
+	checkbox1 = new UICheckbox(620,100,24,24, std::string("Test Transitions"));
 
 	printf("Screen initalized \n");
 }
