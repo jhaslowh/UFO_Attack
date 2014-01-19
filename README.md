@@ -20,6 +20,7 @@ Technical Information
 * UI Checkbox
 * Texture Atlas Stucture
 * Basic Collision Detection Functions 
+* Settings (And Settings Save/Load) 
 
 ### Notes on commits
 
