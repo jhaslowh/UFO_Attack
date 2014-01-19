@@ -21,6 +21,7 @@
     <ClInclude Include="GLHandler.h" />
     <ClInclude Include="KeyHandler.h" />
     <ClInclude Include="MouseHandler.h" />
+    <ClInclude Include="Settings.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestScreen.h" />
     <ClInclude Include="TextRender.h" />
@@ -45,6 +46,7 @@
     <ClCompile Include="GLHandler.cpp" />
     <ClCompile Include="KeyHandler.cpp" />
     <ClCompile Include="MouseHandler.cpp" />
+    <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestScreen.cpp" />
     <ClCompile Include="TextRender.cpp" />
@@ -68,7 +70,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>NotSet</CharacterSet>
-    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -105,6 +107,9 @@
       <TreatWarningAsError>false</TreatWarningAsError>
       <AdditionalIncludeDirectories>include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,7 +136,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>lib\glew32.lib;lib\SOIL\SOIL.lib;lib\SDL2.lib;lib\SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lib\glew32.lib;lib\SOIL\SOIL.lib;lib\SDL2.lib;lib\SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>

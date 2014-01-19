@@ -110,7 +110,7 @@ Cube::~Cube(void){}
 
 // Setup the cubes texture 
 void Cube::setTexture(std::string file){
-	textureID = FileHelper::loadPNG(file);
+	textureID = loadPNG(file);
 
 	cords[0] = 0.0f; cords[1] = 0.0f;
 	cords[2] = 0.0f; cords[3] = 1.0f;

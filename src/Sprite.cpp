@@ -45,7 +45,7 @@ void Sprite::setup(float w,float h, std::string file)
 	setup(w,h);
 
 	// Load texture
-	textureID = FileHelper::loadPNG(file);
+	textureID = loadPNG(file);
 }
 
 // Set position of the sprite 

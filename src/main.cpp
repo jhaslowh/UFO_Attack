@@ -15,8 +15,8 @@ int init_resources()
 	mgl.setupShaders();
 	glUseProgram(mgl.program);
 	// Setup ortho matrix
-	mgl.setOrthoMatrix((float)SCREEN_WIDTH,(float)SCREEN_HEIGHT);
-	mgl.setCamera3DMatrix(glm::vec3(0,20,50), glm::vec3(0,0,0), (float)SCREEN_WIDTH/(float)SCREEN_HEIGHT);
+	mgl.setOrthoMatrix((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+	mgl.setCamera3DMatrix(glm::vec3(0,20,50), glm::vec3(0,0,0), (float)settings->getScreenWidth()/(float)settings->getScreenHeight());
 	// Setup gl states 
 	mgl.setupGL();
 
@@ -25,7 +25,7 @@ int init_resources()
 
 	// Set current screen as test screen 
 	screen = (UIScreen*)new IntroLoadScreen();
-	screen->init(SCREEN_WIDTH, SCREEN_HEIGHT);
+	screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 
 	printf("Resources loaded\n");
 	return 1;
@@ -39,10 +39,17 @@ void free_resources()
 	printf("Free Resources\n");
 	// Disable gl states 
 	mgl.endGL();
+
+	// Delete allocations 
 	glDeleteProgram(mgl.program);
 	delete(mUIAtlas);
 	if (screen != NULL)
 		delete(screen);
+
+	// Save data 
+	saveSettings(settings);
+	delete(settings);
+
 	printf("Resources Freed\n");
 }
 
@@ -87,7 +94,7 @@ void changeScreen(){
 	case SCREEN_MAIN:
 		delete(screen);
 		screen = (UIScreen*)new MainScreen();
-		screen->init(SCREEN_WIDTH, SCREEN_HEIGHT);
+		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 		break;
 	case SCREEN_STORE:
 		break;
@@ -103,7 +110,7 @@ void changeScreen(){
 	case SCREEN_TEST:
 		delete(screen);
 		screen = (UIScreen*)new TestScreen();
-		screen->init(SCREEN_WIDTH, SCREEN_HEIGHT);
+		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 		break;
 	default:
 		break;
@@ -222,20 +229,24 @@ void eventAndRenderLoop(){
 
 int main(int argc, char* argv[])
 {
+	// ======= Load Data ======= //
+	settings = new Settings();
+	loadSettings(settings);
+
 	// ======= Setup ======= //
 	// Setup SDL
 	SDL_Init(SDL_INIT_VIDEO);
 	// Create Window 
-	if (FULLSCREEN)
+	if (settings->getFullscreen())
 		window = SDL_CreateWindow("CS 426 Project", 
-			40, 40, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
+			40, 40, settings->getScreenWidth(),settings->getScreenHeight(), SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
 	else 
 		window = SDL_CreateWindow("CS 426 Project", 
-			40, 40, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+			40, 40, settings->getScreenWidth(),settings->getScreenHeight(), SDL_WINDOW_OPENGL);
 	// Create the window context 
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
-	// Extension wrangler initialising  
+	// OpenGL Extension wrangler initialising  
 	glewExperimental = GL_TRUE; 
 	GLenum glew_status = glewInit();
 	// Close if glew could not be set up 
@@ -261,6 +272,6 @@ int main(int argc, char* argv[])
 	SDL_GL_DeleteContext(context);
 	// Unload SDL
 	SDL_Quit();
-	// Exit app 
+	// Exit  
     exit(EXIT_SUCCESS);
 }

@@ -15,16 +15,18 @@
 #include "UIAtlas.h"
 #include "KeyHandler.h"
 #include "MouseHandler.h"
+#include "Settings.h"
 
 #include "UIScreen.h"
 #include "TestScreen.h"
 #include "IntroLoadScreen.h"
 #include "MainScreen.h"
 
-// Global Window Settings
-int SCREEN_WIDTH = 1280;
+// Global Settings
+/*int SCREEN_WIDTH = 1280;
 int SCREEN_HEIGHT = 720;
-bool FULLSCREEN = false;
+bool FULLSCREEN = false;*/
+Settings* settings;
 bool WINDOW_VISIBLE = false;
 
 /// Game loop and FPS timing 

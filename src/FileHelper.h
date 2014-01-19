@@ -1,11 +1,26 @@
 #pragma once
 #include <glew.h>
 #include <SOIL/SOIL.h>
+
+#include <iostream>
+#include <sstream>
 #include <string>
 
-class FileHelper
-{
-public:
-	static int loadPNG(std::string file);
-};
+#include "SDL\SDL_rwops.h"
+#include "Settings.h"
+using namespace std;
 
+// Load a texture into opengl 
+int loadPNG(std::string file);
+
+// Load the settings into sent object
+void loadSettings(Settings* s);
+
+// Save the settings into settings file 
+void saveSettings(Settings* s);
+
+// Convert int to string
+string toString(int value);
+
+// Convert string to int
+int toInt(string s);
