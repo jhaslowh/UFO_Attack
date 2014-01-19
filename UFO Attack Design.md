@@ -68,24 +68,22 @@ Has score and upgrade points (people abducted).
 Has a ray gun when on ground.  
 
 **Levels**  
-Use harder enemies to increase difficulty(tougher enemies).  
-People to abduct.  
--abduct people or other things to buy upgrades  
--both civilian an military  
+Use harder enemies to increase difficulty.  
+Both military and civilians in a level can be abducted to buy upgrades.  
 
 **Enemies**  
--soldier rifle  
--soldier rpg  
--heavy armor soldier  
--sniper  
--jeep  
--tank  
--Ground Turret  
--AA Turrets (Very strong, must beam to ground to disable)  
+Soldier rifle:  
+Soldier rpg:  
+Heavy armor soldier:  
+Sniper:  
+Jeep:  
+Tank:  
+Ground Turret:  
+AA Turrets (Very strong, must beam to ground to disable):  
 
 **Scenery**  
--Trees   
--Grass  
--Rocks  
--Buildings  
--Cars  
+- Trees   
+- Grass  
+- Rocks  
+- Buildings  
+- Cars  
