@@ -6,20 +6,12 @@ TestScreen::~TestScreen(){
 	delete(button2);
 	delete(button3);
 	delete(checkbox1);
+	delete(close);
 }
 
 // Initialize screen
-void TestScreen::init(){
-	UIScreen::init();
-	// Testing 
-	sprite.setup(64.f,64.f, std::string("test2.png"));
-	sprite.setPosition(64.f,64.f);
-	sprite.setScale(1.0f);
-	sprite.setOrigin(32.0f,32.0f);
-	sprite.setAlpha(.2f);
-
-	cube.setScale(5.0f);
-	cube.setTexture( std::string("test.png"));
+void TestScreen::init(float screen_width, float screen_height){
+	UIScreen::init(screen_width, screen_height);
 
 	button1 = new UIButton(500,100,100,35, std::string("Button1"));
 	button1->setupHide(HT_VERTICAL,200.0f,.4f,true);
@@ -29,6 +21,7 @@ void TestScreen::init(){
 	button3->setupHide(HT_VERTICAL,300.0f,.4f,true);
 
 	checkbox1 = new UICheckbox(620,100,24,24, std::string("Test Transitions"));
+	close = new UIButton(10,screen_height - 45.0f,100,35, std::string("Back"));
 
 	printf("Screen initalized \n");
 }
@@ -40,6 +33,17 @@ void TestScreen::load(TextureAtlas* mAtlas){
 	button1->centerText(mUI->mTextRender);
 	button2->centerText(mUI->mTextRender);
 	button3->centerText(mUI->mTextRender);
+	close->centerText(mUI->mTextRender);
+
+	
+	sprite.setup(64.f,64.f, std::string("test2.png"));
+	sprite.setPosition(64.f,64.f);
+	sprite.setScale(1.0f);
+	sprite.setOrigin(32.0f,32.0f);
+	sprite.setAlpha(.2f);
+
+	cube.setScale(5.0f);
+	cube.setTexture( std::string("test.png"));
 	printf("Screen Loaded \n");
 }
 
@@ -56,6 +60,8 @@ void TestScreen::update(float deltaTime)
 	button2->update(deltaTime);
 	button3->update(deltaTime);
 	checkbox1->update(deltaTime);
+	close->update(deltaTime);
+
 	if (!checkbox1->Checked()){
 		button1->show();
 		button2->show();
@@ -85,6 +91,10 @@ void TestScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	button2->updateInput(mKeyH, mMouseH);
 	button3->updateInput(mKeyH, mMouseH);
 	checkbox1->updateInput(mKeyH, mMouseH);
+	close->updateInput(mKeyH, mMouseH);
+
+	if (close->wasClicked())
+		transitionCode = SCREEN_MAIN;
 
 	if (button1->wasClicked())
 		printf("Button 1 Clicked\n");
@@ -128,6 +138,7 @@ void TestScreen::draw(GLHandler* mgl,  TextureAtlas* mAtlas){
 	button2->draw(mgl, mUI);
 	button3->draw(mgl, mUI);
 	checkbox1->draw(mgl, mUI);
+	close->draw(mgl, mUI);
 
 	sprite.draw(*mgl);
 

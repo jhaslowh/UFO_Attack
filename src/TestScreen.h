@@ -16,13 +16,14 @@ class TestScreen : public UIScreen
 	UIButton* button2;
 	UIButton* button3;
 	UICheckbox* checkbox1;
+	UIButton* close;
 
 public:
 	TestScreen();
 	~TestScreen();
 
 	// Initialize screen
-	virtual void init();
+	virtual void init(float screen_width, float screen_height);
 
 	// Load screen
 	virtual void load(TextureAtlas* mAtlas);

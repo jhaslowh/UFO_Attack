@@ -108,6 +108,15 @@
     <ClInclude Include="Rec.h">
       <Filter>Header Files\phys</Filter>
     </ClInclude>
+    <ClInclude Include="IntroLoadScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -169,6 +178,12 @@
     </ClCompile>
     <ClCompile Include="Rec.cpp">
       <Filter>Source Files\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroLoadScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

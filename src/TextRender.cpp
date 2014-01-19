@@ -494,7 +494,7 @@ void TextRender::createFontBuffers(VertCordGenerator* vcg){
 		
 	// o  
 	vcg->addFrame(148.59f, 144.0f, 40.0f, 71.0f);
-	letterWidth[29] = 40.0f;
+	letterWidth[29] = 41.0f;
 		
 	// P 
 	vcg->addFrame(194.95f, 144.0f, 41.0f, 72.0f);
@@ -632,7 +632,7 @@ void TextRender::createFontBuffers(VertCordGenerator* vcg){
 		
 	// . 
 	vcg->addFrame(425.45f, 288.0f, 12.0f, 54.0f);
-	letterWidth[63] = 12.0f;
+	letterWidth[63] = 13.0f;
 		
 	// % 
 	vcg->addFrame(442.595f, 288.0f, 61.0f, 54.0f);

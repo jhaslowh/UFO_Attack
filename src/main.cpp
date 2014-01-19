@@ -3,56 +3,12 @@
 //#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
 #endif
 
-// Using the standard output for printf 
-#include <stdio.h>
-#include <stdlib.h>
-// Use glew.h instead of gl.h to get all the GL prototypes declared 
-#include <glew.h>
-// Using the SDL library for the base windowing setup 
-#include <SDL/SDL.h>
-#include <SDL/SDL_opengl.h>
-#include <SDL/SDL_thread.h>
-#include <SDL/SDL_timer.h>
-
-#include "GLHandler.h"
-#include "UIAtlas.h"
-#include "KeyHandler.h"
-#include "MouseHandler.h"
-#include "UIScreen.h"
-#include "TestScreen.h"
-
-// Global Window Settings
-int SCREEN_WIDTH = 1280;
-int SCREEN_HEIGHT = 720;
-bool FULLSCREEN = false;
-bool WINDOW_VISIBLE = false;
-
-/// Game loop and FPS timing 
-int FPS = 60;				// number of frames per second
-int MAX_FRAME_SKIPS = 12;	// maximum number of frames to be skipped
-int FRAME_PERIOD = 1000/FPS;// the number of milliseconds per frame
-int lastTime = 0;			
-float deltaTime = 0;		// Used in game loop to tell how much time has passed
-
-// States 
-bool running = true;		
-bool render = false;        // Set to true each time game needs to be rendered 
-
-// Handlers
-GLHandler mgl;
-KeyHandler mKeyH;
-MouseHandler mMouseH;
-UIAtlas* mUIAtlas;
-
-// GUI Stuff
-SDL_Window* window;
-SDL_Thread* thread;
-UIScreen* screen = NULL;
+#include "main.h"
 
 /**
 * Called at the begining of the game to load resources 
 */
-int init_resources(void)
+int init_resources()
 {
 	printf("Loading Resources...\n");
 	// Set up shaders 
@@ -68,8 +24,8 @@ int init_resources(void)
 	mUIAtlas->init();
 
 	// Set current screen as test screen 
-	screen = (UIScreen*)new TestScreen();
-	screen->init();
+	screen = (UIScreen*)new IntroLoadScreen();
+	screen->init(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	printf("Resources loaded\n");
 	return 1;
@@ -111,9 +67,46 @@ void onUpdate(){
 			screen->updateInput(&mKeyH, &mMouseH);
 			// Update screen 
 			screen->update(deltaTime);
+			// Check if screen needs to be changed 
+			changeScreen();
 		}
 
 		mMouseH.update();
+	}
+}
+
+// Checks if the screen needs to be switched. 
+void changeScreen(){
+	if (screen == NULL) return;
+
+	switch (screen->getTransitionCode()){
+	case NO_TRANSITION: 
+		break;
+	case SCREEN_LOAD:
+		break;
+	case SCREEN_MAIN:
+		delete(screen);
+		screen = (UIScreen*)new MainScreen();
+		screen->init(SCREEN_WIDTH, SCREEN_HEIGHT);
+		break;
+	case SCREEN_STORE:
+		break;
+	case SCREEN_SETTINGS:
+		break;
+	case SCREEN_GAME:
+		break;
+	case SCREEN_LEVEL_SELECT:
+		break;
+	case SCREEN_QUIT:
+		running = false;
+		break;
+	case SCREEN_TEST:
+		delete(screen);
+		screen = (UIScreen*)new TestScreen();
+		screen->init(SCREEN_WIDTH, SCREEN_HEIGHT);
+		break;
+	default:
+		break;
 	}
 }
  
