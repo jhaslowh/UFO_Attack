@@ -169,7 +169,7 @@ bool UITransitionObject::shown(){
 // Instantly hide the object
 void UITransitionObject::setHidden(){
 	mState = HIDDEN; 
-	mHide = false;
+	mHide = true;
 	if (mFadeOut) flatColor[3] = 0.0f;
 		
 	if (mHideType == HT_HOROZONTAL)

@@ -50,16 +50,24 @@ class KeyHandler
 {
 	// List of keys 
 	bool keys[KEY_COUNT];
+	bool keysOld[KEY_COUNT];
 	
 public:
 	KeyHandler();
 	~KeyHandler();
+
+	// Update keys 
+	void update();
 
 	// Update the keystates 
 	void updateState(SDL_Event windowEvent);
 
 	// Check to see if a key is down
 	bool keyDown(int key);
+
+	// Check to see if a key was pressed
+	// (was down and just released)
+	bool keyPressed(int key);
 
 private:
 	// Get the key index from sent scancode 

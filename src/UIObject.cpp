@@ -15,7 +15,9 @@ UIObject::~UIObject(){}
 // Getters and Setters 
 void UIObject::setLocation(float x, float y){loc_x = x; loc_y = y;}
 float UIObject::getX(){return loc_x;}
+void UIObject::setX(float x){loc_x = x;}
 float UIObject::getY(){return loc_y;}
+void UIObject::setY(float y){loc_y = y;}
 void UIObject::setSize(float w, float h){width = w; height = h;}
 float UIObject::getWidth(){return width;}
 float UIObject::getHeight(){return height;}

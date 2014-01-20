@@ -76,6 +76,11 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		transitionCode = SCREEN_QUIT;
 	if (buttonSettings->wasClicked())
 		transitionCode = SCREEN_SETTINGS;
+
+	// TODO this should be level select, but will be 
+	// this until level select is implemented.
+	if (buttonLevelSelect->wasClicked())
+		transitionCode = SCREEN_GAME; 
 }
 
 // Draw the screen

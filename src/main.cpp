@@ -79,6 +79,7 @@ void onUpdate(){
 		}
 
 		mMouseH.update();
+		mKeyH.update();
 	}
 }
 
@@ -104,6 +105,9 @@ void changeScreen(){
 		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
 	case SCREEN_GAME:
+		delete(screen);
+		screen = (UIScreen*)new GameScreen();
+		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
 	case SCREEN_LEVEL_SELECT:
 		break;
@@ -186,8 +190,6 @@ void eventAndRenderLoop(){
 		// Check events 
         while( SDL_PollEvent( &windowEvent ) ){
 			if (windowEvent.type == SDL_QUIT) running = false;
-			if (windowEvent.type == SDL_KEYUP &&
-				windowEvent.key.keysym.sym == SDLK_ESCAPE) running = false;
 
 			if (windowEvent.type == SDL_WINDOWEVENT) {
 				switch (windowEvent.window.event) {

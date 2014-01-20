@@ -22,6 +22,7 @@
 #include "IntroLoadScreen.h"
 #include "MainScreen.h"
 #include "SettingsScreen.h"
+#include "GameScreen.h"
 
 // Global Settings
 /*int SCREEN_WIDTH = 1280;

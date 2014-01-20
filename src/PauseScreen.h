@@ -1,41 +1,22 @@
 #pragma once
-#include "GLHandler.h"
-#include "TextRender.h"
-#include "KeyHandler.h"
-#include "MouseHandler.h"
-#include "TextureAtlas.h"
-#include <string>
+#include "UIScreen.h"
+#include "UIButton.h"
+#include "UILabel.h"
 
-#define NO_TRANSITION -1
-#define SCREEN_LOAD 0
-#define SCREEN_MAIN 1
-#define SCREEN_STORE 2
-#define SCREEN_SETTINGS 3
-#define SCREEN_GAME 4
-#define SCREEN_LEVEL_SELECT 5
-#define SCREEN_QUIT 6
-#define SCREEN_TEST 7
-#define CLOSE_SCREEN 8
-
-class UIScreen
+class PauseScreen : public UIScreen
 {
-protected:
-	bool loaded;
-	int transitionCode;
+	UILabel* lTitle;
+	UIButton* bResume;
+	UIButton* bQuit;
 
 public:
-	UIScreen();
-	~UIScreen();
+	PauseScreen();
+	~PauseScreen();
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height);
 
-	// Get the current screen transition request code 
-	virtual int getTransitionCode();
-
 	// Load screen
-	// Note: If textures need to be loaded, they must
-	// be loaded in this method or they will not work. 
 	virtual void load(TextureAtlas* mAtlas);
 
 	// Update the state of the screen

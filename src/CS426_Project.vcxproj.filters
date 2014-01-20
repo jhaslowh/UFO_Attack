@@ -49,6 +49,12 @@
     <Filter Include="Source Files\phys">
       <UniqueIdentifier>{37ed4b7f-9088-4300-accc-8cb8fdd5a020}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\game">
+      <UniqueIdentifier>{2640233d-e7d1-4601-99c0-485de42f1d91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game">
+      <UniqueIdentifier>{0482df06-88b5-4a8d-be68-92eac411846e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
@@ -126,6 +132,18 @@
     <ClInclude Include="UILabel.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
+    <ClInclude Include="GameScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -202,6 +220,18 @@
     </ClCompile>
     <ClCompile Include="UILabel.cpp">
       <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

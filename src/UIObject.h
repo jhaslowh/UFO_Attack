@@ -18,7 +18,9 @@ public:
 	// Getters and setters 
 	void setLocation(float x, float y);
 	float getX();
+	void setX(float);
 	float getY();
+	void setY(float);
 	void setSize(float w, float h);
 	float getWidth();
 	float getHeight();

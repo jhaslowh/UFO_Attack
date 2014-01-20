@@ -9,17 +9,25 @@ KeyHandler::KeyHandler()
 
 KeyHandler::~KeyHandler(){}
 
+// Update keys 
+void KeyHandler::update(){
+	for (int i = 0; i < KEY_COUNT; i++){
+		keysOld[i] = keys[i];
+	}
+}
+
 // Update the keystates 
 void KeyHandler::updateState(SDL_Event windowEvent){
+	int key = 0;
 	switch( windowEvent.type ){
         /* Keyboard event */
         case SDL_KEYDOWN:
-			int key = keyIndex((int)windowEvent.key.keysym.scancode);
+			key = keyIndex((int)windowEvent.key.keysym.scancode);
 			if (key >= 0)
 				keys[key] = true;
 			break;
         case SDL_KEYUP:
-			int key = keyIndex((int)windowEvent.key.keysym.scancode);
+			key = keyIndex((int)windowEvent.key.keysym.scancode);
 			if (key >= 0)
 				keys[key] = false;
             break;
@@ -31,6 +39,12 @@ void KeyHandler::updateState(SDL_Event windowEvent){
 // Check to see if a key is down
 bool KeyHandler::keyDown(int key){
 	return keys[key];
+}
+
+// Check to see if a key was pressed
+// (was down and just released)
+bool KeyHandler::keyPressed(int key){
+	return !keys[key] && keysOld[key];
 }
 
 // Get the key index from sent scancode 
