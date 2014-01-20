@@ -14,10 +14,14 @@ void KeyHandler::updateState(SDL_Event windowEvent){
 	switch( windowEvent.type ){
         /* Keyboard event */
         case SDL_KEYDOWN:
-			keys[keyIndex((int)windowEvent.key.keysym.scancode)] = true;
+			int key = keyIndex((int)windowEvent.key.keysym.scancode);
+			if (key >= 0)
+				keys[key] = true;
 			break;
         case SDL_KEYUP:
-			keys[keyIndex((int)windowEvent.key.keysym.scancode)] = false;
+			int key = keyIndex((int)windowEvent.key.keysym.scancode);
+			if (key >= 0)
+				keys[key] = false;
             break;
         default:
             break;
@@ -117,9 +121,11 @@ int KeyHandler::keyIndex(int scancode){
 		return KEY_RIGHT;
 	case SDL_SCANCODE_LEFT:
 		return KEY_LEFT;
+	case SDL_SCANCODE_ESCAPE:
+		return KEY_ESCAPE;
 	default:
 		break;
 	}
 
-	return 0;
+	return -1;
 }

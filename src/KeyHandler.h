@@ -42,8 +42,9 @@
 #define KEY_DOWN 38
 #define KEY_RIGHT 39
 #define KEY_LEFT 40
+#define KEY_ESCAPE 41
 
-#define KEY_COUNT 41
+#define KEY_COUNT 42
 
 class KeyHandler
 {
