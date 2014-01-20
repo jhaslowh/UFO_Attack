@@ -61,10 +61,10 @@ void loadSettings(Settings* s){
 		else 
 			s->setFullscreen(false);
 
-		printf("Settings loaded\n");
+		cout << "Settings loaded\n";
 	}
 	else 
-		printf("Error opening settings file or file not created yet\n");
+		cout << "Error opening settings file or file not created yet\n";
 }
 
 // Save the settings into settings file 
@@ -77,7 +77,7 @@ void saveSettings(Settings* s){
 	SDL_RWops *rw = SDL_RWFromFile("settings","w+");
 	// Error if file could not be opened 
 	if(rw == NULL) {
-		printf("Could not open settings file for writing\n");
+		cout << "Could not open settings file for writing\n";
 		return;
 	}
 
@@ -108,9 +108,9 @@ void saveSettings(Settings* s){
 
 	// Write data to file 
 	if (SDL_RWwrite(rw, cstr, size, len) != len)
-		printf("Error writing to settings file\n");
+		cout << "Error writing to settings file\n";
 	else 
-		printf("Settings saved\n");
+		cout << "Settings saved\n";
 	
 	// Close data file 
 	SDL_RWclose(rw);

@@ -230,3 +230,4 @@ extern DECLSPEC size_t SDLCALL SDL_WriteBE64(SDL_RWops * dst, Uint64 value);
 #endif /* _SDL_rwops_h */
 
 /* vi: set ts=4 sw=4 expandtab: */
+

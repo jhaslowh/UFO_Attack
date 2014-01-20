@@ -6,7 +6,7 @@
 #include <sstream>
 #include <string>
 
-#include "SDL\SDL_rwops.h"
+#include "SDL/SDL_rwops.h"
 #include "Settings.h"
 using namespace std;
 
