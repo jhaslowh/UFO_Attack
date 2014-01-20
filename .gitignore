@@ -1,0 +1,25 @@
+# C++ Compiler Files #
+*.o
+*~
+
+# Game generated files #
+src/Build/settings
+src/Debug/settings
+src/Release/settings
+src/Debug/*.exe
+src/Release/*.exe
+
+# Visual Studio Garbage #
+*.ipch
+*.tlog
+*.sdf
+*.opensdf
+*.obj
+*.log
+*.suo
+*.idb
+*.pdb
+*.ilk
+*.lastbuildstate
+*.intermediate.manifest
+*.cache
