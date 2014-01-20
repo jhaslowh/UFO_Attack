@@ -22,6 +22,7 @@
     <ClInclude Include="KeyHandler.h" />
     <ClInclude Include="MouseHandler.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="SettingsScreen.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestScreen.h" />
     <ClInclude Include="TextRender.h" />
@@ -29,6 +30,7 @@
     <ClInclude Include="UIAtlas.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UICheckbox.h" />
+    <ClInclude Include="UILabel.h" />
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIScreen.h" />
     <ClInclude Include="UITransitionObject.h" />
@@ -47,6 +49,7 @@
     <ClCompile Include="KeyHandler.cpp" />
     <ClCompile Include="MouseHandler.cpp" />
     <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="SettingsScreen.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestScreen.cpp" />
     <ClCompile Include="TextRender.cpp" />
@@ -54,6 +57,7 @@
     <ClCompile Include="UIAtlas.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UICheckbox.cpp" />
+    <ClCompile Include="UILabel.cpp" />
     <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="UIScreen.cpp" />
     <ClCompile Include="UITransitionObject.cpp" />

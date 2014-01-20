@@ -99,6 +99,9 @@ void changeScreen(){
 	case SCREEN_STORE:
 		break;
 	case SCREEN_SETTINGS:
+		delete(screen);
+		screen = (UIScreen*)new SettingsScreen(settings);
+		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
 	case SCREEN_GAME:
 		break;
@@ -123,7 +126,7 @@ void changeScreen(){
 void onDraw()
 {
 	// Clear screen
-	glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
+	glClearColor(0.25f, 0.25f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	// Draw Screen

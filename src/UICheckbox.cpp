@@ -42,6 +42,11 @@ UICheckbox::~UICheckbox(){}
 // Getters and Setters 
 void UICheckbox::setLabel(std::string l){label = l;}
 std::string UICheckbox::getLabel(){return label;}
+void UICheckbox::setTextColor(float r, float g, float b){
+	textColor[0] = r;
+	textColor[1] = g;
+	textColor[2] = b;
+}
 
 // Update Checkbox
 void UICheckbox::update(float deltaTime){

@@ -2,9 +2,9 @@
 
 IntroLoadScreen::IntroLoadScreen() : UIScreen(){
 	waitTime = 1.0f;
-	mColor[0] = .5f;
-	mColor[1] = .5f;
-	mColor[2] = .5f;
+	mColor[0] = .1f;
+	mColor[1] = .1f;
+	mColor[2] = .1f;
 	mColor[3] = 1.0f;
 }
 IntroLoadScreen::~IntroLoadScreen(){}

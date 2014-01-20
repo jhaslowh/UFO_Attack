@@ -74,6 +74,8 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		transitionCode = SCREEN_TEST;
 	if (buttonQuit->wasClicked())
 		transitionCode = SCREEN_QUIT;
+	if (buttonSettings->wasClicked())
+		transitionCode = SCREEN_SETTINGS;
 }
 
 // Draw the screen

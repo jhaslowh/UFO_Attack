@@ -22,6 +22,7 @@ public:
 	void setSize(float w, float h);
 	float getWidth();
 	float getHeight();
+	void setColor(float r, float g, float b);
 
 	// Update the button 
 	virtual void update(float deltaTime);

@@ -19,6 +19,11 @@ float UIObject::getY(){return loc_y;}
 void UIObject::setSize(float w, float h){width = w; height = h;}
 float UIObject::getWidth(){return width;}
 float UIObject::getHeight(){return height;}
+void UIObject::setColor(float r, float g, float b){
+	flatColor[0] = r;
+	flatColor[1] = g;
+	flatColor[2] = b;
+}
 
 // Update the button 
 void UIObject::update(float deltaTime){

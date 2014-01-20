@@ -33,11 +33,11 @@ public:
 	// Hide the entire screen.
 	// Any UI elements will need to be put into this function,
     // if they should be hidden when the screen is hidden.
-	void hide();
+	virtual void hide();
 
 	// Show the entire screen.
 	// All UI elements in the hide screen method should have show 
 	// calls here. 
-	void show();
+	virtual void show();
 };
 

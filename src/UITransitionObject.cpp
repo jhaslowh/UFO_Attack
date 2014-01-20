@@ -138,6 +138,12 @@ void UITransitionObject::update(float deltaTime){
 	}
 }
 
+// Draw the object to the screen
+// UIAtles must be bound first.
+void UITransitionObject::draw(GLHandler* mgl, UIAtlas* mAtlas){
+	UIObject::draw(mgl, mAtlas);
+}
+
 // Tell the object to hide
 void UITransitionObject::hide(){mHide = true;}
 // Tell the object to show

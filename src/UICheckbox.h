@@ -22,6 +22,7 @@ public:
 	// Getters and Setters 
 	void setLabel(std::string l);
 	std::string getLabel();
+	void setTextColor(float r, float g, float b);
 
 	// Update Checkbox
 	virtual void update(float deltaTime);

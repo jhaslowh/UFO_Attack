@@ -47,6 +47,9 @@ public:
 
 	// Update the object
 	virtual void update(float deltaTime);
+	// Draw the object to the screen
+	// UIAtles must be bound first.
+	virtual void draw(GLHandler* mgl, UIAtlas* mAtlas);
 
 	// Tell the object to hide
 	void hide();

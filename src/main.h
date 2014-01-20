@@ -21,6 +21,7 @@
 #include "TestScreen.h"
 #include "IntroLoadScreen.h"
 #include "MainScreen.h"
+#include "SettingsScreen.h"
 
 // Global Settings
 /*int SCREEN_WIDTH = 1280;
