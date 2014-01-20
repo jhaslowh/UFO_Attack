@@ -2,15 +2,38 @@
 
 // Check if two line segments intersect. 
 // *p = the point of intersection 
-bool checkSegSeg(Point a1, Point a2, Point b1, Point b2){
-	// TODO 
-	printf("checkSegSeg not implemented \n");
-	return false;
+bool checkSegSeg(Point a, Point b, Point c, Point d){
+	return checkSegSeg(a,b,c,d,NULL);
 }
-bool checkSegSeg(Point p1, Point p2, Point b1, Point b2, Point* p){
-	// TODO 
-	printf("checkSegSeg not implemented \n");
-	return false;
+bool checkSegSeg(Point a, Point b, Point c, Point d, Point* p){
+	float D = 
+		(a.getX() * (d.getY() - c.getY())) +
+		(b.getX() * (c.getY() - d.getY())) + 
+		(d.getX() * (b.getY() - a.getY())) + 
+		(c.getX() * (a.getY() - b.getY()));
+		
+	if ((float)abs(D) < 0.000001)
+		return false;
+	
+	float s = 
+		((a.getX() * (d.getY() - c.getY())) + 
+		 (c.getX() * (a.getY() - d.getY())) + 
+		 (d.getX() * (c.getY() - a.getY())))/D;
+	float t = 
+		-((a.getX() * (c.getY() - b.getY())) +
+         (b.getX() * (a.getY() - c.getY())) +
+         (c.getX() * (b.getY() - a.getY())))/D;
+	
+	if (s < 0 || s > 1 || t > 1 || t < 0)
+		return false;
+	
+	if (p != NULL){
+		p->setX(a.getX() + (s * (b.getX() - a.getX())));
+		p->setY(a.getY() + (s * (b.getY() - a.getY())));
+	}
+	
+	//if (s == 0 || s == 1 || t == 1 || t == 0) // Vertex collision 
+	return true;
 }
 
 // Check if two rectangles intersect
