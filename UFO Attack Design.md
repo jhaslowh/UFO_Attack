@@ -20,6 +20,7 @@ Transitions:
 - Level Select Screen (Button)  
 - Store Screen (Button)  
 - Settings Screen (Button)  
+- Credits Screen (Button)  
 - Quit Game (Button)  
 
 **Level Select Screen**  
@@ -32,6 +33,7 @@ Transitions:
 **Game Screen**  
 Used to play levels.  
 - Main Menu  (Through pause menu)  
+- Credits Screen (Beat last level)  
 
 **Store Screen**  
 The player will used abducted people to purchase upgrades.  
@@ -42,6 +44,10 @@ Transitions:
 **Settings Screen**  
 Transitions:  
 - Main Menu  (Button)  
+
+**Credits Screen**  
+Transitions:
+- Main Menu (When finished)  
 
 ### Object information  
 
