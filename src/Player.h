@@ -7,6 +7,8 @@
 #include "Sprite.h"
 #include "Ground.h"
 
+#define GRAVITY 980.0f
+
 class Player
 {
 	// Basic properties 
@@ -29,6 +31,17 @@ class Player
 	float nextX, nextY;
 	float movementSpeed;
 	float direcX;
+
+	float jumpt;	 // Time left in jump
+	float jumpTime;  // Total time a jump takes 
+    float yo;        // Original y location at begining of jump 
+	float airT;      // Time that player has been in the air for 
+	float minAirtForInAir; // Min time to count airT as being in air
+  
+	// States 
+	bool alive;
+    bool jumping;
+	bool inAir;
 
 public:
 	Player();
@@ -61,5 +74,20 @@ public:
 
 	// Draw level 
 	void draw(GLHandler* mgl);
+
+	
+	// Physics Helpers
+
+	// Stop player if they are jumping
+	void stopJump();
+
+	// Call when the player hits the ground 
+	void hitGround();
+
+	// Call when the player hits a wall
+	void hitWall();
+
+	// Call when the player hits the ceiling 
+	void hitCeiling();
 };
 

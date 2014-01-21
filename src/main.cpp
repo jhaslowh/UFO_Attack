@@ -262,7 +262,7 @@ int main(int argc, char* argv[])
 	SDL_SetColorKey(icon, SDL_TRUE, SDL_MapRGB(icon->format,0,0,0)); 
 	SDL_SetWindowIcon(window,icon);
 	// Free icon resources 
-	SDL_FreeSurface(icon);
+	//SDL_FreeSurface(icon);
 
 	// OpenGL Extension wrangler initialising  
 	glewExperimental = GL_TRUE; 

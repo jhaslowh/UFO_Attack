@@ -36,7 +36,7 @@ void loadSettings(Settings* s){
 
 	if (rw != NULL) {
 		// Load file into string 
-		char buf[256];
+		char buf[1024];
 		SDL_RWread(rw, buf, sizeof (buf), 1);
 		string str(buf);
 		SDL_RWclose(rw);
