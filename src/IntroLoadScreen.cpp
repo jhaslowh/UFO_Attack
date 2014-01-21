@@ -1,13 +1,25 @@
 #include "IntroLoadScreen.h"
 
 IntroLoadScreen::IntroLoadScreen() : UIScreen(){
-	waitTime = 1.0f;
+	waitTime = 2.0f;
 	mColor[0] = .1f;
 	mColor[1] = .1f;
 	mColor[2] = .1f;
 	mColor[3] = 1.0f;
 }
 IntroLoadScreen::~IntroLoadScreen(){}
+
+
+// Initialize screen
+void IntroLoadScreen::init(float screen_width, float screen_height){
+	DGSplash.setPosition(screen_width * .5f, screen_height * .5f);
+	DGSplash.setOrigin(256.0f, 128.0f);
+}
+
+// Load Screen
+void IntroLoadScreen::load(TextureAtlas* mAtlas){
+	DGSplash.setup(512.0f,256.0f,string("images/DGSplash.png"));
+}
 
 // Update the state of the screen
 void IntroLoadScreen::update(float deltaTime){
@@ -25,15 +37,12 @@ void IntroLoadScreen::update(float deltaTime){
 // Draw the screen
 void IntroLoadScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	UIScreen::draw(mgl, mAtlas);
-	UIAtlas* mUI = (UIAtlas*)mAtlas;
 
-	// Setup world matrix
+	// Setup world matrix to orthographic 
 	mgl->setProjectionMatrix(mgl->orthoMatrix);
 
-	// Bind bufferes
-	mUI->bindBuffers(mgl);
-	mUI->bindTexture(mgl);
-
-	mgl->setFlatColor(mColor);
-	mUI->mTextRender->drawText(*mgl, std::string("Loading ..."),10.0f,10.0f,0.0f,40.0f);
+	// Clear screen
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	DGSplash.draw(*mgl);
 }

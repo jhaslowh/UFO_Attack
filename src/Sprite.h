@@ -28,8 +28,8 @@ public:
 	~Sprite();
 
 	// Setup the sprites verticies, coords, and texture 
-	void setup(float, float);
-	void setup(float, float, std::string file);
+	void setup(float width, float height);
+	void setup(float width, float height, std::string file);
 
 	// Set the position of the sprite 
 	void setPosition(float,float);
