@@ -1,9 +1,10 @@
 #pragma once
 #include <SDL/SDL.h>
+#include "Point.h"
 
 class MouseHandler
 {
-	float mouse_loc[2];
+	Point loc;
 	bool last_left_down;
 	bool last_right_down;
 	bool left_down;
@@ -14,7 +15,7 @@ public:
 	~MouseHandler();
 
 	// Get the mouse location 
-	float* getLoc();
+	Point getLoc();
 	// Get the x location 
 	float getX();
 	// Get the y location 

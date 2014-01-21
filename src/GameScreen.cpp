@@ -30,6 +30,7 @@ void GameScreen::load(TextureAtlas* mAtlas){
 	UIScreen::load(mAtlas);
 
 	level->load(mAtlas);
+	levelEditor.load();
 }
 
 // Update the state of the screen
@@ -39,6 +40,7 @@ void GameScreen::update(float deltaTime){
 	pauseScreen->update(deltaTime);
 
 	if (!paused){
+		levelEditor.update(deltaTime, level->getGround());
 		level->update(deltaTime);
 	}
 }
@@ -68,6 +70,7 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			pauseScreen->show();
 		}
 
+		levelEditor.updateInput(mKeyH, mMouseH, level->getGround());
 		level->updateInput(mKeyH, mMouseH);
 	}
 }
@@ -77,5 +80,6 @@ void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	UIScreen::draw(mgl, mAtlas);
 
 	level->draw(mgl, mAtlas);
+	levelEditor.draw(mgl);
 	pauseScreen->draw(mgl, mAtlas);
 }

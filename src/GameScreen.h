@@ -2,6 +2,7 @@
 #include "UIScreen.h"
 #include "PauseScreen.h"
 #include "Level.h"
+#include "LevelEditor.h"
 
 class GameScreen : public UIScreen
 {
@@ -10,6 +11,7 @@ class GameScreen : public UIScreen
 
 	Level* level;
 	PauseScreen* pauseScreen;
+	LevelEditor levelEditor;
 
 public:
 	GameScreen();

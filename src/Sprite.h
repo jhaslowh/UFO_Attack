@@ -33,10 +33,14 @@ public:
 
 	// Set the position of the sprite 
 	void setPosition(float,float);
+	float getX();
+	float getY();
 	// Set the rotation of the sprite 
 	void setRotation(float);
+	float getRotation();
 	// Set the scale of the sprite 
 	void setScale(float);
+	float getScale();
 	// Set the origin of the sprite 
 	void setOrigin(float,float);
 	// Set the RGB color 
@@ -45,6 +49,7 @@ public:
 	void setColor(const float,const float,const float,const float);
 	// Set the alpha value 
 	void setAlpha(const float);
+	float getAlpha();
 
 	// Call to draw the sprite 
 	void draw(GLHandler);

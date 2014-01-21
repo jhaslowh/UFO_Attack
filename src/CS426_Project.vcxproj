@@ -15,6 +15,7 @@
     <ClInclude Include="Ground.h" />
     <ClInclude Include="IntroLoadScreen.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelEditor.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainScreen.h" />
     <ClInclude Include="PauseScreen.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="IntroLoadScreen.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="MainScreen.cpp" />
     <ClCompile Include="PauseScreen.cpp" />
     <ClCompile Include="Player.cpp" />

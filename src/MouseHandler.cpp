@@ -10,13 +10,13 @@ MouseHandler::~MouseHandler(){}
 
 
 // Get the mouse location 
-float* MouseHandler::getLoc(){ return mouse_loc;}
+Point MouseHandler::getLoc(){ return loc;}
 
 // Get the x location 
-float MouseHandler::getX(){return mouse_loc[0];}
+float MouseHandler::getX(){return loc.getX();}
 
 // Get the y location 
-float MouseHandler::getY(){return mouse_loc[1];}
+float MouseHandler::getY(){return loc.getY();}
 
 // Check button states 
 bool MouseHandler::isLeftDown(){return left_down;}
@@ -29,8 +29,8 @@ void MouseHandler::updateState(SDL_Event windowEvent){
 	switch( windowEvent.type ){
         /* Mouse events */
         case SDL_MOUSEMOTION:
-			mouse_loc[0] = (float)windowEvent.motion.x;
-			mouse_loc[1] = (float)windowEvent.motion.y;
+			loc.setX((float)windowEvent.motion.x);
+			loc.setY((float)windowEvent.motion.y);
 			break;
         case SDL_MOUSEBUTTONDOWN:
 			if(windowEvent.button.button == SDL_BUTTON_LEFT)

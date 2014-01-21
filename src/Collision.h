@@ -20,3 +20,6 @@ bool checkRecRec(Rec* r1, Rec* r2);
 // Check if a rectangle intersects a line segment 
 bool checkRecSeg(Rec* r, Point a, Point b);
 bool checkRecSeg(Rec* r, Point a, Point b, Point* p);
+
+// Find the distance between point a and b
+float dist(Point a, Point b);

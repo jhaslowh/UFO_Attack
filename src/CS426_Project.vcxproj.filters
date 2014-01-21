@@ -147,6 +147,9 @@
     <ClInclude Include="Ground.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
+    <ClInclude Include="LevelEditor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -238,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelEditor.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

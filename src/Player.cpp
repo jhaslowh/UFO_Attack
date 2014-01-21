@@ -43,9 +43,6 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		direcX = 1.0f;
 	else 
 		direcX = 0.0f;
-
-	if (mMouseH->isLeftDown())
-		cout << "Mouse: " << mMouseH->getX() << ", " << mMouseH->getY() << "\n";
 }
 
 // Update level state

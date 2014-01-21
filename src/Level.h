@@ -15,6 +15,9 @@ public:
 	Level();
 	~Level();
 
+	// Get reference to ground 
+	Ground* getGround();
+
 	// initialize level
 	void init(float screen_width, float screen_height);
 

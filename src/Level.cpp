@@ -8,6 +8,11 @@ Level::~Level(){
 		delete(ground);
 }
 
+// Get reference to ground 
+Ground* Level::getGround(){
+	return ground;
+}
+
 // initialize level
 void Level::init(float screen_width, float screen_height){
 	player = new Player();

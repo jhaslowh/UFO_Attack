@@ -52,16 +52,20 @@ void Sprite::setup(float w,float h, std::string file)
 void Sprite::setPosition(float x, float y){
 	pos_x = x; pos_y = y;
 }
+float Sprite::getX(){return pos_x;}
+float Sprite::getY(){return pos_y;}
 
 // Set the rotation of the sprite 
 void Sprite::setRotation(float degrees){
 	rotation = degrees;
 }
+float Sprite::getRotation(){return rotation;}
 
 // Set the scale of the sprite 
 void Sprite::setScale(float value){
 	scale = value;
 }
+float Sprite::getScale(){return scale;}
 
 // Set the origin of the sprite 
 void Sprite::setOrigin(float x,float y){
@@ -83,6 +87,7 @@ void Sprite::setColor(const float r,const float g,const float b,const float a){
 void Sprite::setAlpha(const float a){
 	color[3] = a;
 }
+float Sprite::getAlpha(){return color[3];}
 
 // Draw the sprite to the screen
 void Sprite::draw(GLHandler mgl){

@@ -115,3 +115,12 @@ bool checkRecSeg(Rec* r, Point a, Point b, Point* p){
 
 	return false;
 }
+
+// Find the distance between point a and b
+float dist(Point a, Point b){
+	float x = b.getX() - a.getX();
+	x *= x;
+	float y = b.getY() - a.getY();
+	y *= y;
+	return sqrt(x + y);
+}
