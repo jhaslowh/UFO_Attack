@@ -5,6 +5,10 @@
 #include "Point.h"
 #include "Rec.h"
 
+// Returns 2 times the signed triangle area. The result is positive if 
+// abc is ccw, negative if abc is cw, zero if abc is degenerate.
+float Signed2DTriArea(Point a, Point b, Point c);
+
 // Check if two line segments intersect. 
 // *p = the point of intersection 
 bool checkSegSeg(Point a, Point b, Point c, Point d);

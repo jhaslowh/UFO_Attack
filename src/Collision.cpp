@@ -1,11 +1,46 @@
 #include "Collision.h"
 
+// Returns 2 times the signed triangle area. The result is positive if 
+// abc is ccw, negative if abc is cw, zero if abc is degenerate.
+float Signed2DTriArea(Point a, Point b, Point c){
+	return (a.getX() - c.getX()) * (b.getY() - c.getY()) 
+		- (a.getY() - c.getY()) * (b.getX() - c.getX());
+}
+
 // Check if two line segments intersect. 
 // *p = the point of intersection 
 bool checkSegSeg(Point a, Point b, Point c, Point d){
 	return checkSegSeg(a,b,c,d,NULL);
 }
 bool checkSegSeg(Point a, Point b, Point c, Point d, Point* p){
+	// Sign of areas correspond to which side of ab points c and d are on 
+	/*float a1 = Signed2DTriArea(a, b, d); // Compute winding of abd (+ or -)
+	float a2 = Signed2DTriArea(a, b, c); // To intersect, must have sign opposite of a1
+
+	// If c and d are on different sides of ab, areas have different signs
+	if (a1 != 0.0f && a2 != 0.0f && a1*a2 < 0.0f){
+		// Compute signs for a and b with respect to segment cd
+		float a3 = Signed2DTriArea(c, d, a); // Compute winding of cda (+ or -)
+		// Since area is constant a1 - a2 = a3 - a4, or a4 = a3 + a2 - a1
+		float a4 = a3 + a2 - a1;
+
+		// Points a and b on different sides of cd if areas have different signs 
+		if (a3 != 0.0f && a4 != 0.0f && a3 * a4 < 0.0f){
+			// Segments intersect. Find intersection point along L(t) = a + t * (b - a)
+			// Given height h1 of a over cd and height h2 of b over cd, 
+			// t = h1 / (h1 - h2) = (b*h1/2) / (b*h1/2 - b*h2/2) = a3 / (a3 - a4),
+			// where b (the base of the triangles cda and cdb, i.e., the length
+			// of cd) cancels out.
+			float t = a3 / (a3 - a4);
+			if (p != NULL)
+				*p = a + t * (b - a);
+			return true;
+		}
+	}
+
+	return false;*/
+
+	// CS 425 Teacher magic 
 	float D = 
 		(a.getX() * (d.getY() - c.getY())) +
 		(b.getX() * (c.getY() - d.getY())) + 
@@ -15,6 +50,7 @@ bool checkSegSeg(Point a, Point b, Point c, Point d, Point* p){
 	if ((float)abs(D) < 0.000001)
 		return false;
 	
+	// More CS 425 Teacher magic 
 	float s = 
 		((a.getX() * (d.getY() - c.getY())) + 
 		 (c.getX() * (a.getY() - d.getY())) + 
@@ -24,15 +60,18 @@ bool checkSegSeg(Point a, Point b, Point c, Point d, Point* p){
          (b.getX() * (a.getY() - c.getY())) +
          (c.getX() * (b.getY() - a.getY())))/D;
 	
+	// Collision point is outside line bounds 
 	if (s < 0 || s > 1 || t > 1 || t < 0)
 		return false;
 	
+	// Set return point values 
 	if (p != NULL){
 		p->setX(a.getX() + (s * (b.getX() - a.getX())));
 		p->setY(a.getY() + (s * (b.getY() - a.getY())));
 	}
-	
-	//if (s == 0 || s == 1 || t == 1 || t == 0) // Vertex collision 
+
+	// Vertex collision 
+	//if (s == 0 || s == 1 || t == 1 || t == 0) 
 	return true;
 }
 
