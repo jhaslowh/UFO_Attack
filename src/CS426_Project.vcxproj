@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="IntroLoadScreen.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="main.h" />
@@ -43,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="IntroLoadScreen.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="MainScreen.cpp" />

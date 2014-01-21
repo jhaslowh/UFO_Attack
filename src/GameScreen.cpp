@@ -17,10 +17,10 @@ GameScreen::~GameScreen(void)
 void GameScreen::init(float screen_width, float screen_height){
 	UIScreen::init(screen_width, screen_height);
 	level = new Level();
+	level->init(screen_width, screen_height);
 
 	pauseScreen = new PauseScreen();
 	pauseScreen->init(screen_width, screen_height);
-	
 }
 
 // Load screen
@@ -29,6 +29,7 @@ void GameScreen::init(float screen_width, float screen_height){
 void GameScreen::load(TextureAtlas* mAtlas){
 	UIScreen::load(mAtlas);
 
+	level->load(mAtlas);
 }
 
 // Update the state of the screen
@@ -38,7 +39,7 @@ void GameScreen::update(float deltaTime){
 	pauseScreen->update(deltaTime);
 
 	if (!paused){
-
+		level->update(deltaTime);
 	}
 }
 
@@ -66,6 +67,8 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			paused = true;
 			pauseScreen->show();
 		}
+
+		level->updateInput(mKeyH, mMouseH);
 	}
 }
 
@@ -73,5 +76,6 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	UIScreen::draw(mgl, mAtlas);
 
+	level->draw(mgl, mAtlas);
 	pauseScreen->draw(mgl, mAtlas);
 }

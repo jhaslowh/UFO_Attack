@@ -144,6 +144,9 @@
     <ClInclude Include="PauseScreen.h">
       <Filter>Header Files\ui\screens</Filter>
     </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -232,6 +235,9 @@
     </ClCompile>
     <ClCompile Include="PauseScreen.cpp">
       <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Source Files\game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
