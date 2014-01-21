@@ -16,7 +16,10 @@ int init_resources()
 	glUseProgram(mgl.program);
 	// Setup ortho matrix
 	mgl.setOrthoMatrix((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
-	mgl.setCamera3DMatrix(glm::vec3(0,20,50), glm::vec3(0,0,0), (float)settings->getScreenWidth()/(float)settings->getScreenHeight());
+	mgl.setCamera3DMatrix(glm::vec3(0,20,50), glm::vec3(0,0,0), 
+		(float)settings->getScreenWidth()/(float)settings->getScreenHeight());
+	mgl.setViewMatrix(glm::mat4());
+
 	// Setup gl states 
 	mgl.setupGL();
 

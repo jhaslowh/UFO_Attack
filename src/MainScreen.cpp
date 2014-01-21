@@ -90,7 +90,7 @@ void MainScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 
 	// Setup world matrix
-	mgl->setWorldMatrix(mgl->orthoMatrix);
+	mgl->setProjectionMatrix(mgl->orthoMatrix);
 
 	// Bind bufferes
 	mUI->bindBuffers(mgl);

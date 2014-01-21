@@ -17,8 +17,9 @@ public:
 	GLint mColorHandle;
 	GLint mTextureHandle;
 	GLint mTextCordHandle;
-	GLint mWorldMatrixHandle;
+	GLint mProjMatrixHandle;
 	GLint mModelMatrixHandle;
+	GLint mViewMatrixHandle;
 	GLint mUseTextureHandle;
 
 	// Matrix's
@@ -38,9 +39,22 @@ public:
 	// Set the gl flat color
 	// This should be in the form of {R,G,B,A}
 	void setFlatColor(const GLfloat*);
+	
+	// Set the Projection matrix for the shader. 
+	// This is used to map the game to the screen, 
+	// so use an orthographic matrix or a projection 
+	// matrix.
+	// use glm::mat4() for identity 
+	void setProjectionMatrix(glm::mat4);
+	
+	// Set the View matrix for the shader. 
+	// This is used as the camera for the game. 
+	// use glm::mat4() for identity 
+	void setViewMatrix(glm::mat4);
 
+	// Set the model matrix for the shader. 
+	// use glm::mat4() for identity 
 	void setModelMatrix(glm::mat4);
-	void setWorldMatrix(glm::mat4);
 
 	// Call to fix the ortho matrix if screen size has changed 
 	void setOrthoMatrix(const float width,const float height);

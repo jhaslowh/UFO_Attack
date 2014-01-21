@@ -107,7 +107,7 @@ void TestScreen::draw(GLHandler* mgl,  TextureAtlas* mAtlas){
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 
 	// Setup world matrix
-	mgl->setWorldMatrix(mgl->orthoMatrix);
+	mgl->setProjectionMatrix(mgl->orthoMatrix);
 
 	// Bind bufferes
 	mUI->bindBuffers(mgl);
@@ -142,6 +142,6 @@ void TestScreen::draw(GLHandler* mgl,  TextureAtlas* mAtlas){
 
 	sprite.draw(*mgl);
 
-	mgl->setWorldMatrix(mgl->camera3DMatrix);
+	mgl->setProjectionMatrix(mgl->camera3DMatrix);
 	cube.draw(*mgl);
 }

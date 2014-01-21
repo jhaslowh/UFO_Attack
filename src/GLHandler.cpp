@@ -19,13 +19,14 @@ int GLHandler::setupShaders(){
     "#version 120  \n"  // OpenGL 2.1
 #endif
 	"attribute vec4 position;        " // Position handle 
-	"attribute vec2 aTexCoordinate; " // Texture coord handle 
-	"varying vec2 vTexCoordinate;   " // Texture coord handle that both shaders use 
+	"attribute vec2 aTexCoordinate;  " // Texture coord handle 
+	"varying vec2 vTexCoordinate;    " // Texture coord handle that both shaders use 
 	"uniform mat4 modelm;            " // Model Matrix handle
-	"uniform mat4 worldm;            " // World Matrix handle
+	"uniform mat4 viewm;             " // View Matrix handle
+	"uniform mat4 projm;             " // Projection Matrix handle
 	"void main() {                   "
 	"  vTexCoordinate = aTexCoordinate; "
-	"  gl_Position = worldm * modelm * position;"
+	"  gl_Position = projm * viewm * modelm * position;"
 	"}";
 	glShaderSource(vs, 1, &vs_source, NULL);
 	glCompileShader(vs);
@@ -79,7 +80,8 @@ int GLHandler::setupShaders(){
 	mColorHandle = glGetUniformLocation(program, "color");
 	// get handle to shape's transformation matrix
 	mModelMatrixHandle = glGetUniformLocation(program, "modelm");
-	mWorldMatrixHandle = glGetUniformLocation(program, "worldm");
+	mProjMatrixHandle = glGetUniformLocation(program, "projm");
+	mViewMatrixHandle = glGetUniformLocation(program, "viewm");
 	// get handle to vertex shader's vPosition member
 	mPositionHandle = glGetAttribLocation(program, "position");
 	mTextureHandle = glGetUniformLocation(program, "texture");
@@ -91,12 +93,16 @@ int GLHandler::setupShaders(){
 		fprintf(stderr, "Error grabbing color shader handle: \n");
 		return 0;
 	}
-	if (mWorldMatrixHandle == -1){
+	if (mProjMatrixHandle == -1){
 		fprintf(stderr, "Error grabbing world matrix shader handle: \n");
 		return 0;
 	}
 	if (mModelMatrixHandle == -1){
 		fprintf(stderr, "Error grabbing model matrix shader handle: \n");
+		return 0;
+	}
+	if (mViewMatrixHandle == -1){
+		fprintf(stderr, "Error grabbing camera matrix shader handle: \n");
 		return 0;
 	}
 	if (mPositionHandle == -1){
@@ -141,14 +147,20 @@ void GLHandler::setFlatColor(const GLfloat* mColor){
 	glUniform4fv(mColorHandle, 1, mColor);
 }
 
+// Set the Projection matrix for the shader. 
+// use glm::mat4() for identity 
+void GLHandler::setProjectionMatrix(glm::mat4 matrix){
+	glUniformMatrix4fv(mProjMatrixHandle, 1, GL_FALSE, glm::value_ptr(matrix));
+}
+
+// Set the camera matrix for the shader 
+void GLHandler::setViewMatrix(glm::mat4 matrix){
+	glUniformMatrix4fv(mViewMatrixHandle, 1, GL_FALSE, glm::value_ptr(matrix));
+}
+
 // Set the model matrix for the shader 
 void GLHandler::setModelMatrix(glm::mat4 matrix){
 	glUniformMatrix4fv(mModelMatrixHandle, 1, GL_FALSE, glm::value_ptr(matrix));
-}
-
-// Set the world matrix for the shader 
-void GLHandler::setWorldMatrix(glm::mat4 matrix){
-	glUniformMatrix4fv(mWorldMatrixHandle, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 // Call to fix the ortho matrix if screen size has changed 
