@@ -34,8 +34,10 @@ public:
 
 	// Call to set up gl for rendering
 	void setupGL();
+
 	// Call when done rendering 
 	void endGL();
+
 	// Set the gl flat color
 	// This should be in the form of {R,G,B,A}
 	void setFlatColor(const GLfloat*);

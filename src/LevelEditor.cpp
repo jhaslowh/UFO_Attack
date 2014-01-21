@@ -14,6 +14,7 @@ void LevelEditor::load(){
 	pointSprite.setup(8.0f,8.0f,"images/point.png");
 	pointSprite.setOrigin(4.0f,4.0f);
 	pointSprite.setColor(.8f,.8f,1.0f,1.0f);
+	pointSprite.setScale(0.0f);
 }
 
 // Update editor state 

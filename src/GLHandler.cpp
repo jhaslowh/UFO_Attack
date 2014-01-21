@@ -48,10 +48,11 @@ int GLHandler::setupShaders(){
 	"uniform vec4 color;           " // Color handle
 	"uniform float useTexture;     " // Set to 1 to use texture 
 	"varying vec2 vTexCoordinate;  " // Texture coord handle that both shaders use 
+
 	"void main() {                  "
 	"  if (useTexture > 0.5f)       "
-	"    gl_FragColor = (color * texture2D(texture, vTexCoordinate));"
-	"  else                         "
+	"    gl_FragColor = color * texture2D(texture, vTexCoordinate);"
+	"  else "
 	"    gl_FragColor = color;"
 	"}";
 	glShaderSource(fs, 1, &fs_source, NULL);
@@ -73,7 +74,6 @@ int GLHandler::setupShaders(){
 		return 0;
 	}
 
-
 	/* Grab shader attributes */
 
 	// get handle to fragment shader's vColor member
@@ -84,10 +84,11 @@ int GLHandler::setupShaders(){
 	mViewMatrixHandle = glGetUniformLocation(program, "viewm");
 	// get handle to vertex shader's vPosition member
 	mPositionHandle = glGetAttribLocation(program, "position");
+	// Grab texture information
 	mTextureHandle = glGetUniformLocation(program, "texture");
 	mTextCordHandle = glGetAttribLocation(program, "aTexCoordinate");
 	mUseTextureHandle = glGetUniformLocation(program, "useTexture");
-	
+
 	// Error check 
 	if (mColorHandle == -1){
 		fprintf(stderr, "Error grabbing color shader handle: \n");
@@ -119,6 +120,7 @@ int GLHandler::setupShaders(){
 	}
 	if (mUseTextureHandle == -1){
 		fprintf(stderr, "Error grabbing useTexture handle: \n");
+		return 0;
 	}
 
 	return 1;

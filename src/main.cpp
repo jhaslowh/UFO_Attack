@@ -16,8 +16,10 @@ int init_resources()
 	glUseProgram(mgl.program);
 	// Setup ortho matrix
 	mgl.setOrthoMatrix((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+	// Setup basic testing projection matrix 
 	mgl.setCamera3DMatrix(glm::vec3(0,20,50), glm::vec3(0,0,0), 
 		(float)settings->getScreenWidth()/(float)settings->getScreenHeight());
+	// Set view matrix to identity to avoid rendering problems
 	mgl.setViewMatrix(glm::mat4());
 
 	// Setup gl states 
@@ -254,6 +256,14 @@ int main(int argc, char* argv[])
 	// Create the window context 
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
+	/// Set window icon 
+	SDL_Surface* icon = SDL_LoadBMP("icon.bmp");
+	// Remove icon background 
+	SDL_SetColorKey(icon, SDL_TRUE, SDL_MapRGB(icon->format,0,0,0)); 
+	SDL_SetWindowIcon(window,icon);
+	// Free icon resources 
+	SDL_FreeSurface(icon);
+
 	// OpenGL Extension wrangler initialising  
 	glewExperimental = GL_TRUE; 
 	GLenum glew_status = glewInit();
@@ -262,6 +272,14 @@ int main(int argc, char* argv[])
 		fprintf(stderr, "Error Setting up GLEW: %s\n", glewGetErrorString(glew_status));
         exit(EXIT_FAILURE);
 	}
+
+	// GLEW Debug information
+	cout << "Using GLEW Version: " << glewGetString(GLEW_VERSION) << "\n";
+	if (GLEW_VERSION_1_5) cout << "Core extensions of OpenGL 1.1 to 1.5 are available.\n";
+	if (GLEW_VERSION_2_0) cout << "Core extensions of OpenGL 2.0 are available.\n";
+	if (GLEW_VERSION_2_1) cout << "Core extensions of OpenGL 2.1 are available.\n";
+	if (GLEW_VERSION_3_0) cout << "Core extensions of OpenGL 3.0 are available.\n";
+	if (GLEW_VERSION_4_0) cout << "Core extensions of OpenGL 4.0 are available.\n";
 
 	// Load resources 
 	init_resources();
