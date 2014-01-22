@@ -5,11 +5,13 @@
 #include "TextureAtlas.h"
 #include "Player.h"
 #include "Ground.h"
+#include "Handlers.h"
 
 class Level
 {
 	Player* player;
 	Ground* ground;
+	Handlers handlers;
 
 public:
 	Level();
