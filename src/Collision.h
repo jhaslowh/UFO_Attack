@@ -23,3 +23,7 @@ bool checkRecSeg(Rec* r, Point a, Point b, Point* p);
 
 // Find the distance between point a and b
 float dist(Point a, Point b);
+
+// Find the angle between point a and b.
+// Return angle in degrees. 
+float angle(Point a, Point b);

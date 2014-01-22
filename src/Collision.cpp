@@ -13,33 +13,6 @@ bool checkSegSeg(Point a, Point b, Point c, Point d){
 	return checkSegSeg(a,b,c,d,NULL);
 }
 bool checkSegSeg(Point a, Point b, Point c, Point d, Point* p){
-	// Sign of areas correspond to which side of ab points c and d are on 
-	/*float a1 = Signed2DTriArea(a, b, d); // Compute winding of abd (+ or -)
-	float a2 = Signed2DTriArea(a, b, c); // To intersect, must have sign opposite of a1
-
-	// If c and d are on different sides of ab, areas have different signs
-	if (a1 != 0.0f && a2 != 0.0f && a1*a2 < 0.0f){
-		// Compute signs for a and b with respect to segment cd
-		float a3 = Signed2DTriArea(c, d, a); // Compute winding of cda (+ or -)
-		// Since area is constant a1 - a2 = a3 - a4, or a4 = a3 + a2 - a1
-		float a4 = a3 + a2 - a1;
-
-		// Points a and b on different sides of cd if areas have different signs 
-		if (a3 != 0.0f && a4 != 0.0f && a3 * a4 < 0.0f){
-			// Segments intersect. Find intersection point along L(t) = a + t * (b - a)
-			// Given height h1 of a over cd and height h2 of b over cd, 
-			// t = h1 / (h1 - h2) = (b*h1/2) / (b*h1/2 - b*h2/2) = a3 / (a3 - a4),
-			// where b (the base of the triangles cda and cdb, i.e., the length
-			// of cd) cancels out.
-			float t = a3 / (a3 - a4);
-			if (p != NULL)
-				*p = a + t * (b - a);
-			return true;
-		}
-	}
-
-	return false;*/
-
 	// CS 425 Teacher magic 
 	float D = 
 		(a.getX() * (d.getY() - c.getY())) +
@@ -123,4 +96,10 @@ float dist(Point a, Point b){
 	float y = b.getY() - a.getY();
 	y *= y;
 	return sqrt(x + y);
+}
+
+// Find the angle between point a and b.
+// Return angle in degrees. 
+float angle(Point a, Point b){
+	return (180.0f / 3.14159f) * (float)atan2(b.getY() - a.getY(), b.getX() - a.getX());
 }

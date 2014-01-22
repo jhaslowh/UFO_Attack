@@ -21,6 +21,8 @@ private:
 	float scale;
 	float origin_x;
 	float origin_y;
+	float width;
+	float height;
 	GLfloat color[4];
 
 public:
@@ -50,6 +52,19 @@ public:
 	// Set the alpha value 
 	void setAlpha(const float);
 	float getAlpha();
+	// Get the width of the sprite
+	float getWidth();
+	// Get the height of the sprite 
+	float getHeight();
+
+	// Call to clip part of the image off. 
+	// Can be fixed later with restore().
+	// xPer: x percentage of image to use [0-1]
+	// yPer: y percentage of image to use [0-1]
+	void clip(float xPer, float yPer);
+
+	// Fix the image if it was cliped; 
+	void restore();
 
 	// Call to draw the sprite 
 	void draw(GLHandler);

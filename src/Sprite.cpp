@@ -12,6 +12,8 @@ Sprite::Sprite(){
 	origin_x = 0;
 	origin_y = 0;
 	textureID = -1;
+	width = 0;
+	height = 0;
 }
 Sprite::~Sprite(){}
 
@@ -37,6 +39,9 @@ void Sprite::setup(float w,float h)
 	cords[2] = 0.0f; cords[3] = 1.0f;
 	cords[4] = 1.0f; cords[5] = 1.0f;
 	cords[6] = 1.0f; cords[7] = 0.0f;
+
+	width = w;
+	height = h;
 }
 
 // Setup the sprites verticies, coords, and texture 
@@ -88,6 +93,43 @@ void Sprite::setAlpha(const float a){
 	color[3] = a;
 }
 float Sprite::getAlpha(){return color[3];}
+
+
+// Get the width of the sprite
+float Sprite::getWidth(){return width;}
+// Get the height of the sprite 
+float Sprite::getHeight(){return height;}
+
+// Call to clip part of the image off. 
+// Can be fixed later with restore()
+void Sprite::clip(float xPer, float yPer){
+	// Vertexes 
+	verts[0] = 0;			 verts[1] = 0;
+	verts[2] = 0;			 verts[3] = height * yPer;
+	verts[4] = width * xPer; verts[5] = height * yPer;
+	verts[6] = width * xPer; verts[7] = 0;
+
+	// Texture Coords
+	cords[0] = 0.0f; cords[1] = 0.0f;
+	cords[2] = 0.0f; cords[3] = yPer;
+	cords[4] = xPer; cords[5] = yPer;
+	cords[6] = xPer; cords[7] = 0.0f;
+}
+
+// Fix the image if it was cliped; 
+void Sprite::restore(){
+	// Vertexes 
+	verts[0] = 0; verts[1] = 0;
+	verts[2] = 0; verts[3] = height;
+	verts[4] = width; verts[5] = height;
+	verts[6] = width; verts[7] = 0;
+
+	// Texture Coords
+	cords[0] = 0.0f; cords[1] = 0.0f;
+	cords[2] = 0.0f; cords[3] = 1.0f;
+	cords[4] = 1.0f; cords[5] = 1.0f;
+	cords[6] = 1.0f; cords[7] = 0.0f;
+}
 
 // Draw the sprite to the screen
 void Sprite::draw(GLHandler mgl){

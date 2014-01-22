@@ -17,13 +17,15 @@ Ground* Level::getGround(){
 void Level::init(float screen_width, float screen_height){
 	player = new Player();
 	player->init(screen_width, screen_height);
-	ground = new Ground(10);
-
+	ground = new Ground(12);
 	int i = -1;
 
-	Point p(30.0f,150.0f);
+	Point p(0.0f,400.0f);
 	ground->setPoint(++i,p);
 	
+	p.setLocation(20.0f,400.0f);
+	ground->setPoint(++i,p);
+
 	p.setLocation(30.0f,500.0f);
 	ground->setPoint(++i,p);
 
@@ -42,20 +44,23 @@ void Level::init(float screen_width, float screen_height){
 	p.setLocation(650.0f,570.0f);
 	ground->setPoint(++i,p);
 
-	
 	p.setLocation(1000.0f,510.0f);
 	ground->setPoint(++i,p);
 
 	p.setLocation(1240.0f,550.0f);
 	ground->setPoint(++i,p);
 
-	p.setLocation(1240.0f,100.0f);
+	p.setLocation(1250.0f,400.0f);
+	ground->setPoint(++i,p);
+
+	p.setLocation(1400.0f,400.0f);
 	ground->setPoint(++i,p);
 }
 
 // Load level (use for textures)
 void Level::load(TextureAtlas* mAtlas){
 	player->load();
+	ground->load();
 }
 
 // Update level state
