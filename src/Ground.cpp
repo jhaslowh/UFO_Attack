@@ -141,6 +141,9 @@ void Ground::draw(GLHandler* mgl){
 	float direcX;
 	float direcY;
 
+	// Bind grass to draw faster 
+	grass.bind(mgl);
+
 	for (int i = 0; i < pointCount -1; i++){
 		// Get the length of the grass segment
 		len = dist(points[i], points[i+1]);
@@ -158,7 +161,7 @@ void Ground::draw(GLHandler* mgl){
 
 			// Draw grass based off length 
 			while (len > grassLength){
-				grass.draw(*mgl);
+				grass.drawFast(mgl);
 
 				grass.setPosition(grass.getX() + direcX, grass.getY() + direcY);
 				len -= grassLength;
@@ -166,7 +169,7 @@ void Ground::draw(GLHandler* mgl){
 
 			// Draw last peice of grass that is shorter than grass length
 			grass.clip(len/grassLength, 1.0f);
-			grass.draw(*mgl);
+			grass.drawFast(mgl);
 			grass.restore();
 		}
 	}

@@ -66,6 +66,15 @@ public:
 	// Fix the image if it was cliped; 
 	void restore();
 
-	// Call to draw the sprite 
+	// Prebind the vertex and texture cord buffers. 
+	// Along with bind the texture, so you can render 
+	// many copies of the sprite quickly. 
+	void bind(GLHandler* mgl);
+
+	// Draw the sprite 
 	void draw(GLHandler);
+
+	// Use to draw copies of the sprite faster
+	// Must call bind() first. 
+	void drawFast(GLHandler* mgl);
 };

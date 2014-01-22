@@ -131,6 +131,47 @@ void Sprite::restore(){
 	cords[6] = 1.0f; cords[7] = 0.0f;
 }
 
+// Prebind the vertex and texture cord buffers. 
+// Along with bind the texture, so you can render 
+// many copies of the sprite quickly. 
+void Sprite::bind(GLHandler* mgl){
+	/* Set up vertex and coord buffers **/
+	glEnableVertexAttribArray(mgl->mPositionHandle);
+	// Describe our vertices array to OpenGL
+	glVertexAttribPointer(
+		mgl->mPositionHandle, // attribute
+		2,                 // number of elements per vertex, here (x,y)
+		GL_FLOAT,          // the type of each element
+		GL_FALSE,          // take our values as-is
+		0,                 // no extra data between each position
+		verts  // pointer to the C array
+	);
+ 
+	if (textureID != -1){
+		// Bind texture
+		glEnableVertexAttribArray(mgl->mTextCordHandle);
+		glVertexAttribPointer(
+			mgl->mTextCordHandle, 
+			2,                 // number of elements per coord, here (x,y)
+			GL_FLOAT,          // the type of each element
+			GL_FALSE,          // take our values as-is
+			0,                 // no extra data between each position
+			cords			  // pointer to the C array
+		);
+
+		/** Bind Texture **/
+		mgl->toggleTextures(true);
+		// Set the active texture unit to texture unit 0.
+		glActiveTexture(GL_TEXTURE0);
+		// Bind the texture to this unit.
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		// Tell the texture uniform sampler to use this texture in the shader by binding to texture unit 0.
+		glUniform1i(mgl->mTextureHandle, 0);
+	}
+	else 
+		mgl->toggleTextures(false);
+}
+
 // Draw the sprite to the screen
 void Sprite::draw(GLHandler mgl){
 	/** Matrix transform **/
@@ -192,4 +233,28 @@ void Sprite::draw(GLHandler mgl){
 	// Disable arrays
 	glDisableVertexAttribArray(mgl.mPositionHandle);
 	glDisableVertexAttribArray(mgl.mTextCordHandle);
+}
+
+// Use to draw copies of the sprite faster
+// Must call bind() first. 
+void Sprite::drawFast(GLHandler* mgl){
+		/** Matrix transform **/
+	// Starting matrix 
+	glm::mat4 mMatrix;
+	// Translate 
+	mMatrix = glm::translate(mMatrix, glm::vec3(pos_x, pos_y, 0.0f));
+	// Rotation
+	mMatrix = glm::rotate(mMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
+	// Scale 
+	mMatrix = glm::scale(mMatrix, glm::vec3(scale));
+	// Origin
+	mMatrix = glm::translate(mMatrix, glm::vec3(-origin_x, -origin_y, 0.0f));
+	// Send the rotation matrix to the shader 
+	mgl->setModelMatrix(mMatrix);
+
+	/** Set shader flat color **/
+	mgl->setFlatColor(color);
+
+	// Draw the sent indicies 
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indicies);
 }
