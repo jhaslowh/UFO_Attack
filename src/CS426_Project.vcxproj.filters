@@ -150,6 +150,12 @@
     <ClInclude Include="LevelEditor.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
+    <ClInclude Include="Handlers.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameAtlas.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -243,6 +249,12 @@
       <Filter>Source Files\game</Filter>
     </ClCompile>
     <ClCompile Include="LevelEditor.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameAtlas.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="Handlers.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
   </ItemGroup>

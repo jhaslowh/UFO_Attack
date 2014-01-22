@@ -6,12 +6,14 @@
 #include "Player.h"
 #include "Ground.h"
 #include "Handlers.h"
+#include "GameAtlas.h"
 
 class Level
 {
 	Player* player;
 	Ground* ground;
 	Handlers handlers;
+	GameAtlas* gameAtlas;
 
 public:
 	Level();

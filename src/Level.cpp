@@ -1,11 +1,17 @@
 #include "Level.h"
 
-Level::Level(){}
+Level::Level(){
+	player = NULL;
+	ground = NULL;
+	gameAtlas = NULL;
+}
 Level::~Level(){
 	if (player != NULL)
 		delete(player);
 	if (ground != NULL)
 		delete(ground);
+	if (gameAtlas != NULL)
+		delete(gameAtlas);
 }
 
 // Get reference to ground 
@@ -17,6 +23,8 @@ Ground* Level::getGround(){
 void Level::init(float screen_width, float screen_height){
 	player = new Player();
 	player->init(screen_width, screen_height);
+	gameAtlas = new GameAtlas();
+	gameAtlas->init();
 	ground = new Ground(12);
 	int i = -1;
 

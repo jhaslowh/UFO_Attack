@@ -1,0 +1,21 @@
+#pragma once
+#include <string>
+#include "TextureAtlas.h"
+#include "VertCordGenerator.h"
+#include "FileHelper.h"
+
+// Game item id's 
+
+#define GI_TREE1 0
+#define GI_UFO 2
+
+class GameAtlas : public TextureAtlas
+{
+public:
+	GameAtlas();
+	~GameAtlas();
+
+	// Set up the structure of this atlas 
+	void init();
+};
+

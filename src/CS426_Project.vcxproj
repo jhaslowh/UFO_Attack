@@ -11,8 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameAtlas.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Ground.h" />
+    <ClInclude Include="Handlers.h" />
     <ClInclude Include="IntroLoadScreen.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelEditor.h" />
@@ -44,8 +46,10 @@
     <ClInclude Include="Point.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameAtlas.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="Handlers.cpp" />
     <ClCompile Include="IntroLoadScreen.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelEditor.cpp" />
