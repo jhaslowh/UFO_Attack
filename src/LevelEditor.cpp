@@ -45,39 +45,60 @@ void LevelEditor::update(float deltaTime, Ground* ground){
 
 // Update editor input
 void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Ground* ground){
-	// If no point is selected, check for a point 
-	if (pointIndex == -1){
-		// Reset highlight index
-		hightlightIndex = -1;
+	// Turn on and off editor
+	if (mKeyH->keyPressed(KEY_1))
+	{
+		if (enabled){
+			enabled = false;
+			pointIndex = -1;
+			hightlightIndex = -1;
+		}
+		else
+			enabled = true;
+	}
 
-		// Check if mouse is hovering a level ground vertex 
-		for (int i = 0; i < ground->getPointCount(); i++){
 
-			// Check if the mouse is close enought to the point to select 
-			if (dist(mMouseH->getLoc(), ground->getPoint(i)) < maxPointDistance){
+	if (enabled){
+		// If no point is selected, check for a point 
+		if (pointIndex == -1){
+			// Reset highlight index
+			hightlightIndex = -1;
+
+			// Check if mouse is hovering a level ground vertex 
+			for (int i = 0; i < ground->getPointCount(); i++){
+
+				// Check if the mouse is close enought to the point to select 
+				if (dist(mMouseH->getLoc(), ground->getPoint(i)) < maxPointDistance){
 				
-				// Set hovered point
-				hightlightIndex = i;
+					// Set hovered point
+					hightlightIndex = i;
 
-				// Check if mouse was clicked 
-				if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
-					pointIndex = i;
+					// Check if mouse was clicked 
+					if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
+						pointIndex = i;
+				}
 			}
 		}
-	}
-	// If a point is selected, update it and check if users
-	// releases the mouse. 
-	else {
-		// Check if mouse was released
-		if (!mMouseH->isLeftDown()){
-			pointIndex = -1;
-		}
+		// If a point is selected, update it and check if users
+		// releases the mouse. 
+		else {
+			// Check if mouse was released
+			if (!mMouseH->isLeftDown()){
+				pointIndex = -1;
+			}
 
-		ground->setPoint(pointIndex, mMouseH->getLoc());
+			ground->setPoint(pointIndex, mMouseH->getLoc());
+		}
 	}
 }
 
 // Draw editor 
-void LevelEditor::draw(GLHandler* mgl){
+void LevelEditor::draw(GLHandler* mgl, UIAtlas* mUI){
 	pointSprite.draw(*mgl);
+
+	if (enabled){
+		mUI->bindBuffers(mgl);
+		mUI->bindTexture(mgl);
+		mUI->mTextRender->drawText(*mgl,string("Editor on"), 0,0,0,25.0f);
+	}
 }

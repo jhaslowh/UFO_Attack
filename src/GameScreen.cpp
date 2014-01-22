@@ -80,6 +80,6 @@ void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	UIScreen::draw(mgl, mAtlas);
 
 	level->draw(mgl, mAtlas);
-	levelEditor.draw(mgl);
+	levelEditor.draw(mgl, (UIAtlas*)mAtlas);
 	pauseScreen->draw(mgl, mAtlas);
 }

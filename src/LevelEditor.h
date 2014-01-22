@@ -4,6 +4,7 @@
 #include "MouseHandler.h"
 #include "KeyHandler.h"
 #include "Collision.h"
+#include "UIAtlas.h"
 
 class LevelEditor
 {
@@ -12,6 +13,8 @@ class LevelEditor
 	int hightlightIndex;
 	float shrinkSpeed;
 	float maxPointDistance;
+
+	bool enabled;
 
 public:
 	LevelEditor();
@@ -27,6 +30,6 @@ public:
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Ground* ground);
 
 	// Draw editor 
-	void draw(GLHandler* mgl);
+	void draw(GLHandler* mgl, UIAtlas* mUI);
 };
 
