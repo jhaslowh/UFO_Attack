@@ -7,6 +7,8 @@
 #include "Ground.h"
 #include "Handlers.h"
 #include "GameAtlas.h"
+#include "SceneryHandler.h"
+#include "Tree.h"
 
 class Level
 {
@@ -14,6 +16,7 @@ class Level
 	Ground* ground;
 	Handlers handlers;
 	GameAtlas* gameAtlas;
+	SceneryHandler* sceneryHandler;
 
 public:
 	Level();

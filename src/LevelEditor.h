@@ -8,13 +8,21 @@
 
 class LevelEditor
 {
+	// Sprite to draw selected ground point
 	Sprite pointSprite;
-	int pointIndex;
-	int hightlightIndex;
+	// Speed to shrink and grow sprite 
 	float shrinkSpeed;
+	// Selected ground point index
+	int pointIndex;
+	// Point under mouse loc 
+	int hightlightIndex;
+	// Distance to select point
 	float maxPointDistance;
 
+	// Editor Toggle 
 	bool enabled;
+
+	std::string mouseLoc;
 
 public:
 	LevelEditor();

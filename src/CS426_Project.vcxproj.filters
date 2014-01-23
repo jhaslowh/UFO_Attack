@@ -55,6 +55,12 @@
     <Filter Include="Source Files\game">
       <UniqueIdentifier>{0482df06-88b5-4a8d-be68-92eac411846e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\game\scenery">
+      <UniqueIdentifier>{b299516b-6058-4787-ba53-13c53ff1ee9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game\scenery">
+      <UniqueIdentifier>{db19746b-8f89-4cf7-b42e-0b9a3df7c0c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
@@ -159,6 +165,15 @@
     <ClInclude Include="UFO.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
+    <ClInclude Include="SceneryObject.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneryHandler.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -262,6 +277,15 @@
     </ClCompile>
     <ClCompile Include="UFO.cpp">
       <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneryObject.cpp">
+      <Filter>Source Files\game\scenery</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneryHandler.cpp">
+      <Filter>Source Files\game\scenery</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Source Files\game\scenery</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ Level::Level(){
 	player = new Player();
 	gameAtlas = new GameAtlas();
 	ground = NULL;
+	sceneryHandler = NULL;
 }
 Level::~Level(){
 	delete player;
@@ -20,6 +21,17 @@ Ground* Level::getGround(){
 void Level::init(float screen_width, float screen_height){
 	player->init();
 	player->ufo->setLocation(100.0f,200.0f);
+
+	sceneryHandler = new SceneryHandler(5);
+	SceneryObject* obj = (SceneryObject*)new Tree();
+	obj->setLocation(321.0f,550.0f);
+	sceneryHandler->set(0,obj);
+	obj = (SceneryObject*)new Tree();
+	obj->setLocation(907.0f,540.0f);
+	sceneryHandler->set(1,obj);
+	obj = (SceneryObject*)new Tree();
+	obj->setLocation(1124.0f,533.0f);
+	sceneryHandler->set(2,obj);
 
 	ground = new Ground(12);
 	int i = -1;
@@ -73,6 +85,8 @@ void Level::load(){
 
 // Update level state
 void Level::update(float deltaTime){
+	sceneryHandler->update(deltaTime, &handlers);
+
 	player->update(deltaTime, &handlers);
 	player->checkCollision(&handlers);
 	player->resolveCollision();
@@ -92,6 +106,7 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	GLfloat color[4] = {1.0f,1.0f,1.0f,1.0f};
 	mgl->setFlatColor(color);
 
+	sceneryHandler->draw(mgl, gameAtlas);
 	player->draw(mgl, gameAtlas);
 	ground->draw(mgl);
 }
