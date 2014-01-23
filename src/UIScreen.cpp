@@ -4,7 +4,8 @@ UIScreen::UIScreen(){
 	loaded = false;
 	transitionCode = NO_TRANSITION;
 }
-UIScreen::~UIScreen(){}
+UIScreen::~UIScreen(){
+}
 
 // Initialize screen
 void UIScreen::init(float screen_width, float screen_height){

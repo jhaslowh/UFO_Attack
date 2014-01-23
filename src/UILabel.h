@@ -9,7 +9,7 @@ class UILabel : public UITransitionObject
 
 public:
 	UILabel(string l);
-	~UILabel();
+	virtual ~UILabel();
 
 	// Getters and setters 
 	string getText();

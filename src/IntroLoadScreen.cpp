@@ -7,9 +7,7 @@ IntroLoadScreen::IntroLoadScreen() : UIScreen(){
 	mColor[2] = .1f;
 	mColor[3] = 1.0f;
 }
-IntroLoadScreen::~IntroLoadScreen(){
-
-}
+IntroLoadScreen::~IntroLoadScreen(){}
 
 
 // Initialize screen

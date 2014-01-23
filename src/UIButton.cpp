@@ -35,8 +35,7 @@ UIButton::UIButton(float x, float y, float w, float h, std::string l) : UITransi
 	setHideType(HT_VERTICAL);
 	setHideLocByDistance(100.0f);
 }
-UIButton::~UIButton(){
-}
+UIButton::~UIButton(){}
 
 void UIButton::setLabel(std::string l){
 	label = l;

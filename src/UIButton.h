@@ -15,7 +15,7 @@ class UIButton : public UITransitionObject
 public:
 	UIButton();
 	UIButton(float x, float y, float w, float h, std::string l);
-	~UIButton();
+	virtual ~UIButton();
 
 	// Getters and Setters 
 	void setLabel(std::string l);

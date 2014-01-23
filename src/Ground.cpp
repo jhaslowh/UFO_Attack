@@ -12,7 +12,7 @@ Ground::Ground(){
 	color[2] = 1.0f;
 	color[3] = 1.0f;
 	groundDepth = 400.0f;
-	textureID = -1;
+	textureID = 0;
 	grassLength = 55.0f;
 }
 Ground::Ground(int count){
@@ -26,20 +26,16 @@ Ground::Ground(int count){
 	color[2] = 1.0f;
 	color[3] = 1.0f;
 	groundDepth = 400.0f;
-	textureID = -1;
+	textureID = 0;
 	grassLength = 55.0f;
 
 	setPointCount(count);
 }
 Ground::~Ground(){
-	if (points != NULL)
-		delete[] points;
-	if (indicies != NULL)
-		delete[] indicies;
-	if (verts != NULL)
-		delete[] verts;
-	if (cords != NULL)
-		delete[] cords;
+	delete[] points;
+	delete[] indicies;
+	delete[] verts;
+	delete[] cords;
 }
 
 // Load texture
@@ -54,14 +50,10 @@ void Ground::load(){
 // Do not use this to change the size of the point
 // arrays. It will erase the arrays. 
 void Ground::setPointCount(int count){
-	if (points != NULL)
-		delete(points);
-	if (indicies != NULL)
-		delete(indicies);
-	if (verts != NULL)
-		delete(verts);
-	if (cords != NULL)
-		delete(cords);
+	delete[] points;
+	delete[] indicies;
+	/*delete[] verts;
+	delete[] cords;*/
 
 	pointCount = count;
 	points = new Point[pointCount];
@@ -74,7 +66,8 @@ void Ground::setPointCount(int count){
 	}
 
 	// This is alittle crazy, but we are creatings a polygon strip. 
-	for (int i = 0; i < count; i++){
+	// TODO: Diagram. 
+	for (int i = 0; i < count - 1; i++){
 		indicies[(i * 6)]	  = (GLushort)(i * 2);
 		indicies[(i * 6) + 1] = (GLushort)((i * 2) + 1);
 		indicies[(i * 6) + 2] = (GLushort)((i + 1) * 2);
@@ -88,7 +81,7 @@ void Ground::setPointCount(int count){
 }
 
 // Set a specific point
-void Ground::setPoint(const int index, Point p){
+void Ground::setPoint(int index, Point p){
 	if (pointCount == 0) {
 		std::cout << "Error: Point count must be set\n";
 		return;
@@ -179,15 +172,15 @@ void Ground::draw(GLHandler* mgl){
 	// Draw dirt         //
 	// ----------------- // 
 
-	/** Matrix transform **/
+	/// Matrix transform ///
 	// Starting matrix 
 	glm::mat4 mMatrix;
 	mgl->setModelMatrix(mMatrix);
 
-	/** Set shader flat color **/
+	/// Set shader flat color ///
 	mgl->setFlatColor(color);
 
-	/* Set up vertex and coord buffers **/
+	/// Set up vertex and coord buffers ///
 	glEnableVertexAttribArray(mgl->mPositionHandle);
 	// Describe our vertices array to OpenGL
 	glVertexAttribPointer(
@@ -199,7 +192,7 @@ void Ground::draw(GLHandler* mgl){
 		verts  // pointer to the C array
 	);
  
-	if (textureID != -1){
+	if (textureID != 0){
 		// Bind texture
 		glEnableVertexAttribArray(mgl->mTextCordHandle);
 		glVertexAttribPointer(
@@ -211,7 +204,7 @@ void Ground::draw(GLHandler* mgl){
 			cords			  // pointer to the C array
 		);
 
-		/** Bind Texture **/
+		/// Bind Texture ///
 		mgl->toggleTextures(true);
 		// Set the active texture unit to texture unit 0.
 		glActiveTexture(GL_TEXTURE0);

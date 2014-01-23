@@ -26,7 +26,7 @@ public:
 	void init(float screen_width, float screen_height);
 
 	// Load level (use for textures)
-	void load(TextureAtlas* mAtlas);
+	void load();
 
 	// Update level state
 	void update(float deltaTime);

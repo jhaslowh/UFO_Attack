@@ -48,8 +48,7 @@ void free_resources()
 	// Delete allocations 
 	glDeleteProgram(mgl.program);
 	delete mUIAtlas;
-	if (screen != NULL)
-		delete screen;
+	delete screen;
 
 	// Save data 
 	saveSettings(settings);
@@ -98,19 +97,19 @@ void changeScreen(){
 	case SCREEN_LOAD:
 		break;
 	case SCREEN_MAIN:
-		//delete screen;
+		delete screen;
 		screen = (UIScreen*)new MainScreen();
 		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 		break;
 	case SCREEN_STORE:
 		break;
 	case SCREEN_SETTINGS:
-		//delete screen;
+		delete screen;
 		screen = (UIScreen*)new SettingsScreen(settings);
 		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
 	case SCREEN_GAME:
-		//delete screen;
+		delete screen;
 		screen = (UIScreen*)new GameScreen();
 		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
@@ -120,7 +119,7 @@ void changeScreen(){
 		running = false;
 		break;
 	case SCREEN_TEST:
-		//delete screen;
+		delete screen;
 		screen = (UIScreen*)new TestScreen();
 		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 		break;

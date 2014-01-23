@@ -8,9 +8,9 @@ PauseScreen::PauseScreen() : UIScreen(){
 }
 PauseScreen::~PauseScreen()
 {
-	if (bResume != NULL) delete bResume;
-	if (bQuit != NULL) delete bQuit;
-	if (lTitle != NULL) delete lTitle;
+	delete bResume;
+	delete bQuit;
+	delete lTitle;
 }
 
 // Initialize screen

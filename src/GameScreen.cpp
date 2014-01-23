@@ -11,13 +11,14 @@ GameScreen::GameScreen() : UIScreen()
 
 GameScreen::~GameScreen()
 {
-	if (level != NULL) delete level;
-	//if (pauseScreen != NULL) delete pauseScreen;
+	delete level;
+	delete pauseScreen;
 }
 
 // Initialize screen
 void GameScreen::init(float screen_width, float screen_height){
 	UIScreen::init(screen_width, screen_height);
+
 	level = new Level();
 	level->init(screen_width, screen_height);
 
@@ -31,7 +32,7 @@ void GameScreen::init(float screen_width, float screen_height){
 void GameScreen::load(TextureAtlas* mAtlas){
 	UIScreen::load(mAtlas);
 
-	level->load(mAtlas);
+	level->load();
 	levelEditor.load();
 }
 

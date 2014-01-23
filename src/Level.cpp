@@ -6,12 +6,9 @@ Level::Level(){
 	ground = NULL;
 }
 Level::~Level(){
-	if (player != NULL)
-		delete player;
-	if (ground != NULL)
-		delete ground;
-	if (gameAtlas != NULL)
-		delete gameAtlas;
+	delete player;
+	delete ground;
+	delete gameAtlas;
 }
 
 // Get reference to ground 
@@ -68,7 +65,7 @@ void Level::init(float screen_width, float screen_height){
 }
 
 // Load level (use for textures)
-void Level::load(TextureAtlas* mAtlas){
+void Level::load(){
 	player->load();
 	ground->load();
 	gameAtlas->init();

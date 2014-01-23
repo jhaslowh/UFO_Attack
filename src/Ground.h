@@ -23,7 +23,7 @@ class Ground
 	GLfloat* verts;
 	GLfloat* cords;
 	GLfloat color[4];
-	int textureID;
+	GLuint textureID;
 
 public:
 	Ground();
@@ -38,7 +38,7 @@ public:
 	// arrays. It will erase the arrays. 
 	void setPointCount(int count);
 	// Set a specific point
-	void setPoint(const int index, Point p);
+	void setPoint(int index, Point p);
 	// Get the ground points
 	Point* getPoints();
 	// Get a single point

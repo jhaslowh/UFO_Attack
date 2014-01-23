@@ -24,7 +24,7 @@ protected:
 public:
 
 	UITransitionObject();
-	~UITransitionObject();
+	virtual ~UITransitionObject();
 
 	// Quick one step setup 
 	void setupHide(int hideType, float hideLoc, float hideTime, bool fadeOut);

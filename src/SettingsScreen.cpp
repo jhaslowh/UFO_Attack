@@ -6,9 +6,9 @@ SettingsScreen::SettingsScreen(Settings* s) : UIScreen(){
 }
 SettingsScreen::~SettingsScreen()
 {
-	delete(labelTitle);
-	delete(checkboxFullscreen);
-	delete(buttonBack);
+	delete labelTitle;
+	delete checkboxFullscreen;
+	delete buttonBack;
 }
 
 // Initialize screen

@@ -157,7 +157,7 @@
       <Filter>Header Files\gfx</Filter>
     </ClInclude>
     <ClInclude Include="UFO.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -261,7 +261,7 @@
       <Filter>Source Files\game</Filter>
     </ClCompile>
     <ClCompile Include="UFO.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

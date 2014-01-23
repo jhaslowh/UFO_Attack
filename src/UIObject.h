@@ -13,7 +13,7 @@ protected:
 
 public:
 	UIObject();
-	~UIObject();
+	virtual ~UIObject();
 	
 	// Getters and setters 
 	void setLocation(float x, float y);

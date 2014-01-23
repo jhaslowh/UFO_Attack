@@ -1,10 +1,11 @@
 #include "UIAtlas.h"
 
-UIAtlas::UIAtlas(){}
+UIAtlas::UIAtlas(){
+	mTextRender = NULL;
+}
 UIAtlas::~UIAtlas()
 {
-	if (mTextRender != NULL)
-		delete(mTextRender);
+	delete mTextRender;
 }
 
 // Set up the stucture of this atlas 
