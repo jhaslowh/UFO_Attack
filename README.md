@@ -1,6 +1,16 @@
 CS 426 Project
 ==============
 
+
+Controls
+--------
+
+**In Level**  
+1 : Toggle Editor Mode  
+AWSD : Move Player / UFO  
+Q : Switch Between player and ufo  
+Mouse: While in Editor mode, use mouse to move ground vertexes  
+
 Technical Information
 ---------------------
 
