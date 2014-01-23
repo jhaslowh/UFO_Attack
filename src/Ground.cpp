@@ -100,7 +100,7 @@ void Ground::setPoint(const int index, Point p){
 	points[index].setY(p.getY());
 
 	// Set vertexes 
-	if (verts != NULL){
+	if (verts != NULL && cords != NULL){
 		verts[(index * 4)] = p.getX();
 		verts[(index * 4) + 1] = p.getY();
 		verts[(index * 4) + 2] = p.getX();

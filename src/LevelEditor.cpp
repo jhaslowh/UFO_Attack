@@ -86,8 +86,9 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Ground* 
 			if (!mMouseH->isLeftDown()){
 				pointIndex = -1;
 			}
-
-			ground->setPoint(pointIndex, mMouseH->getLoc());
+			else {
+				ground->setPoint(pointIndex, mMouseH->getLoc());
+			}
 		}
 	}
 }

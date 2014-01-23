@@ -47,13 +47,13 @@ void free_resources()
 
 	// Delete allocations 
 	glDeleteProgram(mgl.program);
-	delete(mUIAtlas);
+	delete mUIAtlas;
 	if (screen != NULL)
-		delete(screen);
+		delete screen;
 
 	// Save data 
 	saveSettings(settings);
-	delete(settings);
+	delete settings;
 
 	printf("Resources Freed\n");
 }
