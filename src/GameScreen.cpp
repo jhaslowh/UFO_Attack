@@ -1,6 +1,5 @@
 #include "GameScreen.h"
 
-
 GameScreen::GameScreen() : UIScreen()
 {
 	pauseScreen = NULL;
@@ -73,7 +72,7 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			pauseScreen->show();
 		}
 
-		levelEditor.updateInput(mKeyH, mMouseH, level->getGround());
+		levelEditor.updateInput(mKeyH, mMouseH, &(level->handlers));
 		level->updateInput(mKeyH, mMouseH);
 	}
 }

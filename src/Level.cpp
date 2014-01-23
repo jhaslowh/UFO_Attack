@@ -10,6 +10,7 @@ Level::~Level(){
 	delete player;
 	delete ground;
 	delete gameAtlas;
+	delete sceneryHandler;
 }
 
 // Get reference to ground 
@@ -22,7 +23,7 @@ void Level::init(float screen_width, float screen_height){
 	player->init();
 	player->ufo->setLocation(100.0f,200.0f);
 
-	sceneryHandler = new SceneryHandler(5);
+	sceneryHandler = new SceneryHandler(3);
 	SceneryObject* obj = (SceneryObject*)new Tree();
 	obj->setLocation(321.0f,550.0f);
 	sceneryHandler->set(0,obj);
@@ -74,6 +75,7 @@ void Level::init(float screen_width, float screen_height){
 
 	// Set Handler references 
 	handlers.ground = ground;
+	handlers.sceneryHandler = sceneryHandler;
 }
 
 // Load level (use for textures)

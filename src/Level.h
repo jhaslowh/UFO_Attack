@@ -14,11 +14,12 @@ class Level
 {
 	Player* player;
 	Ground* ground;
-	Handlers handlers;
 	GameAtlas* gameAtlas;
 	SceneryHandler* sceneryHandler;
 
 public:
+	Handlers handlers;
+
 	Level();
 	~Level();
 

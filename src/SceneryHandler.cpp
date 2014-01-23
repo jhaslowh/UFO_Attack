@@ -3,13 +3,15 @@
 
 SceneryHandler::SceneryHandler()
 {
+	count = 1;
 	objects = new SceneryObject*[1];
 	objects[0] = NULL;
-	setCount(50);
+	setCount(10);
 }
 
 SceneryHandler::SceneryHandler(int size)
 {
+	count = 1;
 	objects = new SceneryObject*[1];
 	objects[0] = NULL;
 	setCount(size);
@@ -17,21 +19,18 @@ SceneryHandler::SceneryHandler(int size)
 
 SceneryHandler::~SceneryHandler()
 {
-	for (int i = 0; i < count; i++){
+	for (int i = 0; i < count; i++)
 		delete objects[i];
-		objects[i] = NULL;
-	}
 	delete[] objects;
+
 }
 
 // Set count. Set the number of scenerey objects
 // This will delete all objects 
 void SceneryHandler::setCount(int size){
 	// Free memory 
-	for (int i = 0; i < count; i++){
+	for (int i = 0; i < count; i++)
 		delete objects[i];
-		objects[i] = NULL;
-	}
 	delete[] objects;
 
 	// Set count
@@ -39,9 +38,8 @@ void SceneryHandler::setCount(int size){
 
 	// Make objects 
 	objects = new SceneryObject*[count];
-	for (int i = 0; i < count; i++){
-		objects[i] = NULL;
-	}
+	for (int i = 0; i < count; i ++)
+		objects[i] = new SceneryObject();
 }
 
 // Get number of scenery objects 
@@ -53,7 +51,7 @@ int SceneryHandler::getCount(){
 void SceneryHandler::set(int index, SceneryObject* obj){
 	if (index < 0 || index >= count)
 		std::cout << "Scenery index out of bounds. Sent index: " << index << ", Array Size: " << count << "\n";
-	
+
 	delete objects[index];
 	objects[index] = obj;
 }
@@ -64,15 +62,13 @@ SceneryObject** SceneryHandler::getObjects(){return objects;}
 // Update objects
 void SceneryHandler::update(float deltaTime, Handlers* handlers){
 	for (int i = 0; i < count; i++){
-		if (objects[i] != NULL)
-			objects[i]->update(deltaTime, handlers);
+		objects[i]->update(deltaTime, handlers);
 	}
 }
 
 // Draw objects
 void SceneryHandler::draw(GLHandler* mgl, GameAtlas* mGame){
 	for (int i = 0; i < count; i++){
-		if (objects[i] != NULL)
-			objects[i]->draw(mgl, mGame);
+		objects[i]->draw(mgl, mGame);
 	}
 }

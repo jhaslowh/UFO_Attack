@@ -7,6 +7,11 @@ LevelEditor::LevelEditor()
 	pointIndex = -1;
 	hightlightIndex = -1;
 	enabled = true;
+	sceneryOffsetX = 0;
+	sceneryOffsetY = 0;
+	scObj = NULL;
+
+	state = LES_NONE;
 }
 LevelEditor::~LevelEditor(){}
 
@@ -45,7 +50,7 @@ void LevelEditor::update(float deltaTime, Ground* ground){
 }
 
 // Update editor input
-void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Ground* ground){
+void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
 	// Turn on and off editor
 	if (mKeyH->keyPressed(KEY_1))
 	{
@@ -66,38 +71,80 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Ground* 
 	mouseLoc += toString((int)mMouseH->getY());
 
 	if (enabled){
+		if (state == LES_NONE){
+			bool clicked = false;
+			if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
+				clicked = true;
 
-		/// Select ground points
+			/// Select ground points
 
-		// If no point is selected, check for a point 
-		if (pointIndex == -1){
 			// Reset highlight index
 			hightlightIndex = -1;
 
 			// Check if mouse is hovering a level ground vertex 
-			for (int i = 0; i < ground->getPointCount(); i++){
+			for (int i = 0; i < handlers->ground->getPointCount(); i++){
 
 				// Check if the mouse is close enought to the point to select 
-				if (dist(mMouseH->getLoc(), ground->getPoint(i)) < maxPointDistance){
+				if (dist(mMouseH->getLoc(), handlers->ground->getPoint(i)) < maxPointDistance){
 				
 					// Set hovered point
 					hightlightIndex = i;
 
 					// Check if mouse was clicked 
-					if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
+					if (clicked){
 						pointIndex = i;
+						state = LES_POINT;
+						break;
+					}
+				}
+			}
+
+			/// Select Scenery Objects 
+
+			SceneryHandler* sh = (SceneryHandler*)handlers->sceneryHandler;
+			SceneryObject** obj = sh->getObjects();
+
+			// Check if mouse is hovering a scenery object 
+			if (clicked){
+				for (int i = 0; i < sh->getCount(); i++){
+					
+					// Check if scenery object contains mouse And mouse was clicked 
+					if (obj[i]->getCollisionRec()->contains(mMouseH->getX(), mMouseH->getY())){
+						// Set up editor to move scenery object 
+						sceneryOffsetX = obj[i]->getX() - mMouseH->getX();
+						sceneryOffsetY = obj[i]->getY() - mMouseH->getY();
+						// Set pointer reference
+						scObj = obj[i];
+
+						// Change state
+						state = LES_SCENERY;
+						break;
+					}
 				}
 			}
 		}
-		// If a point is selected, update it and check if users
-		// releases the mouse. 
-		else {
+		else if (state == LES_POINT){
 			// Check if mouse was released
 			if (!mMouseH->isLeftDown()){
 				pointIndex = -1;
+				state = LES_NONE;
+			}
+			// Move ground point if not 
+			else {
+				handlers->ground->setPoint(pointIndex, mMouseH->getLoc());
+			}
+		}
+		else if (state == LES_SCENERY){
+			// Check if mouse was released
+			if (!mMouseH->isLeftDown()){
+				scObj = NULL;
+				state = LES_NONE;
 			}
 			else {
-				ground->setPoint(pointIndex, mMouseH->getLoc());
+				// Set scenery object location 
+				scObj->setLocation(
+					mMouseH->getX() + sceneryOffsetX,
+					mMouseH->getY() + sceneryOffsetY);
 			}
 		}
 	}

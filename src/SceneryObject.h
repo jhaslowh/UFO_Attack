@@ -25,7 +25,7 @@ public:
 
 	// Set the location of the scenerey 
 	void setLocation(float x, float y);
-	float geX();
+	float getX();
 	float getY();
 	// Set the width and height of the scenery
 	void setSize(float w, float h);
@@ -48,6 +48,9 @@ public:
 
 	// Returns scenery collision rec
 	virtual Rec* getCollisionRec();
+
+	// Fix collision rec location 
+	virtual void fixCollRec();
 
 	// Update game state of the scenery object
 	virtual void update(float deltaTime, Handlers* handlers);

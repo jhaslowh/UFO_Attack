@@ -13,7 +13,7 @@ SceneryObject::SceneryObject()
 	scale = 1.0f;
 	imageID = 0;
 	collides = false;
-	collisionRec = NULL;
+	collisionRec = new Rec();
 }
 
 SceneryObject::~SceneryObject()
@@ -27,8 +27,9 @@ SceneryObject::~SceneryObject()
 void SceneryObject::setLocation(float x, float y){
 	locX = x;
 	locY = y;
+	fixCollRec();
 }
-float SceneryObject::geX(){return locX;}
+float SceneryObject::getX(){return locX;}
 float SceneryObject::getY(){return locY;}
 // Set the width and height of the scenery
 void SceneryObject::setSize(float w, float h){
@@ -67,6 +68,13 @@ bool SceneryObject::getCollides(){return collides;}
 Rec* SceneryObject::getCollisionRec(){return collisionRec;}
 
 
+// Fix collision rec location 
+void SceneryObject::fixCollRec(){
+	if (collisionRec){
+		collisionRec->setLocation(locX - originX, locY - originY);
+		collisionRec->setSize(width, height);
+	}
+}
 
 // Update game state of the scenery object
 void SceneryObject::update(float deltaTime, Handlers* handlers){

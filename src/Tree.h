@@ -1,7 +1,7 @@
 #pragma once
 #include "SceneryObject.h"
 
-class Tree : SceneryObject
+class Tree : public SceneryObject
 {
 public:
 	Tree();
