@@ -4,6 +4,7 @@
 TextureAtlas::TextureAtlas()
 {
 	textureID = -1;
+	indiceOffset = 0;
 }
 TextureAtlas::~TextureAtlas(){
 	if (verts != NULL) delete(verts);

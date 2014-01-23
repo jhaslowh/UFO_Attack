@@ -1,5 +1,6 @@
 #pragma once
 #include <stdlib.h>
+#include "Ground.h"
 
 class Handlers
 {
@@ -11,6 +12,7 @@ public:
 	void* enemyHandler;
 	void* projHandler;
 	void* sceneryHandler;
+	Ground* ground;
 
 	Handlers();
 	~Handlers();

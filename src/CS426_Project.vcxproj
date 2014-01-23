@@ -35,6 +35,7 @@
     <ClInclude Include="TestScreen.h" />
     <ClInclude Include="TextRender.h" />
     <ClInclude Include="TextureAtlas.h" />
+    <ClInclude Include="UFO.h" />
     <ClInclude Include="UIAtlas.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UICheckbox.h" />
@@ -70,6 +71,7 @@
     <ClCompile Include="TestScreen.cpp" />
     <ClCompile Include="TextRender.cpp" />
     <ClCompile Include="TextureAtlas.cpp" />
+    <ClCompile Include="UFO.cpp" />
     <ClCompile Include="UIAtlas.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UICheckbox.cpp" />

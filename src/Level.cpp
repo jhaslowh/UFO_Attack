@@ -1,9 +1,9 @@
 #include "Level.h"
 
 Level::Level(){
-	player = NULL;
+	player = new Player();
+	gameAtlas = new GameAtlas();
 	ground = NULL;
-	gameAtlas = NULL;
 }
 Level::~Level(){
 	if (player != NULL)
@@ -21,10 +21,9 @@ Ground* Level::getGround(){
 
 // initialize level
 void Level::init(float screen_width, float screen_height){
-	player = new Player();
-	player->init(screen_width, screen_height);
-	gameAtlas = new GameAtlas();
-	gameAtlas->init();
+	player->init();
+	player->ufo->setLocation(100.0f,200.0f);
+
 	ground = new Ground(12);
 	int i = -1;
 
@@ -63,18 +62,22 @@ void Level::init(float screen_width, float screen_height){
 
 	p.setLocation(1400.0f,400.0f);
 	ground->setPoint(++i,p);
+
+	// Set Handler references 
+	handlers.ground = ground;
 }
 
 // Load level (use for textures)
 void Level::load(TextureAtlas* mAtlas){
 	player->load();
 	ground->load();
+	gameAtlas->init();
 }
 
 // Update level state
 void Level::update(float deltaTime){
-	player->update(deltaTime);
-	player->checkCollision(ground);
+	player->update(deltaTime, &handlers);
+	player->checkCollision(&handlers);
 	player->resolveCollision();
 }
 
@@ -85,6 +88,13 @@ void Level::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 // Draw level 
 void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
-	player->draw(mgl);
+	gameAtlas->bindBuffers(mgl);
+	gameAtlas->bindTexture(mgl);
+
+	// Set flat color back to white 
+	GLfloat color[4] = {1.0f,1.0f,1.0f,1.0f};
+	mgl->setFlatColor(color);
+
+	player->draw(mgl, gameAtlas);
 	ground->draw(mgl);
 }

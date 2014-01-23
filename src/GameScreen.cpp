@@ -79,6 +79,8 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	UIScreen::draw(mgl, mAtlas);
 
+	mgl->setProjectionMatrix(mgl->orthoMatrix);
+
 	level->draw(mgl, mAtlas);
 	levelEditor.draw(mgl, (UIAtlas*)mAtlas);
 	pauseScreen->draw(mgl, mAtlas);

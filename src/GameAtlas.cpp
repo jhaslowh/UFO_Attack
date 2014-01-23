@@ -1,12 +1,12 @@
 #include "GameAtlas.h"
 
-GameAtlas::GameAtlas(){}
+GameAtlas::GameAtlas() : TextureAtlas(){}
 GameAtlas::~GameAtlas(){}
 
 // Set up the stucture of this atlas 
 void GameAtlas::init(){
 	// Load texture
-	textureID = loadPNG( std::string("images/gameSheet.png"));
+	textureID = loadPNG(std::string("images/gameSheet.png"));
 
 	VertCordGenerator* vcg = new VertCordGenerator(1024,1024);
 

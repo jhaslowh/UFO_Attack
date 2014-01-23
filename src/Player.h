@@ -5,7 +5,9 @@
 #include "Point.h"
 #include "Collision.h"
 #include "Sprite.h"
-#include "Ground.h"
+#include "Handlers.h"
+#include "UFO.h"
+#include "GameAtlas.h"
 
 #define GRAVITY 980.0f
 
@@ -42,8 +44,12 @@ class Player
 	bool alive;
     bool jumping;
 	bool inAir;
+	bool inUFO;
 
 public:
+
+	UFO* ufo;
+
 	Player();
 	~Player();
 
@@ -55,25 +61,25 @@ public:
 	// Functions 
 
 	// initialize level
-	void init(float screen_width, float screen_height);
+	void init();
 
 	// Load level (use for textures)
 	void load();
+
+	// Update level state
+	void update(float deltaTime, Handlers* handlers);
+
+	// Check collisions 
+	void checkCollision(Handlers* handlers);
+
+	// Resolve any collisions found 
+	void resolveCollision();
 	
 	// Update input
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
 
-	// Update level state
-	void update(float deltaTime);
-
-	// Check collisions 
-	void checkCollision(Ground* ground);
-
-	// Resolve any collisions found 
-	void resolveCollision();
-
 	// Draw level 
-	void draw(GLHandler* mgl);
+	void draw(GLHandler* mgl, GameAtlas* mGame);
 
 	
 	// Physics Helpers
@@ -89,5 +95,8 @@ public:
 
 	// Call when the player hits the ceiling 
 	void hitCeiling();
+
+	// Called when the player is dropped from the ship
+	void dropFromShip();
 };
 
