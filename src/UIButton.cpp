@@ -2,7 +2,7 @@
 
 UIButton::UIButton() : UITransitionObject()
 {
-	label = "none";
+	label = std::string("none");
 	clicked = false;
 	hovered = false;
 	down = false;
@@ -35,9 +35,12 @@ UIButton::UIButton(float x, float y, float w, float h, std::string l) : UITransi
 	setHideType(HT_VERTICAL);
 	setHideLocByDistance(100.0f);
 }
-UIButton::~UIButton(){}
+UIButton::~UIButton(){
+}
 
-void UIButton::setLabel(std::string l){label = l;}
+void UIButton::setLabel(std::string l){
+	label = l;
+}
 std::string UIButton::getLabel(){return label;}
 
 // Update Button

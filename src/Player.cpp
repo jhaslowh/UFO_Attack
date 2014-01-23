@@ -30,7 +30,9 @@ Player::Player(){
 
 	ufo = new UFO();
 }
-Player::~Player(){}
+Player::~Player(){
+	delete ufo;
+}
 
 // Getters and setters
 void Player::setLocation(float x, float y){

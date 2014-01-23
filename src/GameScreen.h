@@ -15,7 +15,7 @@ class GameScreen : public UIScreen
 
 public:
 	GameScreen();
-	~GameScreen();
+	virtual ~GameScreen();
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height);

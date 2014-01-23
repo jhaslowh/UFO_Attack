@@ -20,7 +20,7 @@ class TestScreen : public UIScreen
 
 public:
 	TestScreen();
-	~TestScreen();
+	virtual ~TestScreen();
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height);

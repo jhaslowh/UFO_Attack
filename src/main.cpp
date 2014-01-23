@@ -98,19 +98,19 @@ void changeScreen(){
 	case SCREEN_LOAD:
 		break;
 	case SCREEN_MAIN:
-		delete(screen);
+		//delete screen;
 		screen = (UIScreen*)new MainScreen();
 		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 		break;
 	case SCREEN_STORE:
 		break;
 	case SCREEN_SETTINGS:
-		delete(screen);
+		//delete screen;
 		screen = (UIScreen*)new SettingsScreen(settings);
 		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
 	case SCREEN_GAME:
-		delete(screen);
+		//delete screen;
 		screen = (UIScreen*)new GameScreen();
 		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
@@ -120,7 +120,7 @@ void changeScreen(){
 		running = false;
 		break;
 	case SCREEN_TEST:
-		delete(screen);
+		//delete screen;
 		screen = (UIScreen*)new TestScreen();
 		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 		break;
@@ -137,10 +137,11 @@ void onDraw()
 	// Clear screen
 	glClearColor(0.25f, 0.25f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
-	
+
 	// Draw Screen
-	if (screen != NULL) 
+	if (screen != NULL) {
 		screen->draw(&mgl, (TextureAtlas*)mUIAtlas);
+	}
 }
  
 /** Game loop to update game state **/
@@ -296,6 +297,7 @@ int main(int argc, char* argv[])
 	free_resources();
 	// Delete the window context
 	SDL_GL_DeleteContext(context);
+	SDL_DestroyWindow(window);
 	// Unload SDL
 	SDL_Quit();
 	// Exit  

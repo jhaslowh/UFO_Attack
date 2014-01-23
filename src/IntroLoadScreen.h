@@ -13,7 +13,7 @@ class IntroLoadScreen : public UIScreen
 
 public:
 	IntroLoadScreen();
-	~IntroLoadScreen();
+	virtual ~IntroLoadScreen();
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height);

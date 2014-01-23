@@ -1,12 +1,16 @@
 #include "PauseScreen.h"
 
 
-PauseScreen::PauseScreen(){}
+PauseScreen::PauseScreen() : UIScreen(){
+	bResume = NULL;
+	bQuit = NULL;
+	lTitle = NULL;
+}
 PauseScreen::~PauseScreen()
 {
-	delete(bResume);
-	delete(bQuit);
-	delete(lTitle);
+	if (bResume != NULL) delete bResume;
+	if (bQuit != NULL) delete bQuit;
+	if (lTitle != NULL) delete lTitle;
 }
 
 // Initialize screen

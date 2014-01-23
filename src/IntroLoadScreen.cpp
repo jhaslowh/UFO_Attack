@@ -7,17 +7,23 @@ IntroLoadScreen::IntroLoadScreen() : UIScreen(){
 	mColor[2] = .1f;
 	mColor[3] = 1.0f;
 }
-IntroLoadScreen::~IntroLoadScreen(){}
+IntroLoadScreen::~IntroLoadScreen(){
+
+}
 
 
 // Initialize screen
 void IntroLoadScreen::init(float screen_width, float screen_height){
+	UIScreen::init(screen_width, screen_height);
+
 	DGSplash.setPosition(screen_width * .5f, screen_height * .5f);
 	DGSplash.setOrigin(256.0f, 128.0f);
 }
 
 // Load Screen
 void IntroLoadScreen::load(TextureAtlas* mAtlas){
+	UIScreen::load(mAtlas);
+
 	DGSplash.setup(512.0f,256.0f,string("images/DGSplash.png"));
 }
 

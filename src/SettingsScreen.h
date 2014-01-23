@@ -16,7 +16,7 @@ class SettingsScreen : public UIScreen
 
 public:
 	SettingsScreen(Settings* s);
-	~SettingsScreen();
+	virtual ~SettingsScreen();
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height);

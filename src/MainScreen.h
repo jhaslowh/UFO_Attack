@@ -13,7 +13,7 @@ class MainScreen : public UIScreen
 
 public:
 	MainScreen();
-	~MainScreen();
+	virtual ~MainScreen();
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height);

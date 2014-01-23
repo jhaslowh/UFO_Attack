@@ -2,11 +2,11 @@
 
 TestScreen::TestScreen() : UIScreen(){}
 TestScreen::~TestScreen(){
-	delete(button1);
-	delete(button2);
-	delete(button3);
-	delete(checkbox1);
-	delete(close);
+	delete button1;
+	delete button2;
+	delete button3;
+	delete checkbox1;
+	delete close;
 }
 
 // Initialize screen

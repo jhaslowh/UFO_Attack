@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <glew.h>
 #include "GLHandler.h"
 
@@ -9,7 +10,7 @@ protected:
 	GLushort indicies[6];
 	GLfloat* verts;
 	GLfloat* cords;
-	GLint textureID;
+	GLuint textureID;
 
 	int indiceOffset;
 

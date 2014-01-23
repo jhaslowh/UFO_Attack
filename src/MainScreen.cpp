@@ -4,11 +4,11 @@
 MainScreen::MainScreen() : UIScreen(){}
 
 MainScreen::~MainScreen(){
-	delete(buttonLevelSelect);
-	delete(buttonStore);
-	delete(buttonSettings);
-	delete(buttonQuit);
-	delete(buttonText);
+	delete buttonLevelSelect;
+	delete buttonStore;
+	delete buttonSettings;
+	delete buttonQuit;
+	delete buttonText;
 }
 
 // Initialize screen

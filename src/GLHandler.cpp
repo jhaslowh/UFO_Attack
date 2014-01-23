@@ -1,7 +1,9 @@
 #include "GLHandler.h"
 
 GLHandler::GLHandler(){}
-GLHandler::~GLHandler(void){}
+GLHandler::~GLHandler(){
+	glDeleteProgram(program);
+}
 
 /**
 * Setup the shaders used for rendering 

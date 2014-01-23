@@ -6,6 +6,7 @@ LevelEditor::LevelEditor()
 	maxPointDistance = 6.0f;
 	pointIndex = -1;
 	hightlightIndex = -1;
+	enabled = true;
 }
 LevelEditor::~LevelEditor(){}
 

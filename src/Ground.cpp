@@ -33,13 +33,13 @@ Ground::Ground(int count){
 }
 Ground::~Ground(){
 	if (points != NULL)
-		delete(points);
+		delete[] points;
 	if (indicies != NULL)
-		delete(indicies);
+		delete[] indicies;
 	if (verts != NULL)
-		delete(verts);
+		delete[] verts;
 	if (cords != NULL)
-		delete(cords);
+		delete[] cords;
 }
 
 // Load texture
@@ -69,16 +69,18 @@ void Ground::setPointCount(int count){
 	// 6 Indicies for every 2 ground points 
 	indicieCount = (count-1) * 6;
 	indicies = new GLushort[indicieCount];
+	for (int i = 0; i < indicieCount; i++){
+		indicies[i]	= 0;
+	}
 
 	// This is alittle crazy, but we are creatings a polygon strip. 
-	// It works, just take my word on it. 
 	for (int i = 0; i < count; i++){
-		indicies[(i* 6)]	 = (i * 2);
-		indicies[(i* 6) + 1] = (i * 2) + 1;
-		indicies[(i* 6) + 2] = ((i+1) * 2);
-		indicies[(i* 6) + 3] = (i * 2) + 1;
-		indicies[(i* 6) + 4] = (i * 2) + 3;
-		indicies[(i* 6) + 5] = ((i+1)* 2);
+		indicies[(i * 6)]	  = (GLushort)(i * 2);
+		indicies[(i * 6) + 1] = (GLushort)((i * 2) + 1);
+		indicies[(i * 6) + 2] = (GLushort)((i + 1) * 2);
+		indicies[(i * 6) + 3] = (GLushort)((i * 2) + 1);
+		indicies[(i * 6) + 4] = (GLushort)((i * 2) + 3);
+		indicies[(i * 6) + 5] = (GLushort)((i + 1) * 2);
 	}
 
 	verts = new GLfloat[count*4];

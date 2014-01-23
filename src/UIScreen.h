@@ -1,10 +1,11 @@
 #pragma once
+#include <string>
+#include <iostream>
 #include "GLHandler.h"
 #include "TextRender.h"
 #include "KeyHandler.h"
 #include "MouseHandler.h"
 #include "TextureAtlas.h"
-#include <string>
 
 #define NO_TRANSITION -1
 #define SCREEN_LOAD 0
@@ -25,7 +26,7 @@ protected:
 
 public:
 	UIScreen();
-	~UIScreen();
+	virtual ~UIScreen();
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height);

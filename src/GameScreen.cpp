@@ -1,16 +1,18 @@
 #include "GameScreen.h"
 
 
-GameScreen::GameScreen(void)
+GameScreen::GameScreen() : UIScreen()
 {
+	pauseScreen = NULL;
+	level = NULL;
 	paused = false;
 	gameover = false;
 }
 
-GameScreen::~GameScreen(void)
+GameScreen::~GameScreen()
 {
-	delete(level);
-	delete(pauseScreen);
+	if (level != NULL) delete level;
+	//if (pauseScreen != NULL) delete pauseScreen;
 }
 
 // Initialize screen

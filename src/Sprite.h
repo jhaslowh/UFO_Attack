@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
@@ -14,7 +15,7 @@ private:
 	GLushort indicies[6];
 	GLfloat verts[8];
 	GLfloat cords[8];
-	GLint textureID;
+	GLuint textureID;
 	float pos_x;
 	float pos_y;
 	float rotation;

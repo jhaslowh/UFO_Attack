@@ -7,11 +7,11 @@ Level::Level(){
 }
 Level::~Level(){
 	if (player != NULL)
-		delete(player);
+		delete player;
 	if (ground != NULL)
-		delete(ground);
+		delete ground;
 	if (gameAtlas != NULL)
-		delete(gameAtlas);
+		delete gameAtlas;
 }
 
 // Get reference to ground 

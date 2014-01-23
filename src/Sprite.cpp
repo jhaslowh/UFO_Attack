@@ -11,11 +11,13 @@ Sprite::Sprite(){
 	color[3] = 1.0f;
 	origin_x = 0;
 	origin_y = 0;
-	textureID = -1;
+	textureID = 0;
 	width = 0;
 	height = 0;
 }
-Sprite::~Sprite(){}
+Sprite::~Sprite(){
+	//if (textureID != 0) glDeleteTextures(1, &textureID);
+}
 
 // Setup the sprites verticies, coords, and texture 
 void Sprite::setup(float w,float h)
@@ -147,7 +149,7 @@ void Sprite::bind(GLHandler* mgl){
 		verts  // pointer to the C array
 	);
  
-	if (textureID != -1){
+	if (textureID != 0){
 		// Bind texture
 		glEnableVertexAttribArray(mgl->mTextCordHandle);
 		glVertexAttribPointer(
@@ -203,7 +205,7 @@ void Sprite::draw(GLHandler mgl){
 		verts  // pointer to the C array
 	);
  
-	if (textureID != -1){
+	if (textureID != 0){
 		// Bind texture
 		glEnableVertexAttribArray(mgl.mTextCordHandle);
 		glVertexAttribPointer(

@@ -11,7 +11,7 @@ class PauseScreen : public UIScreen
 
 public:
 	PauseScreen();
-	~PauseScreen();
+	virtual ~PauseScreen();
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height);

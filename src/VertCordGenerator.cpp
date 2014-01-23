@@ -46,8 +46,8 @@ VertCordGenerator::VertCordGenerator(float width, float height)
 
 // Free resources 
 VertCordGenerator::~VertCordGenerator(){
-	free(verts);
-	free(cords);
+	delete[] verts;
+	delete[] cords;
 }
 
 // Set the width and height of the texture sheet
@@ -127,7 +127,7 @@ void VertCordGenerator::resizeVerts(int nsize){
 		nverts[i] = verts[i];
 
 	// Swap pointers
-	delete(verts);
+	delete[] verts;
 	verts = nverts;
 }
 
@@ -145,6 +145,6 @@ void VertCordGenerator::resizeCoords(int nsize){
 		ncords[i] = cords[i];
 
 	// Swap pointers
-	delete(cords);
+	delete[] cords;
 	cords = ncords;
 }
