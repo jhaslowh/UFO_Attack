@@ -6,10 +6,10 @@ Controls
 --------
 
 **In Level**  
-1 : Toggle Editor Mode  
+1 ...: Toggle Editor Mode  
 AWSD : Move Player / UFO  
-Q : Switch Between player and ufo  
-Mouse: While in Editor mode, use mouse to move ground vertexes  
+Q ...: Switch Between player and ufo  
+Mouse: While in Editor mode, use mouse to move ground vertexes  & scenery objects 
 
 Technical Information
 ---------------------
