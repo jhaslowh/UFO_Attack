@@ -13,7 +13,7 @@ class GameAtlas : public TextureAtlas
 {
 public:
 	GameAtlas();
-	~GameAtlas();
+	virtual ~GameAtlas();
 
 	// Set up the structure of this atlas.
 	// Must be done in load method to work with texture. 

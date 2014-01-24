@@ -16,7 +16,7 @@ Sprite::Sprite(){
 	height = 0;
 }
 Sprite::~Sprite(){
-	//if (textureID != 0) glDeleteTextures(1, &textureID);
+	glDeleteTextures(1, &textureID);
 }
 
 // Setup the sprites verticies, coords, and texture 

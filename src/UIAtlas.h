@@ -20,7 +20,7 @@ public:
 	TextRender* mTextRender;
 
 	UIAtlas();
-	~UIAtlas();
+	virtual ~UIAtlas();
 
 	// Set up the stucture of this atlas 
 	void init();

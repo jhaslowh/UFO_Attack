@@ -3,14 +3,15 @@
 
 TextureAtlas::TextureAtlas()
 {
+	verts = NULL;
+	cords = NULL;
 	textureID = 0;
 	indiceOffset = 0;
 }
 TextureAtlas::~TextureAtlas(){
-	if (verts != NULL) delete[] verts;
-	if (cords != NULL) delete[] cords;
-	//std::cout << "TextureID: " << textureID << "\n";
-	//if (textureID != 0) glDeleteTextures(1, &textureID);
+	delete[] verts;
+	delete[] cords;
+	glDeleteTextures(1, &textureID);
 }
 
 // Set the vertex list 

@@ -52,8 +52,8 @@ void Ground::load(){
 void Ground::setPointCount(int count){
 	delete[] points;
 	delete[] indicies;
-	/*delete[] verts;
-	delete[] cords;*/
+	delete[] verts;
+	delete[] cords;
 
 	pointCount = count;
 	points = new Point[pointCount];

@@ -46,7 +46,6 @@ void free_resources()
 	mgl.endGL();
 
 	// Delete allocations 
-	glDeleteProgram(mgl.program);
 	delete mUIAtlas;
 	delete screen;
 

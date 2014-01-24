@@ -16,7 +16,7 @@ protected:
 
 public:
 	TextureAtlas();
-	~TextureAtlas();
+	virtual ~TextureAtlas();
 
 	// Set the vertex list 
     void setVerts(GLfloat* v);
