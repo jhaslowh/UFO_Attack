@@ -102,24 +102,25 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			/// Select Scenery Objects 
 
 			SceneryHandler* sh = (SceneryHandler*)handlers->sceneryHandler;
-			SceneryObject** obj = sh->getObjects();
+			SceneryObject* head = sh->getHead();
 
 			// Check if mouse is hovering a scenery object 
 			if (clicked){
-				for (int i = 0; i < sh->getCount(); i++){
-					
+				while (head != NULL){
 					// Check if scenery object contains mouse And mouse was clicked 
-					if (obj[i]->getCollisionRec()->contains(mMouseH->getX(), mMouseH->getY())){
+					if (head->getCollisionRec()->contains(mMouseH->getX(), mMouseH->getY())){
 						// Set up editor to move scenery object 
-						sceneryOffsetX = obj[i]->getX() - mMouseH->getX();
-						sceneryOffsetY = obj[i]->getY() - mMouseH->getY();
+						sceneryOffsetX = head->getX() - mMouseH->getX();
+						sceneryOffsetY = head->getY() - mMouseH->getY();
 						// Set pointer reference
-						scObj = obj[i];
+						scObj = head;
 
 						// Change state
 						state = LES_SCENERY;
 						break;
 					}
+
+					head = head->getNext();
 				}
 			}
 		}

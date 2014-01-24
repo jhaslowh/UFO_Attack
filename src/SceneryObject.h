@@ -16,8 +16,10 @@ protected:
 	int imageID;
 	bool collides;
 	Rec* collisionRec;
+	SceneryObject* next;
 
 public:
+
 	SceneryObject();
 	virtual ~SceneryObject();
 
@@ -45,6 +47,9 @@ public:
 	// Set whether this object collides 
 	void setCollides(bool value);
 	bool getCollides();
+	// Get next pointer
+	SceneryObject* getNext();
+	void setNext(SceneryObject* );
 
 	// Returns scenery collision rec
 	virtual Rec* getCollisionRec();

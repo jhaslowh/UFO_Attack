@@ -23,16 +23,16 @@ void Level::init(float screen_width, float screen_height){
 	player->init();
 	player->ufo->setLocation(100.0f,200.0f);
 
-	sceneryHandler = new SceneryHandler(3);
+	sceneryHandler = new SceneryHandler();
 	SceneryObject* obj = (SceneryObject*)new Tree();
 	obj->setLocation(321.0f,550.0f);
-	sceneryHandler->set(0,obj);
+	sceneryHandler->add(obj);
 	obj = (SceneryObject*)new Tree();
 	obj->setLocation(907.0f,540.0f);
-	sceneryHandler->set(1,obj);
+	sceneryHandler->add(obj);
 	obj = (SceneryObject*)new Tree();
 	obj->setLocation(1124.0f,533.0f);
-	sceneryHandler->set(2,obj);
+	sceneryHandler->add(obj);
 
 	ground = new Ground(12);
 	int i = -1;

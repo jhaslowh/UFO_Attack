@@ -14,6 +14,7 @@ SceneryObject::SceneryObject()
 	imageID = 0;
 	collides = false;
 	collisionRec = new Rec();
+	next = NULL;
 }
 
 SceneryObject::~SceneryObject()
@@ -63,6 +64,9 @@ void SceneryObject::setCollides(bool value){
 	collides = value;
 }
 bool SceneryObject::getCollides(){return collides;}
+// Get next pointer
+SceneryObject* SceneryObject::getNext(){ return next;}
+void SceneryObject::setNext(SceneryObject* n){next = n;}
 
 // Returns scenery collision rec
 Rec* SceneryObject::getCollisionRec(){return collisionRec;}
