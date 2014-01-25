@@ -11,6 +11,7 @@ class Ground
 {
 	// List of ground points 
 	Point* points;
+	Point* itr;
 	int pointCount;
 	float groundDepth;
 
@@ -27,26 +28,30 @@ class Ground
 
 public:
 	Ground();
-	Ground(int count);
 	~Ground();
 
 	// Load texture
 	void load();
 
-	// Set point count
-	// Do not use this to change the size of the point
-	// arrays. It will erase the arrays. 
-	void setPointCount(int count);
-	// Set a specific point
-	void setPoint(int index, Point p);
+	// Add new point into the array 
+	void add(Point* p);
+	// Remove point by address 
+	void remove(Point* p);
 	// Get the ground points
 	Point* getPoints();
 	// Get a single point
-	Point getPoint(int index);
+	Point* getPoint(int index);
+	// Fix the vertexes for the sent point
+	void fixVertsForPoint(Point* p);
 	// Get the number of ground points
 	int getPointCount();
 
 	// Draw ground 
 	void draw(GLHandler* mgl);
+
+
+private:
+	// Call to fix the vertex, index, and cord arrays 
+	void fixArrays();
 };
 

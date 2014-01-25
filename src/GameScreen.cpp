@@ -23,6 +23,8 @@ void GameScreen::init(float screen_width, float screen_height){
 
 	pauseScreen = new PauseScreen();
 	pauseScreen->init(screen_width, screen_height);
+
+	levelEditor.init();
 }
 
 // Load screen
@@ -32,7 +34,7 @@ void GameScreen::load(TextureAtlas* mAtlas){
 	UIScreen::load(mAtlas);
 
 	level->load();
-	levelEditor.load();
+	levelEditor.load(mAtlas);
 }
 
 // Update the state of the screen

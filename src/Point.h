@@ -1,12 +1,18 @@
 #pragma once
+#include <stdlib.h>
+
 class Point
 {
 	float mX; 
 	float mY;
 
 public:
+	Point* next;
+	Point* prev;
+
 	Point();
 	Point(float x, float y);
+	~Point();
 
 	void setLocation(float x, float y);
 	void setX(float x);

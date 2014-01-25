@@ -6,11 +6,14 @@
 #include "KeyHandler.h"
 #include "Collision.h"
 #include "UIAtlas.h"
+#include "UIButton.h"
 
 // Level editor states
 #define LES_NONE 0
-#define LES_POINT 1
-#define LES_SCENERY 2
+#define LES_MOVE_POINT 1
+#define LES_ADD_POINT 2
+#define LES_REMOVE_POINT 3
+#define LES_SCENERY 4
 
 class LevelEditor
 {
@@ -21,10 +24,10 @@ class LevelEditor
 	Sprite pointSprite;
 	// Speed to shrink and grow sprite 
 	float shrinkSpeed;
-	// Selected ground point index
-	int pointIndex;
+	// Selected ground point 
+	Point* selectedPoint;
 	// Point under mouse loc 
-	int hightlightIndex;
+	bool pointHighlighted;
 	// Distance to select point
 	float maxPointDistance;
 
@@ -36,20 +39,32 @@ class LevelEditor
 	float sceneryOffsetY;
 	// Reference to selected scenery object 
 	SceneryObject* scObj;
-
+	
+	// ------ //
+	// States //
+	// ------ //
 	// Editor Toggle 
 	bool enabled;
 	// Current state 
 	int state;
+	
+	// Buttons
+	UIButton* bMove;
+	UIButton* bAdd;
+	UIButton* bRemove;
 
-	std::string mouseLoc;
+	string mouseLoc;
+	string stateString;
 
 public:
 	LevelEditor();
 	~LevelEditor();
 
+	// Setup basic structures 
+	void init();
+
 	// Load editor 
-	void load();
+	void load(TextureAtlas* mAtlas);
 
 	// Update editor state 
 	void update(float deltaTime, Ground* ground);

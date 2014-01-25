@@ -4,12 +4,17 @@ Point::Point()
 {
 	mX = 0;
 	mY = 0;
+	next = NULL;
+	prev = NULL;
 }
 Point::Point(float x, float y)
 {
 	mX = x;
 	mY = y;
+	next = NULL;
+	prev = NULL;
 }
+Point::~Point(){}
 
 void Point::setLocation(float x, float y){
 	mX = x;

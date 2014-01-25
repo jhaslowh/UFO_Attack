@@ -102,6 +102,7 @@ void Player::checkCollision(Handlers* handlers){
 	else {
 		// Point used during collision detection 
 		Point p;
+		Point* itr;
 
 		// ----------------------------------
 		// Check player collision with ground 
@@ -120,12 +121,14 @@ void Player::checkCollision(Handlers* handlers){
 
 		// Steep hill check:
 		// This check stops the player from walking up steep surfaces 
-		for (int i = 0; i < handlers->ground->getPointCount()-1; i++){
-			if (checkSegSeg(horA, horB, handlers->ground->getPoint(i), handlers->ground->getPoint(i+1), &p)){
+		itr = handlers->ground->getPoints();
+		while (itr->next != NULL){
+			if (checkSegSeg(horA, horB, *itr, *(itr->next), &p)){
 				nextX = locX;
 				hitWall();
 				break;
 			}
+			itr = itr->next;
 		}
 	
 		// Setup vertical line segment 
@@ -138,13 +141,15 @@ void Player::checkCollision(Handlers* handlers){
 		// We first must make sure the player is not jumping or the 
 		// player will be stuck to the ground. 
 		if (!jumping){
-			for (int i = 0; i < handlers->ground->getPointCount()-1; i++){
-				if (checkSegSeg(vertA, vertB, handlers->ground->getPoint(i), handlers->ground->getPoint(i+1), &p)){
+			itr = handlers->ground->getPoints();
+			while (itr->next != NULL){
+				if (checkSegSeg(vertA, vertB, *itr, *(itr->next), &p)){
 					nextX = p.getX();
 					nextY = p.getY();
 					hitGround();
 					break;
 				}
+				itr = itr->next;
 			}
 		}
 
@@ -164,13 +169,15 @@ void Player::checkCollision(Handlers* handlers){
 		// is false so that player will not be snapped to the ground
 		// when landing from a shallow jump. 
 		if (airT < minAirtForInAir && !jumping && !inAir){
-			for (int i = 0; i < handlers->ground->getPointCount()-1; i++){
-				if (checkSegSeg(vertBotA, vertBotB, handlers->ground->getPoint(i), handlers->ground->getPoint(i+1), &p)){
+			itr = handlers->ground->getPoints();
+			while (itr->next != NULL){
+				if (checkSegSeg(vertBotA, vertBotB, *itr, *(itr->next), &p)){
 					nextX = p.getX();
 					nextY = p.getY();
 					hitGround();
 					break;
 				}
+				itr = itr->next;
 			}
 		}
 

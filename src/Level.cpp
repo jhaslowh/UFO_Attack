@@ -34,44 +34,21 @@ void Level::init(float screen_width, float screen_height){
 	obj->setLocation(1124.0f,533.0f);
 	sceneryHandler->add(obj);
 
-	ground = new Ground(12);
+	ground = new Ground();
 	int i = -1;
 
-	Point p(0.0f,400.0f);
-	ground->setPoint(++i,p);
-	
-	p.setLocation(20.0f,400.0f);
-	ground->setPoint(++i,p);
-
-	p.setLocation(30.0f,500.0f);
-	ground->setPoint(++i,p);
-
-	p.setLocation(120.0f,490.0f);
-	ground->setPoint(++i,p);
-
-	p.setLocation(180.0f,500.0f);
-	ground->setPoint(++i,p);
-
-	p.setLocation(407.0f,568.0f);
-	ground->setPoint(++i,p);
-
-	p.setLocation(500.0f,590.0f);
-	ground->setPoint(++i,p);
-	
-	p.setLocation(650.0f,570.0f);
-	ground->setPoint(++i,p);
-
-	p.setLocation(1000.0f,510.0f);
-	ground->setPoint(++i,p);
-
-	p.setLocation(1240.0f,550.0f);
-	ground->setPoint(++i,p);
-
-	p.setLocation(1250.0f,400.0f);
-	ground->setPoint(++i,p);
-
-	p.setLocation(1400.0f,400.0f);
-	ground->setPoint(++i,p);
+	ground->add(new Point(0.0f,400.0f));
+	ground->add(new Point(20.0f,400.0f));
+	ground->add(new Point(30.0f,500.0f));
+	ground->add(new Point(120.0f,490.0f));
+	ground->add(new Point(180.0f,500.0f));
+	ground->add(new Point(407.0f,568.0f));
+	ground->add(new Point(500.0f,590.0f));
+	ground->add(new Point(650.0f,570.0f));
+	ground->add(new Point(1000.0f,510.0f));
+	ground->add(new Point(1240.0f,550.0f));
+	ground->add(new Point(1250.0f,400.0f));
+	ground->add(new Point(1400.0f,400.0f));
 
 	// Set Handler references 
 	handlers.ground = ground;
