@@ -5,11 +5,17 @@ CS 426 Project
 Controls
 --------
 
-**In Level**  
-1 ...: Toggle Editor Mode  
+**Normal Controls**  
 AWSD : Move Player / UFO  
-Q ...: Switch Between player and ufo  
-Mouse: While in Editor mode, use mouse to move ground vertexes  & scenery objects 
+Q : Switch Between player and ufo   
+
+**Level Editor Controls**  
+1 : Toggle Editor Mode  
+
+Editor Modes  
+- Move Objects: Use the mouse to move ground points or scenery objects in this mode.  
+- Add Points: Use the mouse to add ground points to the ground in this mode. Points will be added between surrounding points.  
+- Remove Points: Use the mouse to select and remove ground points.  
 
 Technical Information
 ---------------------
