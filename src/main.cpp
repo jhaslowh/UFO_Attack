@@ -96,6 +96,9 @@ void changeScreen(){
 	case SCREEN_LOAD:
 		break;
 	case SCREEN_MAIN:
+		// Wait for rendering to stop 
+		while (render){} 
+		// Delete old screen 
 		delete screen;
 		screen = (UIScreen*)new MainScreen();
 		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
@@ -103,11 +106,17 @@ void changeScreen(){
 	case SCREEN_STORE:
 		break;
 	case SCREEN_SETTINGS:
+		// Wait for rendering to stop 
+		while (render){} 
+		// Delete old screen 
 		delete screen;
 		screen = (UIScreen*)new SettingsScreen(settings);
 		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
 	case SCREEN_GAME:
+		// Wait for rendering to stop 
+		while (render){} 
+		// Delete old screen 
 		delete screen;
 		screen = (UIScreen*)new GameScreen();
 		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
@@ -118,6 +127,9 @@ void changeScreen(){
 		running = false;
 		break;
 	case SCREEN_TEST:
+		// Wait for rendering to stop 
+		while (render){} 
+		// Delete old screen 
 		delete screen;
 		screen = (UIScreen*)new TestScreen();
 		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
