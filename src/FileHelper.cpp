@@ -31,32 +31,37 @@ int loadPNG(std::string file){
 
 // Load the settings into sent object
 void loadSettings(Settings* s){
-	// Open the settings file 
-	SDL_RWops *rw = SDL_RWFromFile("settings","r");
+	// String temporaries 
+	string line;
+	string str;
+	string token;
 
-	if (rw != NULL) {
-		// Load file into string 
-		char buf[1024];
-		SDL_RWread(rw, buf, sizeof (buf), 1);
-		string str(buf);
-		SDL_RWclose(rw);
+	// Make a new file object 
+	ifstream myfile ("settings");
+
+	// Check if file can be opened 
+	if (myfile.is_open())
+	{
+		// Read each line of the file and put it into a string 
+		while ( getline (myfile,line) )
+		{
+			str += line + '\n';
+		}
+		// Close file 
+		myfile.close();
 
 		// Parse file 
-		std::string token;
 
 		// Grab screen width 
-		token = str.substr(str.find(string("screen_width")), str.find(string(";")));
-		token = token.substr(token.find(string(" ")) + 1, token.length());
+		token = getSetting(str, string("screen_width"));
 		s->setScreenWidth(toInt(token));
 
 		// Grab screen height 
-		token = str.substr(str.find(string("screen_height")), str.find(string(";")));
-		token = token.substr(token.find(string(" ")) + 1, token.length());
+		token = getSetting(str, string("screen_height"));
 		s->setScreenHeight(toInt(token));
 
 		// Grab fullscreen
-		token = str.substr(str.find(string("fullscreen")), str.find(string(";")));
-		token = token.substr(token.find(string(" ")) + 1, token.length());
+		token = getSetting(str, string("fullscreen"));
 		int value = toInt(token);
 		if (value == 1)
 			s->setFullscreen(true);
@@ -66,25 +71,13 @@ void loadSettings(Settings* s){
 		cout << "Settings loaded\n";
 	}
 	else 
-		cout << "Error opening settings file or file not created yet\n";
+		cout <<  "Error opening settings file or file not created yet\n"; 
 }
 
 // Save the settings into settings file 
 void saveSettings(Settings* s){
-
-	// Create a new settings file
-	// w+ : Create an empty file for both reading and writing. 
-	//      If a file with the same name already exists its content is 
-	//      erased and the file is treated as a new empty file.
-	SDL_RWops *rw = SDL_RWFromFile("settings","w+");
-	// Error if file could not be opened 
-	if(rw == NULL) {
-		cout << "Could not open settings file for writing\n";
-		return;
-	}
-
-	// Write to file
-	std::string str("");
+	// Create settings string 
+	string str("");
 
 	// Screen width 
 	str += "screen_width ";
@@ -104,18 +97,14 @@ void saveSettings(Settings* s){
 		str += "0";
 	str += ";\n";
 
-	const char* cstr = str.c_str();
-	size_t size = sizeof(cstr);
-	size_t len = SDL_strlen(cstr);
-
-	// Write data to file 
-	if (SDL_RWwrite(rw, cstr, size, len) != len)
-		cout << "Error writing to settings file\n";
-	else 
-		cout << "Settings saved\n";
-	
-	// Close data file 
-	SDL_RWclose(rw);
+	// Save 
+	ofstream myfile("settings");
+	if (myfile.is_open())
+	{
+		myfile << str;
+		myfile.close();
+	}
+	else cout << "Unable to open settings file for writing\n";
 }
 
 // Convert int to string
@@ -131,3 +120,14 @@ int toInt(string s){
 	istringstream (s) >> numb;
 	return numb;
 }
+
+
+// Return setting from file 
+string getSetting(string fileString, string setting){
+	string token 
+		  = fileString.substr(fileString.find(setting), fileString.length());
+	token = token.substr(token.find(setting), token.find(string(";")));
+	token = token.substr(token.find(string(" ")) + 1, token.length());
+	return token;
+}
+

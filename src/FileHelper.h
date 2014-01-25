@@ -3,6 +3,7 @@
 #include <SOIL/SOIL.h>
 
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include <string>
 
@@ -24,3 +25,6 @@ string toString(int value);
 
 // Convert string to int
 int toInt(string s);
+
+// Return setting from file 
+string getSetting(string fileString, string setting);
