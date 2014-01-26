@@ -19,6 +19,7 @@ public:
 
 	// Get head objective 
 	SceneryObject* getHead();
+	void setHead(SceneryObject* obj);
 
 	// Add an scenery object to the list 
 	void add(SceneryObject* obj);

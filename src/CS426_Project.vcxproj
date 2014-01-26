@@ -45,6 +45,7 @@
     <ClInclude Include="UILabel.h" />
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIScreen.h" />
+    <ClInclude Include="UITerminal.h" />
     <ClInclude Include="UITransitionObject.h" />
     <ClInclude Include="VertCordGenerator.h" />
     <ClInclude Include="Point.h" />
@@ -84,6 +85,7 @@
     <ClCompile Include="UILabel.cpp" />
     <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="UIScreen.cpp" />
+    <ClCompile Include="UITerminal.cpp" />
     <ClCompile Include="UITransitionObject.cpp" />
     <ClCompile Include="VertCordGenerator.cpp" />
     <ClCompile Include="Point.cpp" />

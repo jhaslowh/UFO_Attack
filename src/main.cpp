@@ -286,11 +286,11 @@ int main(int argc, char* argv[])
 
 	// GLEW Debug information
 	cout << "Using GLEW Version: " << glewGetString(GLEW_VERSION) << "\n";
-	if (GLEW_VERSION_1_5) cout << "Core extensions of OpenGL 1.1 to 1.5 are available.\n";
-	if (GLEW_VERSION_2_0) cout << "Core extensions of OpenGL 2.0 are available.\n";
-	if (GLEW_VERSION_2_1) cout << "Core extensions of OpenGL 2.1 are available.\n";
-	if (GLEW_VERSION_3_0) cout << "Core extensions of OpenGL 3.0 are available.\n";
-	if (GLEW_VERSION_4_0) cout << "Core extensions of OpenGL 4.0 are available.\n";
+	if (GLEW_VERSION_4_0) cout << "Core extensions of OpenGL 1.1 to 4.0 are available.\n";
+	else if (GLEW_VERSION_3_0) cout << "Core extensions of OpenGL 1.1 to 3.0 are available.\n";
+	else if (GLEW_VERSION_2_1) cout << "Core extensions of OpenGL 1.1 to 2.1 are available.\n";
+	else if (GLEW_VERSION_2_0) cout << "Core extensions of OpenGL 1.1 to 2.0 are available.\n";
+	else if (GLEW_VERSION_1_5) cout << "Core extensions of OpenGL 1.1 to 1.5 are available.\n";
 
 	// Load resources 
 	init_resources();

@@ -1,5 +1,7 @@
 #pragma once
 #include <SDL/SDL.h>
+#include <string>
+using namespace std;
 
 #define KEY_SPACE 0
 #define KEY_0 1
@@ -43,8 +45,13 @@
 #define KEY_RIGHT 39
 #define KEY_LEFT 40
 #define KEY_ESCAPE 41
+// These next two should be the same, just using
+// both names for convenience. 
+#define KEY_RETURN 42
+#define KEY_ENTER 42 
+#define KEY_BACKSPACE 43
 
-#define KEY_COUNT 42
+#define KEY_COUNT 44
 
 class KeyHandler
 {
@@ -65,9 +72,19 @@ public:
 	// Check to see if a key is down
 	bool keyDown(int key);
 
-	// Check to see if a key was pressed
+	// Check to see if a key is up
+	bool keyUp(int key);
+
+	// Check to see if a key was released
 	// (was down and just released)
+	bool keyReleased(int key);
+
+	// Check to see if a key was pressed
+	// (was up and just pressed)
 	bool keyPressed(int key);
+
+	// Get the string of the pressed key
+	string getPressedKey();
 
 private:
 	// Get the key index from sent scancode 

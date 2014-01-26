@@ -138,3 +138,18 @@ void TextureAtlas::draw(GLHandler* mgl, int item, float x, float y, float scale,
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indicies);
 }
 
+void TextureAtlas::drawScale2(GLHandler* mgl, int item, float x, float y, float scalex, float scaley){
+	// Starting matrix 
+	glm::mat4 mMatrix;
+	// Translate 
+	mMatrix = glm::translate(mMatrix, glm::vec3(x, y, 0.0f));
+	// Scale 
+	mMatrix = glm::scale(mMatrix, glm::vec3(scalex, scaley, 0.0f));
+	// Send the rotation matrix to the shader 
+	mgl->setModelMatrix(mMatrix);
+	// Set the indicies based on the item
+	setIndicies(item);
+	// Draw the sent indicies 
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indicies);
+}
+

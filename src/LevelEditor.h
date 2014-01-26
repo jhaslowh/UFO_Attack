@@ -7,6 +7,7 @@
 #include "Collision.h"
 #include "UIAtlas.h"
 #include "UIButton.h"
+#include "UITerminal.h"
 
 // Level editor states
 #define LES_NONE 0
@@ -14,6 +15,7 @@
 #define LES_ADD_POINT 2
 #define LES_REMOVE_POINT 3
 #define LES_SCENERY 4
+#define LES_REMOVE_SCENERY 5
 
 class LevelEditor
 {
@@ -52,6 +54,8 @@ class LevelEditor
 	UIButton* bMove;
 	UIButton* bAdd;
 	UIButton* bRemove;
+	UIButton* bRemoveS;
+	UITerminal* tTerminal;
 
 	string mouseLoc;
 	string stateString;
@@ -60,8 +64,11 @@ public:
 	LevelEditor();
 	~LevelEditor();
 
+	// Check if turned on
+	bool Enabled();
+
 	// Setup basic structures 
-	void init();
+	void init(float screen_width, float screen_height);
 
 	// Load editor 
 	void load(TextureAtlas* mAtlas);
@@ -74,5 +81,11 @@ public:
 
 	// Draw editor 
 	void draw(GLHandler* mgl, UIAtlas* mUI);
+
+	// Show editor elements
+	void show();
+
+	// Hide editor elements
+	void hide();
 };
 

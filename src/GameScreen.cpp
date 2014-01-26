@@ -24,7 +24,7 @@ void GameScreen::init(float screen_width, float screen_height){
 	pauseScreen = new PauseScreen();
 	pauseScreen->init(screen_width, screen_height);
 
-	levelEditor.init();
+	levelEditor.init(screen_width, screen_height);
 }
 
 // Load screen
@@ -62,20 +62,25 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 		// Check for pause/unpause
 		if (pauseScreen->getTransitionCode() == CLOSE_SCREEN ||
-			mKeyH->keyPressed(KEY_P) || mKeyH->keyPressed(KEY_ESCAPE)){
+			mKeyH->keyReleased(KEY_P) || mKeyH->keyReleased(KEY_ESCAPE)){
 			paused = false;
 			pauseScreen->hide();
 		}
 	}
 	else{
-		// Check for pause/unpause
-		if (mKeyH->keyPressed(KEY_P) || mKeyH->keyPressed(KEY_ESCAPE)){
-			paused = true;
-			pauseScreen->show();
-		}
-
+		// Update level editor input 
 		levelEditor.updateInput(mKeyH, mMouseH, &(level->handlers));
-		level->updateInput(mKeyH, mMouseH);
+
+		// Update level input if editor off
+		if (!levelEditor.Enabled()){
+			// Check for pause/unpause
+			if (mKeyH->keyReleased(KEY_P) || mKeyH->keyReleased(KEY_ESCAPE)){
+				paused = true;
+				pauseScreen->show();
+			}
+
+			level->updateInput(mKeyH, mMouseH);
+		}
 	}
 }
 

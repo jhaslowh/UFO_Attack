@@ -12,15 +12,25 @@ LevelEditor::LevelEditor()
 	scObj = NULL;
 
 	state = LES_NONE;
+	bMove = NULL;
+	bAdd = NULL;
+	bRemove = NULL;
+	tTerminal = NULL;
 }
 LevelEditor::~LevelEditor(){
 	delete bMove;
 	delete bAdd;
 	delete bRemove;
+	delete tTerminal;
+}
+
+// Check if turned on
+bool LevelEditor::Enabled(){
+	return enabled;
 }
 
 // Setup basic structures
-void LevelEditor::init(){
+void LevelEditor::init(float screen_width, float screen_height){
 	bMove = new UIButton(5,5,100.0f,35.0f, std::string("Move Obj"));
 	bMove->setupHide(HT_HOROZONTAL,bMove->getX()-100.0f,.2f,true);
 	bMove->setHidden();
@@ -32,6 +42,16 @@ void LevelEditor::init(){
 	bRemove = new UIButton(5,85.0f,100.0f,35.0f, std::string("Remove"));
 	bRemove->setupHide(HT_HOROZONTAL,bRemove->getX()-100.0f,.2f,true);
 	bRemove->setHidden();
+
+	bRemoveS = new UIButton(5,125.0f,100.0f,35.0f, std::string("Remove S"));
+	bRemoveS->setupHide(HT_HOROZONTAL,bRemoveS->getX()-100.0f,.2f,true);
+	bRemoveS->setHidden();
+
+	tTerminal = new UITerminal();
+	tTerminal->setLocation(5.0f,screen_height - 35.0f);
+	tTerminal->setSize(450.0f,0.0f);
+	tTerminal->setupHide(HT_VERTICAL,tTerminal->getY()+100.0f,.2f,false);
+	tTerminal->setHidden();
 }
 
 // Load editor 
@@ -45,6 +65,7 @@ void LevelEditor::load(TextureAtlas* mAtlas){
 	bMove->centerText(mUI->mTextRender);
 	bAdd->centerText(mUI->mTextRender);
 	bRemove->centerText(mUI->mTextRender);
+	bRemoveS->centerText(mUI->mTextRender);
 }
 
 // Update editor state 
@@ -75,6 +96,8 @@ void LevelEditor::update(float deltaTime, Ground* ground){
 	bMove->update(deltaTime);
 	bAdd->update(deltaTime);
 	bRemove->update(deltaTime);
+	bRemoveS->update(deltaTime);
+	tTerminal->update(deltaTime);
 
 	// Update State string 
 	if (state == LES_NONE || state == LES_MOVE_POINT || state == LES_SCENERY){
@@ -89,47 +112,26 @@ void LevelEditor::update(float deltaTime, Ground* ground){
 		stateString.clear();
 		stateString += "State: Remove Ground Point";
 	}
+	else if (state == LES_REMOVE_SCENERY){
+		stateString.clear();
+		stateString += "State: Remove Scenery Object";
+	}
 }
 
 // Update editor input
 void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
-	// Update Button input 
-	bMove->updateInput(mKeyH, mMouseH);
-	bAdd->updateInput(mKeyH, mMouseH);
-	bRemove->updateInput(mKeyH, mMouseH);
-
-	if (bMove->wasClicked()){
-		state = LES_NONE;
-		// Must return so input functions correctly 
-		return;
-	}
-	if (bAdd->wasClicked()){
-		state = LES_ADD_POINT;
-		// Must return so input functions correctly 
-		return;
-	}
-	if (bRemove->wasClicked()){
-		state = LES_REMOVE_POINT;
-		// Must return so input functions correctly 
-		return;
-	}
-	
 	// Turn on and off editor
-	if (mKeyH->keyPressed(KEY_1))
+	if (mKeyH->keyReleased(KEY_1))
 	{
 		if (enabled){
 			enabled = false;
 			selectedPoint = NULL;
 			pointHighlighted = false;
-			bMove->hide();
-			bAdd->hide();
-			bRemove->hide();
+			hide();
 		}
 		else{
 			enabled = true;
-			bMove->show();
-			bAdd->show();
-			bRemove->show();
+			show();
 		}
 	}
 
@@ -141,6 +143,42 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 	mouseLoc += toString((int)mMouseH->getY());
 
 	if (enabled){
+		
+		// ---------------------- //
+		// Check UI Components 
+		// ---------------------- //
+		// Update Button input 
+		bMove->updateInput(mKeyH, mMouseH);
+		bAdd->updateInput(mKeyH, mMouseH);
+		bRemove->updateInput(mKeyH, mMouseH);
+		bRemoveS->updateInput(mKeyH, mMouseH);
+		tTerminal->updateInput(mKeyH, mMouseH);
+
+		if (bMove->wasClicked()){
+			state = LES_NONE;
+			// Must return so input functions correctly 
+			return;
+		}
+		if (bAdd->wasClicked()){
+			state = LES_ADD_POINT;
+			// Must return so input functions correctly 
+			return;
+		}
+		if (bRemove->wasClicked()){
+			state = LES_REMOVE_POINT;
+			// Must return so input functions correctly 
+			return;
+		}
+		if (bRemoveS->wasClicked()){
+			state = LES_REMOVE_SCENERY;
+			// Must return so input functions correctly 
+			return;
+		}
+		if (tTerminal->CommandIssued()){
+			cout << tTerminal->getCommandString() << "\n";
+		}
+
+
 		// ---------------------- //
 		// State: None
 		// ---------------------- //
@@ -273,6 +311,40 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 					mMouseH->getY() + sceneryOffsetY);
 			}
 		}
+		// ---------------------- //
+		// State: Remove Scenery 
+		// ---------------------- //
+		else if (state == LES_REMOVE_SCENERY){
+			/// Select Scenery Objects 
+
+			SceneryHandler* sh = (SceneryHandler*)handlers->sceneryHandler;
+			SceneryObject* head = sh->getHead();
+			SceneryObject* prev = NULL;
+
+			// Check if mouse is hovering a scenery object 
+			if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown()){
+				while (head != NULL){
+					// Check if scenery object contains mouse
+					if (head->getCollisionRec()->contains(mMouseH->getX(), mMouseH->getY())){
+						// Check if scenery object was not first 
+						if (prev != NULL){
+							prev->setNext(head->getNext());
+							head->setNext(NULL);
+							delete head;
+						}
+						// Check if it was 
+						else {
+							sh->setHead(head->getNext());
+						}
+
+						break;
+					}
+
+					prev = head;
+					head = head->getNext();
+				}
+			}
+		}
 	}
 }
 
@@ -293,4 +365,25 @@ void LevelEditor::draw(GLHandler* mgl, UIAtlas* mUI){
 	bMove->draw(mgl, mUI);
 	bAdd->draw(mgl, mUI);
 	bRemove->draw(mgl, mUI);
+	bRemoveS->draw(mgl, mUI);
+	tTerminal->draw(mgl, mUI);
+}
+
+
+// Show editor elements
+void LevelEditor::show(){
+	bMove->show();
+	bAdd->show();
+	bRemove->show();
+	bRemoveS->show();
+	tTerminal->show();
+}
+
+// Hide editor elements
+void LevelEditor::hide(){
+	bMove->hide();
+	bAdd->hide();
+	bRemove->hide();
+	bRemoveS->hide();
+	tTerminal->hide();
 }

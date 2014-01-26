@@ -10,6 +10,7 @@
 #define UII_BUTTON_CLICK 2
 #define UII_CHECKBOX_NORMAL 3
 #define UII_CHECKBOX_CHECKED 4
+#define UII_REC 5
 
 class UIAtlas : public TextureAtlas
 {

@@ -30,6 +30,9 @@ int SceneryHandler::getSize(){
 SceneryObject* SceneryHandler::getHead(){
 	return head;
 }
+void SceneryHandler::setHead(SceneryObject* obj){
+	head = obj;
+}
 
 // Add an scenery object to the list 
 void SceneryHandler::add(SceneryObject* obj){

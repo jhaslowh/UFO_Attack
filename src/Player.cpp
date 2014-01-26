@@ -238,7 +238,7 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	}
 
 	// Switch from ufo to on foot 
-	if (mKeyH->keyPressed(KEY_Q)){
+	if (mKeyH->keyReleased(KEY_Q)){
 		inUFO = !inUFO;
 
 		if (!inUFO)

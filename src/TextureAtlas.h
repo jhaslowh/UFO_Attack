@@ -41,5 +41,6 @@ public:
 	void draw(GLHandler* mgl, int item, float x, float y, float scale);
 	void draw(GLHandler* mgl, int item, float x, float y, float scale, float rotation);
 	void draw(GLHandler* mgl, int item, float x, float y, float scale, float rotation, float origin_x, float origin_y);
+	void drawScale2(GLHandler* mgl, int item, float x, float y, float scalex, float scaley);
 };
 
