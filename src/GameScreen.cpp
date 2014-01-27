@@ -44,7 +44,7 @@ void GameScreen::update(float deltaTime){
 	pauseScreen->update(deltaTime);
 
 	if (!paused){
-		levelEditor.update(deltaTime, level->getGround());
+		levelEditor.update(deltaTime, &(level->handlers));
 		if (!levelEditor.Enabled())
 			level->update(deltaTime);
 	}

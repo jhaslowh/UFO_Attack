@@ -72,7 +72,7 @@ void LevelEditor::load(TextureAtlas* mAtlas){
 }
 
 // Update editor state 
-void LevelEditor::update(float deltaTime, Ground* ground){
+void LevelEditor::update(float deltaTime, Handlers* handlers){
 	// Shrink point sprite if point not selected
 	if (!pointHighlighted){
 		if (pointSprite.getScale() > 0.0f){
@@ -119,6 +119,9 @@ void LevelEditor::update(float deltaTime, Ground* ground){
 		stateString.clear();
 		stateString += "State: Move Camera";
 	}
+
+	// Update levels camera
+	((LevelCamera*)handlers->camera)->update(deltaTime);
 }
 
 // Update editor input
@@ -136,10 +139,12 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			selectedPoint = NULL;
 			pointHighlighted = false;
 			hide();
+			return;
 		}
 		else{
 			enabled = true;
 			show();
+			return;
 		}
 	}
 
@@ -379,6 +384,7 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 				state = LES_NONE;
 				return;
 			}
+
 
 			LevelCamera* c = ((LevelCamera*)(handlers->camera));
 

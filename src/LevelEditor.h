@@ -83,7 +83,7 @@ public:
 	void load(TextureAtlas* mAtlas);
 
 	// Update editor state 
-	void update(float deltaTime, Ground* ground);
+	void update(float deltaTime, Handlers* handlers);
 
 	// Update editor input
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers);

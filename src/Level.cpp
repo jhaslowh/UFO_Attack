@@ -72,6 +72,8 @@ void Level::update(float deltaTime){
 	player->update(deltaTime, &handlers);
 	player->checkCollision(&handlers);
 	player->resolveCollision(&handlers);
+
+	camera.update(deltaTime);
 }
 
 // Update input

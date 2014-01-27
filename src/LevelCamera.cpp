@@ -5,10 +5,13 @@ LevelCamera::LevelCamera()
 {
 	locX = 0.0f;
 	locY = 0.0f;
+	targetX = 0.0f;
+	targetY = 0.0f;
 	rotation = 0.0f;
 	zoom = 1.0f;
 	originX = 0.0f;
 	originY = 0.0f;
+	fixSpeed = 500.0f;
 }
 
 LevelCamera::~LevelCamera(){}
@@ -24,6 +27,19 @@ void LevelCamera::setLocation(float x, float y){
 	// Invert locations so that transforms work correctly 
 	locX = -x;
 	locY = -y;
+	targetX = -x;
+	targetY = -y;
+}
+// Set target location
+void LevelCamera::setTarget(float x, float y){
+	// Invert locations so that transforms work correctly 
+	targetX = -x;
+	targetY = -y;
+
+	// Fix directions 
+	float angle = (float)atan2(targetY - locY,targetX - locX);
+	direcY = sin(angle);
+	direcX = cos(angle);
 }
 float LevelCamera::getX(){ return -locX;}
 float LevelCamera::getY(){ return -locY;}
@@ -51,6 +67,46 @@ float LevelCamera::toScreenX(float levelX){
 // Convert level x to screen y
 float LevelCamera::toScreenY(float levelY){
 	return levelY + locY + originY;
+}
+
+
+// update camera state 
+void LevelCamera::update(float deltaTime){
+	// Move camera to target 
+	if (locX < targetX){
+		locX += deltaTime * direcX * fixSpeed;
+
+		if (locX > targetX){
+			locX = targetX;
+			direcX = 0.0f;
+		}
+	}
+	else if (locX > targetX){
+		locX += deltaTime * direcX * fixSpeed;
+
+		if (locX < targetX){
+			locX = targetX;
+			direcX = 0.0f;
+		}
+	}
+
+	if (locY < targetY){
+		locY += deltaTime * direcY * fixSpeed;
+
+		if (locY > targetY){
+			locY = targetY;
+			direcY = 0.0f;
+		}
+	}
+	else if (locY > targetY){
+		locY += deltaTime * direcY * fixSpeed;
+
+		if (locY < targetY){
+			locY = targetY;
+			direcX = 0.0f;
+		}
+	}
+
 }
 
 // Convert camera to a matrix 
