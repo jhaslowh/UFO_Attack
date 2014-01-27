@@ -11,6 +11,7 @@ public:
 	void* projHandler;
 	void* sceneryHandler;
 	Ground* ground;
+	void* camera;
 
 	Handlers();
 	~Handlers();

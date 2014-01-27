@@ -11,6 +11,9 @@ LevelEditor::LevelEditor()
 	sceneryOffsetY = 0;
 	scObj = NULL;
 
+	levelX = 0.0f;
+	levelY = 0.0f;
+
 	state = LES_NONE;
 	bMove = NULL;
 	bAdd = NULL;
@@ -80,10 +83,6 @@ void LevelEditor::update(float deltaTime, Ground* ground){
 	}
 	// Grow sprite if point is selected 
 	else {
-		// Set display point location 
-		if (selectedPoint != NULL)
-			pointSprite.setPosition(selectedPoint->getX(), selectedPoint->getY());
-		
 		// Grow sprite 
 		if (pointSprite.getScale() < 1.25f){
 			pointSprite.setScale(pointSprite.getScale() + (shrinkSpeed * deltaTime));
@@ -120,6 +119,11 @@ void LevelEditor::update(float deltaTime, Ground* ground){
 
 // Update editor input
 void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
+	// Get mouse location 
+	levelX = ((LevelCamera*)(handlers->camera))->toLevelX(mMouseH->getX());
+	levelY = ((LevelCamera*)(handlers->camera))->toLevelY(mMouseH->getY());
+	levelLoc.setLocation(levelX, levelY);
+	
 	// Turn on and off editor
 	if (mKeyH->keyReleased(KEY_1))
 	{
@@ -141,6 +145,10 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 	mouseLoc += toString((int)mMouseH->getX());
 	mouseLoc += ". ";
 	mouseLoc += toString((int)mMouseH->getY());
+	mouseLoc += "\nLevel: ";
+	mouseLoc += toString((int)levelX);
+	mouseLoc += ". ";
+	mouseLoc += toString((int)levelY);
 
 	if (enabled){
 		
@@ -196,11 +204,14 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			Point* itr = handlers->ground->getPoints();
 			while (itr != NULL){
 				// Check if the mouse is close enought to the point to select 
-				if (dist(mMouseH->getLoc(), *itr) < maxPointDistance){
+				if (dist(levelLoc, *itr) < maxPointDistance){
 				
 					// Set hovered point
 					pointHighlighted = true;
-					pointSprite.setPosition(itr->getX(), itr->getY());
+					// Set display point location 
+					pointSprite.setPosition(
+						((LevelCamera*)(handlers->camera))->toScreenX(itr->getX()), 
+						((LevelCamera*)(handlers->camera))->toScreenY(itr->getY()));
 
 					// Check if mouse was clicked 
 					if (clicked){
@@ -221,10 +232,10 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			if (clicked){
 				while (head != NULL){
 					// Check if scenery object contains mouse And mouse was clicked 
-					if (head->getCollisionRec()->contains(mMouseH->getX(), mMouseH->getY())){
+					if (head->getCollisionRec()->contains(levelX, levelY)){
 						// Set up editor to move scenery object 
-						sceneryOffsetX = head->getX() - mMouseH->getX();
-						sceneryOffsetY = head->getY() - mMouseH->getY();
+						sceneryOffsetX = head->getX() - levelX;
+						sceneryOffsetY = head->getY() - levelY;
 						// Set pointer reference
 						scObj = head;
 
@@ -250,14 +261,17 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			else {
 				// Wooo giant if.... sorry 
 				// Set point x location
-				if ((selectedPoint->prev == NULL && mMouseH->getX() < selectedPoint->next->getX()) ||
-					(mMouseH->getX() > selectedPoint->prev->getX() && selectedPoint->next == NULL)||
-					(mMouseH->getX() > selectedPoint->prev->getX() && mMouseH->getX() < selectedPoint->next->getX()))
-					selectedPoint->setX(mMouseH->getX());
+				if ((selectedPoint->prev == NULL && levelX < selectedPoint->next->getX()) ||
+					(levelX > selectedPoint->prev->getX() && selectedPoint->next == NULL)||
+					(levelX > selectedPoint->prev->getX() && levelX < selectedPoint->next->getX()))
+					selectedPoint->setX(levelX);
 				// Set point y location
-				selectedPoint->setY(mMouseH->getY());
+				selectedPoint->setY(levelY);
 				// Fix Vertexes and cords 
 				handlers->ground->fixVertsForPoint(selectedPoint);
+
+				// Set display point location 
+				pointSprite.setPosition(mMouseH->getX(), mMouseH->getY());
 			}
 		}
 		// ---------------------- //
@@ -266,7 +280,7 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 		else if (state == LES_ADD_POINT){
 			// Check if mouse was released
 			if (!mMouseH->isLeftDown() && mMouseH->wasLeftDown()){
-				handlers->ground->add(new Point(mMouseH->getX(), mMouseH->getY()));
+				handlers->ground->add(new Point(levelX,levelY));
 			}
 		}
 		// ---------------------- //
@@ -280,7 +294,7 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			Point* itr = handlers->ground->getPoints();
 			while (itr != NULL){
 				// Check if the mouse is close enought to the point to select 
-				if (dist(mMouseH->getLoc(), *itr) < maxPointDistance){
+				if (dist(levelLoc, *itr) < maxPointDistance){
 				
 					// Set hovered point
 					pointHighlighted = true;
@@ -307,8 +321,8 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			else {
 				// Set scenery object location 
 				scObj->setLocation(
-					mMouseH->getX() + sceneryOffsetX,
-					mMouseH->getY() + sceneryOffsetY);
+					levelX + sceneryOffsetX,
+					levelY + sceneryOffsetY);
 			}
 		}
 		// ---------------------- //
@@ -325,7 +339,7 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown()){
 				while (head != NULL){
 					// Check if scenery object contains mouse
-					if (head->getCollisionRec()->contains(mMouseH->getX(), mMouseH->getY())){
+					if (head->getCollisionRec()->contains(levelX, levelY)){
 						// Check if scenery object was not first 
 						if (prev != NULL){
 							prev->setNext(head->getNext());
@@ -359,7 +373,7 @@ void LevelEditor::draw(GLHandler* mgl, UIAtlas* mUI){
 
 		mUI->mTextRender->drawText(*mgl,string("Editor on"), 120,5,0,25.0f);
 		mUI->mTextRender->drawText(*mgl,mouseLoc, 120,32.0f,0,25.0f);
-		mUI->mTextRender->drawText(*mgl,stateString, 120,60.0f,0,25.0f);
+		mUI->mTextRender->drawText(*mgl,stateString, 120,88.0f,0,25.0f);
 	}
 
 	bMove->draw(mgl, mUI);

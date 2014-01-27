@@ -6,6 +6,7 @@ Handlers::Handlers()
 	projHandler = NULL;
 	sceneryHandler = NULL;
 	ground = NULL;
+	camera = NULL;
 }
 
 Handlers::~Handlers(){}

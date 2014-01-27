@@ -49,7 +49,7 @@ void UFO::checkCollision(Handlers* handlers){
 }
 
 // Resolve collisions
-void UFO::resolveCollision(){
+void UFO::resolveCollision(Handlers* handlers){
 	locX = nextX;
 	locY = nextY;
 }

@@ -20,8 +20,10 @@ Ground* Level::getGround(){
 
 // initialize level
 void Level::init(float screen_width, float screen_height){
-	player->init();
+	player->init(screen_width, screen_height);
 	player->ufo->setLocation(100.0f,200.0f);
+
+	camera.init(screen_width, screen_height);
 
 	sceneryHandler = new SceneryHandler();
 	SceneryObject* obj = (SceneryObject*)new Tree();
@@ -53,6 +55,7 @@ void Level::init(float screen_width, float screen_height){
 	// Set Handler references 
 	handlers.ground = ground;
 	handlers.sceneryHandler = sceneryHandler;
+	handlers.camera = &camera;
 }
 
 // Load level (use for textures)
@@ -68,7 +71,7 @@ void Level::update(float deltaTime){
 
 	player->update(deltaTime, &handlers);
 	player->checkCollision(&handlers);
-	player->resolveCollision();
+	player->resolveCollision(&handlers);
 }
 
 // Update input
@@ -78,6 +81,9 @@ void Level::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 // Draw level 
 void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
+	// Set camera 
+	mgl->setViewMatrix(camera.getMatrix());
+
 	gameAtlas->bindBuffers(mgl);
 	gameAtlas->bindTexture(mgl);
 
@@ -88,4 +94,6 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	sceneryHandler->draw(mgl, gameAtlas);
 	player->draw(mgl, gameAtlas);
 	ground->draw(mgl);
+
+	mgl->setViewMatrix(glm::mat4());
 }

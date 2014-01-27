@@ -302,6 +302,7 @@ int main(int argc, char* argv[])
 	
 	// ======= Run ======= //
 	// Create game loop thread 
+
 	thread = SDL_CreateThread( gameLoop, "gameLoop", (void *)NULL);
 
 	// Run Event and render loop 

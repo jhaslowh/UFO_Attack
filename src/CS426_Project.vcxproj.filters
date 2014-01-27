@@ -174,8 +174,11 @@
     <ClInclude Include="Tree.h">
       <Filter>Header Files\game\scenery</Filter>
     </ClInclude>
+    <ClInclude Include="LevelCamera.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
     <ClInclude Include="UITerminal.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -290,8 +293,11 @@
     <ClCompile Include="Tree.cpp">
       <Filter>Source Files\game\scenery</Filter>
     </ClCompile>
+    <ClCompile Include="LevelCamera.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
     <ClCompile Include="UITerminal.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

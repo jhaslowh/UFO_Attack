@@ -4,6 +4,7 @@
 #include "GameAtlas.h"
 #include "KeyHandler.h"
 #include "MouseHandler.h"
+#include "LevelCamera.h"
 
 class UFO
 {
@@ -43,7 +44,7 @@ public:
 	void checkCollision(Handlers* handlers);
 
 	// Resolve collisions
-	void resolveCollision();
+	void resolveCollision(Handlers* handlers);
 
 	// Update ufo input
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);

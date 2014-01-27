@@ -8,6 +8,7 @@
 #include "UIAtlas.h"
 #include "UIButton.h"
 #include "UITerminal.h"
+#include "LevelCamera.h"
 
 // Level editor states
 #define LES_NONE 0
@@ -59,6 +60,10 @@ class LevelEditor
 
 	string mouseLoc;
 	string stateString;
+
+	// Level location
+	float levelX, levelY;
+	Point levelLoc;
 
 public:
 	LevelEditor();

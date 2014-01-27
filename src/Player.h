@@ -8,6 +8,7 @@
 #include "Handlers.h"
 #include "UFO.h"
 #include "GameAtlas.h"
+#include "LevelCamera.h"
 
 #define GRAVITY 980.0f
 
@@ -46,6 +47,9 @@ class Player
 	bool inAir;
 	bool inUFO;
 
+	// Camera 
+	float cameraOffsetY;
+
 public:
 
 	UFO* ufo;
@@ -61,7 +65,7 @@ public:
 	// Functions 
 
 	// initialize level
-	void init();
+	void init(float screen_width, float screen_height);
 
 	// Load level (use for textures)
 	void load();
@@ -73,7 +77,7 @@ public:
 	void checkCollision(Handlers* handlers);
 
 	// Resolve any collisions found 
-	void resolveCollision();
+	void resolveCollision(Handlers* handlers);
 	
 	// Update input
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);

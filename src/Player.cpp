@@ -28,6 +28,8 @@ Player::Player(){
 	inAir = false;
 	inUFO = true;
 
+	cameraOffsetY = 0.0f;
+
 	ufo = new UFO();
 }
 Player::~Player(){
@@ -43,8 +45,10 @@ float Player::getX(){return locX;}
 float Player::getY(){return locY;}
 
 // initialize level
-void Player::init(){
+void Player::init(float screen_width, float screen_height){
 	ufo->init();
+
+	cameraOffsetY = screen_height * .25f;
 }
 
 // Load level (use for textures)
@@ -196,15 +200,21 @@ void Player::checkCollision(Handlers* handlers){
 }
 
 // Resolve any collisions found 
-void Player::resolveCollision(){
+void Player::resolveCollision(Handlers* handlers){
 	if (inUFO){
-		ufo->resolveCollision();
+		ufo->resolveCollision(handlers);
+
+		// Set camera location 
+		((LevelCamera*)(handlers->camera))->setLocation(ufo->getX(), ufo->getY() + cameraOffsetY);
 	}
 	else {
 		locX = nextX;
 		locY = nextY;
 
 		sprite.setPosition(locX, locY);
+
+		// Set camera location 
+		((LevelCamera*)(handlers->camera))->setLocation(locX, locY - cameraOffsetY);
 	}
 }
 
