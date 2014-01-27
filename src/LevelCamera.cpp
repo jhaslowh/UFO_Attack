@@ -25,6 +25,8 @@ void LevelCamera::setLocation(float x, float y){
 	locX = -x;
 	locY = -y;
 }
+float LevelCamera::getX(){ return -locX;}
+float LevelCamera::getY(){ return -locY;}
 // Set camera rotation
 void LevelCamera::setRotation(float r){
 	rotation = r;

@@ -115,6 +115,10 @@ void LevelEditor::update(float deltaTime, Ground* ground){
 		stateString.clear();
 		stateString += "State: Remove Scenery Object";
 	}
+	else if (state == LES_MOVE_CAMERA){
+		stateString.clear();
+		stateString += "State: Move Camera";
+	}
 }
 
 // Update editor input
@@ -194,6 +198,11 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			bool clicked = false;
 			if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
 				clicked = true;
+			if (mMouseH->isRightDown() && !mMouseH->wasRightDown()){
+				state = LES_MOVE_CAMERA;
+				lastMouse.setLocation(mMouseH->getX(), mMouseH->getY());
+				return;
+			}
 
 			/// Select ground points
 
@@ -298,7 +307,10 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 				
 					// Set hovered point
 					pointHighlighted = true;
-					pointSprite.setPosition(itr->getX(), itr->getY());
+					// Set display point location 
+					pointSprite.setPosition(
+						((LevelCamera*)(handlers->camera))->toScreenX(itr->getX()), 
+						((LevelCamera*)(handlers->camera))->toScreenY(itr->getY()));
 
 					// Check if mouse was clicked and if so remove point
 					if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown()){
@@ -358,6 +370,22 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 					head = head->getNext();
 				}
 			}
+		}
+		// ---------------------- //
+		// State: Move Camera  
+		// ---------------------- //
+		else if (state == LES_MOVE_CAMERA){
+			if (!mMouseH->isRightDown()){
+				state = LES_NONE;
+				return;
+			}
+
+			LevelCamera* c = ((LevelCamera*)(handlers->camera));
+
+			c->setLocation(
+				c->getX() - (mMouseH->getX() - lastMouse.getX()),
+				c->getY() - (mMouseH->getY() - lastMouse.getY()));
+			lastMouse.setLocation(mMouseH->getX(), mMouseH->getY());
 		}
 	}
 }

@@ -117,8 +117,8 @@ Discription: Strong air vehicle against UFO, cannot hurt alien on foot.
 Difficulty: Medium/Easy  
 
 **Scenery**  
-- Trees   
-- Grass  
+- Trees [Done]  
+- Grass [Done]   
 - Rocks  
 - Buildings  
 - Cars  

@@ -17,6 +17,7 @@
 #define LES_REMOVE_POINT 3
 #define LES_SCENERY 4
 #define LES_REMOVE_SCENERY 5
+#define LES_MOVE_CAMERA 6
 
 class LevelEditor
 {
@@ -64,6 +65,9 @@ class LevelEditor
 	// Level location
 	float levelX, levelY;
 	Point levelLoc;
+
+	// Mouse locations 
+	Point lastMouse;
 
 public:
 	LevelEditor();

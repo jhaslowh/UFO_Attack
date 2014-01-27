@@ -45,7 +45,8 @@ void GameScreen::update(float deltaTime){
 
 	if (!paused){
 		levelEditor.update(deltaTime, level->getGround());
-		level->update(deltaTime);
+		if (!levelEditor.Enabled())
+			level->update(deltaTime);
 	}
 }
 
