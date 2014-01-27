@@ -27,6 +27,15 @@ int init_resources()
 
 	mUIAtlas = new UIAtlas();
 	mUIAtlas->init();
+	
+	// Make our terminal 
+	terminal = new UITerminal();
+	terminal->setLocation(5.0f,(float)settings->getScreenHeight() - 35.0f);
+	terminal->setSize((float)settings->getScreenWidth() - 10.0f,0.0f);
+	terminal->setupHide(HT_VERTICAL,terminal->getY()+100.0f,.2f,false);
+	terminal->setCommandFunc(checkCommand);
+	terminal->setMaxTextLength(200);
+	terminal->setHidden();
 
 	// Set current screen as test screen 
 	screen = (UIScreen*)new IntroLoadScreen();
@@ -48,6 +57,7 @@ void free_resources()
 	// Delete allocations 
 	delete mUIAtlas;
 	delete screen;
+	delete terminal;
 
 	// Save data 
 	saveSettings(settings);
@@ -71,10 +81,25 @@ void onUpdate(){
 
 	// Do main updates if window is visible 
 	if (WINDOW_VISIBLE){
+		// Update Terminal
+		if (mKeyH.keyPressed(KEY_2)){
+			if (showTerminal){
+				showTerminal = false;
+				terminal->hide();
+			}else {
+				showTerminal = true;
+				terminal->show();
+			}
+		}
+		if (showTerminal) 
+			terminal->updateInput(&mKeyH, &mMouseH);
+		terminal->update(deltaTime);
+
 		// Update Screen 
 		if (screen != NULL) {
 			// Update screen input 
-			screen->updateInput(&mKeyH, &mMouseH);
+			if (!showTerminal) 
+				screen->updateInput(&mKeyH, &mMouseH);
 			// Update screen 
 			screen->update(deltaTime);
 			// Check if screen needs to be changed 
@@ -84,6 +109,19 @@ void onUpdate(){
 		mMouseH.update();
 		mKeyH.update();
 	}
+}
+
+
+// Check commands from the terminal
+void checkCommand(string line){
+	cout << line << "\n";
+
+	// If you want to check a global command, do it here and
+	// return so that the screen does not parse the same command. 
+
+
+	// Send command to screen 
+	screen->parseCommand(line);
 }
 
 // Checks if the screen needs to be switched. 
@@ -151,6 +189,12 @@ void onDraw()
 	// Draw Screen
 	if (screen != NULL) {
 		screen->draw(&mgl, (TextureAtlas*)mUIAtlas);
+
+		// Draw terminal
+		mUIAtlas->bindBuffers(&mgl);
+		mUIAtlas->bindTexture(&mgl);
+
+		terminal->draw(&mgl, mUIAtlas);
 	}
 }
  

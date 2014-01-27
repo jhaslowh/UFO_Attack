@@ -36,6 +36,11 @@ void UIScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 		load(mAtlas);
 }
 
+// Parse a command give
+void UIScreen::parseCommand(string command){
+	// Nothing to do 
+}
+
 // Hide the entire screen.
 // Any UI elements will need to be put into this function,
 // if they should be hidden when the screen is hidden.

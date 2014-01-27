@@ -52,6 +52,8 @@ UIAtlas* mUIAtlas;
 SDL_Window* window;
 SDL_Thread* thread;
 UIScreen* screen = NULL;
+UITerminal* terminal = NULL;
+bool showTerminal = false;
 
 // Called at the begining of the game to load resources 
 int init_resources();
@@ -61,6 +63,9 @@ void free_resources();
 
 // Update game state
 void onUpdate();
+
+// Check commands from the terminal
+void checkCommand(string line);
 
 // Checks if the screen needs to be switched. 
 void changeScreen();

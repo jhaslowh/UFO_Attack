@@ -18,13 +18,11 @@ LevelEditor::LevelEditor()
 	bMove = NULL;
 	bAdd = NULL;
 	bRemove = NULL;
-	tTerminal = NULL;
 }
 LevelEditor::~LevelEditor(){
 	delete bMove;
 	delete bAdd;
 	delete bRemove;
-	delete tTerminal;
 }
 
 // Check if turned on
@@ -49,12 +47,6 @@ void LevelEditor::init(float screen_width, float screen_height){
 	bRemoveS = new UIButton(5,125.0f,100.0f,35.0f, std::string("Remove S"));
 	bRemoveS->setupHide(HT_HOROZONTAL,bRemoveS->getX()-100.0f,.2f,true);
 	bRemoveS->setHidden();
-
-	tTerminal = new UITerminal();
-	tTerminal->setLocation(5.0f,screen_height - 35.0f);
-	tTerminal->setSize(450.0f,0.0f);
-	tTerminal->setupHide(HT_VERTICAL,tTerminal->getY()+100.0f,.2f,false);
-	tTerminal->setHidden();
 }
 
 // Load editor 
@@ -96,7 +88,6 @@ void LevelEditor::update(float deltaTime, Handlers* handlers){
 	bAdd->update(deltaTime);
 	bRemove->update(deltaTime);
 	bRemoveS->update(deltaTime);
-	tTerminal->update(deltaTime);
 
 	// Update State string 
 	if (state == LES_NONE || state == LES_MOVE_POINT || state == LES_SCENERY){
@@ -169,7 +160,6 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 		bAdd->updateInput(mKeyH, mMouseH);
 		bRemove->updateInput(mKeyH, mMouseH);
 		bRemoveS->updateInput(mKeyH, mMouseH);
-		tTerminal->updateInput(mKeyH, mMouseH);
 
 		if (bMove->wasClicked()){
 			state = LES_NONE;
@@ -191,10 +181,6 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			// Must return so input functions correctly 
 			return;
 		}
-		if (tTerminal->CommandIssued()){
-			cout << tTerminal->getCommandString() << "\n";
-		}
-
 
 		// ---------------------- //
 		// State: None
@@ -414,7 +400,6 @@ void LevelEditor::draw(GLHandler* mgl, UIAtlas* mUI){
 	bAdd->draw(mgl, mUI);
 	bRemove->draw(mgl, mUI);
 	bRemoveS->draw(mgl, mUI);
-	tTerminal->draw(mgl, mUI);
 }
 
 
@@ -424,7 +409,6 @@ void LevelEditor::show(){
 	bAdd->show();
 	bRemove->show();
 	bRemoveS->show();
-	tTerminal->show();
 }
 
 // Hide editor elements
@@ -433,5 +417,4 @@ void LevelEditor::hide(){
 	bAdd->hide();
 	bRemove->hide();
 	bRemoveS->hide();
-	tTerminal->hide();
 }

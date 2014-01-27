@@ -5,7 +5,7 @@ CS 426 Project
 Controls
 --------
 
-**Normal Controls**  
+**Level Normal Controls**  
 AWSD : Move Player / UFO  
 Q : Switch Between player and ufo   
 
@@ -16,7 +16,10 @@ Editor Modes
 - Move Objects: Use the mouse to move ground points or scenery objects in this mode.  
 - Add Points: Use the mouse to add ground points to the ground in this mode. Points will be added between surrounding points.  
 - Remove Points: Use the mouse to select and remove ground points.  
-- Right click and drag to move camera  
+- Right click and drag to move camera 
+
+**Terminal**
+2 : Toggle on/off 
 
 Technical Information
 ---------------------

@@ -57,7 +57,6 @@ class LevelEditor
 	UIButton* bAdd;
 	UIButton* bRemove;
 	UIButton* bRemoveS;
-	UITerminal* tTerminal;
 
 	string mouseLoc;
 	string stateString;

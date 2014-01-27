@@ -15,14 +15,25 @@ class UITerminal : public UITransitionObject
 	GLfloat textColor[4];	// Text color 
 	float textOffX, textOffY;// Offset for text inside of box 
 
+	// Function pointer
+	void (*commandFunc)(string);
+	bool useFunction;
+
 public:
 	UITerminal();
 	virtual ~UITerminal();
+
+	// Set max characters for the terminal 
+	void setMaxTextLength(int l);
+	// Get the total number of characters 
+	int getMaxTextLength();
 
 	// Get the command string
 	string getCommandString();
 	// Check if a command was issued 
 	bool CommandIssued();
+	// Set function to use on commands 
+	void setCommandFunc(void func(string));
 
 	// Update input 
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);

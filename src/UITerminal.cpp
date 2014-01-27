@@ -16,9 +16,15 @@ UITerminal::UITerminal() : UITransitionObject()
 	textOffX = 5.0f;
 	textOffY = 5.0f;
 	maxTextLength = 50;
+	useFunction = false;
 }
 
 UITerminal::~UITerminal(){}
+
+// Set max characters for the terminal 
+void UITerminal::setMaxTextLength(int l){maxTextLength = l;}
+// Get the total number of characters 
+int UITerminal::getMaxTextLength(){return maxTextLength;}
 
 // Get the command string
 string UITerminal::getCommandString(){
@@ -32,6 +38,12 @@ bool UITerminal::CommandIssued(){
 		return true;
 	}
 	return false;
+}
+
+// Set function to use on commands 
+void UITerminal::setCommandFunc(void func(string)){
+	useFunction = true;
+	commandFunc = func;
 }
 
 // Update input 
@@ -56,6 +68,12 @@ void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		commandIssued = true;
 		commandString = line;
 		line.clear();
+
+		// Call command function if set 
+		if (useFunction){
+			commandIssued = false;
+			commandFunc(commandString);
+		}
 	}
 }
 

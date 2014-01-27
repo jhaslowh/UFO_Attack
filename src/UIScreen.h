@@ -48,6 +48,9 @@ public:
 	// Draw the screen
 	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
 
+	// Parse a command give
+	virtual void parseCommand(string command);
+
 	// Hide the entire screen.
 	// Any UI elements will need to be put into this function,
     // if they should be hidden when the screen is hidden.
