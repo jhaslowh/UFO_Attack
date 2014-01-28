@@ -59,7 +59,7 @@ void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	}
 
 	// Check for backspace 
-	if (mKeyH->keyPressed(KEY_BACKSPACE)){
+	if (mKeyH->keyPressedHold(KEY_BACKSPACE)){
 		line = line.substr(0, line.length() - 1);
 	}
 

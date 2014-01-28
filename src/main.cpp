@@ -107,7 +107,7 @@ void onUpdate(){
 		}
 
 		mMouseH.update();
-		mKeyH.update();
+		mKeyH.update(deltaTime);
 	}
 }
 
@@ -303,10 +303,10 @@ int main(int argc, char* argv[])
 	SDL_Init(SDL_INIT_VIDEO);
 	// Create Window 
 	if (settings->getFullscreen())
-		window = SDL_CreateWindow("CS 426 Project", 
+		window = SDL_CreateWindow("UFO Attack", 
 			40, 40, settings->getScreenWidth(),settings->getScreenHeight(), SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
 	else 
-		window = SDL_CreateWindow("CS 426 Project", 
+		window = SDL_CreateWindow("UFO Attack", 
 			40, 40, settings->getScreenWidth(),settings->getScreenHeight(), SDL_WINDOW_OPENGL);
 	// Create the window context 
 	SDL_GLContext context = SDL_GL_CreateContext(window);

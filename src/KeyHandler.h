@@ -50,21 +50,25 @@ using namespace std;
 #define KEY_RETURN 42
 #define KEY_ENTER 42 
 #define KEY_BACKSPACE 43
+#define KEY_SHIFT 44
 
-#define KEY_COUNT 44
+#define KEY_COUNT 45
 
 class KeyHandler
 {
 	// List of keys 
 	bool keys[KEY_COUNT];
 	bool keysOld[KEY_COUNT];
+	float keyDownTime[KEY_COUNT];
+	float timeForRepeat;		// Time to wait till key is repeated
+	float timeForMultiRepeat;   // Time to start multiply repeats at 
 	
 public:
 	KeyHandler();
 	~KeyHandler();
 
 	// Update keys 
-	void update();
+	void update(float deltaTime);
 
 	// Update the keystates 
 	void updateState(SDL_Event windowEvent);
@@ -82,6 +86,11 @@ public:
 	// Check to see if a key was pressed
 	// (was up and just pressed)
 	bool keyPressed(int key);
+
+	// Check to see if a key was pressed
+	// (was up and just pressed) or has been 
+	// held for a set amout of time 
+	bool keyPressedHold(int key);
 
 	// Get the string of the pressed key
 	string getPressedKey();

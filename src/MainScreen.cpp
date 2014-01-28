@@ -15,23 +15,23 @@ MainScreen::~MainScreen(){
 void MainScreen::init(float screen_width, float screen_height){
 	UIScreen::init(screen_width, screen_height);
 
-	buttonLevelSelect = new UIButton(screen_width *.1f,screen_height *.2f,100.0f,35.0f, std::string("Levels"));
+	buttonLevelSelect = new UIButton(screen_width *.1f,screen_height *.4f,100.0f,35.0f, std::string("Levels"));
 	buttonLevelSelect->setupHide(HT_HOROZONTAL,buttonLevelSelect->getX()-100.0f,.4f,true);
 	buttonLevelSelect->setHidden();
 
-	buttonStore = new UIButton(screen_width *.1f,(screen_height *.2f) + 40.0f,100.0f,35.0f, std::string("Store"));
+	buttonStore = new UIButton(screen_width *.1f,(screen_height *.4f) + 40.0f,100.0f,35.0f, std::string("Store"));
 	buttonStore->setupHide(HT_HOROZONTAL,buttonStore->getX()-100.0f,.4f,true);
 	buttonStore->setHidden();
 
-	buttonSettings = new UIButton(screen_width *.1f,(screen_height *.2f) + 80.0f,100.0f,35.0f, std::string("Settings"));
+	buttonSettings = new UIButton(screen_width *.1f,(screen_height *.4f) + 80.0f,100.0f,35.0f, std::string("Settings"));
 	buttonSettings->setupHide(HT_HOROZONTAL,buttonSettings->getX()-100.0f,.4f,true);
 	buttonSettings->setHidden();
 
-	buttonQuit = new UIButton(screen_width *.1f,(screen_height *.2f) + 120.0f,100.0f,35.0f, std::string("Quit"));
+	buttonQuit = new UIButton(screen_width *.1f,(screen_height *.4f) + 120.0f,100.0f,35.0f, std::string("Quit"));
 	buttonQuit->setupHide(HT_HOROZONTAL,buttonQuit->getX()-100.0f,.4f,true);
 	buttonQuit->setHidden();
 
-	buttonText = new UIButton(screen_width *.1f,(screen_height *.2f) + 160.0f,100.0f,35.0f, std::string("Test"));
+	buttonText = new UIButton(screen_width *.1f,(screen_height *.4f) + 160.0f,100.0f,35.0f, std::string("Test"));
 	buttonText->setupHide(HT_HOROZONTAL,buttonText->getX()-100.0f,.4f,true);
 	buttonText->setHidden();
 }

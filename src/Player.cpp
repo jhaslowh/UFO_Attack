@@ -235,7 +235,7 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			direcX = 0.0f;
 
 		// Check if player is trying to jump 
-		if (mKeyH->keyDown(KEY_W) && !jumping && !inAir){
+		if (mKeyH->keyDown(KEY_SPACE) && !jumping && !inAir){
 			// Set up physics 
 			jumpt = jumpTime;
 			airT = 0;

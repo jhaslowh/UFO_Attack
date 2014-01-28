@@ -66,3 +66,20 @@ Used for matrix math
 **SOIL**  
 [http://www.lonesock.net/soil.html](http://www.lonesock.net/soil.html)  
 Used to load texture files 
+
+Credits
+-------
+
+**Jonathan Haslow-Hall**  
+
+Programming   
+Art  
+
+**James Dressel**  
+
+Programming  
+
+**Andrew Geyster**  
+
+Programming  
+

@@ -3,16 +3,27 @@
 
 KeyHandler::KeyHandler()
 {
-	for (int i = 0; i < KEY_COUNT; i++)
+	for (int i = 0; i < KEY_COUNT; i++){
 		keys[i] = false;
+		keyDownTime[i] = 0.0f;
+	}
+	timeForRepeat = .5f;
+	timeForMultiRepeat = .45f;
 }
 
 KeyHandler::~KeyHandler(){}
 
 // Update keys 
-void KeyHandler::update(){
+void KeyHandler::update(float deltaTime){
 	for (int i = 0; i < KEY_COUNT; i++){
 		keysOld[i] = keys[i];
+	}
+
+	for (int i = 0; i < KEY_COUNT; i++){
+		if (keys[i])
+			keyDownTime[i] += deltaTime;
+		else 
+			keyDownTime[i] = 0.0f;
 	}
 }
 
@@ -58,84 +69,148 @@ bool KeyHandler::keyPressed(int key){
 	return keys[key] && !keysOld[key];
 }
 
+// Check to see if a key was pressed
+// (was up and just pressed) or has been 
+// held for a set amout of time 
+bool KeyHandler::keyPressedHold(int key){
+	if ((keys[key] && !keysOld[key]) || keyDownTime[key] >= timeForRepeat){
+		if (keyDownTime[key] >= timeForRepeat) keyDownTime[key] = timeForMultiRepeat;
+		return true;
+	}
+	return false;
+}
+
 // Get the string of the pressed key
 string KeyHandler::getPressedKey(){
 	// Numbers 
-	if (keys[KEY_0] && !keysOld[KEY_0])
+	if (keyPressedHold(KEY_0))
 		return string("0");
-	if (keys[KEY_1] && !keysOld[KEY_1])
+	if (keyPressedHold(KEY_1))
 		return string("1");
-	if (keys[KEY_2] && !keysOld[KEY_2])
+	if (keyPressedHold(KEY_2))
 		return string("2");
-	if (keys[KEY_3] && !keysOld[KEY_3])
+	if (keyPressedHold(KEY_3))
 		return string("3");
-	if (keys[KEY_4] && !keysOld[KEY_4])
+	if (keyPressedHold(KEY_4))
 		return string("4");
-	if (keys[KEY_5] && !keysOld[KEY_5])
+	if (keyPressedHold(KEY_5))
 		return string("5");
-	if (keys[KEY_6] && !keysOld[KEY_6])
+	if (keyPressedHold(KEY_6))
 		return string("6");
-	if (keys[KEY_7] && !keysOld[KEY_7])
+	if (keyPressedHold(KEY_7))
 		return string("7");
-	if (keys[KEY_8] && !keysOld[KEY_8])
+	if (keyPressedHold(KEY_8))
 		return string("8");
-	if (keys[KEY_9] && !keysOld[KEY_9])
+	if (keyPressedHold(KEY_9))
 		return string("9");
 
 	// Letters 
-	if (keys[KEY_A] && !keysOld[KEY_A])
+	
+	if (keyPressedHold(KEY_A)){
+		if (keys[KEY_SHIFT]) return string("A");
 		return string("a");
-	if (keys[KEY_B] && !keysOld[KEY_B])
+	}
+	if (keyPressedHold(KEY_B)){
+		if (keys[KEY_SHIFT]) return string("B");
 		return string("b");
-	if (keys[KEY_C] && !keysOld[KEY_C])
+	}
+	if (keyPressedHold(KEY_C)){
+		if (keys[KEY_SHIFT]) return string("C");
 		return string("c");
-	if (keys[KEY_D] && !keysOld[KEY_D])
+	}
+	if (keyPressedHold(KEY_D)){
+		if (keys[KEY_SHIFT]) return string("D");
 		return string("d");
-	if (keys[KEY_E] && !keysOld[KEY_E])
+	}
+	if (keyPressedHold(KEY_E)){
+		if (keys[KEY_SHIFT]) return string("E");
 		return string("e");
-	if (keys[KEY_F] && !keysOld[KEY_F])
+	}
+	if (keyPressedHold(KEY_F)){
+		if (keys[KEY_SHIFT]) return string("F");
 		return string("f");
-	if (keys[KEY_G] && !keysOld[KEY_G])
+	}
+	if (keyPressedHold(KEY_G)){
+		if (keys[KEY_SHIFT]) return string("G");
 		return string("g");
-	if (keys[KEY_H] && !keysOld[KEY_H])
+	}
+	if (keyPressedHold(KEY_H)){
+		if (keys[KEY_SHIFT]) return string("H");
 		return string("h");
-	if (keys[KEY_I] && !keysOld[KEY_I])
+	}
+	if (keyPressedHold(KEY_I)){
+		if (keys[KEY_SHIFT]) return string("I");
 		return string("i");
-	if (keys[KEY_J] && !keysOld[KEY_J])
+	}
+	if (keyPressedHold(KEY_J)){
+		if (keys[KEY_SHIFT]) return string("J");
 		return string("j");
-	if (keys[KEY_K] && !keysOld[KEY_K])
+	}
+	if (keyPressedHold(KEY_K)){
+		if (keys[KEY_SHIFT]) return string("K");
 		return string("k");
-	if (keys[KEY_L] && !keysOld[KEY_L])
+	}
+	if (keyPressedHold(KEY_L)){
+		if (keys[KEY_SHIFT]) return string("L");
 		return string("l");
-	if (keys[KEY_M] && !keysOld[KEY_M])
+	}
+	if (keyPressedHold(KEY_M)){
+		if (keys[KEY_SHIFT]) return string("M");
 		return string("m");
-	if (keys[KEY_N] && !keysOld[KEY_N])
+	}
+	if (keyPressedHold(KEY_N)){
+		if (keys[KEY_SHIFT]) return string("N");
 		return string("n");
-	if (keys[KEY_O] && !keysOld[KEY_O])
+	}
+	if (keyPressedHold(KEY_O)){
+		if (keys[KEY_SHIFT]) return string("O");
 		return string("o");
-	if (keys[KEY_P] && !keysOld[KEY_P])
+	}
+	if (keyPressedHold(KEY_P)){
+		if (keys[KEY_SHIFT]) return string("P");
 		return string("p");
-	if (keys[KEY_Q] && !keysOld[KEY_Q])
+	}
+	if (keyPressedHold(KEY_Q)){
+		if (keys[KEY_SHIFT]) return string("Q");
 		return string("q");
-	if (keys[KEY_R] && !keysOld[KEY_R])
+	}
+	if (keyPressedHold(KEY_R)){
+		if (keys[KEY_SHIFT]) return string("R");
 		return string("r");
-	if (keys[KEY_S] && !keysOld[KEY_S])
+	}
+	if (keyPressedHold(KEY_S)){
+		if (keys[KEY_SHIFT]) return string("S");
 		return string("s");
-	if (keys[KEY_T] && !keysOld[KEY_T])
+	}
+	if (keyPressedHold(KEY_T)){
+		if (keys[KEY_SHIFT]) return string("T");
 		return string("t");
-	if (keys[KEY_U] && !keysOld[KEY_U])
+	}
+	if (keyPressedHold(KEY_U)){
+		if (keys[KEY_SHIFT]) return string("U");
 		return string("u");
-	if (keys[KEY_V] && !keysOld[KEY_V])
+	}
+	if (keyPressedHold(KEY_V)){
+		if (keys[KEY_SHIFT]) return string("V");
 		return string("v");
-	if (keys[KEY_W] && !keysOld[KEY_W])
+	}
+	if (keyPressedHold(KEY_W)){
+		if (keys[KEY_SHIFT]) return string("W");
 		return string("w");
-	if (keys[KEY_X] && !keysOld[KEY_X])
+	}
+	if (keyPressedHold(KEY_X)){
+		if (keys[KEY_SHIFT]) return string("X");
 		return string("x");
-	if (keys[KEY_Y] && !keysOld[KEY_Y])
+	}
+	if (keyPressedHold(KEY_Y)){
+		if (keys[KEY_SHIFT]) return string("Y");
 		return string("y");
-	if (keys[KEY_Z] && !keysOld[KEY_Z])
+	}
+	if (keyPressedHold(KEY_Z)){
+		if (keys[KEY_SHIFT]) return string("Z");
 		return string("z");
-	if (keys[KEY_SPACE] && !keysOld[KEY_SPACE])
+	}
+	if (keyPressedHold(KEY_SPACE))
 		return string(" ");
 
 	return string("");
@@ -235,6 +310,9 @@ int KeyHandler::keyIndex(int scancode){
 		return KEY_RETURN;
 	case SDL_SCANCODE_BACKSPACE:
 		return KEY_BACKSPACE;
+	case SDL_SCANCODE_LSHIFT:
+	case SDL_SCANCODE_RSHIFT:
+		return KEY_SHIFT;
 	default:
 		break;
 	}
