@@ -8,7 +8,6 @@
 class IntroLoadScreen : public UIScreen
 {
 	float waitTime;
-	GLfloat mColor[4];
 	Sprite DGSplash;
 
 public:

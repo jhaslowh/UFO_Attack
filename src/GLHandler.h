@@ -2,11 +2,14 @@
 /* Using the standard output for fprintf */
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 #include <glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <string>
+using namespace std;
 
 class GLHandler
 {
@@ -60,6 +63,11 @@ public:
 
 	// Call to fix the ortho matrix if screen size has changed 
 	void setOrthoMatrix(const float width,const float height);
+
+	// Bind vertex and cord buffers
+	void bindBuffers(GLfloat* verts, GLfloat* cords);
+	// Bind texture 
+	void bindTexture(int id);
 
 	// Set the 3d camera matrix settings 
 	// Camera location  : glm::vec(0,0,0)

@@ -244,7 +244,7 @@ void Sprite::draw(GLHandler mgl){
 // Use to draw copies of the sprite faster
 // Must call bind() first. 
 void Sprite::drawFast(GLHandler* mgl){
-		/** Matrix transform **/
+	/** Matrix transform **/
 	// Starting matrix 
 	glm::mat4 mMatrix;
 	// Translate 

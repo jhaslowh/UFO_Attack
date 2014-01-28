@@ -40,24 +40,12 @@ void TextureAtlas::setIndiceOffset(int value){
 
 // Call to bind the vertex and cord buffers
 void TextureAtlas::bindBuffers(GLHandler* mgl){
-	/// Set up vertex and coord buffers 
-	glEnableVertexAttribArray(mgl->mPositionHandle);
-	glVertexAttribPointer(mgl->mPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, verts );
-
-	/// Bind texture
-	glEnableVertexAttribArray(mgl->mTextCordHandle);
-	glVertexAttribPointer(mgl->mTextCordHandle, 2,GL_FLOAT, GL_FALSE, 0, cords);
+	mgl->bindBuffers(verts, cords);
 }
 
 // Call to bind the texture 
 void TextureAtlas::bindTexture(GLHandler* mgl){
-	mgl->toggleTextures(true);
-	// Set the active texture unit to texture unit 0.
-	glActiveTexture(GL_TEXTURE0);
-	// Bind the texture to this unit.
-	glBindTexture(GL_TEXTURE_2D, textureID);
-	// Tell the texture uniform sampler to use this texture in the shader by binding to texture unit 0.
-	glUniform1i(mgl->mTextureHandle, 0);
+	mgl->bindTexture(textureID);
 }
 
 // Set the indicies for the atlas 

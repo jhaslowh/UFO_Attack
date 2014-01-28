@@ -173,6 +173,28 @@ void GLHandler::setOrthoMatrix(const float w,const float h){
 	orthoMatrix = glm::ortho( 0.0f, w, h, 0.0f, 1.0f, -1.0f);
 }
 
+
+// Bind vertex and cord buffers
+void GLHandler::bindBuffers(GLfloat* verts, GLfloat* cords){
+	/// Set up vertex and coord buffers 
+	glEnableVertexAttribArray(mPositionHandle);
+	glVertexAttribPointer(mPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, verts );
+
+	/// Bind texture
+	glEnableVertexAttribArray(mTextCordHandle);
+	glVertexAttribPointer(mTextCordHandle, 2,GL_FLOAT, GL_FALSE, 0, cords);
+}
+// Bind texture 
+void GLHandler::bindTexture(int id){
+	toggleTextures(true);
+	// Set the active texture unit to texture unit 0.
+	glActiveTexture(GL_TEXTURE0);
+	// Bind the texture to this unit.
+	glBindTexture(GL_TEXTURE_2D, id);
+	// Tell the texture uniform sampler to use this texture in the shader by binding to texture unit 0.
+	glUniform1i(mTextureHandle, 0);
+}
+
 // Set the 3d camera matrix settings 
 // Camera location  : glm::vec(0,0,0)
 // Target           : glm::vec(0,0,0)
