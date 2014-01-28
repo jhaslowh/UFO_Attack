@@ -8,7 +8,7 @@
 #include "UIAtlas.h"
 #include "UIButton.h"
 #include "UITerminal.h"
-#include "LevelCamera.h"
+#include "Camera2D.h"
 
 // Level editor states
 #define LES_NONE 0

@@ -4,7 +4,7 @@
 #include "GameAtlas.h"
 #include "KeyHandler.h"
 #include "MouseHandler.h"
-#include "LevelCamera.h"
+#include "Camera2D.h"
 
 class UFO
 {

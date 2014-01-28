@@ -112,14 +112,14 @@ void LevelEditor::update(float deltaTime, Handlers* handlers){
 	}
 
 	// Update levels camera
-	((LevelCamera*)handlers->camera)->update(deltaTime);
+	((Camera2D*)handlers->camera)->update(deltaTime);
 }
 
 // Update editor input
 void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
 	// Get mouse location 
-	levelX = ((LevelCamera*)(handlers->camera))->toLevelX(mMouseH->getX());
-	levelY = ((LevelCamera*)(handlers->camera))->toLevelY(mMouseH->getY());
+	levelX = ((Camera2D*)(handlers->camera))->toLevelX(mMouseH->getX());
+	levelY = ((Camera2D*)(handlers->camera))->toLevelY(mMouseH->getY());
 	levelLoc.setLocation(levelX, levelY);
 	
 	// Turn on and off editor
@@ -192,6 +192,7 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			if (mMouseH->isRightDown() && !mMouseH->wasRightDown()){
 				state = LES_MOVE_CAMERA;
 				lastMouse.setLocation(mMouseH->getX(), mMouseH->getY());
+				pointHighlighted = false;
 				return;
 			}
 
@@ -210,8 +211,8 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 					pointHighlighted = true;
 					// Set display point location 
 					pointSprite.setPosition(
-						((LevelCamera*)(handlers->camera))->toScreenX(itr->getX()), 
-						((LevelCamera*)(handlers->camera))->toScreenY(itr->getY()));
+						((Camera2D*)(handlers->camera))->toScreenX(itr->getX()), 
+						((Camera2D*)(handlers->camera))->toScreenY(itr->getY()));
 
 					// Check if mouse was clicked 
 					if (clicked){
@@ -300,8 +301,8 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 					pointHighlighted = true;
 					// Set display point location 
 					pointSprite.setPosition(
-						((LevelCamera*)(handlers->camera))->toScreenX(itr->getX()), 
-						((LevelCamera*)(handlers->camera))->toScreenY(itr->getY()));
+						((Camera2D*)(handlers->camera))->toScreenX(itr->getX()), 
+						((Camera2D*)(handlers->camera))->toScreenY(itr->getY()));
 
 					// Check if mouse was clicked and if so remove point
 					if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown()){
@@ -372,7 +373,7 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			}
 
 
-			LevelCamera* c = ((LevelCamera*)(handlers->camera));
+			Camera2D* c = ((Camera2D*)(handlers->camera));
 
 			c->setLocation(
 				c->getX() - (mMouseH->getX() - lastMouse.getX()),

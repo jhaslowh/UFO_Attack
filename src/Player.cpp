@@ -205,7 +205,7 @@ void Player::resolveCollision(Handlers* handlers){
 		ufo->resolveCollision(handlers);
 
 		// Set camera location 
-		((LevelCamera*)(handlers->camera))->setTarget(ufo->getX(), ufo->getY() + cameraOffsetY);
+		((Camera2D*)(handlers->camera))->setTarget(ufo->getX(), ufo->getY() + cameraOffsetY);
 	}
 	else {
 		locX = nextX;
@@ -214,7 +214,7 @@ void Player::resolveCollision(Handlers* handlers){
 		sprite.setPosition(locX, locY);
 
 		// Set camera location 
-		((LevelCamera*)(handlers->camera))->setTarget(locX, locY - cameraOffsetY);
+		((Camera2D*)(handlers->camera))->setTarget(locX, locY - cameraOffsetY);
 	}
 }
 

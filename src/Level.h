@@ -9,7 +9,7 @@
 #include "GameAtlas.h"
 #include "SceneryHandler.h"
 #include "Tree.h"
-#include "LevelCamera.h"
+#include "Camera2D.h"
 
 class Level
 {
@@ -17,7 +17,7 @@ class Level
 	Ground* ground;
 	GameAtlas* gameAtlas;
 	SceneryHandler* sceneryHandler;
-	LevelCamera camera;
+	Camera2D camera;
 
 public:
 	Handlers handlers;

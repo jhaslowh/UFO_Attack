@@ -8,7 +8,7 @@
 #include "Handlers.h"
 #include "UFO.h"
 #include "GameAtlas.h"
-#include "LevelCamera.h"
+#include "Camera2D.h"
 
 #define GRAVITY 980.0f
 

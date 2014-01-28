@@ -17,7 +17,7 @@
     <ClInclude Include="Handlers.h" />
     <ClInclude Include="IntroLoadScreen.h" />
     <ClInclude Include="Level.h" />
-    <ClInclude Include="LevelCamera.h" />
+    <ClInclude Include="Camera2D.h" />
     <ClInclude Include="LevelEditor.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MainScreen.h" />
@@ -58,7 +58,7 @@
     <ClCompile Include="Handlers.cpp" />
     <ClCompile Include="IntroLoadScreen.cpp" />
     <ClCompile Include="Level.cpp" />
-    <ClCompile Include="LevelCamera.cpp" />
+    <ClCompile Include="Camera2D.cpp" />
     <ClCompile Include="LevelEditor.cpp" />
     <ClCompile Include="MainScreen.cpp" />
     <ClCompile Include="PauseScreen.cpp" />

@@ -1,7 +1,7 @@
-#include "LevelCamera.h"
+#include "Camera2D.h"
 
 
-LevelCamera::LevelCamera()
+Camera2D::Camera2D()
 {
 	locX = 0.0f;
 	locY = 0.0f;
@@ -14,16 +14,16 @@ LevelCamera::LevelCamera()
 	fixSpeed = 500.0f;
 }
 
-LevelCamera::~LevelCamera(){}
+Camera2D::~Camera2D(){}
 
 // Set up camera
-void LevelCamera::init(float screen_width, float screen_height){
+void Camera2D::init(float screen_width, float screen_height){
 	originX = screen_width / 2.0f;
 	originY = screen_height / 2.0f;
 }
 
 // Set camera location
-void LevelCamera::setLocation(float x, float y){
+void Camera2D::setLocation(float x, float y){
 	// Invert locations so that transforms work correctly 
 	locX = -x;
 	locY = -y;
@@ -31,7 +31,7 @@ void LevelCamera::setLocation(float x, float y){
 	targetY = -y;
 }
 // Set target location
-void LevelCamera::setTarget(float x, float y){
+void Camera2D::setTarget(float x, float y){
 	// Invert locations so that transforms work correctly 
 	targetX = -x;
 	targetY = -y;
@@ -41,37 +41,42 @@ void LevelCamera::setTarget(float x, float y){
 	direcY = sin(angle);
 	direcX = cos(angle);
 }
-float LevelCamera::getX(){ return -locX;}
-float LevelCamera::getY(){ return -locY;}
+float Camera2D::getX(){ return -locX;}
+float Camera2D::getY(){ return -locY;}
 // Set camera rotation
-void LevelCamera::setRotation(float r){
+void Camera2D::setRotation(float r){
 	rotation = r;
 }
 // Set camera zoom
-void LevelCamera::setZoom(float z){
+void Camera2D::setZoom(float z){
 	zoom = z;
 }
+// Get camera zoom 
+float Camera2D::getZoom(){return zoom;}
 
 // Convert mouse x to level x
-float LevelCamera::toLevelX(float mouseX){
-	return (mouseX - originX) - locX;
+float Camera2D::toLevelX(float mouseX){
+	// Apply negation of matrix transforms 
+	return ((mouseX - originX) / zoom) - locX;
 }
 // Convert mouse y to level y
-float LevelCamera::toLevelY(float mouseY){
-	return (mouseY - originY) - locY;
+float Camera2D::toLevelY(float mouseY){
+	// Apply negation of matrix transforms 
+	return ((mouseY - originY) / zoom) - locY;
 }
 // Convert level x to screen x
-float LevelCamera::toScreenX(float levelX){
-	return levelX + locX + originX;
+float Camera2D::toScreenX(float levelX){
+	// Apply matrix transforms in reverse order 
+	return ((levelX + locX) * zoom) + originX;
 }
 // Convert level x to screen y
-float LevelCamera::toScreenY(float levelY){
-	return levelY + locY + originY;
+float Camera2D::toScreenY(float levelY){
+	// Apply matrix transforms in reverse order 
+	return ((levelY + locY) * zoom) + originY;
 }
 
-
 // update camera state 
-void LevelCamera::update(float deltaTime){
+void Camera2D::update(float deltaTime){
 	// Move camera to target 
 	if (locX < targetX){
 		locX += deltaTime * direcX * fixSpeed;
@@ -110,17 +115,20 @@ void LevelCamera::update(float deltaTime){
 }
 
 // Convert camera to a matrix 
-glm::mat4 LevelCamera::getMatrix(){
+glm::mat4 Camera2D::getMatrix(){
 	// Starting matrix 
 	glm::mat4 mMatrix;
-	// Translate 
-	mMatrix = glm::translate(mMatrix, glm::vec3(locX, locY, 0.0f));
+
+	// I beleive the translation is actually the origin in this case. 
+
+	// Origin
+	mMatrix = glm::translate(mMatrix, glm::vec3(originX, originY, 0.0f));
 	// Rotation
 	mMatrix = glm::rotate(mMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
 	// Scale 
 	mMatrix = glm::scale(mMatrix, glm::vec3(zoom));
-	// Origin
-	mMatrix = glm::translate(mMatrix, glm::vec3(originX, originY, 0.0f));
+	// Translate 
+	mMatrix = glm::translate(mMatrix, glm::vec3(locX, locY, 0.0f));
 
 	return mMatrix;
 }

@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <math.h>
 
-class LevelCamera
+class Camera2D
 {
 	float locX, locY;			// Location of our camera 
 	float targetX, targetY;		// Target location for the camera 
@@ -15,8 +15,8 @@ class LevelCamera
 	float originX, originY;		// Camera origin
 
 public:
-	LevelCamera();
-	~LevelCamera();
+	Camera2D();
+	~Camera2D();
 
 	// Set up camera
 	void init(float screen_width, float screen_height);
@@ -31,14 +31,20 @@ public:
 	void setRotation(float r);
 	// Set camera zoom
 	void setZoom(float z);
+	// Get camera zoom 
+	float getZoom();
 
 	// Convert mouse x to level x
+	// NOTE: Does not account for rotation. 
 	float toLevelX(float mouseX);
 	// Convert mouse y to level y
+	// NOTE: Does not account for rotation. 
 	float toLevelY(float mouseY);
 	// Convert level x to screen x
+	// NOTE: Does not account for rotation. 
 	float toScreenX(float levelX);
 	// Convert level x to screen y
+	// NOTE: Does not account for rotation. 
 	float toScreenY(float levelY);
 
 	// update camera state 
