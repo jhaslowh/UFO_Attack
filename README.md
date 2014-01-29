@@ -23,6 +23,7 @@ Editor Modes
 Commands:  
 - "off" : turn off terminal 
 - "restart" : restart entire game  
+- "clear" : clear terminal
 
 Technical Information
 ---------------------

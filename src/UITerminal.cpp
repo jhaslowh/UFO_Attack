@@ -13,6 +13,7 @@ UITerminal::UITerminal() : UITransitionObject()
 	textOffY = 5.0f;
 	maxTextLength = 50;
 	useFunction = false;
+	iteratorLoc = 0;
 
 	// Set colors 
 	tColors = new GLfloat*[4];
@@ -104,12 +105,35 @@ void UITerminal::addLine(string line, int type){
 	lines[0] = tLine;
 }
 
+// Clear terminal
+void UITerminal::clear(){
+	for (int i = 0; i < 10; i++){
+		lines[i].text = "";
+	}
+}
+
 // Update input 
 void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	UITransitionObject::updateInput(mKeyH, mMouseH);
 
 	// Add text to the line 
-	line += mKeyH->getPressedKey();
+	string next = mKeyH->getPressedKey();
+	if (next.length() > 0){
+		// Add text to end of line if iterator is at the end
+		if (iteratorLoc == line.length()){
+			line += next;
+			iteratorLoc++;
+		}
+		// Add text to the middle of line if iterator is inside line 
+		else {
+			line = 
+				line.substr(0, iteratorLoc) + 
+				next + 
+				line.substr(iteratorLoc, line.length());
+			iteratorLoc++;
+		}
+	}
+
 
 	// Make sure line is not too long
 	if (line.length() > maxTextLength){
@@ -118,11 +142,25 @@ void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 	// Check for backspace 
 	if (mKeyH->keyPressedHold(KEY_BACKSPACE)){
-		line = line.substr(0, line.length() - 1);
+		if (iteratorLoc > 0){
+			// Subtract text at end if iterator is at end of line
+			if (iteratorLoc == line.length()){
+				line = line.substr(0, line.length() - 1);
+				iteratorLoc--;
+			}
+			// Subtract text in the middle of line if iterator is inside line 
+			else {
+				line = 
+					line.substr(0, iteratorLoc-1) + 
+					line.substr(iteratorLoc, line.length());
+				iteratorLoc--;
+			}
+		}
 	}
 
 	// Check for enter 
 	if (mKeyH->keyPressed(KEY_ENTER)){
+		iteratorLoc = 0;
 		commandIssued = true;
 		commandString = line;
 		line.clear();
@@ -132,6 +170,18 @@ void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			commandIssued = false;
 			commandFunc(commandString);
 		}
+	}
+
+	// Check if useris trying to move iterator 
+	if (mKeyH->keyPressedHold(KEY_LEFT)){
+		iteratorLoc--;
+		if (iteratorLoc < 0)
+			iteratorLoc = 0;
+	}
+	if (mKeyH->keyPressedHold(KEY_RIGHT)){
+		iteratorLoc++;
+		if (iteratorLoc > line.length())
+			iteratorLoc = line.length();
 	}
 }
 
@@ -147,7 +197,8 @@ void UITerminal::draw(GLHandler* mgl, UIAtlas* mAtlas){
 	mgl->setFlatColor(tColors[0]);
 	mAtlas->mTextRender->drawText(*mgl, line, loc_x + textOffX, loc_y + textOffY, 0, textSize);
 	// Draw itterator 
-	mAtlas->drawScale2(mgl, UII_REC, loc_x + textOffX + mAtlas->mTextRender->measureString(line, textSize), 
+	mAtlas->drawScale2(mgl, UII_REC, loc_x + textOffX + 
+		mAtlas->mTextRender->measureString(line.substr(0,iteratorLoc), textSize), 
 		loc_y + textOffY, 2.0f, textSize);
 
 	// Draw history lines 

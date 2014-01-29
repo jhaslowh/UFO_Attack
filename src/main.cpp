@@ -120,6 +120,7 @@ void onUpdate(){
 
 // Check commands from the terminal
 void checkCommand(string line){
+	cout << line << "\n";
 
 	// Find first space 
 	int firstSpace = line.find(string(" "));
@@ -179,11 +180,15 @@ void checkCommand(string line){
 
 		return;
 	}
+	// Check for clear command
+	else if (command == "clear"){
+		terminal->clear();
+		return;
+	}
 
 	// Send command to screen 
 	screen->parseCommand(line);
 	
-	cout << line << "\n";
 	terminal->addLine(line);
 }
 

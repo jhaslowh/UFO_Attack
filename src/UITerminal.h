@@ -22,6 +22,7 @@ class UITerminal : public UITransitionObject
 	string commandString;   // String command to be read
 	string line;			// Current typed line
 	int maxTextLength;		// Max length
+	int iteratorLoc;
 
 	// Text rendering 
 	float textSize;			// Size of drawn text
@@ -57,6 +58,9 @@ public:
 	// Type must be one of the following:
 	// TL_NORMAL, TL_ERROR, TL_WARNING, TL_SUCCESS
 	void addLine(string line, int type);
+
+	// Clear terminal
+	void clear();
 
 	// Update input 
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
