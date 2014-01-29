@@ -18,8 +18,11 @@ Editor Modes
 - Remove Points: Use the mouse to select and remove ground points.  
 - Right click and drag to move camera 
 
-**Terminal**
-2 : Toggle on/off 
+**Terminal**  
+2 : Toggle on/off  
+Commands:  
+- "off" : turn off terminal 
+- "restart" : restart entire game  
 
 Technical Information
 ---------------------

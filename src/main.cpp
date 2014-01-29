@@ -116,9 +116,54 @@ void onUpdate(){
 void checkCommand(string line){
 	cout << line << "\n";
 
+	// Find first space 
+	int firstSpace = line.find(string(" "));
+	// Command
+	string command;
+	string args("none");
+	
+	// ----------- //
+	// Get command 
+	// ----------- // 
+	if (firstSpace == -1)
+		command = line.substr(0, line.length());
+	else {
+		command = line.substr(0, firstSpace);
+
+		// Grab arguments if there are any
+		if (firstSpace != line.length() - 1){
+			args = line.substr(firstSpace, line.length());
+		}
+	}
+
+	// -------------- //
+	// Check commands 
+	// -------------- // 
+
 	// If you want to check a global command, do it here and
 	// return so that the screen does not parse the same command. 
 
+	// Check for disable terminal command 
+	if (command == "off"){
+		showTerminal = false;
+		terminal->hide();
+
+		if (args != "none")
+			cout << "Ignoring unrecognized arguments given to command \"off\"\n";
+	}
+	// Check for restart command
+	else if (command == "restart"){
+		// Wait for rendering to stop 
+		while (render){} 
+		// Delete old screen 
+		delete screen;
+		// Switch to first screen 
+		screen = (UIScreen*)new IntroLoadScreen();
+		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+
+		if (args != "none")
+			cout << "Ignoring unrecognized arguments given to command \"restart\"\n";
+	}
 
 	// Send command to screen 
 	screen->parseCommand(line);
