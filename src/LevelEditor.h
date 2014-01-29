@@ -9,6 +9,7 @@
 #include "UIButton.h"
 #include "UITerminal.h"
 #include "Camera2D.h"
+#include "LevelProperties.h"
 
 // Level editor states
 #define LES_NONE 0
@@ -18,6 +19,8 @@
 #define LES_SCENERY 4
 #define LES_REMOVE_SCENERY 5
 #define LES_MOVE_CAMERA 6
+#define LES_LB_LEFT 7
+#define LES_LB_RIGHT 8
 
 class LevelEditor
 {
@@ -38,12 +41,18 @@ class LevelEditor
 	// ---------------------- //
 	// Scenery Object Editing //
 	// ---------------------  //
-	// Offset x and y of scenery object 
-	float sceneryOffsetX;
-	float sceneryOffsetY;
 	// Reference to selected scenery object 
 	SceneryObject* scObj;
 	
+	// ---------------------- //
+	// Level Editor Moving    //
+	// ---------------------  //
+	// Sprites for level bounds 
+	Sprite levelLeft;
+	Sprite levelRight;
+	// Distance to select bound
+	float boundDistance;
+
 	// ------ //
 	// States //
 	// ------ //
@@ -51,22 +60,31 @@ class LevelEditor
 	bool enabled;
 	// Current state 
 	int state;
+	// Current string of level editor state 
+	string stateString;
 	
+	// ------ //
+	//   UI   //
+	// ------ //
 	// Buttons
 	UIButton* bMove;
 	UIButton* bAdd;
 	UIButton* bRemove;
 	UIButton* bRemoveS;
 
+	// ---------- //
+	// Mouse info 
+	// ---------- // 
 	string mouseLoc;
-	string stateString;
+	Point lastMouse;
+	// Mouse offset for selecting objects 
+	float mouseOffsetX; 
+	float mouseOffsetY;
 
 	// Level location
 	float levelX, levelY;
 	Point levelLoc;
 
-	// Mouse locations 
-	Point lastMouse;
 
 public:
 	LevelEditor();

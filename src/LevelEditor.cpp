@@ -7,12 +7,14 @@ LevelEditor::LevelEditor()
 	selectedPoint = NULL;
 	pointHighlighted = false;
 	enabled = false;
-	sceneryOffsetX = 0;
-	sceneryOffsetY = 0;
+	mouseOffsetX = 0;
+	mouseOffsetY = 0;
 	scObj = NULL;
 
 	levelX = 0.0f;
 	levelY = 0.0f;
+
+	boundDistance = 40.0f;
 
 	state = LES_NONE;
 	bMove = NULL;
@@ -47,6 +49,9 @@ void LevelEditor::init(float screen_width, float screen_height){
 	bRemoveS = new UIButton(5,125.0f,100.0f,35.0f, std::string("Remove S"));
 	bRemoveS->setupHide(HT_HOROZONTAL,bRemoveS->getX()-100.0f,.2f,true);
 	bRemoveS->setHidden();
+
+	levelLeft.setPosition(0.0f,screen_height/2.0f);
+	levelRight.setPosition(0.0f,screen_height/2.0f);
 }
 
 // Load editor 
@@ -55,6 +60,12 @@ void LevelEditor::load(TextureAtlas* mAtlas){
 	pointSprite.setOrigin(4.0f,4.0f);
 	pointSprite.setColor(.8f,.8f,1.0f,1.0f);
 	pointSprite.setScale(0.0f);
+
+	levelLeft.setup(64.0f,64.0f, "images/levelArrow2.png");
+	levelLeft.setOrigin(64.0f,32.0f);
+
+	levelRight.setup(64.0f,64.0f, "images/levelArrow.png");
+	levelRight.setOrigin(0.0f,32.0f);
 	
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 	bMove->centerText(mUI->mTextRender);
@@ -90,29 +101,27 @@ void LevelEditor::update(float deltaTime, Handlers* handlers){
 	bRemoveS->update(deltaTime);
 
 	// Update State string 
-	if (state == LES_NONE || state == LES_MOVE_POINT || state == LES_SCENERY){
-		stateString.clear();
-		stateString += "State: Move Object";
-	}
-	else if (state == LES_ADD_POINT){
-		stateString.clear();
-		stateString += "State: Add Ground Point";
-	}
-	else if (state == LES_REMOVE_POINT){
-		stateString.clear();
-		stateString += "State: Remove Ground Point";
-	}
-	else if (state == LES_REMOVE_SCENERY){
-		stateString.clear();
-		stateString += "State: Remove Scenery Object";
-	}
-	else if (state == LES_MOVE_CAMERA){
-		stateString.clear();
-		stateString += "State: Move Camera";
-	}
+	if (state == LES_NONE || state == LES_MOVE_POINT || state == LES_SCENERY)
+		stateString = "State: Move Object";
+	else if (state == LES_ADD_POINT)
+		stateString = "State: Add Ground Point";
+	else if (state == LES_REMOVE_POINT)
+		stateString = "State: Remove Ground Point";
+	else if (state == LES_REMOVE_SCENERY)
+		stateString = "State: Remove Scenery Object";
+	else if (state == LES_MOVE_CAMERA)
+		stateString = "State: Move Camera";
+	else if (state == LES_LB_LEFT || state == LES_LB_RIGHT)
+		stateString = "State: Moving Level Bounds";
 
 	// Update levels camera
 	((Camera2D*)handlers->camera)->update(deltaTime);
+
+	// Set level sprite locations 
+	levelLeft.setX(((Camera2D*)(handlers->camera))->toScreenX(
+		((LevelProperties*)(handlers->levelProps))->getLevelLeft()  ));
+	levelRight.setX(((Camera2D*)(handlers->camera))->toScreenX(
+		((LevelProperties*)(handlers->levelProps))->getLevelRight()  ));
 }
 
 // Update editor input
@@ -235,8 +244,8 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 					// Check if scenery object contains mouse And mouse was clicked 
 					if (head->getCollisionRec()->contains(levelX, levelY)){
 						// Set up editor to move scenery object 
-						sceneryOffsetX = head->getX() - levelX;
-						sceneryOffsetY = head->getY() - levelY;
+						mouseOffsetX = head->getX() - levelX;
+						mouseOffsetY = head->getY() - levelY;
 						// Set pointer reference
 						scObj = head;
 
@@ -246,6 +255,23 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 					}
 
 					head = head->getNext();
+				}
+			}
+
+			/// Select Level Bounds 
+			if (clicked){
+				if (dist(mMouseH->getLoc(), Point(levelLeft.getX()-32.0f, levelLeft.getY()))
+					<= boundDistance){
+					state = LES_LB_LEFT;
+					mouseOffsetX = levelLeft.getX() - mMouseH->getX();
+					return;
+				}
+		
+				if (dist(mMouseH->getLoc(), Point(levelRight.getX()+32.0f, levelRight.getY()))
+					<= boundDistance){
+					state = LES_LB_RIGHT;
+					mouseOffsetX = levelRight.getX() - mMouseH->getX();
+					return;
 				}
 			}
 		}
@@ -325,8 +351,8 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			else {
 				// Set scenery object location 
 				scObj->setLocation(
-					levelX + sceneryOffsetX,
-					levelY + sceneryOffsetY);
+					levelX + mouseOffsetX,
+					levelY + mouseOffsetY);
 			}
 		}
 		// ---------------------- //
@@ -372,7 +398,6 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 				return;
 			}
 
-
 			Camera2D* c = ((Camera2D*)(handlers->camera));
 
 			c->setLocation(
@@ -380,12 +405,39 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 				c->getY() - (mMouseH->getY() - lastMouse.getY()));
 			lastMouse.setLocation(mMouseH->getX(), mMouseH->getY());
 		}
+		// ---------------------- //
+		// State: Move Level Bounds   
+		// ---------------------- //
+		else if (state == LES_LB_LEFT){
+			if (!mMouseH->isLeftDown()){
+				state = LES_NONE;
+				return;
+			}
+
+			// Set bounds location 
+			((LevelProperties*)(handlers->levelProps))->setLevelLeft
+				(((Camera2D*)(handlers->camera))->toLevelX(mMouseH->getX()+ mouseOffsetX));
+		}
+		else if (state == LES_LB_RIGHT){
+			if (!mMouseH->isLeftDown()){
+				state = LES_NONE;
+				return;
+			}
+			
+			// Set bounds location 
+			((LevelProperties*)(handlers->levelProps))->setLevelRight
+				(((Camera2D*)(handlers->camera))->toLevelX(mMouseH->getX()+ mouseOffsetX));
+		}
 	}
 }
 
 // Draw editor 
 void LevelEditor::draw(GLHandler* mgl, UIAtlas* mUI){
-	pointSprite.draw(*mgl);
+	if (enabled){
+		pointSprite.draw(*mgl);
+		levelLeft.draw(*mgl);
+		levelRight.draw(*mgl);
+	}
 	
 	mUI->bindBuffers(mgl);
 	mUI->bindTexture(mgl);

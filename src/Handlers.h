@@ -12,6 +12,7 @@ public:
 	void* sceneryHandler;
 	Ground* ground;
 	void* camera;
+	void* levelProps;
 
 	Handlers();
 	~Handlers();

@@ -7,6 +7,7 @@ Handlers::Handlers()
 	sceneryHandler = NULL;
 	ground = NULL;
 	camera = NULL;
+	levelProps = NULL;
 }
 
 Handlers::~Handlers(){}

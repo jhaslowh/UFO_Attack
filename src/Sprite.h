@@ -16,12 +16,12 @@ private:
 	GLfloat verts[8];
 	GLfloat cords[8];
 	GLuint textureID;
-	float pos_x;
-	float pos_y;
+	float locX;
+	float locY;
 	float rotation;
 	float scale;
-	float origin_x;
-	float origin_y;
+	float originX;
+	float originY;
 	float width;
 	float height;
 	GLfloat color[4];
@@ -36,6 +36,8 @@ public:
 
 	// Set the position of the sprite 
 	void setPosition(float,float);
+	void setX(float x);
+	void setY(float y);
 	float getX();
 	float getY();
 	// Set the rotation of the sprite 

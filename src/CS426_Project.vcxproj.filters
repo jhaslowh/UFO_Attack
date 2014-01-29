@@ -180,6 +180,9 @@
     <ClInclude Include="Camera2D.h">
       <Filter>Header Files\gfx</Filter>
     </ClInclude>
+    <ClInclude Include="LevelProperties.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -298,6 +301,9 @@
     </ClCompile>
     <ClCompile Include="Camera2D.cpp">
       <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelProperties.cpp">
+      <Filter>Source Files\game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

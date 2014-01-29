@@ -42,7 +42,10 @@ void UFO::update(float deltaTime, Handlers* handlers){
 void UFO::checkCollision(Handlers* handlers){
 	// Make sure UFO cannot leave level on left or right side
 
-	// TODO 
+	if (nextX - 50.0f < ((LevelProperties*)(handlers->levelProps))->getLevelLeft())
+		nextX = ((LevelProperties*)(handlers->levelProps))->getLevelLeft() + 50.0f;
+	if (nextX + 50.0f > ((LevelProperties*)(handlers->levelProps))->getLevelRight())
+		nextX = ((LevelProperties*)(handlers->levelProps))->getLevelRight() - 50.0f;
 
 	// ----------------------------------
 	// Check UFO collision with ground 

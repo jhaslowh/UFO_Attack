@@ -1,16 +1,16 @@
 #include "Sprite.h"
 
 Sprite::Sprite(){
-	pos_x = 0.0f;
-	pos_y = 0.0f;
+	locX = 0.0f;
+	locY = 0.0f;
 	rotation = 0.0f;
 	scale = 1.0f;
 	color[0] = 1.0f;
 	color[1] = 1.0f;
 	color[2] = 1.0f;
 	color[3] = 1.0f;
-	origin_x = 0;
-	origin_y = 0;
+	originX = 0;
+	originY = 0;
 	textureID = 0;
 	width = 0;
 	height = 0;
@@ -61,10 +61,12 @@ void Sprite::setup(float w,float h, std::string file)
 
 // Set position of the sprite 
 void Sprite::setPosition(float x, float y){
-	pos_x = x; pos_y = y;
+	locX = x; locY = y;
 }
-float Sprite::getX(){return pos_x;}
-float Sprite::getY(){return pos_y;}
+void Sprite::setX(float x){locX = x;}
+void Sprite::setY(float y){locY = y;}
+float Sprite::getX(){return locX;}
+float Sprite::getY(){return locY;}
 
 // Set the rotation of the sprite 
 void Sprite::setRotation(float degrees){
@@ -80,8 +82,8 @@ float Sprite::getScale(){return scale;}
 
 // Set the origin of the sprite 
 void Sprite::setOrigin(float x,float y){
-	origin_x = x;
-	origin_y = y;
+	originX = x;
+	originY = y;
 }
 
 // Set the RGB color 
@@ -184,13 +186,13 @@ void Sprite::draw(GLHandler mgl){
 	// Starting matrix 
 	glm::mat4 mMatrix;
 	// Translate 
-	mMatrix = glm::translate(mMatrix, glm::vec3(pos_x, pos_y, 0.0f));
+	mMatrix = glm::translate(mMatrix, glm::vec3(locX, locY, 0.0f));
 	// Rotation
 	mMatrix = glm::rotate(mMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
 	// Scale 
 	mMatrix = glm::scale(mMatrix, glm::vec3(scale));
 	// Origin
-	mMatrix = glm::translate(mMatrix, glm::vec3(-origin_x, -origin_y, 0.0f));
+	mMatrix = glm::translate(mMatrix, glm::vec3(-originX, -originY, 0.0f));
 	// Send the rotation matrix to the shader 
 	mgl.setModelMatrix(mMatrix);
 
@@ -248,13 +250,13 @@ void Sprite::drawFast(GLHandler* mgl){
 	// Starting matrix 
 	glm::mat4 mMatrix;
 	// Translate 
-	mMatrix = glm::translate(mMatrix, glm::vec3(pos_x, pos_y, 0.0f));
+	mMatrix = glm::translate(mMatrix, glm::vec3(locX, locY, 0.0f));
 	// Rotation
 	mMatrix = glm::rotate(mMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
 	// Scale 
 	mMatrix = glm::scale(mMatrix, glm::vec3(scale));
 	// Origin
-	mMatrix = glm::translate(mMatrix, glm::vec3(-origin_x, -origin_y, 0.0f));
+	mMatrix = glm::translate(mMatrix, glm::vec3(-originX, -originY, 0.0f));
 	// Send the rotation matrix to the shader 
 	mgl->setModelMatrix(mMatrix);
 

@@ -10,6 +10,7 @@
 #include "SceneryHandler.h"
 #include "Tree.h"
 #include "Camera2D.h"
+#include "LevelProperties.h"
 
 class Level
 {
@@ -18,15 +19,13 @@ class Level
 	GameAtlas* gameAtlas;
 	SceneryHandler* sceneryHandler;
 	Camera2D camera;
+	LevelProperties levelProps;
 
 public:
 	Handlers handlers;
 
 	Level();
 	~Level();
-
-	// Get reference to ground 
-	Ground* getGround();
 
 	// initialize level
 	void init(float screen_width, float screen_height);

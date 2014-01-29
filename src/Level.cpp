@@ -13,13 +13,10 @@ Level::~Level(){
 	delete sceneryHandler;
 }
 
-// Get reference to ground 
-Ground* Level::getGround(){
-	return ground;
-}
-
 // initialize level
 void Level::init(float screen_width, float screen_height){
+	levelProps.setLevelRight(1400.0f);
+
 	player->init(screen_width, screen_height);
 	player->ufo->setLocation(100.0f,200.0f);
 
@@ -56,6 +53,7 @@ void Level::init(float screen_width, float screen_height){
 	handlers.ground = ground;
 	handlers.sceneryHandler = sceneryHandler;
 	handlers.camera = &camera;
+	handlers.levelProps = &levelProps;
 }
 
 // Load level (use for textures)

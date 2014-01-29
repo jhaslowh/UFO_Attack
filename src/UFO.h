@@ -5,6 +5,7 @@
 #include "KeyHandler.h"
 #include "MouseHandler.h"
 #include "Camera2D.h"
+#include "LevelProperties.h"
 
 class UFO
 {
