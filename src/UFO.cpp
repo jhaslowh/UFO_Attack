@@ -7,6 +7,7 @@ UFO::UFO(){
 	originX = 50.0f;
 	originY = 50.0f;
 	speed = 300.0f;
+	minDistFromGround = 200.0f;
 }
 UFO::~UFO(){}
 
@@ -43,9 +44,29 @@ void UFO::checkCollision(Handlers* handlers){
 
 	// TODO 
 
+	// ----------------------------------
+	// Check UFO collision with ground 
 	// Push UFO away from ground if too close 
+	// ----------------------------------
+	
+	// Point used during collision detection 
+	Point p;
+	Point* itr;
 
-	// TODO 
+	// Setup vertical line segment 
+	vertA.setLocation(nextX, nextY);
+	vertB.setLocation(nextX, nextY + minDistFromGround);
+
+	// Normal ground check: 
+	itr = handlers->ground->getPoints();
+	while (itr->next != NULL){
+		if (checkSegSeg(vertA, vertB, *itr, *(itr->next), &p)){
+			nextX = p.getX();
+			nextY = p.getY() - minDistFromGround;
+			break;
+		}
+		itr = itr->next;
+	}
 }
 
 // Resolve collisions

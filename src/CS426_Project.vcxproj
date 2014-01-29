@@ -92,9 +92,6 @@
     <ClCompile Include="VertCordGenerator.cpp" />
     <ClCompile Include="Point.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{55A1C19C-B44B-4905-8CB9-3662761445ED}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
