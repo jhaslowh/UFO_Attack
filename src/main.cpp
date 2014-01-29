@@ -81,7 +81,7 @@ void onUpdate(){
 
 	// Do main updates if window is visible 
 	if (WINDOW_VISIBLE){
-		// Update Terminal
+		// Show hide terminal
 		if (mKeyH.keyPressed(KEY_2)){
 			if (showTerminal){
 				showTerminal = false;
@@ -91,10 +91,13 @@ void onUpdate(){
 				terminal->show();
 			}
 		}
-		if (showTerminal) 
-			terminal->updateInput(&mKeyH, &mMouseH);
-		terminal->update(deltaTime);
-
+		// Update Terminal
+		else {
+			if (showTerminal) 
+				terminal->updateInput(&mKeyH, &mMouseH);
+			terminal->update(deltaTime);
+		}
+		
 		// Update Screen 
 		if (screen != NULL) {
 			// Update screen input 
@@ -106,6 +109,9 @@ void onUpdate(){
 			changeScreen();
 		}
 
+		// Update input 
+		// Note: this does not actually grab the input, but
+		// runs helper code nessesary for it to work correctly. 
 		mMouseH.update();
 		mKeyH.update(deltaTime);
 	}
@@ -114,7 +120,6 @@ void onUpdate(){
 
 // Check commands from the terminal
 void checkCommand(string line){
-	cout << line << "\n";
 
 	// Find first space 
 	int firstSpace = line.find(string(" "));
@@ -145,14 +150,20 @@ void checkCommand(string line){
 
 	// Check for disable terminal command 
 	if (command == "off"){
+		terminal->addLine(command, TL_SUCCESS);
 		showTerminal = false;
 		terminal->hide();
 
-		if (args != "none")
-			cout << "Ignoring unrecognized arguments given to command \"off\"\n";
+		if (args != "none"){
+			cout << "Ignoring unrecognized arguments given to command: off\n";
+			terminal->addLine("Ignoring unrecognized arguments given to command: off", TL_WARNING);
+		}
+
+		return;
 	}
 	// Check for restart command
 	else if (command == "restart"){
+		terminal->addLine(command, TL_SUCCESS);
 		// Wait for rendering to stop 
 		while (render){} 
 		// Delete old screen 
@@ -161,12 +172,19 @@ void checkCommand(string line){
 		screen = (UIScreen*)new IntroLoadScreen();
 		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 
-		if (args != "none")
-			cout << "Ignoring unrecognized arguments given to command \"restart\"\n";
+		if (args != "none"){
+			cout << "Ignoring unrecognized arguments given to command: restart\n";
+			terminal->addLine("Ignoring unrecognized arguments given to command: restart", TL_WARNING);
+		}
+
+		return;
 	}
 
 	// Send command to screen 
 	screen->parseCommand(line);
+	
+	cout << line << "\n";
+	terminal->addLine(line);
 }
 
 // Checks if the screen needs to be switched. 

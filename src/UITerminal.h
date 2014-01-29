@@ -1,6 +1,19 @@
 #pragma once
 #include "UITransitionObject.h"
 
+
+// Structure for lines of the terminal 
+struct TLine {
+  int type;
+  string text;
+} ;
+
+// Terminal line types 
+#define TL_NORMAL 0
+#define TL_ERROR 1
+#define TL_WARNING 2
+#define TL_SUCCESS 3
+
 class UITerminal : public UITransitionObject
 {
 	
@@ -12,12 +25,16 @@ class UITerminal : public UITransitionObject
 
 	// Text rendering 
 	float textSize;			// Size of drawn text
-	GLfloat textColor[4];	// Text color 
 	float textOffX, textOffY;// Offset for text inside of box 
 
 	// Function pointer
 	void (*commandFunc)(string);
 	bool useFunction;
+
+	// Type colors 
+	GLfloat** tColors;
+	// Lines
+	TLine lines[10];
 
 public:
 	UITerminal();
@@ -34,6 +51,12 @@ public:
 	bool CommandIssued();
 	// Set function to use on commands 
 	void setCommandFunc(void func(string));
+	// Add a line to the terminal 
+	void addLine(string line);
+	// Add a line to the terminal 
+	// Type must be one of the following:
+	// TL_NORMAL, TL_ERROR, TL_WARNING, TL_SUCCESS
+	void addLine(string line, int type);
 
 	// Update input 
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
