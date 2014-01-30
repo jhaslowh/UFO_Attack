@@ -37,8 +37,9 @@ void UIScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 }
 
 // Parse a command give
-void UIScreen::parseCommand(string command){
+bool UIScreen::parseCommand(UITerminal* terminal, string command, string args){
 	// Nothing to do 
+	return false;
 }
 
 // Hide the entire screen.

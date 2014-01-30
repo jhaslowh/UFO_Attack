@@ -120,8 +120,6 @@ void onUpdate(){
 
 // Check commands from the terminal
 void checkCommand(string line){
-	cout << line << "\n";
-
 	// Find first space 
 	int firstSpace = line.find(string(" "));
 	// Command
@@ -185,9 +183,20 @@ void checkCommand(string line){
 		terminal->clear();
 		return;
 	}
+	// Check for help command
+	else if (command == "help"){
+		terminal->clear();
+
+		terminal->addLine("off: close terminal");
+		terminal->addLine("restart: restart game");
+		terminal->addLine("clear: clear terminal");
+
+		return;
+	}
 
 	// Send command to screen 
-	screen->parseCommand(line);
+	if (screen->parseCommand(terminal, command, args)) 
+		return;
 	
 	terminal->addLine(line);
 }

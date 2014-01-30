@@ -6,6 +6,7 @@
 #include "KeyHandler.h"
 #include "MouseHandler.h"
 #include "TextureAtlas.h"
+#include "UITerminal.h"
 
 #define NO_TRANSITION -1
 #define SCREEN_LOAD 0
@@ -49,7 +50,7 @@ public:
 	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
 
 	// Parse a command give
-	virtual void parseCommand(string command);
+	virtual bool parseCommand(UITerminal* terminal, string command, string args);
 
 	// Hide the entire screen.
 	// Any UI elements will need to be put into this function,

@@ -17,10 +17,12 @@ Editor Modes
 - Add Points: Use the mouse to add ground points to the ground in this mode. Points will be added between surrounding points.  
 - Remove Points: Use the mouse to select and remove ground points.  
 - Right click and drag to move camera 
+- Level bounds can be moved with the blue arrows on both sides. 
 
 **Terminal**  
 2 : Toggle on/off  
 Commands:  
+- "help" : print out commands 
 - "off" : turn off terminal 
 - "restart" : restart entire game  
 - "clear" : clear terminal
