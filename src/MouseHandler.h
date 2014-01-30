@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <SDL/SDL.h>
 #include "Point.h"
 
@@ -9,6 +10,8 @@ class MouseHandler
 	bool last_right_down;
 	bool left_down;
 	bool right_down;
+	bool scroll_down;
+	bool scroll_up;
 
 public:
 	MouseHandler();
@@ -25,6 +28,8 @@ public:
 	bool wasLeftDown();
 	bool isRightDown();
 	bool wasRightDown();
+	bool scrollUp();
+	bool scrollDown();
 
 	// Call to update the mouse state
 	void updateState(SDL_Event windowEvent);
