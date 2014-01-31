@@ -51,8 +51,12 @@ using namespace std;
 #define KEY_ENTER 42 
 #define KEY_BACKSPACE 43
 #define KEY_SHIFT 44
+#define KEY_TILDE 45
+#define KEY_BACKQUOTE 45
+#define KEY_PERIOD 46
 
-#define KEY_COUNT 45
+// Total Number of keys 
+#define KEY_COUNT 47
 
 class KeyHandler
 {

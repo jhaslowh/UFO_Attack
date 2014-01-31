@@ -20,7 +20,7 @@ class UITerminal : public UITransitionObject
 	bool commandIssued;		// Will be true when user presses enter
 	string commandString;   // String command to be read
 	string line;			// Current typed line
-	int maxTextLength;		// Max length
+	unsigned int maxTextLength;		// Max length
 	int iteratorLoc;
 
 	// Text rendering 
@@ -41,7 +41,7 @@ public:
 	virtual ~UITerminal();
 
 	// Set max characters for the terminal 
-	void setMaxTextLength(int l);
+	void setMaxTextLength(unsigned int l);
 	// Get the total number of characters 
 	int getMaxTextLength();
 

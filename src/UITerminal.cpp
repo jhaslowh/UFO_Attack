@@ -11,7 +11,7 @@ UITerminal::UITerminal() : UITransitionObject()
 	flatColor[3] = .9f;
 	textOffX = 5.0f;
 	textOffY = 5.0f;
-	maxTextLength = 50;
+	maxTextLength = 100;
 	useFunction = false;
 	iteratorLoc = 0;
 
@@ -58,7 +58,7 @@ UITerminal::~UITerminal(){
 }
 
 // Set max characters for the terminal 
-void UITerminal::setMaxTextLength(int l){maxTextLength = l;}
+void UITerminal::setMaxTextLength(unsigned int l){maxTextLength = l;}
 // Get the total number of characters 
 int UITerminal::getMaxTextLength(){return maxTextLength;}
 
@@ -116,6 +116,12 @@ void UITerminal::clear(){
 void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	UITransitionObject::updateInput(mKeyH, mMouseH);
 
+	// Check for up arrow and add last command
+	if (mKeyH->keyPressed(KEY_UP)){
+		line = lines[0].text;
+		iteratorLoc = line.length();
+	}
+
 	// Add text to the line 
 	string next = mKeyH->getPressedKey();
 	if (next.length() > 0){
@@ -138,6 +144,7 @@ void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// Make sure line is not too long
 	if (line.length() > maxTextLength){
 		line = line.substr(0, maxTextLength);
+		iteratorLoc = maxTextLength;
 	}
 
 	// Check for backspace 
@@ -180,8 +187,8 @@ void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	}
 	if (mKeyH->keyPressedHold(KEY_RIGHT)){
 		iteratorLoc++;
-		if (iteratorLoc > line.length())
-			iteratorLoc = line.length();
+		if (iteratorLoc > (int)line.length())
+			iteratorLoc = (int)line.length();
 	}
 }
 

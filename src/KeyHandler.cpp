@@ -212,6 +212,8 @@ string KeyHandler::getPressedKey(){
 	}
 	if (keyPressedHold(KEY_SPACE))
 		return string(" ");
+	if (keyPressedHold(KEY_PERIOD))
+		return string(".");
 
 	return string("");
 }
@@ -313,6 +315,10 @@ int KeyHandler::keyIndex(int scancode){
 	case SDL_SCANCODE_LSHIFT:
 	case SDL_SCANCODE_RSHIFT:
 		return KEY_SHIFT;
+	case SDL_SCANCODE_GRAVE:
+		return KEY_TILDE;
+	case SDL_SCANCODE_PERIOD:
+		return KEY_PERIOD;
 	default:
 		break;
 	}

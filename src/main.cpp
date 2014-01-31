@@ -34,7 +34,6 @@ int init_resources()
 	terminal->setSize((float)settings->getScreenWidth() - 10.0f,0.0f);
 	terminal->setupHide(HT_VERTICAL,terminal->getY()+100.0f,.2f,false);
 	terminal->setCommandFunc(checkCommand);
-	terminal->setMaxTextLength(200);
 	terminal->setHidden();
 
 	// Set current screen as test screen 
@@ -82,7 +81,7 @@ void onUpdate(){
 	// Do main updates if window is visible 
 	if (WINDOW_VISIBLE){
 		// Show hide terminal
-		if (mKeyH.keyPressed(KEY_2)){
+		if (mKeyH.keyPressed(KEY_TILDE)){
 			if (showTerminal){
 				showTerminal = false;
 				terminal->hide();

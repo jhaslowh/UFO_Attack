@@ -20,7 +20,7 @@ Editor Modes
 - Remove Points: Use the mouse to select and remove ground points.  
 
 **Terminal**  
-2 : Toggle on/off  
+` or ~ : Toggle on/off  
 Commands:  
 - "help" : print out commands 
 - "off" : turn off terminal 
