@@ -13,6 +13,27 @@ Level::~Level(){
 	delete sceneryHandler;
 }
 
+// Grab Terrain List
+// Can also use level->handlers->ground;
+Ground* Level::getGround()
+{
+	return ground;
+}
+
+// Grab Current Player Object
+// Can also use level->handlers->player
+Player* Level::getPlayer()
+{
+	return player;
+}
+
+// Grab levelproperties object
+// Can also use level->handlers->levelProps
+LevelProperties* Level::getProperties()
+{
+	return &levelProps;
+}
+
 // initialize level
 void Level::init(float screen_width, float screen_height){
 	levelProps.setLevelRight(1400.0f);
@@ -54,6 +75,7 @@ void Level::init(float screen_width, float screen_height){
 	handlers.sceneryHandler = sceneryHandler;
 	handlers.camera = &camera;
 	handlers.levelProps = &levelProps;
+	handlers.player = &player;
 }
 
 // Load level (use for textures)
@@ -61,26 +83,6 @@ void Level::load(){
 	player->load();
 	ground->load();
 	gameAtlas->init();
-}
-
-void Level::updateTerrain(float newX, float newY)
-{
-	ground->add(new Point(newX, newY));
-}
-
-Ground* Level::getGround()
-{
-	return ground;
-}
-
-Player* Level::getPlayer()
-{
-	return player;
-}
-
-LevelProperties* Level::getProperties()
-{
-	return &levelProps;
 }
 
 // Update level state
@@ -92,6 +94,12 @@ void Level::update(float deltaTime){
 	player->resolveCollision(&handlers);
 
 	camera.update(deltaTime);
+}
+
+// Update the terrain list
+void Level::updateTerrain(float newX, float newY)
+{
+	ground->add(new Point(newX, newY));
 }
 
 // Update input

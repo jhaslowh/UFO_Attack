@@ -8,6 +8,7 @@ Handlers::Handlers()
 	ground = NULL;
 	camera = NULL;
 	levelProps = NULL;
+	player = NULL;
 }
 
 Handlers::~Handlers(){}

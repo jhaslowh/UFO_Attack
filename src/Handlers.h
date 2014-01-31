@@ -13,6 +13,7 @@ public:
 	Ground* ground;
 	void* camera;
 	void* levelProps;
+	void* player;
 
 	Handlers();
 	~Handlers();
