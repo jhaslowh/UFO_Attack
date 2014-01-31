@@ -183,6 +183,9 @@
     <ClInclude Include="LevelProperties.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
+    <ClInclude Include="FreePlayScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -304,6 +307,9 @@
     </ClCompile>
     <ClCompile Include="LevelProperties.cpp">
       <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="FreePlayScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

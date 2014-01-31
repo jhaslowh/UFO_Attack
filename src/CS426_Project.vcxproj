@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FreePlayScreen.h" />
     <ClInclude Include="GameAtlas.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Ground.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="Point.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FreePlayScreen.cpp" />
     <ClCompile Include="GameAtlas.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Ground.cpp" />

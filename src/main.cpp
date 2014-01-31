@@ -228,6 +228,12 @@ void changeScreen(){
 		screen = (UIScreen*)new SettingsScreen(settings);
 		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
+	case SCREEN_FREE_PLAY:
+		while(render){}
+		delete screen;
+		screen = (UIScreen*)new FreePlayScreen();
+		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
+		break;
 	case SCREEN_GAME:
 		// Wait for rendering to stop 
 		while (render){} 

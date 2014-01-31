@@ -18,6 +18,7 @@
 #define SCREEN_QUIT 6
 #define SCREEN_TEST 7
 #define CLOSE_SCREEN 8
+#define SCREEN_FREE_PLAY 9
 
 class UIScreen
 {

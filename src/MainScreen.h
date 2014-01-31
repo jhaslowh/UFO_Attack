@@ -7,6 +7,7 @@ class MainScreen : public UIScreen
 {
 	UIButton* buttonLevelSelect;
 	UIButton* buttonStore;
+	UIButton* buttonFreePlay;
 	UIButton* buttonSettings;
 	UIButton* buttonQuit;
 	UIButton* buttonText;

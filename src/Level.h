@@ -36,6 +36,18 @@ public:
 	// Update level state
 	void update(float deltaTime);
 
+	// Update the terrain list
+	void updateTerrain(float newX, float newY);
+
+	// Grab Terrain List
+	Ground* getGround();
+
+	// Grab Current Player Object
+	Player* getPlayer();
+
+	// Grab levelproperties object
+	LevelProperties* getProperties();
+
 	// Update input
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
 

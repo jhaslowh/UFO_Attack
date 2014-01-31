@@ -63,6 +63,26 @@ void Level::load(){
 	gameAtlas->init();
 }
 
+void Level::updateTerrain(float newX, float newY)
+{
+	ground->add(new Point(newX, newY));
+}
+
+Ground* Level::getGround()
+{
+	return ground;
+}
+
+Player* Level::getPlayer()
+{
+	return player;
+}
+
+LevelProperties* Level::getProperties()
+{
+	return &levelProps;
+}
+
 // Update level state
 void Level::update(float deltaTime){
 	sceneryHandler->update(deltaTime, &handlers);
@@ -97,3 +117,4 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 
 	mgl->setViewMatrix(glm::mat4());
 }
+
