@@ -18,6 +18,7 @@ class Ground
 	// Drawing 
 	Sprite grass;
 	float grassLength;
+	float textureScale;
 
 	int indicieCount;
 	GLushort* indicies;

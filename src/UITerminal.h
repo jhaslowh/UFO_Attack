@@ -1,7 +1,6 @@
 #pragma once
 #include "UITransitionObject.h"
 
-
 // Structure for lines of the terminal 
 struct TLine {
   int type;
@@ -67,5 +66,10 @@ public:
 	// Draw the object to the screen
 	// UIAtles must be bound first.
 	virtual void draw(GLHandler* mgl, UIAtlas* mAtlas);
+
+	// Parse a line for command and args 
+	// If no command found, command will be left alone.
+	// If no args found, args will be left alone. 
+	static void getCommandAndArgs(string* line, string* command, string* args);
 };
 

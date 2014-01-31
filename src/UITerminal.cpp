@@ -210,3 +210,26 @@ void UITerminal::draw(GLHandler* mgl, UIAtlas* mAtlas){
 		}
 	}
 }
+
+// Parse a line for command and args 
+// If no command found, command will be left alone.
+// If no args found, args will be left alone. 
+void UITerminal::getCommandAndArgs(string* line, string* command, string* args){
+	int firstSpace = line->find(string(" "));
+
+	// Command has no sub commands
+	if (firstSpace == -1){
+		*command = *line;
+	}
+	// Command is followed by one space 
+	else if (firstSpace == line->length() - 1){
+		*command = line->substr(0, line->length() - 1);
+	}
+	// Command has sub commands 
+	else {
+		// Grab command 
+		*command = line->substr(0, firstSpace);
+		// Grab arguments 
+		*args = line->substr(firstSpace+1, line->length());
+	}
+}

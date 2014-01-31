@@ -27,6 +27,10 @@ Commands:
 - "restart" : restart entire game  
 - "clear" : clear terminal
 
+Commands While in level editor
+- "scenery add tree" : add new tree to level 
+- "scenery add 0" : also adds new tree to level 
+
 Technical Information
 ---------------------
 

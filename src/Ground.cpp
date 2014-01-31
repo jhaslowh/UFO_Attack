@@ -14,6 +14,7 @@ Ground::Ground(){
 	groundDepth = 400.0f;
 	textureID = 0;
 	grassLength = 55.0f;
+	textureScale = 80.0f;
 }
 Ground::~Ground(){
 	while (points != NULL){
@@ -145,10 +146,10 @@ void Ground::fixVertsForPoint(Point* p){
 			verts[(i * 4) + 1] = itr->getY();
 			verts[(i * 4) + 2] = itr->getX();
 			verts[(i * 4) + 3] = itr->getY() + groundDepth;
-			cords[(i * 4)]     = verts[(i * 4)] / 100.0f;
-			cords[(i * 4) + 1] = verts[(i * 4) + 1] / 100.0f;
-			cords[(i * 4) + 2] = verts[(i * 4) + 2] / 100.0f;
-			cords[(i * 4) + 3] = verts[(i * 4) + 3] / 100.0f;
+			cords[(i * 4)]     = verts[(i * 4)] / textureScale;
+			cords[(i * 4) + 1] = verts[(i * 4) + 1] / textureScale;
+			cords[(i * 4) + 2] = verts[(i * 4) + 2] / textureScale;
+			cords[(i * 4) + 3] = verts[(i * 4) + 3] / textureScale;
 			return;
 		}
 
@@ -313,10 +314,10 @@ void Ground::fixArrays(){
 		// Since we have GL_REPEAT set in the textures, we can 
 		// use the vertex numbers as texture cords to get the 
 		// texture to repeat across the whole polygon. 
-		cords[(i * 4)]     = verts[(i * 4)] / 100.0f;
-		cords[(i * 4) + 1] = verts[(i * 4) + 1] / 100.0f;
-		cords[(i * 4) + 2] = verts[(i * 4) + 2] / 100.0f;
-		cords[(i * 4) + 3] = verts[(i * 4) + 3] / 100.0f;
+		cords[(i * 4)]     = verts[(i * 4)] / textureScale;
+		cords[(i * 4) + 1] = verts[(i * 4) + 1] / textureScale;
+		cords[(i * 4) + 2] = verts[(i * 4) + 2] / textureScale;
+		cords[(i * 4) + 3] = verts[(i * 4) + 3] / textureScale;
 
 		itr = itr->next;
 	}

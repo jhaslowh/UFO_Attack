@@ -35,6 +35,7 @@ void GameScreen::load(TextureAtlas* mAtlas){
 
 	level->load();
 	levelEditor.load(mAtlas);
+	levelEditor.setHandlers(&level->handlers);
 }
 
 // Update the state of the screen
@@ -95,3 +96,17 @@ void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	levelEditor.draw(mgl, (UIAtlas*)mAtlas);
 	pauseScreen->draw(mgl, mAtlas);
 }
+
+
+// Parse a command give
+bool GameScreen::parseCommand(UITerminal* terminal, string command, string args){
+	UIScreen::parseCommand(terminal, command, args);
+
+	// Update level editor commands if enabled 
+	if (levelEditor.Enabled()){
+		if (levelEditor.parseCommand(terminal, command, args))
+			return true;
+	}
+	return false;
+}
+

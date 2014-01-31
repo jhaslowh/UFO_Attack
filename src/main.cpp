@@ -120,25 +120,12 @@ void onUpdate(){
 
 // Check commands from the terminal
 void checkCommand(string line){
-	// Find first space 
-	int firstSpace = line.find(string(" "));
 	// Command
 	string command;
 	string args("none");
-	
-	// ----------- //
-	// Get command 
-	// ----------- // 
-	if (firstSpace == -1)
-		command = line.substr(0, line.length());
-	else {
-		command = line.substr(0, firstSpace);
 
-		// Grab arguments if there are any
-		if (firstSpace != line.length() - 1){
-			args = line.substr(firstSpace, line.length());
-		}
-	}
+	// Get command and args 
+	UITerminal::getCommandAndArgs(&line, &command, &args);
 
 	// -------------- //
 	// Check commands 

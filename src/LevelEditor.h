@@ -10,6 +10,7 @@
 #include "UITerminal.h"
 #include "Camera2D.h"
 #include "LevelProperties.h"
+#include "Tree.h"
 
 // Level editor states
 #define LES_NONE 0
@@ -72,6 +73,9 @@ class LevelEditor
 	UIButton* bRemove;
 	UIButton* bRemoveS;
 
+	float screenWidth;
+	float screenHeight;
+
 	// ---------- //
 	// Mouse info 
 	// ---------- // 
@@ -85,10 +89,19 @@ class LevelEditor
 	float levelX, levelY;
 	Point levelLoc;
 
+	// ---------------- // 
+	//    Handlers      // 
+	// ---------------- // 
+	Camera2D* camera;
+	SceneryHandler* sceneryHandler;
+	LevelProperties* levelProps;
 
 public:
 	LevelEditor();
 	~LevelEditor();
+
+	// Set handlers for editor 
+	void setHandlers(Handlers* handlers);
 
 	// Check if turned on
 	bool Enabled();
@@ -107,6 +120,9 @@ public:
 
 	// Draw editor 
 	void draw(GLHandler* mgl, UIAtlas* mUI);
+
+	// Parse a command give
+	bool parseCommand(UITerminal* terminal, string command, string args);
 
 	// Show editor elements
 	void show();

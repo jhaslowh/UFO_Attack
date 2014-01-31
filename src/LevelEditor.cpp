@@ -16,6 +16,9 @@ LevelEditor::LevelEditor()
 
 	boundDistance = 40.0f;
 
+	screenWidth = 0.0f;
+	screenHeight = 0.0f;
+
 	state = LES_NONE;
 	bMove = NULL;
 	bAdd = NULL;
@@ -25,6 +28,13 @@ LevelEditor::~LevelEditor(){
 	delete bMove;
 	delete bAdd;
 	delete bRemove;
+}
+
+// Set handlers for editor 
+void LevelEditor::setHandlers(Handlers* handlers){
+	camera = (Camera2D*)(handlers->camera);
+	sceneryHandler = (SceneryHandler*)(handlers->sceneryHandler);
+	levelProps = (LevelProperties*)(handlers->levelProps);
 }
 
 // Check if turned on
@@ -52,6 +62,9 @@ void LevelEditor::init(float screen_width, float screen_height){
 
 	levelLeft.setPosition(0.0f,screen_height/2.0f);
 	levelRight.setPosition(0.0f,screen_height/2.0f);
+
+	screenWidth = screen_width;
+	screenHeight = screen_height;
 }
 
 // Load editor 
@@ -453,6 +466,44 @@ void LevelEditor::draw(GLHandler* mgl, UIAtlas* mUI){
 	bAdd->draw(mgl, mUI);
 	bRemove->draw(mgl, mUI);
 	bRemoveS->draw(mgl, mUI);
+}
+
+
+// Parse a command give
+bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args){
+
+	// Variables 
+	string subCommand("none");
+	string subArgs("none");
+
+	// Check for scenery command 
+	if (command == "scenery"){
+		// No arguments given
+		if (args == "none"){
+			terminal->addLine("No arguments given to command: scenery", TL_WARNING);
+			return true;
+		}
+
+		// Grab commands and args 
+		UITerminal::getCommandAndArgs(&args, &subCommand, &subArgs);
+
+		// Check commands 
+		if (subCommand == "add"){
+			// Add new tree to level 
+			if (subArgs == "tree" || subArgs == "0"){
+				terminal->addLine("Adding new tree to scenery handler", TL_SUCCESS);
+				Tree* tree = new Tree();
+				tree->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
+				sceneryHandler->add((SceneryObject*)tree);
+				return true;
+			}
+		}
+		
+		terminal->addLine("Unrecognized arguments given to command: scenery", TL_WARNING);
+		return true;
+	}
+
+	return false;
 }
 
 
