@@ -8,16 +8,22 @@
 #include "TextureAtlas.h"
 #include "UITerminal.h"
 
+// These codes are for transitionCode
+
+// Default code state
 #define NO_TRANSITION -1
-#define SCREEN_LOAD 0
-#define SCREEN_MAIN 1
-#define SCREEN_STORE 2
-#define SCREEN_SETTINGS 3
-#define SCREEN_GAME 4
-#define SCREEN_LEVEL_SELECT 5
-#define SCREEN_QUIT 6
-#define SCREEN_TEST 7
-#define CLOSE_SCREEN 8
+// Code used to tell parent screen to close 
+// this screen. Parent must check for it. 
+#define CLOSE_SCREEN 0
+// Screen codes used by main.cpp to switch screens. 
+#define SCREEN_LOAD 1
+#define SCREEN_MAIN 2
+#define SCREEN_STORE 3
+#define SCREEN_SETTINGS 4
+#define SCREEN_GAME 5
+#define SCREEN_LEVEL_SELECT 6
+#define SCREEN_QUIT 7
+#define SCREEN_TEST 8
 #define SCREEN_FREE_PLAY 9
 
 class UIScreen
