@@ -145,3 +145,20 @@ void FreePlayScreen::updateTerrain()
 	}
 }
 
+// Parse a command give
+bool UIScreen::parseCommand(UITerminal* terminal, string command, string args){
+	// If you find a command and use it, return true.
+	//
+	// Also if you want to split args into sub command and sub arg, 
+	// you can do the following.
+	//
+	// string subCommand("none");
+	// string subArgs("none");
+	//
+	// UITerminal::getCommandAndArgs(&args, &subCommand, &subArgs);
+	// 
+	// If getCommandAndArgs() finds a subCommand, it will no longer be 
+	// equal to none. And same for sub args. 
+	return false;
+}
+

@@ -36,5 +36,9 @@ public:
 
 	// Draw the screen
 	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+	
+	// Parse a command give
+	virtual bool parseCommand(UITerminal* terminal, string command, string args);
+
 };
 
