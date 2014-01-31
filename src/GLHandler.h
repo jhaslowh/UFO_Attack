@@ -13,6 +13,9 @@ using namespace std;
 
 class GLHandler
 {
+	// Used to save memory 
+	GLfloat color[4];
+
 public:
 	// Shader handles 
 	GLuint program;
@@ -43,7 +46,12 @@ public:
 
 	// Set the gl flat color
 	// This should be in the form of {R,G,B,A}
-	void setFlatColor(const GLfloat*);
+	void setFlatColor(const GLfloat* c);
+	// Set the gl flat color with 4 floats 
+	void setFlatColor(float r, float g, float b, float a);
+	// Set the gl flat color with 3 floats from and array and one alpha.
+	// c should be {r,g,b}
+	void setFlatColor(const GLfloat* c, float a);
 	
 	// Set the Projection matrix for the shader. 
 	// This is used to map the game to the screen, 

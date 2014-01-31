@@ -150,6 +150,23 @@ void GLHandler::endGL(){
 void GLHandler::setFlatColor(const GLfloat* mColor){
 	glUniform4fv(mColorHandle, 1, mColor);
 }
+// Set the gl flat color with 4 floats 
+void GLHandler::setFlatColor(float r, float g, float b, float a){
+	color[0] = r;
+	color[1] = g;
+	color[2] = b;
+	color[3] = a;
+	glUniform4fv(mColorHandle, 1, color);
+}
+// Set the gl flat color with 3 floats from and array and one alpha.
+// c should be {r,g,b}
+void GLHandler::setFlatColor(const GLfloat* c, float a){
+	color[0] = c[0];
+	color[1] = c[1];
+	color[2] = c[2];
+	color[3] = a;
+	glUniform4fv(mColorHandle, 1, color);
+}
 
 // Set the Projection matrix for the shader. 
 // use glm::mat4() for identity 
