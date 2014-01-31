@@ -176,6 +176,15 @@ void checkCommand(string line){
 		terminal->addLine("off: close terminal");
 		terminal->addLine("restart: restart game");
 		terminal->addLine("clear: clear terminal");
+		terminal->addLine("version: prints out version");
+
+		return;
+	}
+	// Check for version command 
+	else if (command == "version"){
+		string version = string("version: ");
+		version += toString(VERSION);
+		terminal->addLine(version, TL_SUCCESS); 
 
 		return;
 	}

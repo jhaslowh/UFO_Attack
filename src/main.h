@@ -25,10 +25,14 @@
 #include "GameScreen.h"
 #include "FreePlayScreen.h"
 
+// Version 
+// x.yyyy
+// x = 0 = Alpha/Beta
+// x = 1 = Release
+// yyyy = Commit number 
+double VERSION = 0.99;
+
 // Global Settings
-/*int SCREEN_WIDTH = 1280;
-int SCREEN_HEIGHT = 720;
-bool FULLSCREEN = false;*/
 Settings* settings;
 bool WINDOW_VISIBLE = false;
 

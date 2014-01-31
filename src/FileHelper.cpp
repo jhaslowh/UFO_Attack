@@ -114,13 +114,19 @@ string toString(int value){
     return buff.str();   
 }
 
+// Convert double to string
+string toString(double value){
+	ostringstream buff;
+    buff<<value;
+    return buff.str();   
+}
+
 // Convert string to int
 int toInt(string s){
 	int numb;
 	istringstream (s) >> numb;
 	return numb;
 }
-
 
 // Return setting from file 
 string getSetting(string fileString, string setting){
