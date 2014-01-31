@@ -12,6 +12,14 @@ UIButton::UIButton() : UITransitionObject()
 	textColor[2] = 0.2f;
 	textColor[3] = 1.0f;
 
+	shadowColor[0] = 0.0f;
+	shadowColor[1] = 0.0f;
+	shadowColor[2] = 0.0f;
+	shadowColor[3] = 0.4f;
+	drawShadow = true;
+	shadowOffX = 4.0f;
+	shadowOffY = 4.0f;
+
 	setHideType(HT_VERTICAL);
 	setHideLocByDistance(100.0f);
 }
@@ -31,6 +39,14 @@ UIButton::UIButton(float x, float y, float w, float h, std::string l) : UITransi
 	textColor[1] = 0.2f;
 	textColor[2] = 0.2f;
 	textColor[3] = 1.0f;
+	
+	shadowColor[0] = 0.0f;
+	shadowColor[1] = 0.0f;
+	shadowColor[2] = 0.0f;
+	shadowColor[3] = 0.4f;
+	drawShadow = true;
+	shadowOffX = 4.0f;
+	shadowOffY = 4.0f;
 
 	setHideType(HT_VERTICAL);
 	setHideLocByDistance(100.0f);
@@ -75,13 +91,36 @@ void UIButton::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 // UIAtles must be bound first.
 void UIButton::draw(GLHandler* mgl, UIAtlas* mAtlas){
 	if (flatColor[3] != 0.0f){
-		mgl->setFlatColor(flatColor);
-		if (down)
+		if (down){
+			// Draw shadow 
+			if (drawShadow){
+				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3]);
+				mAtlas->draw(mgl, UII_BUTTON_CLICK, loc_x + shadowOffX, loc_y + shadowOffY);
+			}
+			// Draw image 
+			mgl->setFlatColor(flatColor);
 			mAtlas->draw(mgl, UII_BUTTON_CLICK, loc_x, loc_y);
-		else if (hovered)
+		}
+		else if (hovered){
+			// Draw shadow 
+			if (drawShadow){
+				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3]);
+				mAtlas->draw(mgl, UII_BUTTON_HOVER, loc_x + shadowOffX, loc_y + shadowOffY);
+			}
+			// Draw image 
+			mgl->setFlatColor(flatColor);
 			mAtlas->draw(mgl, UII_BUTTON_HOVER, loc_x, loc_y);
-		else 
+		}
+		else {
+			// Draw shadow 
+			if (drawShadow){
+				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3]);
+				mAtlas->draw(mgl, UII_BUTTON_NORMAL, loc_x + shadowOffX, loc_y + shadowOffY);
+			}
+			// Draw image 
+			mgl->setFlatColor(flatColor);
 			mAtlas->draw(mgl, UII_BUTTON_NORMAL, loc_x, loc_y);
+		}
 
 		mgl->setFlatColor(textColor);
 		mAtlas->mTextRender->drawText(*mgl, label, 

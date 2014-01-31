@@ -6,11 +6,19 @@
 
 class UIButton : public UITransitionObject
 {
+	// Test offset 
 	float text_x, text_y;
+	// States
 	bool clicked, hovered, down;
+	// Text 
 	std::string label;
 	
 	GLfloat textColor[4];
+
+	// Shadow variables
+	GLfloat shadowColor[4];
+	bool drawShadow;
+	float shadowOffX, shadowOffY;
 
 public:
 	UIButton();
