@@ -79,15 +79,19 @@ class LevelEditor
 	// ---------- //
 	// Mouse info 
 	// ---------- // 
+
+	// Locations 
+	float levelX, levelY;
+	Point levelLoc;
 	string mouseLoc;
 	Point lastMouse;
+
 	// Mouse offset for selecting objects 
 	float mouseOffsetX; 
 	float mouseOffsetY;
 
-	// Level location
-	float levelX, levelY;
-	Point levelLoc;
+	// Zooming
+	float zoomPerScroll;
 
 	// ---------------- // 
 	//    Handlers      // 

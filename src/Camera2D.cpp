@@ -49,6 +49,9 @@ void Camera2D::setRotation(float r){
 }
 // Set camera zoom
 void Camera2D::setZoom(float z){
+	// Bind zoom above 0
+	if (z < 0.0f)
+		z = 0.0f;
 	zoom = z;
 }
 // Get camera zoom 

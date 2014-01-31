@@ -19,6 +19,8 @@ LevelEditor::LevelEditor()
 	screenWidth = 0.0f;
 	screenHeight = 0.0f;
 
+	zoomPerScroll = .1f;
+
 	state = LES_NONE;
 	bMove = NULL;
 	bAdd = NULL;
@@ -139,6 +141,14 @@ void LevelEditor::update(float deltaTime, Handlers* handlers){
 
 // Update editor input
 void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
+	// Check for zoom 
+	if (mMouseH->scrollDown()){
+		camera->setZoom(camera->getZoom() - zoomPerScroll);
+	}
+	if (mMouseH->scrollUp()){
+		camera->setZoom(camera->getZoom() + zoomPerScroll);
+	}
+
 	// Get mouse location 
 	levelX = ((Camera2D*)(handlers->camera))->toLevelX(mMouseH->getX());
 	levelY = ((Camera2D*)(handlers->camera))->toLevelY(mMouseH->getY());

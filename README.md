@@ -11,13 +11,13 @@ Q : Switch Between player and ufo
 
 **Level Editor Controls**  
 1 : Toggle Editor Mode  
+Use mouse scroll wheel to zoom. 
+Right Click and drag to move camera.
 
 Editor Modes  
-- Move Objects: Use the mouse to move ground points or scenery objects in this mode.  
+- Move Objects: Use the mouse to move ground points, scenery objects, or level boundaries. 
 - Add Points: Use the mouse to add ground points to the ground in this mode. Points will be added between surrounding points.  
 - Remove Points: Use the mouse to select and remove ground points.  
-- Right click and drag to move camera 
-- Level bounds can be moved with the blue arrows on both sides. 
 
 **Terminal**  
 2 : Toggle on/off  
@@ -27,7 +27,7 @@ Commands:
 - "restart" : restart entire game  
 - "clear" : clear terminal
 
-Commands While in level editor
+Commands While in Level Editor
 - "scenery add tree" : add new tree to level 
 - "scenery add 0" : also adds new tree to level 
 
