@@ -18,7 +18,9 @@ Transitions:
 **Main Menu**  
 Transitions:  
 - Level Select Screen (Button)  
+- Free Play Screen (Button)  
 - Store Screen (Button)  
+- Equip Screen (Button)  
 - Settings Screen (Button)  
 - Credits Screen (Button)  
 - Quit Game (Button)  
@@ -30,6 +32,11 @@ Transitions:
 - Main Menu  (Button)  
 - Game Screen  (Button)  
 
+**Free Play Screen**  
+Player can play endlessly in this screen.  
+Transitions:  
+- Main Menu  (Through pause menu or failure) 
+
 **Game Screen**  
 Used to play levels.  
 - Main Menu  (Through pause menu)  
@@ -38,6 +45,11 @@ Used to play levels.
 **Store Screen**  
 The player will used abducted people to purchase upgrades.  
 Apearance: A shop with an alien shopkeeper.  
+Transitions:  
+- Main Menu  (Button)  
+
+**Equipment Screen**  
+The player will use this screen to change the equipment of their UFO or alien.  
 Transitions:  
 - Main Menu  (Button)  
 
@@ -53,7 +65,7 @@ Transitions:
 
 **UFO**    
 If UFO is below min distance from ground, push it away from ground.  
-Has armor and a shield. Shield can reginerate, armor cant.  
+Has armor and a shield. Shield can reginerate, armor can't.  
 Player can beam to ground.  
 
 Upgrades:  
@@ -73,7 +85,8 @@ Gadgets:
 
 **Player**  
 Has score and upgrade points (people abducted).  
-Has a ray gun when on ground.  
+Has a ray gun when on ground.   
+The players health will recharge when in the ship.  
 
 **Levels**  
 Use harder enemies to increase difficulty.  

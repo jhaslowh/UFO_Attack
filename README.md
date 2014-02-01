@@ -53,10 +53,6 @@ Technical Information
 * Basic Collision Detection Functions 
 * Settings (And Settings Save/Load) 
 
-### Notes on commits
-
-Please do not commit anything from the release or debug directories that can be compiled. You can do this by cleaning the build before committing or just not committing those files. Also, do not commit the SQL file or the "ipch" folder.
-
 ### Libraries
 
 **SDL**  
