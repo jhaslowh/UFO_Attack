@@ -61,6 +61,12 @@
     <Filter Include="Source Files\game\scenery">
       <UniqueIdentifier>{db19746b-8f89-4cf7-b42e-0b9a3df7c0c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\game\weap">
+      <UniqueIdentifier>{506e4c00-a0ae-4fb9-90f9-c6251f6378f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game\weap">
+      <UniqueIdentifier>{fd2f7f65-049b-40a0-923a-31bc412cc0a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
@@ -186,6 +192,9 @@
     <ClInclude Include="FreePlayScreen.h">
       <Filter>Header Files\ui\screens</Filter>
     </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -310,6 +319,9 @@
     </ClCompile>
     <ClCompile Include="FreePlayScreen.cpp">
       <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\game\weap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

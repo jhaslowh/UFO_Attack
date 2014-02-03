@@ -52,6 +52,7 @@
     <ClInclude Include="UITransitionObject.h" />
     <ClInclude Include="VertCordGenerator.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FreePlayScreen.cpp" />
@@ -95,6 +96,7 @@
     <ClCompile Include="UITransitionObject.cpp" />
     <ClCompile Include="VertCordGenerator.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{55A1C19C-B44B-4905-8CB9-3662761445ED}</ProjectGuid>
