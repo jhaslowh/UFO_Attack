@@ -185,6 +185,15 @@ void Player::checkCollision(Handlers* handlers){
 			}
 		}
 
+
+		// ---------------------------------------
+		// Fix collision rectangles for next steps
+		// ---------------------------------------
+
+		setCollRec(&collRecX, nextX, locY);
+		setCollRec(&collRecY, locX, nextY);
+		setCollRec(&collRecXY, nextX, nextY);
+
 		// -----------------------------------
 		// Check player collision with scenery
 		// -----------------------------------
@@ -302,4 +311,12 @@ void Player::dropFromShip(){
 	yo = nextY;
 	inAir = true; 
 	jumping = false;
+}
+
+// Set the given collision rectangle to the given location
+void Player::setCollRec(Rec* r, float x, float y){
+	r->copy(&collRec);
+
+	r->setX(x - originX + r->getX());
+	r->setY(y - originY + r->getY());
 }

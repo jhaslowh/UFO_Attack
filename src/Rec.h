@@ -39,5 +39,8 @@ public:
 	bool contains(float x, float y);
 	// Expand the rec 
 	void expand(float amount);
+
+	// Copy the sent rec properties into this one
+	void copy(Rec* r);
 };
 

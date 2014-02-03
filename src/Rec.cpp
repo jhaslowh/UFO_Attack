@@ -79,3 +79,11 @@ void Rec::expand(float amount){
 	mWidth += amount;
 	mHeight += amount;
 }
+
+// Copy the sent rec properties into this one
+void Rec::copy(Rec* r){
+	mX = r->mX;
+	mY = r->mY;
+	mWidth = r->mWidth;
+	mHeight = r->mHeight;
+}

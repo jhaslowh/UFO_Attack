@@ -16,7 +16,6 @@ class Player
 {
 	// Basic properties 
 	float locX, locY;
-	float width, height;
 	float originX, originY;
 	Sprite sprite;
 
@@ -29,6 +28,14 @@ class Player
 	Point horB;       // 
 	Point vertBotA;   // Below body vertical checking line point one and two
 	Point vertBotB;   // 
+	// Collision Rectangle, this holds the basic properties of the collision 
+	// rectangle for the player. Should not be used for collision. Copy
+	// these properties into another rectangle before checking. 
+	Rec collRec;		
+	// Collision Rectangles used for collision detection.
+	Rec collRecX;		// Collision rec with just new x
+	Rec collRecY;		// Collision rec with just new y
+	Rec collRecXY;		// Collision rec with both new x and y
 
 	// Physics
 	float nextX, nextY;
@@ -49,6 +56,10 @@ class Player
 
 	// Camera 
 	float cameraOffsetY;
+
+	// Texture and animation 
+	float width, height;
+
 
 public:
 
@@ -102,5 +113,10 @@ public:
 
 	// Called when the player is dropped from the ship
 	void dropFromShip();
+
+private:
+
+	// Set the given collision rectangle to the given location
+	void setCollRec(Rec* r, float x, float y);
 };
 
