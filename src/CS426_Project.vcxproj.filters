@@ -195,6 +195,9 @@
     <ClInclude Include="Weapon.h">
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerAtlas.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -322,6 +325,9 @@
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAtlas.cpp">
+      <Filter>Source Files\gfx</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

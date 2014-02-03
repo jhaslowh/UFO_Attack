@@ -82,7 +82,7 @@ void Level::init(float screen_width, float screen_height){
 void Level::load(){
 	player->load();
 	ground->load();
-	gameAtlas->init();
+	gameAtlas->load();
 }
 
 // Update level state

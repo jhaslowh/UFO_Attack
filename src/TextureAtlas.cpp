@@ -141,3 +141,37 @@ void TextureAtlas::drawScale2(GLHandler* mgl, int item, float x, float y, float 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indicies);
 }
 
+void TextureAtlas::drawScale2(GLHandler* mgl, int item, float x, float y, float scalex, float scaley, float rotation){
+	// Starting matrix 
+	glm::mat4 mMatrix;
+	// Translate 
+	mMatrix = glm::translate(mMatrix, glm::vec3(x, y, 0.0f));
+	// Rotation
+	mMatrix = glm::rotate(mMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
+	// Scale 
+	mMatrix = glm::scale(mMatrix, glm::vec3(scalex, scaley, 0.0f));
+	// Send the rotation matrix to the shader 
+	mgl->setModelMatrix(mMatrix);
+	// Set the indicies based on the item
+	setIndicies(item);
+	// Draw the sent indicies 
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indicies);
+}
+void TextureAtlas::drawScale2(GLHandler* mgl, int item, float x, float y, float scalex, float scaley, float rotation, float origin_x, float origin_y){
+	// Starting matrix 
+	glm::mat4 mMatrix;
+	// Translate 
+	mMatrix = glm::translate(mMatrix, glm::vec3(x, y, 0.0f));
+	// Rotation
+	mMatrix = glm::rotate(mMatrix, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
+	// Scale 
+	mMatrix = glm::scale(mMatrix, glm::vec3(scalex, scaley, 0.0f));
+	// Origin
+	mMatrix = glm::translate(mMatrix, glm::vec3(-origin_x, -origin_y, 0.0f));
+	// Send the rotation matrix to the shader 
+	mgl->setModelMatrix(mMatrix);
+	// Set the indicies based on the item
+	setIndicies(item);
+	// Draw the sent indicies 
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indicies);
+}

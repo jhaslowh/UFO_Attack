@@ -4,7 +4,7 @@ GameAtlas::GameAtlas() : TextureAtlas(){}
 GameAtlas::~GameAtlas(){}
 
 // Set up the stucture of this atlas 
-void GameAtlas::init(){
+void GameAtlas::load(){
 	// Load texture
 	textureID = loadPNG(std::string("images/gameSheet.png"));
 

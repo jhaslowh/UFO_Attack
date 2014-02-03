@@ -85,6 +85,10 @@ Gadgets:
 
 **Player**  
 Has score and upgrade points (people abducted).  
+Abduction Types:  
+- Normal Human  
+- Smart Human  
+- Animal  
 Has a ray gun when on ground.   
 The players health will recharge when in the ship.  
 

@@ -9,15 +9,20 @@
 #include "UFO.h"
 #include "GameAtlas.h"
 #include "Camera2D.h"
+#include "PlayerAtlas.h"
 
 #define GRAVITY 980.0f
+
+// Player animation states
+#define PLAYERS_RUN 0
+#define PLAYERS_IDLE 1
+#define PLAYERS_AIR 2
 
 class Player
 {
 	// Basic properties 
 	float locX, locY;
 	float originX, originY;
-	Sprite sprite;
 
 	// Collision Properties 
 	// Collision lines, used for check collision 
@@ -58,8 +63,18 @@ class Player
 	float cameraOffsetY;
 
 	// Texture and animation 
+	PlayerAtlas playerAtlas; // Atlas used to draw images
 	float width, height;
-
+	bool lookingRight;		// Will be true if the player is facing right
+	int animationState;		// Animation states 
+	// Running frame properties
+	int runFrameCount;		// Total number of run frames		
+	int runFrame;			// Current run frame
+	float runFrameTime;		// Time per run frame
+	float cRunFrameTime;	// Current run frame time 
+	// Other frames 
+	int idleFrame;
+	int jumpFrame;
 
 public:
 

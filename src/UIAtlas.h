@@ -24,6 +24,6 @@ public:
 	virtual ~UIAtlas();
 
 	// Set up the stucture of this atlas 
-	void init();
+	void load();
 };
 

@@ -9,7 +9,7 @@ UIAtlas::~UIAtlas()
 }
 
 // Set up the stucture of this atlas 
-void UIAtlas::init(){
+void UIAtlas::load(){
 	// Load texture
 	textureID = loadPNG( std::string("UI-Sheet.png"));
 	// Set offset to the number of characters

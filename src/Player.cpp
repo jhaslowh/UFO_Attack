@@ -11,7 +11,7 @@ Player::Player(){
 	locY = 0.0f;
 
 	// Drawing 
-	originX = 20.0f;
+	originX = 25.0f;
 	originY = 50.0f;
 
 	// Physics 
@@ -31,6 +31,16 @@ Player::Player(){
 	cameraOffsetY = 0.0f;
 
 	ufo = new UFO();
+
+	lookingRight = true;
+	runFrameCount = 12;
+	runFrame = 0;
+	runFrameTime = .02f;
+	cRunFrameTime = 0;
+
+	animationState = PLAYERS_RUN;
+	idleFrame = PLAYER_RUN_FRAME8;
+	jumpFrame = PLAYER_RUN_FRAME9;
 }
 Player::~Player(){
 	delete ufo;
@@ -53,8 +63,7 @@ void Player::init(float screen_width, float screen_height){
 
 // Load level (use for textures)
 void Player::load(){
-	sprite.setup(width, height, string("player.png"));
-	sprite.setOrigin(originX, originY);
+	playerAtlas.load();
 
 	ufo->load();
 }
@@ -94,6 +103,16 @@ void Player::update(float deltaTime, Handlers* handlers){
 			if (jumpt < 0){
 				stopJump();
 			}
+		}
+
+
+		// Update Run Animation
+		cRunFrameTime += deltaTime;
+		if (cRunFrameTime >= runFrameTime){
+			cRunFrameTime = 0.0f;
+			runFrame++;
+			if (runFrame >= runFrameCount)
+				runFrame = 0;
 		}
 	}
 }
@@ -220,10 +239,16 @@ void Player::resolveCollision(Handlers* handlers){
 		locX = nextX;
 		locY = nextY;
 
-		sprite.setPosition(locX, locY);
-
 		// Set camera location 
 		((Camera2D*)(handlers->camera))->setTarget(locX, locY - cameraOffsetY);
+
+		// Set player animation state 
+		if (inAir)
+			animationState = PLAYERS_AIR;
+		else if (direcX != 0.0f)
+			animationState = PLAYERS_RUN;
+		else 
+			animationState = PLAYERS_IDLE;
 	}
 }
 
@@ -236,10 +261,14 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// Update player input 
 	else {
 		// Check if player is trying to move
-		if (mKeyH->keyDown(KEY_A))
+		if (mKeyH->keyDown(KEY_A)){
 			direcX = -1.0f;
-		else if (mKeyH->keyDown(KEY_D))
+			lookingRight = false;
+		}
+		else if (mKeyH->keyDown(KEY_D)){
 			direcX = 1.0f;
+			lookingRight = true;
+		}
 		else 
 			direcX = 0.0f;
 
@@ -269,8 +298,48 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 void Player::draw(GLHandler* mgl, GameAtlas* mGame){
 	ufo->draw(mgl, mGame);
 	
-	if (!inUFO)
-		sprite.draw(*mgl);
+	if (!inUFO){
+		playerAtlas.bindTexture(mgl);
+		playerAtlas.bindBuffers(mgl);
+
+		// Draw player
+		// Player running 
+		if (animationState == PLAYERS_RUN){
+			if (lookingRight)
+				playerAtlas.draw(mgl, PLAYER_RUN_FRAME0 + runFrame,
+					locX,locY,1.0f,0.0f,originX,originY);
+			else {
+				glCullFace(GL_FRONT);
+				playerAtlas.drawScale2(mgl, PLAYER_RUN_FRAME0 + runFrame,
+					locX,locY,-1.0f,1.0f,0.0f,originX,originY);
+				glCullFace(GL_BACK);
+			}
+		}
+		// Player idle 
+		else if (animationState == PLAYERS_IDLE){
+			if (lookingRight)
+				playerAtlas.draw(mgl, idleFrame,
+					locX,locY,1.0f,0.0f,originX,originY);
+			else {
+				glCullFace(GL_FRONT);
+				playerAtlas.drawScale2(mgl, idleFrame,
+					locX,locY,-1.0f,1.0f,0.0f,originX,originY);
+				glCullFace(GL_BACK);
+			}
+		}
+		// Player jumping or falling 
+		else if (animationState == PLAYERS_AIR){
+			if (lookingRight)
+				playerAtlas.draw(mgl, jumpFrame,
+					locX,locY,1.0f,0.0f,originX,originY);
+			else {
+				glCullFace(GL_FRONT);
+				playerAtlas.drawScale2(mgl, jumpFrame,
+					locX,locY,-1.0f,1.0f,0.0f,originX,originY);
+				glCullFace(GL_BACK);
+			}
+		}
+	}
 }
 
 // Stop player if they are jumping
@@ -290,7 +359,7 @@ void Player::hitGround(){
 
 // Call when the player hits a wall
 void Player::hitWall(){
-
+	// Nothing to do yet
 }
 
 // Call when the player hits the ceiling 

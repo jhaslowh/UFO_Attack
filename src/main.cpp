@@ -26,7 +26,7 @@ int init_resources()
 	mgl.setupGL();
 
 	mUIAtlas = new UIAtlas();
-	mUIAtlas->init();
+	mUIAtlas->load();
 	
 	// Make our terminal 
 	terminal = new UITerminal();
