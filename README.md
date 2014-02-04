@@ -27,6 +27,8 @@ Commands:
 - "restart" : restart entire game  
 - "clear" : clear terminal  
 - "version" : prints out version  
+- "screen hide" : hide the current screen  
+- "screen show" : show the current screen  
 
 Commands While in Level Editor
 - "scenery add tree" : add new tree to level 

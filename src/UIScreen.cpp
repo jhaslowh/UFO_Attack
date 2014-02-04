@@ -38,7 +38,22 @@ void UIScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 
 // Parse a command give
 bool UIScreen::parseCommand(UITerminal* terminal, string command, string args){
-	// Nothing to do 
+	// Check screen commands 
+	if (command == "screen"){
+		if (args == "hide") {
+			terminal->addLine("screen hide", TL_SUCCESS);
+			hide();
+			return true;
+		}
+
+		if (args == "show"){
+			terminal->addLine("screen show", TL_SUCCESS);
+			show();
+			return true;
+		}
+	}
+
+
 	return false;
 }
 
