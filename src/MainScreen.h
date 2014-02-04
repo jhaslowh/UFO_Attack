@@ -10,7 +10,6 @@ class MainScreen : public UIScreen
 	UIButton* buttonFreePlay;
 	UIButton* buttonSettings;
 	UIButton* buttonQuit;
-	UIButton* buttonText;
 
 public:
 	MainScreen();

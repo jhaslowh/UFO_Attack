@@ -9,36 +9,31 @@ MainScreen::~MainScreen(){
 	delete buttonFreePlay;
 	delete buttonSettings;
 	delete buttonQuit;
-	delete buttonText;
 }
 
 // Initialize screen
 void MainScreen::init(float screen_width, float screen_height){
 	UIScreen::init(screen_width, screen_height);
 
-	buttonLevelSelect = new UIButton(screen_width *.1f,screen_height *.4f,100.0f,35.0f, std::string("Levels"));
+	buttonLevelSelect = new UIButton(screen_width *.5f - 103.0f,screen_height *.5f,100.0f,35.0f, std::string("Levels"));
 	buttonLevelSelect->setupHide(HT_HOROZONTAL,buttonLevelSelect->getX()-100.0f,.4f,true);
 	buttonLevelSelect->setHidden();
 
-	buttonFreePlay = new UIButton(screen_width *.1f,(screen_height *.4f) + 40.0f,100.0f,35.0f, std::string("Free Play"));
+	buttonFreePlay = new UIButton(screen_width *.5f + 3.0f,screen_height *.5f,100.0f,35.0f, std::string("Free Play"));
 	buttonFreePlay->setupHide(HT_HOROZONTAL,buttonFreePlay->getX()-100.0f,.4f,true);
 	buttonFreePlay->setHidden();
 
-	buttonStore = new UIButton(screen_width *.1f,(screen_height *.4f) + 80.0f,100.0f,35.0f, std::string("Store"));
+	buttonStore = new UIButton(screen_width *.5f - 103.0f,(screen_height *.5f) + 40.0f,100.0f,35.0f, std::string("Store"));
 	buttonStore->setupHide(HT_HOROZONTAL,buttonStore->getX()-100.0f,.4f,true);
 	buttonStore->setHidden();
 
-	buttonSettings = new UIButton(screen_width *.1f,(screen_height *.4f) + 120.0f,100.0f,35.0f, std::string("Settings"));
+	buttonSettings = new UIButton(screen_width *.5f + 3.0f,(screen_height *.5f) + 40.0f,100.0f,35.0f, std::string("Settings"));
 	buttonSettings->setupHide(HT_HOROZONTAL,buttonSettings->getX()-100.0f,.4f,true);
 	buttonSettings->setHidden();
 
-	buttonQuit = new UIButton(screen_width *.1f,(screen_height *.4f) + 160.0f,100.0f,35.0f, std::string("Quit"));
+	buttonQuit = new UIButton(screen_width *.5f - 50.0f,(screen_height *.5f) + 80.0f,100.0f,35.0f, std::string("Quit"));
 	buttonQuit->setupHide(HT_HOROZONTAL,buttonQuit->getX()-100.0f,.4f,true);
 	buttonQuit->setHidden();
-
-	buttonText = new UIButton(screen_width *.1f,(screen_height *.4f) + 200.0f,100.0f,35.0f, std::string("Test"));
-	buttonText->setupHide(HT_HOROZONTAL,buttonText->getX()-100.0f,.4f,true);
-	buttonText->setHidden();
 }
 
 // Load screen
@@ -50,7 +45,6 @@ void MainScreen::load(TextureAtlas* mAtlas){
 	buttonFreePlay->centerText(mUI->mTextRender);
 	buttonSettings->centerText(mUI->mTextRender);
 	buttonQuit->centerText(mUI->mTextRender);
-	buttonText->centerText(mUI->mTextRender);
 	
 	show();
 }
@@ -64,7 +58,6 @@ void MainScreen::update(float deltaTime){
 	buttonFreePlay->update(deltaTime);
 	buttonSettings->update(deltaTime);
 	buttonQuit->update(deltaTime);
-	buttonText->update(deltaTime);
 }
 
 // Update input to the screen 
@@ -76,10 +69,7 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	buttonSettings->updateInput(mKeyH, mMouseH);
 	buttonFreePlay->updateInput(mKeyH, mMouseH);
 	buttonQuit->updateInput(mKeyH, mMouseH);
-	buttonText->updateInput(mKeyH, mMouseH);
 
-	if (buttonText->wasClicked())
-		transitionCode = SCREEN_TEST;
 	if (buttonQuit->wasClicked())
 		transitionCode = SCREEN_QUIT;
 	if (buttonSettings->wasClicked())
@@ -111,7 +101,6 @@ void MainScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	buttonFreePlay->draw(mgl, mUI);
 	buttonSettings->draw(mgl, mUI);
 	buttonQuit->draw(mgl, mUI);
-	buttonText->draw(mgl, mUI);
 }
 
 // Hide the entire screen.
@@ -123,7 +112,6 @@ void MainScreen::hide(){
 	buttonFreePlay->hide();
 	buttonSettings->hide();
 	buttonQuit->hide();
-	buttonText->hide();
 }
 
 // Show the entire screen.
@@ -135,5 +123,4 @@ void MainScreen::show(){
 	buttonSettings->show();
 	buttonFreePlay->show();
 	buttonQuit->show();
-	buttonText->show();
 }
