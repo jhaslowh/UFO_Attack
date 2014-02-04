@@ -2,17 +2,13 @@
 
 
 Player::Player(){
-	// Size
-	width = 50.0f;
-	height = 50.0f;
-
-	// Location 
+	// Location And Sizing 
 	locX = 0.0f;
 	locY = 0.0f;
-
-	// Drawing 
 	originX = 25.0f;
 	originY = 50.0f;
+	width = 50.0f;
+	height = 50.0f;
 
 	// Physics 
 	movementSpeed = 400.0f;
@@ -28,10 +24,7 @@ Player::Player(){
 	inAir = false;
 	inUFO = true;
 
-	cameraOffsetY = 0.0f;
-
-	ufo = new UFO();
-
+	// Animation values 
 	lookingRight = true;
 	runFrameCount = 12;
 	runFrame = 0;
@@ -41,6 +34,16 @@ Player::Player(){
 	animationState = PLAYERS_RUN;
 	idleFrame = PLAYER_RUN_FRAME8;
 	jumpFrame = PLAYER_RUN_FRAME9;
+
+	// Collision Values 
+	collRec.setLocation(0.0f,0.0f);
+	collRec.setSize(50.0f,50.0f);
+	waistHeight = 35.0f;
+	depthForDepthCheck = 20.0f;
+
+	
+	cameraOffsetY = 0.0f;
+	ufo = new UFO();
 }
 Player::~Player(){
 	delete ufo;
@@ -131,10 +134,12 @@ void Player::checkCollision(Handlers* handlers){
 		// Check player collision with level bounds
 		// ----------------------------------------
 
-		if (nextX - (width/2.0f) < ((LevelProperties*)(handlers->levelProps))->getLevelLeft())
-			nextX = ((LevelProperties*)(handlers->levelProps))->getLevelLeft() + (width/2.0f);
-		if (nextX + (width/2.0f) > ((LevelProperties*)(handlers->levelProps))->getLevelRight())
-			nextX = ((LevelProperties*)(handlers->levelProps))->getLevelRight() - (width/2.0f);
+		// Nasty code block....
+
+		if (nextX - (collRec.getWidth()/2.0f) < ((LevelProperties*)(handlers->levelProps))->getLevelLeft())
+			nextX = ((LevelProperties*)(handlers->levelProps))->getLevelLeft() + (collRec.getWidth()/2.0f);
+		if (nextX + (collRec.getWidth()/2.0f) > ((LevelProperties*)(handlers->levelProps))->getLevelRight())
+			nextX = ((LevelProperties*)(handlers->levelProps))->getLevelRight() - (collRec.getWidth()/2.0f);
 
 		// ----------------------------------
 		// Check player collision with ground 
@@ -148,8 +153,8 @@ void Player::checkCollision(Handlers* handlers){
 		// collision will not be detected. 
 	
 		// Setup horozontal line segment 
-		horA.setLocation(nextX - (width/2.0f), nextY - 32.0f);
-		horB.setLocation(nextX + (width/2.0f), nextY - 32.0f);
+		horA.setLocation(nextX - (collRec.getWidth()/2.0f), nextY - waistHeight);
+		horB.setLocation(nextX + (collRec.getWidth()/2.0f), nextY - waistHeight);
 
 		// Steep hill check:
 		// This check stops the player from walking up steep surfaces 
@@ -187,7 +192,7 @@ void Player::checkCollision(Handlers* handlers){
 
 		// Setup below body vertical line segment
 		vertBotA.setLocation(nextX, nextY);
-		vertBotB.setLocation(nextX, nextY + 20.0f);
+		vertBotB.setLocation(nextX, nextY + depthForDepthCheck);
 
 		// Hill bounce check: 
 		// This check stops the player from bouncing when moving down 

@@ -31,8 +31,10 @@ class Player
 	Point vertB;      // 
 	Point horA;       // Horozontal checking line point one and two
 	Point horB;       // 
+	float waistHeight;
 	Point vertBotA;   // Below body vertical checking line point one and two
 	Point vertBotB;   // 
+	float depthForDepthCheck;
 	// Collision Rectangle, this holds the basic properties of the collision 
 	// rectangle for the player. Should not be used for collision. Copy
 	// these properties into another rectangle before checking. 
