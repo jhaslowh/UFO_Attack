@@ -136,6 +136,7 @@ Difficulty: Medium/Easy
 **Scenery**  
 - Trees [Done]  
 - Grass [Done]   
+- Sign [Done]  
 - Rocks  
 - Buildings  
 - Cars  

@@ -25,6 +25,7 @@ public:
 	float getWidth();
 	float getHeight();
 	void setColor(float r, float g, float b);
+	GLfloat* getColor();
 
 	// Update the button 
 	virtual void update(float deltaTime);

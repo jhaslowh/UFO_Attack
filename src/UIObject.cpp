@@ -26,6 +26,7 @@ void UIObject::setColor(float r, float g, float b){
 	flatColor[1] = g;
 	flatColor[2] = b;
 }
+GLfloat* UIObject::getColor(){return flatColor;}
 
 // Update the button 
 void UIObject::update(float deltaTime){

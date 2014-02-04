@@ -2,12 +2,14 @@
 #include "UIScreen.h"
 #include "UIButton.h"
 #include "UILabel.h"
+#include "Rec.h"
 
 class PauseScreen : public UIScreen
 {
 	UILabel* lTitle;
 	UIButton* bResume;
 	UIButton* bQuit;
+	Rec bgOverlay;
 
 public:
 	PauseScreen();

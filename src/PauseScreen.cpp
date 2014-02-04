@@ -17,19 +17,21 @@ PauseScreen::~PauseScreen()
 void PauseScreen::init(float screen_width, float screen_height){
 	UIScreen::init(screen_width, screen_height);
 
-	bResume = new UIButton((screen_width/2.0f)-50.0f,(screen_height *.35f),100.0f,35.0f, std::string("Resume"));
-	bResume->setupHide(HT_VERTICAL,bResume->getY()+100.0f,.4f,true);
+	bgOverlay.setSize(screen_width, screen_height);
+
+	bResume = new UIButton((screen_width/2.0f)-50.0f,(screen_height *.5f),100.0f,35.0f, std::string("Resume"));
+	bResume->setupHide(HT_VERTICAL,bResume->getY()+100.0f,.2f,true);
 	bResume->setHidden();
 
-	bQuit = new UIButton((screen_width/2.0f)-50.0f,(screen_height *.35f)+45.0f,100.0f,35.0f, std::string("Quit"));
-	bQuit->setupHide(HT_VERTICAL,bQuit->getY()+100.0f,.4f,true);
+	bQuit = new UIButton((screen_width/2.0f)-50.0f,(screen_height *.5f)+45.0f,100.0f,35.0f, std::string("Quit"));
+	bQuit->setupHide(HT_VERTICAL,bQuit->getY()+100.0f,.2f,true);
 	bQuit->setHidden();
 
 	lTitle = new UILabel(string("Paused"));
 	lTitle->setTextSize(40.0f);
 	lTitle->setColor(.9f,.9f,.9f);
-	lTitle->setLocation(screen_width, (screen_height*.35f)-50.0f);
-	lTitle->setupHide(HT_VERTICAL,lTitle->getY()+100.0f,.4f,true);
+	lTitle->setLocation(screen_width, (screen_height*.5f)-50.0f);
+	lTitle->setupHide(HT_VERTICAL,lTitle->getY()+100.0f,.2f,true);
 	lTitle->setHidden();
 }
 
@@ -80,6 +82,8 @@ void PauseScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mUI->bindBuffers(mgl);
 	mUI->bindTexture(mgl);
 	
+	mgl->setFlatColor(0.0f,0.0f,0.0f,lTitle->getColor()[3]*.5f);
+	mUI->drawScale2(mgl,UII_REC,bgOverlay.getX(),bgOverlay.getY(), bgOverlay.getWidth(),bgOverlay.getHeight());
 	lTitle->draw(mgl, mUI);
 	bResume->draw(mgl, mUI);
 	bQuit->draw(mgl, mUI);
