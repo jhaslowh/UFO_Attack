@@ -15,6 +15,10 @@ UITerminal::UITerminal() : UITransitionObject()
 	useFunction = false;
 	iteratorLoc = 0;
 
+	iteratorAlpha = 1.0f;
+	iteratorBlinkSpeed = 1.5f;
+	blinkFade = true;
+
 	// Set colors 
 	tColors = new GLfloat*[4];
 	// Normal Color
@@ -112,6 +116,28 @@ void UITerminal::clear(){
 	}
 }
 
+// Update terminal
+void UITerminal::update(float deltaTime){
+	UITransitionObject::update(deltaTime);
+
+	// Fade out iterator 
+	if (blinkFade){
+		iteratorAlpha -= deltaTime * iteratorBlinkSpeed;
+		if (iteratorAlpha <= 0.0f){
+			blinkFade = !blinkFade;
+			iteratorAlpha = 0.0f;
+		}
+	}
+	// Fade in iterator 
+	else {
+		iteratorAlpha += deltaTime * iteratorBlinkSpeed;
+		if (iteratorAlpha >= 1.0f){
+			blinkFade = !blinkFade;
+			iteratorAlpha = 1.0f;
+		}
+	}
+}
+
 // Update input 
 void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	UITransitionObject::updateInput(mKeyH, mMouseH);
@@ -125,6 +151,10 @@ void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// Add text to the line 
 	string next = mKeyH->getPressedKey();
 	if (next.length() > 0){
+		// Set iterator to visible 
+		iteratorAlpha = 1.0f;
+		blinkFade = true;
+
 		// Add text to end of line if iterator is at the end
 		if (iteratorLoc == line.length()){
 			line += next;
@@ -203,7 +233,11 @@ void UITerminal::draw(GLHandler* mgl, UIAtlas* mAtlas){
 	// Draw current lines
 	mgl->setFlatColor(tColors[0]);
 	mAtlas->mTextRender->drawText(*mgl, line, loc_x + textOffX, loc_y + textOffY, 0, textSize);
-	// Draw itterator 
+	// Draw itterator	
+	if (iteratorAlpha > 0.5f)	
+		mgl->setFlatColor(tColors[0], 1.0f);
+	else 
+		mgl->setFlatColor(tColors[0], 0.0f);
 	mAtlas->drawScale2(mgl, UII_REC, loc_x + textOffX + 
 		mAtlas->mTextRender->measureString(line.substr(0,iteratorLoc), textSize), 
 		loc_y + textOffY, 2.0f, textSize);

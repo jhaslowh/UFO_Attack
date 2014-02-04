@@ -17,15 +17,18 @@ class UITerminal : public UITransitionObject
 {
 	
 	// Text variables 
-	bool commandIssued;		// Will be true when user presses enter
-	string commandString;   // String command to be read
-	string line;			// Current typed line
-	unsigned int maxTextLength;		// Max length
+	bool commandIssued;			// Will be true when user presses enter
+	string commandString;		// String command to be read
+	string line;				// Current typed line
+	unsigned int maxTextLength;	// Max length
 	int iteratorLoc;
 
 	// Text rendering 
-	float textSize;			// Size of drawn text
-	float textOffX, textOffY;// Offset for text inside of box 
+	float textSize;				// Size of drawn text
+	float textOffX, textOffY;	// Offset for text inside of box
+	float iteratorAlpha;		// Alpha of iterator
+	float iteratorBlinkSpeed;	// Speed to blink iterator
+	float blinkFade;			// Whether or not blink should fade
 
 	// Function pointer
 	void (*commandFunc)(string);
@@ -60,6 +63,9 @@ public:
 
 	// Clear terminal
 	void clear();
+
+	// Update terminal 
+	virtual void update(float deltatime);
 
 	// Update input 
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
