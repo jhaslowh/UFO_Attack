@@ -93,6 +93,10 @@ void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mgl->setProjectionMatrix(mgl->orthoMatrix);
 
 	level->draw(mgl, mAtlas);
+	
+	mAtlas->bindBuffers(mgl);
+	mAtlas->bindTexture(mgl);
+
 	levelEditor.draw(mgl, (UIAtlas*)mAtlas);
 	pauseScreen->draw(mgl, mAtlas);
 }

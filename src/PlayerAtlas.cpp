@@ -8,7 +8,7 @@ PlayerAtlas::~PlayerAtlas(){}
 // Set up the stucture of this atlas 
 void PlayerAtlas::load(){
 	// Load texture
-	textureID = loadPNG( std::string("images/playerAtlas.png"));
+	textureID = loadPNG( std::string("images/AtlasPlayer.png"));
 	VertCordGenerator* vcg = new VertCordGenerator(512,512);
 
 	// Add Player images to the buffers

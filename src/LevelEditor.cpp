@@ -71,16 +71,20 @@ void LevelEditor::init(float screen_width, float screen_height){
 
 // Load editor 
 void LevelEditor::load(TextureAtlas* mAtlas){
-	pointSprite.setup(8.0f,8.0f,"images/point.png");
+	pointSprite.setID(UII_POINT);
 	pointSprite.setOrigin(4.0f,4.0f);
-	pointSprite.setColor(.8f,.8f,1.0f,1.0f);
 	pointSprite.setScale(0.0f);
+	pointColor[0] = .8f;
+	pointColor[1] = .8f;
+	pointColor[2] = 1.0f;
+	pointColor[3] = 1.0f;
 
-	levelLeft.setup(64.0f,64.0f, "images/levelArrow2.png");
-	levelLeft.setOrigin(64.0f,32.0f);
+	levelLeft.setOrigin(0.0f,32.0f);
+	levelLeft.setRotation(180.0f);
+	levelLeft.setID(UII_LEVEL_ARROW);
 
-	levelRight.setup(64.0f,64.0f, "images/levelArrow.png");
 	levelRight.setOrigin(0.0f,32.0f);
+	levelRight.setID(UII_LEVEL_ARROW);
 	
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 	bMove->centerText(mUI->mTextRender);
@@ -457,15 +461,11 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 // Draw editor 
 void LevelEditor::draw(GLHandler* mgl, UIAtlas* mUI){
 	if (enabled){
-		pointSprite.draw(*mgl);
-		levelLeft.draw(*mgl);
-		levelRight.draw(*mgl);
-	}
-	
-	mUI->bindBuffers(mgl);
-	mUI->bindTexture(mgl);
-
-	if (enabled){
+		mgl->setFlatColor(pointColor);
+		pointSprite.draw(mgl, mUI);
+		mgl->setFlatColor(1.0f,1.0f,1.0f,1.0f);
+		levelLeft.draw(mgl, mUI);
+		levelRight.draw(mgl, mUI);
 
 		mUI->mTextRender->drawText(*mgl,string("Editor on"), 120,5,0,25.0f);
 		mUI->mTextRender->drawText(*mgl,mouseLoc, 120,32.0f,0,25.0f);

@@ -11,6 +11,8 @@
 #define UII_CHECKBOX_NORMAL 3
 #define UII_CHECKBOX_CHECKED 4
 #define UII_REC 5
+#define UII_LEVEL_ARROW 6
+#define UII_POINT 7
 
 class UIAtlas : public TextureAtlas
 {

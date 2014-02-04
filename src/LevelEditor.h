@@ -11,6 +11,7 @@
 #include "Camera2D.h"
 #include "LevelProperties.h"
 #include "Tree.h"
+#include "AtlasSprite.h"
 
 // Level editor states
 #define LES_NONE 0
@@ -29,7 +30,8 @@ class LevelEditor
 	// Ground Point Editing //
 	// -------------------- //
 	// Sprite to draw selected ground point
-	Sprite pointSprite;
+	AtlasSprite pointSprite;
+	GLfloat pointColor[4];
 	// Speed to shrink and grow sprite 
 	float shrinkSpeed;
 	// Selected ground point 
@@ -49,8 +51,8 @@ class LevelEditor
 	// Level Editor Moving    //
 	// ---------------------  //
 	// Sprites for level bounds 
-	Sprite levelLeft;
-	Sprite levelRight;
+	AtlasSprite levelLeft;
+	AtlasSprite levelRight;
 	// Distance to select bound
 	float boundDistance;
 

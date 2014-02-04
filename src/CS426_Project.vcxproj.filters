@@ -198,6 +198,9 @@
     <ClInclude Include="PlayerAtlas.h">
       <Filter>Header Files\gfx</Filter>
     </ClInclude>
+    <ClInclude Include="AtlasSprite.h">
+      <Filter>Header Files\geom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -328,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="PlayerAtlas.cpp">
       <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="AtlasSprite.cpp">
+      <Filter>Source Files\geom</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
