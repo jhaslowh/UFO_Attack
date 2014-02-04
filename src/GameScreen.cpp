@@ -18,6 +18,9 @@ GameScreen::~GameScreen()
 void GameScreen::init(float screen_width, float screen_height){
 	UIScreen::init(screen_width, screen_height);
 
+	screenWidth = screen_width;
+	screenHeight = screen_height;
+
 	level = new Level();
 	level->init(screen_width, screen_height);
 
@@ -33,7 +36,7 @@ void GameScreen::init(float screen_width, float screen_height){
 void GameScreen::load(TextureAtlas* mAtlas){
 	UIScreen::load(mAtlas);
 
-	level->load();
+	//level->load();
 	levelEditor.load(mAtlas);
 	levelEditor.setHandlers(&level->handlers);
 }
@@ -111,6 +114,20 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		if (levelEditor.parseCommand(terminal, command, args))
 			return true;
 	}
+
+	// Check for reset commmand
+	if (command == "level" && args == "reset"){
+		delete level;
+
+		level = new Level();
+		level->init(screenWidth, screenHeight);
+		// TODO this should load the level file in the future 
+
+		terminal->addLine("level reset", TL_SUCCESS);
+
+		return true;
+	}
+
 	return false;
 }
 

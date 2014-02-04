@@ -9,6 +9,9 @@ class GameScreen : public UIScreen
 	// States 
 	bool paused, gameover;
 
+	// Screen size for reference 
+	float screenWidth, screenHeight;
+
 	Level* level;
 	PauseScreen* pauseScreen;
 	LevelEditor levelEditor;

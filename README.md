@@ -30,9 +30,12 @@ Commands:
 - "screen hide" : hide the current screen  
 - "screen show" : show the current screen  
 
-Commands While in Level Editor
+Commands while in Level Editor
 - "scenery add tree" : add new tree to level 
 - "scenery add 0" : also adds new tree to level 
+
+Commands while in Game Screen
+- "level reset" : reset the current level  
 
 Technical Information
 ---------------------

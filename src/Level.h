@@ -16,10 +16,13 @@ class Level
 {
 	Player* player;
 	Ground* ground;
-	GameAtlas* gameAtlas;
+	GameAtlas gameAtlas;
 	SceneryHandler* sceneryHandler;
 	Camera2D camera;
 	LevelProperties levelProps;
+
+	// States 
+	bool loaded;
 
 public:
 	Handlers handlers;

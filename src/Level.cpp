@@ -1,15 +1,14 @@
 #include "Level.h"
 
 Level::Level(){
-	player = new Player();
-	gameAtlas = new GameAtlas();
+	player = NULL;
 	ground = NULL;
 	sceneryHandler = NULL;
+	loaded = false;
 }
 Level::~Level(){
 	delete player;
 	delete ground;
-	delete gameAtlas;
 	delete sceneryHandler;
 }
 
@@ -41,6 +40,7 @@ void Level::init(float screen_width, float screen_height){
 	// Set player spawn location 
 	levelProps.setPlayerSpawn(100.0f,100.0f);
 
+	player = new Player();
 	player->init(screen_width, screen_height);
 	player->setLocation(levelProps.getPlayerSpawnX(), levelProps.getPlayerSpawnY()); 
 	player->ufo->setLocation(100.0f,200.0f);
@@ -59,8 +59,6 @@ void Level::init(float screen_width, float screen_height){
 	sceneryHandler->add(obj);
 
 	ground = new Ground();
-	int i = -1;
-
 	ground->add(new Point(0.0f,400.0f));
 	ground->add(new Point(20.0f,400.0f));
 	ground->add(new Point(30.0f,500.0f));
@@ -86,7 +84,9 @@ void Level::init(float screen_width, float screen_height){
 void Level::load(){
 	player->load();
 	ground->load();
-	gameAtlas->load();
+	gameAtlas.load();
+
+	loaded = true;
 }
 
 // Update level state
@@ -113,18 +113,21 @@ void Level::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 // Draw level 
 void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
+	if (!loaded)
+		load();
+
 	// Set camera 
 	mgl->setViewMatrix(camera.getMatrix());
 
-	gameAtlas->bindBuffers(mgl);
-	gameAtlas->bindTexture(mgl);
+	gameAtlas.bindBuffers(mgl);
+	gameAtlas.bindTexture(mgl);
 
 	// Set flat color back to white 
 	GLfloat color[4] = {1.0f,1.0f,1.0f,1.0f};
 	mgl->setFlatColor(color);
 
-	sceneryHandler->draw(mgl, gameAtlas);		// Uses GameAtlas 
-	player->draw(mgl, gameAtlas);				// Uses PlayerAtlas
+	sceneryHandler->draw(mgl, &gameAtlas);		// Uses GameAtlas 
+	player->draw(mgl, &gameAtlas);				// Uses PlayerAtlas
 	ground->draw(mgl);							// Uses 1 sprite and 1 custom sprite
 
 	mgl->setViewMatrix(glm::mat4());
