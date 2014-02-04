@@ -11,6 +11,7 @@
 #include "Camera2D.h"
 #include "LevelProperties.h"
 #include "Tree.h"
+#include "Sign.h"
 #include "AtlasSprite.h"
 
 // Level editor states

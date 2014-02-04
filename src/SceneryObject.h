@@ -2,7 +2,10 @@
 #include "Rec.h"
 #include "GLHandler.h"
 #include "GameAtlas.h"
+#include "UIAtlas.h"
 #include "Handlers.h"
+#include "MouseHandler.h"
+#include "KeyHandler.h"
 
 class SceneryObject
 {
@@ -60,7 +63,13 @@ public:
 	// Update game state of the scenery object
 	virtual void update(float deltaTime, Handlers* handlers);
 
+	// Update scenery input 
+	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers);
+
 	// Draw object to the screen
 	virtual void draw(GLHandler* mgl, GameAtlas* mGame);
+
+	// Draw object ui elements 
+	virtual void drawUI(GLHandler* mgl, UIAtlas* mUI);
 };
 

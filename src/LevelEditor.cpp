@@ -499,16 +499,33 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 
 		// Check commands 
 		if (subCommand == "add"){
+			UITerminal::getCommandAndArgs(&subArgs, &subCommand, &subArgs);
+
 			// Add new tree to level 
-			if (subArgs == "tree" || subArgs == "0"){
+			if (subCommand == "tree" || subCommand == "0"){
 				terminal->addLine("Adding new tree to scenery handler", TL_SUCCESS);
 				Tree* tree = new Tree();
 				tree->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
 				sceneryHandler->add((SceneryObject*)tree);
 				return true;
 			}
+
+			// Add new sign to level
+			if (subCommand == "sign" || subCommand == "1"){
+				terminal->addLine("Adding new sign to scenery handler with text: " + subArgs, TL_SUCCESS);
+				Sign* sign = new Sign();
+				sign->setText(subArgs);
+				sign->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
+				sceneryHandler->add((SceneryObject*)sign);
+				return true;
+			}
+			
+			terminal->addLine("scenery add " + subCommand + " " + subArgs, TL_WARNING);
+			terminal->addLine("Unrecognized arguments given to command: scenery add", TL_WARNING);
+			return true;
 		}
-		
+
+		terminal->addLine("scenery " + args, TL_WARNING);
 		terminal->addLine("Unrecognized arguments given to command: scenery", TL_WARNING);
 		return true;
 	}

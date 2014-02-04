@@ -59,5 +59,8 @@ public:
 
 	// Draw level 
 	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+
+	// Draw level 
+	void drawUI(GLHandler* mgl, UIAtlas* mAtlas);
 };
 

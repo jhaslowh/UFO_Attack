@@ -100,6 +100,7 @@ void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mAtlas->bindBuffers(mgl);
 	mAtlas->bindTexture(mgl);
 
+	level->drawUI(mgl, (UIAtlas*)mAtlas);
 	levelEditor.draw(mgl, (UIAtlas*)mAtlas);
 	pauseScreen->draw(mgl, mAtlas);
 }
@@ -110,10 +111,8 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 	UIScreen::parseCommand(terminal, command, args);
 
 	// Update level editor commands if enabled 
-	if (levelEditor.Enabled()){
-		if (levelEditor.parseCommand(terminal, command, args))
-			return true;
-	}
+	if (levelEditor.parseCommand(terminal, command, args))
+		return true;
 
 	// Check for reset commmand
 	if (command == "level" && args == "reset"){

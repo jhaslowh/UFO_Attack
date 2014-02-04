@@ -38,6 +38,7 @@
     <ClInclude Include="SceneryObject.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="SettingsScreen.h" />
+    <ClInclude Include="Sign.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestScreen.h" />
     <ClInclude Include="TextRender.h" />
@@ -84,6 +85,7 @@
     <ClCompile Include="SceneryObject.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="SettingsScreen.cpp" />
+    <ClCompile Include="Sign.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestScreen.cpp" />
     <ClCompile Include="TextRender.cpp" />

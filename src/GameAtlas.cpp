@@ -13,6 +13,8 @@ void GameAtlas::load(){
 	// Add Game elements to the buffers
 	// Tree
 	vcg->addFrame(1.0f,1.0f,100.0f,100.0f);
+	// Sign
+	vcg->addFrame(103.0f,1.0f,50.0f,50.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

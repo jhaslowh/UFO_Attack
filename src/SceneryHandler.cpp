@@ -64,11 +64,29 @@ void SceneryHandler::update(float deltaTime, Handlers* handlers){
 	}
 }
 
+// Update objects input 
+void SceneryHandler::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
+	itr = head;
+	while (itr != NULL){
+		itr->updateInput(mKeyH, mMouseH, handlers);
+		itr = itr->getNext();
+	}
+}
+
 // Draw objects
 void SceneryHandler::draw(GLHandler* mgl, GameAtlas* mGame){
 	itr = head;
 	while (itr != NULL){
 		itr->draw(mgl, mGame);
+		itr = itr->getNext();
+	}
+}
+
+// Draw object ui elements 
+void SceneryHandler::drawUI(GLHandler* mgl, UIAtlas* mUI){
+	itr = head;
+	while (itr != NULL){
+		itr->drawUI(mgl, mUI);
 		itr = itr->getNext();
 	}
 }

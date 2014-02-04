@@ -27,7 +27,13 @@ public:
 	// Update objects
 	void update(float deltaTime, Handlers* handlers);
 
+	// Update objects input 
+	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers);
+
 	// Draw objects
 	void draw(GLHandler* mgl, GameAtlas* mGame);
+
+	// Draw object ui elements 
+	void drawUI(GLHandler* mgl, UIAtlas* mUI);
 };
 

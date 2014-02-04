@@ -85,7 +85,19 @@ void SceneryObject::update(float deltaTime, Handlers* handlers){
 	// Nothing to do 
 }
 
+// Update scenery input 
+void SceneryObject::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
+	// Nothing to do 
+}
+
+
 // Draw object to the screen
 void SceneryObject::draw(GLHandler* mgl, GameAtlas* mGame){
 	mGame->draw(mgl,imageID, locX, locY, scale, rotation, originX, originY);
+}
+
+
+// Draw object ui elements 
+void SceneryObject::drawUI(GLHandler* mgl, UIAtlas* mUI){
+	// Nothing to do 
 }

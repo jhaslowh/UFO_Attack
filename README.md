@@ -33,7 +33,9 @@ Commands:
 
 Commands while in Level Editor
 - "scenery add tree" : add new tree to level 
-- "scenery add 0" : also adds new tree to level 
+- "scenery add 0" : same as previous
+- "scenery add sign [text]" : add new sign to level (if text left blank, text will be set to "none"  
+- "scenery add 1 [text]" : same as previous  
 
 Commands while in Game Screen
 - "level reset" : reset the current level  

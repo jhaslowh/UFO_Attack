@@ -6,6 +6,7 @@
 
 // Game item id's
 #define GI_TREE1 0
+#define GI_SIGN 1
 
 class GameAtlas : public TextureAtlas
 {

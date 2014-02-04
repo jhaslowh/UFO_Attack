@@ -201,6 +201,9 @@
     <ClInclude Include="AtlasSprite.h">
       <Filter>Header Files\geom</Filter>
     </ClInclude>
+    <ClInclude Include="Sign.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -334,6 +337,9 @@
     </ClCompile>
     <ClCompile Include="AtlasSprite.cpp">
       <Filter>Source Files\geom</Filter>
+    </ClCompile>
+    <ClCompile Include="Sign.cpp">
+      <Filter>Source Files\game\scenery</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

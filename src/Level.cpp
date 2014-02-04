@@ -108,6 +108,7 @@ void Level::updateTerrain(float newX, float newY)
 
 // Update input
 void Level::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
+	sceneryHandler->updateInput(mKeyH, mMouseH, &handlers);
 	player->updateInput(mKeyH, mMouseH);
 }
 
@@ -133,3 +134,10 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mgl->setViewMatrix(glm::mat4());
 }
 
+// Draw level 
+void Level::drawUI(GLHandler* mgl, UIAtlas* mAtlas){
+	if (!loaded)
+		return;
+
+	sceneryHandler->drawUI(mgl, mAtlas);
+}
