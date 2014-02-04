@@ -29,6 +29,7 @@ Commands:
 - "version" : prints out version  
 - "screen hide" : hide the current screen  
 - "screen show" : show the current screen  
+- "test" : load test screen
 
 Commands while in Level Editor
 - "scenery add tree" : add new tree to level 

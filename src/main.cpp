@@ -188,6 +188,17 @@ void checkCommand(string line){
 
 		return;
 	}
+	// Load test screen
+	else if (command == "test"){
+		// Wait for rendering to stop 
+		while (render){} 
+		// Delete old screen 
+		delete screen;
+		screen = (UIScreen*)new TestScreen();
+		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+		terminal->addLine(command, TL_SUCCESS);
+		return;
+	}
 
 	// Send command to screen 
 	if (screen->parseCommand(terminal, command, args)) 
@@ -269,6 +280,7 @@ void onDraw()
 		screen->draw(&mgl, (TextureAtlas*)mUIAtlas);
 
 		// Draw terminal
+		mgl.setProjectionMatrix(mgl.orthoMatrix);
 		mUIAtlas->bindBuffers(&mgl);
 		mUIAtlas->bindTexture(&mgl);
 
