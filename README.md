@@ -84,6 +84,19 @@ Used for matrix math
 [http://www.lonesock.net/soil.html](http://www.lonesock.net/soil.html)  
 Used to load texture files 
 
+OpenGL Headers for linux
+------------------------
+
+You will need to get the OpenGL headers if you are compiling the code on linux. You can either look for there here..  
+
+[http://www.opengl.org/registry/](http://www.opengl.org/registry/)  
+[http://www.khronos.org/registry/](http://www.khronos.org/registry/)  
+
+or run these commands. The freeglut library might not be nessesary.   
+
+    sudo apt-get update  
+    sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev  
+
 Credits
 -------
 
