@@ -529,6 +529,33 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 		terminal->addLine("Unrecognized arguments given to command: scenery", TL_WARNING);
 		return true;
 	}
+	// Check for editor commands 
+	else if (command == "editor"){
+		// No arguments given
+		if (args == "none"){
+			terminal->addLine("No arguments given to command: editor", TL_WARNING);
+			return true;
+		}
+
+		// Close the editor 
+		if (args == "close"){
+			enabled = false;
+			hide();
+			terminal->addLine("editor close", TL_SUCCESS);
+			return true;
+		}
+		// Open the editor 
+		else if (args == "open"){
+			enabled = true;
+			show();
+			terminal->addLine("editor open", TL_SUCCESS);
+			return true;
+		}
+
+		terminal->addLine("scenery " + args, TL_WARNING);
+		terminal->addLine("Unrecognized arguments given to command: scenery", TL_WARNING);
+		return true;
+	}
 
 	return false;
 }

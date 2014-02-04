@@ -31,7 +31,9 @@ Commands:
 - "screen show" : show the current screen  
 - "test" : load test screen
 
-Commands while in Level Editor
+Commands for Level Editor (Must be in screen with one)  
+- "editor open" : open level editor  
+- "editor close" : close level editor  
 - "scenery add tree" : add new tree to level 
 - "scenery add 0" : same as previous
 - "scenery add sign [text]" : add new sign to level (if text left blank, text will be set to "none"  
