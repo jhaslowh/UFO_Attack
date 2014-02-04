@@ -33,6 +33,8 @@ public:
 
 	// Load texture
 	void load();
+	// Unload ground
+	void unload();
 
 	// Add new point into the array 
 	void add(Point* p);

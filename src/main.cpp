@@ -49,7 +49,11 @@ int init_resources()
 */
 void free_resources()
 {
-	printf("Free Resources\n");
+	printf("Free Resources...\n");
+	// Delete textures 
+	screen->unload();
+	mUIAtlas->unload();
+
 	// Disable gl states 
 	mgl.endGL();
 
@@ -217,8 +221,9 @@ void changeScreen(){
 	case SCREEN_LOAD:
 		break;
 	case SCREEN_MAIN:
-		// Wait for rendering to stop 
-		while (render){} 
+		unloadScreen = true;
+		// Wait for rendering and unload to finish
+		while (render || unloadScreen){} 
 		// Delete old screen 
 		delete screen;
 		screen = (UIScreen*)new MainScreen();
@@ -227,22 +232,27 @@ void changeScreen(){
 	case SCREEN_STORE:
 		break;
 	case SCREEN_SETTINGS:
-		// Wait for rendering to stop 
-		while (render){} 
+		unloadScreen = true;
+		// Wait for rendering and unload to finish
+		while (render || unloadScreen){} 
 		// Delete old screen 
 		delete screen;
 		screen = (UIScreen*)new SettingsScreen(settings);
 		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
 	case SCREEN_FREE_PLAY:
-		while(render){}
+		unloadScreen = true;
+		// Wait for rendering and unload to finish
+		while (render || unloadScreen){} 
+		// Delete old screen 
 		delete screen;
 		screen = (UIScreen*)new FreePlayScreen();
 		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
 		break;
 	case SCREEN_GAME:
-		// Wait for rendering to stop 
-		while (render){} 
+		unloadScreen = true;
+		// Wait for rendering and unload to finish
+		while (render || unloadScreen){} 
 		// Delete old screen 
 		delete screen;
 		screen = (UIScreen*)new GameScreen();
@@ -254,8 +264,9 @@ void changeScreen(){
 		running = false;
 		break;
 	case SCREEN_TEST:
-		// Wait for rendering to stop 
-		while (render){} 
+		unloadScreen = true;
+		// Wait for rendering and unload to finish
+		while (render || unloadScreen){} 
 		// Delete old screen 
 		delete screen;
 		screen = (UIScreen*)new TestScreen();
@@ -319,7 +330,7 @@ int gameLoop(void *ptr){
 		// Update if behind 
 		framesSkipped = 0; // reset the frames skipped
 		while (sleepTime < 0 && framesSkipped < MAX_FRAME_SKIPS){
-			printf("Skipped Frame\n");
+			printf("Skipped Frame: \n");
 			// We need to catch up, update without rendering
 			onUpdate();
 			sleepTime += FRAME_PERIOD;
@@ -378,6 +389,14 @@ void eventAndRenderLoop(){
 			// Swap buffers 
 			SDL_GL_SwapWindow(window);
 			render = false;
+		}
+
+		// Unload screen if needed
+		if (unloadScreen){
+			cout << "Screen Unloading...\n";
+			screen->unload();
+			unloadScreen = false;
+			cout << "Screen Unloaded\n";
 		}
 	}
 }

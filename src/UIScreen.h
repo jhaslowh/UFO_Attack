@@ -30,6 +30,7 @@ class UIScreen
 {
 protected:
 	bool loaded;
+	bool unloaded;
 	int transitionCode;
 
 public:
@@ -46,6 +47,11 @@ public:
 	// Note: If textures need to be loaded, they must
 	// be loaded in this method or they will not work. 
 	virtual void load(TextureAtlas* mAtlas);
+
+	// Unload screen textures
+	// THIS MUST BE CALLED IF YOU LOAD STUFF.
+	virtual void unload();
+	bool isUnloaded();
 
 	// Update the state of the screen
 	virtual void update(float deltaTime);

@@ -38,6 +38,15 @@ void FreePlayScreen::load(TextureAtlas* mAtlas){
 	levelEditor.load(mAtlas);
 }
 
+// Unload screen textures
+// THIS MUST BE CALLED IF YOU LOAD STUFF.
+void FreePlayScreen::unload(){
+	if (unloaded) return;
+	UIScreen::unload();
+
+	level->unload();
+}
+
 // Update the state of the screen
 void FreePlayScreen::update(float deltaTime){
 	UIScreen::update(deltaTime);

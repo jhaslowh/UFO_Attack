@@ -41,6 +41,16 @@ void GameScreen::load(TextureAtlas* mAtlas){
 	levelEditor.setHandlers(&level->handlers);
 }
 
+
+// Unload screen textures
+// THIS MUST BE CALLED IF YOU LOAD STUFF.
+void GameScreen::unload(){
+	if (unloaded) return;
+	UIScreen::unload();
+
+	level->unload();
+}
+
 // Update the state of the screen
 void GameScreen::update(float deltaTime){
 	UIScreen::update(deltaTime);

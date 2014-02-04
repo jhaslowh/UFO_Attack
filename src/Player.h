@@ -23,8 +23,12 @@ class Player
 	// Basic properties 
 	float locX, locY;
 	float originX, originY;
+	// Camera 
+	float cameraOffsetY;
 
+	// --------------------
 	// Collision Properties 
+	// --------------------
 	// Collision lines, used for check collision 
 	// with the ground. 
 	Point vertA;      // Vertical checking line point one and two
@@ -44,7 +48,9 @@ class Player
 	Rec collRecY;		// Collision rec with just new y
 	Rec collRecXY;		// Collision rec with both new x and y
 
+	// -------
 	// Physics
+	// -------
 	float nextX, nextY;
 	float movementSpeed;
 	float direcX;
@@ -55,16 +61,22 @@ class Player
 	float airT;      // Time that player has been in the air for 
 	float minAirtForInAir; // Min time to count airT as being in air
   
+	// ------
 	// States 
-	bool alive;
+	// ------
     bool jumping;
 	bool inAir;
 	bool inUFO;
 
-	// Camera 
-	float cameraOffsetY;
+	// ------
+	// Health
+	// ------ 
+	float health;
+	float maxHealth;
 
+	// ---------------------
 	// Texture and animation 
+	// ---------------------
 	PlayerAtlas playerAtlas; // Atlas used to draw images
 	float width, height;
 	bool lookingRight;		// Will be true if the player is facing right
@@ -89,14 +101,25 @@ public:
 	void setLocation(float x, float y);
 	float getX();
 	float getY();
+	// Set max health
+	void setMaxHealth(float value);
+	// Get max health
+	float getMaxHealth();
+	// Set health
+	void setHealth(float value);
+	// Get health
+	float getHealth();
 
 	// Functions 
 
-	// initialize level
+	// initialize player
 	void init(float screen_width, float screen_height);
 
-	// Load level (use for textures)
+	// Load player (use for textures)
 	void load();
+
+	// Unload textures
+	void unload();
 
 	// Update level state
 	void update(float deltaTime, Handlers* handlers);
@@ -113,7 +136,6 @@ public:
 	// Draw level 
 	void draw(GLHandler* mgl, GameAtlas* mGame);
 
-	
 	// Physics Helpers
 
 	// Stop player if they are jumping
@@ -130,6 +152,15 @@ public:
 
 	// Called when the player is dropped from the ship
 	void dropFromShip();
+
+	// Set health back to max health
+	void replinishHealth();
+
+	// Check if player is alive 
+	bool alive();
+
+	// Apply damage to health
+	void applyDamage(float damage);
 
 private:
 

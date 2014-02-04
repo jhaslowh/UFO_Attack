@@ -2,6 +2,7 @@
 
 UIScreen::UIScreen(){
 	loaded = false;
+	unloaded = true;
 	transitionCode = NO_TRANSITION;
 }
 UIScreen::~UIScreen(){
@@ -18,6 +19,16 @@ int UIScreen::getTransitionCode(){return transitionCode;}
 // Load screen
 void UIScreen::load(TextureAtlas* mAtlas){
 	loaded = true;
+	unloaded = false;
+}
+
+// Unload screen textures
+// THIS MUST BE CALLED IF YOU LOAD STUFF.
+void UIScreen::unload(){
+	unloaded = true;
+}
+bool UIScreen::isUnloaded(){
+	return unloaded;
 }
 
 // Update the state of the screen
@@ -32,7 +43,7 @@ void UIScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 // Draw the screen
 void UIScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
-	if (!loaded)
+	if (!loaded && transitionCode == NO_TRANSITION)
 		load(mAtlas);
 }
 

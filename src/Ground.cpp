@@ -35,6 +35,13 @@ void Ground::load(){
 	grass.setOrigin(5.0f,22.0f);
 }
 
+// Unload ground
+void Ground::unload(){
+	grass.unload();
+	if (textureID != 0)
+		glDeleteTextures(1, &textureID);
+}
+
 // Add new point into the array 
 void Ground::add(Point* p){
 	if (points == NULL){

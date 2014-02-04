@@ -15,12 +15,12 @@ Sprite::Sprite(){
 	width = 0;
 	height = 0;
 }
-Sprite::~Sprite(){
-	// This line will crash unless the sprite is deleted
-	// in the main thread. You cannot delete a gl object
-	// in the update thread. I am also not sure if we need 
-	// it. 
-	//glDeleteTextures(1, &textureID);
+Sprite::~Sprite(){}
+
+// Unload sprite 
+void Sprite::unload(){
+	if (textureID != 0)
+		glDeleteTextures(1, &textureID);
 }
 
 // Setup the sprites verticies, coords, and texture 

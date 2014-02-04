@@ -20,6 +20,9 @@ public:
 	TextureAtlas();
 	virtual ~TextureAtlas();
 
+	// Unload texture if has one 
+	void unload();
+
 	// Set the vertex list 
     void setVerts(GLfloat* v);
 	// Set the cord list 

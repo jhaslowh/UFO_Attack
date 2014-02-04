@@ -48,6 +48,9 @@ public:
 	// Load level (use for textures)
 	void load();
 
+	// Unload level
+	void unload();
+
 	// Update level state
 	void update(float deltaTime);
 

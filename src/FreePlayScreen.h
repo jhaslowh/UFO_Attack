@@ -25,6 +25,10 @@ public:
 	// be loaded in this method or they will not work. 
 	virtual void load(TextureAtlas* mAtlas);
 
+	// Unload screen textures
+	// THIS MUST BE CALLED IF YOU LOAD STUFF.
+	virtual void unload();
+
 	// Update the state of the screen
 	virtual void update(float deltaTime);
 

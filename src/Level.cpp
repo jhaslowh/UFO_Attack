@@ -89,6 +89,13 @@ void Level::load(){
 	loaded = true;
 }
 
+// Unload level
+void Level::unload(){
+	gameAtlas.unload();
+	player->unload();
+	ground->unload();
+}
+
 // Update level state
 void Level::update(float deltaTime){
 	sceneryHandler->update(deltaTime, &handlers);

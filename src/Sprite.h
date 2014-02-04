@@ -30,6 +30,9 @@ public:
 	Sprite();
 	~Sprite();
 
+	// Unload sprite 
+	void unload();
+
 	// Setup the sprites verticies, coords, and texture 
 	void setup(float width, float height);
 	void setup(float width, float height, std::string file);

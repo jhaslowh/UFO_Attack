@@ -23,6 +23,16 @@ class UFO
 	float direcX, direcY;
 	float speed;
 
+	// Shields and armor 
+	float armor;				// Ships current armor
+	float maxArmor;				// Max armor that ship can have 
+	float shield;				// Ships current shield amount 
+	float maxShield;			// Max shield capacity for the ship
+	float shieldChargeRate;		// How fast the ship shield charges 
+	// How long it takes from the last time ship took damage to when it recharges
+	float timeTillCharge;		
+	float cTimeTillCharge;
+
 public:
 	UFO();
 	~UFO();
@@ -31,6 +41,14 @@ public:
 	void setLocation(float x, float y);
 	float getX();
 	float getY();
+	void setMaxArmor(float value);
+	float getMaxArmor();
+	void setArmor(float value);
+	float getArmor();
+	void setMaxShield(float value);
+	float getMaxShield();
+	void setShield(float value);
+	float getShield();
 
 	// Init 
 	void init();
@@ -52,5 +70,14 @@ public:
 
 	// Draw UFO
 	void draw(GLHandler* mgl, PlayerAtlas* mGame);
+
+	// Apply damage to the ship 
+	void applyDamage(float damage);
+
+	// Refil armor to capacity
+	void replinishArmor();
+
+	// Returns true if ufo is alive 
+	bool alive();
 };
 

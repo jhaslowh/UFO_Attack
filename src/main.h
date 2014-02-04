@@ -46,6 +46,7 @@ float deltaTime = 0;		// Used in game loop to tell how much time has passed
 // States 
 bool running = true;		
 bool render = false;        // Set to true each time game needs to be rendered 
+bool unloadScreen = false;
 
 // Handlers
 GLHandler mgl;
