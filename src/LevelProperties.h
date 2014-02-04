@@ -3,6 +3,8 @@ class LevelProperties
 {
 	float levelLeft;
 	float levelRight;
+	float playerSpawnX;
+	float playerSpawnY;
 
 public:
 	LevelProperties();
@@ -17,5 +19,12 @@ public:
 	void setLevelRight(float right);
 	// Get the right bounds of the level 
 	float getLevelRight();
+
+	// Set player spawn location 
+	void setPlayerSpawn(float x, float y);
+	// Get player spawn x
+	float getPlayerSpawnX();
+	// Get player spawn y
+	float getPlayerSpawnY();
 };
 

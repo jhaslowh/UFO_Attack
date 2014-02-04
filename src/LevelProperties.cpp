@@ -5,6 +5,8 @@ LevelProperties::LevelProperties()
 {
 	levelLeft = 0.0f;
 	levelRight = 0.0f;
+	playerSpawnX = 0.0f;
+	playerSpawnY = 0.0f;
 }
 
 LevelProperties::~LevelProperties(){}
@@ -18,3 +20,17 @@ float LevelProperties::getLevelLeft(){return levelLeft;}
 void LevelProperties::setLevelRight(float right){levelRight = right;}
 // Get the right bounds of the level 
 float LevelProperties::getLevelRight(){return levelRight;}
+
+// Set player spawn location 
+void LevelProperties::setPlayerSpawn(float x, float y){
+	playerSpawnX = x;
+	playerSpawnY = y;
+}
+// Get player spawn x
+float LevelProperties::getPlayerSpawnX(){
+	return playerSpawnX;
+}
+// Get player spawn y
+float LevelProperties::getPlayerSpawnY(){
+	return playerSpawnY;
+}

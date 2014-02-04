@@ -38,7 +38,11 @@ LevelProperties* Level::getProperties()
 void Level::init(float screen_width, float screen_height){
 	levelProps.setLevelRight(1400.0f);
 
+	// Set player spawn location 
+	levelProps.setPlayerSpawn(100.0f,100.0f);
+
 	player->init(screen_width, screen_height);
+	player->setLocation(levelProps.getPlayerSpawnX(), levelProps.getPlayerSpawnY()); 
 	player->ufo->setLocation(100.0f,200.0f);
 
 	camera.init(screen_width, screen_height);
