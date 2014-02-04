@@ -10,6 +10,7 @@ LevelEditor::LevelEditor()
 	mouseOffsetX = 0;
 	mouseOffsetY = 0;
 	scObj = NULL;
+	movingCamera = false;
 
 	levelX = 0.0f;
 	levelY = 0.0f;
@@ -128,8 +129,6 @@ void LevelEditor::update(float deltaTime, Handlers* handlers){
 		stateString = "State: Remove Ground Point";
 	else if (state == LES_REMOVE_SCENERY)
 		stateString = "State: Remove Scenery Object";
-	else if (state == LES_MOVE_CAMERA)
-		stateString = "State: Move Camera";
 	else if (state == LES_LB_LEFT || state == LES_LB_RIGHT)
 		stateString = "State: Moving Level Bounds";
 
@@ -218,6 +217,30 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			return;
 		}
 
+		// Move camera 
+		if (movingCamera){
+			if (!mMouseH->isRightDown()){
+				movingCamera = false;
+			}
+			else {
+				// Get camera reference
+				Camera2D* c = ((Camera2D*)(handlers->camera));
+
+				// Mover camera 
+				c->setLocation(
+					c->getX() - (mMouseH->getX() - lastMouse.getX()),
+					c->getY() - (mMouseH->getY() - lastMouse.getY()));
+				lastMouse.setLocation(mMouseH->getX(), mMouseH->getY());
+			}
+		}
+		// Check if user is trying to move camera 
+		else {
+			if (mMouseH->isRightDown() && !mMouseH->wasRightDown()){
+				movingCamera = true;
+				lastMouse.setLocation(mMouseH->getX(), mMouseH->getY());
+			}
+		}
+
 		// ---------------------- //
 		// State: None
 		// ---------------------- //
@@ -225,12 +248,6 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			bool clicked = false;
 			if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
 				clicked = true;
-			if (mMouseH->isRightDown() && !mMouseH->wasRightDown()){
-				state = LES_MOVE_CAMERA;
-				lastMouse.setLocation(mMouseH->getX(), mMouseH->getY());
-				pointHighlighted = false;
-				return;
-			}
 
 			/// Select ground points
 
@@ -415,22 +432,6 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 					head = head->getNext();
 				}
 			}
-		}
-		// ---------------------- //
-		// State: Move Camera  
-		// ---------------------- //
-		else if (state == LES_MOVE_CAMERA){
-			if (!mMouseH->isRightDown()){
-				state = LES_NONE;
-				return;
-			}
-
-			Camera2D* c = ((Camera2D*)(handlers->camera));
-
-			c->setLocation(
-				c->getX() - (mMouseH->getX() - lastMouse.getX()),
-				c->getY() - (mMouseH->getY() - lastMouse.getY()));
-			lastMouse.setLocation(mMouseH->getX(), mMouseH->getY());
 		}
 		// ---------------------- //
 		// State: Move Level Bounds   

@@ -21,9 +21,8 @@
 #define LES_REMOVE_POINT 3
 #define LES_SCENERY 4
 #define LES_REMOVE_SCENERY 5
-#define LES_MOVE_CAMERA 6
-#define LES_LB_LEFT 7
-#define LES_LB_RIGHT 8
+#define LES_LB_LEFT 6
+#define LES_LB_RIGHT 7
 
 class LevelEditor
 {
@@ -66,6 +65,8 @@ class LevelEditor
 	int state;
 	// Current string of level editor state 
 	string stateString;
+	// Moving camera 
+	bool movingCamera;
 	
 	// ------ //
 	//   UI   //
