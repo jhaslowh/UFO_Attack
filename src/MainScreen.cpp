@@ -16,23 +16,23 @@ void MainScreen::init(float screen_width, float screen_height){
 	UIScreen::init(screen_width, screen_height);
 
 	buttonLevelSelect = new UIButton(screen_width *.5f - 103.0f,screen_height *.5f,100.0f,35.0f, std::string("Levels"));
-	buttonLevelSelect->setupHide(HT_HOROZONTAL,buttonLevelSelect->getX()-100.0f,.4f,true);
+	buttonLevelSelect->setupHide(HT_VERTICAL,buttonLevelSelect->getY()+100.0f,.4f,true);
 	buttonLevelSelect->setHidden();
 
 	buttonFreePlay = new UIButton(screen_width *.5f + 3.0f,screen_height *.5f,100.0f,35.0f, std::string("Free Play"));
-	buttonFreePlay->setupHide(HT_HOROZONTAL,buttonFreePlay->getX()-100.0f,.4f,true);
+	buttonFreePlay->setupHide(HT_VERTICAL,buttonFreePlay->getY()+100.0f,.4f,true);
 	buttonFreePlay->setHidden();
 
 	buttonStore = new UIButton(screen_width *.5f - 103.0f,(screen_height *.5f) + 40.0f,100.0f,35.0f, std::string("Store"));
-	buttonStore->setupHide(HT_HOROZONTAL,buttonStore->getX()-100.0f,.4f,true);
+	buttonStore->setupHide(HT_VERTICAL,buttonStore->getY()+100.0f,.4f,true);
 	buttonStore->setHidden();
 
 	buttonSettings = new UIButton(screen_width *.5f + 3.0f,(screen_height *.5f) + 40.0f,100.0f,35.0f, std::string("Settings"));
-	buttonSettings->setupHide(HT_HOROZONTAL,buttonSettings->getX()-100.0f,.4f,true);
+	buttonSettings->setupHide(HT_VERTICAL,buttonSettings->getY()+100.0f,.4f,true);
 	buttonSettings->setHidden();
 
 	buttonQuit = new UIButton(screen_width *.5f - 50.0f,(screen_height *.5f) + 80.0f,100.0f,35.0f, std::string("Quit"));
-	buttonQuit->setupHide(HT_HOROZONTAL,buttonQuit->getX()-100.0f,.4f,true);
+	buttonQuit->setupHide(HT_VERTICAL,buttonQuit->getY()+100.0f,.4f,true);
 	buttonQuit->setHidden();
 }
 
