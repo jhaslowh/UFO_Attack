@@ -3,7 +3,7 @@
 
 Player::Player(){
 	// Size
-	width = 40.0f;
+	width = 50.0f;
 	height = 50.0f;
 
 	// Location 
@@ -126,6 +126,15 @@ void Player::checkCollision(Handlers* handlers){
 		// Point used during collision detection 
 		Point p;
 		Point* itr;
+
+		// ----------------------------------------
+		// Check player collision with level bounds
+		// ----------------------------------------
+
+		if (nextX - (width/2.0f) < ((LevelProperties*)(handlers->levelProps))->getLevelLeft())
+			nextX = ((LevelProperties*)(handlers->levelProps))->getLevelLeft() + (width/2.0f);
+		if (nextX + (width/2.0f) > ((LevelProperties*)(handlers->levelProps))->getLevelRight())
+			nextX = ((LevelProperties*)(handlers->levelProps))->getLevelRight() - (width/2.0f);
 
 		// ----------------------------------
 		// Check player collision with ground 

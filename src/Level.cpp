@@ -119,9 +119,9 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	GLfloat color[4] = {1.0f,1.0f,1.0f,1.0f};
 	mgl->setFlatColor(color);
 
-	sceneryHandler->draw(mgl, gameAtlas);
-	player->draw(mgl, gameAtlas);
-	ground->draw(mgl);
+	sceneryHandler->draw(mgl, gameAtlas);		// Uses GameAtlas 
+	player->draw(mgl, gameAtlas);				// Uses PlayerAtlas
+	ground->draw(mgl);							// Uses 1 sprite and 1 custom sprite
 
 	mgl->setViewMatrix(glm::mat4());
 }
