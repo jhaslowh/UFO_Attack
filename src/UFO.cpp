@@ -20,9 +20,7 @@ float UFO::getX(){return locX;}
 float UFO::getY(){return locY;}
 
 // Init 
-void UFO::init(){
-
-}
+void UFO::init(){}
 	
 // Load images
 void UFO::load(){
@@ -97,6 +95,6 @@ void UFO::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 }
 
 // Draw UFO
-void UFO::draw(GLHandler* mgl, GameAtlas* mGame){
-	mGame->draw(mgl, GI_UFO, locX,locY,1.0f,0,originX, originY);
+void UFO::draw(GLHandler* mgl, PlayerAtlas* mGame){
+	mGame->draw(mgl, UFO_FRAME, locX,locY,1.0f,0,originX, originY);
 }

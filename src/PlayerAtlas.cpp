@@ -28,6 +28,9 @@ void PlayerAtlas::load(){
 	vcg->addFrame(105,105,50,50);
 	vcg->addFrame(157,105,50,50);
 
+	// UFO
+	vcg->addFrame(209.0f,1.0f,100.0f,50.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

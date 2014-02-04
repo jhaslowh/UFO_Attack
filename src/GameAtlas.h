@@ -4,10 +4,8 @@
 #include "VertCordGenerator.h"
 #include "FileHelper.h"
 
-// Game item id's 
-
+// Game item id's
 #define GI_TREE1 0
-#define GI_UFO 1
 
 class GameAtlas : public TextureAtlas
 {

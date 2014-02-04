@@ -1,7 +1,7 @@
 #pragma once
 #include "Handlers.h"
 #include "GLHandler.h"
-#include "GameAtlas.h"
+#include "PlayerAtlas.h"
 #include "KeyHandler.h"
 #include "MouseHandler.h"
 #include "Camera2D.h"
@@ -51,6 +51,6 @@ public:
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
 
 	// Draw UFO
-	void draw(GLHandler* mgl, GameAtlas* mGame);
+	void draw(GLHandler* mgl, PlayerAtlas* mGame);
 };
 

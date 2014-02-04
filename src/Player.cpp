@@ -296,11 +296,12 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 // Draw level 
 void Player::draw(GLHandler* mgl, GameAtlas* mGame){
-	ufo->draw(mgl, mGame);
+	playerAtlas.bindTexture(mgl);
+	playerAtlas.bindBuffers(mgl);
+
+	ufo->draw(mgl, &playerAtlas);
 	
 	if (!inUFO){
-		playerAtlas.bindTexture(mgl);
-		playerAtlas.bindBuffers(mgl);
 
 		// Draw player
 		// Player running 

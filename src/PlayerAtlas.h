@@ -16,6 +16,7 @@
 #define PLAYER_RUN_FRAME9 9
 #define PLAYER_RUN_FRAME10 10
 #define PLAYER_RUN_FRAME11 11
+#define UFO_FRAME 12
 
 class PlayerAtlas : public TextureAtlas
 {
