@@ -4,7 +4,7 @@
 // Structure for lines of the terminal 
 struct TLine {
   int type;
-  string text;
+  std::string text;
 } ;
 
 // Terminal line types 
@@ -18,8 +18,8 @@ class UITerminal : public UITransitionObject
 	
 	// Text variables 
 	bool commandIssued;			// Will be true when user presses enter
-	string commandString;		// String command to be read
-	string line;				// Current typed line
+	std::string commandString;		// String command to be read
+	std::string line;				// Current typed line
 	unsigned int maxTextLength;	// Max length
 	int iteratorLoc;
 
@@ -31,7 +31,7 @@ class UITerminal : public UITransitionObject
 	float blinkFade;			// Whether or not blink should fade
 
 	// Function pointer
-	void (*commandFunc)(string);
+	void (*commandFunc)(std::string);
 	bool useFunction;
 
 	// Type colors 
@@ -49,17 +49,17 @@ public:
 	int getMaxTextLength();
 
 	// Get the command string
-	string getCommandString();
+	std::string getCommandString();
 	// Check if a command was issued 
 	bool CommandIssued();
 	// Set function to use on commands 
-	void setCommandFunc(void func(string));
+	void setCommandFunc(void func(std::string));
 	// Add a line to the terminal 
-	void addLine(string line);
+	void addLine(std::string line);
 	// Add a line to the terminal 
 	// Type must be one of the following:
 	// TL_NORMAL, TL_ERROR, TL_WARNING, TL_SUCCESS
-	void addLine(string line, int type);
+	void addLine(std::string line, int type);
 
 	// Clear terminal
 	void clear();
@@ -76,6 +76,6 @@ public:
 	// Parse a line for command and args 
 	// If no command found, command will be left alone.
 	// If no args found, args will be left alone. 
-	static void getCommandAndArgs(string* line, string* command, string* args);
+	static void getCommandAndArgs(std::string* line, std::string* command, std::string* args);
 };
 

@@ -71,7 +71,7 @@ void free_resources();
 void onUpdate();
 
 // Check commands from the terminal
-void checkCommand(string line);
+void checkCommand(std::string line);
 
 // Checks if the screen needs to be switched. 
 void changeScreen();

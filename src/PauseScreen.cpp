@@ -27,7 +27,7 @@ void PauseScreen::init(float screen_width, float screen_height){
 	bQuit->setupHide(HT_VERTICAL,bQuit->getY()+100.0f,.2f,true);
 	bQuit->setHidden();
 
-	lTitle = new UILabel(string("Paused"));
+	lTitle = new UILabel(std::string("Paused"));
 	lTitle->setTextSize(40.0f);
 	lTitle->setColor(.9f,.9f,.9f);
 	lTitle->setLocation(screen_width, (screen_height*.5f)-50.0f);

@@ -1,5 +1,7 @@
 #include "LevelEditor.h"
 
+using namespace std;
+
 LevelEditor::LevelEditor()
 {
 	shrinkSpeed = 5.0f;

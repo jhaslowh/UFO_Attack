@@ -28,9 +28,9 @@ Sign::Sign()
 Sign::~Sign(){}
 
 // Set sign text
-void Sign::setText(string t){ text = t;}
+void Sign::setText(std::string t){ text = t;}
 // Get sign text
-string Sign::getText(){return text;}
+std::string Sign::getText(){return text;}
 
 
 // Update Handlers 

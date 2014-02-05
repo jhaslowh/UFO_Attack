@@ -5,6 +5,8 @@
 
 #include "main.h"
 
+using namespace std;
+
 /**
 * Called at the begining of the game to load resources 
 */
@@ -143,10 +145,8 @@ void checkCommand(string line){
 		showTerminal = false;
 		terminal->hide();
 
-		if (args != "none"){
-			cout << "Ignoring unrecognized arguments given to command: off\n";
+		if (args != "none")
 			terminal->addLine("Ignoring unrecognized arguments given to command: off", TL_WARNING);
-		}
 
 		return;
 	}
@@ -162,7 +162,6 @@ void checkCommand(string line){
 		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 
 		if (args != "none"){
-			cout << "Ignoring unrecognized arguments given to command: restart\n";
 			terminal->addLine("Ignoring unrecognized arguments given to command: restart", TL_WARNING);
 		}
 
@@ -181,6 +180,10 @@ void checkCommand(string line){
 		terminal->addLine("restart: restart game");
 		terminal->addLine("clear: clear terminal");
 		terminal->addLine("version: prints out version");
+		terminal->addLine("screen hide: hide screen");
+		terminal->addLine("screen show: show screen");
+		terminal->addLine("test: load test screen");
+		terminal->addLine("exit: exit game");
 
 		return;
 	}
@@ -202,6 +205,10 @@ void checkCommand(string line){
 		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 		terminal->addLine(command, TL_SUCCESS);
 		return;
+	}
+	// Close game
+	else if (command == "exit" || command == "quit"){
+		running = false;
 	}
 
 	// Send command to screen 

@@ -429,7 +429,7 @@ void Player::replinishHealth(){
 
 // Check if player is alive 
 bool Player::alive(){
-	return health <= 0.0f || !ufo->alive();
+	return health > 0.0f && ufo->alive();
 }
 
 // Apply damage to health

@@ -1,6 +1,6 @@
 #pragma once
-#include "UIObject.h"
 #include <math.h>
+#include "UIObject.h"
 
 #define HT_VERTICAL 0
 #define HT_HOROZONTAL 1

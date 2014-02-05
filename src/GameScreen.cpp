@@ -1,5 +1,7 @@
 #include "GameScreen.h"
 
+using namespace std;
+
 GameScreen::GameScreen() : UIScreen()
 {
 	pauseScreen = NULL;
@@ -118,7 +120,8 @@ void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 
 // Parse a command give
 bool GameScreen::parseCommand(UITerminal* terminal, string command, string args){
-	UIScreen::parseCommand(terminal, command, args);
+	if (UIScreen::parseCommand(terminal, command, args))
+		return true;
 
 	// Update level editor commands if enabled 
 	if (levelEditor.parseCommand(terminal, command, args))
@@ -134,6 +137,58 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 
 		terminal->addLine("level reset", TL_SUCCESS);
 
+		return true;
+	}
+	// Check for zoom command
+	else if (command == "zoom"){
+
+		if (args == "default"){
+			// Set zoom and return 
+			((Camera2D*)level->handlers.camera)->setZoom(1.0f);
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			return true;
+		}
+
+		// Grab zoom 
+		double zoom = toDouble(args);
+
+		// Dont allow negative zoom 
+		if (zoom < 0.0)
+		{
+			terminal->addLine(command + args, TL_WARNING);
+			terminal->addLine("Zoom must be positive\n", TL_WARNING);
+			return true;
+		}
+
+		// Set zoom and return 
+		((Camera2D*)level->handlers.camera)->setZoom(zoom);
+		terminal->addLine(command + " " + args, TL_SUCCESS);
+		return true;
+	}
+	// Check for damage command 
+	else if (command == "damage"){
+		string subCommand("none");
+		string subArgs("none");
+
+		UITerminal::getCommandAndArgs(&args, &subCommand, &subArgs);
+
+		// Check for damage player 
+		if (subCommand == "player"){
+			double damage = toDouble(subArgs);
+			level->getPlayer()->applyDamage(damage);
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			return true;
+		}
+		// Check for damage ufo 
+		else if (subCommand == "ufo"){
+			double damage = toDouble(subArgs);
+			level->getPlayer()->ufo->applyDamage(damage);
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			return true;
+		}
+
+		terminal->addLine(command + " " + args, TL_WARNING);
+		terminal->addLine("Unrecognized commands given to command: damage", TL_WARNING);
 		return true;
 	}
 

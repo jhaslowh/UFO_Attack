@@ -18,7 +18,7 @@ void IntroLoadScreen::init(float screen_width, float screen_height){
 void IntroLoadScreen::load(TextureAtlas* mAtlas){
 	UIScreen::load(mAtlas);
 
-	DGSplash.setup(512.0f,256.0f,string("images/DGSplash.png"));
+	DGSplash.setup(512.0f,256.0f,std::string("images/DGSplash.png"));
 }
 
 // Update the state of the screen

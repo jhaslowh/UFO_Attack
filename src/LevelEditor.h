@@ -64,7 +64,7 @@ class LevelEditor
 	// Current state 
 	int state;
 	// Current string of level editor state 
-	string stateString;
+	std::string stateString;
 	// Moving camera 
 	bool movingCamera;
 	
@@ -87,7 +87,7 @@ class LevelEditor
 	// Locations 
 	float levelX, levelY;
 	Point levelLoc;
-	string mouseLoc;
+	std::string mouseLoc;
 	Point lastMouse;
 
 	// Mouse offset for selecting objects 
@@ -130,7 +130,7 @@ public:
 	void draw(GLHandler* mgl, UIAtlas* mUI);
 
 	// Parse a command give
-	bool parseCommand(UITerminal* terminal, string command, string args);
+	bool parseCommand(UITerminal* terminal, std::string command, std::string args);
 
 	// Show editor elements
 	void show();

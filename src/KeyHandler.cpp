@@ -1,5 +1,6 @@
 #include "KeyHandler.h"
 
+using namespace std;
 
 KeyHandler::KeyHandler()
 {

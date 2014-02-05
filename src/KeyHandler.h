@@ -1,7 +1,6 @@
 #pragma once
 #include <SDL/SDL.h>
 #include <string>
-using namespace std;
 
 #define KEY_SPACE 0
 #define KEY_0 1
@@ -97,7 +96,7 @@ public:
 	bool keyPressedHold(int key);
 
 	// Get the string of the pressed key
-	string getPressedKey();
+	std::string getPressedKey();
 
 private:
 	// Get the key index from sent scancode 

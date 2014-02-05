@@ -2,7 +2,6 @@
 #include <string>
 #include "SceneryObject.h"
 #include "Camera2D.h"
-using namespace std;
 
 class Sign : public SceneryObject
 {
@@ -17,7 +16,7 @@ class Sign : public SceneryObject
 
 
 	// Text to draw on sign
-	string text;
+	std::string text;
 	// Toggle text on and off
 	bool drawText;
 
@@ -26,9 +25,9 @@ public:
 	~Sign();
 
 	// Set sign text
-	void setText(string t);
+	void setText(std::string t);
 	// Get sign text
-	string getText();
+	std::string getText();
 	
 	// Update Handlers 
 	virtual void update(float deltaTime, Handlers* handlers);

@@ -67,7 +67,7 @@ void UITerminal::setMaxTextLength(unsigned int l){maxTextLength = l;}
 int UITerminal::getMaxTextLength(){return maxTextLength;}
 
 // Get the command string
-string UITerminal::getCommandString(){
+std::string UITerminal::getCommandString(){
 	return commandString;
 }
 
@@ -81,20 +81,20 @@ bool UITerminal::CommandIssued(){
 }
 
 // Set function to use on commands 
-void UITerminal::setCommandFunc(void func(string)){
+void UITerminal::setCommandFunc(void func(std::string)){
 	useFunction = true;
 	commandFunc = func;
 }
 
 // Add a line to the terminal 
-void UITerminal::addLine(string line){
+void UITerminal::addLine(std::string line){
 	addLine(line, TL_NORMAL);
 }
 
 // Add a line to the terminal 
 // Type must be one of the following:
 // TL_NORMAL, TL_ERROR, TL_WARNING, TL_SUCCESS
-void UITerminal::addLine(string line, int type){
+void UITerminal::addLine(std::string line, int type){
 	// Make new line structure 
 	TLine tLine;
 	tLine.text = line;
@@ -149,7 +149,7 @@ void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	}
 
 	// Add text to the line 
-	string next = mKeyH->getPressedKey();
+	std::string next = mKeyH->getPressedKey();
 	if (next.length() > 0){
 		// Set iterator to visible 
 		iteratorAlpha = 1.0f;
@@ -255,8 +255,8 @@ void UITerminal::draw(GLHandler* mgl, UIAtlas* mAtlas){
 // Parse a line for command and args 
 // If no command found, command will be left alone.
 // If no args found, args will be left alone. 
-void UITerminal::getCommandAndArgs(string* line, string* command, string* args){
-	int firstSpace = line->find(string(" "));
+void UITerminal::getCommandAndArgs(std::string* line, std::string* command, std::string* args){
+	int firstSpace = line->find(std::string(" "));
 
 	// Command has no sub commands
 	if (firstSpace == -1){

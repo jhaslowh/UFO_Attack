@@ -1,5 +1,6 @@
 #pragma once
 #include "GLHandler.h"
+#include "FileHelper.h"
 #include "KeyHandler.h"
 #include "MouseHandler.h"
 #include "TextureAtlas.h"

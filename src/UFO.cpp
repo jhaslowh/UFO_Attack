@@ -152,5 +152,5 @@ void UFO::replinishArmor(){
 
 // Returns true if ufo is alive 
 bool UFO::alive(){
-	return armor <= 0.0f;
+	return armor > 0.0f;
 }

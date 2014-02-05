@@ -1,6 +1,6 @@
 #pragma once
-#include "UITransitionObject.h"
 #include <string>
+#include "UITransitionObject.h"
 
 #define UIB_TEXT_SIZE 20.0f
 

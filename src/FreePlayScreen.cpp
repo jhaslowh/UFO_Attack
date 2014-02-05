@@ -1,4 +1,5 @@
 #include "FreePlayScreen.h"
+using namespace std;
 
 FreePlayScreen::FreePlayScreen() : UIScreen()
 {
@@ -156,6 +157,9 @@ void FreePlayScreen::updateTerrain()
 
 // Parse a command give
 bool FreePlayScreen::parseCommand(UITerminal* terminal, string command, string args){
+	if (UIScreen::parseCommand(terminal, command, args))
+		return true;
+
 	// If you find a command and use it, return true.
 	//
 	// Also if you want to split args into sub command and sub arg, 

@@ -13,7 +13,8 @@ Ground::Ground(){
 	color[3] = 1.0f;
 	groundDepth = 400.0f;
 	textureID = 0;
-	grassLength = 55.0f;
+	grass.setScale(.5f);
+	grassLength = 55.0f * grass.getScale();
 	textureScale = 80.0f;
 }
 Ground::~Ground(){

@@ -32,12 +32,12 @@ int loadPNG(std::string file){
 // Load the settings into sent object
 void loadSettings(Settings* s){
 	// String temporaries 
-	string line;
-	string str;
-	string token;
+	std::string line;
+	std::string str;
+	std::string token;
 
 	// Make a new file object 
-	ifstream myfile ("settings");
+	std::ifstream myfile ("settings");
 
 	// Check if file can be opened 
 	if (myfile.is_open())
@@ -53,31 +53,31 @@ void loadSettings(Settings* s){
 		// Parse file 
 
 		// Grab screen width 
-		token = getSetting(str, string("screen_width"));
+		token = getSetting(str, std::string("screen_width"));
 		s->setScreenWidth(toInt(token));
 
 		// Grab screen height 
-		token = getSetting(str, string("screen_height"));
+		token = getSetting(str, std::string("screen_height"));
 		s->setScreenHeight(toInt(token));
 
 		// Grab fullscreen
-		token = getSetting(str, string("fullscreen"));
+		token = getSetting(str, std::string("fullscreen"));
 		int value = toInt(token);
 		if (value == 1)
 			s->setFullscreen(true);
 		else 
 			s->setFullscreen(false);
 
-		cout << "Settings loaded\n";
+		std::cout << "Settings loaded\n";
 	}
 	else 
-		cout <<  "Error opening settings file or file not created yet\n"; 
+		std::cout <<  "Error opening settings file or file not created yet\n"; 
 }
 
 // Save the settings into settings file 
 void saveSettings(Settings* s){
 	// Create settings string 
-	string str("");
+	std::string str("");
 
 	// Screen width 
 	str += "screen_width ";
@@ -98,42 +98,49 @@ void saveSettings(Settings* s){
 	str += ";\n";
 
 	// Save 
-	ofstream myfile("settings");
+	std::ofstream myfile("settings");
 	if (myfile.is_open())
 	{
 		myfile << str;
 		myfile.close();
 	}
-	else cout << "Unable to open settings file for writing\n";
+	else std::cout << "Unable to open settings file for writing\n";
 }
 
 // Convert int to string
-string toString(int value){
-	ostringstream buff;
+std::string toString(int value){
+	std::ostringstream buff;
     buff<<value;
     return buff.str();   
 }
 
 // Convert double to string
-string toString(double value){
-	ostringstream buff;
+std::string toString(double value){
+	std::ostringstream buff;
     buff<<value;
     return buff.str();   
 }
 
 // Convert string to int
-int toInt(string s){
+int toInt(std::string s){
 	int numb;
-	istringstream (s) >> numb;
+	std::istringstream (s) >> numb;
+	return numb;
+}
+
+// Convert string to double
+double toDouble(std::string s){
+	double numb;
+	std::istringstream (s) >> numb;
 	return numb;
 }
 
 // Return setting from file 
-string getSetting(string fileString, string setting){
-	string token 
+std::string getSetting(std::string fileString, std::string setting){
+	std::string token 
 		  = fileString.substr(fileString.find(setting), fileString.length());
-	token = token.substr(token.find(setting), token.find(string(";")));
-	token = token.substr(token.find(string(" ")) + 1, token.length());
+	token = token.substr(token.find(setting), token.find(std::string(";")));
+	token = token.substr(token.find(std::string(" ")) + 1, token.length());
 	return token;
 }
 

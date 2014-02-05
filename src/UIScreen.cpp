@@ -48,20 +48,67 @@ void UIScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 }
 
 // Parse a command give
-bool UIScreen::parseCommand(UITerminal* terminal, string command, string args){
+bool UIScreen::parseCommand(UITerminal* terminal, std::string command, std::string args){
 	// Check screen commands 
 	if (command == "screen"){
+		// Hide screen
 		if (args == "hide") {
 			terminal->addLine("screen hide", TL_SUCCESS);
 			hide();
 			return true;
 		}
 
+		// Show screen
 		if (args == "show"){
 			terminal->addLine("screen show", TL_SUCCESS);
 			show();
 			return true;
 		}
+
+		// Go to main menu 
+		if (args == "main"){
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			transitionCode = SCREEN_MAIN;
+			return true;
+		}
+
+		// Go to store
+		if (args == "store"){
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			transitionCode = SCREEN_STORE;
+			return true;
+		}
+
+		// Go to settings
+		if (args == "settings"){
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			transitionCode = SCREEN_SETTINGS;
+			return true;
+		}
+
+		// Go to game
+		if (args == "game"){
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			transitionCode = SCREEN_GAME;
+			return true;
+		}
+
+		// Go to level select
+		if (args == "levelselect"){
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			transitionCode = SCREEN_LEVEL_SELECT;
+			return true;
+		}
+
+		// Go to free play
+		if (args == "freeplay"){
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			transitionCode = SCREEN_FREE_PLAY;
+			return true;
+		}
+
+		terminal->addLine("Unrecognized arguments given to command: screen", TL_WARNING);
+		return true;
 	}
 
 

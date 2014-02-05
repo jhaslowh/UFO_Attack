@@ -3,7 +3,6 @@
 #include <glew.h>
 #include <string>
 #include "GLHandler.h"
-using namespace std;
 
 class TextureAtlas
 {

@@ -4,16 +4,16 @@
 
 class UILabel : public UITransitionObject
 {
-	string text;
+	std::string text;
 	float textSize;
 
 public:
-	UILabel(string l);
+	UILabel(std::string l);
 	virtual ~UILabel();
 
 	// Getters and setters 
-	string getText();
-	void setText(string l);
+	std::string getText();
+	void setText(std::string l);
 	float getTextSize();
 	void setTextSize(float size);
 

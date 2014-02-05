@@ -9,7 +9,6 @@
 
 #include "SDL/SDL_rwops.h"
 #include "Settings.h"
-using namespace std;
 
 // Load a texture into opengl 
 int loadPNG(std::string file);
@@ -21,13 +20,16 @@ void loadSettings(Settings* s);
 void saveSettings(Settings* s);
 
 // Convert int to string
-string toString(int value);
+std::string toString(int value);
 
 // Convert double to string
-string toString(double value);
+std::string toString(double value);
 
 // Convert string to int
-int toInt(string s);
+int toInt(std::string s);
+
+// Convert string to double
+double toDouble(std::string s);
 
 // Return setting from file 
-string getSetting(string fileString, string setting);
+std::string getSetting(std::string fileString, std::string setting);

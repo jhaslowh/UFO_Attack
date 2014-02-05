@@ -9,7 +9,6 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <string>
-using namespace std;
 
 class GLHandler
 {
