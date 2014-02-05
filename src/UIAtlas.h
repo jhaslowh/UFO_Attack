@@ -13,6 +13,9 @@
 #define UII_REC 5
 #define UII_LEVEL_ARROW 6
 #define UII_POINT 7
+#define UII_BUBBLE_CENTER 8
+#define UII_BUBBLE_EDGE 9
+#define UII_BUBBLE_ARROW 10
 
 class UIAtlas : public TextureAtlas
 {

@@ -8,19 +8,19 @@ Sign::Sign()
 	originX = 25.0f;
 	originY = 50.0f;
 	imageID = GI_SIGN;
-	collides = false;
+	collides = true;
 	drawText = false;
 
 	// Set text variables 
-	textColor[0] = 1.0f;
-	textColor[1] = 1.0f;
-	textColor[2] = 1.0f;
-	textColor[3] = .7f;
+	textColor[0] = .5f;
+	textColor[1] = .5f;
+	textColor[2] = .5f;
+	textColor[3] = 1.0f;
 
-	recColor[0] = .3f;
-	recColor[1] = .3f;
-	recColor[2] = .3f;
-	recColor[3] = .7f;
+	recColor[0] = 1.0f;
+	recColor[1] = 1.0f;
+	recColor[2] = 1.0f;
+	recColor[3] = 1.0f;
 
 	textSize = 16.0f;
 }
@@ -36,7 +36,7 @@ std::string Sign::getText(){return text;}
 // Update Handlers 
 void Sign::update(float deltaTime, Handlers* handlers){
 	textOffX = ((Camera2D*)(handlers->camera))->toScreenX(locX);
-	textOffY = ((Camera2D*)(handlers->camera))->toScreenY(locY) - originY;
+	textOffY = ((Camera2D*)(handlers->camera))->toScreenY(locY - originY) - textSize - 10.0f;
 }
 
 
@@ -60,10 +60,18 @@ void Sign::drawUI(GLHandler* mgl, UIAtlas* mUI){
 	if (drawText){
 		float textWidth = mUI->mTextRender->measureString(text, textSize);
 		// Draw background 
+		// Arrow
+		mUI->draw(mgl, UII_BUBBLE_ARROW, textOffX - 5.0f, textOffY + textSize - 1.0f);
 		mgl->setFlatColor(recColor);
-		mUI->drawScale2(mgl, UII_REC, 
-			textOffX - (textWidth/2.0f) - 4.0f,
-			textOffY - 4.0f,textWidth + 8.0f, textSize + 8.0f);
+		glCullFace(GL_FRONT);
+		// Left edge
+		mUI->drawScale2(mgl, UII_BUBBLE_EDGE, textOffX - (textWidth/2.0f) + 1.0f, textOffY - 3.0f,-1.0f,1.0f);
+		glCullFace(GL_BACK);
+		// Center 
+		mUI->draw(mgl, UII_BUBBLE_EDGE, textOffX + (textWidth/2.0f) - 1.0f, textOffY - 3.0f);
+		// Right edge 
+		mUI->drawScale2(mgl, UII_BUBBLE_CENTER, textOffX - (textWidth/2.0f), textOffY - 3.0f,textWidth,1.0f);
+
 		// Draw text
 		mgl->setFlatColor(textColor);
 		mUI->mTextRender->drawText(*mgl, text, 
@@ -73,4 +81,9 @@ void Sign::drawUI(GLHandler* mgl, UIAtlas* mUI){
 		// Set flat color back to white 
 		mgl->setFlatColor(1.0f,1.0f,1.0f,1.0f);
 	}
+}
+
+// Call when the player collides with the object 
+void Sign::onCollide(){
+	drawText = true;
 }

@@ -38,6 +38,12 @@ void UIAtlas::load(){
 	vcg->addFrame(732.0f, 1.0f,64.0f,64.0f);
 	// Point
 	vcg->addFrame(680.0f,106.0f,8.0f,8.0f);
+	// Bubble center
+	vcg->addFrame(732.0f,67.0f,1.0f,20.0f);
+	// Bubble edge
+	vcg->addFrame(735.0f,67.0f,10.0f,20.0f);
+	// Bubble arrow
+	vcg->addFrame(747.0f,67.0f,10.0f,10.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

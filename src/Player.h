@@ -10,6 +10,8 @@
 #include "GameAtlas.h"
 #include "Camera2D.h"
 #include "PlayerAtlas.h"
+#include "SceneryHandler.h"
+#include "SceneryObject.h"
 
 #define GRAVITY 980.0f
 

@@ -37,5 +37,8 @@ public:
 
 	// Draw object ui elements 
 	virtual void drawUI(GLHandler* mgl, UIAtlas* mUI);
+
+	// Call when the player collides with the object 
+	virtual void onCollide();
 };
 

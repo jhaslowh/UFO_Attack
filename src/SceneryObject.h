@@ -17,7 +17,8 @@ protected:
 	float rotation;
 	float scale;
 	int imageID;
-	bool collides;
+	bool collides;			// Set to true if objects should check collision with scenery
+	bool stopsPlayer;		// Set to true if scenery should stop player movement
 	Rec* collisionRec;
 	SceneryObject* next;
 
@@ -50,6 +51,9 @@ public:
 	// Set whether this object collides 
 	void setCollides(bool value);
 	bool getCollides();
+	// Set whether this objects stops player movement
+	void setStopPlayer(bool value);
+	bool getStopPlayer();
 	// Get next pointer
 	SceneryObject* getNext();
 	void setNext(SceneryObject* );
@@ -71,5 +75,8 @@ public:
 
 	// Draw object ui elements 
 	virtual void drawUI(GLHandler* mgl, UIAtlas* mUI);
+	
+	// Call when the player collides with the object 
+	virtual void onCollide();
 };
 

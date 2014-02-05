@@ -237,24 +237,89 @@ void Player::checkCollision(Handlers* handlers){
 				}
 			}
 
-
-			// ---------------------------------------
+			// -----------------------------------
+			// Check player collision with scenery
+			// -----------------------------------
 			// Fix collision rectangles for next steps
-			// ---------------------------------------
-
 			setCollRec(&collRecX, nextX, locY);
 			setCollRec(&collRecY, locX, nextY);
 			setCollRec(&collRecXY, nextX, nextY);
 
-			// -----------------------------------
-			// Check player collision with scenery
-			// -----------------------------------
+			// Variables for use with collision
+			SceneryObject* sitr = ((SceneryHandler*)handlers->sceneryHandler)->getHead();
+			bool cornerFound = false;
+			bool xpass = true;
+			bool ypass = true;
 
-			// TODO 
+			// Check collision with all scenery 
+			while (sitr != NULL){
+				// If scenery object collides 
+				if (sitr->getCollides()){
+					// Check x collision 
+					if (xpass){
+						if (checkRecRec(&collRecX, sitr->getCollisionRec())){
+							// Tell scenery object of the collision
+							sitr->onCollide();
+
+							// Stop player if object is physical
+							if (sitr->getStopPlayer()) 
+								xpass = false;
+						}
+					}
+			
+					// Check y collision
+					if (ypass){
+						if (checkRecRec(&collRecY, sitr->getCollisionRec())){
+							// Tell scenery object of the collision
+							sitr->onCollide();
+
+							// Stop player if object is physical
+							if (sitr->getStopPlayer()) {
+								// Makes it so player does not bounce off ground
+								locY = sitr->getCollisionRec()->top() - 1.0f;
+								hitGround();
+								ypass = false;
+							}
+						}
+					}
+			
+					// Double check 
+					// This will stop player from getting stuck in corners 
+					if (xpass && ypass){
+						if (checkRecRec(&collRecXY, sitr->getCollisionRec())){
+							// Tell scenery object of the collision
+							sitr->onCollide();
+
+							// Stop player if object is physical
+							if (sitr->getStopPlayer()) 
+								cornerFound = true;
+						}
+					}
+				}
+
+				sitr = sitr->getNext();
+			}
+		
+			// Corner check 
+			if (cornerFound  && xpass && ypass){
+				hitGround();
+				ypass = false;
+				xpass = false;
+			}
+
+			// Fix position if collision found 
+			if (!xpass)
+				nextX = locX;
+			if (!ypass)
+				nextY = locY;
 
 			// ---------------------------------------------
 			// Check player collision with enemy projectiles  
 			// ---------------------------------------------
+			// Fix collision rectangles for next steps
+			setCollRec(&collRecX, nextX, locY);
+			setCollRec(&collRecY, locX, nextY);
+			setCollRec(&collRecXY, nextX, nextY);
 
 			// TODO 
 		}

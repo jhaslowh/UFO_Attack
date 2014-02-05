@@ -13,6 +13,7 @@ SceneryObject::SceneryObject()
 	scale = 1.0f;
 	imageID = 0;
 	collides = false;
+	stopsPlayer = false;
 	collisionRec = new Rec();
 	next = NULL;
 }
@@ -64,6 +65,9 @@ void SceneryObject::setCollides(bool value){
 	collides = value;
 }
 bool SceneryObject::getCollides(){return collides;}
+// Set whether this objects stops player movement
+void SceneryObject::setStopPlayer(bool value){stopsPlayer = value;}
+bool SceneryObject::getStopPlayer(){return stopsPlayer;}
 // Get next pointer
 SceneryObject* SceneryObject::getNext(){ return next;}
 void SceneryObject::setNext(SceneryObject* n){next = n;}
@@ -99,5 +103,10 @@ void SceneryObject::draw(GLHandler* mgl, GameAtlas* mGame){
 
 // Draw object ui elements 
 void SceneryObject::drawUI(GLHandler* mgl, UIAtlas* mUI){
+	// Nothing to do 
+}
+
+// Call when the player collides with the object 
+void SceneryObject::onCollide(){
 	// Nothing to do 
 }
