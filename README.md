@@ -61,6 +61,7 @@ Technical Information
 * PNG Loading (Use FileHelper::loadPNG(char* file))
 * Orthographic Projection 
 * Perspective Projection
+* 2D Lighting with Overlay blending & FBO  
 * 2D Sprite
 * 3D Cube
 * Matrix Transforms (Use GLM) 

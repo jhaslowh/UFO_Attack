@@ -94,6 +94,10 @@ void SceneryObject::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handle
 	// Nothing to do 
 }
 
+// Draw any light this object has 
+void SceneryObject::drawLight(GLHandler* mgl, GameAtlas* mGame){
+	// Nothing to do
+}
 
 // Draw object to the screen
 void SceneryObject::draw(GLHandler* mgl, GameAtlas* mGame){

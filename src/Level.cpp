@@ -124,6 +124,14 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (!loaded)
 		load();
 
+	// Draw lights 
+	mgl->enableLight(true);
+	mgl->lightBegin();
+
+	// TODO draw lights here 
+
+	mgl->lightEnd();
+
 	// Set camera 
 	mgl->setViewMatrix(camera.getMatrix());
 
@@ -139,6 +147,9 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	ground->draw(mgl);							// Uses 1 sprite and 1 custom sprite
 
 	mgl->setViewMatrix(glm::mat4());
+
+	// Disable lights 
+	mgl->enableLight(false);
 }
 
 // Draw level 

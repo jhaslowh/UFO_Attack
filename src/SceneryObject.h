@@ -70,6 +70,9 @@ public:
 	// Update scenery input 
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers);
 
+	// Draw any light this object has 
+	virtual void drawLight(GLHandler* mgl, GameAtlas* mGame);
+
 	// Draw object to the screen
 	virtual void draw(GLHandler* mgl, GameAtlas* mGame);
 

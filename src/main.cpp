@@ -14,7 +14,7 @@ int init_resources()
 {
 	printf("Loading Resources...\n");
 	// Set up shaders 
-	mgl.setupShaders();
+	mgl.load((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 	glUseProgram(mgl.program);
 	// Setup ortho matrix
 	mgl.setOrthoMatrix((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
@@ -23,6 +23,10 @@ int init_resources()
 		(float)settings->getScreenWidth()/(float)settings->getScreenHeight());
 	// Set view matrix to identity to avoid rendering problems
 	mgl.setViewMatrix(glm::mat4());
+	// Turn off light be default
+	mgl.enableLight(false);
+	// Give gl the resolution
+	mgl.setResolution((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 
 	// Setup gl states 
 	mgl.setupGL();
@@ -56,6 +60,8 @@ void free_resources()
 	screen->unload();
 	mUIAtlas->unload();
 
+	// Unload program
+	glUseProgram(0);
 	// Disable gl states 
 	mgl.endGL();
 

@@ -18,14 +18,22 @@ class GLHandler
 public:
 	// Shader handles 
 	GLuint program;
-	GLint mPositionHandle;
-	GLint mColorHandle;
-	GLint mTextureHandle;
-	GLint mTextCordHandle;
-	GLint mProjMatrixHandle;
-	GLint mModelMatrixHandle;
-	GLint mViewMatrixHandle;
-	GLint mUseTextureHandle;
+	GLint mPositionHandle;			// Position
+	GLint mColorHandle;				// Color
+	GLint mTextureHandle;			// Texture
+	GLint mTextCordHandle;			// Texture UV's
+	GLint mProjMatrixHandle;		// Projection Matrix
+	GLint mModelMatrixHandle;		// Model Matrix 
+	GLint mViewMatrixHandle;		// View Matrix 
+	GLint mUseTextureHandle;		// Toggle to use textures 
+
+	GLint mLightMap;				// Light Map
+	GLint mUseLight;				// Toggle to use light
+	GLint mResolution;				// Screen resolution
+
+	// 2D lighting
+	GLuint lightTextureId;			// Light texture ID
+	GLuint lightFBOId;				// Light FBO id
 
 	// Matrix's
 	glm::mat4 orthoMatrix;
@@ -34,8 +42,9 @@ public:
 	// Functions
 	GLHandler();
 	~GLHandler(void);
-	// Call to load shaders 
-	int setupShaders();
+
+	// Call to load 
+	int load(float screen_width, float screen_height);
 
 	// Call to set up gl for rendering
 	void setupGL();
@@ -71,6 +80,9 @@ public:
 	// Call to fix the ortho matrix if screen size has changed 
 	void setOrthoMatrix(const float width,const float height);
 
+	// Call to set resolution
+	void setResolution(float width, float height);
+
 	// Bind vertex and cord buffers
 	void bindBuffers(GLfloat* verts, GLfloat* cords);
 	// Bind texture 
@@ -83,4 +95,13 @@ public:
 
 	// Call to turn on and off textures
 	void toggleTextures(bool);
+
+	// Begin light rendering
+	void lightBegin();
+
+	// End light rendering
+	void lightEnd();
+
+	// Enable disable lights 
+	void enableLight(bool value);
 };

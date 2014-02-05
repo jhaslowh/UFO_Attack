@@ -8,7 +8,11 @@ GLHandler::~GLHandler(){
 /**
 * Setup the shaders used for rendering 
 */
-int GLHandler::setupShaders(){
+int GLHandler::load(float screen_width, float screen_height){
+	// ---------------
+	// Compile shaders
+	// ---------------
+
 	// Make the opengl shaders 
 	GLint compile_ok = GL_FALSE, link_ok = GL_FALSE;
  
@@ -47,15 +51,46 @@ int GLHandler::setupShaders(){
     "#version 120  \n"  // OpenGL 2.1
 #endif
 	"uniform sampler2D texture;   " // Texture handle 
+	"uniform sampler2D lightmap;  " // Light texture
 	"uniform vec4 color;           " // Color handle
 	"uniform float useTexture;     " // Set to 1 to use texture 
+	"uniform float useLight;       " // Set to 1 to use light 
 	"varying vec2 vTexCoordinate;  " // Texture coord handle that both shaders use 
+	"uniform vec2 resolution;      " // Sceen resolution
 
 	"void main() {                  "
 	"  if (useTexture > 0.5f)       "
 	"    gl_FragColor = color * texture2D(texture, vTexCoordinate);"
 	"  else "
 	"    gl_FragColor = color;"
+	"  "
+	
+	// Apply lights 
+	"  if (useLight > .5f){         "
+		 // Get light color
+	"    vec2 lightCord = (gl_FragCoord.xy / resolution.xy);   "
+	"    vec4 light = texture2D(lightmap, lightCord);          "
+
+	"    vec4 newColor;											"
+	     // Apply Overlay blending 
+	"    if (gl_FragColor.r < 0.5f)  "
+	"      newColor.r = gl_FragColor.r * light.r * 2.0f;        "
+	"    else"
+	"      newColor.r = 1.0f - (2.0f * ((1 - gl_FragColor.r) * (1 - light.r)));"
+
+	"    if (gl_FragColor.g < 0.5f)  "
+	"      newColor.g = gl_FragColor.g * light.g * 2.0f;        "
+	"    else"
+	"      newColor.g = 1.0f - (2.0f * ((1 - gl_FragColor.g) * (1 - light.g)));"
+
+	"    if (gl_FragColor.b < 0.5f)  "
+	"      newColor.b = gl_FragColor.b * light.b * 2.0f;        "
+	"    else"
+	"      newColor.b = 1.0f - (2.0f * ((1 - gl_FragColor.b) * (1 - light.b)));"
+	     // Apply color
+	"    newColor.a = gl_FragColor.a;       "
+	"    gl_FragColor = newColor;			"
+	"  }  "
 	"}";
 	glShaderSource(fs, 1, &fs_source, NULL);
 	glCompileShader(fs);
@@ -90,6 +125,11 @@ int GLHandler::setupShaders(){
 	mTextureHandle = glGetUniformLocation(program, "texture");
 	mTextCordHandle = glGetAttribLocation(program, "aTexCoordinate");
 	mUseTextureHandle = glGetUniformLocation(program, "useTexture");
+	// Lights 
+	mLightMap = glGetUniformLocation(program, "lightmap");
+	mUseLight = glGetUniformLocation(program, "useLight");
+	// Resolution
+	mResolution = glGetUniformLocation(program, "resolution");
 
 	// Error check 
 	if (mColorHandle == -1){
@@ -124,6 +164,58 @@ int GLHandler::setupShaders(){
 		fprintf(stderr, "Error grabbing useTexture handle: \n");
 		return 0;
 	}
+	if (mLightMap == -1){
+		std::cout << "Error grabbing mLightMap handle: \n";
+		return 0;
+	}
+	if (mUseLight == -1){
+		std::cout << "Error grabbing mUseLight handle: \n";
+		return 0;
+	}
+	if (mResolution == -1){
+		std::cout << "Error grabbing mResolution handle: \n";
+		return 0;
+	}
+
+	// ---------------
+	// Setup 2D lights
+	// ---------------
+	// Create a texture object for light
+	glGenTextures(1, &lightTextureId);
+	glBindTexture(GL_TEXTURE_2D, lightTextureId); 
+	// Set filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// Create Texture 
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, screen_width, screen_height, 0,
+				 GL_RGBA, GL_UNSIGNED_BYTE, 0);
+	// Unbind texture
+	glBindTexture(GL_TEXTURE_2D, 0);
+	             
+
+	// Create a framebuffer object 
+	glGenFramebuffers(1, &lightFBOId);
+	// Bind FBO
+	glBindFramebuffer(GL_FRAMEBUFFER, lightFBOId);
+
+	// attach the texture to FBO color attachment point
+	glFramebufferTexture2D(GL_FRAMEBUFFER,        // 1. fbo target: GL_FRAMEBUFFER 
+						   GL_COLOR_ATTACHMENT0,  // 2. attachment point
+						   GL_TEXTURE_2D,         // 3. tex target: GL_TEXTURE_2D
+						   lightTextureId,        // 4. tex ID
+						   0);                    // 5. mipmap level: 0(base)
+
+	// check FBO status
+	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	if(status != GL_FRAMEBUFFER_COMPLETE){
+		std::cout << "Could not generate frame buffer\n";
+		return 0;
+	}
+
+	// Switch back to window-system-provided Framebuffer
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	return 1;
 }
@@ -190,6 +282,14 @@ void GLHandler::setOrthoMatrix(const float w,const float h){
 	orthoMatrix = glm::ortho( 0.0f, w, h, 0.0f, 1.0f, -1.0f);
 }
 
+// Call to set resolution
+void GLHandler::setResolution(float width, float height){
+	// Setup resolution
+	GLfloat res[2];
+	res[0] = width;
+	res[1] = height;
+	glUniform2fv(mResolution, 1, res);
+}
 
 // Bind vertex and cord buffers
 void GLHandler::bindBuffers(GLfloat* verts, GLfloat* cords){
@@ -232,4 +332,37 @@ void GLHandler::toggleTextures(bool value){
 		glUniform1f(mUseTextureHandle, 1.0f);
 	else 
 		glUniform1f(mUseTextureHandle, 0.0f);
+}
+
+
+// Begin light rendering
+void GLHandler::lightBegin(){
+	// set rendering destination to FBO
+	glBindFramebuffer(GL_FRAMEBUFFER, lightFBOId);
+	// Clear to gray
+	// This is the neutral color and will have no effect
+	glClearColor(.5f,.5f,.5f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+}
+
+// End light rendering
+void GLHandler::lightEnd(){
+	// unbind FBO
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	// Set the active texture unit to texture unit 0.
+	glActiveTexture(GL_TEXTURE1);
+	// Bind the texture to this unit.
+	glBindTexture(GL_TEXTURE_2D, lightTextureId);
+	// Tell the texture uniform sampler to use this
+	// texture in the shader by binding to texture unit 0.
+	glUniform1i(mLightMap, 1);
+}
+
+// Enable disable lights 
+void GLHandler::enableLight(bool value){
+	if (value)
+		glUniform1f(mUseLight, 1.0f);
+	else 
+		glUniform1f(mUseLight, 0.0f);
 }
