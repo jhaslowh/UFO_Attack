@@ -62,6 +62,8 @@ void free_resources()
 
 	// Unload program
 	glUseProgram(0);
+	// Unload GLHandler
+	mgl.unload();
 	// Disable gl states 
 	mgl.endGL();
 

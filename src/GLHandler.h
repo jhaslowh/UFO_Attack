@@ -46,6 +46,9 @@ public:
 	// Call to load 
 	int load(float screen_width, float screen_height);
 
+	// Unload resources 
+	void unload();
+
 	// Call to set up gl for rendering
 	void setupGL();
 

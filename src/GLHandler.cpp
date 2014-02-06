@@ -111,7 +111,9 @@ int GLHandler::load(float screen_width, float screen_height){
 		return 0;
 	}
 
-	/* Grab shader attributes */
+	// ----------------------
+	// Grab shader attributes
+	// ----------------------
 
 	// get handle to fragment shader's vColor member
 	mColorHandle = glGetUniformLocation(program, "color");
@@ -218,6 +220,12 @@ int GLHandler::load(float screen_width, float screen_height){
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	return 1;
+}
+
+// Unload resources 
+void GLHandler::unload(){
+	glDeleteTextures(1, &lightTextureId);
+	glDeleteFramebuffers(1, &lightFBOId);
 }
 
 // Setup gl calls for drawing 
