@@ -17,6 +17,7 @@
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Handlers.h" />
+    <ClInclude Include="HayBale.h" />
     <ClInclude Include="IntroLoadScreen.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Camera2D.h" />
@@ -64,6 +65,7 @@
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Handlers.cpp" />
+    <ClCompile Include="HayBale.cpp" />
     <ClCompile Include="IntroLoadScreen.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Camera2D.cpp" />

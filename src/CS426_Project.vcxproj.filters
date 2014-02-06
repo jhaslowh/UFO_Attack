@@ -204,6 +204,9 @@
     <ClInclude Include="Sign.h">
       <Filter>Header Files\game\scenery</Filter>
     </ClInclude>
+    <ClInclude Include="HayBale.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -340,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="Sign.cpp">
       <Filter>Source Files\game\scenery</Filter>
+    </ClCompile>
+    <ClCompile Include="HayBale.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

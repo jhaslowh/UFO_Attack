@@ -137,6 +137,7 @@ Difficulty: Medium/Easy
 - Trees [Done]  
 - Grass [Done]   
 - Sign [Done]  
+- Hay Bale [Done]  
 - Rocks  
 - Buildings  
 - Cars  

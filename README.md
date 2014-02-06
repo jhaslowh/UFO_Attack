@@ -44,7 +44,9 @@ Commands for Level Editor (Must be in screen with one)
 - "scenery add tree" : add new tree to level 
 - "scenery add 0" : same as previous
 - "scenery add sign [text]" : add new sign to level (if text left blank, text will be set to "none"  
-- "scenery add 1 [text]" : same as previous  
+- "scenery add 1 [text]" : same as previous
+- "scenery add hay" : add new hay bale to level  
+- "scenery add 2" : same as previous    
 
 Commands while in Game Screen
 - "level reset" : reset the current level  

@@ -12,6 +12,7 @@
 #include "LevelProperties.h"
 #include "Tree.h"
 #include "Sign.h"
+#include "HayBale.h"
 #include "AtlasSprite.h"
 
 // Level editor states

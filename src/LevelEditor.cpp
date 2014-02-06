@@ -522,6 +522,15 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 				sceneryHandler->add((SceneryObject*)sign);
 				return true;
 			}
+
+			// Add new hay bale to level
+			if (subCommand == "hay" || subCommand == "2"){
+				terminal->addLine("Adding new hay to scenery handler", TL_SUCCESS);
+				HayBale* hay = new HayBale();
+				hay->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
+				sceneryHandler->add((SceneryObject*)hay);
+				return true;
+			}
 			
 			terminal->addLine("scenery add " + subCommand + " " + subArgs, TL_WARNING);
 			terminal->addLine("Unrecognized arguments given to command: scenery add", TL_WARNING);
