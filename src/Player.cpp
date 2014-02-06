@@ -398,7 +398,7 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 }
 
 // Draw level 
-void Player::draw(GLHandler* mgl, GameAtlas* mGame){
+void Player::draw(GLHandler* mgl){
 	playerAtlas.bindTexture(mgl);
 	playerAtlas.bindBuffers(mgl);
 
@@ -444,6 +444,14 @@ void Player::draw(GLHandler* mgl, GameAtlas* mGame){
 			}
 		}
 	}
+}
+
+// Draw player hud
+void Player::drawHud(GLHandler* mgl){
+	playerAtlas.bindTexture(mgl);
+	playerAtlas.bindBuffers(mgl);
+
+	// TODO 
 }
 
 // Stop player if they are jumping

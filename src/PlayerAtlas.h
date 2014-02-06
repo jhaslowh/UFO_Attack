@@ -3,7 +3,7 @@
 #include "FileHelper.h"
 #include "VertCordGenerator.h"
 
-// Image ID's
+// Palyer ID's
 #define PLAYER_RUN_FRAME0 0
 #define PLAYER_RUN_FRAME1 1
 #define PLAYER_RUN_FRAME2 2
@@ -17,6 +17,7 @@
 #define PLAYER_RUN_FRAME10 10
 #define PLAYER_RUN_FRAME11 11
 #define UFO_FRAME 12
+#define PI_HEALTH_BAR 13
 
 class PlayerAtlas : public TextureAtlas
 {

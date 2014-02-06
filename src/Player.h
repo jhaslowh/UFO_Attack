@@ -135,8 +135,11 @@ public:
 	// Update input
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
 
-	// Draw level 
-	void draw(GLHandler* mgl, GameAtlas* mGame);
+	// Draw player
+	void draw(GLHandler* mgl);
+
+	// Draw player hud
+	void drawHud(GLHandler* mgl);
 
 	// Physics Helpers
 

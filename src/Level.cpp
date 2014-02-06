@@ -145,10 +145,13 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mgl->setFlatColor(color);
 
 	sceneryHandler->draw(mgl, &gameAtlas);		// Uses GameAtlas 
-	player->draw(mgl, &gameAtlas);				// Uses PlayerAtlas
+	player->draw(mgl);							// Uses PlayerAtlas
 	ground->draw(mgl);							// Uses 1 sprite and 1 custom sprite
 
 	mgl->setViewMatrix(glm::mat4());
+
+	// Draw player hud
+	player->drawHud(mgl);
 
 	// Disable lights 
 	mgl->enableLight(false);
