@@ -34,6 +34,9 @@ void MainScreen::init(float screen_width, float screen_height){
 	buttonQuit = new UIButton(screen_width *.5f - 50.0f,(screen_height *.5f) + 80.0f,100.0f,35.0f, std::string("Quit"));
 	buttonQuit->setupHide(HT_VERTICAL,buttonQuit->getY()+100.0f,.4f,true);
 	buttonQuit->setHidden();
+
+	logo.setPosition(screen_width * .5f, screen_height * .5f - 150.0f);
+	logo.setOrigin(256.0f, 128.0f);
 }
 
 // Load screen
@@ -45,6 +48,8 @@ void MainScreen::load(TextureAtlas* mAtlas){
 	buttonFreePlay->centerText(mUI->mTextRender);
 	buttonSettings->centerText(mUI->mTextRender);
 	buttonQuit->centerText(mUI->mTextRender);
+
+	logo.setup(512.0f, 256.0f, "images/logo.png");
 	
 	show();
 }
@@ -58,6 +63,8 @@ void MainScreen::update(float deltaTime){
 	buttonFreePlay->update(deltaTime);
 	buttonSettings->update(deltaTime);
 	buttonQuit->update(deltaTime);
+	
+	logo.setAlpha(buttonQuit->getColor()[3]);
 }
 
 // Update input to the screen 
@@ -91,6 +98,8 @@ void MainScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 
 	// Setup world matrix
 	mgl->setProjectionMatrix(mgl->orthoMatrix);
+
+	logo.draw(*mgl);
 
 	// Bind bufferes
 	mUI->bindBuffers(mgl);

@@ -2,6 +2,7 @@
 #include "UIScreen.h"
 #include "UIAtlas.h"
 #include "UIButton.h"
+#include "Sprite.h"
 
 class MainScreen : public UIScreen
 {
@@ -10,6 +11,7 @@ class MainScreen : public UIScreen
 	UIButton* buttonFreePlay;
 	UIButton* buttonSettings;
 	UIButton* buttonQuit;
+	Sprite logo;
 
 public:
 	MainScreen();
