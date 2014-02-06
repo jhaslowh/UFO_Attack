@@ -30,6 +30,9 @@ public:
 	// Update objects input 
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers);
 
+	// Draw object lights 
+	void drawLight(GLHandler* mgl, GameAtlas* mGame);
+
 	// Draw objects
 	void draw(GLHandler* mgl, GameAtlas* mGame);
 

@@ -73,6 +73,15 @@ void SceneryHandler::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handl
 	}
 }
 
+// Draw object lights 
+void SceneryHandler::drawLight(GLHandler* mgl, GameAtlas* mGame){
+	itr = head;
+	while (itr != NULL){
+		itr->drawLight(mgl, mGame);
+		itr = itr->getNext();
+	}
+}
+
 // Draw objects
 void SceneryHandler::draw(GLHandler* mgl, GameAtlas* mGame){
 	itr = head;

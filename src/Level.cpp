@@ -124,19 +124,21 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (!loaded)
 		load();
 
+	// Set camera 
+	mgl->setViewMatrix(camera.getMatrix());
+
+	// Bind Game Atlas buffers
+	gameAtlas.bindBuffers(mgl);
+	gameAtlas.bindTexture(mgl);
+
 	// Draw lights 
 	mgl->enableLight(true);
 	mgl->lightBegin();
 
-	// TODO draw lights here 
+	// Draw Scenery Lights 
+	sceneryHandler->drawLight(mgl, &gameAtlas);
 
 	mgl->lightEnd();
-
-	// Set camera 
-	mgl->setViewMatrix(camera.getMatrix());
-
-	gameAtlas.bindBuffers(mgl);
-	gameAtlas.bindTexture(mgl);
 
 	// Set flat color back to white 
 	GLfloat color[4] = {1.0f,1.0f,1.0f,1.0f};
