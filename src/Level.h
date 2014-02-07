@@ -47,7 +47,7 @@ public:
 	void init(float screen_width, float screen_height);
 
 	// Load level (use for textures)
-	void load();
+	void load(GLHandler* mgl);
 
 	// Unload level
 	void unload();

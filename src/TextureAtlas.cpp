@@ -59,6 +59,20 @@ void TextureAtlas::setIndicies(int index){
 	indicies[5] = (GLushort)(4 * (index+indiceOffset));
 }
 
+// Set up the texture so it does not have to 
+// be bound again until it has been unbound.
+// Index must be greater than 1. 
+// But is restricted to the number of gltextures allowed.
+void TextureAtlas::setupFastBind(GLHandler* mgl, int index){
+	fastBindIndex = index;
+	mgl->bindTexture(textureID, index);
+}
+
+// Bind the texture using the fast method
+void TextureAtlas::bindTextureFast(GLHandler* mgl){
+	mgl->useGLTexture(fastBindIndex);
+}
+
 // Draw functions 
 void TextureAtlas::draw(GLHandler* mgl, int item, float x, float y){
 	

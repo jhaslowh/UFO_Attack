@@ -10,7 +10,11 @@ int loadPNG(std::string file){
 	int width, height;
 	unsigned char* image =
 		SOIL_load_image(file.c_str(), &width, &height, 0, SOIL_LOAD_RGBA);
-
+	
+	// Set the active texture unit to texture unit 0.
+	// Other units are used for different things. 0 is default, so 
+	// we use that for general actions. 
+	glActiveTexture(GL_TEXTURE0);
 	// Bind to the texture in OpenGL
 	glBindTexture(GL_TEXTURE_2D, textureHandle);
 	// Load texture into bound texture 
@@ -25,6 +29,9 @@ int loadPNG(std::string file){
 
 	// Free image data
 	SOIL_free_image_data(image);
+
+	// Unload texture
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	return textureHandle;
 }

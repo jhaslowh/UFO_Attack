@@ -76,8 +76,9 @@ void Player::init(float screen_width, float screen_height){
 }
 
 // Load level (use for textures)
-void Player::load(){
+void Player::load(GLHandler* mgl){
 	playerAtlas.load();
+	playerAtlas.setupFastBind(mgl,3);
 
 	ufo->load();
 }
@@ -399,8 +400,8 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 // Draw level 
 void Player::draw(GLHandler* mgl){
-	playerAtlas.bindTexture(mgl);
 	playerAtlas.bindBuffers(mgl);
+	playerAtlas.bindTextureFast(mgl);
 
 	ufo->draw(mgl, &playerAtlas);
 	

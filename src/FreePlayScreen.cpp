@@ -35,7 +35,8 @@ void FreePlayScreen::init(float screen_width, float screen_height){
 void FreePlayScreen::load(TextureAtlas* mAtlas){
 	UIScreen::load(mAtlas);
 
-	level->load();
+	//level->load(); // You dont need to call this, it is done internally by level.draw()
+
 	levelEditor.load(mAtlas);
 }
 

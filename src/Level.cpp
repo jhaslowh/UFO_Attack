@@ -81,10 +81,11 @@ void Level::init(float screen_width, float screen_height){
 }
 
 // Load level (use for textures)
-void Level::load(){
-	player->load();
-	ground->load();
+void Level::load(GLHandler* mgl){
 	gameAtlas.load();
+	gameAtlas.setupFastBind(mgl,2);
+	player->load(mgl);
+	ground->load();
 
 	loaded = true;
 }
@@ -122,14 +123,14 @@ void Level::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 // Draw level 
 void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (!loaded)
-		load();
+		load(mgl);
 
 	// Set camera 
 	mgl->setViewMatrix(camera.getMatrix());
 
 	// Bind Game Atlas buffers
 	gameAtlas.bindBuffers(mgl);
-	gameAtlas.bindTexture(mgl);
+	gameAtlas.bindTextureFast(mgl);
 
 	// Draw lights 
 	mgl->enableLight(true);
@@ -143,8 +144,9 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Set flat color back to white 
 	GLfloat color[4] = {1.0f,1.0f,1.0f,1.0f};
 	mgl->setFlatColor(color);
-
+	
 	sceneryHandler->draw(mgl, &gameAtlas);		// Uses GameAtlas 
+
 	player->draw(mgl);							// Uses PlayerAtlas
 	ground->draw(mgl);							// Uses 1 sprite and 1 custom sprite
 

@@ -184,6 +184,8 @@ int GLHandler::load(float screen_width, float screen_height){
 	// ---------------
 	// Create a texture object for light
 	glGenTextures(1, &lightTextureId);
+	// Set the active texture unit to texture unit 1.
+	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, lightTextureId); 
 	// Set filtering
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -218,6 +220,8 @@ int GLHandler::load(float screen_width, float screen_height){
 
 	// Switch back to window-system-provided Framebuffer
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	// Set the active texture unit to texture unit 0.
+	glActiveTexture(GL_TEXTURE0);
 
 	return 1;
 }
@@ -320,6 +324,32 @@ void GLHandler::bindTexture(int id){
 	glUniform1i(mTextureHandle, 0);
 }
 
+// Bind texture to specific index
+// index must be greater than 1 
+// 0 is used for general binding stuff
+// 1 is used for lighting 
+void GLHandler::bindTexture(int id, int index){
+	if (index < 2)
+		return;
+
+	toggleTextures(true);	
+	// Set the active texture unit to texture unit index.
+	glActiveTexture(GL_TEXTURE0 + index);
+	// Bind the texture to this unit.
+	glBindTexture(GL_TEXTURE_2D, id);
+	// Tell the texture uniform sampler to use this texture 
+	// in the shader by binding to texture unit index.
+	glUniform1i(mTextureHandle, index);
+
+	// Set the active texture unit to texture unit 0 to set back to default.
+	glActiveTexture(GL_TEXTURE0);
+}
+
+// Switch the shader texture index 
+void GLHandler::useGLTexture(int index){
+	glUniform1i(mTextureHandle, index);
+}
+
 // Set the 3d camera matrix settings 
 // Camera location  : glm::vec(0,0,0)
 // Target           : glm::vec(0,0,0)
@@ -358,13 +388,16 @@ void GLHandler::lightEnd(){
 	// unbind FBO
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	// Set the active texture unit to texture unit 0.
+	// Set the active texture unit to texture unit 1.
 	glActiveTexture(GL_TEXTURE1);
 	// Bind the texture to this unit.
 	glBindTexture(GL_TEXTURE_2D, lightTextureId);
 	// Tell the texture uniform sampler to use this
-	// texture in the shader by binding to texture unit 0.
+	// texture in the shader by binding to texture unit 1.
 	glUniform1i(mLightMap, 1);
+
+	// Set the active texture unit to texture unit 0 to set back to default.
+	glActiveTexture(GL_TEXTURE0);
 }
 
 // Enable disable lights 

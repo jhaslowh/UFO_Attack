@@ -15,6 +15,9 @@ protected:
 
 	int indiceOffset;
 
+	// Used for fast binding
+	int fastBindIndex;
+
 public:
 	TextureAtlas();
 	virtual ~TextureAtlas();
@@ -37,6 +40,14 @@ public:
 	void bindTexture(GLHandler* mgl);
 	// Set the indicies for the atlas 
 	void setIndicies(int index);
+
+	// Set up the texture so it does not have to 
+	// be bound again until it has been unbound.
+	// Index must be greater than 1. 
+	// But is restricted to the number of gltextures allowed.
+	void setupFastBind(GLHandler* mgl, int index);
+	// Bind the texture using the fast method
+	void bindTextureFast(GLHandler* mgl);
 
 	// Draw functions 
 	// Buffers and texture muse be bound before calling 

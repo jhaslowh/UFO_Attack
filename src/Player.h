@@ -118,7 +118,7 @@ public:
 	void init(float screen_width, float screen_height);
 
 	// Load player (use for textures)
-	void load();
+	void load(GLHandler* mgl);
 
 	// Unload textures
 	void unload();

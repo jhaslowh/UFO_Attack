@@ -91,6 +91,16 @@ public:
 	// Bind texture 
 	void bindTexture(int id);
 
+	// Bind texture to specific index
+	// index must be greater than 1 
+	// 0 is used for general binding stuff
+	// 1 is used for lighting 
+	void bindTexture(int id, int index);
+
+	// Switch the shader texture index 
+	// Must have bound the texture to an index first.
+	void useGLTexture(int index);
+
 	// Set the 3d camera matrix settings 
 	// Camera location  : glm::vec(0,0,0)
 	// Target           : glm::vec(0,0,0)
