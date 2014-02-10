@@ -137,13 +137,9 @@ Difficulty: Medium/Easy
 - Trees [Done]  
 - Grass [Done]   
 - Sign [Done]  
-- Hay Bale [Done]  
-- Hay Bale Square  
-- Rock  
+- Hay Bale [Done]   
+- Crate  [Done]  
+- Fence  [Done]  
+- Farm plants 
 - Barn Side  
 - Barn Roof  
-- Crate  
-- Fence  
-- Buildings  
-- Cars  
-

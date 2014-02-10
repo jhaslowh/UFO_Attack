@@ -17,6 +17,10 @@ void GameAtlas::load(){
 	vcg->addFrame(103.0f,1.0f,50.0f,50.0f);
 	// Hay Bale
 	vcg->addFrame(103.0f,53.0f,25.0f,25.0f);
+	// Crate 
+	vcg->addFrame(155.0f,1.0f,25.0f,25.0f);
+	// Fence
+	vcg->addFrame(181.0f,1.0f,25.0f,25.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

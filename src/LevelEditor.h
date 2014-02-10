@@ -14,6 +14,8 @@
 #include "Sign.h"
 #include "HayBale.h"
 #include "AtlasSprite.h"
+#include "Crate.h"
+#include "Fence.h"
 
 // Level editor states
 #define LES_NONE 0

@@ -204,7 +204,13 @@
     <ClInclude Include="Sign.h">
       <Filter>Header Files\game\scenery</Filter>
     </ClInclude>
+    <ClInclude Include="Crate.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
     <ClInclude Include="HayBale.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="Fence.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -344,7 +350,13 @@
     <ClCompile Include="Sign.cpp">
       <Filter>Source Files\game\scenery</Filter>
     </ClCompile>
+    <ClCompile Include="Crate.cpp">
+      <Filter>Source Files\game\scenery</Filter>
+    </ClCompile>
     <ClCompile Include="HayBale.cpp">
+      <Filter>Source Files\game\scenery</Filter>
+    </ClCompile>
+    <ClCompile Include="Fence.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

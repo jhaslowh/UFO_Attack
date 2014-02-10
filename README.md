@@ -47,6 +47,11 @@ Commands for Level Editor (Must be in screen with one)
 - "scenery add 1 [text]" : same as previous
 - "scenery add hay" : add new hay bale to level  
 - "scenery add 2" : same as previous    
+- "scenery add crate" : add new crate  
+- "scenery add 3" : same as previous  
+- "scenery add fence" : add new fence  
+- "scenery add 4" : same as previous  
+
 
 Commands while in Game Screen
 - "level reset" : reset the current level  

@@ -531,7 +531,25 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 				sceneryHandler->add((SceneryObject*)hay);
 				return true;
 			}
+
+			// Add new crate to level
+			if (subCommand == "crate" || subCommand == "3"){
+				terminal->addLine("Adding new crate to scenery handler", TL_SUCCESS);
+				Crate* crate = new Crate();
+				crate->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
+				sceneryHandler->add((SceneryObject*)crate);
+				return true;
+			}
 			
+			// Add new fence to level
+			if (subCommand == "fence" || subCommand == "4"){
+				terminal->addLine("Adding new fence to scenery handler", TL_SUCCESS);
+				Fence* fence = new Fence();
+				fence->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
+				sceneryHandler->add((SceneryObject*)fence);
+				return true;
+			}
+
 			terminal->addLine("scenery add " + subCommand + " " + subArgs, TL_WARNING);
 			terminal->addLine("Unrecognized arguments given to command: scenery add", TL_WARNING);
 			return true;
