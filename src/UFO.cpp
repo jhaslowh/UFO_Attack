@@ -14,7 +14,7 @@ UFO::UFO(){
 	shield = 100.0f;
 	maxShield = 100.0f;
 	shieldChargeRate = 100.0f; // Charge per second 
-	timeTillCharge = .25f;
+	timeTillCharge = 5.0f;
 	cTimeTillCharge = 0.0f;
 }
 UFO::~UFO(){}

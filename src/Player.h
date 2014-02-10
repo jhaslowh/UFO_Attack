@@ -92,6 +92,30 @@ class Player
 	int idleFrame;
 	int jumpFrame;
 
+	// ----------
+	//    Hud 
+	// ----------
+	// Scale values
+	float hudHealthScale;
+	float hudHealthMaxScale;
+	float hudArmorScale;
+	float hudArmorMaxScale;
+	float hudShieldScale;
+	float hudShieldMaxScale;
+	float hudShieldScaleY;
+	// Locations 
+	float hudArmorLocX;
+	float hudArmorLocY;
+	float hudShieldLocX;
+	float hudShieldLocY;
+	float hudHealthLocX;
+	float hudHealthLocY;
+	// Colors
+	GLfloat hudHealthColor[4];
+	GLfloat hudShieldColor[4];
+	GLfloat hudArmorColor[4];
+	GLfloat hudBlack[4];
+
 public:
 
 	UFO* ufo;

@@ -44,6 +44,43 @@ Player::Player(){
 	waistHeight = 35.0f;
 	depthForDepthCheck = 20.0f;
 
+	// Hud Scales
+	hudHealthScale = 0.0f;
+	hudHealthMaxScale = 1.0f;
+	hudArmorScale = 0.0f;
+	hudArmorMaxScale = 1.5f;
+	hudShieldScale = 0.0f;
+	hudShieldMaxScale = 1.6f;
+	hudShieldScaleY = 2.0f;
+
+	// Hud Locations 
+	hudArmorLocX = 0.0f;
+	hudArmorLocY = 0.0f;
+	hudShieldLocX = 0.0f;
+	hudShieldLocY = 0.0f;
+	hudHealthLocX = 0.0f;
+	hudHealthLocY = 0.0f;
+
+	// Hud Colors
+	hudHealthColor[0] = 1.0f;
+	hudHealthColor[1] = 0.27f;
+	hudHealthColor[2] = 0.27f;
+	hudHealthColor[3] = 1.0f;
+
+	hudShieldColor[0] = 0.27f;
+	hudShieldColor[1] = 0.89f;
+	hudShieldColor[2] = 1.0f;
+	hudShieldColor[3] = 1.0f;
+
+	hudArmorColor[0] = 1.0f;
+	hudArmorColor[1] = 0.84f;
+	hudArmorColor[2] = 0.27f;
+	hudArmorColor[3] = 1.0f;
+
+	hudBlack[0] = 0.0f;
+	hudBlack[1] = 0.0f;
+	hudBlack[2] = 0.0f;
+	hudBlack[3] = 0.5f;
 	
 	cameraOffsetY = 0.0f;
 	ufo = new UFO();
@@ -71,6 +108,14 @@ float Player::getHealth(){return health;}
 // initialize level
 void Player::init(float screen_width, float screen_height){
 	ufo->init();
+
+	// Set hud locations
+	hudArmorLocX = 10.0f;
+	hudArmorLocY = 10.0f;
+	hudShieldLocX = 5.0f;
+	hudShieldLocY = 5.0f;
+	hudHealthLocX = 5.0f;
+	hudHealthLocY = 30.0f;
 
 	cameraOffsetY = screen_height * .25f;
 }
@@ -352,6 +397,11 @@ void Player::resolveCollision(Handlers* handlers){
 				animationState = PLAYERS_IDLE;
 		}
 	}
+
+	// Fix hud sizes 
+	hudHealthScale = (health / maxHealth) * hudHealthMaxScale;
+	hudArmorScale = (ufo->getArmor() / ufo->getMaxArmor()) * hudArmorMaxScale;
+	hudShieldScale = (ufo->getShield() / ufo->getMaxShield()) * hudShieldMaxScale;
 }
 
 // Update input
@@ -452,7 +502,21 @@ void Player::drawHud(GLHandler* mgl){
 	playerAtlas.bindTexture(mgl);
 	playerAtlas.bindBuffers(mgl);
 
-	// TODO 
+	// Drawbackdrops
+	mgl->setFlatColor(hudBlack);
+	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudHealthLocX, hudHealthLocY, hudHealthMaxScale, 1.0f);
+	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudShieldLocX, hudShieldLocY, hudShieldMaxScale, hudShieldScaleY);
+	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudArmorLocX, hudArmorLocY, hudArmorMaxScale, 1.0f);
+
+	// Draw health 
+	mgl->setFlatColor(hudHealthColor);
+	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudHealthLocX, hudHealthLocY, hudHealthScale, 1.0f);
+	// Draw shield
+	mgl->setFlatColor(hudShieldColor);
+	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudShieldLocX, hudShieldLocY, hudShieldScale, hudShieldScaleY);
+	// Draw armor 
+	mgl->setFlatColor(hudArmorColor);
+	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudArmorLocX, hudArmorLocY, hudArmorScale, 1.0f);
 }
 
 // Stop player if they are jumping
