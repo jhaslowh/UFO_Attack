@@ -17,6 +17,7 @@
     <ClInclude Include="FreePlayScreen.h" />
     <ClInclude Include="GameAtlas.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="GLColors.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Handlers.h" />
     <ClInclude Include="HayBale.h" />
@@ -67,6 +68,7 @@
     <ClCompile Include="FreePlayScreen.cpp" />
     <ClCompile Include="GameAtlas.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="GLColors.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Handlers.cpp" />
     <ClCompile Include="HayBale.cpp" />

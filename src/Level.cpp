@@ -142,8 +142,7 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mgl->lightEnd();
 
 	// Set flat color back to white 
-	GLfloat color[4] = {1.0f,1.0f,1.0f,1.0f};
-	mgl->setFlatColor(color);
+	mgl->setFlatColor(COLOR_WHITE);
 	
 	sceneryHandler->draw(mgl, &gameAtlas);		// Uses GameAtlas 
 
