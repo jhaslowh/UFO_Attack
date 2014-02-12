@@ -214,7 +214,10 @@
       <Filter>Header Files\game\scenery</Filter>
     </ClInclude>
     <ClInclude Include="GLColors.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="UIValueSlider.h">
+      <Filter>Header Files\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -363,7 +366,10 @@
       <Filter>Source Files\game\scenery</Filter>
     </ClCompile>
     <ClCompile Include="GLColors.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="UIValueSlider.cpp">
+      <Filter>Source Files\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

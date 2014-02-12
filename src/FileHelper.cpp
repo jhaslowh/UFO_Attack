@@ -75,6 +75,18 @@ void loadSettings(Settings* s){
 		else 
 			s->setFullscreen(false);
 
+		// Grab master volume 
+		token = getSetting(str, std::string("master_vol"));
+		s->setMasterVol(toDouble(token));
+
+		// Grab music volume 
+		token = getSetting(str, std::string("music_vol"));
+		s->setMusicVol(toDouble(token));
+
+		// Grab sfx volume 
+		token = getSetting(str, std::string("sfx_vol"));
+		s->setSfxVol(toDouble(token));
+
 		std::cout << "Settings loaded\n";
 	}
 	else 
@@ -102,6 +114,21 @@ void saveSettings(Settings* s){
 		str += "1";
 	else 
 		str += "0";
+	str += ";\n";
+
+	// Master volume 
+	str += "master_vol ";
+	str += toString(s->getMasterVol());
+	str += ";\n";
+
+	// Music volume 
+	str += "music_vol ";
+	str += toString(s->getMusicVol());
+	str += ";\n";
+
+	// Sfx volume 
+	str += "sfx_vol ";
+	str += toString(s->getSfxVol());
 	str += ";\n";
 
 	// Save 

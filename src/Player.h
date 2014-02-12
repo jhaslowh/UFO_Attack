@@ -92,6 +92,12 @@ class Player
 	int idleFrame;
 	int jumpFrame;
 
+	// Arm
+	float armRotation;			// Rotation for arm 
+	float armOffsetsL[12];
+	float armOffsetsR[12];
+	float armOriginX, armOriginY;
+
 	// ----------
 	//    Hud 
 	// ----------

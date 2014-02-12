@@ -47,6 +47,7 @@ void UICheckbox::setTextColor(float r, float g, float b){
 	textColor[1] = g;
 	textColor[2] = b;
 }
+void UICheckbox::setChecked(bool value){checked = value;}
 
 // Update Checkbox
 void UICheckbox::update(float deltaTime){

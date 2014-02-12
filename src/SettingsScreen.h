@@ -5,14 +5,23 @@
 #include "UICheckbox.h"
 #include "Settings.h"
 #include "FileHelper.h"
+#include "UIValueSlider.h"
 
 class SettingsScreen : public UIScreen
 {
 	Settings* settings;
 
 	UILabel* labelTitle;
-	UICheckbox* checkboxFullscreen;
+	UICheckbox* cFullscreen;
 	UIButton* buttonBack;
+	UIValueSlider* vMasterVol;
+	UIValueSlider* vMusicVol;
+	UIValueSlider* vSfxVol;
+
+	UILabel* lFullscreen;
+	UILabel* lMasterVolume;
+	UILabel* lMusicVol;
+	UILabel* lSfxVol;
 
 public:
 	SettingsScreen(Settings* s);

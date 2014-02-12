@@ -23,6 +23,7 @@ public:
 	void setLabel(std::string l);
 	std::string getLabel();
 	void setTextColor(float r, float g, float b);
+	void setChecked(bool value);
 
 	// Update Checkbox
 	virtual void update(float deltaTime);

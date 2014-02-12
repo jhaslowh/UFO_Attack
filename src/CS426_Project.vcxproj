@@ -57,6 +57,7 @@
     <ClInclude Include="UIScreen.h" />
     <ClInclude Include="UITerminal.h" />
     <ClInclude Include="UITransitionObject.h" />
+    <ClInclude Include="UIValueSlider.h" />
     <ClInclude Include="VertCordGenerator.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Weapon.h" />
@@ -108,6 +109,7 @@
     <ClCompile Include="UIScreen.cpp" />
     <ClCompile Include="UITerminal.cpp" />
     <ClCompile Include="UITransitionObject.cpp" />
+    <ClCompile Include="UIValueSlider.cpp" />
     <ClCompile Include="VertCordGenerator.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Weapon.cpp" />

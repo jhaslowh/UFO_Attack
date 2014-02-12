@@ -30,7 +30,7 @@
 // x = 0 = Alpha/Beta
 // x = 1 = Release
 // yyyy = Commit number 
-double VERSION = 0.134;
+double VERSION = 0.143;
 
 // Global Settings
 Settings* settings;

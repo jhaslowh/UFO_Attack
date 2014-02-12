@@ -37,6 +37,11 @@ Player::Player(){
 	animationState = PLAYERS_RUN;
 	idleFrame = PLAYER_RUN_FRAME8;
 	jumpFrame = PLAYER_RUN_FRAME9;
+	
+	// Arm
+	armRotation = 0.0f;
+	armOriginX = 25.0f;
+	armOriginY = 25.0f;
 
 	// Collision Values 
 	collRec.setLocation(0.0f,0.0f);
@@ -494,6 +499,18 @@ void Player::draw(GLHandler* mgl){
 				glCullFace(GL_BACK);
 			}
 		}
+
+		// Draw player arm 
+		/*if (lookingRight){
+			playerAtlas.draw(mgl, PI_PLAYER_ARM,locX+armOffsetX,locY+armOffsetY,
+				1.0f,armRotation,armOriginX,armOriginY);
+		}
+		else {
+			glCullFace(GL_FRONT);
+			playerAtlas.drawScale2(mgl, PI_PLAYER_ARM,locX+armOffsetX,locY+armOffsetY,
+				-1.0f,1.0f,armRotation,armOriginX,armOriginY);
+			glCullFace(GL_BACK);
+		}*/
 	}
 }
 
