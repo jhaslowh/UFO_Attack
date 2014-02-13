@@ -50,6 +50,7 @@
     <ClInclude Include="Tree.h" />
     <ClInclude Include="UFO.h" />
     <ClInclude Include="UIAtlas.h" />
+    <ClInclude Include="UIBox.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UICheckbox.h" />
     <ClInclude Include="UILabel.h" />
@@ -102,6 +103,7 @@
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UFO.cpp" />
     <ClCompile Include="UIAtlas.cpp" />
+    <ClCompile Include="UIBox.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UICheckbox.cpp" />
     <ClCompile Include="UILabel.cpp" />

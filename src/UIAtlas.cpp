@@ -45,6 +45,26 @@ void UIAtlas::load(){
 	// Bubble arrow
 	vcg->addFrame(747.0f,67.0f,10.0f,10.0f);
 
+	// UI Outline boxes
+	// Top left corner
+	vcg->addFrame(690.0f, 106.0f, 6.0f, 6.0f);
+	// Top right corner 
+	vcg->addFrame(697.0f, 106.0f, 6.0f, 6.0f);
+	// Bottom left corner 
+	vcg->addFrame(690.0f, 113.0f, 6.0f, 6.0f);
+	// Bottom right corner 
+	vcg->addFrame(697.0f, 113.0f, 6.0f, 6.0f);
+	// Top border
+	vcg->addFrame(696.0f, 106.0f, 1.0f, 6.0f);
+	// Bottom border
+	vcg->addFrame(696.0f, 113.0f, 1.0f, 6.0f);
+	// Left border
+	vcg->addFrame(690.0f, 112.0f, 6.0f, 1.0f);
+	// Right border
+	vcg->addFrame(697.0f, 112.0f, 6.0f, 1.0f);
+	// Middle
+	vcg->addFrame(696.0f, 112.0f, 1.0f, 1.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

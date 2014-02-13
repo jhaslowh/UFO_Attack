@@ -219,6 +219,9 @@
     <ClInclude Include="UIValueSlider.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
+    <ClInclude Include="UIBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -370,6 +373,9 @@
     </ClCompile>
     <ClCompile Include="UIValueSlider.cpp">
       <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UIBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

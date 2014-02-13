@@ -10,12 +10,22 @@
 #define UII_BUTTON_CLICK 2
 #define UII_CHECKBOX_NORMAL 3
 #define UII_CHECKBOX_CHECKED 4
-#define UII_REC 5
+#define UII_REC 5				// Use for drawing rectangles 
 #define UII_LEVEL_ARROW 6
 #define UII_POINT 7
 #define UII_BUBBLE_CENTER 8
 #define UII_BUBBLE_EDGE 9
 #define UII_BUBBLE_ARROW 10
+// These are used to draw outline boxes 
+#define UI_REC_TL 11	// Top left corner
+#define UI_REC_TR 12	// Top right corner
+#define UI_REC_BL 13	// Bottom left corner
+#define UI_REC_BR 14	// Bottom right corner
+#define UI_REC_TB 15	// Top border
+#define UI_REC_BB 16	// Bottom border
+#define UI_REC_LB 17	// Left border
+#define UI_REC_RB 18	// Right border
+#define UI_REC_M 19		// Middle 
 
 class UIAtlas : public TextureAtlas
 {

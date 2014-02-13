@@ -6,6 +6,7 @@
 #include "Settings.h"
 #include "FileHelper.h"
 #include "UIValueSlider.h"
+#include "UIBox.h"
 
 class SettingsScreen : public UIScreen
 {
@@ -22,6 +23,8 @@ class SettingsScreen : public UIScreen
 	UILabel* lMasterVolume;
 	UILabel* lMusicVol;
 	UILabel* lSfxVol;
+
+	UIBox* bBG;
 
 public:
 	SettingsScreen(Settings* s);
