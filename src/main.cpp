@@ -230,65 +230,70 @@ void checkCommand(string line){
 void changeScreen(){
 	if (screen == NULL) return;
 
-	switch (screen->getTransitionCode()){
-	case NO_TRANSITION: 
-		break;
-	case SCREEN_LOAD:
-		break;
-	case SCREEN_MAIN:
-		unloadScreen = true;
-		// Wait for rendering and unload to finish
-		while (render || unloadScreen){} 
-		// Delete old screen 
-		delete screen;
-		screen = (UIScreen*)new MainScreen();
-		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
-		break;
-	case SCREEN_STORE:
-		break;
-	case SCREEN_SETTINGS:
-		unloadScreen = true;
-		// Wait for rendering and unload to finish
-		while (render || unloadScreen){} 
-		// Delete old screen 
-		delete screen;
-		screen = (UIScreen*)new SettingsScreen(settings);
-		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
-		break;
-	case SCREEN_FREE_PLAY:
-		unloadScreen = true;
-		// Wait for rendering and unload to finish
-		while (render || unloadScreen){} 
-		// Delete old screen 
-		delete screen;
-		screen = (UIScreen*)new FreePlayScreen();
-		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
-		break;
-	case SCREEN_GAME:
-		unloadScreen = true;
-		// Wait for rendering and unload to finish
-		while (render || unloadScreen){} 
-		// Delete old screen 
-		delete screen;
-		screen = (UIScreen*)new GameScreen();
-		screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
-		break;
-	case SCREEN_LEVEL_SELECT:
-		break;
-	case SCREEN_QUIT:
-		running = false;
-		break;
-	case SCREEN_TEST:
-		unloadScreen = true;
-		// Wait for rendering and unload to finish
-		while (render || unloadScreen){} 
-		// Delete old screen 
-		delete screen;
-		screen = (UIScreen*)new TestScreen();
-		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
-		break;
-	default:
-		break;
+	if (screen->getTransitionCode() != NO_TRANSITION){
+		if (screen->getHideOnClose() && !screen->hidden())
+			return;
+
+		switch (screen->getTransitionCode()){
+		case NO_TRANSITION: 
+			break;
+		case SCREEN_LOAD:
+			break;
+		case SCREEN_MAIN:
+			unloadScreen = true;
+			// Wait for rendering and unload to finish
+			while (render || unloadScreen){} 
+			// Delete old screen 
+			delete screen;
+			screen = (UIScreen*)new MainScreen();
+			screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+			break;
+		case SCREEN_STORE:
+			break;
+		case SCREEN_SETTINGS:
+			unloadScreen = true;
+			// Wait for rendering and unload to finish
+			while (render || unloadScreen){} 
+			// Delete old screen 
+			delete screen;
+			screen = (UIScreen*)new SettingsScreen(settings);
+			screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
+			break;
+		case SCREEN_FREE_PLAY:
+			unloadScreen = true;
+			// Wait for rendering and unload to finish
+			while (render || unloadScreen){} 
+			// Delete old screen 
+			delete screen;
+			screen = (UIScreen*)new FreePlayScreen();
+			screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
+			break;
+		case SCREEN_GAME:
+			unloadScreen = true;
+			// Wait for rendering and unload to finish
+			while (render || unloadScreen){} 
+			// Delete old screen 
+			delete screen;
+			screen = (UIScreen*)new GameScreen();
+			screen->init((float)settings->getScreenWidth(), (float)settings->getScreenHeight());
+			break;
+		case SCREEN_LEVEL_SELECT:
+			break;
+		case SCREEN_QUIT:
+			running = false;
+			break;
+		case SCREEN_TEST:
+			unloadScreen = true;
+			// Wait for rendering and unload to finish
+			while (render || unloadScreen){} 
+			// Delete old screen 
+			delete screen;
+			screen = (UIScreen*)new TestScreen();
+			screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+			break;
+		default:
+			break;
+		}
 	}
 }
  

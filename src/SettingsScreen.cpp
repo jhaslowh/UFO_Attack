@@ -3,6 +3,7 @@
 
 SettingsScreen::SettingsScreen(Settings* s) : UIScreen(){
 	settings = s;
+	hideOnClose = true;
 }
 SettingsScreen::~SettingsScreen()
 {
@@ -33,55 +34,55 @@ void SettingsScreen::init(float screen_width, float screen_height){
 
 	lFullscreen = new UILabel(std::string("Fullscreen"));
 	lFullscreen->setLocation(menuX - 120.0f,menuY + 80);
-	lFullscreen->setupHide(HT_HOROZONTAL,lFullscreen->getX()-100.0f,.4f,true);
+	lFullscreen->setupHide(HT_HOROZONTAL,lFullscreen->getX()-100.0f,hideTime,true);
 	lFullscreen->setColor(.9f,.9f,.9f);
 	lFullscreen->setTextSize(16.0f);
 	lFullscreen->setHidden();
 	
 	lMasterVolume = new UILabel(std::string("Master Volume"));
 	lMasterVolume->setLocation(menuX - 120.0f,menuY + 110.0f);
-	lMasterVolume->setupHide(HT_HOROZONTAL,lMasterVolume->getX()-100.0f,.4f,true);
+	lMasterVolume->setupHide(HT_HOROZONTAL,lMasterVolume->getX()-100.0f,hideTime,true);
 	lMasterVolume->setColor(.9f,.9f,.9f);
 	lMasterVolume->setTextSize(16.0f);
 	lMasterVolume->setHidden();
 
 	lMusicVol = new UILabel(std::string("Music Volume"));
 	lMusicVol->setLocation(menuX - 120.0f,menuY + 135.0f);
-	lMusicVol->setupHide(HT_HOROZONTAL,lMusicVol->getX()-100.0f,.4f,true);
+	lMusicVol->setupHide(HT_HOROZONTAL,lMusicVol->getX()-100.0f,hideTime,true);
 	lMusicVol->setColor(.9f,.9f,.9f);
 	lMusicVol->setTextSize(16.0f);
 	lMusicVol->setHidden();
 
 	lSfxVol = new UILabel(std::string("SFX Volume"));
 	lSfxVol->setLocation(menuX - 120.0f,menuY + 160.0f);
-	lSfxVol->setupHide(HT_HOROZONTAL,lSfxVol->getX()-100.0f,.4f,true);
+	lSfxVol->setupHide(HT_HOROZONTAL,lSfxVol->getX()-100.0f,hideTime,true);
 	lSfxVol->setColor(.9f,.9f,.9f);
 	lSfxVol->setTextSize(16.0f);
 	lSfxVol->setHidden();
 
 	cFullscreen = new UICheckbox(menuX - 4.0f,menuY + 75.0f,24.0f,24.0f,std::string(""));
 	cFullscreen->setTextColor(.8f,.8f,.8f);
-	cFullscreen->setupHide(HT_HOROZONTAL,cFullscreen->getX()+100.0f,.4f,true);
+	cFullscreen->setupHide(HT_HOROZONTAL,cFullscreen->getX()+100.0f,hideTime,true);
 	cFullscreen->setHidden();
 
 	vMasterVol = new UIValueSlider();
 	vMasterVol->setLocation(menuX,menuY + 110.0f);
-	vMasterVol->setupHide(HT_HOROZONTAL,vMasterVol->getX()+100.0f,.4f,true);
+	vMasterVol->setupHide(HT_HOROZONTAL,vMasterVol->getX()+100.0f,hideTime,true);
 	vMasterVol->setHidden();
 
 	vMusicVol = new UIValueSlider();
 	vMusicVol->setLocation(menuX,menuY + 135.0f);
-	vMusicVol->setupHide(HT_HOROZONTAL,vMusicVol->getX()+100.0f,.4f,true);
+	vMusicVol->setupHide(HT_HOROZONTAL,vMusicVol->getX()+100.0f,hideTime,true);
 	vMusicVol->setHidden();
 
 	vSfxVol = new UIValueSlider();
 	vSfxVol->setLocation(menuX,menuY + 160.0f);
-	vSfxVol->setupHide(HT_HOROZONTAL,vSfxVol->getX()+100.0f,.4f,true);
+	vSfxVol->setupHide(HT_HOROZONTAL,vSfxVol->getX()+100.0f,hideTime,true);
 	vSfxVol->setHidden();
 
 	buttonBack = new UIButton(menuX- 50.0f,
 		menuY + 260.0f,100.0f,35.0f, std::string("Back"));
-	buttonBack->setupHide(HT_VERTICAL,buttonBack->getY()+100.0f,.4f,true);
+	buttonBack->setupHide(HT_VERTICAL,buttonBack->getY()+100.0f,hideTime,true);
 	buttonBack->setHidden();
 
 
@@ -102,7 +103,7 @@ void SettingsScreen::load(TextureAtlas* mAtlas){
 	labelTitle->setLocation(
 		(labelTitle->getX() * .5f) - (mUI->mTextRender->measureString(labelTitle->getText(), labelTitle->getTextSize()) * .5f),
 		labelTitle->getY() * .3f - labelTitle->getTextSize());
-	labelTitle->setupHide(HT_VERTICAL,labelTitle->getY()-100.0f,.4f,true);
+	labelTitle->setupHide(HT_VERTICAL,labelTitle->getY()-100.0f,hideTime,true);
 	labelTitle->setHidden();
 	
 	show();
@@ -146,6 +147,7 @@ void SettingsScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	if (buttonBack->wasClicked()){
 		transitionCode = SCREEN_MAIN;
 		saveSettings(settings);
+		hide();
 	}
 }
 
@@ -179,6 +181,8 @@ void SettingsScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 // Any UI elements will need to be put into this function,
 // if they should be hidden when the screen is hidden.
 void SettingsScreen::hide(){
+	UIScreen::hide();
+
 	// Hide ui objects 
 	labelTitle->hide();
 	cFullscreen->hide();
@@ -196,6 +200,8 @@ void SettingsScreen::hide(){
 // All UI elements in the hide screen method should have show 
 // calls here. 
 void SettingsScreen::show(){
+	UIScreen::show();
+
 	// show ui objects 
 	labelTitle->show();
 	cFullscreen->show();

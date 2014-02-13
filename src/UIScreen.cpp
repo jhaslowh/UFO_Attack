@@ -4,9 +4,20 @@ UIScreen::UIScreen(){
 	loaded = false;
 	unloaded = true;
 	transitionCode = NO_TRANSITION;
+	hideOnClose = false;
+	cHideTime = 0.0f;
+	hideTime = .28f;
 }
-UIScreen::~UIScreen(){
-}
+UIScreen::~UIScreen(){}
+
+// Set screen hide on close 
+void UIScreen::setHideOnClose(bool value){hideOnClose = value;}
+
+// Get screen hide on close 
+bool UIScreen::getHideOnClose(){return hideOnClose;}
+
+// Set hide time
+void UIScreen::setHideTime(float value){hideTime = value;}
 
 // Initialize screen
 void UIScreen::init(float screen_width, float screen_height){
@@ -33,7 +44,12 @@ bool UIScreen::isUnloaded(){
 
 // Update the state of the screen
 void UIScreen::update(float deltaTime){
-	// Nothing to do
+	// Minus hide time if not 0
+	if (cHideTime > 0.0f){
+		cHideTime -= deltaTime;
+		if (cHideTime < 0.0f)
+			cHideTime = 0.0f;
+	}
 }
 
 // Update input to the screen 
@@ -111,7 +127,6 @@ bool UIScreen::parseCommand(UITerminal* terminal, std::string command, std::stri
 		return true;
 	}
 
-
 	return false;
 }
 
@@ -119,8 +134,15 @@ bool UIScreen::parseCommand(UITerminal* terminal, std::string command, std::stri
 // Any UI elements will need to be put into this function,
 // if they should be hidden when the screen is hidden.
 void UIScreen::hide(){
-	// Nothing to do
+	cHideTime = hideTime;
 }
+
+// Check if the screen is hidden. 
+// May not be correct for all sub elements 
+bool UIScreen::hidden(){
+	return cHideTime <= 0.0f;
+}
+
 
 // Show the entire screen.
 // All UI elements in the hide screen method should have show 

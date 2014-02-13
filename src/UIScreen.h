@@ -29,13 +29,24 @@
 class UIScreen
 {
 protected:
-	bool loaded;
-	bool unloaded;
-	int transitionCode;
+	bool loaded;		// True when screen has been loaded 
+	bool unloaded;		// True when screen has been unloaded
+	int transitionCode; // Transition Code for screen
+
+	bool hideOnClose;	// Set to true to hide when closing 
+	float cHideTime;	// Time till screen hides
+	float hideTime;		// Total screen hide time
 
 public:
 	UIScreen();
 	virtual ~UIScreen();
+
+	// Set screen hide on close 
+	virtual void setHideOnClose(bool value);
+	// Get screen hide on close 
+	virtual bool getHideOnClose();
+	// Set hide time
+	virtual void setHideTime(float value);
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height);
@@ -69,6 +80,10 @@ public:
 	// Any UI elements will need to be put into this function,
     // if they should be hidden when the screen is hidden.
 	virtual void hide();
+
+	// Check if the screen is hidden. 
+	// May not be correct for all sub elements 
+	virtual bool hidden();
 
 	// Show the entire screen.
 	// All UI elements in the hide screen method should have show 
