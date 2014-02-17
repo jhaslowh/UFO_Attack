@@ -67,30 +67,28 @@ Transitions:
 If UFO is below min distance from ground, push it away from ground.  
 Has armor and a shield. Shield can reginerate, armor can't.  
 Player can beam to ground.  
+The player will be able to purchase upgrades and weapons. 
+Has an abduction ray to abduct people and animals.   
 
 Upgrades:  
-The player will be able to purchase these in game.  
-- Armor  
-- Weapons  
+- UFO Armor 1  
+- UFO Armor 2   
 
-Primary Weapons:  
-Player will be able to use these during missions.  
+UFO Weapons:  
 - Laser: (Starting weapon)   
 - Machine Gun  
 - Missiles  
 - Bombs  
 
-Gadgets:  
-- Abduction Ray: (Starting gadget)  
-
 **Player**  
-Has score and upgrade points (people abducted).  
+Has upgrade points (people abducted).  
+Has a ray gun when on ground.   
+The players health will recharge when in the ship. 
+
 Abduction Types:  
 - Normal Human  
-- Smart Human  
-- Animal  
-Has a ray gun when on ground.   
-The players health will recharge when in the ship.  
+- Smart Human  (2x Normal Human points)  
+- Animal   
 
 **Levels**  
 Use harder enemies to increase difficulty.  
