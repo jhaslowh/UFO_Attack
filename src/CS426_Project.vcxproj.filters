@@ -220,6 +220,9 @@
       <Filter>Header Files\ui</Filter>
     </ClInclude>
     <ClInclude Include="UIBox.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="StoreItems.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -375,6 +378,9 @@
       <Filter>Source Files\ui</Filter>
     </ClCompile>
     <ClCompile Include="UIBox.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="StoreItems.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
