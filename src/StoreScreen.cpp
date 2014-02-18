@@ -112,7 +112,6 @@ void StoreScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// Update Store Item scroll bar
 	scrollbar->updateInput(mKeyH, mMouseH);
 	storeItemsLoc = storeItemsMin - scrollbar->getValue();
-	std::cout << scrollbar->getValue() << "\n";
 
 	// Update store item input and location 
 	for (int i = 0; i < STORE_ITEM_COUNT; i++){

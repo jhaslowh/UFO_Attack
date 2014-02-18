@@ -39,6 +39,11 @@ namespace StoreItems{
 	// Store Item discriptions 
 	extern const std::string SI_DESCRIPTIONS[];
 
+	// Store Item animal price
+	extern const int STORE_ANIMAL_COST[];
+
+	// Store Item human cost
+	extern const int STORE_HUMAN_COST[];
 
 	// -----------------------------------------------//
 	//

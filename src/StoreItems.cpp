@@ -51,13 +51,34 @@ namespace StoreItems{
 	};
 
 	// Store Item discriptions 
-	extern const std::string SI_DESCRIPTIONS[] = {
+	const std::string SI_DESCRIPTIONS[] = {
 		"TODO",								// Description for UFO Armor 1
 		"TODO",								// Description for UFO Armor 2
 		"TODO",								// Description for UFO Laser
 		"TODO",								// Description for UFO Machine Gun
 		"TODO",								// Description for UFO Missiles
 		"TODO"								// Description for UFO Bombs
+	};
+
+	
+	// Store Item animal price
+	const int STORE_ANIMAL_COST[] = {
+		0,								// Cost for UFO Armor 1
+		0,								// Cost for UFO Armor 2
+		0,								// Cost for UFO Laser
+		0,								// Cost for UFO Machine Gun
+		0,								// Cost for UFO Missiles
+		0								// Cost for UFO Bombs
+	};
+
+	// Store Item human cost
+	const int STORE_HUMAN_COST[] = {
+		0,								// Cost for UFO Armor 1
+		0,								// Cost for UFO Armor 2
+		0,								// Cost for UFO Laser
+		0,								// Cost for UFO Machine Gun
+		0,								// Cost for UFO Missiles
+		0								// Cost for UFO Bombs
 	};
 
 
