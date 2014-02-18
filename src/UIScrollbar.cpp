@@ -171,6 +171,30 @@ void UIScrollbar::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			if (!mMouseH->isLeftDown())
 				down = false;
 		}
+
+		// Update wheel scrolling 
+		if (contains(mMouseH->getX(), mMouseH->getY())){
+			updateMouseScroll(mMouseH);
+		}
+	}
+}
+
+// Call to update the mouse scroll wheel functions 
+// for this scrollbar globaly. 
+void UIScrollbar::updateMouseScroll(MouseHandler* mMouseH){
+	if (mMouseH->scrollUp()){
+		if (mType == SCROLLBAR_HOR)
+			sliderArea.setX(sliderArea.getX() - (width * .05f));
+		else
+			sliderArea.setY(sliderArea.getY() - (height * .05f));
+		clampSlider();
+	}
+	if (mMouseH->scrollDown()){
+		if (mType == SCROLLBAR_HOR)
+			sliderArea.setX(sliderArea.getX() + (width * .05f));
+		else
+			sliderArea.setY(sliderArea.getY() + (height * .05f));
+		clampSlider();
 	}
 }
 

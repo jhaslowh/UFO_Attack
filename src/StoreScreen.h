@@ -12,6 +12,7 @@ class StoreScreen : public UIScreen
 	UILabel* lTitle;
 	UIBox* bDesc;
 	UIButton* bBack;
+	UIButton* bBuy;
 	UIScrollbar* scrollbar;
 
 	UIStoreItemBox* mStoreBoxes;

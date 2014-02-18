@@ -51,6 +51,10 @@ public:
 	virtual void update(float deltaTime);
 	// Update input 
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
+	// Call to update the mouse scroll wheel functions 
+	// for this scrollbar globaly. 
+	void updateMouseScroll(MouseHandler* mMouseH);
+
 	// Draw the object to the screen
 	// UIAtles must be bound first.
 	virtual void draw(GLHandler* mgl, UIAtlas* mAtlas);

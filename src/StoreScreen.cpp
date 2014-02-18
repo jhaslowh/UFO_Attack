@@ -7,6 +7,7 @@ StoreScreen::StoreScreen() : UIScreen()
 	lTitle = NULL;
 	bDesc = NULL;
 	bBack = NULL;
+	bBuy = NULL;
 	mStoreBoxes = NULL;
 	scrollbar = NULL;
 }
@@ -16,6 +17,7 @@ StoreScreen::~StoreScreen()
 	delete lTitle;
 	delete bDesc;
 	delete bBack;
+	delete bBuy;
 	delete[] mStoreBoxes;
 	delete scrollbar;
 }
@@ -44,6 +46,10 @@ void StoreScreen::init(float screen_width, float screen_height){
 	bBack = new UIButton(menuX - 300.0f, menuY + 310.0f, 100.0f, 35.0f,"Back");
 	bBack->setupHide(HT_VERTICAL, bBack->getY() + 100.0f, hideTime, true);
 	bBack->setHidden();
+
+	bBuy = new UIButton(menuX - 105.0f, menuY + 310.0f, 100.0f, 35.0f,"Buy");
+	bBuy->setupHide(HT_VERTICAL, bBuy->getY() + 100.0f, hideTime, true);
+	bBuy->setHidden();
 
 	// Set store items
 
@@ -76,6 +82,7 @@ void StoreScreen::load(TextureAtlas* mAtlas){
 	
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 	bBack->centerText(mUI->mTextRender);
+	bBuy->centerText(mUI->mTextRender);
 
 	for (int i = 0; i < STORE_ITEM_COUNT; i++){
 		mStoreBoxes[i].load(mAtlas);
@@ -91,6 +98,7 @@ void StoreScreen::update(float deltaTime){
 	lTitle->update(deltaTime);
 	bDesc->update(deltaTime);
 	bBack->update(deltaTime);
+	bBuy->update(deltaTime);
 	scrollbar->update(deltaTime);
 
 	for (int i = 0; i < STORE_ITEM_COUNT; i++){
@@ -103,6 +111,7 @@ void StoreScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	UIScreen::updateInput(mKeyH, mMouseH);
 
 	bBack->updateInput(mKeyH, mMouseH);
+	bBuy->updateInput(mKeyH, mMouseH);
 
 	if (bBack->wasClicked()){
 		transitionCode = SCREEN_MAIN;
@@ -111,6 +120,7 @@ void StoreScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 	// Update Store Item scroll bar
 	scrollbar->updateInput(mKeyH, mMouseH);
+	scrollbar->updateMouseScroll(mMouseH);
 	storeItemsLoc = storeItemsMin - scrollbar->getValue();
 
 	// Update store item input and location 
@@ -135,6 +145,7 @@ void StoreScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	lTitle->draw(mgl, (UIAtlas*)mAtlas);
 	bDesc->draw(mgl, (UIAtlas*)mAtlas);
 	bBack->draw(mgl, (UIAtlas*)mAtlas);
+	bBuy->draw(mgl, (UIAtlas*)mAtlas);
 	scrollbar->draw(mgl, (UIAtlas*)mAtlas);
 
 	for (int i = 0; i < STORE_ITEM_COUNT; i++){
@@ -151,6 +162,7 @@ void StoreScreen::hide(){
 	lTitle->hide();
 	bDesc->hide();
 	bBack->hide();
+	bBuy->hide();
 	scrollbar->hide();
 
 	for (int i = 0; i < STORE_ITEM_COUNT; i++){
@@ -167,6 +179,7 @@ void StoreScreen::show(){
 	lTitle->show();
 	bDesc->show();
 	bBack->show();
+	bBuy->show();
 	scrollbar->show();
 
 	for (int i = 0; i < STORE_ITEM_COUNT; i++){
