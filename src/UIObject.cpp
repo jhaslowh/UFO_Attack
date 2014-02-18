@@ -28,6 +28,15 @@ void UIObject::setColor(float r, float g, float b){
 }
 GLfloat* UIObject::getColor(){return flatColor;}
 
+// Call if object has child objects that need to be set up
+void UIObject::init(float screen_width, float screen_height){
+	// Nothing to do
+}
+// Call if object has child objects that need to be loaded
+void UIObject::load(TextureAtlas* mAtlas){
+	// Nothing to do
+}
+
 // Update the button 
 void UIObject::update(float deltaTime){
 	// Nothing to do
@@ -41,6 +50,12 @@ void UIObject::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 // Draw the object to the screen
 // UIAtles must be bound first.
 void UIObject::draw(GLHandler* mgl, UIAtlas* mAtlas){
+	// Nothing to do
+}
+
+// Draw the object to the screen at sent offset.
+// UIAtles must be bound first.
+void UIObject::draw(GLHandler* mgl, UIAtlas* mAtlas, float offx, float offy){
 	// Nothing to do
 }
 

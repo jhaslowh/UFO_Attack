@@ -52,9 +52,9 @@ public:
 	virtual void draw(GLHandler* mgl, UIAtlas* mAtlas);
 
 	// Tell the object to hide
-	void hide();
+	virtual void hide();
 	// Tell the object to show
-	void show();
+	virtual void show();
 
 	// Check if the object is hidden
 	bool hidden();
@@ -62,8 +62,8 @@ public:
 	bool shown();
 
 	// Instantly hide the object
-	void setHidden();
+	virtual void setHidden();
 	// Instantly show the object 
-	void setShown();
+	virtual void setShown();
 };
 

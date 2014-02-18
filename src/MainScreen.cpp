@@ -22,19 +22,19 @@ void MainScreen::init(float screen_width, float screen_height){
 	buttonLevelSelect->setHidden();
 
 	buttonFreePlay = new UIButton(screen_width *.5f + 3.0f,screen_height *.5f,100.0f,35.0f, std::string("Free Play"));
-	buttonFreePlay->setupHide(HT_VERTICAL,buttonFreePlay->getY()+100.0f,hideTime,true);
+	buttonFreePlay->setupHide(HT_VERTICAL,buttonFreePlay->getY()+120.0f,hideTime,true);
 	buttonFreePlay->setHidden();
 
 	buttonStore = new UIButton(screen_width *.5f - 103.0f,(screen_height *.5f) + 40.0f,100.0f,35.0f, std::string("Store"));
-	buttonStore->setupHide(HT_VERTICAL,buttonStore->getY()+100.0f,hideTime,true);
+	buttonStore->setupHide(HT_VERTICAL,buttonStore->getY()+160.0f,hideTime,true);
 	buttonStore->setHidden();
 
 	buttonSettings = new UIButton(screen_width *.5f + 3.0f,(screen_height *.5f) + 40.0f,100.0f,35.0f, std::string("Settings"));
-	buttonSettings->setupHide(HT_VERTICAL,buttonSettings->getY()+100.0f,hideTime,true);
+	buttonSettings->setupHide(HT_VERTICAL,buttonSettings->getY()+190.0f,hideTime,true);
 	buttonSettings->setHidden();
 
 	buttonQuit = new UIButton(screen_width *.5f - 50.0f,(screen_height *.5f) + 80.0f,100.0f,35.0f, std::string("Quit"));
-	buttonQuit->setupHide(HT_VERTICAL,buttonQuit->getY()+100.0f,hideTime,true);
+	buttonQuit->setupHide(HT_VERTICAL,buttonQuit->getY()+200.0f,hideTime,true);
 	buttonQuit->setHidden();
 
 	logo.setPosition(screen_width * .5f, screen_height * .5f - 150.0f);
@@ -80,16 +80,24 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	buttonFreePlay->updateInput(mKeyH, mMouseH);
 	buttonQuit->updateInput(mKeyH, mMouseH);
 
+	// Close game
 	if (buttonQuit->wasClicked()){
 		transitionCode = SCREEN_QUIT;
 		hide();
 	}
+	// Go to settings screen
 	if (buttonSettings->wasClicked()){
 		transitionCode = SCREEN_SETTINGS;
 		hide();
 	}
+	// Go to free play screen
 	if (buttonFreePlay->wasClicked()){
 		transitionCode = SCREEN_FREE_PLAY;
+		hide();
+	}
+	// Go to store 
+	if (buttonStore->wasClicked()){
+		transitionCode = SCREEN_STORE;
 		hide();
 	}
 

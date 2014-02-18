@@ -45,6 +45,7 @@
     <ClInclude Include="Sign.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="StoreItems.h" />
+    <ClInclude Include="StoreScreen.h" />
     <ClInclude Include="TestScreen.h" />
     <ClInclude Include="TextRender.h" />
     <ClInclude Include="TextureAtlas.h" />
@@ -57,6 +58,8 @@
     <ClInclude Include="UILabel.h" />
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIScreen.h" />
+    <ClInclude Include="UIScrollbar.h" />
+    <ClInclude Include="UIStoreItemBox.h" />
     <ClInclude Include="UITerminal.h" />
     <ClInclude Include="UITransitionObject.h" />
     <ClInclude Include="UIValueSlider.h" />
@@ -99,6 +102,7 @@
     <ClCompile Include="Sign.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StoreItems.cpp" />
+    <ClCompile Include="StoreScreen.cpp" />
     <ClCompile Include="TestScreen.cpp" />
     <ClCompile Include="TextRender.cpp" />
     <ClCompile Include="TextureAtlas.cpp" />
@@ -111,6 +115,8 @@
     <ClCompile Include="UILabel.cpp" />
     <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="UIScreen.cpp" />
+    <ClCompile Include="UIScrollbar.cpp" />
+    <ClCompile Include="UIStoreItemBox.cpp" />
     <ClCompile Include="UITerminal.cpp" />
     <ClCompile Include="UITransitionObject.cpp" />
     <ClCompile Include="UIValueSlider.cpp" />

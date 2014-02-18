@@ -15,5 +15,8 @@ public:
 
 	// Draw box 
 	virtual void draw(GLHandler* mgl, UIAtlas* mUI); 
+
+	// Draw box at offset 
+	virtual void draw(GLHandler* mgl, UIAtlas* mUI, float offx, float offy); 
 };
 

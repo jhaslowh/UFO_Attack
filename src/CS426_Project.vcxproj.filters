@@ -222,8 +222,17 @@
     <ClInclude Include="UIBox.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
+    <ClInclude Include="StoreScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
     <ClInclude Include="StoreItems.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="UIStoreItemBox.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="UIScrollbar.h">
+      <Filter>Header Files\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -381,7 +390,16 @@
       <Filter>Source Files\ui</Filter>
     </ClCompile>
     <ClCompile Include="StoreItems.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="StoreScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="UIStoreItemBox.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UIScrollbar.cpp">
+      <Filter>Source Files\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -43,12 +43,12 @@ void UIValueSlider::setValue(float value){
 
 // Set min value
 void UIValueSlider::setMinValue(float value){
-
+	minValue = value;
 }
 
 // Set max value
 void UIValueSlider::setMaxValue(float value){
-
+	maxValue = value;
 }
 
 // Update Button
@@ -60,6 +60,7 @@ void UIValueSlider::update(float deltaTime){
 
 // Update button input 
 void UIValueSlider::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
+	UIObject::updateInput(mKeyH, mMouseH);
 	if (shown()){
 		// Check if slider is hovered
 		if (sliderContains(mMouseH->getX(), mMouseH->getY()))

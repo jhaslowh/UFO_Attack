@@ -24,6 +24,7 @@
 #include "SettingsScreen.h"
 #include "GameScreen.h"
 #include "FreePlayScreen.h"
+#include "StoreScreen.h"
 
 // Version 
 // x.yyyy
