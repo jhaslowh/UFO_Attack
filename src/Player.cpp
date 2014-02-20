@@ -35,8 +35,8 @@ Player::Player(){
 	cRunFrameTime = 0;
 
 	animationState = PLAYERS_RUN;
-	idleFrame = PLAYER_RUN_FRAME8;
-	jumpFrame = PLAYER_RUN_FRAME9;
+	idleFrame = 8;
+	jumpFrame = 9;
 	
 	// Arm
 	armRotation = 0.0f;
@@ -89,6 +89,20 @@ Player::Player(){
 	
 	cameraOffsetY = 0.0f;
 	ufo = new UFO();
+
+	// Arm offsets 
+	armOffsetsR[0] = 24;	armOffsetsR[1] = 25;
+	armOffsetsR[2] = 24;	armOffsetsR[3] = 27;
+	armOffsetsR[4] = 24;	armOffsetsR[5] = 25;
+	armOffsetsR[6] = 24;	armOffsetsR[7] = 23;
+	armOffsetsR[8] = 24;	armOffsetsR[9] = 22;
+	armOffsetsR[10] = 24;	armOffsetsR[11] = 22;
+	armOffsetsR[12] = 24;	armOffsetsR[13] = 25;
+	armOffsetsR[14] = 24;	armOffsetsR[15] = 27;
+	armOffsetsR[16] = 24;	armOffsetsR[17] = 25;
+	armOffsetsR[18] = 24;	armOffsetsR[19] = 23;
+	armOffsetsR[20] = 24;	armOffsetsR[21] = 22;
+	armOffsetsR[22] = 24;	armOffsetsR[23] = 23;
 }
 Player::~Player(){
 	delete ufo;
@@ -388,7 +402,7 @@ void Player::checkCollision(Handlers* handlers){
 }
 
 // Resolve any collisions found 
-void Player::resolveCollision(Handlers* handlers){
+void Player::update2(float deltaTime, Handlers* handlers){
 	if (alive()){
 		if (inUFO){
 			ufo->resolveCollision(handlers);
@@ -417,6 +431,27 @@ void Player::resolveCollision(Handlers* handlers){
 	hudHealthScale = (health / maxHealth) * hudHealthMaxScale;
 	hudArmorScale = (ufo->getArmor() / ufo->getMaxArmor()) * hudArmorMaxScale;
 	hudShieldScale = (ufo->getShield() / ufo->getMaxShield()) * hudShieldMaxScale;
+
+	// Get current frame 
+	if (animationState == PLAYERS_RUN)
+		currentFrame = runFrame;
+	else if (animationState == PLAYERS_IDLE)
+		currentFrame = idleFrame;
+	else if (animationState == PLAYERS_AIR)
+		currentFrame = jumpFrame;
+
+
+	// Upadate weapon
+	if (lookingRight){
+		// weapon->update(deltaTime, 
+		//  locX - originX + armOffsetsR[currentFrame*2],
+		//	locY - originY + armOffsetsR[currentFrame*2 + 1]);
+	}
+	else {
+		// weapon->update(deltaTime, 
+		//  locX - originX + (width - armOffsetsR[currentFrame*2]),
+		//	locY - originY + armOffsetsR[currentFrame*2 + 1]);
+	}
 }
 
 // Update input
@@ -451,6 +486,10 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 				jumping = true;
 				inAir = true;
 			}
+
+			// Update player weapon
+			// TODO
+			// weapon->updateInput(mKeyH, mMouseH);
 		}
 
 		// Switch from ufo to on foot 
@@ -471,56 +510,37 @@ void Player::draw(GLHandler* mgl){
 	ufo->draw(mgl, &playerAtlas);
 	
 	if (!inUFO){
-
 		// Draw player
-		// Player running 
-		if (animationState == PLAYERS_RUN){
-			if (lookingRight)
-				playerAtlas.draw(mgl, PLAYER_RUN_FRAME0 + runFrame,
-					locX,locY,1.0f,0.0f,originX,originY);
-			else {
-				glCullFace(GL_FRONT);
-				playerAtlas.drawScale2(mgl, PLAYER_RUN_FRAME0 + runFrame,
-					locX,locY,-1.0f,1.0f,0.0f,originX,originY);
-				glCullFace(GL_BACK);
-			}
+		if (lookingRight)
+			playerAtlas.draw(mgl, PLAYER_RUN_FRAME0 + currentFrame,
+				locX,locY,1.0f,0.0f,originX,originY);
+		else {
+			glCullFace(GL_FRONT);
+			playerAtlas.drawScale2(mgl, PLAYER_RUN_FRAME0 + currentFrame,
+				locX,locY,-1.0f,1.0f,0.0f,originX,originY);
+			glCullFace(GL_BACK);
 		}
-		// Player idle 
-		else if (animationState == PLAYERS_IDLE){
-			if (lookingRight)
-				playerAtlas.draw(mgl, idleFrame,
-					locX,locY,1.0f,0.0f,originX,originY);
-			else {
-				glCullFace(GL_FRONT);
-				playerAtlas.drawScale2(mgl, idleFrame,
-					locX,locY,-1.0f,1.0f,0.0f,originX,originY);
-				glCullFace(GL_BACK);
-			}
-		}
-		// Player jumping or falling 
-		else if (animationState == PLAYERS_AIR){
-			if (lookingRight)
-				playerAtlas.draw(mgl, jumpFrame,
-					locX,locY,1.0f,0.0f,originX,originY);
-			else {
-				glCullFace(GL_FRONT);
-				playerAtlas.drawScale2(mgl, jumpFrame,
-					locX,locY,-1.0f,1.0f,0.0f,originX,originY);
-				glCullFace(GL_BACK);
-			}
-		}
+
+		// Draw weapon
+		// TODO 
+		// weapon->draw(mgl);
+
 
 		// Draw player arm 
-		/*if (lookingRight){
-			playerAtlas.draw(mgl, PI_PLAYER_ARM,locX+armOffsetX,locY+armOffsetY,
+		if (lookingRight){
+			playerAtlas.draw(mgl, PI_PLAYER_ARM,
+				locX-originX+armOffsetsR[currentFrame*2],
+				locY-originY+armOffsetsR[currentFrame*2 + 1],
 				1.0f,armRotation,armOriginX,armOriginY);
 		}
 		else {
 			glCullFace(GL_FRONT);
-			playerAtlas.drawScale2(mgl, PI_PLAYER_ARM,locX+armOffsetX,locY+armOffsetY,
+			playerAtlas.drawScale2(mgl, PI_PLAYER_ARM,
+				locX-originX+(width-armOffsetsR[currentFrame*2]),
+				locY-originY+armOffsetsR[currentFrame*2 + 1],
 				-1.0f,1.0f,armRotation,armOriginX,armOriginY);
 			glCullFace(GL_BACK);
-		}*/
+		}
 	}
 }
 

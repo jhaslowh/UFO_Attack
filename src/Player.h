@@ -91,11 +91,11 @@ class Player
 	// Other frames 
 	int idleFrame;
 	int jumpFrame;
+	int currentFrame;
 
 	// Arm
 	float armRotation;			// Rotation for arm 
-	float armOffsetsL[12];
-	float armOffsetsR[12];
+	float armOffsetsR[24];
 	float armOriginX, armOriginY;
 
 	// ----------
@@ -159,8 +159,9 @@ public:
 	// Check collisions 
 	void checkCollision(Handlers* handlers);
 
-	// Resolve any collisions found 
-	void resolveCollision(Handlers* handlers);
+	// Resolve any collisions found. 
+	// And do other nessesary updates that have to happen after movement checks.
+	void update2(float deltaTime, Handlers* handlers);
 	
 	// Update input
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
