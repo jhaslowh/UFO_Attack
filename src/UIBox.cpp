@@ -8,21 +8,15 @@ UIBox::UIBox(float x, float y, float w, float h)
 	width = w;
 	height = h;
 	cornerWidth = 6.0f;
-	mAlpha = 1.0f;
 }
 
 UIBox::~UIBox(){}
-
-// Set box alpha
-void UIBox::setAlpha(float value){
-	mAlpha = value;
-}
 
 // Draw box 
 void UIBox::draw(GLHandler* mgl, UIAtlas* mUI){
 	UITransitionObject::draw(mgl, mUI);
 
-	mgl->setFlatColor(flatColor, flatColor[3] * mAlpha);
+	mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 
 	// Draw middle 
 	mUI->drawScale2(mgl, UI_REC_M, loc_x + cornerWidth, loc_y + cornerWidth, 
@@ -57,7 +51,7 @@ void UIBox::draw(GLHandler* mgl, UIAtlas* mUI){
 void UIBox::draw(GLHandler* mgl, UIAtlas* mUI, float offx, float offy){
 	UIObject::draw(mgl, mUI, offx, offy);
 
-	mgl->setFlatColor(flatColor, flatColor[3] * mAlpha);
+	mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 
 	// Draw middle 
 	mUI->drawScale2(mgl, UI_REC_M, offx + loc_x + cornerWidth, offy + loc_y + cornerWidth, 

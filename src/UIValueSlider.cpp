@@ -91,9 +91,9 @@ void UIValueSlider::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 void UIValueSlider::draw(GLHandler* mgl, UIAtlas* mAtlas){
 	if (flatColor[3] != 0.0f){
 		// Draw image 
-		mgl->setFlatColor(backColor[0], backColor[1], backColor[2], backColor[3] * flatColor[3]);
+		mgl->setFlatColor(backColor[0], backColor[1], backColor[2], backColor[3] * flatColor[3] * mOpacity);
 		mAtlas->drawScale2(mgl, UII_REC,loc_x ,loc_y, width, height);
-		mgl->setFlatColor(flatColor);
+		mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 		mAtlas->draw(mgl, UII_CHECKBOX_NORMAL, loc_x + sliderLoc, loc_y + 8.0f,
 			1.0f,0.0f,sliderOriginX, sliderOriginY);
 	}

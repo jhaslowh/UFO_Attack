@@ -36,3 +36,7 @@ int AtlasSprite::getID(){return id;}
 void AtlasSprite::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mAtlas->draw(mgl,id, locX,locY,scale,rotation,originX,originY);
 }
+// Draw the sprite at offset 
+void AtlasSprite::draw(GLHandler* mgl, TextureAtlas* mAtlas, float offx, float offy){
+	mAtlas->draw(mgl,id, offx+locX,offy+locY,scale,rotation,originX,originY);
+}

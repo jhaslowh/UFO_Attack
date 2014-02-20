@@ -227,11 +227,11 @@ void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 void UITerminal::draw(GLHandler* mgl, UIAtlas* mAtlas){
 
 	// Draw background
-	mgl->setFlatColor(flatColor);
+	mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 	mAtlas->drawScale2(mgl, UII_REC, loc_x, loc_y, width, textSize + 10.0f);
 	
 	// Draw current lines
-	mgl->setFlatColor(tColors[0]);
+	mgl->setFlatColor(tColors[0], tColors[0][3] * mOpacity);
 	mAtlas->mTextRender->drawText(*mgl, line, loc_x + textOffX, loc_y + textOffY, 0, textSize);
 	// Draw itterator	
 	if (iteratorAlpha > 0.5f)	
@@ -245,7 +245,7 @@ void UITerminal::draw(GLHandler* mgl, UIAtlas* mAtlas){
 	// Draw history lines 
 	if (shown()){
 		for (int i = 0; i < 10; i++){
-			mgl->setFlatColor(tColors[lines[i].type]);
+			mgl->setFlatColor(tColors[lines[i].type], tColors[lines[i].type][3] * mOpacity);
 			mAtlas->mTextRender->drawText(*mgl, lines[i].text, 
 				loc_x + textOffX, loc_y - (textSize * (i+1)), 0, textSize);
 		}

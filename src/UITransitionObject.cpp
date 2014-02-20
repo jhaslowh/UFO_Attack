@@ -8,8 +8,14 @@ UITransitionObject::UITransitionObject() : UIObject(){
 	mHideType = HT_VERTICAL;
 	mHide = false;
 	mFadeOut = false;
+	mOpacity = 1.0f;
 }
 UITransitionObject::~UITransitionObject(){}
+
+// Get object opacity
+// This is used by fadeout, and is different
+// than alpha. 
+float UITransitionObject::getOpacity(){return mOpacity;}
 
 // Quick one step setup 
 void UITransitionObject::setupHide(int hideType, float hideLoc, float hideTime, bool fadeOut){
@@ -92,7 +98,7 @@ void UITransitionObject::update(float deltaTime){
 			}
 		}
 		if (mFadeOut) 
-			flatColor[3] = (float)abs(loc_x - mHideLoc) / (float)abs(mNormalLoc - mHideLoc);
+			mOpacity = (float)abs(loc_x - mHideLoc) / (float)abs(mNormalLoc - mHideLoc);
 	}
 	else if (mHideType == HT_VERTICAL){
 		if (mNormalLoc > mHideLoc){
@@ -134,7 +140,7 @@ void UITransitionObject::update(float deltaTime){
 		}
 	
 		if (mFadeOut) 
-			flatColor[3] = (float)abs(loc_y - mHideLoc) / (float)abs(mHideLoc - mNormalLoc);
+			mOpacity = (float)abs(loc_y - mHideLoc) / (float)abs(mHideLoc - mNormalLoc);
 	}
 }
 
@@ -170,7 +176,7 @@ bool UITransitionObject::shown(){
 void UITransitionObject::setHidden(){
 	mState = HIDDEN; 
 	mHide = true;
-	if (mFadeOut) flatColor[3] = 0.0f;
+	if (mFadeOut) mOpacity = 0.0f;
 		
 	if (mHideType == HT_HOROZONTAL)
 		loc_x = mHideLoc;
@@ -182,7 +188,7 @@ void UITransitionObject::setHidden(){
 void UITransitionObject::setShown(){
 	mState = SHOWN;
 	mHide = false;
-	if (mFadeOut) flatColor[3] = 1.0f;
+	if (mFadeOut) mOpacity = 1.0f;
 	
 	if (mHideType == HT_HOROZONTAL)
 		loc_x = mNormalLoc;

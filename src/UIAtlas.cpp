@@ -64,6 +64,10 @@ void UIAtlas::load(){
 	vcg->addFrame(697.0f, 112.0f, 6.0f, 1.0f);
 	// Middle
 	vcg->addFrame(696.0f, 112.0f, 1.0f, 1.0f);
+	// Currency Animal
+	vcg->addFrame(632.0f, 130.0f, 20.0f, 20.0f);
+	// Currency Human
+	vcg->addFrame(654.0f, 130.0f, 20.0f, 20.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

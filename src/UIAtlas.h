@@ -26,6 +26,8 @@
 #define UI_REC_LB 17	// Left border
 #define UI_REC_RB 18	// Right border
 #define UI_REC_M 19		// Middle 
+#define UI_CURRENCY_ANIMAL 20
+#define UI_CURRENCY_HUMAN 21
 
 class UIAtlas : public TextureAtlas
 {

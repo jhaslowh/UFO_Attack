@@ -25,7 +25,10 @@ public:
 	float getWidth();
 	float getHeight();
 	void setColor(float r, float g, float b);
+	void setColor(float r, float g, float b, float a);
 	GLfloat* getColor();
+	void setAlpha(float a);
+	float getAlpha();
 
 	// Call if object has child objects that need to be set up
 	virtual void init(float screen_width, float screen_height);

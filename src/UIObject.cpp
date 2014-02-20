@@ -26,7 +26,15 @@ void UIObject::setColor(float r, float g, float b){
 	flatColor[1] = g;
 	flatColor[2] = b;
 }
+void UIObject::setColor(float r, float g, float b, float a){
+	flatColor[0] = r;
+	flatColor[1] = g;
+	flatColor[2] = b;
+	flatColor[3] = a;
+}
 GLfloat* UIObject::getColor(){return flatColor;}
+void UIObject::setAlpha(float a){flatColor[3] = a;}
+float UIObject::getAlpha(){return flatColor[3];}
 
 // Call if object has child objects that need to be set up
 void UIObject::init(float screen_width, float screen_height){

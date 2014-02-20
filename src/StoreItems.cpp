@@ -52,12 +52,12 @@ namespace StoreItems{
 
 	// Store Item discriptions 
 	const std::string SI_DESCRIPTIONS[] = {
-		"TODO",								// Description for UFO Armor 1
-		"TODO",								// Description for UFO Armor 2
-		"TODO",								// Description for UFO Laser
-		"TODO",								// Description for UFO Machine Gun
-		"TODO",								// Description for UFO Missiles
-		"TODO"								// Description for UFO Bombs
+		"Temp Description",					// Description for UFO Armor 1
+		"Temp Description",					// Description for UFO Armor 2
+		"Temp Description",					// Description for UFO Laser
+		"Temp Description",					// Description for UFO Machine Gun
+		"Temp Description",					// Description for UFO Missiles
+		"Temp Description"					// Description for UFO Bombs
 	};
 
 	

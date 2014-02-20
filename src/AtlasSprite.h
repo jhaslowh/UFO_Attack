@@ -38,5 +38,7 @@ public:
 
 	// Draw the sprite 
 	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+	// Draw the sprite at offset 
+	void draw(GLHandler* mgl, TextureAtlas* mAtlas, float offx, float offy);
 };
 

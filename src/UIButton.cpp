@@ -61,7 +61,6 @@ std::string UIButton::getLabel(){return label;}
 // Update Button
 void UIButton::update(float deltaTime){
 	UITransitionObject::update(deltaTime);
-	if (mFadeOut) textColor[3] = flatColor[3];
 }
 
 // Update button input 
@@ -94,35 +93,35 @@ void UIButton::draw(GLHandler* mgl, UIAtlas* mAtlas){
 		if (down){
 			// Draw shadow 
 			if (drawShadow){
-				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3]);
+				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3] * mOpacity);
 				mAtlas->draw(mgl, UII_BUTTON_CLICK, loc_x + shadowOffX, loc_y + shadowOffY);
 			}
 			// Draw image 
-			mgl->setFlatColor(flatColor);
+			mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 			mAtlas->draw(mgl, UII_BUTTON_CLICK, loc_x, loc_y);
 		}
 		else if (hovered){
 			// Draw shadow 
 			if (drawShadow){
-				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3]);
+				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3] * mOpacity);
 				mAtlas->draw(mgl, UII_BUTTON_HOVER, loc_x + shadowOffX, loc_y + shadowOffY);
 			}
 			// Draw image 
-			mgl->setFlatColor(flatColor);
+			mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 			mAtlas->draw(mgl, UII_BUTTON_HOVER, loc_x, loc_y);
 		}
 		else {
 			// Draw shadow 
 			if (drawShadow){
-				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3]);
+				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3] * mOpacity);
 				mAtlas->draw(mgl, UII_BUTTON_NORMAL, loc_x + shadowOffX, loc_y + shadowOffY);
 			}
 			// Draw image 
-			mgl->setFlatColor(flatColor);
+			mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 			mAtlas->draw(mgl, UII_BUTTON_NORMAL, loc_x, loc_y);
 		}
 
-		mgl->setFlatColor(textColor);
+		mgl->setFlatColor(textColor, textColor[3] * mOpacity);
 		mAtlas->mTextRender->drawText(*mgl, label, 
 			loc_x + text_x, loc_y + text_y, 0, UIB_TEXT_SIZE);
 	}

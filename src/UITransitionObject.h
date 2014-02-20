@@ -15,6 +15,7 @@ protected:
 	float mNormalLoc, mHideLoc;
 	float mHideSpeed;
 	int mHideType;
+	float mOpacity;
 	bool mFadeOut;
 
 	// States 
@@ -25,6 +26,11 @@ public:
 
 	UITransitionObject();
 	virtual ~UITransitionObject();
+
+	// Get object opacity
+	// This is used by fadeout, and is different
+	// than alpha. 
+	float getOpacity();
 
 	// Quick one step setup 
 	void setupHide(int hideType, float hideLoc, float hideTime, bool fadeOut);

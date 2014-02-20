@@ -4,8 +4,11 @@
 #include "UIBox.h"
 #include "UIButton.h"
 #include "UIStoreItemBox.h"
+#include "UIAtlas.h"
 #include "StoreItems.h"
 #include "UIScrollbar.h"
+#include "AtlasSprite.h"
+#include "GLColors.h"
 
 class StoreScreen : public UIScreen
 {
@@ -14,10 +17,27 @@ class StoreScreen : public UIScreen
 	UIButton* bBack;
 	UIButton* bBuy;
 	UIScrollbar* scrollbar;
+	UILabel* lPlayerAnimalMoney;
+	UILabel* lPlayerHumanMoney;
+	AtlasSprite mCSAnimalPlayer;
+	AtlasSprite mCSHumanPlayer;
 
 	UIStoreItemBox* mStoreBoxes;
-	float storeItemsMin, storeItemsMax;
-	float storeItemsLoc;
+	// (Sorry for the bad comments on these, they are hard to describe)
+	float storeItemsTop;		// Top of showable store item locations
+	float storeItemsBottom;		// Bottom of showable store item locations
+	float storeItemsMin;		// Minimum scroll location for store item locations
+	float storeItemsLoc;		// Current store item location 
+	float storeItemHeight;		// The height of a single store item 
+
+	// Selected item elements 
+	int selectedItem;			// Selected store item index
+	UILabel* lSelName;			// Selected store item name 
+	UILabel* lSelDesc;			// Selected store item description 
+	UILabel* lSelHumanPrice;	// Selected store item human price
+	UILabel* lSelAnimalPrice;	// Selected store item animal price
+	AtlasSprite mCSAnimalSelect;// Animal currency symbol
+	AtlasSprite mCSHumanSelect;	// Human currency symbol 
 
 public:
 	StoreScreen();
@@ -47,5 +67,8 @@ public:
 	// All UI elements in the hide screen method should have show 
 	// calls here. 
 	virtual void show();
+
+	// Set the selected item for the store 
+	void setSelectedItem(int i);
 };
 

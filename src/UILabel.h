@@ -20,5 +20,9 @@ public:
 	// Draw the object to the screen
 	// UIAtles must be bound first.
 	virtual void draw(GLHandler* mgl, UIAtlas* mAtlas);
+
+	// Draw the object to the screen at sent offset.
+	// UIAtles must be bound first.
+	virtual void draw(GLHandler* mgl, UIAtlas* mAtlas, float offx, float offy);
 };
 

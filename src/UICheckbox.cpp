@@ -52,7 +52,6 @@ void UICheckbox::setChecked(bool value){checked = value;}
 // Update Checkbox
 void UICheckbox::update(float deltaTime){
 	UITransitionObject::update(deltaTime);
-	if (mFadeOut) textColor[3] = flatColor[3];
 }
 
 // Update button input 
@@ -82,13 +81,13 @@ void UICheckbox::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 // UIAtles must be bound first.
 void UICheckbox::draw(GLHandler* mgl, UIAtlas* mAtlas){
 	if (flatColor[3] != 0.0f){
-		mgl->setFlatColor(flatColor);
+		mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 		if (checked)
 			mAtlas->draw(mgl, UII_CHECKBOX_CHECKED, loc_x, loc_y);
 		else 
 			mAtlas->draw(mgl, UII_CHECKBOX_NORMAL, loc_x, loc_y);
 
-		mgl->setFlatColor(textColor);
+		mgl->setFlatColor(textColor, textColor[3] * mOpacity);
 		mAtlas->mTextRender->drawText(*mgl, label, 
 			loc_x + text_x, loc_y + text_y, 0, UIC_TEXT_SIZE);
 	}

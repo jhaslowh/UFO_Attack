@@ -201,9 +201,9 @@ void UIScrollbar::updateMouseScroll(MouseHandler* mMouseH){
 // Draw the object to the screen
 // UIAtles must be bound first.
 void UIScrollbar::draw(GLHandler* mgl, UIAtlas* mAtlas){
-	mgl->setFlatColor(flatColor);
+	mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 	mAtlas->drawScale2(mgl, UII_REC, loc_x, loc_y, width, height);
-	mgl->setFlatColor(sliderColor, sliderColor[3] * flatColor[3]);
+	mgl->setFlatColor(sliderColor, sliderColor[3] * flatColor[3] * mOpacity);
 	mAtlas->drawScale2(mgl, UII_REC, sliderArea.getX(), sliderArea.getY(), sliderArea.getWidth(), sliderArea.getHeight());
 }
 
