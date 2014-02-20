@@ -106,6 +106,11 @@ void FreePlayScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mgl->setProjectionMatrix(mgl->orthoMatrix);
 
 	level->draw(mgl, mAtlas);
+	
+	mAtlas->bindBuffers(mgl);
+	mAtlas->bindTexture(mgl);
+
+	level->drawUI(mgl, (UIAtlas*)mAtlas);
 	levelEditor.draw(mgl, (UIAtlas*)mAtlas);
 	pauseScreen->draw(mgl, mAtlas);
 }
@@ -159,6 +164,10 @@ void FreePlayScreen::updateTerrain()
 // Parse a command give
 bool FreePlayScreen::parseCommand(UITerminal* terminal, string command, string args){
 	if (UIScreen::parseCommand(terminal, command, args))
+		return true;
+
+	// Update level editor commands if enabled 
+	if (levelEditor.parseCommand(terminal, command, args))
 		return true;
 
 	// If you find a command and use it, return true.

@@ -67,6 +67,12 @@
     <Filter Include="Source Files\game\weap">
       <UniqueIdentifier>{fd2f7f65-049b-40a0-923a-31bc412cc0a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\game\proj">
+      <UniqueIdentifier>{d8be5326-93eb-4425-ab92-a37f05ba320a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\proj">
+      <UniqueIdentifier>{a4cd2652-6a96-4024-9a52-106459a6db8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
@@ -235,10 +241,10 @@
       <Filter>Header Files\ui</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
-      <Filter>Header Files\game</Filter>
+      <Filter>Header Files\game\proj</Filter>
     </ClInclude>
     <ClInclude Include="ProjectileHandler.h">
-      <Filter>Header Files\game</Filter>
+      <Filter>Header Files\game\proj</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -407,11 +413,11 @@
     <ClCompile Include="UIScrollbar.cpp">
       <Filter>Source Files\ui</Filter>
     </ClCompile>
-    <ClCompile Include="Projectile.cpp">
-      <Filter>Source Files\game</Filter>
-    </ClCompile>
     <ClCompile Include="ProjectileHandler.cpp">
-      <Filter>Source Files\game</Filter>
+      <Filter>Source Files\game\proj</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files\game\proj</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
