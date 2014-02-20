@@ -506,7 +506,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 
 			// Add new tree to level 
 			if (subCommand == "tree" || subCommand == "0"){
-				terminal->addLine("Adding new tree to scenery handler", TL_SUCCESS);
+				terminal->addLine(command + " " + args, TL_SUCCESS);
 				Tree* tree = new Tree();
 				tree->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
 				sceneryHandler->add((SceneryObject*)tree);
@@ -515,7 +515,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 
 			// Add new sign to level
 			if (subCommand == "sign" || subCommand == "1"){
-				terminal->addLine("Adding new sign to scenery handler with text: " + subArgs, TL_SUCCESS);
+				terminal->addLine(command + " " + args, TL_SUCCESS);
 				Sign* sign = new Sign();
 				sign->setText(subArgs);
 				sign->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
@@ -525,7 +525,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 
 			// Add new hay bale to level
 			if (subCommand == "hay" || subCommand == "2"){
-				terminal->addLine("Adding new hay to scenery handler", TL_SUCCESS);
+				terminal->addLine(command + " " + args, TL_SUCCESS);
 				HayBale* hay = new HayBale();
 				hay->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
 				sceneryHandler->add((SceneryObject*)hay);
@@ -534,7 +534,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 
 			// Add new crate to level
 			if (subCommand == "crate" || subCommand == "3"){
-				terminal->addLine("Adding new crate to scenery handler", TL_SUCCESS);
+				terminal->addLine(command + " " + args, TL_SUCCESS);
 				Crate* crate = new Crate();
 				crate->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
 				sceneryHandler->add((SceneryObject*)crate);
@@ -543,7 +543,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 			
 			// Add new fence to level
 			if (subCommand == "fence" || subCommand == "4"){
-				terminal->addLine("Adding new fence to scenery handler", TL_SUCCESS);
+				terminal->addLine(command + " " + args, TL_SUCCESS);
 				Fence* fence = new Fence();
 				fence->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
 				sceneryHandler->add((SceneryObject*)fence);
