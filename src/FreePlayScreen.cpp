@@ -131,11 +131,11 @@ void FreePlayScreen::updateTerrain()
 			randomXHolder += (float)((rand() % 75));
 			if(rand() % 10 == 1)
 			{
-				randomYHolder += (float)(((rand() % 100)-50));
+				randomYHolder += (float)(((rand() % 400)-200));
 			}
 			else
 			{
-				randomYHolder += (float)(((rand() % 20) - 10));
+				randomYHolder += (float)(((rand() % 50) - 25));
 			}
 			generatorCounter++;
 			level->updateTerrain(randomXHolder, randomYHolder);
