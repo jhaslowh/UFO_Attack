@@ -35,32 +35,24 @@ void SettingsScreen::init(float screen_width, float screen_height){
 	float menuY = screen_height *.4f;
 
 	lFullscreen = new UILabel(std::string("Fullscreen"));
-	lFullscreen->setLocation(menuX - 120.0f,menuY + 5.0f);
-	lFullscreen->setupHide(HT_HOROZONTAL,lFullscreen->getX()-100.0f,hideTime,true);
+	lFullscreen->setLocation(menuX,menuY + 5.0f);
 	lFullscreen->setColor(.9f,.9f,.9f);
 	lFullscreen->setTextSize(16.0f);
-	lFullscreen->setHidden();
 	
 	lMasterVolume = new UILabel(std::string("Master Volume"));
-	lMasterVolume->setLocation(menuX - 120.0f,menuY + 35.0f);
-	lMasterVolume->setupHide(HT_HOROZONTAL,lMasterVolume->getX()-100.0f,hideTime,true);
+	lMasterVolume->setLocation(menuX,menuY + 35.0f);
 	lMasterVolume->setColor(.9f,.9f,.9f);
 	lMasterVolume->setTextSize(16.0f);
-	lMasterVolume->setHidden();
 
 	lMusicVol = new UILabel(std::string("Music Volume"));
-	lMusicVol->setLocation(menuX - 120.0f,menuY + 60.0f);
-	lMusicVol->setupHide(HT_HOROZONTAL,lMusicVol->getX()-100.0f,hideTime,true);
+	lMusicVol->setLocation(menuX,menuY + 60.0f);
 	lMusicVol->setColor(.9f,.9f,.9f);
 	lMusicVol->setTextSize(16.0f);
-	lMusicVol->setHidden();
 
 	lSfxVol = new UILabel(std::string("SFX Volume"));
-	lSfxVol->setLocation(menuX - 120.0f,menuY + 95.0f);
-	lSfxVol->setupHide(HT_HOROZONTAL,lSfxVol->getX()-100.0f,hideTime,true);
+	lSfxVol->setLocation(menuX,menuY + 85.0f);
 	lSfxVol->setColor(.9f,.9f,.9f);
 	lSfxVol->setTextSize(16.0f);
-	lSfxVol->setHidden();
 
 	cFullscreen = new UICheckbox(menuX - 4.0f,menuY,24.0f,24.0f,std::string(""));
 	cFullscreen->setTextColor(.8f,.8f,.8f);
@@ -111,6 +103,23 @@ void SettingsScreen::load(TextureAtlas* mAtlas){
 		labelTitle->getY() * .4f - labelTitle->getTextSize() - 5.0f);
 	labelTitle->setupHide(HT_VERTICAL,labelTitle->getY()-100.0f,hideTime,true);
 	labelTitle->setHidden();
+
+	// Align to right 
+	lMasterVolume->setX(lMasterVolume->getX() - 5.0f - mUI->mTextRender->measureString(lMasterVolume->getText(), lMasterVolume->getTextSize()));
+	lMasterVolume->setupHide(HT_HOROZONTAL,lMasterVolume->getX()-100.0f,hideTime,true);
+	lMasterVolume->setHidden();
+	
+	lMusicVol->setX(lMusicVol->getX() - 5.0f - mUI->mTextRender->measureString(lMusicVol->getText(), lMusicVol->getTextSize()));
+	lMusicVol->setupHide(HT_HOROZONTAL,lMusicVol->getX()-100.0f,hideTime,true);
+	lMusicVol->setHidden();
+
+	lSfxVol->setX(lSfxVol->getX() - 5.0f - mUI->mTextRender->measureString(lSfxVol->getText(), lSfxVol->getTextSize()));
+	lSfxVol->setupHide(HT_HOROZONTAL,lSfxVol->getX()-100.0f,hideTime,true);
+	lSfxVol->setHidden();
+
+	lFullscreen->setX(lFullscreen->getX() - 5.0f - mUI->mTextRender->measureString(lFullscreen->getText(), lFullscreen->getTextSize()));
+	lFullscreen->setupHide(HT_HOROZONTAL,lFullscreen->getX()-100.0f,hideTime,true);
+	lFullscreen->setHidden();
 	
 	show();
 }
