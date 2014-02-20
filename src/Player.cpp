@@ -327,7 +327,7 @@ void Player::checkCollision(Handlers* handlers){
 							// Stop player if object is physical
 							if (sitr->getStopPlayer()) {
 								// Makes it so player does not bounce off ground
-								locY = sitr->getCollisionRec()->top() - 1.0f;
+								locY = sitr->getCollisionRec()->top() - .2f;
 								hitGround();
 								ypass = false;
 							}
@@ -546,7 +546,8 @@ void Player::stopJump(){
 // Call when the player hits the ground 
 void Player::hitGround(){
 	airT = 0;
-	yo = nextY;
+	//yo = nextY;
+	yo = locY;
 	inAir = false;
 	jumping = false;
 }

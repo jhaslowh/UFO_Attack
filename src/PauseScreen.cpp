@@ -82,7 +82,7 @@ void PauseScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mUI->bindBuffers(mgl);
 	mUI->bindTexture(mgl);
 	
-	mgl->setFlatColor(0.0f,0.0f,0.0f,lTitle->getColor()[3]*.5f);
+	mgl->setFlatColor(0.0f,0.0f,0.0f,lTitle->getOpacity()*.5f);
 	mUI->drawScale2(mgl,UII_REC,bgOverlay.getX(),bgOverlay.getY(), bgOverlay.getWidth(),bgOverlay.getHeight());
 	lTitle->draw(mgl, mUI);
 	bResume->draw(mgl, mUI);
