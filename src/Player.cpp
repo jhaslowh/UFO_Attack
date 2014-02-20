@@ -326,9 +326,19 @@ void Player::checkCollision(Handlers* handlers){
 
 							// Stop player if object is physical
 							if (sitr->getStopPlayer()) {
-								// Makes it so player does not bounce off ground
-								locY = sitr->getCollisionRec()->top() - .2f;
-								hitGround();
+
+								// Check if player is hitting ceiling or ground 
+								if (nextY > locY){
+									// Makes it so player does not bounce off ground.
+									// Also make sure the object is below the player
+									if (sitr->getCollisionRec()->top() > locY)
+										locY = sitr->getCollisionRec()->top() - .2f;
+
+									hitGround();
+								}
+								else 
+									hitCeiling();
+
 								ypass = false;
 							}
 						}
@@ -546,7 +556,6 @@ void Player::stopJump(){
 // Call when the player hits the ground 
 void Player::hitGround(){
 	airT = 0;
-	//yo = nextY;
 	yo = locY;
 	inAir = false;
 	jumping = false;
@@ -560,8 +569,8 @@ void Player::hitWall(){
 // Call when the player hits the ceiling 
 void Player::hitCeiling(){
 	airT = 0;
-	yo = nextY;
-	inAir = false; 
+	yo = locY;
+	inAir = true; 
 	jumping = false;
 }
 
