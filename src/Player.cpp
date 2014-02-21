@@ -507,7 +507,7 @@ void Player::draw(GLHandler* mgl){
 	playerAtlas.bindBuffers(mgl);
 	playerAtlas.bindTextureFast(mgl);
 
-	ufo->draw(mgl, &playerAtlas);
+	ufo->draw(mgl, &playerAtlas, inUFO);
 	
 	if (!inUFO){
 		// Draw player

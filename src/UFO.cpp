@@ -124,8 +124,11 @@ void UFO::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 }
 
 // Draw UFO
-void UFO::draw(GLHandler* mgl, PlayerAtlas* mGame){
-	mGame->draw(mgl, UFO_FRAME, locX,locY,1.0f,0,originX, originY);
+void UFO::draw(GLHandler* mgl, PlayerAtlas* mGame, bool inUFO){
+	if (inUFO)
+		mGame->draw(mgl, UFO_BEAR_FRAME, locX,locY,1.0f,0,originX, originY);
+	else 
+		mGame->draw(mgl, UFO_FRAME, locX,locY,1.0f,0,originX, originY);
 }
 
 // Apply damage to the ship 

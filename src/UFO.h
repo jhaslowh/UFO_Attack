@@ -69,7 +69,7 @@ public:
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
 
 	// Draw UFO
-	void draw(GLHandler* mgl, PlayerAtlas* mGame);
+	void draw(GLHandler* mgl, PlayerAtlas* mGame, bool inUFO);
 
 	// Apply damage to the ship 
 	void applyDamage(float damage);

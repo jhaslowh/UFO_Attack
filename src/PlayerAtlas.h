@@ -17,8 +17,9 @@
 #define PLAYER_RUN_FRAME10 10
 #define PLAYER_RUN_FRAME11 11
 #define UFO_FRAME 12
-#define PI_HEALTH_BAR 13
-#define PI_PLAYER_ARM 14
+#define UFO_BEAR_FRAME 13
+#define PI_HEALTH_BAR 14
+#define PI_PLAYER_ARM 15
 
 class PlayerAtlas : public TextureAtlas
 {

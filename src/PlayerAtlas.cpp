@@ -30,10 +30,12 @@ void PlayerAtlas::load(){
 
 	// UFO
 	vcg->addFrame(209.0f,1.0f,100.0f,50.0f);
+	// UFO Bear
+	vcg->addFrame(209.0f,52.0f, 100.0f, 50.0f);
 	// Health bar
 	vcg->addFrame(311.0f,1.0f,100.0f,10.0f);
 	// Player arm
-	vcg->addFrame(208.0f, 52.0f, 50.0f,50.0f);
+	vcg->addFrame(208.0f, 104.0f, 50.0f,50.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();
