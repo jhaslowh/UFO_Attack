@@ -46,6 +46,7 @@
     <ClInclude Include="SettingsScreen.h" />
     <ClInclude Include="Sign.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="StoreItem.h" />
     <ClInclude Include="StoreItems.h" />
     <ClInclude Include="StoreScreen.h" />
     <ClInclude Include="TestScreen.h" />
@@ -105,6 +106,7 @@
     <ClCompile Include="SettingsScreen.cpp" />
     <ClCompile Include="Sign.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="StoreItem.cpp" />
     <ClCompile Include="StoreItems.cpp" />
     <ClCompile Include="StoreScreen.cpp" />
     <ClCompile Include="TestScreen.cpp" />

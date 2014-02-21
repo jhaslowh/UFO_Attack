@@ -8,6 +8,9 @@
 //========================================//
 
 namespace StoreItems{
+	
+	// Vector list of all store items 
+	std::vector<StoreItem> sItems;
 
 	// Total number of store items 
 	const int STORE_ITEM_COUNT = 6;
@@ -39,93 +42,14 @@ namespace StoreItems{
 		SID_UFO_WEAPON_MISSILE,
 		SID_UFO_WEAPON_BOMB
 	};
-
-	// Store Item names 
-	const std::string SI_NAMES[] = {
-		"UFO Armor 1", 
-		"UFO Armor 2", 
-		"UFO Laser",
-		"UFO Machine Gun",
-		"UFO Missiles",
-		"UFO Bombs"
-	};
-
-	// Store Item discriptions 
-	const std::string SI_DESCRIPTIONS[] = {
-		"Temp Description",					// Description for UFO Armor 1
-		"Temp Description",					// Description for UFO Armor 2
-		"Temp Description",					// Description for UFO Laser
-		"Temp Description",					// Description for UFO Machine Gun
-		"Temp Description",					// Description for UFO Missiles
-		"Temp Description"					// Description for UFO Bombs
-	};
-
 	
-	// Store Item animal price
-	const int STORE_ANIMAL_COST[] = {
-		0,								// Cost for UFO Armor 1
-		0,								// Cost for UFO Armor 2
-		0,								// Cost for UFO Laser
-		0,								// Cost for UFO Machine Gun
-		0,								// Cost for UFO Missiles
-		0								// Cost for UFO Bombs
-	};
-
-	// Store Item human cost
-	const int STORE_HUMAN_COST[] = {
-		0,								// Cost for UFO Armor 1
-		0,								// Cost for UFO Armor 2
-		0,								// Cost for UFO Laser
-		0,								// Cost for UFO Machine Gun
-		0,								// Cost for UFO Missiles
-		0								// Cost for UFO Bombs
-	};
-
-
-	// -----------------------------------------------//
-	//
-	// The following methods can be used to retreive 
-	// custom arrays of store information. 
-	//
-	// -----------------------------------------------//
-
-	// Returns a string array of all ufo upgrade names 
-	// Note: The returned pointer must be deleted with delete[]
-	std::string* getUfoUpgradeNames(){
-		std::string* s = new std::string[STORE_UFO_UPGRADE_COUNT];
-		for (int i = 0; i < STORE_UFO_UPGRADE_COUNT; i++){
-			s[i] = SI_NAMES[STORE_UFO_UPGRADE_INDEXES[i]];
-		}
-		return s;
-	}
-
-	// Returns a string array of all ufo weapon names 
-	// Note: The returned pointer must be deleted with delete[]
-	std::string* getUfoWeaponNames(){
-		std::string* s = new std::string[STORE_UFO_WEAPON_COUNT];
-		for (int i = 0; i < STORE_UFO_WEAPON_COUNT; i++){
-			s[i] = SI_NAMES[STORE_UFO_WEAPON_INDEXES[i]];
-		}
-		return s;
-	}
-
-	// Returns a string array of all ufo upgrade descriptions
-	// Note: The returned pointer must be deleted with delete[]
-	std::string* getUfoUpgradeDescriptions(){
-		std::string* s = new std::string[STORE_UFO_UPGRADE_COUNT];
-		for (int i = 0; i < STORE_UFO_UPGRADE_COUNT; i++){
-			s[i] = SI_DESCRIPTIONS[STORE_UFO_UPGRADE_INDEXES[i]];
-		}
-		return s;
-	}
-
-	// Returns a string array of all ufo weapon descriptions 
-	// Note: The returned pointer must be deleted with delete[]
-	std::string* getUfoWeaponDescriptions(){
-		std::string* s = new std::string[STORE_UFO_WEAPON_COUNT];
-		for (int i = 0; i < STORE_UFO_WEAPON_COUNT; i++){
-			s[i] = SI_DESCRIPTIONS[STORE_UFO_WEAPON_INDEXES[i]];
-		}
-		return s;
+	// Call to create store items vector 
+	void setupStoreItems(){
+		sItems.push_back(StoreItem(0,"UFO Armor 1","desc",0,0));
+		sItems.push_back(StoreItem(1,"UFO Armor 2","desc",0,0));
+		sItems.push_back(StoreItem(2,"UFO Laser","desc",0,0));
+		sItems.push_back(StoreItem(3,"UFO Machine Gun","desc",0,0));
+		sItems.push_back(StoreItem(4,"UFO Missiles","desc",0,0));
+		sItems.push_back(StoreItem(5,"UFO Bombs","desc",0,0));
 	}
 }

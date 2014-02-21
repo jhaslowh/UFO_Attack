@@ -30,9 +30,11 @@ UIStoreItemBox::~UIStoreItemBox()
 void UIStoreItemBox::setItem(int i){
 	index = i;
 
-	lName->setText(StoreItems::SI_NAMES[i]);
-	lPriceA->setText(toString(StoreItems::STORE_ANIMAL_COST[i]));
-	lPriceH->setText(toString(StoreItems::STORE_HUMAN_COST[i]));
+	StoreItem* si = &(StoreItems::sItems.at(i));
+
+	lName->setText(si->getName());
+	lPriceA->setText(toString(si->getAnimalPrice()));
+	lPriceH->setText(toString(si->getHumanPrice()));
 }
 
 // Tell this item that it is purchased 

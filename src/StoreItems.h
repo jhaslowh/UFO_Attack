@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <vector>
+#include "StoreItem.h"
 
 //======================================================//
 //
@@ -9,6 +11,9 @@
 //======================================================//
 
 namespace StoreItems{
+
+	// Vector list of all store items 
+	extern std::vector<StoreItem> sItems;
 
 	// Total number of store items 
 	extern const int STORE_ITEM_COUNT;
@@ -33,39 +38,6 @@ namespace StoreItems{
 	// Indexes of ufo weapons
 	extern const int STORE_UFO_WEAPON_INDEXES[];
 
-	// Store Item names 
-	extern const std::string SI_NAMES[];
-
-	// Store Item discriptions 
-	extern const std::string SI_DESCRIPTIONS[];
-
-	// Store Item animal price
-	extern const int STORE_ANIMAL_COST[];
-
-	// Store Item human cost
-	extern const int STORE_HUMAN_COST[];
-
-	// -----------------------------------------------//
-	//
-	// The following methods can be used to retreive 
-	// custom arrays of store information. 
-	//
-	// -----------------------------------------------//
-
-	// Returns a string array of all ufo upgrade names 
-	// Note: The returned pointer must be deleted with delete[]
-	std::string* getUfoUpgradeNames();
-
-	// Returns a string array of all ufo weapon names 
-	// Note: The returned pointer must be deleted with delete[]
-	std::string* getUfoWeaponNames();
-
-	// Returns a string array of all ufo upgrade descriptions
-	// Note: The returned pointer must be deleted with delete[]
-	std::string* getUfoUpgradeDescriptions();
-
-	// Returns a string array of all ufo weapon descriptions 
-	// Note: The returned pointer must be deleted with delete[]
-	std::string* getUfoWeaponDescriptions();
-
+	// Call to create store items vector 
+	void setupStoreItems();
 }

@@ -323,8 +323,10 @@ void StoreScreen::show(){
 void StoreScreen::setSelectedItem(int i){
 	selectedItem = i;
 
-	lSelName->setText(SI_NAMES[i]);
-	lSelDesc->setText(SI_DESCRIPTIONS[i]);
-	lSelHumanPrice->setText(toString(STORE_HUMAN_COST[i]));
-	lSelAnimalPrice->setText(toString(STORE_ANIMAL_COST[i]));
+	StoreItem* si = &(StoreItems::sItems.at(i));
+
+	lSelName->setText(si->getName());
+	lSelDesc->setText(si->getDesc());
+	lSelHumanPrice->setText(toString(si->getHumanPrice()));
+	lSelAnimalPrice->setText(toString(si->getAnimalPrice()));
 }

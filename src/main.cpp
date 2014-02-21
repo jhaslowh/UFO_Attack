@@ -41,6 +41,9 @@ int init_resources()
 	terminal->setupHide(HT_VERTICAL,terminal->getY()+100.0f,.2f,false);
 	terminal->setCommandFunc(checkCommand);
 	terminal->setHidden();
+	
+	// Setup store items 
+	StoreItems::setupStoreItems();
 
 	// Set current screen as test screen 
 	screen = (UIScreen*)new IntroLoadScreen();
