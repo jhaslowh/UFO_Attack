@@ -1,6 +1,6 @@
 #pragma once
-#include "Projectile.h"
 #include <list>
+#include "Projectile.h"
 
 class ProjectileHandler
 {
@@ -14,9 +14,12 @@ public:
 	//Constructor and Deconstructor
 
 	void addNewProjectile(Projectile* newProjectile);
-	void updateProjectiles();
+	void updateProjectiles(float deltaTime);
 	void removeProjectile(Projectile* removeProjectile);
 	//main methods to interact with projectiles
+
+	// Draw all projectiles 
+	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
 
 	void cleanUp();
 	//Handles clean up of the list

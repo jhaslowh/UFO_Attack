@@ -32,14 +32,17 @@ void ProjectileHandler::addNewProjectile(Projectile* newProjectile)
 	}
 }
 
-void ProjectileHandler::updateProjectiles()
+void ProjectileHandler::updateProjectiles(float deltaTime)
 {
 	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
 	{
-		if((*myIterator)->getNegligence())
-			(*myIterator)->updateNegligableProjectile();
-		else
-			(*myIterator)->updateProjectile();
+		// Null check 
+		if (*myIterator != NULL){
+			if((*myIterator)->getNegligence())
+				(*myIterator)->updateNegligableProjectile();
+			else
+				(*myIterator)->updateProjectile();
+		}
 	}
 }
 
@@ -47,8 +50,17 @@ void ProjectileHandler::removeProjectile(Projectile* removeProjectile)
 {
 	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
 	{
-		if(*myIterator == removeProjectile && (*myIterator)->getUID() ==removeProjectile->getUID())
+		if(*myIterator != NULL && *myIterator == removeProjectile && (*myIterator)->getUID() ==removeProjectile->getUID())
 			projectiles.erase(myIterator);
+	}
+}
+
+// Draw all projectiles 
+void ProjectileHandler::draw(GLHandler* mgl, TextureAtlas* mAtlas){
+	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
+	{
+		if(*myIterator != NULL)
+			(*myIterator)->draw(mgl, mAtlas);
 	}
 }
 

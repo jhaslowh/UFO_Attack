@@ -1,3 +1,18 @@
+#pragma once
+#include "GLHandler.h"
+#include "TextureAtlas.h"
+#include "GameAtlas.h"
+
+//Projectile Types Include
+//Type 1 = Bullet
+//Type 2 = Missle
+//Type 3 = Non-Standard Moving Object (cows/rocks/cars/people)
+//Type 4 = Beam
+
+#define PROJT_BULLET 1
+#define PROJT_MISSILE 2
+#define PROJT_NSMO 3
+#define PROJT_BEAM 4
 
 class Projectile
 {
@@ -18,13 +33,16 @@ public:
 	Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float XVector, float YVector);
 	~Projectile();
 	//constructor and deconstructor
-
-	void updateProjectile();
-	void updateNegligableProjectile();
-	void determineNegligance();
+	
 	//base update methods, to be inherited and edited within each projectile
 	//For different projectiles, if you ask how you want them to behave I can write their update methods
 	//ie: arc'ed projectile, beam, fast moving, light, heavy
+	void updateProjectile();
+	void updateNegligableProjectile();
+	void determineNegligance();
+
+	// Draw projectile to screen
+	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
 
 	short getProjectileType();
 	float getCurrentX();

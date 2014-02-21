@@ -13,6 +13,7 @@
 #include "Tree.h"
 #include "Camera2D.h"
 #include "LevelProperties.h"
+#include "ProjectileHandler.h"
 
 class Level
 {
@@ -20,6 +21,7 @@ class Level
 	Ground* ground;
 	GameAtlas gameAtlas;
 	SceneryHandler* sceneryHandler;
+	ProjectileHandler* projHandler;
 	Camera2D camera;
 	LevelProperties levelProps;
 

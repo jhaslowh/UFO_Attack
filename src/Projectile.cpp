@@ -78,6 +78,16 @@ void Projectile::determineNegligance()
 	//  negligence = false;
 }
 
+
+// Draw projectile to screen
+void Projectile::draw(GLHandler* mgl, TextureAtlas* mAtlas){
+	// Uncomment to draw 
+	mAtlas->draw(mgl, GI_CRATE, currentX, currentY, 1.0f, 0.0f, 0.0f, 0.0f);
+
+	// You will want to change this to 
+	//mAtlas->draw(mgl, [Item index to draw], currentX, currentY, 1.0f, [rotation], [origin x], [origin y]);
+}
+
 short Projectile::getProjectileType()
 {
 	return projectileType;

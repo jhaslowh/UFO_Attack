@@ -4,12 +4,14 @@ Level::Level(){
 	player = NULL;
 	ground = NULL;
 	sceneryHandler = NULL;
+	projHandler = NULL;
 	loaded = false;
 }
 Level::~Level(){
 	delete player;
 	delete ground;
 	delete sceneryHandler;
+	delete projHandler;
 }
 
 // Grab Terrain List
@@ -72,12 +74,16 @@ void Level::init(float screen_width, float screen_height){
 	ground->add(new Point(1250.0f,400.0f));
 	ground->add(new Point(1400.0f,400.0f));
 
+	// Create proj handler 
+	projHandler = new ProjectileHandler();
+
 	// Set Handler references 
 	handlers.ground = ground;
 	handlers.sceneryHandler = sceneryHandler;
 	handlers.camera = &camera;
 	handlers.levelProps = &levelProps;
 	handlers.player = &player;
+	handlers.projHandler = &projHandler;
 }
 
 // Load level (use for textures)
@@ -100,6 +106,7 @@ void Level::unload(){
 // Update level state
 void Level::update(float deltaTime){
 	sceneryHandler->update(deltaTime, &handlers);
+	projHandler->updateProjectiles(deltaTime);
 
 	player->update(deltaTime, &handlers);
 	player->checkCollision(&handlers);
@@ -145,6 +152,7 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mgl->setFlatColor(COLOR_WHITE);
 	
 	sceneryHandler->draw(mgl, &gameAtlas);		// Uses GameAtlas 
+	projHandler->draw(mgl, &gameAtlas);			// Uses GameAtlas
 
 	player->draw(mgl);							// Uses PlayerAtlas
 	ground->draw(mgl);							// Uses 1 sprite and 1 custom sprite
