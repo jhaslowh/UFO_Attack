@@ -38,7 +38,6 @@ void GameScreen::init(float screen_width, float screen_height){
 void GameScreen::load(TextureAtlas* mAtlas){
 	UIScreen::load(mAtlas);
 
-	//level->load();
 	levelEditor.load(mAtlas);
 	levelEditor.setHandlers(&level->handlers);
 }
@@ -47,7 +46,6 @@ void GameScreen::load(TextureAtlas* mAtlas){
 // Unload screen textures
 // THIS MUST BE CALLED IF YOU LOAD STUFF.
 void GameScreen::unload(){
-	if (unloaded) return;
 	UIScreen::unload();
 
 	level->unload();

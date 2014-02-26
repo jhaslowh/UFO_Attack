@@ -1,4 +1,3 @@
-#pragma once
 #include "ProjectileHandler.h"
 #include <list>
 //almost did ifndef/endif out of habit

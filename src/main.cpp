@@ -397,7 +397,7 @@ void eventAndRenderLoop(){
 		}
 
 		// Unload screen if needed
-		if (unloadScreen){
+		if (unloadScreen && !screen->isUnloaded()){
 			cout << "Screen Unloading...\n";
 			screen->unload();
 			unloadScreen = false;

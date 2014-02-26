@@ -58,11 +58,11 @@ void Sign::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handl
 // Draw object ui elements 
 void Sign::drawUI(GLHandler* mgl, UIAtlas* mUI){
 	if (drawText){
+		mgl->setFlatColor(recColor);
 		float textWidth = mUI->mTextRender->measureString(text, textSize);
 		// Draw background 
 		// Arrow
 		mUI->draw(mgl, UII_BUBBLE_ARROW, textOffX - 5.0f, textOffY + textSize - 1.0f);
-		mgl->setFlatColor(recColor);
 		glCullFace(GL_FRONT);
 		// Left edge
 		mUI->drawScale2(mgl, UII_BUBBLE_EDGE, textOffX - (textWidth/2.0f) + 1.0f, textOffY - 3.0f,-1.0f,1.0f);
