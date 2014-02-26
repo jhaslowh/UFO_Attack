@@ -103,9 +103,12 @@ Player::Player(){
 	armOffsetsR[18] = 24;	armOffsetsR[19] = 23;
 	armOffsetsR[20] = 24;	armOffsetsR[21] = 22;
 	armOffsetsR[22] = 24;	armOffsetsR[23] = 23;
+
+	weapon = (Weapon*)new PlayerLaserGun();
 }
 Player::~Player(){
 	delete ufo;
+	delete weapon;
 }
 
 // Getters and setters
@@ -123,6 +126,8 @@ float Player::getMaxHealth(){ return maxHealth;}
 void Player::setHealth(float value){health = value;}
 // Get health
 float Player::getHealth(){return health;}
+// Set player arm rotation
+void Player::setArmRotation(float value){armRotation = value;}
 
 // initialize level
 void Player::init(float screen_width, float screen_height){
@@ -424,6 +429,26 @@ void Player::update2(float deltaTime, Handlers* handlers){
 				animationState = PLAYERS_RUN;
 			else 
 				animationState = PLAYERS_IDLE;
+
+			// Upadate weapon
+			if (weapon != NULL){
+				// Set weapon direction
+				weapon->setFacingDirec(lookingRight);
+
+				if (lookingRight){
+					 weapon->update(deltaTime, 
+					  locX - originX + armOffsetsR[currentFrame*2],
+						locY - originY + armOffsetsR[currentFrame*2 + 1]);
+				}
+				else {
+					 weapon->update(deltaTime, 
+					  locX - originX + (width - armOffsetsR[currentFrame*2]),
+						locY - originY + armOffsetsR[currentFrame*2 + 1]);
+				}
+
+				// Get weapon angle 
+				armRotation = weapon->getRotation();
+			}
 		}
 	}
 
@@ -441,21 +466,10 @@ void Player::update2(float deltaTime, Handlers* handlers){
 		currentFrame = jumpFrame;
 
 
-	// Upadate weapon
-	if (lookingRight){
-		// weapon->update(deltaTime, 
-		//  locX - originX + armOffsetsR[currentFrame*2],
-		//	locY - originY + armOffsetsR[currentFrame*2 + 1]);
-	}
-	else {
-		// weapon->update(deltaTime, 
-		//  locX - originX + (width - armOffsetsR[currentFrame*2]),
-		//	locY - originY + armOffsetsR[currentFrame*2 + 1]);
-	}
 }
 
 // Update input
-void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
+void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
 	if (alive()){
 		// Update ufo input
 		if (inUFO){
@@ -488,8 +502,7 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			}
 
 			// Update player weapon
-			// TODO
-			// weapon->updateInput(mKeyH, mMouseH);
+			weapon->updateInput(mKeyH, mMouseH, handlers);
 		}
 
 		// Switch from ufo to on foot 
@@ -522,9 +535,7 @@ void Player::draw(GLHandler* mgl){
 		}
 
 		// Draw weapon
-		// TODO 
-		// weapon->draw(mgl);
-
+		weapon->draw(mgl, &playerAtlas);
 
 		// Draw player arm 
 		if (lookingRight){

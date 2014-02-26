@@ -12,6 +12,8 @@
 #include "PlayerAtlas.h"
 #include "SceneryHandler.h"
 #include "SceneryObject.h"
+#include "Weapon.h"
+#include "PlayerLaserGun.h"
 
 #define GRAVITY 980.0f
 
@@ -122,6 +124,11 @@ class Player
 	GLfloat hudArmorColor[4];
 	GLfloat hudBlack[4];
 
+	// -------------
+	// Weapon
+	// -------------
+	Weapon* weapon;
+
 public:
 
 	UFO* ufo;
@@ -141,6 +148,8 @@ public:
 	void setHealth(float value);
 	// Get health
 	float getHealth();
+	// Set player arm rotation
+	void setArmRotation(float value);
 
 	// Functions 
 
@@ -164,7 +173,7 @@ public:
 	void update2(float deltaTime, Handlers* handlers);
 	
 	// Update input
-	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
+	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers);
 
 	// Draw player
 	void draw(GLHandler* mgl);

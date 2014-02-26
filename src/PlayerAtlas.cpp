@@ -36,6 +36,8 @@ void PlayerAtlas::load(){
 	vcg->addFrame(311.0f,1.0f,100.0f,10.0f);
 	// Player arm
 	vcg->addFrame(208.0f, 104.0f, 50.0f,50.0f);
+	// Player Laser Gun
+	vcg->addFrame(311.0f, 13.0f, 21.0f, 17.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

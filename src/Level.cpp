@@ -124,7 +124,7 @@ void Level::updateTerrain(float newX, float newY)
 // Update input
 void Level::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	sceneryHandler->updateInput(mKeyH, mMouseH, &handlers);
-	player->updateInput(mKeyH, mMouseH);
+	player->updateInput(mKeyH, mMouseH, &handlers);
 }
 
 // Draw level 

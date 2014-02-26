@@ -20,6 +20,7 @@
 #define UFO_BEAR_FRAME 13
 #define PI_HEALTH_BAR 14
 #define PI_PLAYER_ARM 15
+#define PI_GUN_LASER 16
 
 class PlayerAtlas : public TextureAtlas
 {

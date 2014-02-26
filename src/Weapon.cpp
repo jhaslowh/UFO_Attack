@@ -3,6 +3,7 @@
 
 Weapon::Weapon(void)
 {
+	imageid = -1;
 	locX = 0.0f;
 	locY = 0.0f;
 	originX = 0.0f; 
@@ -10,6 +11,7 @@ Weapon::Weapon(void)
 	rotation = 0.0f;
 
 	// Weapon properties 
+	lookingRight = true;
 	typeId = 0;
 	clipCapacity = 0;
 	clip = 0;
@@ -26,6 +28,7 @@ Weapon::Weapon(void)
 	barrelOffset[0] = 1;
 
 	// Muzzle flash
+	muzzleImageId = -1;
 	muzzleOffset[0] = 0;
 	muzzleOffset[1] = 0;
 	flashTime = 0;
@@ -39,6 +42,9 @@ Weapon::~Weapon(){}
 float Weapon::getRotation(){
 	return rotation;
 }
+
+// Set the facing direction for the weapon
+void Weapon::setFacingDirec(bool value){lookingRight = value;}
 
 // Update weapon state
 // x: the x location in the world for the weapon
@@ -78,23 +84,50 @@ void Weapon::update(float deltaTime, float x, float y){
 void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
 	// Input should be handled by child class in this format
 
-	// 1. Get target shot location
-	// 2. Check if it is a valid angle (player cannot shoot backwards)
-	// - if true
-	// -- 1. Set rotation 
-	//       Parent class that calls this (UFO or Player should grab the 
-	//       rotation if it is needed. (Player needs to rotate arm)
-	// -- 2. Check if can fire (not reloading, not in middle of shot, has ammo)
-	//    - if true
-	//    -- 1. Fire shot
+	// Get target shot location
+	float targetX = ((Camera2D*)handlers->camera)->toLevelX(mMouseH->getX());
+	float targetY = ((Camera2D*)handlers->camera)->toLevelY(mMouseH->getY());
+
+	// Check if it is a valid angle (player cannot shoot backwards)
+	if (lookingRight && targetX > locX || !lookingRight && targetX < locX){
+
+		// Set rotation 
+		//   Parent class that calls this (UFO or Player should grab the 
+		//   rotation if it is needed. (Player needs to rotate arm)
+
+		// Get angle 
+		float mTheta = atan2((double)(targetY - locY), (double)(targetX - locX));
+		// Set rotation
+		rotation = (float)(mTheta * (180.0f / 3.14159f));
+
+		// Clamp rotation
+		if (rotation < -90.0f)
+			rotation += 180.0f;
+		if (rotation > 90.0f)
+			rotation += 180.0f;
+
+		// Check for fire shot 
+		if (mMouseH->isLeftDown() && canFire()){
+			fire(targetX, targetY, handlers);
+		}
+	}
 
 	if (mKeyH->keyPressed(KEY_R))
 		reload();
 }
 
 // Draw weapon to screen
-void Weapon::draw(GLHandler* mgl){
-	// Handle in child class
+void Weapon::draw(GLHandler* mgl, TextureAtlas* mAtlas){
+	// Draw weapon 
+	if (lookingRight)
+		mAtlas->draw(mgl, imageid, locX, locY, 1.0f, rotation, originX, originY);
+	else{
+		glCullFace(GL_FRONT);
+		mAtlas->drawScale2(mgl, imageid, locX, locY, -1.0f, 1.0f, rotation, originX, originY);
+		glCullFace(GL_BACK);
+	}
+
+	// TODO draw flash 
 }
 
 // Fire the weapon

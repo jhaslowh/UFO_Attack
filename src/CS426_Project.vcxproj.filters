@@ -249,6 +249,9 @@
     <ClInclude Include="StoreItem.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerLaserGun.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -424,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="StoreItem.cpp">
       <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerLaserGun.cpp">
+      <Filter>Source Files\game\weap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

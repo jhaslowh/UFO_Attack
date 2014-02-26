@@ -1,8 +1,10 @@
 #pragma once
 #include "GLHandler.h"
+#include "TextureAtlas.h"
 #include "MouseHandler.h"
 #include "KeyHandler.h"
 #include "Handlers.h"
+#include "Camera2D.h"
 
 // Fire types for the weapon
 #define FIRETYPE_SINGLE 0
@@ -13,11 +15,13 @@ class Weapon
 
 protected: 
 	// Drawing 
+	int imageid;					// For atlas use 
 	float locX, locY;				// Location of the weapon 
 	float originX, originY;			// Origin of the weapon 
 	float rotation;					// Rotation of the weapon 
 
 	// Weapon properties 
+	bool lookingRight;				// Facing direction
 	int typeId;						// Weapon id, if needed 
 	int clipCapacity;	
 	int clip;
@@ -35,6 +39,7 @@ protected:
 	float barrelOffset[2];			
 
 	// Muzzle flash
+	int muzzleImageId;		// For atlas use 
 	float muzzleOffset[2]; // Similar to barrel offset 
 	float flashTime;
 	float cFlashTime;
@@ -46,6 +51,9 @@ public:
 	// Call to get rotation
 	float getRotation();
 
+	// Set the facing direction for the weapon
+	void setFacingDirec(bool value);
+
 	// Update weapon state
 	// x: the x location in the world for the weapon
 	// y: the y location in the world for the weapon
@@ -55,7 +63,7 @@ public:
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers);
 
 	// Draw weapon to screen
-	virtual void draw(GLHandler* mgl);
+	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
 
 	// Fire the weapon
 	virtual void fire(float targetx, float targety, Handlers* handlers);
@@ -65,8 +73,6 @@ public:
 
 	// Reload the gun 
 	virtual void reload();
-
-private:
 
 	// Check if can fire
 	bool canFire();
