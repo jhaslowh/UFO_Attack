@@ -83,7 +83,7 @@ void Level::init(float screen_width, float screen_height){
 	handlers.camera = &camera;
 	handlers.levelProps = &levelProps;
 	handlers.player = &player;
-	handlers.projHandler = &projHandler;
+	handlers.projHandler = projHandler;
 }
 
 // Load level (use for textures)

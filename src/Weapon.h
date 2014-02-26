@@ -5,6 +5,7 @@
 #include "KeyHandler.h"
 #include "Handlers.h"
 #include "Camera2D.h"
+#include "ProjectileHandler.h"
 
 // Fire types for the weapon
 #define FIRETYPE_SINGLE 0
@@ -14,13 +15,17 @@ class Weapon
 {
 
 protected: 
+	// ---------------
 	// Drawing 
+	// ---------------
 	int imageid;					// For atlas use 
 	float locX, locY;				// Location of the weapon 
 	float originX, originY;			// Origin of the weapon 
 	float rotation;					// Rotation of the weapon 
-
+	
+	// ---------------
 	// Weapon properties 
+	// ---------------
 	bool lookingRight;				// Facing direction
 	int typeId;						// Weapon id, if needed 
 	int clipCapacity;	
@@ -37,8 +42,10 @@ protected:
 	// To get the barrel of the weapon, get the cords of the end of the barrel
 	// relative to the sprite and subtrace the origin for it. 
 	float barrelOffset[2];			
-
+	
+	// ---------------
 	// Muzzle flash
+	// ---------------
 	int muzzleImageId;		// For atlas use 
 	float muzzleOffset[2]; // Similar to barrel offset 
 	float flashTime;

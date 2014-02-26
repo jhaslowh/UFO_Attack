@@ -77,7 +77,6 @@ void Weapon::update(float deltaTime, float x, float y){
 			cTimeBetweenShots = 0.0f;
 		}
 	}
-
 }
 
 // Update weapon input
@@ -107,7 +106,9 @@ void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 			rotation += 180.0f;
 
 		// Check for fire shot 
-		if (mMouseH->isLeftDown() && canFire()){
+		if (canFire() && 
+			((firetype == FIRETYPE_SINGLE && mMouseH->isLeftDown() && !mMouseH->wasLeftDown()) ||
+			 (firetype == FIRETYPE_RAPID && mMouseH->isLeftDown()))){
 			fire(targetX, targetY, handlers);
 		}
 	}
@@ -134,29 +135,40 @@ void Weapon::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 void Weapon::fire(float targetx, float targety, Handlers* handlers){
 	// Fire shots 
 	for (int i = 0; i < bulletsPerShot; i++){
-		// TODO 
+		// Calculate weapon location 
+		float weaponLocX = locX;
+		float weaponLocY = locY - barrelOffset[1];
 
-		// 1. Create a new projectile
-		// 2. Calculate weapon location 
-		// -- WeaponLocx = locX;
-		// -- WeaponLocy = locY - barrelOffset[1];
-		// 3. Get angle between weaponLoc and target
-		// 4. Apply spread to angle.
-		// -- this is + or - Random(0, spread) 
-		// 5. Convert angle to direction 
-		// -- direc[0] = cos(angle)
-		// -- direc[1] = sin(angle)
-		// -- (Give direc to projectile as it needs it to move)
-		// 6. Determin Displacement 
-		// -- dispX = Random(0, horDispacement)
-		// -- dispY = Random(0, vertDisplacement)
-		// 7. Set the projectiles location as 
-		// -- x = weaponLocx + (direc[0] * (barrelOffset[0] + dispX);
-		// -- y = weaponLocy + (direc[1] * (barrelOffset[0] + dispX);
-		// -- x += direc[0] * dispY;
-		// -- y += direc[1] * dispY;
-		// -- (Set these as the projetiles location)
-		// 8. Add projectile to list in handlers 
+		// Get angle between weapon loc and target
+		float mTheta = atan2((double)(targety - locY), (double)(targetx - locX));
+
+		// Apply spread to angle.
+		float spr = ((float)rand() / (float)RAND_MAX) * spread;
+		if (rand() % 100 > 50)
+			mTheta += spr;
+		else 
+			mTheta -= spr;
+
+		// Convert angle to direction 
+		float direcX = cos(mTheta);
+		float direcY = sin(mTheta);
+
+		// Determin Displacement 
+		float dispX = ((float)rand() / (float)RAND_MAX) * horizontalDisplacement;
+		float dispY = ((float)rand() / (float)RAND_MAX) * verticalDisplacement;
+
+		// Set the projectiles location as 
+		float x = weaponLocX + (direcX * (barrelOffset[0] + dispX));
+		float y = weaponLocY + (direcY * (barrelOffset[0] + dispX));
+		x += direcX * dispY;
+		y += direcY * dispY;
+
+		direcY *= -1;
+		std::cout << "x: " << x << "\ty: " << y << "\tDirecX: " << direcX << "\tDirecY: " << direcY << "\n";
+
+		// Add projectile to list in handlers 
+		((ProjectileHandler*)handlers->projHandler)->addNewProjectile(
+			new Projectile(PROJT_BEAM, x, y, 1.0f, 1.0f, direcX, direcY));
 	}
 
 	// Subtract shot from clip
@@ -165,10 +177,6 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 	cTimeBetweenShots = timeBetweenShots;
 	// Add muzzle time
 	cFlashTime = flashTime;
-
-	// Setup realod 
-	if (clip == 0)
-		reload();
 }
 
 // Check if the gun is reloading 

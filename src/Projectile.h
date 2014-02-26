@@ -13,6 +13,7 @@
 #define PROJT_MISSILE 2
 #define PROJT_NSMO 3
 #define PROJT_BEAM 4
+#define PROJT_TEST 5
 
 class Projectile
 {
@@ -37,7 +38,7 @@ public:
 	//base update methods, to be inherited and edited within each projectile
 	//For different projectiles, if you ask how you want them to behave I can write their update methods
 	//ie: arc'ed projectile, beam, fast moving, light, heavy
-	void updateProjectile();
+	void updateProjectile(float deltaTime);
 	void updateNegligableProjectile();
 	void determineNegligance();
 

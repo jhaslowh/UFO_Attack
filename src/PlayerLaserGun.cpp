@@ -5,7 +5,7 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 {
 	imageid = PI_GUN_LASER;
 	originX = -2.0f; 
-	originY = -2.0f;
+	originY = 3.0f;
 
 	// Weapon properties 
 	typeId = PI_GUN_LASER;

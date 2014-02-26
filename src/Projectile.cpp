@@ -43,7 +43,7 @@ Projectile::~Projectile()
 
 //UpdateProjectile does the heavier stuff for projectiles with complicated movement, and will handle collision detection
 //This will act as a default in case a projectile doesn't have its own updateProjectile method
-void Projectile::updateProjectile()
+void Projectile::updateProjectile(float deltaTime)
 {
 	previousY = currentY;
 	previousX = currentX;
