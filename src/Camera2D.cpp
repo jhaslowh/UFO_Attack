@@ -80,9 +80,17 @@ float Camera2D::toScreenY(float levelY){
 
 // update camera state 
 void Camera2D::update(float deltaTime){
+	targetDistance = dist(locX, locY, targetX, targetY);
+	if (targetDistance > 1000.0f)
+	{
+		additionalSpeed = targetDistance / 1000.0f;
+	}
+	else
+		additionalSpeed = 1.0f;
+
 	// Move camera to target 
 	if (locX < targetX){
-		locX += deltaTime * direcX * fixSpeed;
+		locX += deltaTime * direcX * fixSpeed * additionalSpeed;
 
 		if (locX > targetX){
 			locX = targetX;
@@ -90,7 +98,7 @@ void Camera2D::update(float deltaTime){
 		}
 	}
 	else if (locX > targetX){
-		locX += deltaTime * direcX * fixSpeed;
+		locX += deltaTime * direcX * fixSpeed * additionalSpeed;
 
 		if (locX < targetX){
 			locX = targetX;
@@ -99,7 +107,7 @@ void Camera2D::update(float deltaTime){
 	}
 
 	if (locY < targetY){
-		locY += deltaTime * direcY * fixSpeed;
+		locY += deltaTime * direcY * fixSpeed * additionalSpeed;
 
 		if (locY > targetY){
 			locY = targetY;
@@ -107,7 +115,7 @@ void Camera2D::update(float deltaTime){
 		}
 	}
 	else if (locY > targetY){
-		locY += deltaTime * direcY * fixSpeed;
+		locY += deltaTime * direcY * fixSpeed * additionalSpeed;
 
 		if (locY < targetY){
 			locY = targetY;

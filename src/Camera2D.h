@@ -4,6 +4,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <math.h>
 
+#include "Collision.h"
+
 class Camera2D
 {
 	float locX, locY;			// Location of our camera 
@@ -13,6 +15,9 @@ class Camera2D
 	float rotation;				// Camera rotation 
 	float zoom;					// Camera zoom 
 	float originX, originY;		// Camera origin
+
+	float targetDistance;		// Distance location is from target
+	float additionalSpeed;		// Additional speed if point is too far
 
 public:
 	Camera2D();

@@ -98,6 +98,15 @@ float dist(Point a, Point b){
 	return sqrt(x + y);
 }
 
+// Find the distance between target and loc
+float dist(float tarX, float tarY, float locX, float locY){
+	float x = tarX - locX;
+	x *= x;
+	float y = tarY - locY;
+	y *= y;
+	return sqrt(x + y);
+}
+
 // Find the angle between point a and b.
 // Return angle in degrees. 
 float angle(Point a, Point b){

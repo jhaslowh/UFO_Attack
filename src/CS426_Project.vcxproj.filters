@@ -253,7 +253,7 @@
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
     <ClInclude Include="SaveData.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\io</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -435,7 +435,7 @@
       <Filter>Source Files\game\weap</Filter>
     </ClCompile>
     <ClCompile Include="SaveData.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\io</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
