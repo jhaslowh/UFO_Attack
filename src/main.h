@@ -33,8 +33,6 @@
 // yyyy = Commit number 
 double VERSION = 0.143;
 
-// Global Settings
-Settings* settings;
 bool WINDOW_VISIBLE = false;
 
 /// Game loop and FPS timing 
@@ -54,6 +52,11 @@ GLHandler mgl;
 KeyHandler mKeyH;
 MouseHandler mMouseH;
 UIAtlas* mUIAtlas;
+
+// Global Settings
+Settings* settings;
+// Player save data 
+SaveData* savedata;
 
 // GUI Stuff
 SDL_Window* window;

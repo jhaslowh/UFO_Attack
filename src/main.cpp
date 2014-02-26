@@ -78,6 +78,8 @@ void free_resources()
 	// Save data 
 	saveSettings(settings);
 	delete settings;
+	saveSaveData(savedata);
+	delete savedata;
 
 	printf("Resources Freed\n");
 }
@@ -409,10 +411,14 @@ void eventAndRenderLoop(){
 int main(int argc, char* argv[])
 {
 	// ======= Load Data ======= //
+
 	settings = new Settings();
 	loadSettings(settings);
+	savedata = new SaveData();
+	loadSaveData(savedata);
 
 	// ======= Setup ======= //
+
 	// Setup SDL
 	SDL_Init(SDL_INIT_VIDEO);
 	// Create Window 
@@ -459,14 +465,15 @@ int main(int argc, char* argv[])
 	init_resources();
 	
 	// ======= Run ======= //
-	// Create game loop thread 
 
+	// Create game loop thread 
 	thread = SDL_CreateThread( gameLoop, "gameLoop", (void *)NULL);
 
 	// Run Event and render loop 
 	eventAndRenderLoop();
 	
 	// ======= Exit ======= //
+
 	// Free resoruces 
 	free_resources();
 	// Delete the window context

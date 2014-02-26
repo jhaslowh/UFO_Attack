@@ -141,6 +141,91 @@ void saveSettings(Settings* s){
 	else std::cout << "Unable to open settings file for writing\n";
 }
 
+
+// Load player save data 
+void loadSaveData(SaveData* sd){
+	// String temporaries 
+	std::string line;
+	std::string str;
+	std::string token;
+
+	// Make a new file object 
+	std::ifstream myfile ("savedata");
+
+	// Check if file can be opened 
+	if (myfile.is_open())
+	{
+		// Read each line of the file and put it into a string 
+		while ( getline (myfile,line) )
+		{
+			str += line + '\n';
+		}
+		// Close file 
+		myfile.close();
+
+		// Parse file 
+
+		// Grab screen width 
+		token = getSetting(str, std::string("store_items"));
+		for (int i = 0; i < token.length(); i++)
+		{
+			if (token[i] == '1')
+				sd->itemPurchsed(i);
+		}
+
+		// Grab human abduction count  
+		token = getSetting(str, std::string("human_abduct"));
+		sd->setHumanAbductCount(toInt(token));
+
+		// Grab animal abduction count
+		token = getSetting(str, std::string("animal_abduct"));
+		sd->setAnimalAbductCount(toInt(token));
+
+		std::cout << "Savedata loaded\n";
+	}
+	else 
+		std::cout <<  "Error opening savedata file or file not created yet\n"; 
+}
+
+// Save player save data
+void saveSaveData(SaveData* sd){
+	// Create savedata string 
+	std::string str("");
+
+	// Store item bools 
+	str += "store_items ";
+	for (int i = 0; i < StoreItems::STORE_ITEM_COUNT; i++){
+		if (sd->isItemPurchased(i))
+			str += "1";
+		else 
+			str += "0";
+	}
+	str += ";\n";
+
+	// Human abduct count 
+	str += "human_abduct ";
+	str += toString(sd->getHumanAbductCount());
+	str += ";\n";
+
+	// Animal abduct count 
+	str += "animal_abduct ";
+	str += toString(sd->getAnimalAbductCount());
+	str += ";\n";
+
+	// Save 
+	std::ofstream myfile("savedata");
+	if (myfile.is_open())
+	{
+		myfile << str;
+		myfile.close();
+	}
+	else std::cout << "Unable to open savedata file for writing\n";
+}
+
+// ---------------------------------------- //
+//       Helper Methods                     //
+// ---------------------------------------- // 
+
 // Convert int to string
 std::string toString(int value){
 	std::ostringstream buff;
