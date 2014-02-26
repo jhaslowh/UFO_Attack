@@ -41,6 +41,21 @@ Projectile::~Projectile()
 
 }
 
+// Clone all the properties from the sent projectiles into this one
+void Projectile::clone(Projectile* p){
+	projectileType = p->projectileType;
+	previousX = p->previousX;
+	previousY = p->previousY;
+	currentX = p->currentX;
+	currentY = p->currentY;
+	xVector = p->xVector; 
+	yVector = p->yVector;
+	mass = p->mass; 
+	size = p->size; 
+	negligence = p->negligence;
+	UID = p->UID;
+}
+
 //UpdateProjectile does the heavier stuff for projectiles with complicated movement, and will handle collision detection
 //This will act as a default in case a projectile doesn't have its own updateProjectile method
 void Projectile::updateProjectile(float deltaTime)

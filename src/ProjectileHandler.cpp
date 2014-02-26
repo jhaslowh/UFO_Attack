@@ -41,7 +41,7 @@ void ProjectileHandler::updateProjectiles(float deltaTime)
 			if((*myIterator)->getNegligence())
 				(*myIterator)->updateNegligableProjectile();
 			else
-				(*myIterator)->updateProjectile();
+				(*myIterator)->updateProjectile(deltaTime);
 		}
 	}
 }

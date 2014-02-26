@@ -18,6 +18,7 @@
 class Projectile
 {
 private:
+
 	short projectileType;
 	float previousX;
 	float previousY;
@@ -29,11 +30,15 @@ private:
 	int size; //Size is relative, no need to calculate area just use different ints to determine whether it is small/medium/large and so on
 	bool negligence;
 	int UID;//unique identifer number
+
 public:
 	Projectile();
 	Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float XVector, float YVector);
 	~Projectile();
 	//constructor and deconstructor
+
+	// Clone all the properties from the sent projectiles into this one
+	void clone(Projectile* p);
 	
 	//base update methods, to be inherited and edited within each projectile
 	//For different projectiles, if you ask how you want them to behave I can write their update methods
@@ -50,8 +55,9 @@ public:
 	float getCurrentY();
 	bool getNegligence();
 	int getUID();
-	//getter methods, 
+	// getter methods, 
 
 	void setUID(int newUID);
+	// setter methods 
 	
 };

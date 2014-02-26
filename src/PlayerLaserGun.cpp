@@ -28,7 +28,4 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	flashTime = 0;
 }
 
-PlayerLaserGun::~PlayerLaserGun()
-{
-
-}
+PlayerLaserGun::~PlayerLaserGun(){}
