@@ -132,3 +132,7 @@ Programming
 
 Programming  
 
+**Chris Dike**
+
+Player Animation and Design
+
