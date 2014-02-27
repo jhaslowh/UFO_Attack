@@ -31,6 +31,8 @@ void ProjectileHandler::addNewProjectile(Projectile* newProjectile)
 			(*addIndex)->clone(newProjectile);
 			delete newProjectile;
 			addIndex++;
+			if (addIndex == projectiles.end())
+				addIndex = projectiles.begin();
 			return;
 		}
 		// If slot filled, check next slot 

@@ -164,11 +164,10 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		y += direcY * dispY;
 
 		direcY *= -1;
-		std::cout << "x: " << x << "\ty: " << y << "\tDirecX: " << direcX << "\tDirecY: " << direcY << "\n";
 
 		// Add projectile to list in handlers 
 		((ProjectileHandler*)handlers->projHandler)->addNewProjectile(
-			new Projectile(PROJT_BEAM, x, y, 1.0f, 1.0f, direcX, direcY));
+			new Projectile(PROJT_BULLET, x, y, 1.0f, 1.0f, direcX, direcY));
 	}
 
 	// Subtract shot from clip

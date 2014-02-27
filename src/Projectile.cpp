@@ -63,37 +63,48 @@ void Projectile::clone(Projectile* p){
 //This will act as a default in case a projectile doesn't have its own updateProjectile method
 void Projectile::updateProjectile(float deltaTime)
 {
-	previousY = currentY;
-	previousX = currentX;
-	yVector-=((xVector + yVector)*mass)*-3;
-	xVector-=((xVector + yVector)*size)*-1;
-	//There should be a very large section for collision based interactions
-	//Stuff like rolling on the ground and bouncing
-	currentX+=xVector;
-	currentY+=yVector;
+	if (projectileType == PROJT_TEST){
+		currentX += xVector * deltaTime * 100.0f;
+		currentY += yVector * deltaTime * 100.0f;
+	}
+	else {
+		previousY = currentY;
+		previousX = currentX;
+		yVector-=((xVector + yVector)*mass)*-3;
+		xVector-=((xVector + yVector)*size)*-1;
+		//There should be a very large section for collision based interactions
+		//Stuff like rolling on the ground and bouncing
+		currentX+=xVector;
+		currentY+=yVector;
+	}
 }
 
 //This method does not need to be overloaded for different projectiles, it is the same for every unphysiced projectile
 void Projectile::updateNegligableProjectile()
 {
-	previousY = currentY;
-	previousX = currentX;
-	currentX+=xVector;
-	currentY+=yVector;
+	if (projectileType != PROJT_TEST){
+		previousY = currentY;
+		previousX = currentX;
+		currentX+=xVector;
+		currentY+=yVector;
+	}
 }
 
 //This will need to have some cases for each different kind of projectile, but there are some basic reasons to be negligable here
 void Projectile::determineNegligance()
 {
-	if(projectileType == 4)
-		negligence = true; //A beam typed weapon would not be affected by gravity or wind resistance
-	else if(((xVector+yVector)*mass) >= 500)
-		negligence = true; //This is an extreme example of a case at which a projectile has enough inertia that it will take its course before noticable change to its trajectory
-	else if(size < 1 && (xVector+yVector) >= 200)
-		negligence = true; //A sufficiently small projectile that is moving fast enough will not be affected by wind resistance and can most likely fulfill its course before gravity has any noticable effect
-	//Need to figure out all the collision stuff, but here should be
-	//if(projectile == Colliding)
-	//  negligence = false;
+	
+	if (projectileType != PROJT_TEST){
+		if(projectileType == 4)
+			negligence = true; //A beam typed weapon would not be affected by gravity or wind resistance
+		else if(((xVector+yVector)*mass) >= 500)
+			negligence = true; //This is an extreme example of a case at which a projectile has enough inertia that it will take its course before noticable change to its trajectory
+		else if(size < 1 && (xVector+yVector) >= 200)
+			negligence = true; //A sufficiently small projectile that is moving fast enough will not be affected by wind resistance and can most likely fulfill its course before gravity has any noticable effect
+		//Need to figure out all the collision stuff, but here should be
+		//if(projectile == Colliding)
+		//  negligence = false;
+	}
 }
 
 
