@@ -45,6 +45,8 @@ float Weapon::getRotation(){
 
 // Set the facing direction for the weapon
 void Weapon::setFacingDirec(bool value){lookingRight = value;}
+// Get the facing direction of the weapon
+bool Weapon::getFacingDirecton(){return lookingRight;}
 
 // Update weapon state
 // x: the x location in the world for the weapon
@@ -87,30 +89,31 @@ void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 	float targetX = ((Camera2D*)handlers->camera)->toLevelX(mMouseH->getX());
 	float targetY = ((Camera2D*)handlers->camera)->toLevelY(mMouseH->getY());
 
-	// Check if it is a valid angle (player cannot shoot backwards)
-	if (lookingRight && targetX > locX || !lookingRight && targetX < locX){
+	// Set shooting direction 
+	if (targetX > locX )
+		lookingRight = true;
+	if (targetX < locX)
+		lookingRight = false;
 
-		// Set rotation 
-		//   Parent class that calls this (UFO or Player should grab the 
-		//   rotation if it is needed. (Player needs to rotate arm)
+	// Set rotation 
+	//   Parent class that calls this (UFO or Player should grab the 
+	//   rotation if it is needed. (Player needs to rotate arm)
+	// Get angle 
+	float mTheta = atan2((double)(targetY - locY), (double)(targetX - locX));
+	// Set rotation
+	rotation = (float)(mTheta * (180.0f / 3.14159f));
 
-		// Get angle 
-		float mTheta = atan2((double)(targetY - locY), (double)(targetX - locX));
-		// Set rotation
-		rotation = (float)(mTheta * (180.0f / 3.14159f));
+	// Clamp rotation
+	if (rotation < -90.0f)
+		rotation += 180.0f;
+	if (rotation > 90.0f)
+		rotation += 180.0f;
 
-		// Clamp rotation
-		if (rotation < -90.0f)
-			rotation += 180.0f;
-		if (rotation > 90.0f)
-			rotation += 180.0f;
-
-		// Check for fire shot 
-		if (canFire() && 
-			((firetype == FIRETYPE_SINGLE && mMouseH->isLeftDown() && !mMouseH->wasLeftDown()) ||
-			 (firetype == FIRETYPE_RAPID && mMouseH->isLeftDown()))){
-			fire(targetX, targetY, handlers);
-		}
+	// Check for fire shot 
+	if (canFire() && 
+		((firetype == FIRETYPE_SINGLE && mMouseH->isLeftDown() && !mMouseH->wasLeftDown()) ||
+			(firetype == FIRETYPE_RAPID && mMouseH->isLeftDown()))){
+		fire(targetX, targetY, handlers);
 	}
 
 	if (mKeyH->keyPressed(KEY_R))

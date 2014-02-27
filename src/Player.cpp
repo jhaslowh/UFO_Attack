@@ -433,7 +433,7 @@ void Player::update2(float deltaTime, Handlers* handlers){
 			// Upadate weapon
 			if (weapon != NULL){
 				// Set weapon direction
-				weapon->setFacingDirec(lookingRight);
+				//weapon->setFacingDirec(lookingRight);
 
 				if (lookingRight){
 					 weapon->update(deltaTime, 
@@ -445,6 +445,8 @@ void Player::update2(float deltaTime, Handlers* handlers){
 					  locX - originX + (width - armOffsetsR[currentFrame*2]),
 						locY - originY + armOffsetsR[currentFrame*2 + 1]);
 				}
+
+				lookingRight = weapon->getFacingDirecton();
 
 				// Get weapon angle 
 				armRotation = weapon->getRotation();
@@ -480,11 +482,9 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 			// Check if player is trying to move
 			if (mKeyH->keyDown(KEY_A)){
 				direcX = -1.0f;
-				lookingRight = false;
 			}
 			else if (mKeyH->keyDown(KEY_D)){
 				direcX = 1.0f;
-				lookingRight = true;
 			}
 			else 
 				direcX = 0.0f;

@@ -60,6 +60,8 @@ public:
 
 	// Set the facing direction for the weapon
 	void setFacingDirec(bool value);
+	// Get the facing direction of the weapon
+	bool getFacingDirecton();
 
 	// Update weapon state
 	// x: the x location in the world for the weapon
