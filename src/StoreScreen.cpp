@@ -247,8 +247,22 @@ void StoreScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	}
 
 	// Check if buy clicked 
-	if (bBuy->wasClicked()){
-		// TODO 
+	if (bBuy->wasClicked() && !savedata->isItemPurchased(selectedItem) &&
+			savedata->getAnimalAbductCount() >= (StoreItems::sItems.at(selectedItem)).getAnimalPrice() &&
+			savedata->getHumanAbductCount() >= (StoreItems::sItems.at(selectedItem)).getHumanPrice()){
+		// Increment player currency 
+		savedata->incrAnimalCount((StoreItems::sItems.at(selectedItem)).getAnimalPrice() * -1);
+		savedata->incrHumanCount((StoreItems::sItems.at(selectedItem)).getHumanPrice() * -1);
+		// Set item as purchased 
+		savedata->itemPurchsed(selectedItem);
+		// Tell store box that it was purchased
+		mStoreBoxes[selectedItem].setPurchased(true);
+		// Update description items 
+		setSelectedItem(selectedItem);
+
+		// Update display currency 
+		lPlayerAnimalMoney->setText(toString(savedata->getAnimalAbductCount()));
+		lPlayerHumanMoney->setText(toString(savedata->getHumanAbductCount()));
 	}
 }
 
