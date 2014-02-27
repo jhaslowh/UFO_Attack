@@ -8,6 +8,8 @@ private:
 	std::list<Projectile*> projectiles;
 	int UIDIterator;
 
+	std::list<Projectile*>::iterator addIndex;
+
 public:
 	ProjectileHandler();
 	~ProjectileHandler();

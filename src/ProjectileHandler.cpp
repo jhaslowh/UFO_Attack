@@ -3,7 +3,14 @@
 
 ProjectileHandler::ProjectileHandler()
 {
+	// Make new projectile list
 	projectiles = std::list<Projectile*>();
+	// Fill with dead projectiles 
+	for (int i = 0; i < 100; i++)
+		projectiles.push_back(new Projectile());
+	
+	addIndex = projectiles.begin();
+
 	UIDIterator = 0;
 }
 ProjectileHandler::~ProjectileHandler()
@@ -15,21 +22,30 @@ ProjectileHandler::~ProjectileHandler()
 //Pass in a constructor Projectile to be contained by the list
 void ProjectileHandler::addNewProjectile(Projectile* newProjectile)
 {
-	// List expands when you add to it, setting its size is uneeded 
+	int skipped = 0;
 
-	/*if(projectiles.size()==projectiles.max_size())
-	{
-		projectiles.resize(projectiles.size()+5);
-		newProjectile->setUID(UIDIterator);
-		projectiles.push_back(newProjectile);
-		UIDIterator++;
+	// Add until dead or limit reached 
+	while (skipped < projectiles.size()){
+		// If current projectile is dead, add in place
+		if (!(*addIndex)->getAlive()){
+			(*addIndex)->clone(newProjectile);
+			delete newProjectile;
+			addIndex++;
+			return;
+		}
+		// If slot filled, check next slot 
+		else {
+			skipped++;
+			addIndex++;
+			if (addIndex == projectiles.end())
+				addIndex = projectiles.begin();
+		}
 	}
-	else
-	{*/
-		newProjectile->setUID(UIDIterator);
-		projectiles.push_back(newProjectile);
-		UIDIterator++;
-	//}
+
+	// If list filled, add to end 
+	newProjectile->setUID(UIDIterator);
+	projectiles.push_back(newProjectile);
+	UIDIterator++;
 }
 
 void ProjectileHandler::updateProjectiles(float deltaTime)

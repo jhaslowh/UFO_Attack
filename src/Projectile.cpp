@@ -19,6 +19,7 @@ Projectile::Projectile()
 	size = 0;
 	negligence = false;
 	UID = -1;
+	alive = false;
 }
 
 Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float XVector, float YVector)
@@ -34,6 +35,7 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int
 	size = Size;
 	negligence = false;
 	UID = -1;
+	alive = true;
 }
 
 Projectile::~Projectile()
@@ -54,6 +56,7 @@ void Projectile::clone(Projectile* p){
 	size = p->size; 
 	negligence = p->negligence;
 	UID = p->UID;
+	alive = true;
 }
 
 //UpdateProjectile does the heavier stuff for projectiles with complicated movement, and will handle collision detection
@@ -96,11 +99,13 @@ void Projectile::determineNegligance()
 
 // Draw projectile to screen
 void Projectile::draw(GLHandler* mgl, TextureAtlas* mAtlas){
-	// Uncomment to draw 
-	mAtlas->draw(mgl, GI_CRATE, currentX, currentY, 1.0f, 0.0f, 0.0f, 0.0f);
+	if (alive){
+		// Uncomment to draw 
+		mAtlas->draw(mgl, GI_CRATE, currentX, currentY, 1.0f, 0.0f, 0.0f, 0.0f);
 
-	// You will want to change this to 
-	//mAtlas->draw(mgl, [Item index to draw], currentX, currentY, 1.0f, [rotation], [origin x], [origin y]);
+		// You will want to change this to 
+		//mAtlas->draw(mgl, [Item index to draw], currentX, currentY, 1.0f, [rotation], [origin x], [origin y]);
+	}
 }
 
 short Projectile::getProjectileType()
@@ -123,8 +128,14 @@ int Projectile::getUID()
 {
 	return UID;
 }
+bool Projectile::getAlive(){
+	return alive;
+}
 
 void Projectile::setUID(int newUID)
 {
 	UID = newUID;
+}
+void Projectile::setAlive(bool value){
+	alive = value;
 }

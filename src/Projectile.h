@@ -30,6 +30,7 @@ private:
 	int size; //Size is relative, no need to calculate area just use different ints to determine whether it is small/medium/large and so on
 	bool negligence;
 	int UID;//unique identifer number
+	bool alive;
 
 public:
 	Projectile();
@@ -55,9 +56,11 @@ public:
 	float getCurrentY();
 	bool getNegligence();
 	int getUID();
+	bool getAlive();
 	// getter methods, 
 
 	void setUID(int newUID);
+	void setAlive(bool value);
 	// setter methods 
 	
 };
