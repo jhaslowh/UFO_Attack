@@ -37,6 +37,8 @@ Commands:
 - "screen game" : go to game screen  
 - "screen levelselect" : go to level select screen  
 - "screen freeplay" : go to free play screen   
+- "delete savedata" : delete savedata file and set to default values  
+- "delete settings" : delete settings and set to default values  
 
 Commands for Level Editor (Must be in screen with one)  
 - "editor open" : open level editor  

@@ -223,6 +223,32 @@ void checkCommand(string line){
 	else if (command == "exit" || command == "quit"){
 		running = false;
 	}
+	// Delete savedata and settings file 
+	else if (command == "delete"){
+		if (args == "savedata"){
+			// Delete file 
+			remove("savedata");
+			// Set save data to default 
+			delete savedata;
+			savedata = new SaveData();
+			// Print line 
+			terminal->addLine(line, TL_SUCCESS);
+			return;
+		}
+		else if (args == "settings"){
+			// Delete file 
+			remove("settings");
+			// Set settings to default 
+			delete settings;
+			settings = new Settings();
+			// Print line 
+			terminal->addLine(line, TL_SUCCESS);
+			return;
+		}
+
+		terminal->addLine(line, TL_WARNING);
+		return;
+	}
 
 	// Send command to screen 
 	if (screen->parseCommand(terminal, command, args)) 
