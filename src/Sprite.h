@@ -79,8 +79,14 @@ public:
 
 	// Draw the sprite 
 	void draw(GLHandler);
+	// Draw the sprite at offset
+	void draw(GLHandler mgl, float offx, float offy);
 
 	// Use to draw copies of the sprite faster
 	// Must call bind() first. 
 	void drawFast(GLHandler* mgl);
+	// Use to draw copies of the sprite faster.
+	// Draw at offset 
+	// Must call bind() first. 
+	void drawFast(GLHandler* mgl, float offx, float offy);
 };

@@ -13,6 +13,7 @@ StoreScreen::StoreScreen(SaveData* sd) : UIScreen()
 	scrollbar = NULL;
 	lPlayerAnimalMoney = NULL;
 	lPlayerHumanMoney = NULL;
+	setupSprite = false;
 
 	selectedItem = 0;
 	lSelName = NULL;
@@ -100,6 +101,9 @@ void StoreScreen::init(float screen_width, float screen_height){
 			mStoreBoxes[i].setPurchased(true);
 	}
 
+	// Set sprite properties 
+	siImage.setPosition(5.0f,32.0f);
+
 	// Set locations
 	storeItemHeight = (mStoreBoxes[0].getHeight() + 5.0f);
 	storeItemsTop = menuY;
@@ -128,7 +132,7 @@ void StoreScreen::init(float screen_width, float screen_height){
 	// Selected item description 
 	lSelDesc = new UILabel("sel desc");
 	lSelDesc->setTextSize(20.0f);
-	lSelDesc->setLocation(menuX - 294.0f, menuY + 32.0f);
+	lSelDesc->setLocation(menuX - 294.0f, menuY + 134.0f);
 	lSelDesc->setupHide(HT_VERTICAL, lSelDesc->getY() + 100.0f, hideTime, true);
 	lSelDesc->setColor(.9f,.9f,.9f);
 	lSelDesc->setHidden(); 
@@ -176,6 +180,9 @@ void StoreScreen::load(TextureAtlas* mAtlas){
 		mStoreBoxes[i].load(mAtlas);
 	}
 
+	// Load first store item image 
+	siImage.setup(290, 100, (StoreItems::sItems.at(0)).getImage());
+	
 	show();
 }
 
@@ -207,6 +214,8 @@ void StoreScreen::update(float deltaTime){
 		else 
 			mStoreBoxes[i].setAlpha(1.0f);
 	}
+
+	siImage.unload();
 }
 
 // Update input to the screen 
@@ -285,6 +294,12 @@ void StoreScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	for (int i = 0; i < STORE_ITEM_COUNT; i++){
 		mStoreBoxes[i].draw(mgl, (UIAtlas*)mAtlas);
 	}
+
+	if (setupSprite) 
+		siImage.setup(290, 100, (StoreItems::sItems.at(selectedItem)).getImage());
+
+	siImage.setAlpha(bDesc->getOpacity());
+	siImage.draw(*mgl, bDesc->getX(), bDesc->getY());
 }
 
 // Hide the entire screen.
@@ -339,6 +354,7 @@ void StoreScreen::show(){
 // Set the selected item for the store 
 void StoreScreen::setSelectedItem(int i){
 	selectedItem = i;
+	setupSprite = true;
 
 	StoreItem* si = &(StoreItems::sItems.at(i));
 

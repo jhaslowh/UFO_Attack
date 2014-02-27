@@ -8,14 +8,16 @@ class StoreItem
 	std::string desc;	// Description 
 	int animalPrice;	// Animal price
 	int humanPrice;		// Human price 
+	std::string image;	// image file
 
 public:
-	StoreItem(int i, std::string n, std::string d, int ap, int hp);
+	StoreItem(int i, std::string n, std::string d, int ap, int hp, std::string file);
 
 	int getIndex();
 	std::string getName();
 	std::string getDesc();
 	int getAnimalPrice();
 	int getHumanPrice();
+	std::string getImage();
 };
 

@@ -46,12 +46,12 @@ namespace StoreItems{
 	
 	// Call to create store items vector 
 	void setupStoreItems(){
-		sItems.push_back(StoreItem(SID_PLAYER_WEAPON_LASER,"Laser Gun","desc",0,0));
-		sItems.push_back(StoreItem(SID_UFO_ARMOR_1,"UFO Armor 1","desc",0,0));
-		sItems.push_back(StoreItem(SID_UFO_ARMOR_2,"UFO Armor 2","desc",0,0));
-		sItems.push_back(StoreItem(SID_UFO_WEAPON_LASER,"UFO Laser","desc",0,0));
-		sItems.push_back(StoreItem(SID_UFO_WEAPON_MACHINE_GUN,"UFO Machine Gun","desc",0,0));
-		sItems.push_back(StoreItem(SID_UFO_WEAPON_MISSILE,"UFO Missiles","desc",0,0));
-		sItems.push_back(StoreItem(SID_UFO_WEAPON_BOMB,"UFO Bombs","desc",0,0));
+		sItems.push_back(StoreItem(SID_PLAYER_WEAPON_LASER,"Laser Gun","desc",0,0,"images/si/sii_laser.png"));
+		sItems.push_back(StoreItem(SID_UFO_ARMOR_1,"UFO Armor 1","desc",0,0,"images/si/sii_todo.png"));
+		sItems.push_back(StoreItem(SID_UFO_ARMOR_2,"UFO Armor 2","desc",0,0,"images/si/sii_todo.png"));
+		sItems.push_back(StoreItem(SID_UFO_WEAPON_LASER,"UFO Laser","desc",0,0,"images/si/sii_todo.png"));
+		sItems.push_back(StoreItem(SID_UFO_WEAPON_MACHINE_GUN,"UFO Machine Gun","desc",0,0,"images/si/sii_todo.png"));
+		sItems.push_back(StoreItem(SID_UFO_WEAPON_MISSILE,"UFO Missiles","desc",0,0,"images/si/sii_todo.png"));
+		sItems.push_back(StoreItem(SID_UFO_WEAPON_BOMB,"UFO Bombs","desc",0,0,"images/si/sii_todo.png"));
 	}
 }

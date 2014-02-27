@@ -10,6 +10,7 @@
 #include "AtlasSprite.h"
 #include "GLColors.h"
 #include "SaveData.h"
+#include "Sprite.h"
 
 class StoreScreen : public UIScreen
 {
@@ -42,6 +43,9 @@ class StoreScreen : public UIScreen
 	UILabel* lPurchsed;			// Purchased state of store item 
 	AtlasSprite mCSAnimalSelect;// Animal currency symbol
 	AtlasSprite mCSHumanSelect;	// Human currency symbol 
+
+	bool setupSprite;			// Set to true to load the selected item
+	Sprite siImage;				// Sprite for selected item 
 
 public:
 	StoreScreen(SaveData* sd);
