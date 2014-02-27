@@ -268,7 +268,7 @@ void changeScreen(){
 
 			// Set new screen 
 			if (tcode == SCREEN_MAIN)		   screen = (UIScreen*)new MainScreen();
-			else if (tcode == SCREEN_STORE)    screen = (UIScreen*)new StoreScreen();
+			else if (tcode == SCREEN_STORE)    screen = (UIScreen*)new StoreScreen(savedata);
 			else if (tcode == SCREEN_SETTINGS) screen = (UIScreen*)new SettingsScreen(settings);
 			else if (tcode == SCREEN_FREE_PLAY) screen = (UIScreen*)new FreePlayScreen();
 			else if (tcode == SCREEN_GAME)	   screen = (UIScreen*)new GameScreen();

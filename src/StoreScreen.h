@@ -9,9 +9,12 @@
 #include "UIScrollbar.h"
 #include "AtlasSprite.h"
 #include "GLColors.h"
+#include "SaveData.h"
 
 class StoreScreen : public UIScreen
 {
+	SaveData* savedata;
+
 	UILabel* lTitle;
 	UIBox* bDesc;
 	UIButton* bBack;
@@ -36,11 +39,12 @@ class StoreScreen : public UIScreen
 	UILabel* lSelDesc;			// Selected store item description 
 	UILabel* lSelHumanPrice;	// Selected store item human price
 	UILabel* lSelAnimalPrice;	// Selected store item animal price
+	UILabel* lPurchsed;			// Purchased state of store item 
 	AtlasSprite mCSAnimalSelect;// Animal currency symbol
 	AtlasSprite mCSHumanSelect;	// Human currency symbol 
 
 public:
-	StoreScreen();
+	StoreScreen(SaveData* sd);
 	virtual ~StoreScreen();
 
 	// Initialize screen

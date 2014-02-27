@@ -1,8 +1,9 @@
 #include "StoreScreen.h"
 using namespace StoreItems;
 
-StoreScreen::StoreScreen() : UIScreen()
+StoreScreen::StoreScreen(SaveData* sd) : UIScreen()
 {
+	savedata = sd;
 	hideOnClose = true;
 	lTitle = NULL;
 	bDesc = NULL;
@@ -62,18 +63,18 @@ void StoreScreen::init(float screen_width, float screen_height){
 	bBack->setHidden();
 
 	bBuy = new UIButton(menuX - 105.0f, menuY + 310.0f, 100.0f, 35.0f,"Buy");
-	bBuy->setupHide(HT_VERTICAL, bBuy->getY() + 100.0f, hideTime, true);
+	bBuy->setupHide(HT_VERTICAL, bBuy->getY() + 100.0f, hideTime /2.0f, true);
 	bBuy->setHidden();
 
 	// Set player currency stuff
-	lPlayerAnimalMoney = new UILabel("todo");
+	lPlayerAnimalMoney = new UILabel(toString(savedata->getAnimalAbductCount()));
 	lPlayerAnimalMoney->setTextSize(17.0f);
 	lPlayerAnimalMoney->setLocation(menuX - 270.0f, menuY - 20.0f);
 	lPlayerAnimalMoney->setupHide(HT_HOROZONTAL, lPlayerAnimalMoney->getX() - 100.0f, hideTime, true);
 	lPlayerAnimalMoney->setColor(.9f,.9f,.9f);
 	lPlayerAnimalMoney->setHidden(); 
 
-	lPlayerHumanMoney = new UILabel("todo");
+	lPlayerHumanMoney = new UILabel(toString(savedata->getHumanAbductCount()));
 	lPlayerHumanMoney->setTextSize(17.0f);
 	lPlayerHumanMoney->setLocation(menuX - 200.0f, menuY - 20.0f);
 	lPlayerHumanMoney->setupHide(HT_HOROZONTAL, lPlayerHumanMoney->getX() - 100.0f, hideTime, true);
@@ -94,6 +95,9 @@ void StoreScreen::init(float screen_width, float screen_height){
 		mStoreBoxes[i].setupHide(HT_HOROZONTAL, mStoreBoxes[i].getX() + (rand() % 300 + 100), hideTime, true);
 		mStoreBoxes[i].setHidden();
 		mStoreBoxes[i].setItem(i);
+
+		if (savedata->isItemPurchased(i))
+			mStoreBoxes[i].setPurchased(true);
 	}
 
 	// Set locations
@@ -144,6 +148,13 @@ void StoreScreen::init(float screen_width, float screen_height){
 	lSelHumanPrice->setColor(.9f,.9f,.9f);
 	lSelHumanPrice->setHidden(); 
 
+	lPurchsed = new UILabel("Purchased");
+	lPurchsed->setTextSize(17.0f);
+	lPurchsed->setLocation(menuX - 292.0f, menuY + 280.0f);
+	lPurchsed->setupHide(HT_VERTICAL, lPurchsed->getY() + 100.0f, hideTime, true);
+	lPurchsed->setColor(.45f,.95f,.23f);
+	lPurchsed->setHidden(); 
+
 	// Set description currency 
 	mCSAnimalSelect.setID(UI_CURRENCY_ANIMAL);
 	mCSHumanSelect.setID(UI_CURRENCY_HUMAN);
@@ -183,6 +194,7 @@ void StoreScreen::update(float deltaTime){
 	lSelAnimalPrice->update(deltaTime);
 	lPlayerAnimalMoney->update(deltaTime);
 	lPlayerHumanMoney->update(deltaTime);
+	lPurchsed->update(deltaTime);
 
 	for (int i = 0; i < STORE_ITEM_COUNT; i++){
 		mStoreBoxes[i].update(deltaTime);
@@ -249,19 +261,22 @@ void StoreScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	scrollbar->draw(mgl, (UIAtlas*)mAtlas);
 	lSelName->draw(mgl, (UIAtlas*)mAtlas);
 	lSelDesc->draw(mgl, (UIAtlas*)mAtlas);
-	lSelHumanPrice->draw(mgl, (UIAtlas*)mAtlas);
-	lSelAnimalPrice->draw(mgl, (UIAtlas*)mAtlas);
-
 	lPlayerAnimalMoney->draw(mgl, (UIAtlas*)mAtlas);
 	lPlayerHumanMoney->draw(mgl, (UIAtlas*)mAtlas);
+
+	if (savedata->isItemPurchased(selectedItem))
+		lPurchsed->draw(mgl, (UIAtlas*)mAtlas);
+	else {
+		lSelHumanPrice->draw(mgl, (UIAtlas*)mAtlas);
+		lSelAnimalPrice->draw(mgl, (UIAtlas*)mAtlas);
+		mgl->setFlatColor(COLOR_WHITE, lSelHumanPrice->getOpacity());
+		mCSAnimalSelect.draw(mgl, (UIAtlas*)mAtlas,lSelHumanPrice->getX(), lSelHumanPrice->getY());
+		mCSHumanSelect.draw(mgl, (UIAtlas*)mAtlas,lSelAnimalPrice->getX(), lSelAnimalPrice->getY());
+	}
 
 	mgl->setFlatColor(COLOR_WHITE, lPlayerAnimalMoney->getOpacity());
 	mCSAnimalPlayer.draw(mgl, (UIAtlas*)mAtlas, lPlayerAnimalMoney->getX(), lPlayerAnimalMoney->getY());
 	mCSHumanPlayer.draw(mgl, (UIAtlas*)mAtlas, lPlayerHumanMoney->getX(), lPlayerHumanMoney->getY());
-
-	mgl->setFlatColor(COLOR_WHITE, lSelHumanPrice->getOpacity());
-	mCSAnimalSelect.draw(mgl, (UIAtlas*)mAtlas,lSelHumanPrice->getX(), lSelHumanPrice->getY());
-	mCSHumanSelect.draw(mgl, (UIAtlas*)mAtlas,lSelAnimalPrice->getX(), lSelAnimalPrice->getY());
 
 	mgl->setFlatColor(COLOR_WHITE, lTitle->getOpacity());
 	mCSAnimalPlayer.draw(mgl, mAtlas);
@@ -289,6 +304,7 @@ void StoreScreen::hide(){
 	lSelAnimalPrice->hide();
 	lPlayerAnimalMoney->hide();
 	lPlayerHumanMoney->hide();
+	lPurchsed->hide();
 
 	for (int i = 0; i < STORE_ITEM_COUNT; i++){
 		mStoreBoxes[i].hide();
@@ -304,7 +320,7 @@ void StoreScreen::show(){
 	lTitle->show();
 	bDesc->show();
 	bBack->show();
-	bBuy->show();
+	if (!savedata->isItemPurchased(selectedItem)) bBuy->show();
 	scrollbar->show();
 	lSelName->show();
 	lSelDesc->show();
@@ -312,6 +328,7 @@ void StoreScreen::show(){
 	lSelAnimalPrice->show();
 	lPlayerAnimalMoney->show();
 	lPlayerHumanMoney->show();
+	lPurchsed->show();
 
 	for (int i = 0; i < STORE_ITEM_COUNT; i++){
 		mStoreBoxes[i].show();
@@ -329,4 +346,10 @@ void StoreScreen::setSelectedItem(int i){
 	lSelDesc->setText(si->getDesc());
 	lSelHumanPrice->setText(toString(si->getHumanPrice()));
 	lSelAnimalPrice->setText(toString(si->getAnimalPrice()));
+
+	// Hide and show button based on purchase state 
+	if (savedata->isItemPurchased(selectedItem))
+		bBuy->hide();
+	else 
+		bBuy->show();
 }

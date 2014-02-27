@@ -4,6 +4,8 @@
 SaveData::SaveData()
 {
 	purchasedItems = new bool[StoreItems::STORE_ITEM_COUNT];
+	for (int i = 0; i < StoreItems::STORE_ITEM_COUNT; i++)
+		purchasedItems[i] = false;
 	purchasedItems[StoreItems::SID_PLAYER_WEAPON_LASER] = true;
 	humanAbductCount = 0;
 	animalAbductCount = 0;
