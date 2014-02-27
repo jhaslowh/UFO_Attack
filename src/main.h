@@ -46,6 +46,7 @@ float deltaTime = 0;		// Used in game loop to tell how much time has passed
 bool running = true;		
 bool render = false;        // Set to true each time game needs to be rendered 
 bool unloadScreen = false;
+bool restart = false;
 
 // Handlers
 GLHandler mgl;
@@ -88,3 +89,6 @@ int gameLoop(void*);
 
 // Updates window events and renders screen.
 void eventAndRenderLoop();
+
+// Game a new game 
+void createGame();

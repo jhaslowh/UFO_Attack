@@ -59,6 +59,7 @@ int init_resources()
 void free_resources()
 {
 	printf("Free Resources...\n");
+
 	// Delete textures 
 	screen->unload();
 	mUIAtlas->unload();
@@ -165,19 +166,13 @@ void checkCommand(string line){
 	}
 	// Check for restart command
 	else if (command == "restart"){
-		terminal->addLine(command, TL_SUCCESS);
-		// Wait for rendering to stop 
-		while (render){} 
-		// Delete old screen 
-		delete screen;
-		// Switch to first screen 
-		screen = (UIScreen*)new IntroLoadScreen();
-		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
-
-		if (args != "none"){
-			terminal->addLine("Ignoring unrecognized arguments given to command: restart", TL_WARNING);
-		}
-
+		// Tell game to restart
+		restart = true;
+		// Hide terminal
+		// (even though context is reset, this will not reset so we must change it)
+		showTerminal = false;
+		// Tell current context to end 
+		running = false;
 		return;
 	}
 	// Check for clear command
@@ -242,6 +237,42 @@ void checkCommand(string line){
 			delete settings;
 			settings = new Settings();
 			// Print line 
+			terminal->addLine(line, TL_SUCCESS);
+			return;
+		}
+
+		terminal->addLine(line, TL_WARNING);
+		return;
+	}
+	// Change screen size 
+	else if (command == "screensize"){
+		UITerminal::getCommandAndArgs(&args, &command, &args);
+		
+		int x = toInt(command);
+		int y = toInt(args);
+
+		if (x > 0 && y > 0){
+			settings->setScreenWidth(x);
+			settings->setScreenHeight(y);
+
+			terminal->addLine(line, TL_SUCCESS);
+			return;
+		}
+
+		terminal->addLine(line, TL_WARNING);
+		return;
+	}
+	// Set fullscreen option
+	else if (command == "fullscreen"){
+		if (args == "on")
+		{
+			settings->setFullscreen(true);
+			terminal->addLine(line, TL_SUCCESS);
+			return;
+		}
+		else if (args == "off")
+		{
+			settings->setFullscreen(false);
 			terminal->addLine(line, TL_SUCCESS);
 			return;
 		}
@@ -436,15 +467,22 @@ void eventAndRenderLoop(){
 
 int main(int argc, char* argv[])
 {
-	// ======= Load Data ======= //
+	createGame();
 
+	// Exit  
+    exit(EXIT_SUCCESS);
+}
+
+// Game a new game 
+void createGame(){
+	
+	// Load Data 
 	settings = new Settings();
 	loadSettings(settings);
 	savedata = new SaveData();
 	loadSaveData(savedata);
-
+	
 	// ======= Setup ======= //
-
 	// Setup SDL
 	SDL_Init(SDL_INIT_VIDEO);
 	// Create Window 
@@ -463,7 +501,7 @@ int main(int argc, char* argv[])
 	SDL_SetColorKey(icon, SDL_TRUE, SDL_MapRGB(icon->format,0,0,0)); 
 	SDL_SetWindowIcon(window,icon);
 	// Free icon resources 
-	//SDL_FreeSurface(icon);
+	SDL_FreeSurface(icon);
 
 	// OpenGL Extension wrangler initialising  
 	glewExperimental = GL_TRUE; 
@@ -471,7 +509,7 @@ int main(int argc, char* argv[])
 	// Close if glew could not be set up 
 	if (glew_status != GLEW_OK){
 		fprintf(stderr, "Error Setting up GLEW: %s\n", glewGetErrorString(glew_status));
-        exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 
 	// GLEW Debug information
@@ -493,6 +531,7 @@ int main(int argc, char* argv[])
 	// ======= Run ======= //
 
 	// Create game loop thread 
+	running = true;
 	thread = SDL_CreateThread( gameLoop, "gameLoop", (void *)NULL);
 
 	// Run Event and render loop 
@@ -504,9 +543,16 @@ int main(int argc, char* argv[])
 	free_resources();
 	// Delete the window context
 	SDL_GL_DeleteContext(context);
+	// Destroy sdl window 
 	SDL_DestroyWindow(window);
+
 	// Unload SDL
 	SDL_Quit();
-	// Exit  
-    exit(EXIT_SUCCESS);
+
+	if (restart){
+		restart = false;
+		createGame();
+	}
 }
+
+

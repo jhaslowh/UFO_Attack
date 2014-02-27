@@ -39,6 +39,8 @@ Commands:
 - "screen freeplay" : go to free play screen   
 - "delete savedata" : delete savedata file and set to default values  
 - "delete settings" : delete settings and set to default values  
+- "screensize [width] [height]" : reset the width and height of the screen  
+- "fullscreen [on | off]" : toggle fullscreen  
 
 Commands for Level Editor (Must be in screen with one)  
 - "editor open" : open level editor  
