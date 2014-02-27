@@ -173,14 +173,14 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		// Check for damage player 
 		if (subCommand == "player"){
 			double damage = toDouble(subArgs);
-			level->getPlayer()->applyDamage(damage);
+			((Player*)(level->handlers.player))->applyDamage(damage);
 			terminal->addLine(command + " " + args, TL_SUCCESS);
 			return true;
 		}
 		// Check for damage ufo 
 		else if (subCommand == "ufo"){
 			double damage = toDouble(subArgs);
-			level->getPlayer()->ufo->applyDamage(damage);
+			((Player*)(level->handlers.player))->ufo->applyDamage(damage);
 			terminal->addLine(command + " " + args, TL_SUCCESS);
 			return true;
 		}

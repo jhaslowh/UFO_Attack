@@ -14,27 +14,6 @@ Level::~Level(){
 	delete projHandler;
 }
 
-// Grab Terrain List
-// Can also use level->handlers->ground;
-Ground* Level::getGround()
-{
-	return ground;
-}
-
-// Grab Current Player Object
-// Can also use level->handlers->player
-Player* Level::getPlayer()
-{
-	return player;
-}
-
-// Grab levelproperties object
-// Can also use level->handlers->levelProps
-LevelProperties* Level::getProperties()
-{
-	return &levelProps;
-}
-
 // initialize level
 void Level::init(float screen_width, float screen_height){
 	levelProps.setLevelRight(1400.0f);

@@ -33,7 +33,7 @@ public:
 	virtual void update(float deltaTime);
 
 	// Update the terrain list
-	void updateTerrain();
+	void updateTerrain(Handlers* handlers);
 
 	// Update input to the screen 
 	virtual void updateInput(KeyHandler*, MouseHandler*);

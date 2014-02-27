@@ -34,18 +34,6 @@ public:
 	Level();
 	~Level();
 
-	// Grab Terrain List
-	// Can also use level->handlers->ground;
-	Ground* getGround();
-
-	// Grab Current Player Object
-	// Can also use level->handlers->player
-	Player* getPlayer();
-
-	// Grab levelproperties object
-	// Can also use level->handlers->levelProps
-	LevelProperties* getProperties();
-
 	// initialize level
 	void init(float screen_width, float screen_height);
 

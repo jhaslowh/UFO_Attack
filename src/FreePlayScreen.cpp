@@ -57,10 +57,11 @@ void FreePlayScreen::update(float deltaTime){
 
 	if (!paused){
 		levelEditor.update(deltaTime, &(level->handlers));
+		updateTerrain(&(level->handlers));
+
 		if (!levelEditor.Enabled())
 			level->update(deltaTime);
 	}
-
 }
 
 // Update input to the screen 
@@ -100,7 +101,7 @@ void FreePlayScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 // Draw the screen
 void FreePlayScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
-	this->updateTerrain();
+	
 	UIScreen::draw(mgl, mAtlas);
 
 	mgl->setProjectionMatrix(mgl->orthoMatrix);
@@ -115,11 +116,11 @@ void FreePlayScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	pauseScreen->draw(mgl, mAtlas);
 }
 
-void FreePlayScreen::updateTerrain()
+void FreePlayScreen::updateTerrain(Handlers* handlers)
 {
 	//cout<<"Entered Update Terrain.\n";
-	Ground* tempGround = level->getGround();
-	Player* tempPlayer = level->getPlayer();
+	Ground* tempGround = (Ground*)(handlers->ground);
+	Player* tempPlayer = (Player*)(handlers->player);
 	//cout<< "Player" << tempPlayer->getX();
 	Camera2D* tempCamera = new Camera2D();
 	//cout<< "Terrain - 5" << tempGround->getPoint(tempGround->getPointCount()-5)->getX();
@@ -145,7 +146,14 @@ void FreePlayScreen::updateTerrain()
 			generatorCounter++;
 			level->updateTerrain(randomXHolder, randomYHolder);
 		}
-		level->getProperties()->setLevelRight(tempGround->getPoint(tempGround->getPointCount()-1)->getX());
+
+		// Fix level boundaries 
+		((LevelProperties*)(level->handlers.levelProps))->setLevelRight(tempGround->getPoint(tempGround->getPointCount()-1)->getX());
+		//((LevelProperties*)(level->handlers.levelProps))->setLevelLeft(((Camera2D*)level->handlers.camera)->toLevelX(0));
+
+		// Fix ufo location 
+		// TODO make sure ufo is not less than level left 		
+
 		/*for(int i=0;i<tempGround->getPointCount();i++)
 		{
 			if(tempGround->getPoint(i)->getX() <= tempCamera->toScreenX(tempPlayer->getX()))
