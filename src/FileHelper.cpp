@@ -61,31 +61,33 @@ void loadSettings(Settings* s){
 
 		// Grab screen width 
 		token = getSetting(str, std::string("screen_width"));
-		s->setScreenWidth(toInt(token));
+		if(token != "null") s->setScreenWidth(toInt(token));
 
 		// Grab screen height 
 		token = getSetting(str, std::string("screen_height"));
-		s->setScreenHeight(toInt(token));
+		if(token != "null") s->setScreenHeight(toInt(token));
 
 		// Grab fullscreen
 		token = getSetting(str, std::string("fullscreen"));
-		int value = toInt(token);
-		if (value == 1)
-			s->setFullscreen(true);
-		else 
-			s->setFullscreen(false);
+		if(token != "null") {
+			int value = toInt(token);
+			if (value == 1)
+				s->setFullscreen(true);
+			else 
+				s->setFullscreen(false);
+		}
 
 		// Grab master volume 
 		token = getSetting(str, std::string("master_vol"));
-		s->setMasterVol(toDouble(token));
+		if(token != "null") s->setMasterVol(toDouble(token));
 
 		// Grab music volume 
 		token = getSetting(str, std::string("music_vol"));
-		s->setMusicVol(toDouble(token));
+		if(token != "null") s->setMusicVol(toDouble(token));
 
 		// Grab sfx volume 
 		token = getSetting(str, std::string("sfx_vol"));
-		s->setSfxVol(toDouble(token));
+		if(token != "null") s->setSfxVol(toDouble(token));
 
 		std::cout << "Settings loaded\n";
 	}
@@ -167,19 +169,21 @@ void loadSaveData(SaveData* sd){
 
 		// Grab screen width 
 		token = getSetting(str, std::string("store_items"));
-		for (int i = 0; i < token.length(); i++)
-		{
-			if (token[i] == '1')
-				sd->itemPurchsed(i);
+		if(token != "null") {
+			for (int i = 0; i < token.length(); i++)
+			{
+				if (token[i] == '1')
+					sd->itemPurchsed(i);
+			}
 		}
 
 		// Grab human abduction count  
 		token = getSetting(str, std::string("human_abduct"));
-		sd->setHumanAbductCount(toInt(token));
+		if(token != "null") sd->setHumanAbductCount(toInt(token));
 
 		// Grab animal abduction count
 		token = getSetting(str, std::string("animal_abduct"));
-		sd->setAnimalAbductCount(toInt(token));
+		if(token != "null") sd->setAnimalAbductCount(toInt(token));
 
 		std::cout << "Savedata loaded\n";
 	}
@@ -255,11 +259,27 @@ double toDouble(std::string s){
 }
 
 // Return setting from file 
+// Returns "null" if invalid (not NULL)
 std::string getSetting(std::string fileString, std::string setting){
+	// Find location of setting 
+	int front = fileString.find(setting);
+	if (front == -1) return "null"; // Return null if no setting found
+
+	// Grab the settings line to end of file 
 	std::string token 
-		  = fileString.substr(fileString.find(setting), fileString.length());
-	token = token.substr(token.find(setting), token.find(std::string(";")));
-	token = token.substr(token.find(std::string(" ")) + 1, token.length());
+		  = fileString.substr(front, fileString.length());
+
+	// Cut off end off settings line to end of file 
+	front = token.find(setting);
+	int end = token.find(std::string(";"));
+	if (front == -1 || end == -1) return "null"; // Return null if either are invalid 
+	token = token.substr(front, end);
+
+	// Cut off settings name 
+	front = token.find(std::string(" ")) + 1;
+	end = token.length();
+	if (front == -1 || end == -1) return "null"; // Return null if either are invalid 
+	token = token.substr(front, end);
 	return token;
 }
 
