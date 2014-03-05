@@ -10,6 +10,7 @@
 #include <SDL/SDL_opengl.h>
 #include <SDL/SDL_thread.h>
 #include <SDL/SDL_timer.h>
+#include <SDL/SDL_mixer.h>
 
 #include "GLHandler.h"
 #include "UIAtlas.h"
@@ -92,3 +93,10 @@ void eventAndRenderLoop();
 
 // Game a new game 
 void createGame();
+
+// Debug sound function
+void soundStuff();
+
+//The music that will be played
+Mix_Music *menuMusic = NULL;
+

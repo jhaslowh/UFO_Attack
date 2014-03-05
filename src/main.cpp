@@ -12,6 +12,8 @@ using namespace std;
 */
 int init_resources()
 {
+	soundStuff();
+
 	printf("Loading Resources...\n");
 	// Set up shaders 
 	mgl.load((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
@@ -556,3 +558,23 @@ void createGame(){
 }
 
 
+void soundStuff(){
+
+	if(SDL_Init(SDL_INIT_AUDIO)<0){
+		// errors
+		printf("Error initializing audio. SDL Error info %s\n", SDL_GetError());
+	} else {
+		printf("Attempt to setup sound\n");
+
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) <0){
+			//TODO error
+			printf( "Error initializing SDL_mixer. Error info %s\n", Mix_GetError() );
+		}
+	}
+
+	menuMusic = Mix_LoadMUS("2141__jovica__80-bpm-attack-loop-2b-mastered-16-bit.wav");
+	if( menuMusic == NULL ){
+		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
+	}
+	Mix_PlayMusic(menuMusic, -1 );
+}
