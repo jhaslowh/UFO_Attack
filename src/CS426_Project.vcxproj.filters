@@ -255,6 +255,18 @@
     <ClInclude Include="SaveData.h">
       <Filter>Header Files\io</Filter>
     </ClInclude>
+    <ClInclude Include="BeamProjectile.h">
+      <Filter>Header Files\game\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletProjectile.h">
+      <Filter>Header Files\game\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="NSMOProjectile.h">
+      <Filter>Header Files\game\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="MissileProjectile.h">
+      <Filter>Header Files\game\proj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -436,6 +448,18 @@
     </ClCompile>
     <ClCompile Include="SaveData.cpp">
       <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="BeamProjectile.cpp">
+      <Filter>Source Files\game\proj</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletProjectile.cpp">
+      <Filter>Source Files\game\proj</Filter>
+    </ClCompile>
+    <ClCompile Include="MissileProjectile.cpp">
+      <Filter>Source Files\game\proj</Filter>
+    </ClCompile>
+    <ClCompile Include="NSMOProjectile.cpp">
+      <Filter>Source Files\game\proj</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

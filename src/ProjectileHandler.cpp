@@ -50,16 +50,28 @@ void ProjectileHandler::addNewProjectile(Projectile* newProjectile)
 	UIDIterator++;
 }
 
+void ProjectileHandler::addProjectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode)
+{
+
+}
+
 void ProjectileHandler::updateProjectiles(float deltaTime)
 {
 	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
 	{
 		// Null check 
-		if (*myIterator != NULL){
+		if (*myIterator != NULL && (*myIterator)->getAlive()){
+			(*myIterator)->determineNegligance();
 			if((*myIterator)->getNegligence())
-				(*myIterator)->updateNegligableProjectile();
+			{
+				//std::cout << "Negligable";
+				(*myIterator)->updateNegligableProjectile(deltaTime);
+			}
 			else
+			{
+				//std::cout << "Physicsable";
 				(*myIterator)->updateProjectile(deltaTime);
+			}
 		}
 	}
 }
@@ -77,7 +89,7 @@ void ProjectileHandler::removeProjectile(Projectile* removeProjectile)
 void ProjectileHandler::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
 	{
-		if(*myIterator != NULL)
+		if(*myIterator != NULL && (*myIterator)->getAlive())
 			(*myIterator)->draw(mgl, mAtlas);
 	}
 }

@@ -2,6 +2,9 @@
 #include "GLHandler.h"
 #include "TextureAtlas.h"
 #include "GameAtlas.h"
+#include <glm/glm.hpp>
+#include <math.h>
+#include <iostream>
 
 //Projectile Types Include
 //Type 1 = Bullet
@@ -17,8 +20,8 @@
 
 class Projectile
 {
-private:
-
+protected:
+	glm::vec4 velocityVectors;
 	short projectileType;
 	float previousX;
 	float previousY;
@@ -26,30 +29,42 @@ private:
 	float currentY;
 	float xVector; //The vectors are a function of velocity in the direction of launch towards clicked location
 	float yVector;
+	int spread;
+	int speed;
 	int mass; //Mass is the weight of the object
 	int size; //Size is relative, no need to calculate area just use different ints to determine whether it is small/medium/large and so on
 	bool negligence;
-	int UID;//unique identifer number
+	int UID;//Unique identifer number
 	bool alive;
+	bool doesExplode;
+	bool isColliding;
 
 public:
 	Projectile();
-	Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float XVector, float YVector);
-	~Projectile();
-	//constructor and deconstructor
+	Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread);
+	Projectile(short ProjectileType, float CurrentX, float CurrentY, float xLocation, float yLocation);
+	virtual ~Projectile();
+	//Constructor and deconstructor
 
-	// Clone all the properties from the sent projectiles into this one
+	//Clone all the properties from the sent projectiles into this one
 	void clone(Projectile* p);
+
+	//Clears all data points
+	void reset();
+
+	void resetProjectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode);
 	
-	//base update methods, to be inherited and edited within each projectile
+	//Base update methods, to be inherited and edited within each projectile
 	//For different projectiles, if you ask how you want them to behave I can write their update methods
-	//ie: arc'ed projectile, beam, fast moving, light, heavy
+	//IE: arc'ed projectile, beam, fast moving, light, heavy
 	void updateProjectile(float deltaTime);
-	void updateNegligableProjectile();
+	void updateNegligableProjectile(float deltaTime);
 	void determineNegligance();
 
 	// Draw projectile to screen
-	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+
+	virtual void collide();
 
 	short getProjectileType();
 	float getCurrentX();
@@ -57,10 +72,10 @@ public:
 	bool getNegligence();
 	int getUID();
 	bool getAlive();
-	// getter methods, 
+	//Getter methods, 
 
 	void setUID(int newUID);
 	void setAlive(bool value);
-	// setter methods 
+	//Setter methods 
 	
 };

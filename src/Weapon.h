@@ -7,6 +7,7 @@
 #include "Camera2D.h"
 #include "ProjectileHandler.h"
 
+
 // Fire types for the weapon
 #define FIRETYPE_SINGLE 0
 #define FIRETYPE_RAPID 1

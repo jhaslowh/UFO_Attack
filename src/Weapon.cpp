@@ -142,6 +142,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		float weaponLocX = locX;
 		float weaponLocY = locY - barrelOffset[1];
 
+		/*
 		// Get angle between weapon loc and target
 		float mTheta = atan2((double)(targety - locY), (double)(targetx - locX));
 
@@ -165,12 +166,12 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		float y = weaponLocY + (direcY * (barrelOffset[0] + dispX));
 		x += direcX * dispY;
 		y += direcY * dispY;
-
-		direcY *= -1;
+		*/
+		//direcY *= -1;
 
 		// Add projectile to list in handlers 
-		((ProjectileHandler*)handlers->projHandler)->addNewProjectile(
-			new Projectile(PROJT_BULLET, x, y, 1.0f, 1.0f, direcX, direcY));
+		((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(new NSMOProjectile(weaponLocX, weaponLocY, targetx, targety)));
+		
 	}
 
 	// Subtract shot from clip
