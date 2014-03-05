@@ -80,6 +80,8 @@ void Level::unload(){
 	gameAtlas.unload();
 	player->unload();
 	ground->unload();
+
+	loaded = false;
 }
 
 // Update level state

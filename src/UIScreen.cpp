@@ -37,6 +37,7 @@ void UIScreen::load(TextureAtlas* mAtlas){
 // THIS MUST BE CALLED IF YOU LOAD STUFF.
 void UIScreen::unload(){
 	unloaded = true;
+	loaded = false;
 }
 bool UIScreen::isUnloaded(){
 	return unloaded;

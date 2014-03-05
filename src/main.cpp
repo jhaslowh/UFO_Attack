@@ -46,8 +46,11 @@ int init_resources()
 	StoreItems::setupStoreItems();
 
 	// Set current screen as test screen 
-	screen = (UIScreen*)new IntroLoadScreen();
-	screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+	if (!restart){
+		screen = (UIScreen*)new IntroLoadScreen();
+		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+	}
+	restart = false;
 
 	printf("Resources loaded\n");
 	return 1;
@@ -73,7 +76,7 @@ void free_resources()
 
 	// Delete allocations 
 	delete mUIAtlas;
-	delete screen;
+	if (!restart) delete screen;
 	delete terminal;
 
 	// Save data 
@@ -550,7 +553,7 @@ void createGame(){
 	SDL_Quit();
 
 	if (restart){
-		restart = false;
+		//restart = false;
 		createGame();
 	}
 }
