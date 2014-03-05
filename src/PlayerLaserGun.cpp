@@ -22,10 +22,12 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	barrelOffset[1] = -4;
 
 	// Muzzle flash
-	muzzleImageId = -1;
+	muzzleImageId = PI_GUN_LASER_MUZ;
 	muzzleOffset[0] = 0;
 	muzzleOffset[1] = 0;
-	flashTime = 0;
+	muzzleOrigin[0] = 0;
+	muzzleOrigin[1] = 6;
+	flashTime = 0.1;
 }
 
 PlayerLaserGun::~PlayerLaserGun(){}

@@ -25,6 +25,8 @@ PlayerShotgun::PlayerShotgun(): Weapon()
 	muzzleImageId = -1;
 	muzzleOffset[0] = 0;
 	muzzleOffset[1] = 0;
+	muzzleOrigin[0] = 0;
+	muzzleOrigin[1] = 0;
 	flashTime = 0;
 }
 

@@ -31,8 +31,13 @@ Weapon::Weapon(void)
 	muzzleImageId = -1;
 	muzzleOffset[0] = 0;
 	muzzleOffset[1] = 0;
+	muzzleOrigin[0] = 0;
+	muzzleOrigin[1] = 0;
 	flashTime = 0;
 	cFlashTime = 0;
+
+	// Math values 
+	mTheta = 0.0f;
 }
 
 
@@ -70,6 +75,10 @@ void Weapon::update(float deltaTime, float x, float y){
 		cFlashTime -= deltaTime;
 		if (cFlashTime < .0f)
 			cFlashTime = 0.0f;
+
+		// Set muzzle location 
+		muzzleOffset[0] = locX + (cos(mTheta) * barrelOffset[0]);
+		muzzleOffset[1] = locY - barrelOffset[1] + (sin(mTheta) * barrelOffset[0]);
 	}
 
 	// Update time between shots 
@@ -99,7 +108,7 @@ void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 	//   Parent class that calls this (UFO or Player should grab the 
 	//   rotation if it is needed. (Player needs to rotate arm)
 	// Get angle 
-	float mTheta = atan2((double)(targetY - locY), (double)(targetX - locX));
+	mTheta = atan2((double)(targetY - locY), (double)(targetX - locX));
 	// Set rotation
 	rotation = (float)(mTheta * (180.0f / 3.14159f));
 
@@ -123,15 +132,20 @@ void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 // Draw weapon to screen
 void Weapon::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Draw weapon 
-	if (lookingRight)
+	if (lookingRight){
 		mAtlas->draw(mgl, imageid, locX, locY, 1.0f, rotation, originX, originY);
+		// Draw muzzle flash 
+		if (cFlashTime > 0)
+			mAtlas->draw(mgl, muzzleImageId, muzzleOffset[0], muzzleOffset[1], 1.0f, rotation, muzzleOrigin[0], muzzleOrigin[1]);
+	}
 	else{
 		glCullFace(GL_FRONT);
 		mAtlas->drawScale2(mgl, imageid, locX, locY, -1.0f, 1.0f, rotation, originX, originY);
+		// Draw muzzle flash 
+		if (cFlashTime > 0)
+			mAtlas->drawScale2(mgl, muzzleImageId, muzzleOffset[0], muzzleOffset[1],-1.0f, 1.0f, rotation, muzzleOrigin[0], muzzleOrigin[1]);
 		glCullFace(GL_BACK);
 	}
-
-	// TODO draw flash 
 }
 
 // Fire the weapon
@@ -143,7 +157,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		float weaponLocY = locY - barrelOffset[1];
 
 		// Get angle between weapon loc and target
-		float mTheta = atan2((double)(targety - locY), (double)(targetx - locX));
+		mTheta = atan2((double)(targety - locY), (double)(targetx - locX));
 
 		// Apply spread to angle.
 		float spr = ((float)rand() / (float)RAND_MAX) * spread;

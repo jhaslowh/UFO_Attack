@@ -104,8 +104,8 @@ Player::Player(){
 	armOffsetsR[20] = 24;	armOffsetsR[21] = 22;
 	armOffsetsR[22] = 24;	armOffsetsR[23] = 23;
 
-	//weapon = (Weapon*)new PlayerLaserGun();
-	weapon = (Weapon*)new PlayerShotgun();
+	weapon = (Weapon*)new PlayerLaserGun();
+	//weapon = (Weapon*)new PlayerShotgun();
 }
 Player::~Player(){
 	delete ufo;

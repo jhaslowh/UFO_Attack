@@ -49,8 +49,14 @@ protected:
 	// ---------------
 	int muzzleImageId;		// For atlas use 
 	float muzzleOffset[2]; // Similar to barrel offset 
+	float muzzleOrigin[2];
 	float flashTime;
 	float cFlashTime;
+
+	// ------------------------
+	// Values used during maths
+	// ------------------------
+	float mTheta;
 
 public:
 	Weapon(void);

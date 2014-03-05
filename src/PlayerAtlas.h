@@ -21,6 +21,7 @@
 #define PI_HEALTH_BAR 14
 #define PI_PLAYER_ARM 15
 #define PI_GUN_LASER 16
+#define PI_GUN_LASER_MUZ 17
 
 class PlayerAtlas : public TextureAtlas
 {
