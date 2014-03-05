@@ -1,7 +1,7 @@
-#include "PlayerLaserGun.h"
+#include "PlayerShotgun.h"
 
 
-PlayerLaserGun::PlayerLaserGun() : Weapon()
+PlayerShotgun::PlayerShotgun(): Weapon()
 {
 	imageid = PI_GUN_LASER;
 	originX = -2.0f; 
@@ -11,13 +11,13 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	typeId = PI_GUN_LASER;
 	clipCapacity = 15;
 	clip = 15;
-	spread = 0; // In radians
+	spread = .2; // In radians
 	verticalDisplacement = 0;
-	horizontalDisplacement = 0;
-	bulletsPerShot = 1;
+	horizontalDisplacement = 15;
+	bulletsPerShot = 5;
 	reloadTime = 0.2;
-	timeBetweenShots = 0.1f;
-	firetype = FIRETYPE_SINGLE;
+	timeBetweenShots = 0.01f;
+	firetype = FIRETYPE_RAPID;
 	barrelOffset[0] = 22;
 	barrelOffset[1] = -4;
 
@@ -28,4 +28,4 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	flashTime = 0;
 }
 
-PlayerLaserGun::~PlayerLaserGun(){}
+PlayerShotgun::~PlayerShotgun(){}

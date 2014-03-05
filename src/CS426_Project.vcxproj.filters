@@ -267,6 +267,9 @@
     <ClInclude Include="MissileProjectile.h">
       <Filter>Header Files\game\proj</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerShotgun.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -460,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="NSMOProjectile.cpp">
       <Filter>Source Files\game\proj</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerShotgun.cpp">
+      <Filter>Source Files\game\weap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

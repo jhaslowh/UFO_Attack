@@ -19,6 +19,24 @@ BulletProjectile::BulletProjectile()
 	isColliding = false;
 }
 
+BulletProjectile::BulletProjectile(float CurrentX, float CurrentY, int speed, bool doesExplode, float directionx, float directiony)
+{
+	projectileType = PROJT_NSMO;
+	previousX = CurrentX;
+	previousY = CurrentY;
+	currentX = CurrentX;
+	currentY = CurrentY;
+	spread = 0;
+	xVector = speed*directionx;
+	yVector = speed*directiony;
+	mass = 1;
+	size = .5;
+	negligence = false;
+	alive = true;
+	isColliding = false;
+	this->doesExplode = doesExplode;
+}
+
 BulletProjectile::BulletProjectile(float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread)
 {
 	previousX = CurrentX;

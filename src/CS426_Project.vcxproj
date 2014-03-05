@@ -36,6 +36,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerAtlas.h" />
     <ClInclude Include="PlayerLaserGun.h" />
+    <ClInclude Include="PlayerShotgun.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileHandler.h" />
     <ClInclude Include="Rec.h" />
@@ -101,6 +102,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerAtlas.cpp" />
     <ClCompile Include="PlayerLaserGun.cpp" />
+    <ClCompile Include="PlayerShotgun.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileHandler.cpp" />
     <ClCompile Include="Rec.cpp" />

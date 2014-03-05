@@ -161,7 +161,7 @@ void Projectile::determineNegligance()
 void Projectile::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (alive){
 		// Uncomment to draw 
-		mAtlas->draw(mgl, GI_CRATE, currentX, currentY, 1.0f, 0.0f, 0.0f, 0.0f);
+		mAtlas->draw(mgl, GI_CRATE, currentX, currentY, 0.3f, 0.0f, 12.5f, 12.5f);
 
 		// You will want to change this to 
 		//mAtlas->draw(mgl, [Item index to draw], currentX, currentY, 1.0f, [rotation], [origin x], [origin y]);
