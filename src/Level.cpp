@@ -16,43 +16,15 @@ Level::~Level(){
 
 // initialize level
 void Level::init(float screen_width, float screen_height){
-	levelProps.setLevelRight(1400.0f);
-
-	// Set player spawn location 
-	levelProps.setPlayerSpawn(100.0f,100.0f);
-
+	// Create player 
 	player = new Player();
 	player->init(screen_width, screen_height);
-	player->setLocation(levelProps.getPlayerSpawnX(), levelProps.getPlayerSpawnY()); 
-	player->ufo->setLocation(100.0f,200.0f);
-
+	// Initialize camera 
 	camera.init(screen_width, screen_height);
-
+	// Create scenery handler 
 	sceneryHandler = new SceneryHandler();
-	SceneryObject* obj = (SceneryObject*)new Tree();
-	obj->setLocation(321.0f,550.0f);
-	sceneryHandler->add(obj);
-	obj = (SceneryObject*)new Tree();
-	obj->setLocation(907.0f,540.0f);
-	sceneryHandler->add(obj);
-	obj = (SceneryObject*)new Tree();
-	obj->setLocation(1124.0f,533.0f);
-	sceneryHandler->add(obj);
-
+	// Create ground 
 	ground = new Ground();
-	ground->add(new Point(0.0f,400.0f));
-	ground->add(new Point(20.0f,400.0f));
-	ground->add(new Point(30.0f,500.0f));
-	ground->add(new Point(120.0f,490.0f));
-	ground->add(new Point(180.0f,500.0f));
-	ground->add(new Point(407.0f,568.0f));
-	ground->add(new Point(500.0f,590.0f));
-	ground->add(new Point(650.0f,570.0f));
-	ground->add(new Point(1000.0f,510.0f));
-	ground->add(new Point(1240.0f,550.0f));
-	ground->add(new Point(1250.0f,400.0f));
-	ground->add(new Point(1400.0f,400.0f));
-
 	// Create proj handler 
 	projHandler = new ProjectileHandler();
 
@@ -63,6 +35,41 @@ void Level::init(float screen_width, float screen_height){
 	handlers.levelProps = &levelProps;
 	handlers.player = &player;
 	handlers.projHandler = projHandler;
+
+	// ------------------------------
+	// DEBUG TEST LEVEL
+	// Replace with real loading code
+	// ------------------------------
+
+	// Set player spawn location 
+	levelProps.setPlayerSpawn(100.0f,100.0f);
+	player->ufo->setLocation(levelProps.getPlayerSpawnX(), levelProps.getPlayerSpawnY());
+
+	levelProps.setLevelLeft(-500.0f);
+	levelProps.setLevelRight(1800.0f);
+
+	SceneryObject* obj = (SceneryObject*)new Tree();
+	obj->setLocation(321.0f,550.0f);
+	sceneryHandler->add(obj);
+	obj = (SceneryObject*)new Tree();
+	obj->setLocation(907.0f,540.0f);
+	sceneryHandler->add(obj);
+	obj = (SceneryObject*)new Tree();
+	obj->setLocation(1124.0f,533.0f);
+	sceneryHandler->add(obj);
+
+	ground->add(new Point(-1500.0f,500.0f));
+	ground->add(new Point(-200.0f,500.0f));
+	ground->add(new Point(30.0f,500.0f));
+	ground->add(new Point(120.0f,490.0f));
+	ground->add(new Point(180.0f,500.0f));
+	ground->add(new Point(407.0f,568.0f));
+	ground->add(new Point(500.0f,590.0f));
+	ground->add(new Point(650.0f,570.0f));
+	ground->add(new Point(1000.0f,510.0f));
+	ground->add(new Point(1240.0f,550.0f));
+	ground->add(new Point(1400.0f,500.0f));
+	ground->add(new Point(2500.0f,500.0f));
 }
 
 // Load level (use for textures)
