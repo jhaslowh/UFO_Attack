@@ -343,12 +343,14 @@ void onDraw()
 	// Draw Screen
 	if (screen != NULL) {
 		screen->draw(&mgl, (TextureAtlas*)mUIAtlas);
+		screen->drawFocus(&mgl, (TextureAtlas*)mUIAtlas);
+	}
 
-		// Draw terminal
+	// Draw terminal if not hidden 
+	if (!terminal->hidden()){
 		mgl.setProjectionMatrix(mgl.orthoMatrix);
 		mUIAtlas->bindBuffers(&mgl);
 		mUIAtlas->bindTexture(&mgl);
-
 		terminal->draw(&mgl, mUIAtlas);
 	}
 }

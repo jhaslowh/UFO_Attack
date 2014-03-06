@@ -7,6 +7,7 @@ UIScreen::UIScreen(){
 	hideOnClose = false;
 	cHideTime = 0.0f;
 	hideTime = .28f;
+	uio_focus = NULL;
 }
 UIScreen::~UIScreen(){}
 
@@ -55,13 +56,28 @@ void UIScreen::update(float deltaTime){
 
 // Update input to the screen 
 void UIScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
-	// Nothing to do
+	// Nothing to do 
+}
+
+// Update focus input to screen
+void UIScreen::updateInputFocus(KeyHandler* mKeyH, MouseHandler* mMouseH){
+// Update focus object 
+  if (uio_focus != NULL){
+    if (!uio_focus->updateInputFocus(mKeyH, mMouseH))
+      uio_focus = NULL;
+  }
 }
 
 // Draw the screen
 void UIScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (!loaded && transitionCode == NO_TRANSITION)
 		load(mAtlas);
+}
+
+// Draw the screen focus 
+void UIScreen::drawFocus(GLHandler* mgl, TextureAtlas* mAtlas){
+	if (uio_focus != NULL)
+		uio_focus->draw(mgl, (UIAtlas*)mAtlas);
 }
 
 // Parse a command give

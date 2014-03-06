@@ -9,6 +9,7 @@ UIObject::UIObject(){
 	flatColor[1] = 1.0f;
 	flatColor[2] = 1.0f;
 	flatColor[3] = 1.0f;
+	reqFocus = false;
 }
 UIObject::~UIObject(){}
 
@@ -55,6 +56,11 @@ void UIObject::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// Nothing to do
 }
 
+// Update focus input 
+bool UIObject::updateInputFocus(KeyHandler* mKeyH, MouseHandler* mMouseH){
+	return false;
+}
+
 // Draw the object to the screen
 // UIAtles must be bound first.
 void UIObject::draw(GLHandler* mgl, UIAtlas* mAtlas){
@@ -67,10 +73,31 @@ void UIObject::draw(GLHandler* mgl, UIAtlas* mAtlas, float offx, float offy){
 	// Nothing to do
 }
 
+// Draw the object focus elements to the screen
+// UIAtles must be bound first.
+void UIObject::drawFocus(GLHandler* mgl, UIAtlas* mAtlas){
+	// Nothing to do
+}
+
+// Draw the object focus elements to the screen at sent offset.
+// UIAtles must be bound first.
+void UIObject::drawFocus(GLHandler* mgl, UIAtlas* mAtlas, float offx, float offy){
+	// Nothing to do 
+}
+
 // Check if the sent location is inside the objc
 bool UIObject::contains(float x, float y){
 	if (x > loc_x && x < loc_x + width &&
 			y > loc_y && y < loc_y + height)
 		return true;
+	return false;
+}
+
+// Check if object is requesting focuse 
+bool UIObject::requestFocus(){
+	if (reqFocus){
+		reqFocus = false;
+		return true;
+	}
 	return false;
 }

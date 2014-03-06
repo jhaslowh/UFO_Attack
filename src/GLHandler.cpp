@@ -20,8 +20,8 @@ int GLHandler::load(float screen_width, float screen_height){
 	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
 	const char *vs_source = 
     "#version 120  \n"  // OpenGL 2.1
-	"attribute vec4 position;        " // Position handle 
-	"attribute vec2 aTexCoordinate;  " // Texture coord handle 
+	"in vec4 position;        " // Position handle 
+	"in vec2 aTexCoordinate;  " // Texture coord handle 
 	"varying vec2 vTexCoordinate;    " // Texture coord handle that both shaders use 
 	"uniform mat4 modelm;            " // Model Matrix handle
 	"uniform mat4 viewm;             " // View Matrix handle
@@ -113,8 +113,13 @@ int GLHandler::load(float screen_width, float screen_height){
 
 	// Make shader program
 	program = glCreateProgram();
+	// Give the vertex shader to our shader program
 	glAttachShader(program, vs);
+	// Give the fragment shader to out shader program 
 	glAttachShader(program, fs);
+	// Similar to the linker for a compiler. 
+	// Initializes all values to 0 and defines 
+	// a location for each uniform and attrubute. 
 	glLinkProgram(program);
 	glGetProgramiv(program, GL_LINK_STATUS, &link_ok);
 	if (!link_ok) {

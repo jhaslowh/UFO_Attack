@@ -36,6 +36,8 @@ protected:
 	float cHideTime;	// Time till screen hides
 	float hideTime;		// Total screen hide time
 
+	UIObject* uio_focus; // Current focused item 
+
 public:
 	UIScreen();
 	virtual ~UIScreen();
@@ -69,8 +71,14 @@ public:
 	// Update input to the screen 
 	virtual void updateInput(KeyHandler*, MouseHandler*);
 
+	// Update focus input to screen
+	virtual void updateInputFocus(KeyHandler*, MouseHandler*);
+
 	// Draw the screen
 	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+
+	// Draw the screen focus 
+	virtual void drawFocus(GLHandler* mgl, TextureAtlas* mAtlas);
 
 	// Parse a command give
 	virtual bool parseCommand(UITerminal* terminal, std::string command, std::string args);
