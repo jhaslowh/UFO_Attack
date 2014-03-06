@@ -201,9 +201,20 @@ void Player::update(float deltaTime, Handlers* handlers){
 			cRunFrameTime += deltaTime;
 			if (cRunFrameTime >= runFrameTime){
 				cRunFrameTime = 0.0f;
-				runFrame++;
-				if (runFrame >= runFrameCount)
-					runFrame = 0;
+
+				// Update current walk frame
+				// Walking forward
+				if ((lookingRight && nextX > locX) || (!lookingRight && nextX < locX)){
+					runFrame++;
+					if (runFrame >= runFrameCount)
+						runFrame = 0;
+				}
+				// Walking backward
+				else {
+					runFrame--;
+					if (runFrame < 0)
+						runFrame = runFrameCount-1;
+				}
 			}
 		}
 	}
@@ -467,8 +478,6 @@ void Player::update2(float deltaTime, Handlers* handlers){
 		currentFrame = idleFrame;
 	else if (animationState == PLAYERS_AIR)
 		currentFrame = jumpFrame;
-
-
 }
 
 // Update input
