@@ -486,7 +486,7 @@ void createGame(){
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
 	/// Set window icon 
-	SDL_Surface* icon = SDL_LoadBMP("icon.bmp");
+	SDL_Surface* icon = SDL_LoadBMP("images/icon.bmp");
 	// Remove icon background 
 	SDL_SetColorKey(icon, SDL_TRUE, SDL_MapRGB(icon->format,0,0,0)); 
 	SDL_SetWindowIcon(window,icon);
