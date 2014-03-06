@@ -18,7 +18,6 @@
 #include "Settings.h"
 
 #include "UIScreen.h"
-#include "TestScreen.h"
 #include "IntroLoadScreen.h"
 #include "MainScreen.h"
 #include "SettingsScreen.h"

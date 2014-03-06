@@ -206,17 +206,6 @@ void checkCommand(string line){
 
 		return;
 	}
-	// Load test screen
-	else if (command == "test"){
-		// Wait for rendering to stop 
-		while (render){} 
-		// Delete old screen 
-		delete screen;
-		screen = (UIScreen*)new TestScreen();
-		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
-		terminal->addLine(command, TL_SUCCESS);
-		return;
-	}
 	// Close game
 	else if (command == "exit" || command == "quit"){
 		running = false;
@@ -317,7 +306,6 @@ void changeScreen(){
 		case SCREEN_SETTINGS:
 		case SCREEN_FREE_PLAY:
 		case SCREEN_GAME:
-		case SCREEN_TEST:
 
 			// Tell screen to unload 
 			unloadScreen = true;
@@ -332,7 +320,6 @@ void changeScreen(){
 			else if (tcode == SCREEN_SETTINGS) screen = (UIScreen*)new SettingsScreen(settings);
 			else if (tcode == SCREEN_FREE_PLAY) screen = (UIScreen*)new FreePlayScreen();
 			else if (tcode == SCREEN_GAME)	   screen = (UIScreen*)new GameScreen();
-			else if (tcode == SCREEN_TEST)	   screen = (UIScreen*)new TestScreen();
 			else screen = new UIScreen();
 
 			// Initialize new screen 

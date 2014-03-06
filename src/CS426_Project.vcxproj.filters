@@ -99,9 +99,6 @@
     <ClInclude Include="UIScreen.h">
       <Filter>Header Files\ui\screens</Filter>
     </ClInclude>
-    <ClInclude Include="TestScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
     <ClInclude Include="TextureAtlas.h">
       <Filter>Header Files\gfx</Filter>
     </ClInclude>
@@ -297,9 +294,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UIScreen.cpp">
-      <Filter>Source Files\ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="TestScreen.cpp">
       <Filter>Source Files\ui\screens</Filter>
     </ClCompile>
     <ClCompile Include="TextureAtlas.cpp">

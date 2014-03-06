@@ -29,7 +29,6 @@ Commands:
 - "version" : prints out version  
 - "screen hide" : hide the current screen  
 - "screen show" : show the current screen  
-- "test" : load test screen
 - "exit" or "quit": exit game  
 - "screen main" : go to main menu screen  
 - "screen store" : go to store screen  

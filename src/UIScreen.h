@@ -23,7 +23,6 @@
 #define SCREEN_GAME 5
 #define SCREEN_LEVEL_SELECT 6
 #define SCREEN_QUIT 7
-#define SCREEN_TEST 8
 #define SCREEN_FREE_PLAY 9
 
 class UIScreen

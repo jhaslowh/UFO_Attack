@@ -56,7 +56,6 @@
     <ClInclude Include="StoreItem.h" />
     <ClInclude Include="StoreItems.h" />
     <ClInclude Include="StoreScreen.h" />
-    <ClInclude Include="TestScreen.h" />
     <ClInclude Include="TextRender.h" />
     <ClInclude Include="TextureAtlas.h" />
     <ClInclude Include="Tree.h" />
@@ -123,7 +122,6 @@
     <ClCompile Include="StoreItem.cpp" />
     <ClCompile Include="StoreItems.cpp" />
     <ClCompile Include="StoreScreen.cpp" />
-    <ClCompile Include="TestScreen.cpp" />
     <ClCompile Include="TextRender.cpp" />
     <ClCompile Include="TextureAtlas.cpp" />
     <ClCompile Include="Tree.cpp" />
