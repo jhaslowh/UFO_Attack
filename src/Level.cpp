@@ -122,7 +122,10 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 
 	// Draw lights 
 	mgl->enableLight(true);
-	mgl->lightBegin();
+	mgl->lightBegin(
+		levelProps.getLight()[0], 
+		levelProps.getLight()[1],
+		levelProps.getLight()[2]);
 
 	// Draw Scenery Lights 
 	sceneryHandler->drawLight(mgl, &gameAtlas);

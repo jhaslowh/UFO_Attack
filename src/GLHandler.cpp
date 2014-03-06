@@ -394,6 +394,16 @@ void GLHandler::lightBegin(){
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
+// Begin light rendering with the given color
+void GLHandler::lightBegin(float r, float g, float b){
+	// set rendering destination to FBO
+	glBindFramebuffer(GL_FRAMEBUFFER, lightFBOId);
+	// Clear to gray
+	// This is the neutral color and will have no effect
+	glClearColor(r,g,b, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+}
+
 // End light rendering
 void GLHandler::lightEnd(){
 	// unbind FBO
