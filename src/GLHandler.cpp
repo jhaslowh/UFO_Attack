@@ -19,11 +19,7 @@ int GLHandler::load(float screen_width, float screen_height){
 	// Vertex shader 
 	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
 	const char *vs_source = 
-#ifdef GL_ES_VERSION_2_0
-    "#version 100  \n"  // OpenGL ES 2.0
-#else
     "#version 120  \n"  // OpenGL 2.1
-#endif
 	"attribute vec4 position;        " // Position handle 
 	"attribute vec2 aTexCoordinate;  " // Texture coord handle 
 	"varying vec2 vTexCoordinate;    " // Texture coord handle that both shaders use 
@@ -45,11 +41,7 @@ int GLHandler::load(float screen_width, float screen_height){
 	// Fragment shader 
 	GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
 	const char *fs_source =
-#ifdef GL_ES_VERSION_2_0
-    "#version 100  \n"  // OpenGL ES 2.0
-#else
     "#version 120  \n"  // OpenGL 2.1
-#endif
 	"uniform sampler2D texture;   " // Texture handle 
 	"uniform sampler2D lightmap;  " // Light texture
 	"uniform vec4 color;           " // Color handle
@@ -57,36 +49,55 @@ int GLHandler::load(float screen_width, float screen_height){
 	"uniform float useLight;       " // Set to 1 to use light 
 	"varying vec2 vTexCoordinate;  " // Texture coord handle that both shaders use 
 	"uniform vec2 resolution;      " // Sceen resolution
+	// Values used for calculations
+	"vec4 newColor;	"
+	"vec2 lightCord; " 
+	"vec4 light; "
 
 	"void main() {                  "
 	"  if (useTexture > 0.5f)       "
 	"    gl_FragColor = color * texture2D(texture, vTexCoordinate);"
 	"  else "
 	"    gl_FragColor = color;"
-	"  "
-	
-	// Apply lights 
+	   // Apply lights 
 	"  if (useLight > .5f){         "
 		 // Get light color
-	"    vec2 lightCord = (gl_FragCoord.xy / resolution.xy);   "
-	"    vec4 light = texture2D(lightmap, lightCord);          "
+	"    lightCord = (gl_FragCoord.xy / resolution.xy);   "
+	"    light = texture2D(lightmap, lightCord);          "
 
-	"    vec4 newColor;											"
 	     // Apply Overlay blending 
-	"    if (gl_FragColor.r < 0.5f)  "
+	/*"    if (gl_FragColor.r < 0.5f)  "
 	"      newColor.r = gl_FragColor.r * light.r * 2.0f;        "
 	"    else"
-	"      newColor.r = 1.0f - (2.0f * ((1 - gl_FragColor.r) * (1 - light.r)));"
+	"      newColor.r = 1.0f - (2.0f * ((1.0f - gl_FragColor.r) * (1.0f - light.r)));"
 
 	"    if (gl_FragColor.g < 0.5f)  "
 	"      newColor.g = gl_FragColor.g * light.g * 2.0f;        "
 	"    else"
-	"      newColor.g = 1.0f - (2.0f * ((1 - gl_FragColor.g) * (1 - light.g)));"
+	"      newColor.g = 1.0f - (2.0f * ((1.0f - gl_FragColor.g) * (1.0f - light.g)));"
 
 	"    if (gl_FragColor.b < 0.5f)  "
 	"      newColor.b = gl_FragColor.b * light.b * 2.0f;        "
 	"    else"
-	"      newColor.b = 1.0f - (2.0f * ((1 - gl_FragColor.b) * (1 - light.b)));"
+	"      newColor.b = 1.0f - (2.0f * ((1.0f - gl_FragColor.b) * (1.0f - light.b)));"*/
+
+	     // Apply Linear Light blending 
+		 // R blend
+	"    if (gl_FragColor.r > 0.5f)  "
+	"      newColor.r = gl_FragColor.r + (2.0f * (light.r - 0.5f)); "
+	"    else"
+	"      newColor.r = gl_FragColor.r + (2.0f * light.r) - 1.0f; "
+		 // G Blend
+	"    if (gl_FragColor.g > 0.5f)  "
+	"      newColor.g = gl_FragColor.g + (2.0f * (light.g - 0.5f)); "
+	"    else"
+	"      newColor.g = gl_FragColor.g + (2.0f * light.g) - 1.0f; "
+		 // B blend
+	"    if (gl_FragColor.b > 0.5f)  "
+	"      newColor.b = gl_FragColor.b + (2.0f * (light.b - 0.5f)); "
+	"    else"
+	"      newColor.b = gl_FragColor.b + (2.0f * light.b) - 1.0f; "
+
 	     // Apply color
 	"    newColor.a = gl_FragColor.a;       "
 	"    gl_FragColor = newColor;			"
