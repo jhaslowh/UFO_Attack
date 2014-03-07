@@ -101,3 +101,8 @@ bool UIObject::requestFocus(){
 	}
 	return false;
 }
+
+// Called when focus is lost 
+void UIObject::focusLost(){
+	// Nothing to do 
+}

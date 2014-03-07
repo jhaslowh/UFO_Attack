@@ -60,24 +60,26 @@ void UIScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 }
 
 // Update focus input to screen
-void UIScreen::updateInputFocus(KeyHandler* mKeyH, MouseHandler* mMouseH){
-// Update focus object 
-  if (uio_focus != NULL){
-    if (!uio_focus->updateInputFocus(mKeyH, mMouseH))
-      uio_focus = NULL;
-  }
+bool UIScreen::updateInputFocus(KeyHandler* mKeyH, MouseHandler* mMouseH){
+	// Update focus object 
+	if (uio_focus != NULL){
+		if (!uio_focus->updateInputFocus(mKeyH, mMouseH))
+			uio_focus = NULL;
+		return true;
+	}
+	return false;
 }
 
 // Draw the screen
 void UIScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
-	if (!loaded && transitionCode == NO_TRANSITION)
+	if (!loaded)// && transitionCode == NO_TRANSITION)
 		load(mAtlas);
 }
 
 // Draw the screen focus 
 void UIScreen::drawFocus(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (uio_focus != NULL)
-		uio_focus->draw(mgl, (UIAtlas*)mAtlas);
+		uio_focus->drawFocus(mgl, (UIAtlas*)mAtlas);
 }
 
 // Parse a command give

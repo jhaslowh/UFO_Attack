@@ -7,6 +7,7 @@
 #include "FileHelper.h"
 #include "UIValueSlider.h"
 #include "UIBox.h"
+#include "UIComboBox.h"
 
 class SettingsScreen : public UIScreen
 {
@@ -15,9 +16,11 @@ class SettingsScreen : public UIScreen
 	UILabel* labelTitle;
 	UICheckbox* cFullscreen;
 	UIButton* buttonBack;
+	UIButton* buttonApply;
 	UIValueSlider* vMasterVol;
 	UIValueSlider* vMusicVol;
 	UIValueSlider* vSfxVol;
+	UIComboBox* cbResolutions;
 
 	UILabel* lFullscreen;
 	UILabel* lMasterVolume;

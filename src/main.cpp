@@ -13,6 +13,7 @@ using namespace std;
 int init_resources()
 {
 	printf("Loading Resources...\n");
+
 	// Set up shaders 
 	mgl.load((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 	glUseProgram(mgl.program);
@@ -123,8 +124,10 @@ void onUpdate(){
 		// Update Screen 
 		if (screen != NULL) {
 			// Update screen input 
-			if (!showTerminal) 
-				screen->updateInput(&mKeyH, &mMouseH);
+			if (!showTerminal) {
+				if (!screen->updateInputFocus(&mKeyH, &mMouseH))
+					screen->updateInput(&mKeyH, &mMouseH);
+			}
 			// Update screen 
 			screen->update(deltaTime);
 			// Check if screen needs to be changed 
@@ -299,6 +302,10 @@ void changeScreen(){
 		case SCREEN_LEVEL_SELECT:
 			break;
 		case SCREEN_QUIT:
+			running = false;
+			break;
+		case RESTART_GAME:
+			restart = true;
 			running = false;
 			break;
 		case SCREEN_MAIN:
@@ -542,7 +549,6 @@ void createGame(){
 	SDL_Quit();
 
 	if (restart){
-		//restart = false;
 		createGame();
 	}
 }

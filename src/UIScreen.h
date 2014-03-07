@@ -10,6 +10,8 @@
 
 // These codes are for transitionCode
 
+// Restart game code
+#define RESTART_GAME -2
 // Default code state
 #define NO_TRANSITION -1
 // Code used to tell parent screen to close 
@@ -72,7 +74,8 @@ public:
 	virtual void updateInput(KeyHandler*, MouseHandler*);
 
 	// Update focus input to screen
-	virtual void updateInputFocus(KeyHandler*, MouseHandler*);
+	// Return true if event handled. 
+	virtual bool updateInputFocus(KeyHandler*, MouseHandler*);
 
 	// Draw the screen
 	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);

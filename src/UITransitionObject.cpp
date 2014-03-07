@@ -5,7 +5,7 @@ UITransitionObject::UITransitionObject() : UIObject(){
 	mNormalLoc = 0;
 	mHideLoc = 0;
 	mHideSpeed = 1000.0f;
-	mHideType = HT_VERTICAL;
+	mHideType = HT_NONE;
 	mHide = false;
 	mFadeOut = false;
 	mOpacity = 1.0f;
@@ -158,7 +158,9 @@ void UITransitionObject::show(){mHide = false;}
 
 // Check if the object is hidden
 bool UITransitionObject::hidden(){
-	if (mHideType == HT_HOROZONTAL)
+	if (mHideType == HT_NONE)
+		return false;
+	else if (mHideType == HT_HOROZONTAL)
 		return loc_x == mHideLoc;
 	else 
 		return loc_y == mHideLoc;
@@ -166,7 +168,9 @@ bool UITransitionObject::hidden(){
 
 // Check if the object is shown
 bool UITransitionObject::shown(){
-	if (mHideType == HT_HOROZONTAL)
+	if (mHideType == HT_NONE)
+		return true;
+	else if (mHideType == HT_HOROZONTAL)
 		return loc_x == mNormalLoc;
 	else 
 		return loc_y == mNormalLoc;

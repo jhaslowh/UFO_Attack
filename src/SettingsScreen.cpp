@@ -2,6 +2,9 @@
 
 
 SettingsScreen::SettingsScreen(Settings* s) : UIScreen(){
+	cbResolutions = NULL;
+	buttonApply = NULL;
+
 	settings = s;
 	hideOnClose = true;
 }
@@ -10,9 +13,11 @@ SettingsScreen::~SettingsScreen()
 	delete labelTitle;
 	delete cFullscreen;
 	delete buttonBack;
+	delete buttonApply;
 	delete vMasterVol;
 	delete vMusicVol;
 	delete vSfxVol;
+	delete cbResolutions;
 
 	delete lFullscreen;
 	delete lMasterVolume;
@@ -54,6 +59,18 @@ void SettingsScreen::init(float screen_width, float screen_height){
 	lSfxVol->setColor(.9f,.9f,.9f);
 	lSfxVol->setTextSize(16.0f);
 
+	cbResolutions = new UIComboBox(menuX - 100.0f,menuY + 107.0f);
+	cbResolutions->init(screen_width, screen_height);
+	cbResolutions->setupHide(HT_HOROZONTAL,cbResolutions->getX()+100.0f,hideTime,true);
+	cbResolutions->setHidden();
+	cbResolutions->addItem("one");
+	cbResolutions->addItem("two");
+	cbResolutions->addItem("three");
+	cbResolutions->addItem("four");
+	cbResolutions->addItem("five");
+	cbResolutions->addItem("six");
+	cbResolutions->addItem("seven");
+
 	cFullscreen = new UICheckbox(menuX - 4.0f,menuY,24.0f,24.0f,std::string(""));
 	cFullscreen->setTextColor(.8f,.8f,.8f);
 	cFullscreen->setupHide(HT_HOROZONTAL,cFullscreen->getX()+100.0f,hideTime,true);
@@ -74,12 +91,17 @@ void SettingsScreen::init(float screen_width, float screen_height){
 	vSfxVol->setupHide(HT_HOROZONTAL,vSfxVol->getX()+100.0f,hideTime,true);
 	vSfxVol->setHidden();
 
-	buttonBack = new UIButton(menuX- 50.0f,
-		menuY + 125.0f,100.0f,35.0f, std::string("Back"));
+	buttonBack = new UIButton(menuX + 5.0f,
+		menuY + 140.0f,100.0f,35.0f, std::string("Back"));
 	buttonBack->setupHide(HT_VERTICAL,buttonBack->getY()+100.0f,hideTime,true);
 	buttonBack->setHidden();
 
-	bBG = new UIBox(screen_width / 2.0f - 125.0f, menuY-5.0f,250.0f,120.0f);
+	buttonApply = new UIButton(menuX - 105.0f,
+		menuY + 140.0f,100.0f,35.0f, std::string("Apply"));
+	buttonApply->setupHide(HT_VERTICAL,buttonApply->getY()+100.0f,hideTime,true);
+	buttonApply->setHidden();
+
+	bBG = new UIBox(screen_width / 2.0f - 125.0f, menuY-5.0f,250.0f,138.0f);
 	bBG->setupHide(HT_VERTICAL, bBG->getY() + 10.0f, hideTime, true);
 	bBG->setHidden();
 	bBG->setAlpha(.7f);
@@ -97,6 +119,7 @@ void SettingsScreen::load(TextureAtlas* mAtlas){
 
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 	buttonBack->centerText(mUI->mTextRender);
+	buttonApply->centerText(mUI->mTextRender);
 
 	labelTitle->setLocation(
 		(labelTitle->getX() * .5f) - (mUI->mTextRender->measureString(labelTitle->getText(), labelTitle->getTextSize()) * .5f),
@@ -132,6 +155,7 @@ void SettingsScreen::update(float deltaTime){
 	labelTitle->update(deltaTime);
 	cFullscreen->update(deltaTime);
 	buttonBack->update(deltaTime);
+	buttonApply->update(deltaTime);
 	vMasterVol->update(deltaTime);
 	vMusicVol->update(deltaTime);
 	vSfxVol->update(deltaTime);
@@ -140,6 +164,7 @@ void SettingsScreen::update(float deltaTime){
 	lMusicVol->update(deltaTime);
 	lSfxVol->update(deltaTime);
 	bBG->update(deltaTime);
+	cbResolutions->update(deltaTime);
 }
 
 // Update input to the screen 
@@ -157,6 +182,11 @@ void SettingsScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	settings->setMusicVol(vMusicVol->getValue());
 	vSfxVol->updateInput(mKeyH, mMouseH);
 	settings->setSfxVol(vSfxVol->getValue());
+	cbResolutions->updateInput(mKeyH, mMouseH);
+	if (cbResolutions->requestFocus()){
+		if (uio_focus != NULL) uio_focus->focusLost(); 
+		uio_focus = cbResolutions;
+	}
 	
 	// Update back button 
 	buttonBack->updateInput(mKeyH, mMouseH);
@@ -164,6 +194,13 @@ void SettingsScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		transitionCode = SCREEN_MAIN;
 		saveSettings(settings);
 		hide();
+	}
+
+	// Update apply button 
+	buttonApply->updateInput(mKeyH, mMouseH);
+	if (buttonApply->wasClicked()){
+		saveSettings(settings);
+		transitionCode = RESTART_GAME;
 	}
 }
 
@@ -185,6 +222,7 @@ void SettingsScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	labelTitle->draw(mgl, mUI);
 	cFullscreen->draw(mgl, mUI);
 	buttonBack->draw(mgl, mUI);
+	buttonApply->draw(mgl, mUI);
 	vMasterVol->draw(mgl, mUI);
 	vMusicVol->draw(mgl, mUI);
 	vSfxVol->draw(mgl, mUI);
@@ -192,6 +230,7 @@ void SettingsScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	lMasterVolume->draw(mgl, mUI);
 	lMusicVol->draw(mgl, mUI);
 	lSfxVol->draw(mgl, mUI);
+	cbResolutions->draw(mgl, mUI);
 }
 
 // Hide the entire screen.
@@ -204,6 +243,7 @@ void SettingsScreen::hide(){
 	labelTitle->hide();
 	cFullscreen->hide();
 	buttonBack->hide();
+	buttonApply->hide();
 	vMasterVol->hide();
 	vMusicVol->hide();
 	vSfxVol->hide();
@@ -212,6 +252,7 @@ void SettingsScreen::hide(){
 	lMusicVol->hide();
 	lSfxVol->hide();
 	bBG->hide();
+	cbResolutions->hide();
 }
 
 // Show the entire screen.
@@ -224,6 +265,7 @@ void SettingsScreen::show(){
 	labelTitle->show();
 	cFullscreen->show();
 	buttonBack->show();
+	buttonApply->show();
 	vMasterVol->show();
 	vMusicVol->show();
 	vSfxVol->show();
@@ -232,4 +274,6 @@ void SettingsScreen::show(){
 	lMusicVol->show();
 	lSfxVol->show();
 	bBG->show();
+	cbResolutions->show();
 }
+

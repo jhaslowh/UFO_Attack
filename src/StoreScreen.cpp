@@ -82,9 +82,9 @@ void StoreScreen::init(float screen_width, float screen_height){
 	lPlayerHumanMoney->setColor(.9f,.9f,.9f);
 	lPlayerHumanMoney->setHidden(); 
 
-	mCSAnimalPlayer.setID(UI_CURRENCY_ANIMAL);
+	mCSAnimalPlayer.setID(UII_CURRENCY_ANIMAL);
 	mCSAnimalPlayer.setPosition(-22.0f, -4.0f);
-	mCSHumanPlayer.setID(UI_CURRENCY_HUMAN);
+	mCSHumanPlayer.setID(UII_CURRENCY_HUMAN);
 	mCSHumanPlayer.setPosition(-22.0f, -4.0f);
 
 	// Set store items
@@ -160,8 +160,8 @@ void StoreScreen::init(float screen_width, float screen_height){
 	lPurchsed->setHidden(); 
 
 	// Set description currency 
-	mCSAnimalSelect.setID(UI_CURRENCY_ANIMAL);
-	mCSHumanSelect.setID(UI_CURRENCY_HUMAN);
+	mCSAnimalSelect.setID(UII_CURRENCY_ANIMAL);
+	mCSHumanSelect.setID(UII_CURRENCY_HUMAN);
 	mCSAnimalSelect.setPosition(-22.0f, -4.0f);
 	mCSHumanSelect.setPosition(-22.0f, -4.0f);
 	

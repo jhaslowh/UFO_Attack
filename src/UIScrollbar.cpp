@@ -34,10 +34,7 @@ UIScrollbar::UIScrollbar(int type, float w, float h)
 	maxVal = 100.0f;
 }
 
-UIScrollbar::~UIScrollbar()
-{
-
-}
+UIScrollbar::~UIScrollbar(){}
 
 // Set location 
 void UIScrollbar::setLocation(float x, float y){

@@ -37,9 +37,12 @@ public:
 
 	// Check if this AABB contains the sent point 
 	bool contains(float x, float y);
+	// Check if this AABB contains the sent point at the sent offset
+	bool contains(float x, float y, float offx, float offy);
 	// Expand the rec 
 	void expand(float amount);
-
+	// Reset values 
+	void reset(float x, float y, float w, float h);
 	// Copy the sent rec properties into this one
 	void copy(Rec* r);
 };

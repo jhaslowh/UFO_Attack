@@ -17,17 +17,18 @@
 #define UII_BUBBLE_EDGE 9
 #define UII_BUBBLE_ARROW 10
 // These are used to draw outline boxes 
-#define UI_REC_TL 11	// Top left corner
-#define UI_REC_TR 12	// Top right corner
-#define UI_REC_BL 13	// Bottom left corner
-#define UI_REC_BR 14	// Bottom right corner
-#define UI_REC_TB 15	// Top border
-#define UI_REC_BB 16	// Bottom border
-#define UI_REC_LB 17	// Left border
-#define UI_REC_RB 18	// Right border
-#define UI_REC_M 19		// Middle 
-#define UI_CURRENCY_ANIMAL 20
-#define UI_CURRENCY_HUMAN 21
+#define UII_REC_TL 11	// Top left corner
+#define UII_REC_TR 12	// Top right corner
+#define UII_REC_BL 13	// Bottom left corner
+#define UII_REC_BR 14	// Bottom right corner
+#define UII_REC_TB 15	// Top border
+#define UII_REC_BB 16	// Bottom border
+#define UII_REC_LB 17	// Left border
+#define UII_REC_RB 18	// Right border
+#define UII_REC_M 19		// Middle 
+#define UII_CURRENCY_ANIMAL 20
+#define UII_CURRENCY_HUMAN 21
+#define UII_COMBOBOX_ARROW 22
 
 class UIAtlas : public TextureAtlas
 {

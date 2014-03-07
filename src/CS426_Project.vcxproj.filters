@@ -267,6 +267,9 @@
     <ClInclude Include="PlayerShotgun.h">
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
+    <ClInclude Include="UIComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -460,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="PlayerShotgun.cpp">
       <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="UIComboBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

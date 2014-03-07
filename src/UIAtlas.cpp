@@ -68,6 +68,8 @@ void UIAtlas::load(){
 	vcg->addFrame(632.0f, 130.0f, 20.0f, 20.0f);
 	// Currency Human
 	vcg->addFrame(654.0f, 130.0f, 20.0f, 20.0f);
+	// Combo box arrow
+	vcg->addFrame(632.0f, 152.0f, 20.0f, 20.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

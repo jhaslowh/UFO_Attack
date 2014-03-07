@@ -64,5 +64,8 @@ public:
 
 	// Check if object is requesting focuse 
 	virtual bool requestFocus();
+
+	// Called when focus is lost 
+	virtual void focusLost();
 };
 

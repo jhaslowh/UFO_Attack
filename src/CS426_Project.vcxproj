@@ -64,6 +64,7 @@
     <ClInclude Include="UIBox.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UICheckbox.h" />
+    <ClInclude Include="UIComboBox.h" />
     <ClInclude Include="UILabel.h" />
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIScreen.h" />
@@ -130,6 +131,7 @@
     <ClCompile Include="UIBox.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UICheckbox.cpp" />
+    <ClCompile Include="UIComboBox.cpp" />
     <ClCompile Include="UILabel.cpp" />
     <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="UIScreen.cpp" />

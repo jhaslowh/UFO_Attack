@@ -4,6 +4,7 @@
 
 #define HT_VERTICAL 0
 #define HT_HOROZONTAL 1
+#define HT_NONE 2
 
 class UITransitionObject : public UIObject
 {

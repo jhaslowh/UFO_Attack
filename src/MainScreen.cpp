@@ -156,3 +156,4 @@ void MainScreen::show(){
 	buttonFreePlay->show();
 	buttonQuit->show();
 }
+
