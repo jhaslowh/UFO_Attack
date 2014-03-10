@@ -57,5 +57,10 @@ public:
 	// All UI elements in the hide screen method should have show 
 	// calls here. 
 	virtual void show();
+
+private:
+
+	// Parse a resolution line 
+	void parseResLine(std::string line);
 };
 

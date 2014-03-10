@@ -63,13 +63,27 @@ void SettingsScreen::init(float screen_width, float screen_height){
 	cbResolutions->init(screen_width, screen_height);
 	cbResolutions->setupHide(HT_HOROZONTAL,cbResolutions->getX()+100.0f,hideTime,true);
 	cbResolutions->setHidden();
-	cbResolutions->addItem("one");
-	cbResolutions->addItem("two");
-	cbResolutions->addItem("three");
-	cbResolutions->addItem("four");
-	cbResolutions->addItem("five");
-	cbResolutions->addItem("six");
-	cbResolutions->addItem("seven");
+	cbResolutions->addItem("640 x 480");
+	cbResolutions->addItem("720 x 480");
+	cbResolutions->addItem("720 x 576");
+	cbResolutions->addItem("800 x 600");
+	cbResolutions->addItem("1024 x 768");
+	cbResolutions->addItem("1152 x 864");
+	cbResolutions->addItem("1280 x 720");
+	cbResolutions->addItem("1280 x 768");
+	cbResolutions->addItem("1280 x 800");
+	cbResolutions->addItem("1280 x 960");
+	cbResolutions->addItem("1280 x 1024");
+	cbResolutions->addItem("1360 x 765");
+	cbResolutions->addItem("1360 x 768");
+	cbResolutions->addItem("1366 x 768");
+	cbResolutions->addItem("1400 x 1050");
+	cbResolutions->addItem("1440 x 900");
+	cbResolutions->addItem("1600 x 900");
+	cbResolutions->addItem("1600 x 1024");
+	cbResolutions->addItem("1600 x 1200");
+	cbResolutions->addItem("1680 x 1050");
+	cbResolutions->setMaxItemsToDisplay(8);
 
 	cFullscreen = new UICheckbox(menuX - 4.0f,menuY,24.0f,24.0f,std::string(""));
 	cFullscreen->setTextColor(.8f,.8f,.8f);
@@ -111,6 +125,13 @@ void SettingsScreen::init(float screen_width, float screen_height){
 	vMasterVol->setValue(settings->getMasterVol());
 	vMusicVol->setValue(settings->getMusicVol());
 	vSfxVol->setValue(settings->getSfxVol());
+
+	// Set resolution 
+	std::string res = "";
+	res += toString((double)settings->getScreenWidth()) + " x " + toString((double)settings->getScreenHeight());
+	int index = cbResolutions->findIndex(res);
+	if (index != -1)
+		cbResolutions->setSelectedItem(index);
 }
 
 // Load screen
@@ -182,10 +203,16 @@ void SettingsScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	settings->setMusicVol(vMusicVol->getValue());
 	vSfxVol->updateInput(mKeyH, mMouseH);
 	settings->setSfxVol(vSfxVol->getValue());
+
+	// Update resoluion combo box 
 	cbResolutions->updateInput(mKeyH, mMouseH);
 	if (cbResolutions->requestFocus()){
 		if (uio_focus != NULL) uio_focus->focusLost(); 
 		uio_focus = cbResolutions;
+	}
+	// Check if new resolution was selected 
+	if (cbResolutions->wasItemSelected()){
+		parseResLine(cbResolutions->getSelectedItem());
 	}
 	
 	// Update back button 
@@ -277,3 +304,22 @@ void SettingsScreen::show(){
 	cbResolutions->show();
 }
 
+// Parse a resolution line 
+void SettingsScreen::parseResLine(std::string line){
+	// Width and heigth 
+	float width, height;
+
+	// Find width 
+	int index = line.find(" ");
+	if (index == -1) return;
+	width = toDouble(line.substr(0,index));
+
+	// Cut off front of line 
+	line = line.substr(index+1, line.length());
+	line = line.substr(line.find(" ")+1, line.length());
+
+	height = toDouble(line);
+
+	settings->setScreenWidth(width);
+	settings->setScreenHeight(height);
+}

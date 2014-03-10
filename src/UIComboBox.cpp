@@ -24,7 +24,9 @@ UIComboBox::UIComboBox(int x, int y) : UITransitionObject(){
 	items = NULL;
 	showScrollBar = false;
 	showList = false;
+	itemSelected = false;
 	scrollOffset = 0;
+	maxItemsToDisplay = 4;
 
 	// Text and graphics 
 	textColor[0] = .6f;
@@ -100,6 +102,26 @@ int UIComboBox::getSelectedIndex(){
 	return selectedItem;
 }
 
+// Set max items to display
+void UIComboBox::setMaxItemsToDisplay(int value){
+	if (value >= 1){
+		maxItemsToDisplay = value;
+		fixDisplayCount();
+	}
+}
+
+// Check if an item was selected
+bool UIComboBox::wasItemSelected(){
+	if (itemSelected){
+		itemSelected = false;
+		return true;
+	}
+	return false;
+}
+
+// Set the selected item
+void UIComboBox::setSelectedItem(int value){selectedItem = value;}
+
 // Call if object has child objects that need to be set up
 void UIComboBox::init(float screen_width, float screen_height){
 	UIObject::init(screen_width, screen_height);
@@ -107,7 +129,7 @@ void UIComboBox::init(float screen_width, float screen_height){
 	expandButton = new UIButton(loc_x + width - height,
 		loc_y,height, height, std::string("Expand"));
 
-	scrollbar = new UIScrollbar(SCROLLBAR_VERT, 15.0f, 4.0f * height);
+	scrollbar = new UIScrollbar(SCROLLBAR_VERT, 15.0f, itemsToDisplay * height);
 	scrollbar->setLocation(loc_x + width - 15.0f, loc_y + height);
 	scrollbar->setColor(0.1f,0.1f,0.1f);
 	scrollbar->setValue(0.0f);
@@ -152,6 +174,7 @@ bool UIComboBox::updateInputFocus(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 		if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown()){
 			selectedItem = mouseItem;
+			itemSelected = true;
 		}
 	}
 
@@ -226,7 +249,7 @@ void UIComboBox::drawFocus(GLHandler* mgl, UIAtlas* mAtlas){
 		listBox.getWidth(), listBox.getHeight());
 	
 	// Draw other items 
-	for (int i = 0; i < 4; i++){
+	for (int i = 0; i < itemsToDisplay; i++){
 		if (i + scrollOffset == selectedItem){
 			mgl->setFlatColor(highlightColor, highlightColor[3] * mOpacity);
 			mAtlas->drawScale2(mgl, UII_REC, loc_x, loc_y + (height * (i+1)), width, height);
@@ -260,10 +283,19 @@ void UIComboBox::drawFocus(GLHandler* mgl, UIAtlas* mAtlas, float offx, float of
 	// TODO 
 }
 
+// Check if the sent item is in the combobox 
+int UIComboBox::findIndex(std::string item){
+	for (int i = 0; i < itemCount; i++){
+		if (item == items[i])
+			return i;
+	}
+	return -1;
+}
+
 // Fix item to display count
 void UIComboBox::fixDisplayCount(){
-	if (itemCount > 4){
-		itemsToDisplay = 4;
+	if (itemCount > maxItemsToDisplay){
+		itemsToDisplay = maxItemsToDisplay;
 		showScrollBar = true;
 	}
 	else {

@@ -24,6 +24,7 @@ Projectile::Projectile()
 	alive = false;
 	doesExplode = false;
 	isColliding = false;
+	diesOnImpact = true;
 	drawProj = false;
 }
 
@@ -35,6 +36,7 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int
 	currentX = CurrentX;
 	currentY = CurrentY;
 	spread = Spread;
+	speed = 200;
 	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
@@ -44,6 +46,7 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int
 		negligence = false;
 	alive = true;
 	isColliding = false;
+	diesOnImpact = true;
 	drawProj = false;
 }
 
@@ -64,6 +67,7 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, flo
 		negligence = false;
 	alive = true;
 	isColliding = false;
+	diesOnImpact = true;
 	drawProj = false;
 
 }
@@ -88,6 +92,7 @@ void Projectile::clone(Projectile* p){
 	negligence = p->negligence;
 	alive = true;
 	doesExplode = p->doesExplode;
+	diesOnImpact = p->diesOnImpact;
 }
 
 void Projectile::reset()
@@ -104,6 +109,7 @@ void Projectile::reset()
 	negligence = false;
 	alive = false;
 	doesExplode = false;
+	diesOnImpact = true;
 	drawProj = false;
 }
 
@@ -192,39 +198,19 @@ void Projectile::collide(Point* p, Handlers* handlers, int collType)
 {
 	// Please do collide stuff here, maybe set a variable for what 
 	// it collides with, player/enemy/ground, and what side it collides on.
+
+	// Kill if dies on impact
+	if (diesOnImpact)
+		alive = false;
 }
 
-short Projectile::getProjectileType()
-{
-	return projectileType;
-}
-float Projectile::getCurrentX()
-{
-	return currentX;
-}
-float Projectile::getCurrentY()
-{
-	return currentY;
-}
+short Projectile::getProjectileType(){return projectileType;}
+float Projectile::getCurrentX(){return currentX;}
+float Projectile::getCurrentY(){return currentY;}
 float Projectile::getPrevX(){return previousX;}
 float Projectile::getPrevY(){return previousY;}
-float getPrevY();
-bool Projectile::getNegligence()
-{
-	return negligence;
-}
-int Projectile::getUID()
-{
-	return UID;
-}
-bool Projectile::getAlive(){
-	return alive;
-}
-
-void Projectile::setUID(int newUID)
-{
-	UID = newUID;
-}
-void Projectile::setAlive(bool value){
-	alive = value;
-}
+bool Projectile::getNegligence(){return negligence;}
+int Projectile::getUID(){return UID;}
+bool Projectile::getAlive(){return alive;}
+void Projectile::setUID(int newUID){UID = newUID;}
+void Projectile::setAlive(bool value){alive = value;}

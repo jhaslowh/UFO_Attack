@@ -39,6 +39,10 @@ class UIComboBox : public UITransitionObject
 	bool showList;
 	// Offset for scrollbar index
 	int scrollOffset;
+	// Max Items to display in list
+	int maxItemsToDisplay;
+	// Set to true when an item is selected
+	bool itemSelected;
 
 	// ------------------
 	// Text and graphics 
@@ -70,6 +74,12 @@ public:
 	std::string getSelectedItem();
 	// Return selected index
 	int getSelectedIndex();
+	// Set max items to display
+	void setMaxItemsToDisplay(int value);
+	// Check if an item was selected
+	bool wasItemSelected();
+	// Set the selected item
+	void setSelectedItem(int value);
 
 	// Call if object has child objects that need to be set up
 	virtual void init(float screen_width, float screen_height);
@@ -96,6 +106,9 @@ public:
 	// Draw the object focus elements to the screen at sent offset.
 	// UIAtles must be bound first.
 	virtual void drawFocus(GLHandler* mgl, UIAtlas* mAtlas, float offx, float offy);
+
+	// Check if the sent item is in the combobox 
+	int findIndex(std::string item);
 
 private:
 	// Fix item to display count

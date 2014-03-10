@@ -42,10 +42,15 @@ protected:
 	int size; //Size is relative, no need to calculate area just use different ints to determine whether it is small/medium/large and so on
 	bool negligence;
 	int UID;//Unique identifer number
+
+	// -----------
+	// States 
+	// -----------
 	bool alive;
 	bool doesExplode;
 	bool isColliding;
-
+	// Set to true to kill the projectile on impact 
+	bool diesOnImpact;
 	// Used to determine if projectile should be drawn 
 	bool drawProj;
 
