@@ -413,7 +413,28 @@ void Player::checkCollision(Handlers* handlers){
 			setCollRec(&collRecY, locX, nextY);
 			setCollRec(&collRecXY, nextX, nextY);
 
-			// TODO 
+			std::list<Projectile*> projs = ((ProjectileHandler*)handlers->projHandler)->getProjList();
+			Point projp;
+
+			// Check all projectiles for collision 
+			for(std::list<Projectile*>::iterator myIterator = projs.begin(); myIterator != projs.end(); myIterator++)
+			{
+				// Null check 
+				if (*myIterator != NULL && (*myIterator)->getAlive()){
+					// TODO might need to check if player fired or enemy fired 
+
+					// Check for collision 
+					if (checkRecSeg(&collRecXY, 
+						(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
+						(*myIterator)->getPrevX(), (*myIterator)->getPrevY(), &projp)){
+
+						// Tell projectile we had a player collision 
+						(*myIterator)->collide(&projp, handlers, P_PLAYER_COLL);
+
+						// TODO Player related collision things 
+					}
+				}
+			}
 		}
 	}
 }

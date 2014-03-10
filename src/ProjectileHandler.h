@@ -19,6 +19,9 @@ public:
 	~ProjectileHandler();
 	//Constructor and Deconstructor
 
+	// Returns the projectile list
+	std::list<Projectile*> getProjList();
+
 	void addNewProjectile(Projectile* newProjectile);
 	void addProjectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode);
 	void updateProjectiles(float deltaTime);

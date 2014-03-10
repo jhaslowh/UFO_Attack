@@ -19,6 +19,10 @@ ProjectileHandler::~ProjectileHandler()
 }
 //Constructor and Deconstructor
 
+
+// Returns the projectile list
+std::list<Projectile*> ProjectileHandler::getProjList(){return projectiles;}
+
 //Pass in a constructor Projectile to be contained by the list
 void ProjectileHandler::addNewProjectile(Projectile* newProjectile)
 {

@@ -168,9 +168,17 @@ void Projectile::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	}
 }
 
-void Projectile::collide()
+// Called when projectile collides with something
+// CollType 
+// 1 = player collision
+// 2 = ground collision
+// 3 = enemy collision 
+//
+// p = point of collision 
+void Projectile::collide(Point* p, Handlers* handlers, int collType)
 {
-	//Please do collide stuff here, maybe set a variable for what it collides with, player/enemy/ground, and what side it collides on
+	// Please do collide stuff here, maybe set a variable for what 
+	// it collides with, player/enemy/ground, and what side it collides on.
 }
 
 short Projectile::getProjectileType()
@@ -185,6 +193,9 @@ float Projectile::getCurrentY()
 {
 	return currentY;
 }
+float Projectile::getPrevX(){return previousX;}
+float Projectile::getPrevY(){return previousY;}
+float getPrevY();
 bool Projectile::getNegligence()
 {
 	return negligence;

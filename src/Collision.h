@@ -13,6 +13,8 @@ float Signed2DTriArea(Point a, Point b, Point c);
 // *p = the point of intersection 
 bool checkSegSeg(Point a, Point b, Point c, Point d);
 bool checkSegSeg(Point a, Point b, Point c, Point d, Point* p);
+bool checkSegSeg(float a1, float a2, float b1, float b2, float c1, float c2, float d1, float d2);
+bool checkSegSeg(float a1, float a2, float b1, float b2, float c1, float c2, float d1, float d2, Point* p);
 
 // Check if two rectangles intersect
 bool checkRecRec(Rec* r1, Rec* r2);
@@ -20,6 +22,8 @@ bool checkRecRec(Rec* r1, Rec* r2);
 // Check if a rectangle intersects a line segment 
 bool checkRecSeg(Rec* r, Point a, Point b);
 bool checkRecSeg(Rec* r, Point a, Point b, Point* p);
+bool checkRecSeg(Rec* r, float a1, float a2, float b1, float b2);
+bool checkRecSeg(Rec* r, float a1, float a2, float b1, float b2, Point* p);
 
 // Find the distance between point a and b
 float dist(Point a, Point b);

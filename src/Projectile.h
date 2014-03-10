@@ -1,10 +1,10 @@
 #pragma once
-#include "GLHandler.h"
-#include "TextureAtlas.h"
-#include "GameAtlas.h"
 #include <glm/glm.hpp>
 #include <math.h>
-#include <iostream>
+#include "GLHandler.h"
+#include "GameAtlas.h"
+#include "Handlers.h"
+#include "Point.h"
 
 //Projectile Types Include
 //Type 1 = Bullet
@@ -17,6 +17,11 @@
 #define PROJT_NSMO 3
 #define PROJT_BEAM 4
 #define PROJT_TEST 5
+
+// Collision type definitions
+#define P_PLAYER_COLL 1
+#define P_GROUND_COLL 2
+#define P_ENEMY_COLL 3 
 
 class Projectile
 {
@@ -64,11 +69,14 @@ public:
 	// Draw projectile to screen
 	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
 
-	virtual void collide();
+	// Called when projectile collides with something
+	virtual void collide(Point* p, Handlers* handlers, int collType);
 
 	short getProjectileType();
 	float getCurrentX();
 	float getCurrentY();
+	float getPrevX();
+	float getPrevY();
 	bool getNegligence();
 	int getUID();
 	bool getAlive();
