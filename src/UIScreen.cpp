@@ -20,13 +20,15 @@ bool UIScreen::getHideOnClose(){return hideOnClose;}
 // Set hide time
 void UIScreen::setHideTime(float value){hideTime = value;}
 
+// Get the current screen transition request code 
+int UIScreen::getTransitionCode(){return transitionCode;}
+// Set transition value 
+void UIScreen::setTransitionValue(int value){transitionCode = value;}
+
 // Initialize screen
 void UIScreen::init(float screen_width, float screen_height){
 	// Nothing to do
 }
-
-// Get the current screen transition request code 
-int UIScreen::getTransitionCode(){return transitionCode;}
 
 // Load screen
 void UIScreen::load(TextureAtlas* mAtlas){

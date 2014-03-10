@@ -50,12 +50,13 @@ public:
 	virtual bool getHideOnClose();
 	// Set hide time
 	virtual void setHideTime(float value);
+	// Get the current screen transition request code 
+	virtual int getTransitionCode();
+	// Set transition value 
+	virtual void setTransitionValue(int value);
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height);
-
-	// Get the current screen transition request code 
-	virtual int getTransitionCode();
 
 	// Load screen
 	// Note: If textures need to be loaded, they must
