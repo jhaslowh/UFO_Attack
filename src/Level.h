@@ -14,6 +14,7 @@
 #include "Camera2D.h"
 #include "LevelProperties.h"
 #include "ProjectileHandler.h"
+#include "Sky.h"
 
 class Level
 {
@@ -24,6 +25,7 @@ class Level
 	ProjectileHandler* projHandler;
 	Camera2D camera;
 	LevelProperties levelProps;
+	Sky sky;
 
 	// States 
 	bool loaded;

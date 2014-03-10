@@ -268,7 +268,10 @@
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
     <ClInclude Include="UIComboBox.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Sky.h">
+      <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -465,7 +468,10 @@
       <Filter>Source Files\game\weap</Filter>
     </ClCompile>
     <ClCompile Include="UIComboBox.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Sky.cpp">
+      <Filter>Source Files\game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

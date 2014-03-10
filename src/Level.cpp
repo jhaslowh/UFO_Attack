@@ -16,6 +16,8 @@ Level::~Level(){
 
 // initialize level
 void Level::init(float screen_width, float screen_height){
+	// Setup sky 
+	sky.init(screen_width, screen_height);
 	// Create player 
 	player = new Player();
 	player->init(screen_width, screen_height);
@@ -97,6 +99,7 @@ void Level::unload(){
 
 // Update level state
 void Level::update(float deltaTime){
+	sky.update(deltaTime);
 	sceneryHandler->update(deltaTime, &handlers);
 	projHandler->updateProjectiles(deltaTime);
 
@@ -124,12 +127,15 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (!loaded)
 		load(mgl);
 
-	// Set camera 
-	mgl->setViewMatrix(camera.getMatrix());
-
 	// Bind Game Atlas buffers
 	gameAtlas.bindBuffers(mgl);
 	gameAtlas.bindTextureFast(mgl);
+
+	// Draw sky 
+	sky.draw(mgl, &gameAtlas);
+
+	// Set camera 
+	mgl->setViewMatrix(camera.getMatrix());
 
 	// Draw lights 
 	mgl->enableLight(true);

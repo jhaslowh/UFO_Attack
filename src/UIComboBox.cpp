@@ -160,7 +160,6 @@ bool UIComboBox::updateInputFocus(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		scrollbar->updateInput(mKeyH, mMouseH);
 		scrollbar->updateMouseScroll(mMouseH);
 		scrollOffset = scrollbar->getValue();
-		std::cout << scrollOffset << "\n";
 	}
 
 	// Check if expand button was clicked 

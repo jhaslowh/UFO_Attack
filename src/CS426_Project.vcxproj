@@ -52,6 +52,7 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="SettingsScreen.h" />
     <ClInclude Include="Sign.h" />
+    <ClInclude Include="Sky.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="StoreItem.h" />
     <ClInclude Include="StoreItems.h" />
@@ -119,6 +120,7 @@
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="SettingsScreen.cpp" />
     <ClCompile Include="Sign.cpp" />
+    <ClCompile Include="Sky.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StoreItem.cpp" />
     <ClCompile Include="StoreItems.cpp" />

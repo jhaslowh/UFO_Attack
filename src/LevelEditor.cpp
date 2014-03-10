@@ -147,19 +147,6 @@ void LevelEditor::update(float deltaTime, Handlers* handlers){
 
 // Update editor input
 void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
-	// Check for zoom 
-	if (mMouseH->scrollDown()){
-		camera->setZoom(camera->getZoom() - zoomPerScroll);
-	}
-	if (mMouseH->scrollUp()){
-		camera->setZoom(camera->getZoom() + zoomPerScroll);
-	}
-
-	// Get mouse location 
-	levelX = ((Camera2D*)(handlers->camera))->toLevelX(mMouseH->getX());
-	levelY = ((Camera2D*)(handlers->camera))->toLevelY(mMouseH->getY());
-	levelLoc.setLocation(levelX, levelY);
-	
 	// Turn on and off editor
 	if (mKeyH->keyReleased(KEY_1))
 	{
@@ -176,19 +163,30 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 			return;
 		}
 	}
-
-	// Grab mouse location 
-	mouseLoc.clear();
-	mouseLoc += "Mouse:  ";
-	mouseLoc += toString((int)mMouseH->getX());
-	mouseLoc += ". ";
-	mouseLoc += toString((int)mMouseH->getY());
-	mouseLoc += "\nLevel: ";
-	mouseLoc += toString((int)levelX);
-	mouseLoc += ". ";
-	mouseLoc += toString((int)levelY);
-
 	if (enabled){
+		// Check for zoom 
+		if (mMouseH->scrollDown()){
+			camera->setZoom(camera->getZoom() - zoomPerScroll);
+		}
+		if (mMouseH->scrollUp()){
+			camera->setZoom(camera->getZoom() + zoomPerScroll);
+		}
+
+		// Get mouse location 
+		levelX = ((Camera2D*)(handlers->camera))->toLevelX(mMouseH->getX());
+		levelY = ((Camera2D*)(handlers->camera))->toLevelY(mMouseH->getY());
+		levelLoc.setLocation(levelX, levelY);
+
+		// Grab mouse location 
+		mouseLoc.clear();
+		mouseLoc += "Mouse:  ";
+		mouseLoc += toString((int)mMouseH->getX());
+		mouseLoc += ". ";
+		mouseLoc += toString((int)mMouseH->getY());
+		mouseLoc += "\nLevel: ";
+		mouseLoc += toString((int)levelX);
+		mouseLoc += ". ";
+		mouseLoc += toString((int)levelY);
 		
 		// ---------------------- //
 		// Check UI Components 

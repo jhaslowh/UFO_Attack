@@ -10,6 +10,8 @@
 #define GI_HAY 2
 #define GI_CRATE 3
 #define GI_FENCE 4
+#define GI_SKY 5
+#define GI_SKY_GLOW 6
 
 class GameAtlas : public TextureAtlas
 {
