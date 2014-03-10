@@ -48,9 +48,6 @@ public:
 	// Update level state
 	void update(float deltaTime);
 
-	// Update the terrain list
-	void updateTerrain(float newX, float newY);
-
 	// Update input
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
 

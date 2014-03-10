@@ -144,7 +144,7 @@ void FreePlayScreen::updateTerrain(Handlers* handlers)
 				randomYHolder += (float)(((rand() % 50) - 25));
 			}
 			generatorCounter++;
-			level->updateTerrain(randomXHolder, randomYHolder);
+			tempGround->add(new Point(randomXHolder, randomYHolder));
 		}
 
 		// Fix level boundaries 

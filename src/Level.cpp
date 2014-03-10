@@ -110,12 +110,6 @@ void Level::update(float deltaTime){
 	camera.update(deltaTime);
 }
 
-// Update the terrain list
-void Level::updateTerrain(float newX, float newY)
-{
-	ground->add(new Point(newX, newY));
-}
-
 // Update input
 void Level::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	sceneryHandler->updateInput(mKeyH, mMouseH, &handlers);
@@ -131,40 +125,44 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	gameAtlas.bindBuffers(mgl);
 	gameAtlas.bindTextureFast(mgl);
 
-	// Draw sky 
-	sky.draw(mgl, &gameAtlas);
-
-	// Set camera 
-	mgl->setViewMatrix(camera.getMatrix());
-
+	// ------------------------------
 	// Draw lights 
-	mgl->enableLight(true);
 	mgl->lightBegin(
 		levelProps.getLight()[0], 
 		levelProps.getLight()[1],
 		levelProps.getLight()[2]);
 
 	// Draw Scenery Lights 
+	mgl->setViewMatrix(camera.getMatrix());
 	sceneryHandler->drawLight(mgl, &gameAtlas);
 
 	mgl->lightEnd();
-
-	// Set flat color back to white 
-	mgl->setFlatColor(COLOR_WHITE);
 	
-	sceneryHandler->draw(mgl, &gameAtlas);		// Uses GameAtlas 
-	projHandler->draw(mgl, &gameAtlas);			// Uses GameAtlas
+	// ------------------------------
+	// Enable lights 
+	mgl->enableLight(true);
 
-	player->draw(mgl);							// Uses PlayerAtlas
-	ground->draw(mgl);							// Uses 1 sprite and 1 custom sprite
-
+	// Draw sky 
+	mgl->setFlatColor(COLOR_WHITE);
 	mgl->setViewMatrix(glm::mat4());
-
-	// Draw player hud
-	player->drawHud(mgl);
-
+	sky.draw(mgl, &gameAtlas);
+	
+	// Draw level 
+	mgl->setFlatColor(COLOR_WHITE);
+	mgl->setViewMatrix(camera.getMatrix());
+	sceneryHandler->draw(mgl, &gameAtlas);		
+	projHandler->draw(mgl, &gameAtlas);			
+	player->draw(mgl);							
+	ground->draw(mgl);							
+	
 	// Disable lights 
 	mgl->enableLight(false);
+
+	// ------------------------------
+	// Draw player hud
+	mgl->setViewMatrix(glm::mat4());
+	player->drawHud(mgl);
+
 }
 
 // Draw level 
