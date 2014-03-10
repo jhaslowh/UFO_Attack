@@ -185,6 +185,18 @@ void loadSaveData(SaveData* sd){
 		token = getSetting(str, std::string("animal_abduct"));
 		if(token != "null") sd->setAnimalAbductCount(toInt(token));
 
+		// Load player starting weapons 
+		token = getSetting(str, std::string("pw1"));
+		if(token != "null") sd->setPlayerWeapon1(toInt(token));
+		token = getSetting(str, std::string("pw2"));
+		if(token != "null") sd->setPlayerWeapon2(toInt(token));
+
+		// Load ufo starting weapons 
+		token = getSetting(str, std::string("ufow1"));
+		if(token != "null") sd->setUFOWeapon1(toInt(token));
+		token = getSetting(str, std::string("ufow2"));
+		if(token != "null") sd->setUFOWeapon2(toInt(token));
+
 		std::cout << "Savedata loaded\n";
 	}
 	else 
@@ -214,6 +226,22 @@ void saveSaveData(SaveData* sd){
 	// Animal abduct count 
 	str += "animal_abduct ";
 	str += toString(sd->getAnimalAbductCount());
+	str += ";\n";
+
+	// Player starting weapons 
+	str += "pw1 ";
+	str += toString(sd->getPlayerWeapon1());
+	str += ";\n";
+	str += "pw2 ";
+	str += toString(sd->getPlayerWeapon2());
+	str += ";\n";
+	
+	// UFO starting weapons 
+	str += "ufow1 ";
+	str += toString(sd->getUFOWeapon1());
+	str += ";\n";
+	str += "ufow2 ";
+	str += toString(sd->getUFOWeapon2());
 	str += ";\n";
 
 	// Save 
