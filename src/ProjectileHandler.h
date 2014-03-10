@@ -24,7 +24,7 @@ public:
 
 	void addNewProjectile(Projectile* newProjectile);
 	void addProjectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode);
-	void updateProjectiles(float deltaTime);
+	void updateProjectiles(float deltaTime, Handlers* handlers);
 	void removeProjectile(Projectile* removeProjectile);
 	//main methods to interact with projectiles
 	//add projectile takes in same as constructor so it sets a current dead projectile to the new stats

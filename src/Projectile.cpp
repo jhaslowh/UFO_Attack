@@ -24,6 +24,7 @@ Projectile::Projectile()
 	alive = false;
 	doesExplode = false;
 	isColliding = false;
+	drawProj = false;
 }
 
 Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread)
@@ -43,6 +44,7 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int
 		negligence = false;
 	alive = true;
 	isColliding = false;
+	drawProj = false;
 }
 
 Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, float xLocation, float yLocation)
@@ -62,6 +64,7 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, flo
 		negligence = false;
 	alive = true;
 	isColliding = false;
+	drawProj = false;
 
 }
 //builds a default typed projectile, not to be used with projectile, only in inheritance
@@ -101,11 +104,12 @@ void Projectile::reset()
 	negligence = false;
 	alive = false;
 	doesExplode = false;
+	drawProj = false;
 }
 
 //UpdateProjectile does the heavier stuff for projectiles with complicated movement, and will handle collision detection
 //This will act as a default in case a projectile doesn't have its own updateProjectile method
-void Projectile::updateProjectile(float deltaTime)
+void Projectile::updateProjectile(float deltaTime, Handlers* handlers)
 {
 	//cout << "updatingP/n";
 	//cout << "yVector: " << yVector << " /n";
@@ -120,6 +124,15 @@ void Projectile::updateProjectile(float deltaTime)
 	currentY+=yVector*deltaTime;
 	//cout << "yVector: " << yVector << " /n";
 	//cout << "currentY: " << currentY << " /n";
+
+	// Check if projectile should be drawn 
+	Camera2D* cam = (Camera2D*)handlers->camera;
+	LevelProperties* levelProps = (LevelProperties*)handlers->levelProps;
+	if (cam->toScreenX(currentX) > -50 && cam->toScreenX(currentX) < levelProps->getScreenWidth() + 50 &&
+		cam->toScreenY(currentY) > -50 && cam->toScreenY(currentY) < levelProps->getScreenHeight() + 50)
+		drawProj = true;
+	else 
+		drawProj = false;
 }
 
 //This method does not need to be overloaded for different projectiles, it is the same for every unphysiced projectile
@@ -159,7 +172,7 @@ void Projectile::determineNegligance()
 
 // Draw projectile to screen
 void Projectile::draw(GLHandler* mgl, TextureAtlas* mAtlas){
-	if (alive){
+	if (alive && drawProj){
 		// Uncomment to draw 
 		mAtlas->draw(mgl, GI_CRATE, currentX, currentY, 0.3f, 0.0f, 12.5f, 12.5f);
 

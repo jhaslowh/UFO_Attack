@@ -5,6 +5,8 @@
 #include "GameAtlas.h"
 #include "Handlers.h"
 #include "Point.h"
+#include "LevelProperties.h"
+#include "Camera2D.h"
 
 //Projectile Types Include
 //Type 1 = Bullet
@@ -44,6 +46,9 @@ protected:
 	bool doesExplode;
 	bool isColliding;
 
+	// Used to determine if projectile should be drawn 
+	bool drawProj;
+
 public:
 	Projectile();
 	Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread);
@@ -62,7 +67,7 @@ public:
 	//Base update methods, to be inherited and edited within each projectile
 	//For different projectiles, if you ask how you want them to behave I can write their update methods
 	//IE: arc'ed projectile, beam, fast moving, light, heavy
-	void updateProjectile(float deltaTime);
+	void updateProjectile(float deltaTime, Handlers* handlers);
 	void updateNegligableProjectile(float deltaTime);
 	void determineNegligance();
 

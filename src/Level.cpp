@@ -101,7 +101,7 @@ void Level::unload(){
 void Level::update(float deltaTime){
 	sky.update(deltaTime);
 	sceneryHandler->update(deltaTime, &handlers);
-	projHandler->updateProjectiles(deltaTime);
+	projHandler->updateProjectiles(deltaTime, &handlers);
 
 	player->update(deltaTime, &handlers);
 	player->checkCollision(&handlers);

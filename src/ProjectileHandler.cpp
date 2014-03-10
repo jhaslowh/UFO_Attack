@@ -59,7 +59,7 @@ void ProjectileHandler::addProjectile(short ProjectileType, float CurrentX, floa
 
 }
 
-void ProjectileHandler::updateProjectiles(float deltaTime)
+void ProjectileHandler::updateProjectiles(float deltaTime, Handlers* handlers)
 {
 	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
 	{
@@ -74,7 +74,7 @@ void ProjectileHandler::updateProjectiles(float deltaTime)
 			else
 			{
 				//std::cout << "Physicsable";
-				(*myIterator)->updateProjectile(deltaTime);
+				(*myIterator)->updateProjectile(deltaTime, handlers);
 			}
 		}
 	}
