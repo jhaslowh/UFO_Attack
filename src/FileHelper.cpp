@@ -79,15 +79,15 @@ void loadSettings(Settings* s){
 
 		// Grab master volume 
 		token = getSetting(str, std::string("master_vol"));
-		if(token != "null") s->setMasterVol(toDouble(token));
+		if(token != "null") s->setMasterVol((float)toDouble(token));
 
 		// Grab music volume 
 		token = getSetting(str, std::string("music_vol"));
-		if(token != "null") s->setMusicVol(toDouble(token));
+		if(token != "null") s->setMusicVol((float)toDouble(token));
 
 		// Grab sfx volume 
 		token = getSetting(str, std::string("sfx_vol"));
-		if(token != "null") s->setSfxVol(toDouble(token));
+		if(token != "null") s->setSfxVol((float)toDouble(token));
 
 		std::cout << "Settings loaded\n";
 	}
@@ -170,7 +170,7 @@ void loadSaveData(SaveData* sd){
 		// Grab screen width 
 		token = getSetting(str, std::string("store_items"));
 		if(token != "null") {
-			for (int i = 0; i < token.length(); i++)
+			for (int i = 0; i < (int)token.length(); i++)
 			{
 				if (token[i] == '1')
 					sd->itemPurchsed(i);
