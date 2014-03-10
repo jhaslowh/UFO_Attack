@@ -200,8 +200,8 @@ void Projectile::collide(Point* p, Handlers* handlers, int collType)
 	// it collides with, player/enemy/ground, and what side it collides on.
 
 	// Kill if dies on impact
-	if (diesOnImpact)
-		alive = false;
+	//if (diesOnImpact)
+	//	alive = false;
 }
 
 short Projectile::getProjectileType(){return projectileType;}

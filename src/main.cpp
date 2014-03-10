@@ -1,5 +1,5 @@
 #ifdef WIN32
-// pragma to remove extra console window under windows
+//pragma to remove extra console window under windows
 //#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
 #endif
 
@@ -61,10 +61,27 @@ void free_resources()
 {
 	printf("Free Resources...\n");
 
-	// Delete textures 
-	screen->unload();
-	mUIAtlas->unload();
+	// Delete gscreens 
+	if (gscreen_unload != NULL){
+		gscreen_unload->unload();
+		delete gscreen_unload;
+		gscreen_unload = NULL;
+	}
+	if (gscreen != NULL){
+		gscreen->unload();
+		delete gscreen;
+		gscreen = NULL;
+	}
 
+	// Delete screen
+	if (screen != NULL){
+		screen->unload();
+		delete screen;
+		screen = NULL;
+	}
+
+	// Unload atlas 
+	mUIAtlas->unload();
 	// Unload program
 	glUseProgram(0);
 	// Unload GLHandler
@@ -74,7 +91,6 @@ void free_resources()
 
 	// Delete allocations 
 	delete mUIAtlas;
-	delete screen;
 	delete terminal;
 
 	// Save data 
@@ -286,10 +302,14 @@ void changeScreen(){
 
 	// Get transition code
 	int tcode = screen->getTransitionCode();
+	
 
 	if (tcode != NO_TRANSITION){
 		if (screen->getHideOnClose() && !screen->hidden())
 			return;
+		// Tell the screen there is no transition. 
+		// This must be done after the hide on close check. 
+		screen->setTransitionValue(NO_TRANSITION);
 
 		switch (tcode){
 		case NO_TRANSITION: 
@@ -306,28 +326,54 @@ void changeScreen(){
 			running = false;
 			break;
 		case SCREEN_MAIN:
+		case SCREEN_MAIN_SAVE_GAME:
 		case SCREEN_STORE:
 		case SCREEN_SETTINGS:
 		case SCREEN_FREE_PLAY:
-		case SCREEN_GAME:
+		case SCREEN_GAME_NEW:
+		case SCREEN_GAME_RESUME:
 
-			// Tell screen to unload 
-			unloadScreen = true;
-			// Wait for rendering and unload to finish
-			while (render || unloadScreen){} 
-			// Delete old screen 
-			delete screen;
+			// Delete screen if it is not game screen 
+			if (tcode != SCREEN_MAIN_SAVE_GAME){
+				// Tell screen to unload 
+				unloadScreen = true;
+				// Wait for rendering and unload to finish
+				while (render || unloadScreen){} 
+				// Delete old screen 
+				delete screen;
+				screen = NULL;
+			}
+			// Save game screen 
+			else {
+				gscreen = (GameScreen*)screen;
+				screen = NULL;
+			}
 
 			// Set new screen 
-			if (tcode == SCREEN_MAIN)		   screen = (UIScreen*)new MainScreen();
-			else if (tcode == SCREEN_STORE)    screen = (UIScreen*)new StoreScreen(savedata);
-			else if (tcode == SCREEN_SETTINGS) screen = (UIScreen*)new SettingsScreen(settings);
-			else if (tcode == SCREEN_FREE_PLAY) screen = (UIScreen*)new FreePlayScreen();
-			else if (tcode == SCREEN_GAME)	   screen = (UIScreen*)new GameScreen();
-			else screen = new UIScreen();
+			if (tcode == SCREEN_MAIN || 
+				tcode == SCREEN_MAIN_SAVE_GAME)	screen = (UIScreen*)new MainScreen();
+			else if (tcode == SCREEN_STORE)		screen = (UIScreen*)new StoreScreen(savedata);
+			else if (tcode == SCREEN_SETTINGS)	screen = (UIScreen*)new SettingsScreen(settings);
+			else if (tcode == SCREEN_FREE_PLAY)	screen = (UIScreen*)new FreePlayScreen();
+			else if (tcode == SCREEN_GAME_NEW) {
+				screen = (UIScreen*)new GameScreen();
+				gscreen_unload = gscreen;
+				gscreen = NULL;
+			}
 
-			// Initialize new screen 
-			screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+			if (screen != NULL)
+				screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+
+			// Resume game screen 
+			if (tcode == SCREEN_GAME_RESUME) {
+				if (gscreen != NULL)
+					screen = gscreen;
+				else {
+					screen = (UIScreen*)new GameScreen();
+					screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+				}
+			}
+
 			break;
 		default:
 			break;
@@ -356,6 +402,14 @@ void onDraw()
 		mUIAtlas->bindBuffers(&mgl);
 		mUIAtlas->bindTexture(&mgl);
 		terminal->draw(&mgl, mUIAtlas);
+	}
+
+	// Delete gamescreen if needed 
+	if (gscreen_unload != NULL)
+	{
+		gscreen_unload->unload();
+		delete gscreen_unload;
+		gscreen_unload = NULL;
 	}
 }
  

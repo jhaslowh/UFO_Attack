@@ -20,12 +20,14 @@
 // Screen codes used by main.cpp to switch screens. 
 #define SCREEN_LOAD 1
 #define SCREEN_MAIN 2
-#define SCREEN_STORE 3
-#define SCREEN_SETTINGS 4
-#define SCREEN_GAME 5
-#define SCREEN_LEVEL_SELECT 6
-#define SCREEN_QUIT 7
-#define SCREEN_FREE_PLAY 9
+#define SCREEN_MAIN_SAVE_GAME 3
+#define SCREEN_STORE 4
+#define SCREEN_SETTINGS 5
+#define SCREEN_GAME_NEW 6
+#define SCREEN_GAME_RESUME 7
+#define SCREEN_LEVEL_SELECT 8
+#define SCREEN_QUIT 9
+#define SCREEN_FREE_PLAY 10
 
 class UIScreen
 {

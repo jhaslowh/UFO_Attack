@@ -148,9 +148,9 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	sky.draw(mgl, &gameAtlas);
 	
 	// Draw level 
-	mgl->setFlatColor(COLOR_WHITE);
 	mgl->setViewMatrix(camera.getMatrix());
-	sceneryHandler->draw(mgl, &gameAtlas);		
+	mgl->setFlatColor(COLOR_WHITE);
+	sceneryHandler->draw(mgl, &gameAtlas);
 	projHandler->draw(mgl, &gameAtlas);			
 	player->draw(mgl);							
 	ground->draw(mgl);							

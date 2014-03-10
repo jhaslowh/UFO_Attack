@@ -33,7 +33,8 @@ Commands:
 - "screen main" : go to main menu screen  
 - "screen store" : go to store screen  
 - "screen settings" : go to settings screen  
-- "screen game" : go to game screen  
+- "screen game" : resume game screen  
+- "screen newgame" : make a new game screen  
 - "screen levelselect" : go to level select screen  
 - "screen freeplay" : go to free play screen   
 - "delete savedata" : delete savedata file and set to default values  

@@ -62,6 +62,8 @@ SaveData* savedata;
 SDL_Window* window;
 SDL_Thread* thread;
 UIScreen* screen = NULL;
+GameScreen* gscreen = NULL;
+GameScreen* gscreen_unload = NULL;
 UITerminal* terminal = NULL;
 bool showTerminal = false;
 

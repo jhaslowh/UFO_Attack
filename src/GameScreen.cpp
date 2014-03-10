@@ -72,8 +72,10 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		pauseScreen->updateInput(mKeyH, mMouseH);
 
 		// Check for quit
-		if (pauseScreen->getTransitionCode() == SCREEN_MAIN)
-			transitionCode = SCREEN_MAIN;
+		if (pauseScreen->getTransitionCode() == SCREEN_MAIN){
+			pauseScreen->setTransitionValue(NO_TRANSITION);
+			transitionCode = SCREEN_MAIN_SAVE_GAME;
+		}
 
 		// Check for pause/unpause
 		if (pauseScreen->getTransitionCode() == CLOSE_SCREEN ||

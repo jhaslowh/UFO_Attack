@@ -126,7 +126,14 @@ bool UIScreen::parseCommand(UITerminal* terminal, std::string command, std::stri
 		// Go to game
 		if (args == "game"){
 			terminal->addLine(command + " " + args, TL_SUCCESS);
-			transitionCode = SCREEN_GAME;
+			transitionCode = SCREEN_GAME_RESUME;
+			return true;
+		}
+
+		// Go to new game
+		if (args == "newgame"){
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			transitionCode = SCREEN_GAME_NEW;
 			return true;
 		}
 
