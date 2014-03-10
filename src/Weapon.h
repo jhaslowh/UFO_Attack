@@ -57,6 +57,11 @@ protected:
 	// Values used during maths
 	// ------------------------
 	float mTheta;
+	float weaponLocX, weaponLocY;
+	float spr;
+	float direcX, direcY;
+	float dispX, dispY;
+	float x, y;
 
 public:
 	Weapon(void);

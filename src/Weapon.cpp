@@ -153,30 +153,30 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 	// Fire shots 
 	for (int i = 0; i < bulletsPerShot; i++){
 		// Calculate weapon location 
-		float weaponLocX = locX;
-		float weaponLocY = locY - barrelOffset[1];
+		weaponLocX = locX;
+		weaponLocY = locY - barrelOffset[1];
 
 		// Get angle between weapon loc and target
 		mTheta = atan2((double)(targety - locY), (double)(targetx - locX));
 
 		// Apply spread to angle.
-		float spr = ((float)rand() / (float)RAND_MAX) * spread;
+		spr = ((float)rand() / (float)RAND_MAX) * spread;
 		if (rand() % 100 > 50)
 			mTheta += spr / 2.0f;
 		else 
 			mTheta -= spr / 2.0f;
 
 		// Convert angle to direction 
-		float direcX = cos(mTheta);
-		float direcY = sin(mTheta);
+		direcX = cos(mTheta);
+		direcY = sin(mTheta);
 
 		// Determin Displacement 
-		float dispX = ((float)rand() / (float)RAND_MAX) * horizontalDisplacement;
-		float dispY = ((float)rand() / (float)RAND_MAX) * verticalDisplacement;
+		dispX = ((float)rand() / (float)RAND_MAX) * horizontalDisplacement;
+		dispY = ((float)rand() / (float)RAND_MAX) * verticalDisplacement;
 
 		// Set the projectiles location as 
-		float x = weaponLocX + (direcX * (barrelOffset[0] + dispX));
-		float y = weaponLocY + (direcY * (barrelOffset[0] + dispX));
+		x = weaponLocX + (direcX * (barrelOffset[0] + dispX));
+		y = weaponLocY + (direcY * (barrelOffset[0] + dispX));
 		x += direcX * dispY;
 		y += direcY * dispY;
 
