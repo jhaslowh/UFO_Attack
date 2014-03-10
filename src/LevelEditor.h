@@ -16,6 +16,7 @@
 #include "AtlasSprite.h"
 #include "Crate.h"
 #include "Fence.h"
+#include "GLColors.h"
 
 // Level editor states
 #define LES_NONE 0
@@ -106,6 +107,7 @@ class LevelEditor
 	Camera2D* camera;
 	SceneryHandler* sceneryHandler;
 	LevelProperties* levelProps;
+	Ground* ground;
 
 public:
 	LevelEditor();

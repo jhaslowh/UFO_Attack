@@ -10,6 +10,8 @@ LevelProperties::LevelProperties()
 	light[0] = .5f;
 	light[1] = .5f;
 	light[2] = .5f;
+	screenWidth = 0.0f;
+	screenHeight = 0.0f;
 }
 
 LevelProperties::~LevelProperties(){}
@@ -46,3 +48,10 @@ void LevelProperties::setLight(float r, float g, float b){
 // Get level light
 // Length is 3. 
 float* LevelProperties::getLight(){return &light[0];}
+
+// Getters and setters for screen sizes 
+void LevelProperties::setScreenWidth(float w){screenWidth = w;}
+float LevelProperties::getScreenWidth(){return screenWidth;}
+void LevelProperties::setScreenHeight(float h){screenHeight = h;}
+float LevelProperties::getScreenHeight(){return screenHeight;}
+

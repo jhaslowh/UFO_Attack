@@ -28,6 +28,10 @@ void Level::init(float screen_width, float screen_height){
 	// Create proj handler 
 	projHandler = new ProjectileHandler();
 
+	// Give screen size to level properties 
+	levelProps.setScreenWidth(screen_width);
+	levelProps.setScreenHeight(screen_height);
+
 	// Set Handler references 
 	handlers.ground = ground;
 	handlers.sceneryHandler = sceneryHandler;

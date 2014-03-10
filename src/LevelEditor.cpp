@@ -40,6 +40,7 @@ void LevelEditor::setHandlers(Handlers* handlers){
 	camera = (Camera2D*)(handlers->camera);
 	sceneryHandler = (SceneryHandler*)(handlers->sceneryHandler);
 	levelProps = (LevelProperties*)(handlers->levelProps);
+	ground = (Ground*)handlers->ground;
 }
 
 // Check if turned on
@@ -464,17 +465,39 @@ void LevelEditor::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers
 // Draw editor 
 void LevelEditor::draw(GLHandler* mgl, UIAtlas* mUI){
 	if (enabled){
+		// Draw all ground points 
+		mgl->setFlatColor(COLOR_BLACK);
+		Point* itr = ground->getPoints();
+		float sx, sy;
+		while (itr != NULL){
+			// Convert point location to screen coords 
+			sx = camera->toScreenX(itr->getX());
+			sy = camera->toScreenY(itr->getY());
+
+			// Draw point if on screen 
+			if (sx >= 0 && sx <= levelProps->getScreenWidth() &&
+				sy >= 0 && sy <= levelProps->getScreenHeight())
+				mUI->draw(mgl, UII_POINT, sx, sy, 1.0f, 0.0f, 4.0f, 4.0f);
+
+			// move to next point
+			itr = itr->next;
+		}
+
+		// Draw selected point
 		mgl->setFlatColor(pointColor);
 		pointSprite.draw(mgl, mUI);
+		// Draw level boundary sprites
 		mgl->setFlatColor(1.0f,1.0f,1.0f,1.0f);
 		levelLeft.draw(mgl, mUI);
 		levelRight.draw(mgl, mUI);
 
+		// Draw editor text
 		mUI->mTextRender->drawText(*mgl,string("Editor on"), 120,5,0,25.0f);
 		mUI->mTextRender->drawText(*mgl,mouseLoc, 120,32.0f,0,25.0f);
 		mUI->mTextRender->drawText(*mgl,stateString, 120,88.0f,0,25.0f);
 	}
 
+	// Draw UI buttons 
 	bMove->draw(mgl, mUI);
 	bAdd->draw(mgl, mUI);
 	bRemove->draw(mgl, mUI);
