@@ -193,12 +193,14 @@ float Projectile::getPrevY(){return previousY;}
 bool Projectile::getNegligence(){return negligence;}
 int Projectile::getUID(){return UID;}
 bool Projectile::getAlive(){return alive;}
+float Projectile::getDamage(){return damage;}
 void Projectile::setUID(int newUID){UID = newUID;}
 void Projectile::setAlive(bool value){alive = value;}
 void Projectile::setImageId(int value){imageId = value;}
 void Projectile::setImageGlowId(int value){imageGlowId = value;}
 void Projectile::setOffset(float x, float y){offsetX = x; offsetY = y;}
 void Projectile::setGlowOffset(float x, float y){glowOffsetX = x; glowOffsetY = y;}
+void Projectile::setDamage(float value){damage = value;}
 
 // Setup basic values for all variables 
 void Projectile::initValues(){
@@ -223,4 +225,5 @@ void Projectile::initValues(){
 	imageGlowId = -1;
 	offsetX = offsetY = glowOffsetX = glowOffsetY = 0;
 	rotation = 0;
+	damage = 0.0f;
 }

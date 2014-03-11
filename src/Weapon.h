@@ -42,7 +42,8 @@ protected:
 	int firetype;
 	// To get the barrel of the weapon, get the cords of the end of the barrel
 	// relative to the sprite and subtrace the origin for it. 
-	float barrelOffset[2];			
+	float barrelOffset[2];	
+	float damage;
 	
 	// ---------------
 	// Muzzle flash

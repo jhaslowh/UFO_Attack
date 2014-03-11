@@ -26,6 +26,7 @@ Weapon::Weapon(void)
 	firetype = 0;
 	barrelOffset[0] = 0;
 	barrelOffset[0] = 1;
+	damage = 0.0f;
 
 	// Muzzle flash
 	muzzleImageId = -1;
@@ -186,6 +187,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		p->setImageGlowId(GI_PROJ_RED_GLOW);
 		p->setOffset(10.0f, 4.0f);
 		p->setGlowOffset(15.0f, 7.5f);
+		p->setDamage(damage);
 		((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(p));
 	}
 

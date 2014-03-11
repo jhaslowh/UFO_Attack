@@ -42,6 +42,7 @@ protected:
 	int size; //Size is relative, no need to calculate area just use different ints to determine whether it is small/medium/large and so on
 	bool negligence;
 	int UID;//Unique identifer number
+	float damage;
 
 	// --------------------
 	// Drawing properties 
@@ -103,6 +104,7 @@ public:
 	bool getNegligence();
 	int getUID();
 	bool getAlive();
+	float getDamage();
 	//Getter methods, 
 
 	void setUID(int newUID);
@@ -111,6 +113,7 @@ public:
 	void setImageGlowId(int value);
 	void setOffset(float x, float y);
 	void setGlowOffset(float x, float y);
+	void setDamage(float value);
 	//Setter methods 
 
 private:
