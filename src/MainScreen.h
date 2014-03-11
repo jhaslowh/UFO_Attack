@@ -8,13 +8,15 @@ class MainScreen : public UIScreen
 {
 	UIButton* buttonLevelSelect;
 	UIButton* buttonStore;
-	UIButton* buttonFreePlay;
+	UIButton* buttonEquip;
 	UIButton* buttonSettings;
+	UIButton* buttonResume;
 	UIButton* buttonQuit;
 	Sprite logo;
+	bool showResume;
 
 public:
-	MainScreen();
+	MainScreen(bool showResume);
 	virtual ~MainScreen();
 
 	// Initialize screen

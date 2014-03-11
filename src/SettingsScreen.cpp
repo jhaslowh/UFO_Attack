@@ -312,14 +312,14 @@ void SettingsScreen::parseResLine(std::string line){
 	// Find width 
 	int index = line.find(" ");
 	if (index == -1) return;
-	width = toDouble(line.substr(0,index));
+	width = (float)toDouble(line.substr(0,index));
 
 	// Cut off front of line 
 	line = line.substr(index+1, line.length());
 	line = line.substr(line.find(" ")+1, line.length());
 
-	height = toDouble(line);
+	height = (float)toDouble(line);
 
-	settings->setScreenWidth(width);
-	settings->setScreenHeight(height);
+	settings->setScreenWidth((int)width);
+	settings->setScreenHeight((int)height);
 }

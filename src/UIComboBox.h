@@ -63,7 +63,7 @@ class UIComboBox : public UITransitionObject
 	float textSize;
 
 public:
-	UIComboBox(int x, int y);
+	UIComboBox(float x, float y);
 	virtual ~UIComboBox();
 
 	// Set combobox items 

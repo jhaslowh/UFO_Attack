@@ -1,7 +1,7 @@
 #include "UIComboBox.h"
 
 
-UIComboBox::UIComboBox(int x, int y) : UITransitionObject(){
+UIComboBox::UIComboBox(float x, float y) : UITransitionObject(){
 	// Set parent properties
 	loc_x = x;
 	loc_y = y;
@@ -182,7 +182,7 @@ bool UIComboBox::updateInputFocus(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	if (showScrollBar){
 		scrollbar->updateInput(mKeyH, mMouseH);
 		scrollbar->updateMouseScroll(mMouseH);
-		scrollOffset = scrollbar->getValue();
+		scrollOffset = (int)scrollbar->getValue();
 	}
 
 	// Check if expand button was clicked 

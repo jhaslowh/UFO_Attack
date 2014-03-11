@@ -114,7 +114,7 @@ void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 	//   Parent class that calls this (UFO or Player should grab the 
 	//   rotation if it is needed. (Player needs to rotate arm)
 	// Get angle 
-	mTheta = atan2((double)(targetY - locY), (double)(targetX - locX));
+	mTheta = (float)atan2((double)(targetY - locY), (double)(targetX - locX));
 	// Set rotation
 	rotation = (float)(mTheta * (180.0f / 3.14159f));
 
@@ -163,7 +163,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		weaponLocY = locY - barrelOffset[1];
 
 		// Get angle between weapon loc and target
-		mTheta = atan2((double)(targety - locY), (double)(targetx - locX));
+		mTheta = (float)atan2((double)(targety - locY), (double)(targetx - locX));
 
 		// Apply spread to angle.
 		spr = ((float)rand() / (float)RAND_MAX) * spread;
@@ -187,7 +187,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		y += direcY * dispY;
 
 		// Add projectile to list in handlers 
-		Projectile* p = new BulletProjectile(x, y, projTemp.speed, true, direcX, direcY);
+		Projectile* p = new BulletProjectile(x, y, (int)projTemp.speed, true, direcX, direcY);
 		p->setImageId(projTemp.imageId);
 		p->setImageGlowId(projTemp.glowImageId);
 		p->setOffset(projTemp.imageOrigin[0], projTemp.imageOrigin[1]);

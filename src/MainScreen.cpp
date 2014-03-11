@@ -1,16 +1,19 @@
 #include "MainScreen.h"
 
 
-MainScreen::MainScreen() : UIScreen(){
+MainScreen::MainScreen(bool showResume) : UIScreen(){
+	buttonResume = NULL;
 	hideOnClose = true;
+	this->showResume = showResume;
 }
 
 MainScreen::~MainScreen(){
 	delete buttonLevelSelect;
 	delete buttonStore;
-	delete buttonFreePlay;
+	delete buttonEquip;
 	delete buttonSettings;
 	delete buttonQuit;
+	delete buttonResume;
 }
 
 // Initialize screen
@@ -21,9 +24,9 @@ void MainScreen::init(float screen_width, float screen_height){
 	buttonLevelSelect->setupHide(HT_VERTICAL,buttonLevelSelect->getY()+100.0f,hideTime,true);
 	buttonLevelSelect->setHidden();
 
-	buttonFreePlay = new UIButton(screen_width *.5f + 3.0f,screen_height *.5f,100.0f,35.0f, std::string("Free Play"));
-	buttonFreePlay->setupHide(HT_VERTICAL,buttonFreePlay->getY()+120.0f,hideTime,true);
-	buttonFreePlay->setHidden();
+	buttonEquip = new UIButton(screen_width *.5f + 3.0f,screen_height *.5f,100.0f,35.0f, std::string("Equip"));
+	buttonEquip->setupHide(HT_VERTICAL,buttonEquip->getY()+120.0f,hideTime,true);
+	buttonEquip->setHidden();
 
 	buttonStore = new UIButton(screen_width *.5f - 103.0f,(screen_height *.5f) + 40.0f,100.0f,35.0f, std::string("Store"));
 	buttonStore->setupHide(HT_VERTICAL,buttonStore->getY()+160.0f,hideTime,true);
@@ -33,9 +36,21 @@ void MainScreen::init(float screen_width, float screen_height){
 	buttonSettings->setupHide(HT_VERTICAL,buttonSettings->getY()+190.0f,hideTime,true);
 	buttonSettings->setHidden();
 
-	buttonQuit = new UIButton(screen_width *.5f - 50.0f,(screen_height *.5f) + 80.0f,100.0f,35.0f, std::string("Quit"));
-	buttonQuit->setupHide(HT_VERTICAL,buttonQuit->getY()+200.0f,hideTime,true);
-	buttonQuit->setHidden();
+	if (showResume)
+	{
+		buttonResume = new UIButton(screen_width *.5f - 103.0f,(screen_height *.5f) + 80.0f,100.0f,35.0f, std::string("Resume"));
+		buttonResume->setupHide(HT_VERTICAL,buttonResume->getY()+280.0f,hideTime,true);
+		buttonResume->setHidden();
+
+		buttonQuit = new UIButton(screen_width *.5f + 3.0f,(screen_height *.5f) + 80.0f,100.0f,35.0f, std::string("Quit"));
+		buttonQuit->setupHide(HT_VERTICAL,buttonQuit->getY()+200.0f,hideTime,true);
+		buttonQuit->setHidden();
+	}
+	else {
+		buttonQuit = new UIButton(screen_width *.5f - 50.0f,(screen_height *.5f) + 80.0f,100.0f,35.0f, std::string("Quit"));
+		buttonQuit->setupHide(HT_VERTICAL,buttonQuit->getY()+200.0f,hideTime,true);
+		buttonQuit->setHidden();
+	}
 
 	logo.setPosition(screen_width * .5f, screen_height * .5f - 150.0f);
 	logo.setOrigin(256.0f, 128.0f);
@@ -48,8 +63,10 @@ void MainScreen::load(TextureAtlas* mAtlas){
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 	buttonLevelSelect->centerText(mUI->mTextRender);
 	buttonStore->centerText(mUI->mTextRender);
-	buttonFreePlay->centerText(mUI->mTextRender);
+	buttonEquip->centerText(mUI->mTextRender);
 	buttonSettings->centerText(mUI->mTextRender);
+	if (buttonResume != NULL) 
+		buttonResume->centerText(mUI->mTextRender);
 	buttonQuit->centerText(mUI->mTextRender);
 
 	logo.setup(512.0f, 256.0f, "images/logo.png");
@@ -63,9 +80,11 @@ void MainScreen::update(float deltaTime){
 
 	buttonLevelSelect->update(deltaTime);
 	buttonStore->update(deltaTime);
-	buttonFreePlay->update(deltaTime);
+	buttonEquip->update(deltaTime);
 	buttonSettings->update(deltaTime);
 	buttonQuit->update(deltaTime);
+	if (buttonResume != NULL) 
+		buttonResume->update(deltaTime);
 	
 	logo.setAlpha(buttonQuit->getColor()[3]);
 }
@@ -77,8 +96,10 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	buttonLevelSelect->updateInput(mKeyH, mMouseH);
 	buttonStore->updateInput(mKeyH, mMouseH);
 	buttonSettings->updateInput(mKeyH, mMouseH);
-	buttonFreePlay->updateInput(mKeyH, mMouseH);
+	buttonEquip->updateInput(mKeyH, mMouseH);
 	buttonQuit->updateInput(mKeyH, mMouseH);
+	if (buttonResume != NULL)
+		buttonResume->updateInput(mKeyH, mMouseH);
 
 	// Close game
 	if (buttonQuit->wasClicked()){
@@ -91,9 +112,9 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		hide();
 	}
 	// Go to free play screen
-	if (buttonFreePlay->wasClicked()){
-		transitionCode = SCREEN_FREE_PLAY;
-		hide();
+	if (buttonEquip->wasClicked()){
+		//transitionCode = ;
+		//hide();
 	}
 	// Go to store 
 	if (buttonStore->wasClicked()){
@@ -104,7 +125,12 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// TODO this should be level select, but will be 
 	// this until level select is implemented.
 	if (buttonLevelSelect->wasClicked()){
-		transitionCode = SCREEN_GAME_RESUME; 
+		transitionCode = SCREEN_GAME_NEW; 
+		hide();
+	}
+
+	if (buttonResume != NULL && buttonResume->wasClicked()) {
+		transitionCode = SCREEN_GAME_RESUME;
 		hide();
 	}
 }
@@ -126,9 +152,11 @@ void MainScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 
 	buttonLevelSelect->draw(mgl, mUI);
 	buttonStore->draw(mgl, mUI);
-	buttonFreePlay->draw(mgl, mUI);
+	buttonEquip->draw(mgl, mUI);
 	buttonSettings->draw(mgl, mUI);
 	buttonQuit->draw(mgl, mUI);
+	if (buttonResume != NULL)
+		buttonResume->draw(mgl, mUI);
 }
 
 // Hide the entire screen.
@@ -139,9 +167,11 @@ void MainScreen::hide(){
 
 	buttonLevelSelect->hide();
 	buttonStore->hide();
-	buttonFreePlay->hide();
+	buttonEquip->hide();
 	buttonSettings->hide();
 	buttonQuit->hide();
+	if (buttonResume != NULL)
+		buttonResume->hide();
 }
 
 // Show the entire screen.
@@ -153,7 +183,9 @@ void MainScreen::show(){
 	buttonLevelSelect->show();
 	buttonStore->show();
 	buttonSettings->show();
-	buttonFreePlay->show();
+	buttonEquip->show();
 	buttonQuit->show();
+	if (buttonResume != NULL)
+		buttonResume->show();
 }
 

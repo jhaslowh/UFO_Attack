@@ -351,7 +351,7 @@ void changeScreen(){
 
 			// Set new screen 
 			if (tcode == SCREEN_MAIN || 
-				tcode == SCREEN_MAIN_SAVE_GAME)	screen = (UIScreen*)new MainScreen();
+				tcode == SCREEN_MAIN_SAVE_GAME)	screen = (UIScreen*)new MainScreen(gscreen != NULL);
 			else if (tcode == SCREEN_STORE)		screen = (UIScreen*)new StoreScreen(savedata);
 			else if (tcode == SCREEN_SETTINGS)	screen = (UIScreen*)new SettingsScreen(settings);
 			else if (tcode == SCREEN_FREE_PLAY)	screen = (UIScreen*)new FreePlayScreen();
