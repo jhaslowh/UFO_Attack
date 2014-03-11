@@ -12,6 +12,8 @@
 #define GI_FENCE 4
 #define GI_SKY 5
 #define GI_SKY_GLOW 6
+#define GI_PROJ_RED 7
+#define GI_PROJ_RED_GLOW 8 
 
 class GameAtlas : public TextureAtlas
 {

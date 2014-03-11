@@ -32,6 +32,8 @@ public:
 
 	// Draw all projectiles 
 	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+	// Draw all projectiles lights 
+	void drawLight(GLHandler* mgl, TextureAtlas* mAtlas);
 
 	void cleanUp();
 	//Handles clean up of the list

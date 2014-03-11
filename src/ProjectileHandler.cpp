@@ -93,8 +93,17 @@ void ProjectileHandler::removeProjectile(Projectile* removeProjectile)
 void ProjectileHandler::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
 	{
-		if(*myIterator != NULL && (*myIterator)->getAlive())
+		if(*myIterator != NULL)
 			(*myIterator)->draw(mgl, mAtlas);
+	}
+}
+
+// Draw all projectiles lights 
+void ProjectileHandler::drawLight(GLHandler* mgl, TextureAtlas* mAtlas){
+	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
+	{
+		if(*myIterator != NULL)
+			(*myIterator)->drawLight(mgl, mAtlas);
 	}
 }
 

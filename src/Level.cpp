@@ -134,7 +134,9 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 
 	// Draw Scenery Lights 
 	mgl->setViewMatrix(camera.getMatrix());
+	mgl->setFlatColor(COLOR_WHITE);
 	sceneryHandler->drawLight(mgl, &gameAtlas);
+	projHandler->drawLight(mgl, &gameAtlas);
 
 	mgl->lightEnd();
 	
@@ -162,7 +164,6 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Draw player hud
 	mgl->setViewMatrix(glm::mat4());
 	player->drawHud(mgl);
-
 }
 
 // Draw level 

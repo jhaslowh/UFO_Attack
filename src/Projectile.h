@@ -43,6 +43,18 @@ protected:
 	bool negligence;
 	int UID;//Unique identifer number
 
+	// --------------------
+	// Drawing properties 
+	// --------------------
+
+	int imageId;
+	int imageGlowId;
+	float offsetX, offsetY;
+	float glowOffsetX, glowOffsetY;
+	// Used to determine if projectile should be drawn 
+	bool drawProj;
+	float rotation;
+
 	// -----------
 	// States 
 	// -----------
@@ -51,8 +63,6 @@ protected:
 	bool isColliding;
 	// Set to true to kill the projectile on impact 
 	bool diesOnImpact;
-	// Used to determine if projectile should be drawn 
-	bool drawProj;
 
 public:
 	Projectile();
@@ -79,6 +89,9 @@ public:
 	// Draw projectile to screen
 	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
 
+	// Draw projectile light to screen
+	virtual void drawLight(GLHandler* mgl, TextureAtlas* mAtlas);
+
 	// Called when projectile collides with something
 	virtual void collide(Point* p, Handlers* handlers, int collType);
 
@@ -94,6 +107,14 @@ public:
 
 	void setUID(int newUID);
 	void setAlive(bool value);
+	void setImageId(int value);
+	void setImageGlowId(int value);
+	void setOffset(float x, float y);
+	void setGlowOffset(float x, float y);
 	//Setter methods 
-	
+
+private:
+
+	// Setup basic values for all variables 
+	void initValues();
 };

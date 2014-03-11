@@ -9,34 +9,19 @@ using namespace std;
 
 Projectile::Projectile()
 {
-	projectileType = PROJT_TEST;
-	previousX = 0.0f;
-	previousY = 0.0f;
-	currentX = 0.0f;
-	currentY = 0.0f;
-	xVector = 0.0f;
-	yVector = 0.0f;
-	spread = 0;
-	speed = 200;
-	mass = 0;
-	size = 0;
-	negligence = true;
-	alive = false;
-	doesExplode = false;
-	isColliding = false;
-	diesOnImpact = true;
-	drawProj = false;
+	initValues();
 }
 
 Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread)
 {
+	initValues();
+
 	projectileType = ProjectileType;
 	previousX = CurrentX;
 	previousY = CurrentY;
 	currentX = CurrentX;
 	currentY = CurrentY;
 	spread = Spread;
-	speed = 200;
 	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
@@ -45,19 +30,17 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int
 	if(projectileType == PROJT_BULLET || projectileType == PROJT_BEAM || projectileType == PROJT_TEST)
 		negligence = false;
 	alive = true;
-	isColliding = false;
-	diesOnImpact = true;
-	drawProj = false;
 }
 
 Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, float xLocation, float yLocation)
 {
+	initValues();
+
 	projectileType = ProjectileType;
 	previousX = CurrentX;
 	previousY = CurrentY;
 	currentX = CurrentX;
 	currentY = CurrentY;
-	speed = 200;
 	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
@@ -66,17 +49,11 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, flo
 	if(projectileType == PROJT_BULLET || projectileType == PROJT_BEAM || projectileType == PROJT_TEST)
 		negligence = false;
 	alive = true;
-	isColliding = false;
-	diesOnImpact = true;
-	drawProj = false;
 
 }
 //builds a default typed projectile, not to be used with projectile, only in inheritance
 
-Projectile::~Projectile()
-{
-
-}
+Projectile::~Projectile(){}
 
 // Clone all the properties from the sent projectiles into this one
 void Projectile::clone(Projectile* p){
@@ -93,24 +70,18 @@ void Projectile::clone(Projectile* p){
 	alive = true;
 	doesExplode = p->doesExplode;
 	diesOnImpact = p->diesOnImpact;
+	imageId = p->imageId;
+	imageGlowId = p->imageGlowId;
+	offsetX = p->offsetX;
+	offsetY = p->offsetY;
+	glowOffsetX = p->glowOffsetX;
+	glowOffsetY = p->glowOffsetY;
+	rotation = p->rotation;
 }
 
 void Projectile::reset()
 {
-	projectileType = 0;
-	previousX = 0.0f;
-	previousY = 0.0f;
-	currentX = 0.0f;
-	currentY = 0.0f;
-	xVector = 0.0f;
-	yVector = 0.0f;
-	mass = 0;
-	size = 0;
-	negligence = false;
-	alive = false;
-	doesExplode = false;
-	diesOnImpact = true;
-	drawProj = false;
+	initValues();
 }
 
 //UpdateProjectile does the heavier stuff for projectiles with complicated movement, and will handle collision detection
@@ -139,12 +110,15 @@ void Projectile::updateProjectile(float deltaTime, Handlers* handlers)
 		drawProj = true;
 	else 
 		drawProj = false;
+
+	// Fix projectile rotation 
+	rotation = (180.0f/3.14159f) * atan2(currentY - previousY, currentX - previousX);
 }
 
 //This method does not need to be overloaded for different projectiles, it is the same for every unphysiced projectile
 void Projectile::updateNegligableProjectile(float deltaTime)
 {
-	cout << "negP";
+	//cout << "negP";
 	previousY = currentY;
 	previousX = currentX;
 	currentX+=xVector*deltaTime;
@@ -180,10 +154,17 @@ void Projectile::determineNegligance()
 void Projectile::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (alive && drawProj){
 		// Uncomment to draw 
-		mAtlas->draw(mgl, GI_CRATE, currentX, currentY, 0.3f, 0.0f, 12.5f, 12.5f);
+		mAtlas->draw(mgl, imageId, currentX, currentY, 1.0f, rotation, offsetX, offsetY);
 
 		// You will want to change this to 
 		//mAtlas->draw(mgl, [Item index to draw], currentX, currentY, 1.0f, [rotation], [origin x], [origin y]);
+	}
+}
+
+// Draw projectile light to screen
+void Projectile::drawLight(GLHandler* mgl, TextureAtlas* mAtlas){
+	if (alive && drawProj && imageGlowId != -1){
+		mAtlas->draw(mgl, imageGlowId, currentX, currentY, 1.0f, rotation, glowOffsetX, glowOffsetY);
 	}
 }
 
@@ -214,3 +195,32 @@ int Projectile::getUID(){return UID;}
 bool Projectile::getAlive(){return alive;}
 void Projectile::setUID(int newUID){UID = newUID;}
 void Projectile::setAlive(bool value){alive = value;}
+void Projectile::setImageId(int value){imageId = value;}
+void Projectile::setImageGlowId(int value){imageGlowId = value;}
+void Projectile::setOffset(float x, float y){offsetX = x; offsetY = y;}
+void Projectile::setGlowOffset(float x, float y){glowOffsetX = x; glowOffsetY = y;}
+
+// Setup basic values for all variables 
+void Projectile::initValues(){
+	projectileType = PROJT_TEST;
+	previousX = 0.0f;
+	previousY = 0.0f;
+	currentX = 0.0f;
+	currentY = 0.0f;
+	xVector = 0.0f;
+	yVector = 0.0f;
+	spread = 0;
+	speed = 200;
+	mass = 0;
+	size = 0;
+	negligence = false;
+	alive = false;
+	doesExplode = false;
+	isColliding = false;
+	diesOnImpact = true;
+	drawProj = false;
+	imageId = 0;
+	imageGlowId = -1;
+	offsetX = offsetY = glowOffsetX = glowOffsetY = 0;
+	rotation = 0;
+}

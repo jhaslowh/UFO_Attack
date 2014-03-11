@@ -181,9 +181,12 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		y += direcY * dispY;
 
 		// Add projectile to list in handlers 
-		//((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(new NSMOProjectile(weaponLocX, weaponLocY, targetx, targety)));
-		((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(
-			new BulletProjectile(x, y, 1000.0f, true, direcX, direcY)));
+		Projectile* p = new BulletProjectile(x, y, 700.0f, true, direcX, direcY);
+		p->setImageId(GI_PROJ_RED);
+		p->setImageGlowId(GI_PROJ_RED_GLOW);
+		p->setOffset(10.0f, 4.0f);
+		p->setGlowOffset(15.0f, 7.5f);
+		((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(p));
 	}
 
 	// Subtract shot from clip
