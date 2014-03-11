@@ -107,7 +107,7 @@ void StoreScreen::init(float screen_width, float screen_height){
 	// Set locations
 	storeItemHeight = (mStoreBoxes[0].getHeight() + 5.0f);
 	storeItemsTop = menuY;
-	storeItemsBottom = menuY + (4.5 * storeItemHeight);
+	storeItemsBottom = menuY + (float)(4.5 * storeItemHeight);
 	storeItemsMin = menuY - ((STORE_ITEM_COUNT-5) * storeItemHeight);
 	storeItemsLoc = storeItemsTop;
 

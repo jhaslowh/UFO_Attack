@@ -28,7 +28,7 @@ MissileProjectile::MissileProjectile(float CurrentX, float CurrentY, int Mass, i
 	currentX = CurrentX;
 	currentY = CurrentY;
 	spread = Spread;
-	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
+	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
 	mass = 40;
@@ -47,7 +47,7 @@ MissileProjectile::MissileProjectile(float CurrentX, float CurrentY, float xLoca
 	currentY = CurrentY;
 	speed = 500;
 	spread = 80;
-	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
+	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
 	mass = 40;

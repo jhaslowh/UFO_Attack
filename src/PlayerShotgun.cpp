@@ -11,11 +11,11 @@ PlayerShotgun::PlayerShotgun(): Weapon()
 	typeId = PI_GUN_SHOTGUN;
 	clipCapacity = 15;
 	clip = clipCapacity;
-	spread = .2; // In radians
+	spread = .2f; // In radians
 	verticalDisplacement = 0;
 	horizontalDisplacement = 15;
 	bulletsPerShot = 6;
-	reloadTime = 0.8;
+	reloadTime = 0.8f;
 	timeBetweenShots = 0.01f;
 	firetype = FIRETYPE_SINGLE;
 	barrelOffset[0] = 36;

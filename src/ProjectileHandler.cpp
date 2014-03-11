@@ -29,7 +29,7 @@ void ProjectileHandler::addNewProjectile(Projectile* newProjectile)
 	int skipped = 0;
 
 	// Add until dead or limit reached 
-	while (skipped < projectiles.size()){
+	while (skipped < (int)projectiles.size()){
 		// If current projectile is dead, add in place
 		if (!(*addIndex)->getAlive()){
 			(*addIndex)->clone(newProjectile);

@@ -15,7 +15,7 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	verticalDisplacement = 0;
 	horizontalDisplacement = 0;
 	bulletsPerShot = 1;
-	reloadTime = 0.2;
+	reloadTime = 0.2f;
 	timeBetweenShots = 0.1f;
 	firetype = FIRETYPE_SINGLE;
 	barrelOffset[0] = 22;
@@ -27,7 +27,7 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	muzzleImageId = PI_GUN_LASER_MUZ;
 	muzzleOrigin[0] = 0;
 	muzzleOrigin[1] = 6;
-	flashTime = 0.1;
+	flashTime = 0.1f;
 
 	// Setup projectile 
 	projTemp.speed = 700.0f;

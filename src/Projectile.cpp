@@ -22,7 +22,7 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int
 	currentX = CurrentX;
 	currentY = CurrentY;
 	spread = Spread;
-	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
+	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
 	mass = Mass;
@@ -41,11 +41,11 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, flo
 	previousY = CurrentY;
 	currentX = CurrentX;
 	currentY = CurrentY;
-	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
+	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
 	mass = 1;
-	size = .5;
+	size = 1;// .5;
 	if(projectileType == PROJT_BULLET || projectileType == PROJT_BEAM || projectileType == PROJT_TEST)
 		negligence = false;
 	alive = true;

@@ -11,11 +11,11 @@ PlayerSMG::PlayerSMG()
 	typeId = PI_GUN_SMG;
 	clipCapacity = 45;
 	clip = clipCapacity;
-	spread = .04; // In radians
+	spread = .04f; // In radians
 	verticalDisplacement = 0;
 	horizontalDisplacement = 15;
 	bulletsPerShot = 1;
-	reloadTime = 0.8;
+	reloadTime = 0.8f;
 	timeBetweenShots = 0.07f;
 	firetype = FIRETYPE_RAPID;
 	barrelOffset[0] = 30;
@@ -27,7 +27,7 @@ PlayerSMG::PlayerSMG()
 	muzzleImageId = PI_GUN_SHOTGUN_MUZ;
 	muzzleOrigin[0] = 0;
 	muzzleOrigin[1] = 6;
-	flashTime = 0.05;
+	flashTime = 0.05f;
 
 	// Setup projectile 
 	projTemp.speed = 700.0f;

@@ -141,7 +141,7 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 	}
 	// Set the light for the level
 	else if (command == "setlight"){
-		float value = toDouble(args);
+		float value = (float)toDouble(args);
 
 		if (value >= 0 && value <= 1){
 			((LevelProperties*)level->handlers.levelProps)->setLight(value, value, value);
@@ -176,7 +176,7 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		}
 
 		// Set zoom and return 
-		((Camera2D*)level->handlers.camera)->setZoom(zoom);
+		((Camera2D*)level->handlers.camera)->setZoom((float)zoom);
 		terminal->addLine(command + " " + args, TL_SUCCESS);
 		return true;
 	}
@@ -190,14 +190,14 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		// Check for damage player 
 		if (subCommand == "player"){
 			double damage = toDouble(subArgs);
-			((Player*)(level->handlers.player))->applyDamage(damage);
+			((Player*)(level->handlers.player))->applyDamage((float)damage);
 			terminal->addLine(command + " " + args, TL_SUCCESS);
 			return true;
 		}
 		// Check for damage ufo 
 		else if (subCommand == "ufo"){
 			double damage = toDouble(subArgs);
-			((Player*)(level->handlers.player))->ufo->applyDamage(damage);
+			((Player*)(level->handlers.player))->ufo->applyDamage((float)damage);
 			terminal->addLine(command + " " + args, TL_SUCCESS);
 			return true;
 		}
