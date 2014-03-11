@@ -192,7 +192,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		p->setImageGlowId(GI_PROJ_RED_GLOW);
 		p->setOffset(10.0f, 4.0f);
 		p->setGlowOffset(15.0f, 7.5f);
-		p->setDamage(damage);
+		p->setDamage(damage/(float)bulletsPerShot);
 
 		if (isPlayerWeapon)
 			p->setFiredBy(PFB_PLAYER);

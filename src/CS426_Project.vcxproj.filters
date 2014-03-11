@@ -273,6 +273,9 @@
     <ClInclude Include="Sky.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerSMG.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -472,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="Sky.cpp">
       <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSMG.cpp">
+      <Filter>Source Files\game\weap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

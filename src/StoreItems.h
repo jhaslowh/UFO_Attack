@@ -26,6 +26,8 @@ namespace StoreItems{
 
 	// Index numbers for store items 
 	extern const int SID_PLAYER_WEAPON_LASER;
+	extern const int SID_PLAYER_WEAPON_SHOTGUN;
+	extern const int SID_PLAYER_WEAPON_SMG;
 	extern const int SID_UFO_ARMOR_1;		// First ufo armor upgrade
 	extern const int SID_UFO_ARMOR_2;		// Second ufo armor upgrade 
 	extern const int SID_UFO_WEAPON_LASER;	// UFO laser weapon 

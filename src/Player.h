@@ -15,6 +15,7 @@
 #include "Weapon.h"
 #include "PlayerLaserGun.h"
 #include "PlayerShotgun.h"
+#include "PlayerSMG.h"
 
 #define GRAVITY 980.0f
 

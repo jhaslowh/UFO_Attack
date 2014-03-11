@@ -10,7 +10,7 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	// Weapon properties 
 	typeId = PI_GUN_LASER;
 	clipCapacity = 15;
-	clip = 15;
+	clip = clipCapacity;
 	spread = 0; // In radians
 	verticalDisplacement = 0;
 	horizontalDisplacement = 0;
@@ -25,8 +25,6 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 
 	// Muzzle flash
 	muzzleImageId = PI_GUN_LASER_MUZ;
-	muzzleOffset[0] = 0;
-	muzzleOffset[1] = 0;
 	muzzleOrigin[0] = 0;
 	muzzleOrigin[1] = 6;
 	flashTime = 0.1;
