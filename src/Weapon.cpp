@@ -27,6 +27,7 @@ Weapon::Weapon(void)
 	barrelOffset[0] = 0;
 	barrelOffset[0] = 1;
 	damage = 0.0f;
+	isPlayerWeapon = false;
 
 	// Muzzle flash
 	muzzleImageId = -1;
@@ -53,6 +54,10 @@ float Weapon::getRotation(){
 void Weapon::setFacingDirec(bool value){lookingRight = value;}
 // Get the facing direction of the weapon
 bool Weapon::getFacingDirecton(){return lookingRight;}
+
+// Set and get for player weapon 
+void Weapon::setIsPlayerWeapon(bool value){isPlayerWeapon = value;}
+bool Weapon::getIsPlayerWeapon(){return isPlayerWeapon;}
 
 // Update weapon state
 // x: the x location in the world for the weapon
@@ -188,6 +193,12 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		p->setOffset(10.0f, 4.0f);
 		p->setGlowOffset(15.0f, 7.5f);
 		p->setDamage(damage);
+
+		if (isPlayerWeapon)
+			p->setFiredBy(PFB_PLAYER);
+		else 
+			p->setFiredBy(PFB_ENEMY);
+
 		((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(p));
 	}
 

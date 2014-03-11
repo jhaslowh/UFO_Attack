@@ -21,6 +21,7 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	barrelOffset[0] = 22;
 	barrelOffset[1] = -4;
 	damage = 1.0f;
+	isPlayerWeapon = true;
 
 	// Muzzle flash
 	muzzleImageId = PI_GUN_LASER_MUZ;

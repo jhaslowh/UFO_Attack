@@ -77,6 +77,8 @@ void Projectile::clone(Projectile* p){
 	glowOffsetX = p->glowOffsetX;
 	glowOffsetY = p->glowOffsetY;
 	rotation = p->rotation;
+	damage = p->damage;
+	firedBy = p->firedBy;
 }
 
 void Projectile::reset()
@@ -181,8 +183,8 @@ void Projectile::collide(Point* p, Handlers* handlers, int collType)
 	// it collides with, player/enemy/ground, and what side it collides on.
 
 	// Kill if dies on impact
-	//if (diesOnImpact)
-	//	alive = false;
+	if (diesOnImpact)
+		alive = false;
 }
 
 short Projectile::getProjectileType(){return projectileType;}
@@ -194,6 +196,7 @@ bool Projectile::getNegligence(){return negligence;}
 int Projectile::getUID(){return UID;}
 bool Projectile::getAlive(){return alive;}
 float Projectile::getDamage(){return damage;}
+int Projectile::getFiredBy(){return firedBy;}
 void Projectile::setUID(int newUID){UID = newUID;}
 void Projectile::setAlive(bool value){alive = value;}
 void Projectile::setImageId(int value){imageId = value;}
@@ -201,6 +204,7 @@ void Projectile::setImageGlowId(int value){imageGlowId = value;}
 void Projectile::setOffset(float x, float y){offsetX = x; offsetY = y;}
 void Projectile::setGlowOffset(float x, float y){glowOffsetX = x; glowOffsetY = y;}
 void Projectile::setDamage(float value){damage = value;}
+void Projectile::setFiredBy(int value){firedBy = value;}
 
 // Setup basic values for all variables 
 void Projectile::initValues(){
@@ -226,4 +230,5 @@ void Projectile::initValues(){
 	offsetX = offsetY = glowOffsetX = glowOffsetY = 0;
 	rotation = 0;
 	damage = 0.0f;
+	firedBy = PFB_ENEMY;
 }

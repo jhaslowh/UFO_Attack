@@ -25,6 +25,11 @@
 #define P_GROUND_COLL 2
 #define P_ENEMY_COLL 3 
 
+// Fired by ___
+// PFB = Projectile fired by
+#define PFB_PLAYER 1
+#define PFB_ENEMY 2
+
 class Projectile
 {
 protected:
@@ -43,6 +48,7 @@ protected:
 	bool negligence;
 	int UID;//Unique identifer number
 	float damage;
+	int firedBy;
 
 	// --------------------
 	// Drawing properties 
@@ -105,6 +111,7 @@ public:
 	int getUID();
 	bool getAlive();
 	float getDamage();
+	int getFiredBy();
 	//Getter methods, 
 
 	void setUID(int newUID);
@@ -114,6 +121,7 @@ public:
 	void setOffset(float x, float y);
 	void setGlowOffset(float x, float y);
 	void setDamage(float value);
+	void setFiredBy(int value);
 	//Setter methods 
 
 private:

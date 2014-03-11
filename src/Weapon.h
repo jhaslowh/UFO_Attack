@@ -44,6 +44,7 @@ protected:
 	// relative to the sprite and subtrace the origin for it. 
 	float barrelOffset[2];	
 	float damage;
+	bool isPlayerWeapon;
 	
 	// ---------------
 	// Muzzle flash
@@ -75,6 +76,9 @@ public:
 	void setFacingDirec(bool value);
 	// Get the facing direction of the weapon
 	bool getFacingDirecton();
+	// Set and get for player weapon 
+	void setIsPlayerWeapon(bool value);
+	bool getIsPlayerWeapon();
 
 	// Update weapon state
 	// x: the x location in the world for the weapon

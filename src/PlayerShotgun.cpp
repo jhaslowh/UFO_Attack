@@ -21,6 +21,7 @@ PlayerShotgun::PlayerShotgun(): Weapon()
 	barrelOffset[0] = 22;
 	barrelOffset[1] = -4;
 	damage = 1.0f;
+	isPlayerWeapon = true;
 
 	// Muzzle flash
 	muzzleImageId = -1;

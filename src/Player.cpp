@@ -420,7 +420,7 @@ void Player::checkCollision(Handlers* handlers){
 			for(std::list<Projectile*>::iterator myIterator = projs.begin(); myIterator != projs.end(); myIterator++)
 			{
 				// Null check 
-				if (*myIterator != NULL && (*myIterator)->getAlive()){
+				if (*myIterator != NULL && (*myIterator)->getAlive() && (*myIterator)->getFiredBy() == PFB_ENEMY){
 					// TODO might need to check if player fired or enemy fired 
 
 					// Check for collision 
