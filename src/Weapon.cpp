@@ -187,11 +187,12 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		y += direcY * dispY;
 
 		// Add projectile to list in handlers 
-		Projectile* p = new BulletProjectile(x, y, 700.0f, true, direcX, direcY);
-		p->setImageId(GI_PROJ_RED);
-		p->setImageGlowId(GI_PROJ_RED_GLOW);
-		p->setOffset(10.0f, 4.0f);
-		p->setGlowOffset(15.0f, 7.5f);
+		Projectile* p = new BulletProjectile(x, y, projTemp.speed, true, direcX, direcY);
+		p->setImageId(projTemp.imageId);
+		p->setImageGlowId(projTemp.glowImageId);
+		p->setOffset(projTemp.imageOrigin[0], projTemp.imageOrigin[1]);
+		p->setGlowOffset(projTemp.glowImageOrigin[0], projTemp.glowImageOrigin[1]);
+		p->setExplodes(projTemp.explodes);
 		p->setDamage(damage/(float)bulletsPerShot);
 
 		if (isPlayerWeapon)

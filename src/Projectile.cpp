@@ -205,6 +205,7 @@ void Projectile::setOffset(float x, float y){offsetX = x; offsetY = y;}
 void Projectile::setGlowOffset(float x, float y){glowOffsetX = x; glowOffsetY = y;}
 void Projectile::setDamage(float value){damage = value;}
 void Projectile::setFiredBy(int value){firedBy = value;}
+void Projectile::setExplodes(bool value){doesExplode = value;}
 
 // Setup basic values for all variables 
 void Projectile::initValues(){

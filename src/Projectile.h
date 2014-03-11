@@ -122,6 +122,7 @@ public:
 	void setGlowOffset(float x, float y);
 	void setDamage(float value);
 	void setFiredBy(int value);
+	void setExplodes(bool value);
 	//Setter methods 
 
 private:

@@ -6,6 +6,7 @@
 #include "Handlers.h"
 #include "Camera2D.h"
 #include "ProjectileHandler.h"
+#include "ProjectileTemplate.h"
 
 
 // Fire types for the weapon
@@ -45,6 +46,7 @@ protected:
 	float barrelOffset[2];	
 	float damage;
 	bool isPlayerWeapon;
+	ProjectileTemplate projTemp;
 	
 	// ---------------
 	// Muzzle flash
