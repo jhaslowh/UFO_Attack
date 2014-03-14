@@ -24,6 +24,9 @@ namespace StoreItems{
 	// Total number of ufo weapons 
 	extern const int STORE_UFO_WEAPON_COUNT;
 
+	// Total number of player weapons 
+	extern const int STORE_PLAYER_WEAPON_COUNT;
+
 	// Index numbers for store items 
 	extern const int SID_PLAYER_WEAPON_LASER;
 	extern const int SID_PLAYER_WEAPON_SHOTGUN;
@@ -40,6 +43,9 @@ namespace StoreItems{
 
 	// Indexes of ufo weapons
 	extern const int STORE_UFO_WEAPON_INDEXES[];
+
+	// Indexes of player weapons
+	extern const int STORE_PLAYER_WEAPON_INDEXES[];
 
 	// Call to create store items vector 
 	void setupStoreItems();

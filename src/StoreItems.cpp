@@ -20,6 +20,9 @@ namespace StoreItems{
 
 	// Total number of ufo weapons 
 	const int STORE_UFO_WEAPON_COUNT = 4;
+	
+	// Total number of player weapons 
+	const int STORE_PLAYER_WEAPON_COUNT = 3;
 
 	// Index numbers for store items 
 	const int SID_PLAYER_WEAPON_LASER = 0;
@@ -46,6 +49,13 @@ namespace StoreItems{
 		SID_UFO_WEAPON_BOMB
 	};
 	
+	// Indexes of player weapons
+	const int STORE_PLAYER_WEAPON_INDEXES[] = {
+		SID_PLAYER_WEAPON_LASER,
+		SID_PLAYER_WEAPON_SHOTGUN, 
+		SID_PLAYER_WEAPON_SMG
+	};
+
 	// Call to create store items vector 
 	void setupStoreItems(){
 		sItems.push_back(StoreItem(SID_PLAYER_WEAPON_LASER,"Laser Gun","desc",0,0,"images/si/sii_laser.png"));
