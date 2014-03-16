@@ -2,3 +2,5 @@
 
 GLfloat COLOR_WHITE[4] = {1.0f,1.0f,1.0f,1.0f};
 GLfloat COLOR_BLACK[4] = {0.0f,0.0f,0.0f,1.0f};
+GLfloat COLOR_UI_BLUE[4] = {0.175f,0.8f,0.94f,1.0f};
+GLfloat COLOR_UI_LABEL[4] = {0.9f,0.9f,0.9f,1.0f};

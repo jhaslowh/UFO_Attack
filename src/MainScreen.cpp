@@ -113,8 +113,8 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	}
 	// Go to free play screen
 	if (buttonEquip->wasClicked()){
-		//transitionCode = ;
-		//hide();
+		transitionCode = SCREEN_EQUIP;
+		hide();
 	}
 	// Go to store 
 	if (buttonStore->wasClicked()){

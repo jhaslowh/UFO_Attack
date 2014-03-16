@@ -28,6 +28,7 @@ public:
 	void setColor(float r, float g, float b);
 	void setColor(float r, float g, float b, float a);
 	GLfloat* getColor();
+	// Set the transparency value of the object 
 	void setAlpha(float a);
 	float getAlpha();
 
@@ -35,6 +36,8 @@ public:
 	virtual void init(float screen_width, float screen_height);
 	// Call if object has child objects that need to be loaded
 	virtual void load(TextureAtlas* mAtlas);
+	// Call if object has child objects that need to be unloaded
+	virtual void unload();
 
 	// Update the button 
 	virtual void update(float deltaTime);

@@ -28,6 +28,7 @@
 #define SCREEN_LEVEL_SELECT 8
 #define SCREEN_QUIT 9
 #define SCREEN_FREE_PLAY 10
+#define SCREEN_EQUIP 11
 
 class UIScreen
 {

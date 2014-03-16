@@ -277,7 +277,13 @@
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
     <ClInclude Include="ProjectileTemplate.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="UIEquipBox.h">
+      <Filter>Header Files\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -483,7 +489,13 @@
       <Filter>Source Files\game\weap</Filter>
     </ClCompile>
     <ClCompile Include="ProjectileTemplate.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="EquipScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="UIEquipBox.cpp">
+      <Filter>Source Files\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

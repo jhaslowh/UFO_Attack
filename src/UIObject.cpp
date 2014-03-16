@@ -34,6 +34,7 @@ void UIObject::setColor(float r, float g, float b, float a){
 	flatColor[3] = a;
 }
 GLfloat* UIObject::getColor(){return flatColor;}
+// Set the transparency value of the object 
 void UIObject::setAlpha(float a){flatColor[3] = a;}
 float UIObject::getAlpha(){return flatColor[3];}
 
@@ -43,6 +44,11 @@ void UIObject::init(float screen_width, float screen_height){
 }
 // Call if object has child objects that need to be loaded
 void UIObject::load(TextureAtlas* mAtlas){
+	// Nothing to do
+}
+
+// Call if object has child objects that need to be unloaded
+void UIObject::unload(){
 	// Nothing to do
 }
 
