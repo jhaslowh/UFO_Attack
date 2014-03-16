@@ -15,6 +15,7 @@
 #include "LevelProperties.h"
 #include "ProjectileHandler.h"
 #include "Sky.h"
+#include "NPCHandler.h"
 
 class Level
 {
@@ -22,6 +23,7 @@ class Level
 	Ground* ground;
 	GameAtlas gameAtlas;
 	SceneryHandler* sceneryHandler;
+	NPCHandler* npcHandler;
 	ProjectileHandler* projHandler;
 	Camera2D camera;
 	LevelProperties levelProps;

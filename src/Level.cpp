@@ -4,6 +4,7 @@ Level::Level(){
 	player = NULL;
 	ground = NULL;
 	sceneryHandler = NULL;
+	npcHandler = NULL;
 	projHandler = NULL;
 	loaded = false;
 }
@@ -12,6 +13,7 @@ Level::~Level(){
 	delete ground;
 	delete sceneryHandler;
 	delete projHandler;
+	delete npcHandler;
 }
 
 // initialize level
@@ -25,6 +27,8 @@ void Level::init(float screen_width, float screen_height){
 	camera.init(screen_width, screen_height);
 	// Create scenery handler 
 	sceneryHandler = new SceneryHandler();
+	// Create npc handler
+	npcHandler = new NPCHandler();
 	// Create ground 
 	ground = new Ground();
 	// Create proj handler 
@@ -41,6 +45,7 @@ void Level::init(float screen_width, float screen_height){
 	handlers.levelProps = &levelProps;
 	handlers.player = &player;
 	handlers.projHandler = projHandler;
+	handlers.npcHandler = npcHandler;
 
 	// ------------------------------
 	// DEBUG TEST LEVEL
@@ -101,6 +106,7 @@ void Level::unload(){
 void Level::update(float deltaTime){
 	sky.update(deltaTime);
 	sceneryHandler->update(deltaTime, &handlers);
+	npcHandler->update(deltaTime, &handlers);
 	projHandler->updateProjectiles(deltaTime, &handlers);
 
 	player->update(deltaTime, &handlers);
@@ -153,6 +159,7 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mgl->setViewMatrix(camera.getMatrix());
 	mgl->setFlatColor(COLOR_WHITE);
 	sceneryHandler->draw(mgl, &gameAtlas);
+	npcHandler->draw(mgl, &gameAtlas);
 	projHandler->draw(mgl, &gameAtlas);			
 	player->draw(mgl);							
 	ground->draw(mgl);							

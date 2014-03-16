@@ -15,6 +15,8 @@
     <ClInclude Include="BeamProjectile.h" />
     <ClInclude Include="BulletProjectile.h" />
     <ClInclude Include="Crate.h" />
+    <ClInclude Include="NPC.h" />
+    <ClInclude Include="NPCHandler.h" />
     <ClInclude Include="UIEquipBox.h" />
     <ClInclude Include="EquipScreen.h" />
     <ClInclude Include="Fence.h" />
@@ -87,6 +89,8 @@
     <ClCompile Include="BeamProjectile.cpp" />
     <ClCompile Include="BulletProjectile.cpp" />
     <ClCompile Include="Crate.cpp" />
+    <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="NPCHandler.cpp" />
     <ClCompile Include="UIEquipBox.cpp" />
     <ClCompile Include="EquipScreen.cpp" />
     <ClCompile Include="Fence.cpp" />

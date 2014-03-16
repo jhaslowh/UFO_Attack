@@ -73,6 +73,12 @@
     <Filter Include="Header Files\game\proj">
       <UniqueIdentifier>{a4cd2652-6a96-4024-9a52-106459a6db8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\game\npc">
+      <UniqueIdentifier>{38463e8e-4829-4549-bb6c-4f54f777b5ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game\npc">
+      <UniqueIdentifier>{5fa3a2ed-915c-48d6-a11f-eeb86c5eabaf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
@@ -285,6 +291,12 @@
     <ClInclude Include="UIEquipBox.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
+    <ClInclude Include="NPCHandler.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -496,6 +508,12 @@
     </ClCompile>
     <ClCompile Include="UIEquipBox.cpp">
       <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCHandler.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>Source Files\game\npc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
