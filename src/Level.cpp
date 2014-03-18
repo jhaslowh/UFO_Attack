@@ -17,11 +17,11 @@ Level::~Level(){
 }
 
 // initialize level
-void Level::init(float screen_width, float screen_height){
+void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	// Setup sky 
 	sky.init(screen_width, screen_height);
 	// Create player 
-	player = new Player();
+	player = new Player(savedata);
 	player->init(screen_width, screen_height);
 	// Initialize camera 
 	camera.init(screen_width, screen_height);

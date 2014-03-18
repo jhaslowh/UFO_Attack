@@ -16,6 +16,8 @@
 #include "PlayerLaserGun.h"
 #include "PlayerShotgun.h"
 #include "PlayerSMG.h"
+#include "SaveData.h"
+#include "StoreItems.h"
 
 #define GRAVITY 980.0f
 
@@ -135,7 +137,7 @@ public:
 
 	UFO* ufo;
 
-	Player();
+	Player(SaveData* savedata);
 	~Player();
 
 	// Getters and setters

@@ -3,9 +3,13 @@
 #include "PauseScreen.h"
 #include "Level.h"
 #include "LevelEditor.h"
+#include "SaveData.h"
 
 class GameScreen : public UIScreen
 {
+	// Player save data
+	SaveData* savedata;
+
 	// States 
 	bool paused, gameover;
 
@@ -17,7 +21,7 @@ class GameScreen : public UIScreen
 	LevelEditor levelEditor;
 
 public:
-	GameScreen();
+	GameScreen(SaveData* sd);
 	virtual ~GameScreen();
 
 	// Initialize screen

@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-Player::Player(){
+Player::Player(SaveData* savedata){
 	// Location And Sizing 
 	locX = 0.0f;
 	locY = 0.0f;
@@ -104,8 +104,15 @@ Player::Player(){
 	armOffsetsR[20] = 24;	armOffsetsR[21] = 22;
 	armOffsetsR[22] = 24;	armOffsetsR[23] = 23;
 
-	//weapon = (Weapon*)new PlayerLaserGun();
-	weapon = (Weapon*)new PlayerSMG();
+	// Load weapon based off savedata
+	if (savedata != NULL){
+		if (savedata->getPlayerWeapon1() == StoreItems::SID_PLAYER_WEAPON_LASER)
+			weapon = (Weapon*)new PlayerLaserGun();
+		else if (savedata->getPlayerWeapon1() == StoreItems::SID_PLAYER_WEAPON_SHOTGUN)
+			weapon = (Weapon*)new PlayerShotgun();
+		else if (savedata->getPlayerWeapon1() == StoreItems::SID_PLAYER_WEAPON_SMG)
+			weapon = (Weapon*)new PlayerSMG();
+	}
 }
 Player::~Player(){
 	delete ufo;

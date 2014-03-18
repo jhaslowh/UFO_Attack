@@ -2,12 +2,13 @@
 
 using namespace std;
 
-GameScreen::GameScreen() : UIScreen()
+GameScreen::GameScreen(SaveData* sd) : UIScreen()
 {
 	pauseScreen = NULL;
 	level = NULL;
 	paused = false;
 	gameover = false;
+	savedata = sd;
 }
 
 GameScreen::~GameScreen()
@@ -24,7 +25,7 @@ void GameScreen::init(float screen_width, float screen_height){
 	screenHeight = screen_height;
 
 	level = new Level();
-	level->init(screen_width, screen_height);
+	level->init(screen_width, screen_height, savedata);
 
 	pauseScreen = new PauseScreen();
 	pauseScreen->init(screen_width, screen_height);
@@ -132,7 +133,7 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		delete level;
 
 		level = new Level();
-		level->init(screenWidth, screenHeight);
+		level->init(screenWidth, screenHeight, savedata);
 		// TODO this should load the level file in the future 
 
 		terminal->addLine("level reset", TL_SUCCESS);

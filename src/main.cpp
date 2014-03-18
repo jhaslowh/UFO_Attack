@@ -358,7 +358,7 @@ void changeScreen(){
 			else if (tcode == SCREEN_FREE_PLAY)	screen = (UIScreen*)new FreePlayScreen();
 			else if (tcode == SCREEN_EQUIP)		screen = (UIScreen*)new EquipScreen(savedata);
 			else if (tcode == SCREEN_GAME_NEW) {
-				screen = (UIScreen*)new GameScreen();
+				screen = (UIScreen*)new GameScreen(savedata);
 				gscreen_unload = gscreen;
 				gscreen = NULL;
 			}
@@ -371,7 +371,7 @@ void changeScreen(){
 				if (gscreen != NULL)
 					screen = gscreen;
 				else {
-					screen = (UIScreen*)new GameScreen();
+					screen = (UIScreen*)new GameScreen(savedata);
 					screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 				}
 			}
