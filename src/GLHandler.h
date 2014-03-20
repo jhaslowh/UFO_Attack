@@ -111,6 +111,8 @@ public:
 
 	// Begin light rendering
 	void lightBegin();
+	// Begin light rendering with the given color
+	void lightBegin(float r, float g, float b);
 
 	// End light rendering
 	void lightEnd();

@@ -7,6 +7,7 @@
 #include "FileHelper.h"
 #include "UIValueSlider.h"
 #include "UIBox.h"
+#include "UIComboBox.h"
 
 class SettingsScreen : public UIScreen
 {
@@ -15,9 +16,11 @@ class SettingsScreen : public UIScreen
 	UILabel* labelTitle;
 	UICheckbox* cFullscreen;
 	UIButton* buttonBack;
+	UIButton* buttonApply;
 	UIValueSlider* vMasterVol;
 	UIValueSlider* vMusicVol;
 	UIValueSlider* vSfxVol;
+	UIComboBox* cbResolutions;
 
 	UILabel* lFullscreen;
 	UILabel* lMasterVolume;
@@ -54,5 +57,10 @@ public:
 	// All UI elements in the hide screen method should have show 
 	// calls here. 
 	virtual void show();
+
+private:
+
+	// Parse a resolution line 
+	void parseResLine(std::string line);
 };
 

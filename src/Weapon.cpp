@@ -26,13 +26,20 @@ Weapon::Weapon(void)
 	firetype = 0;
 	barrelOffset[0] = 0;
 	barrelOffset[0] = 1;
+	damage = 0.0f;
+	isPlayerWeapon = false;
 
 	// Muzzle flash
 	muzzleImageId = -1;
 	muzzleOffset[0] = 0;
 	muzzleOffset[1] = 0;
+	muzzleOrigin[0] = 0;
+	muzzleOrigin[1] = 0;
 	flashTime = 0;
 	cFlashTime = 0;
+
+	// Math values 
+	mTheta = 0.0f;
 }
 
 
@@ -47,6 +54,10 @@ float Weapon::getRotation(){
 void Weapon::setFacingDirec(bool value){lookingRight = value;}
 // Get the facing direction of the weapon
 bool Weapon::getFacingDirecton(){return lookingRight;}
+
+// Set and get for player weapon 
+void Weapon::setIsPlayerWeapon(bool value){isPlayerWeapon = value;}
+bool Weapon::getIsPlayerWeapon(){return isPlayerWeapon;}
 
 // Update weapon state
 // x: the x location in the world for the weapon
@@ -70,6 +81,10 @@ void Weapon::update(float deltaTime, float x, float y){
 		cFlashTime -= deltaTime;
 		if (cFlashTime < .0f)
 			cFlashTime = 0.0f;
+
+		// Set muzzle location 
+		muzzleOffset[0] = locX + (cos(mTheta) * barrelOffset[0]);
+		muzzleOffset[1] = locY - barrelOffset[1] + (sin(mTheta) * barrelOffset[0]);
 	}
 
 	// Update time between shots 
@@ -99,7 +114,7 @@ void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 	//   Parent class that calls this (UFO or Player should grab the 
 	//   rotation if it is needed. (Player needs to rotate arm)
 	// Get angle 
-	float mTheta = atan2((double)(targetY - locY), (double)(targetX - locX));
+	mTheta = (float)atan2((double)(targetY - locY), (double)(targetX - locX));
 	// Set rotation
 	rotation = (float)(mTheta * (180.0f / 3.14159f));
 
@@ -123,15 +138,20 @@ void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 // Draw weapon to screen
 void Weapon::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Draw weapon 
-	if (lookingRight)
+	if (lookingRight){
 		mAtlas->draw(mgl, imageid, locX, locY, 1.0f, rotation, originX, originY);
+		// Draw muzzle flash 
+		if (cFlashTime > 0)
+			mAtlas->draw(mgl, muzzleImageId, muzzleOffset[0], muzzleOffset[1], 1.0f, rotation, muzzleOrigin[0], muzzleOrigin[1]);
+	}
 	else{
 		glCullFace(GL_FRONT);
 		mAtlas->drawScale2(mgl, imageid, locX, locY, -1.0f, 1.0f, rotation, originX, originY);
+		// Draw muzzle flash 
+		if (cFlashTime > 0)
+			mAtlas->drawScale2(mgl, muzzleImageId, muzzleOffset[0], muzzleOffset[1],-1.0f, 1.0f, rotation, muzzleOrigin[0], muzzleOrigin[1]);
 		glCullFace(GL_BACK);
 	}
-
-	// TODO draw flash 
 }
 
 // Fire the weapon
@@ -139,37 +159,48 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 	// Fire shots 
 	for (int i = 0; i < bulletsPerShot; i++){
 		// Calculate weapon location 
-		float weaponLocX = locX;
-		float weaponLocY = locY - barrelOffset[1];
+		weaponLocX = locX;
+		weaponLocY = locY - barrelOffset[1];
 
 		// Get angle between weapon loc and target
-		float mTheta = atan2((double)(targety - locY), (double)(targetx - locX));
+		mTheta = (float)atan2((double)(targety - locY), (double)(targetx - locX));
 
 		// Apply spread to angle.
-		float spr = ((float)rand() / (float)RAND_MAX) * spread;
+		spr = ((float)rand() / (float)RAND_MAX) * spread;
 		if (rand() % 100 > 50)
 			mTheta += spr / 2.0f;
 		else 
 			mTheta -= spr / 2.0f;
 
 		// Convert angle to direction 
-		float direcX = cos(mTheta);
-		float direcY = sin(mTheta);
+		direcX = cos(mTheta);
+		direcY = sin(mTheta);
 
 		// Determin Displacement 
-		float dispX = ((float)rand() / (float)RAND_MAX) * horizontalDisplacement;
-		float dispY = ((float)rand() / (float)RAND_MAX) * verticalDisplacement;
+		dispX = ((float)rand() / (float)RAND_MAX) * horizontalDisplacement;
+		dispY = ((float)rand() / (float)RAND_MAX) * verticalDisplacement;
 
 		// Set the projectiles location as 
-		float x = weaponLocX + (direcX * (barrelOffset[0] + dispX));
-		float y = weaponLocY + (direcY * (barrelOffset[0] + dispX));
+		x = weaponLocX + (direcX * (barrelOffset[0] + dispX));
+		y = weaponLocY + (direcY * (barrelOffset[0] + dispX));
 		x += direcX * dispY;
 		y += direcY * dispY;
 
 		// Add projectile to list in handlers 
-		//((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(new NSMOProjectile(weaponLocX, weaponLocY, targetx, targety)));
-		((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(
-			new BulletProjectile(x, y, 1000.0f, true, direcX, direcY)));
+		Projectile* p = new BulletProjectile(x, y, (int)projTemp.speed, true, direcX, direcY);
+		p->setImageId(projTemp.imageId);
+		p->setImageGlowId(projTemp.glowImageId);
+		p->setOffset(projTemp.imageOrigin[0], projTemp.imageOrigin[1]);
+		p->setGlowOffset(projTemp.glowImageOrigin[0], projTemp.glowImageOrigin[1]);
+		p->setExplodes(projTemp.explodes);
+		p->setDamage(damage/(float)bulletsPerShot);
+
+		if (isPlayerWeapon)
+			p->setFiredBy(PFB_PLAYER);
+		else 
+			p->setFiredBy(PFB_ENEMY);
+
+		((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(p));
 	}
 
 	// Subtract shot from clip

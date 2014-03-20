@@ -3,29 +3,41 @@
 
 PlayerShotgun::PlayerShotgun(): Weapon()
 {
-	imageid = PI_GUN_LASER;
-	originX = -2.0f; 
-	originY = 3.0f;
+	imageid = PI_GUN_SHOTGUN;
+	originX = -3.0f; 
+	originY = 2.0f;
 
 	// Weapon properties 
-	typeId = PI_GUN_LASER;
+	typeId = PI_GUN_SHOTGUN;
 	clipCapacity = 15;
-	clip = 15;
-	spread = .2; // In radians
+	clip = clipCapacity;
+	spread = .2f; // In radians
 	verticalDisplacement = 0;
 	horizontalDisplacement = 15;
-	bulletsPerShot = 5;
-	reloadTime = 0.2;
+	bulletsPerShot = 6;
+	reloadTime = 0.8f;
 	timeBetweenShots = 0.01f;
-	firetype = FIRETYPE_RAPID;
-	barrelOffset[0] = 22;
+	firetype = FIRETYPE_SINGLE;
+	barrelOffset[0] = 36;
 	barrelOffset[1] = -4;
+	damage = 1.0f;
+	isPlayerWeapon = true;
 
 	// Muzzle flash
-	muzzleImageId = -1;
-	muzzleOffset[0] = 0;
-	muzzleOffset[1] = 0;
-	flashTime = 0;
+	muzzleImageId = PI_GUN_SHOTGUN_MUZ;
+	muzzleOrigin[0] = 0;
+	muzzleOrigin[1] = 6;
+	flashTime = 0.5;
+
+	// Setup projectile 
+	projTemp.speed = 700.0f;
+	projTemp.imageId = GI_PROJ_RED;
+	projTemp.imageOrigin[0] = 10.0f;
+	projTemp.imageOrigin[1] = 4.0f;
+	projTemp.glowImageId = GI_PROJ_RED_GLOW;
+	projTemp.glowImageOrigin[0] = 15.0f; 
+	projTemp.glowImageOrigin[1] = 7.5f; 
+	projTemp.explodes = false;
 }
 
 PlayerShotgun::~PlayerShotgun(){}

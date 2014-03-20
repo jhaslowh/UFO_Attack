@@ -2,12 +2,13 @@
 
 using namespace std;
 
-GameScreen::GameScreen() : UIScreen()
+GameScreen::GameScreen(SaveData* sd) : UIScreen()
 {
 	pauseScreen = NULL;
 	level = NULL;
 	paused = false;
 	gameover = false;
+	savedata = sd;
 }
 
 GameScreen::~GameScreen()
@@ -24,7 +25,7 @@ void GameScreen::init(float screen_width, float screen_height){
 	screenHeight = screen_height;
 
 	level = new Level();
-	level->init(screen_width, screen_height);
+	level->init(screen_width, screen_height, savedata);
 
 	pauseScreen = new PauseScreen();
 	pauseScreen->init(screen_width, screen_height);
@@ -72,8 +73,10 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		pauseScreen->updateInput(mKeyH, mMouseH);
 
 		// Check for quit
-		if (pauseScreen->getTransitionCode() == SCREEN_MAIN)
-			transitionCode = SCREEN_MAIN;
+		if (pauseScreen->getTransitionCode() == SCREEN_MAIN){
+			pauseScreen->setTransitionValue(NO_TRANSITION);
+			transitionCode = SCREEN_MAIN_SAVE_GAME;
+		}
 
 		// Check for pause/unpause
 		if (pauseScreen->getTransitionCode() == CLOSE_SCREEN ||
@@ -130,10 +133,25 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		delete level;
 
 		level = new Level();
-		level->init(screenWidth, screenHeight);
+		level->init(screenWidth, screenHeight, savedata);
 		// TODO this should load the level file in the future 
 
 		terminal->addLine("level reset", TL_SUCCESS);
+
+		return true;
+	}
+	// Set the light for the level
+	else if (command == "setlight"){
+		float value = (float)toDouble(args);
+
+		if (value >= 0 && value <= 1){
+			((LevelProperties*)level->handlers.levelProps)->setLight(value, value, value);
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+		}
+		else {
+			terminal->addLine(args + " is not a valid light level", TL_WARNING);
+			terminal->addLine(command + " " + args, TL_WARNING);
+		}
 
 		return true;
 	}
@@ -159,7 +177,7 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		}
 
 		// Set zoom and return 
-		((Camera2D*)level->handlers.camera)->setZoom(zoom);
+		((Camera2D*)level->handlers.camera)->setZoom((float)zoom);
 		terminal->addLine(command + " " + args, TL_SUCCESS);
 		return true;
 	}
@@ -173,14 +191,14 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		// Check for damage player 
 		if (subCommand == "player"){
 			double damage = toDouble(subArgs);
-			((Player*)(level->handlers.player))->applyDamage(damage);
+			((Player*)(level->handlers.player))->applyDamage((float)damage);
 			terminal->addLine(command + " " + args, TL_SUCCESS);
 			return true;
 		}
 		// Check for damage ufo 
 		else if (subCommand == "ufo"){
 			double damage = toDouble(subArgs);
-			((Player*)(level->handlers.player))->ufo->applyDamage(damage);
+			((Player*)(level->handlers.player))->ufo->applyDamage((float)damage);
 			terminal->addLine(command + " " + args, TL_SUCCESS);
 			return true;
 		}

@@ -72,12 +72,29 @@ bool Rec::contains(float x, float y){
 		return true;
 	return false;
 }
+
+// Check if this AABB contains the sent point at the sent offset
+bool Rec::contains(float x, float y, float offx, float offy){
+	if (x > mX + offx && x < right() + offx && 
+		y > mY + offy && y < bottom() + offy)
+		return true;
+	return false;
+}
+
 // Expand the rec 
 void Rec::expand(float amount){
 	mX -= amount;
 	mY -= amount;
 	mWidth += amount;
 	mHeight += amount;
+}
+
+// Reset values 
+void Rec::reset(float x, float y, float w, float h){
+	mX = x;
+	mY = y;
+	mWidth = w;
+	mHeight = h;
 }
 
 // Copy the sent rec properties into this one

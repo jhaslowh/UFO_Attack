@@ -11,6 +11,7 @@
 #include "GLColors.h"
 #include "SaveData.h"
 #include "Sprite.h"
+#include "StoreItems.h"
 
 class StoreScreen : public UIScreen
 {

@@ -29,12 +29,12 @@ Commands:
 - "version" : prints out version  
 - "screen hide" : hide the current screen  
 - "screen show" : show the current screen  
-- "test" : load test screen
 - "exit" or "quit": exit game  
 - "screen main" : go to main menu screen  
 - "screen store" : go to store screen  
 - "screen settings" : go to settings screen  
-- "screen game" : go to game screen  
+- "screen game" : resume game screen  
+- "screen newgame" : make a new game screen  
 - "screen levelselect" : go to level select screen  
 - "screen freeplay" : go to free play screen   
 - "delete savedata" : delete savedata file and set to default values  
@@ -59,6 +59,7 @@ Commands for Level Editor (Must be in screen with one)
 
 Commands while in Game Screen
 - "level reset" : reset the current level  
+- "setlight [double]" : set the light level for the level  
 - "zoom default" : sets the zoom to 1.0  
 - "zoom [double]" : set the level zoom to the sent value  
 - "damage ufo [damage]" : damage ufo by amount sent    

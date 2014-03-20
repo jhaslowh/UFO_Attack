@@ -19,9 +19,9 @@ SceneryHandler::~SceneryHandler()
 int SceneryHandler::getSize(){
 	itr = head;
 	int count = 0;
-	while (head != NULL){
+	while (itr != NULL){
 		count++;
-		head = head->getNext();
+		itr = itr->getNext();
 	}
 	return count;
 }
@@ -52,7 +52,7 @@ void SceneryHandler::add(SceneryObject* obj){
 		itr = itr->getNext();
 	}
 
-	std::cout << "Error: counld not add item to scenery linked list\n";
+	std::cout << "Error: could not add item to scenery linked list\n";
 }
 
 // Update objects
@@ -99,3 +99,4 @@ void SceneryHandler::drawUI(GLHandler* mgl, UIAtlas* mUI){
 		itr = itr->getNext();
 	}
 }
+

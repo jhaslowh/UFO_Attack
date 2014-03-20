@@ -23,7 +23,7 @@ void PauseScreen::init(float screen_width, float screen_height){
 	bResume->setupHide(HT_VERTICAL,bResume->getY()+100.0f,.2f,true);
 	bResume->setHidden();
 
-	bQuit = new UIButton((screen_width/2.0f)-50.0f,(screen_height *.5f)+45.0f,100.0f,35.0f, std::string("Quit"));
+	bQuit = new UIButton((screen_width/2.0f)-50.0f,(screen_height *.5f)+45.0f,100.0f,35.0f, std::string("MainMenu"));
 	bQuit->setupHide(HT_VERTICAL,bQuit->getY()+100.0f,.2f,true);
 	bQuit->setHidden();
 

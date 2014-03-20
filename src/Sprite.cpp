@@ -102,11 +102,13 @@ void Sprite::setAlpha(const float a){
 }
 float Sprite::getAlpha(){return color[3];}
 
-
 // Get the width of the sprite
 float Sprite::getWidth(){return width;}
 // Get the height of the sprite 
 float Sprite::getHeight(){return height;}
+
+// Call to get image id
+GLuint Sprite::getImageID(){return textureID;}
 
 // Call to clip part of the image off. 
 // Can be fixed later with restore()

@@ -46,7 +46,7 @@ NSMOProjectile::NSMOProjectile(float CurrentX, float CurrentY, int Mass, int Siz
 	currentX = CurrentX;
 	currentY = CurrentY;
 	spread = Spread;
-	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY),
+	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY),
 		(double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
@@ -67,7 +67,7 @@ NSMOProjectile::NSMOProjectile(float CurrentX, float CurrentY, float xLocation, 
 	currentY = CurrentY;
 	speed = 100;
 	spread = 60;
-	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
+	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
 	mass = 1;

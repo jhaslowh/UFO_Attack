@@ -26,7 +26,7 @@ BeamProjectile::BeamProjectile(float CurrentX, float CurrentY, int Mass, int Siz
 	currentX = CurrentX;
 	currentY = CurrentY;
 	spread = Spread;
-	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
+	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
 	mass = 0;
@@ -44,7 +44,7 @@ BeamProjectile::BeamProjectile(float CurrentX, float CurrentY, float xLocation, 
 	currentY = CurrentY;
 	speed = 600;
 	spread = 10;
-	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
+	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
 	mass = 0;

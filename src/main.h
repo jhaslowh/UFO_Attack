@@ -19,20 +19,20 @@
 #include "Settings.h"
 
 #include "UIScreen.h"
-#include "TestScreen.h"
 #include "IntroLoadScreen.h"
 #include "MainScreen.h"
 #include "SettingsScreen.h"
 #include "GameScreen.h"
 #include "FreePlayScreen.h"
 #include "StoreScreen.h"
+#include "EquipScreen.h"
 
 // Version 
 // x.yyyy
 // x = 0 = Alpha/Beta
 // x = 1 = Release
 // yyyy = Commit number 
-double VERSION = 0.143;
+double VERSION = 0.208;
 
 bool WINDOW_VISIBLE = false;
 
@@ -64,6 +64,8 @@ SaveData* savedata;
 SDL_Window* window;
 SDL_Thread* thread;
 UIScreen* screen = NULL;
+GameScreen* gscreen = NULL;
+GameScreen* gscreen_unload = NULL;
 UITerminal* terminal = NULL;
 bool showTerminal = false;
 

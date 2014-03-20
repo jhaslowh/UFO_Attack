@@ -7,6 +7,7 @@ UIScreen::UIScreen(){
 	hideOnClose = false;
 	cHideTime = 0.0f;
 	hideTime = .28f;
+	uio_focus = NULL;
 }
 UIScreen::~UIScreen(){}
 
@@ -19,13 +20,15 @@ bool UIScreen::getHideOnClose(){return hideOnClose;}
 // Set hide time
 void UIScreen::setHideTime(float value){hideTime = value;}
 
+// Get the current screen transition request code 
+int UIScreen::getTransitionCode(){return transitionCode;}
+// Set transition value 
+void UIScreen::setTransitionValue(int value){transitionCode = value;}
+
 // Initialize screen
 void UIScreen::init(float screen_width, float screen_height){
 	// Nothing to do
 }
-
-// Get the current screen transition request code 
-int UIScreen::getTransitionCode(){return transitionCode;}
 
 // Load screen
 void UIScreen::load(TextureAtlas* mAtlas){
@@ -37,6 +40,7 @@ void UIScreen::load(TextureAtlas* mAtlas){
 // THIS MUST BE CALLED IF YOU LOAD STUFF.
 void UIScreen::unload(){
 	unloaded = true;
+	loaded = false;
 }
 bool UIScreen::isUnloaded(){
 	return unloaded;
@@ -54,13 +58,30 @@ void UIScreen::update(float deltaTime){
 
 // Update input to the screen 
 void UIScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
-	// Nothing to do
+	// Nothing to do 
+}
+
+// Update focus input to screen
+bool UIScreen::updateInputFocus(KeyHandler* mKeyH, MouseHandler* mMouseH){
+	// Update focus object 
+	if (uio_focus != NULL){
+		if (!uio_focus->updateInputFocus(mKeyH, mMouseH))
+			uio_focus = NULL;
+		return true;
+	}
+	return false;
 }
 
 // Draw the screen
 void UIScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
-	if (!loaded && transitionCode == NO_TRANSITION)
+	if (!loaded)// && transitionCode == NO_TRANSITION)
 		load(mAtlas);
+}
+
+// Draw the screen focus 
+void UIScreen::drawFocus(GLHandler* mgl, TextureAtlas* mAtlas){
+	if (uio_focus != NULL)
+		uio_focus->drawFocus(mgl, (UIAtlas*)mAtlas);
 }
 
 // Parse a command give
@@ -105,7 +126,14 @@ bool UIScreen::parseCommand(UITerminal* terminal, std::string command, std::stri
 		// Go to game
 		if (args == "game"){
 			terminal->addLine(command + " " + args, TL_SUCCESS);
-			transitionCode = SCREEN_GAME;
+			transitionCode = SCREEN_GAME_RESUME;
+			return true;
+		}
+
+		// Go to new game
+		if (args == "newgame"){
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			transitionCode = SCREEN_GAME_NEW;
 			return true;
 		}
 

@@ -6,6 +6,7 @@
 #include "Handlers.h"
 #include "Camera2D.h"
 #include "ProjectileHandler.h"
+#include "ProjectileTemplate.h"
 
 
 // Fire types for the weapon
@@ -42,15 +43,29 @@ protected:
 	int firetype;
 	// To get the barrel of the weapon, get the cords of the end of the barrel
 	// relative to the sprite and subtrace the origin for it. 
-	float barrelOffset[2];			
+	float barrelOffset[2];	
+	float damage;
+	bool isPlayerWeapon;
+	ProjectileTemplate projTemp;
 	
 	// ---------------
 	// Muzzle flash
 	// ---------------
 	int muzzleImageId;		// For atlas use 
 	float muzzleOffset[2]; // Similar to barrel offset 
+	float muzzleOrigin[2];
 	float flashTime;
 	float cFlashTime;
+
+	// ------------------------
+	// Values used during maths
+	// ------------------------
+	float mTheta;
+	float weaponLocX, weaponLocY;
+	float spr;
+	float direcX, direcY;
+	float dispX, dispY;
+	float x, y;
 
 public:
 	Weapon(void);
@@ -63,6 +78,9 @@ public:
 	void setFacingDirec(bool value);
 	// Get the facing direction of the weapon
 	bool getFacingDirecton();
+	// Set and get for player weapon 
+	void setIsPlayerWeapon(bool value);
+	bool getIsPlayerWeapon();
 
 	// Update weapon state
 	// x: the x location in the world for the weapon

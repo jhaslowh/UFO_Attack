@@ -73,6 +73,12 @@
     <Filter Include="Header Files\game\proj">
       <UniqueIdentifier>{a4cd2652-6a96-4024-9a52-106459a6db8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\game\npc">
+      <UniqueIdentifier>{38463e8e-4829-4549-bb6c-4f54f777b5ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game\npc">
+      <UniqueIdentifier>{5fa3a2ed-915c-48d6-a11f-eeb86c5eabaf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
@@ -97,9 +103,6 @@
       <Filter>Header Files\gfx</Filter>
     </ClInclude>
     <ClInclude Include="UIScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="TestScreen.h">
       <Filter>Header Files\ui\screens</Filter>
     </ClInclude>
     <ClInclude Include="TextureAtlas.h">
@@ -270,6 +273,30 @@
     <ClInclude Include="PlayerShotgun.h">
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
+    <ClInclude Include="UIComboBox.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Sky.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSMG.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileTemplate.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="EquipScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="UIEquipBox.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCHandler.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -297,9 +324,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UIScreen.cpp">
-      <Filter>Source Files\ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="TestScreen.cpp">
       <Filter>Source Files\ui\screens</Filter>
     </ClCompile>
     <ClCompile Include="TextureAtlas.cpp">
@@ -466,6 +490,30 @@
     </ClCompile>
     <ClCompile Include="PlayerShotgun.cpp">
       <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="UIComboBox.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Sky.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSMG.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileTemplate.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="EquipScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="UIEquipBox.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCHandler.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>Source Files\game\npc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

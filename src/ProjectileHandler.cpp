@@ -19,13 +19,17 @@ ProjectileHandler::~ProjectileHandler()
 }
 //Constructor and Deconstructor
 
+
+// Returns the projectile list
+std::list<Projectile*> ProjectileHandler::getProjList(){return projectiles;}
+
 //Pass in a constructor Projectile to be contained by the list
 void ProjectileHandler::addNewProjectile(Projectile* newProjectile)
 {
 	int skipped = 0;
 
 	// Add until dead or limit reached 
-	while (skipped < projectiles.size()){
+	while (skipped < (int)projectiles.size()){
 		// If current projectile is dead, add in place
 		if (!(*addIndex)->getAlive()){
 			(*addIndex)->clone(newProjectile);
@@ -55,7 +59,7 @@ void ProjectileHandler::addProjectile(short ProjectileType, float CurrentX, floa
 
 }
 
-void ProjectileHandler::updateProjectiles(float deltaTime)
+void ProjectileHandler::updateProjectiles(float deltaTime, Handlers* handlers)
 {
 	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
 	{
@@ -70,7 +74,7 @@ void ProjectileHandler::updateProjectiles(float deltaTime)
 			else
 			{
 				//std::cout << "Physicsable";
-				(*myIterator)->updateProjectile(deltaTime);
+				(*myIterator)->updateProjectile(deltaTime, handlers);
 			}
 		}
 	}
@@ -89,8 +93,17 @@ void ProjectileHandler::removeProjectile(Projectile* removeProjectile)
 void ProjectileHandler::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
 	{
-		if(*myIterator != NULL && (*myIterator)->getAlive())
+		if(*myIterator != NULL)
 			(*myIterator)->draw(mgl, mAtlas);
+	}
+}
+
+// Draw all projectiles lights 
+void ProjectileHandler::drawLight(GLHandler* mgl, TextureAtlas* mAtlas){
+	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
+	{
+		if(*myIterator != NULL)
+			(*myIterator)->drawLight(mgl, mAtlas);
 	}
 }
 

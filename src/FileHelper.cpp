@@ -79,15 +79,15 @@ void loadSettings(Settings* s){
 
 		// Grab master volume 
 		token = getSetting(str, std::string("master_vol"));
-		if(token != "null") s->setMasterVol(toDouble(token));
+		if(token != "null") s->setMasterVol((float)toDouble(token));
 
 		// Grab music volume 
 		token = getSetting(str, std::string("music_vol"));
-		if(token != "null") s->setMusicVol(toDouble(token));
+		if(token != "null") s->setMusicVol((float)toDouble(token));
 
 		// Grab sfx volume 
 		token = getSetting(str, std::string("sfx_vol"));
-		if(token != "null") s->setSfxVol(toDouble(token));
+		if(token != "null") s->setSfxVol((float)toDouble(token));
 
 		std::cout << "Settings loaded\n";
 	}
@@ -170,7 +170,7 @@ void loadSaveData(SaveData* sd){
 		// Grab screen width 
 		token = getSetting(str, std::string("store_items"));
 		if(token != "null") {
-			for (int i = 0; i < token.length(); i++)
+			for (int i = 0; i < (int)token.length(); i++)
 			{
 				if (token[i] == '1')
 					sd->itemPurchsed(i);
@@ -184,6 +184,18 @@ void loadSaveData(SaveData* sd){
 		// Grab animal abduction count
 		token = getSetting(str, std::string("animal_abduct"));
 		if(token != "null") sd->setAnimalAbductCount(toInt(token));
+
+		// Load player starting weapons 
+		token = getSetting(str, std::string("pw1"));
+		if(token != "null") sd->setPlayerWeapon1(toInt(token));
+		token = getSetting(str, std::string("pw2"));
+		if(token != "null") sd->setPlayerWeapon2(toInt(token));
+
+		// Load ufo starting weapons 
+		token = getSetting(str, std::string("ufow1"));
+		if(token != "null") sd->setUFOWeapon1(toInt(token));
+		token = getSetting(str, std::string("ufow2"));
+		if(token != "null") sd->setUFOWeapon2(toInt(token));
 
 		std::cout << "Savedata loaded\n";
 	}
@@ -214,6 +226,22 @@ void saveSaveData(SaveData* sd){
 	// Animal abduct count 
 	str += "animal_abduct ";
 	str += toString(sd->getAnimalAbductCount());
+	str += ";\n";
+
+	// Player starting weapons 
+	str += "pw1 ";
+	str += toString(sd->getPlayerWeapon1());
+	str += ";\n";
+	str += "pw2 ";
+	str += toString(sd->getPlayerWeapon2());
+	str += ";\n";
+	
+	// UFO starting weapons 
+	str += "ufow1 ";
+	str += toString(sd->getUFOWeapon1());
+	str += ";\n";
+	str += "ufow2 ";
+	str += toString(sd->getUFOWeapon2());
 	str += ";\n";
 
 	// Save 
@@ -283,3 +311,9 @@ std::string getSetting(std::string fileString, std::string setting){
 	return token;
 }
 
+// Check if a file exists
+bool fexists(const char *filename)
+{
+  std::ifstream ifile(filename);
+  return ifile.is_open();
+}

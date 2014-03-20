@@ -21,7 +21,7 @@ void FreePlayScreen::init(float screen_width, float screen_height){
 	UIScreen::init(screen_width, screen_height);
 
 	level = new Level();
-	level->init(screen_width, screen_height);
+	level->init(screen_width, screen_height, NULL);
 
 	pauseScreen = new PauseScreen();
 	pauseScreen->init(screen_width, screen_height);
@@ -144,7 +144,7 @@ void FreePlayScreen::updateTerrain(Handlers* handlers)
 				randomYHolder += (float)(((rand() % 50) - 25));
 			}
 			generatorCounter++;
-			level->updateTerrain(randomXHolder, randomYHolder);
+			tempGround->add(new Point(randomXHolder, randomYHolder));
 		}
 
 		// Fix level boundaries 

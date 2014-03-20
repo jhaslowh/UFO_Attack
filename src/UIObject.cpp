@@ -9,6 +9,7 @@ UIObject::UIObject(){
 	flatColor[1] = 1.0f;
 	flatColor[2] = 1.0f;
 	flatColor[3] = 1.0f;
+	reqFocus = false;
 }
 UIObject::~UIObject(){}
 
@@ -33,6 +34,7 @@ void UIObject::setColor(float r, float g, float b, float a){
 	flatColor[3] = a;
 }
 GLfloat* UIObject::getColor(){return flatColor;}
+// Set the transparency value of the object 
 void UIObject::setAlpha(float a){flatColor[3] = a;}
 float UIObject::getAlpha(){return flatColor[3];}
 
@@ -45,6 +47,11 @@ void UIObject::load(TextureAtlas* mAtlas){
 	// Nothing to do
 }
 
+// Call if object has child objects that need to be unloaded
+void UIObject::unload(){
+	// Nothing to do
+}
+
 // Update the button 
 void UIObject::update(float deltaTime){
 	// Nothing to do
@@ -53,6 +60,11 @@ void UIObject::update(float deltaTime){
 // Update input 
 void UIObject::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// Nothing to do
+}
+
+// Update focus input 
+bool UIObject::updateInputFocus(KeyHandler* mKeyH, MouseHandler* mMouseH){
+	return false;
 }
 
 // Draw the object to the screen
@@ -67,10 +79,36 @@ void UIObject::draw(GLHandler* mgl, UIAtlas* mAtlas, float offx, float offy){
 	// Nothing to do
 }
 
+// Draw the object focus elements to the screen
+// UIAtles must be bound first.
+void UIObject::drawFocus(GLHandler* mgl, UIAtlas* mAtlas){
+	// Nothing to do
+}
+
+// Draw the object focus elements to the screen at sent offset.
+// UIAtles must be bound first.
+void UIObject::drawFocus(GLHandler* mgl, UIAtlas* mAtlas, float offx, float offy){
+	// Nothing to do 
+}
+
 // Check if the sent location is inside the objc
 bool UIObject::contains(float x, float y){
 	if (x > loc_x && x < loc_x + width &&
 			y > loc_y && y < loc_y + height)
 		return true;
 	return false;
+}
+
+// Check if object is requesting focuse 
+bool UIObject::requestFocus(){
+	if (reqFocus){
+		reqFocus = false;
+		return true;
+	}
+	return false;
+}
+
+// Called when focus is lost 
+void UIObject::focusLost(){
+	// Nothing to do 
 }

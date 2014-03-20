@@ -1,5 +1,5 @@
 #ifdef WIN32
-// pragma to remove extra console window under windows
+//pragma to remove extra console window under windows
 //#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
 #endif
 
@@ -15,6 +15,7 @@ int init_resources()
 	soundStuff();
 
 	printf("Loading Resources...\n");
+
 	// Set up shaders 
 	mgl.load((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 	glUseProgram(mgl.program);
@@ -62,10 +63,27 @@ void free_resources()
 {
 	printf("Free Resources...\n");
 
-	// Delete textures 
-	screen->unload();
-	mUIAtlas->unload();
+	// Delete gscreens 
+	if (gscreen_unload != NULL){
+		gscreen_unload->unload();
+		delete gscreen_unload;
+		gscreen_unload = NULL;
+	}
+	if (gscreen != NULL){
+		gscreen->unload();
+		delete gscreen;
+		gscreen = NULL;
+	}
 
+	// Delete screen
+	if (screen != NULL){
+		screen->unload();
+		delete screen;
+		screen = NULL;
+	}
+
+	// Unload atlas 
+	mUIAtlas->unload();
 	// Unload program
 	glUseProgram(0);
 	// Unload GLHandler
@@ -75,7 +93,6 @@ void free_resources()
 
 	// Delete allocations 
 	delete mUIAtlas;
-	delete screen;
 	delete terminal;
 
 	// Save data 
@@ -122,8 +139,10 @@ void onUpdate(){
 		// Update Screen 
 		if (screen != NULL) {
 			// Update screen input 
-			if (!showTerminal) 
-				screen->updateInput(&mKeyH, &mMouseH);
+			if (!showTerminal) {
+				if (!screen->updateInputFocus(&mKeyH, &mMouseH))
+					screen->updateInput(&mKeyH, &mMouseH);
+			}
 			// Update screen 
 			screen->update(deltaTime);
 			// Check if screen needs to be changed 
@@ -203,17 +222,6 @@ void checkCommand(string line){
 		version += toString(VERSION);
 		terminal->addLine(version, TL_SUCCESS); 
 
-		return;
-	}
-	// Load test screen
-	else if (command == "test"){
-		// Wait for rendering to stop 
-		while (render){} 
-		// Delete old screen 
-		delete screen;
-		screen = (UIScreen*)new TestScreen();
-		screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
-		terminal->addLine(command, TL_SUCCESS);
 		return;
 	}
 	// Close game
@@ -296,10 +304,14 @@ void changeScreen(){
 
 	// Get transition code
 	int tcode = screen->getTransitionCode();
+	
 
 	if (tcode != NO_TRANSITION){
 		if (screen->getHideOnClose() && !screen->hidden())
 			return;
+		// Tell the screen there is no transition. 
+		// This must be done after the hide on close check. 
+		screen->setTransitionValue(NO_TRANSITION);
 
 		switch (tcode){
 		case NO_TRANSITION: 
@@ -311,31 +323,61 @@ void changeScreen(){
 		case SCREEN_QUIT:
 			running = false;
 			break;
+		case RESTART_GAME:
+			restart = true;
+			running = false;
+			break;
 		case SCREEN_MAIN:
+		case SCREEN_MAIN_SAVE_GAME:
 		case SCREEN_STORE:
 		case SCREEN_SETTINGS:
 		case SCREEN_FREE_PLAY:
-		case SCREEN_GAME:
-		case SCREEN_TEST:
+		case SCREEN_GAME_NEW:
+		case SCREEN_GAME_RESUME:
+		case SCREEN_EQUIP:
 
-			// Tell screen to unload 
-			unloadScreen = true;
-			// Wait for rendering and unload to finish
-			while (render || unloadScreen){} 
-			// Delete old screen 
-			delete screen;
+			// Delete screen if it is not game screen 
+			if (tcode != SCREEN_MAIN_SAVE_GAME){
+				// Tell screen to unload 
+				unloadScreen = true;
+				// Wait for rendering and unload to finish
+				while (render || unloadScreen){} 
+				// Delete old screen 
+				delete screen;
+				screen = NULL;
+			}
+			// Save game screen 
+			else {
+				gscreen = (GameScreen*)screen;
+				screen = NULL;
+			}
 
 			// Set new screen 
-			if (tcode == SCREEN_MAIN)		   screen = (UIScreen*)new MainScreen();
-			else if (tcode == SCREEN_STORE)    screen = (UIScreen*)new StoreScreen(savedata);
-			else if (tcode == SCREEN_SETTINGS) screen = (UIScreen*)new SettingsScreen(settings);
-			else if (tcode == SCREEN_FREE_PLAY) screen = (UIScreen*)new FreePlayScreen();
-			else if (tcode == SCREEN_GAME)	   screen = (UIScreen*)new GameScreen();
-			else if (tcode == SCREEN_TEST)	   screen = (UIScreen*)new TestScreen();
-			else screen = new UIScreen();
+			if (tcode == SCREEN_MAIN || 
+				tcode == SCREEN_MAIN_SAVE_GAME)	screen = (UIScreen*)new MainScreen(gscreen != NULL);
+			else if (tcode == SCREEN_STORE)		screen = (UIScreen*)new StoreScreen(savedata);
+			else if (tcode == SCREEN_SETTINGS)	screen = (UIScreen*)new SettingsScreen(settings);
+			else if (tcode == SCREEN_FREE_PLAY)	screen = (UIScreen*)new FreePlayScreen();
+			else if (tcode == SCREEN_EQUIP)		screen = (UIScreen*)new EquipScreen(savedata);
+			else if (tcode == SCREEN_GAME_NEW) {
+				screen = (UIScreen*)new GameScreen(savedata);
+				gscreen_unload = gscreen;
+				gscreen = NULL;
+			}
 
-			// Initialize new screen 
-			screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+			if (screen != NULL)
+				screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+
+			// Resume game screen 
+			if (tcode == SCREEN_GAME_RESUME) {
+				if (gscreen != NULL)
+					screen = gscreen;
+				else {
+					screen = (UIScreen*)new GameScreen(savedata);
+					screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+				}
+			}
+
 			break;
 		default:
 			break;
@@ -355,13 +397,23 @@ void onDraw()
 	// Draw Screen
 	if (screen != NULL) {
 		screen->draw(&mgl, (TextureAtlas*)mUIAtlas);
+		screen->drawFocus(&mgl, (TextureAtlas*)mUIAtlas);
+	}
 
-		// Draw terminal
+	// Draw terminal if not hidden 
+	if (!terminal->hidden()){
 		mgl.setProjectionMatrix(mgl.orthoMatrix);
 		mUIAtlas->bindBuffers(&mgl);
 		mUIAtlas->bindTexture(&mgl);
-
 		terminal->draw(&mgl, mUIAtlas);
+	}
+
+	// Delete gamescreen if needed 
+	if (gscreen_unload != NULL)
+	{
+		gscreen_unload->unload();
+		delete gscreen_unload;
+		gscreen_unload = NULL;
 	}
 }
  
@@ -498,12 +550,14 @@ void createGame(){
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
 	/// Set window icon 
-	SDL_Surface* icon = SDL_LoadBMP("icon.bmp");
-	// Remove icon background 
-	SDL_SetColorKey(icon, SDL_TRUE, SDL_MapRGB(icon->format,0,0,0)); 
-	SDL_SetWindowIcon(window,icon);
-	// Free icon resources 
-	if (icon) SDL_FreeSurface(icon);
+	if (fexists("images/icon.bmp")){
+		SDL_Surface* icon = SDL_LoadBMP("images/icon.bmp");
+		// Remove icon background 
+		SDL_SetColorKey(icon, SDL_TRUE, SDL_MapRGB(icon->format,0,0,0)); 
+		SDL_SetWindowIcon(window,icon);
+		// Free icon resources 
+		if (icon) SDL_FreeSurface(icon);
+	}
 
 	// OpenGL Extension wrangler initialising  
 	glewExperimental = GL_TRUE; 

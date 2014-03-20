@@ -12,7 +12,7 @@ BulletProjectile::BulletProjectile()
 	spread = 40;
 	speed = 200;
 	mass = 1;
-	size = .5;
+	size = 1;//.5;
 	negligence = true;
 	alive = false;
 	doesExplode = false;
@@ -30,7 +30,7 @@ BulletProjectile::BulletProjectile(float CurrentX, float CurrentY, int speed, bo
 	xVector = speed*directionx;
 	yVector = speed*directiony;
 	mass = 1;
-	size = .5;
+	size = 1;//.5;
 	negligence = false;
 	alive = true;
 	isColliding = false;
@@ -44,11 +44,11 @@ BulletProjectile::BulletProjectile(float CurrentX, float CurrentY, int Mass, int
 	currentX = CurrentX;
 	currentY = CurrentY;
 	spread = Spread;
-	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
+	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
 	mass = 1;
-	size = .5;
+	size = 1;//.5;
 	negligence = true;
 	alive = true;
 	isColliding = false;
@@ -62,11 +62,11 @@ BulletProjectile::BulletProjectile(float CurrentX, float CurrentY, float xLocati
 	currentY = CurrentY;
 	speed = 200;
 	spread = 40;
-	float angle = atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
+	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
 	xVector = speed*(cos(angle));
 	yVector = speed*(sin(angle));
 	mass = 1;
-	size = .5;
+	size = 1;//.5;
 	negligence = true;
 	alive = true;
 	isColliding = false;

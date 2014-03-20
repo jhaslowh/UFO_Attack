@@ -14,6 +14,8 @@
 #include "Camera2D.h"
 #include "LevelProperties.h"
 #include "ProjectileHandler.h"
+#include "Sky.h"
+#include "NPCHandler.h"
 
 class Level
 {
@@ -21,9 +23,11 @@ class Level
 	Ground* ground;
 	GameAtlas gameAtlas;
 	SceneryHandler* sceneryHandler;
+	NPCHandler* npcHandler;
 	ProjectileHandler* projHandler;
 	Camera2D camera;
 	LevelProperties levelProps;
+	Sky sky;
 
 	// States 
 	bool loaded;
@@ -35,7 +39,7 @@ public:
 	~Level();
 
 	// initialize level
-	void init(float screen_width, float screen_height);
+	void init(float screen_width, float screen_height, SaveData* savedata);
 
 	// Load level (use for textures)
 	void load(GLHandler* mgl);
@@ -45,9 +49,6 @@ public:
 
 	// Update level state
 	void update(float deltaTime);
-
-	// Update the terrain list
-	void updateTerrain(float newX, float newY);
 
 	// Update input
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);

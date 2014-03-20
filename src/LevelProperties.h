@@ -5,6 +5,9 @@ class LevelProperties
 	float levelRight;
 	float playerSpawnX;
 	float playerSpawnY;
+	float light[3];
+	float screenWidth;
+	float screenHeight;
 
 public:
 	LevelProperties();
@@ -26,5 +29,17 @@ public:
 	float getPlayerSpawnX();
 	// Get player spawn y
 	float getPlayerSpawnY();
+
+	// Set the level light
+	void setLight(float r, float g, float b);
+	// Get level light
+	// Length is 3. 
+	float* getLight();
+
+	// Getters and setters for screen sizes 
+	void setScreenWidth(float w);
+	float getScreenWidth();
+	void setScreenHeight(float h);
+	float getScreenHeight();
 };
 

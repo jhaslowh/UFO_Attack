@@ -7,7 +7,7 @@ class Handlers
 public:
 
 	// Handlers for each handler we  need in the game.
-	void* enemyHandler;
+	void* npcHandler;
 	void* projHandler;
 	void* sceneryHandler;
 	Ground* ground;

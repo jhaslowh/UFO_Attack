@@ -62,6 +62,8 @@ public:
 	float getWidth();
 	// Get the height of the sprite 
 	float getHeight();
+	// Call to get image id
+	GLuint getImageID();
 
 	// Call to clip part of the image off. 
 	// Can be fixed later with restore().

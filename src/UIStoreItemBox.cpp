@@ -60,7 +60,7 @@ void UIStoreItemBox::init(float screen_width, float screen_height){
 	lPurchase->setLocation(5.0f,24.0f);
 	lPurchase->setColor(.45f,.95f,.23f);
 	
-	mCSAnimal.setID(UI_CURRENCY_ANIMAL);
+	mCSAnimal.setID(UII_CURRENCY_ANIMAL);
 	mCSAnimal.setPosition(5.0f, 22.0f);
 	mCSAnimal.setScale(.75f);
 
@@ -69,7 +69,7 @@ void UIStoreItemBox::init(float screen_width, float screen_height){
 	lPriceA->setLocation(22.0f,24.0f);
 	lPriceA->setColor(.9f,.9f,.9f);
 	
-	mCSHuman.setID(UI_CURRENCY_HUMAN);
+	mCSHuman.setID(UII_CURRENCY_HUMAN);
 	mCSHuman.setPosition(5.0f, 42.0f);
 	mCSHuman.setScale(.75f);
 

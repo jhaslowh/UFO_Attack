@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-Player::Player(){
+Player::Player(SaveData* savedata){
 	// Location And Sizing 
 	locX = 0.0f;
 	locY = 0.0f;
@@ -104,8 +104,15 @@ Player::Player(){
 	armOffsetsR[20] = 24;	armOffsetsR[21] = 22;
 	armOffsetsR[22] = 24;	armOffsetsR[23] = 23;
 
-	//weapon = (Weapon*)new PlayerLaserGun();
-	weapon = (Weapon*)new PlayerShotgun();
+	// Load weapon based off savedata
+	if (savedata != NULL){
+		if (savedata->getPlayerWeapon1() == StoreItems::SID_PLAYER_WEAPON_LASER)
+			weapon = (Weapon*)new PlayerLaserGun();
+		else if (savedata->getPlayerWeapon1() == StoreItems::SID_PLAYER_WEAPON_SHOTGUN)
+			weapon = (Weapon*)new PlayerShotgun();
+		else if (savedata->getPlayerWeapon1() == StoreItems::SID_PLAYER_WEAPON_SMG)
+			weapon = (Weapon*)new PlayerSMG();
+	}
 }
 Player::~Player(){
 	delete ufo;
@@ -201,9 +208,20 @@ void Player::update(float deltaTime, Handlers* handlers){
 			cRunFrameTime += deltaTime;
 			if (cRunFrameTime >= runFrameTime){
 				cRunFrameTime = 0.0f;
-				runFrame++;
-				if (runFrame >= runFrameCount)
-					runFrame = 0;
+
+				// Update current walk frame
+				// Walking forward
+				if ((lookingRight && nextX > locX) || (!lookingRight && nextX < locX)){
+					runFrame++;
+					if (runFrame >= runFrameCount)
+						runFrame = 0;
+				}
+				// Walking backward
+				else {
+					runFrame--;
+					if (runFrame < 0)
+						runFrame = runFrameCount-1;
+				}
 			}
 		}
 	}
@@ -402,7 +420,28 @@ void Player::checkCollision(Handlers* handlers){
 			setCollRec(&collRecY, locX, nextY);
 			setCollRec(&collRecXY, nextX, nextY);
 
-			// TODO 
+			std::list<Projectile*> projs = ((ProjectileHandler*)handlers->projHandler)->getProjList();
+			Point projp;
+
+			// Check all projectiles for collision 
+			for(std::list<Projectile*>::iterator myIterator = projs.begin(); myIterator != projs.end(); myIterator++)
+			{
+				// Null check 
+				if (*myIterator != NULL && (*myIterator)->getAlive() && (*myIterator)->getFiredBy() == PFB_ENEMY){
+					// TODO might need to check if player fired or enemy fired 
+
+					// Check for collision 
+					if (checkRecSeg(&collRecXY, 
+						(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
+						(*myIterator)->getPrevX(), (*myIterator)->getPrevY(), &projp)){
+
+						// Tell projectile we had a player collision 
+						(*myIterator)->collide(&projp, handlers, P_PLAYER_COLL);
+
+						// TODO Player related collision things 
+					}
+				}
+			}
 		}
 	}
 }
@@ -467,8 +506,6 @@ void Player::update2(float deltaTime, Handlers* handlers){
 		currentFrame = idleFrame;
 	else if (animationState == PLAYERS_AIR)
 		currentFrame = jumpFrame;
-
-
 }
 
 // Update input

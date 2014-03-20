@@ -2,7 +2,7 @@
 
 Handlers::Handlers()
 {
-	enemyHandler = NULL;
+	npcHandler = NULL;
 	projHandler = NULL;
 	sceneryHandler = NULL;
 	ground = NULL;

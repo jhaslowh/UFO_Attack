@@ -4,6 +4,7 @@ Level::Level(){
 	player = NULL;
 	ground = NULL;
 	sceneryHandler = NULL;
+	npcHandler = NULL;
 	projHandler = NULL;
 	loaded = false;
 }
@@ -12,23 +13,52 @@ Level::~Level(){
 	delete ground;
 	delete sceneryHandler;
 	delete projHandler;
+	delete npcHandler;
 }
 
 // initialize level
-void Level::init(float screen_width, float screen_height){
-	levelProps.setLevelRight(1400.0f);
+void Level::init(float screen_width, float screen_height, SaveData* savedata){
+	// Setup sky 
+	sky.init(screen_width, screen_height);
+	// Create player 
+	player = new Player(savedata);
+	player->init(screen_width, screen_height);
+	// Initialize camera 
+	camera.init(screen_width, screen_height);
+	// Create scenery handler 
+	sceneryHandler = new SceneryHandler();
+	// Create npc handler
+	npcHandler = new NPCHandler();
+	// Create ground 
+	ground = new Ground();
+	// Create proj handler 
+	projHandler = new ProjectileHandler();
+
+	// Give screen size to level properties 
+	levelProps.setScreenWidth(screen_width);
+	levelProps.setScreenHeight(screen_height);
+
+	// Set Handler references 
+	handlers.ground = ground;
+	handlers.sceneryHandler = sceneryHandler;
+	handlers.camera = &camera;
+	handlers.levelProps = &levelProps;
+	handlers.player = &player;
+	handlers.projHandler = projHandler;
+	handlers.npcHandler = npcHandler;
+
+	// ------------------------------
+	// DEBUG TEST LEVEL
+	// Replace with real loading code
+	// ------------------------------
 
 	// Set player spawn location 
 	levelProps.setPlayerSpawn(100.0f,100.0f);
+	player->ufo->setLocation(levelProps.getPlayerSpawnX(), levelProps.getPlayerSpawnY());
 
-	player = new Player();
-	player->init(screen_width, screen_height);
-	player->setLocation(levelProps.getPlayerSpawnX(), levelProps.getPlayerSpawnY()); 
-	player->ufo->setLocation(100.0f,200.0f);
+	levelProps.setLevelLeft(-500.0f);
+	levelProps.setLevelRight(1800.0f);
 
-	camera.init(screen_width, screen_height);
-
-	sceneryHandler = new SceneryHandler();
 	SceneryObject* obj = (SceneryObject*)new Tree();
 	obj->setLocation(321.0f,550.0f);
 	sceneryHandler->add(obj);
@@ -39,9 +69,8 @@ void Level::init(float screen_width, float screen_height){
 	obj->setLocation(1124.0f,533.0f);
 	sceneryHandler->add(obj);
 
-	ground = new Ground();
-	ground->add(new Point(0.0f,400.0f));
-	ground->add(new Point(20.0f,400.0f));
+	ground->add(new Point(-1500.0f,500.0f));
+	ground->add(new Point(-200.0f,500.0f));
 	ground->add(new Point(30.0f,500.0f));
 	ground->add(new Point(120.0f,490.0f));
 	ground->add(new Point(180.0f,500.0f));
@@ -50,19 +79,8 @@ void Level::init(float screen_width, float screen_height){
 	ground->add(new Point(650.0f,570.0f));
 	ground->add(new Point(1000.0f,510.0f));
 	ground->add(new Point(1240.0f,550.0f));
-	ground->add(new Point(1250.0f,400.0f));
-	ground->add(new Point(1400.0f,400.0f));
-
-	// Create proj handler 
-	projHandler = new ProjectileHandler();
-
-	// Set Handler references 
-	handlers.ground = ground;
-	handlers.sceneryHandler = sceneryHandler;
-	handlers.camera = &camera;
-	handlers.levelProps = &levelProps;
-	handlers.player = &player;
-	handlers.projHandler = projHandler;
+	ground->add(new Point(1400.0f,500.0f));
+	ground->add(new Point(2500.0f,500.0f));
 }
 
 // Load level (use for textures)
@@ -80,24 +98,22 @@ void Level::unload(){
 	gameAtlas.unload();
 	player->unload();
 	ground->unload();
+
+	loaded = false;
 }
 
 // Update level state
 void Level::update(float deltaTime){
+	sky.update(deltaTime);
 	sceneryHandler->update(deltaTime, &handlers);
-	projHandler->updateProjectiles(deltaTime);
+	npcHandler->update(deltaTime, &handlers);
+	projHandler->updateProjectiles(deltaTime, &handlers);
 
 	player->update(deltaTime, &handlers);
 	player->checkCollision(&handlers);
 	player->update2(deltaTime, &handlers);
 
 	camera.update(deltaTime);
-}
-
-// Update the terrain list
-void Level::updateTerrain(float newX, float newY)
-{
-	ground->add(new Point(newX, newY));
 }
 
 // Update input
@@ -111,38 +127,50 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (!loaded)
 		load(mgl);
 
-	// Set camera 
-	mgl->setViewMatrix(camera.getMatrix());
-
 	// Bind Game Atlas buffers
 	gameAtlas.bindBuffers(mgl);
 	gameAtlas.bindTextureFast(mgl);
 
+	// ------------------------------
 	// Draw lights 
-	mgl->enableLight(true);
-	mgl->lightBegin();
+	mgl->lightBegin(
+		levelProps.getLight()[0], 
+		levelProps.getLight()[1],
+		levelProps.getLight()[2]);
 
 	// Draw Scenery Lights 
+	mgl->setViewMatrix(camera.getMatrix());
+	mgl->setFlatColor(COLOR_WHITE);
 	sceneryHandler->drawLight(mgl, &gameAtlas);
+	projHandler->drawLight(mgl, &gameAtlas);
 
 	mgl->lightEnd();
-
-	// Set flat color back to white 
-	mgl->setFlatColor(COLOR_WHITE);
 	
-	sceneryHandler->draw(mgl, &gameAtlas);		// Uses GameAtlas 
-	projHandler->draw(mgl, &gameAtlas);			// Uses GameAtlas
+	// ------------------------------
+	// Enable lights 
+	mgl->enableLight(true);
 
-	player->draw(mgl);							// Uses PlayerAtlas
-	ground->draw(mgl);							// Uses 1 sprite and 1 custom sprite
-
+	// Draw sky 
+	mgl->setFlatColor(COLOR_WHITE);
 	mgl->setViewMatrix(glm::mat4());
-
-	// Draw player hud
-	player->drawHud(mgl);
-
+	sky.draw(mgl, &gameAtlas);
+	
+	// Draw level 
+	mgl->setViewMatrix(camera.getMatrix());
+	mgl->setFlatColor(COLOR_WHITE);
+	sceneryHandler->draw(mgl, &gameAtlas);
+	npcHandler->draw(mgl, &gameAtlas);
+	projHandler->draw(mgl, &gameAtlas);			
+	player->draw(mgl);							
+	ground->draw(mgl);							
+	
 	// Disable lights 
 	mgl->enableLight(false);
+
+	// ------------------------------
+	// Draw player hud
+	mgl->setViewMatrix(glm::mat4());
+	player->drawHud(mgl);
 }
 
 // Draw level 
