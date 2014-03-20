@@ -625,11 +625,11 @@ void soundStuff(){
 		}
 	}
 
-	menuMusic = Mix_LoadMUS("2141__jovica__80-bpm-attack-loop-2b-mastered-16-bit.wav");
+	menuMusic = Mix_LoadMUS("splash_screen.wav");
 	if( menuMusic == NULL ){
 		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
 	
-	Mix_PlayMusic(menuMusic, -1 );
+	Mix_PlayMusic(menuMusic, 1 );
 
 }
