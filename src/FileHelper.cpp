@@ -311,3 +311,9 @@ std::string getSetting(std::string fileString, std::string setting){
 	return token;
 }
 
+// Check if a file exists
+bool fexists(const char *filename)
+{
+  std::ifstream ifile(filename);
+  return ifile.is_open();
+}

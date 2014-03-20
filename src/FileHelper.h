@@ -45,3 +45,7 @@ double toDouble(std::string s);
 
 // Return setting from file 
 std::string getSetting(std::string fileString, std::string setting);
+
+// Check if a file exists
+bool fexists(const char *filename);
+

@@ -548,12 +548,14 @@ void createGame(){
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
 	/// Set window icon 
-	SDL_Surface* icon = SDL_LoadBMP("images/icon.bmp");
-	// Remove icon background 
-	SDL_SetColorKey(icon, SDL_TRUE, SDL_MapRGB(icon->format,0,0,0)); 
-	SDL_SetWindowIcon(window,icon);
-	// Free icon resources 
-	if (icon) SDL_FreeSurface(icon);
+	if (fexists("images/icon.bmp")){
+		SDL_Surface* icon = SDL_LoadBMP("images/icon.bmp");
+		// Remove icon background 
+		SDL_SetColorKey(icon, SDL_TRUE, SDL_MapRGB(icon->format,0,0,0)); 
+		SDL_SetWindowIcon(window,icon);
+		// Free icon resources 
+		if (icon) SDL_FreeSurface(icon);
+	}
 
 	// OpenGL Extension wrangler initialising  
 	glewExperimental = GL_TRUE; 
