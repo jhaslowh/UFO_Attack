@@ -21,7 +21,10 @@ void Settings::setFullscreen(bool value){fullscreen = value;}
 float Settings::getMasterVol(){return masterVol;}
 void Settings::setMasterVol(float value){masterVol = value;}
 float Settings::getMusicVol(){return musicVol;}
-void Settings::setMusicVol(float value){musicVol = value;}
+void Settings::setMusicVol(float value){
+	musicVol = value;
+	Mix_VolumeMusic((MIX_MAX_VOLUME*value*masterVol));
+}
 float Settings::getSfxVol(){return sfxVol;}
 void Settings::setSfxVol(float value){sfxVol = value;}
 

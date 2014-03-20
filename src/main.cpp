@@ -612,8 +612,7 @@ void createGame(){
 }
 
 
-void soundStuff(){
-
+void soundStuff(){	
 	if(SDL_Init(SDL_INIT_AUDIO)<0){
 		// errors
 		printf("Error initializing audio. SDL Error info %s\n", SDL_GetError());
@@ -630,5 +629,7 @@ void soundStuff(){
 	if( menuMusic == NULL ){
 		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
+	
 	Mix_PlayMusic(menuMusic, -1 );
+
 }
