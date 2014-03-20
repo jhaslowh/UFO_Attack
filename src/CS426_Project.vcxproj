@@ -158,6 +158,40 @@
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="audio\2141__jovica__80-bpm-attack-loop-2b-mastered-16-bit.wav" />
+    <None Include="audio\music.wav" />
+    <None Include="audio\splash_screen-old1.wav" />
+    <None Include="audio\toCopy.wav" />
+    <None Include="glew32.dll" />
+    <None Include="SDL2.dll" />
+    <None Include="SDL2_mixer.dll" />
+    <None Include="images\AtlasGame.png" />
+    <None Include="images\AtlasPlayer.png" />
+    <None Include="images\AtlasUI.png" />
+    <None Include="images\DGSplash.png" />
+    <None Include="images\dirt.png" />
+    <None Include="images\grass.png" />
+    <None Include="images\icon.bmp" />
+    <None Include="images\logo.png" />
+    <None Include="images\si\sii_laser.png" />
+    <None Include="images\si\sii_none.png" />
+    <None Include="images\si\sii_shotgun.png" />
+    <None Include="images\si\sii_smg.png" />
+    <None Include="images\si\sii_todo.png" />
+	<Content Include="images\si\*">    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="images\*">    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="audio\*">    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="glew32.dll">    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="SDL2.dll*">    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="SDL2_mixer.dll">    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{55A1C19C-B44B-4905-8CB9-3662761445ED}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -217,6 +251,19 @@
       <AdditionalDependencies>lib\glew32.lib;lib\SOIL\SOIL.lib;lib\SDL2.lib;lib\SDL2main.lib;opengl32.lib;lib\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>xcopy /d /y "$(ProjectDir)lib\*.*" "$(OutDir)"</Command>
+    </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>xcopy /d /y "$(ProjectDir)lib\*.*" "$(OutDir)"</Command>
+    </PreLinkEvent>
+    <CustomBuildStep>
+      <Command>xcopy /d /y "$(ProjectDir)images\*.*" "$(OutDir)\images\"</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -239,6 +286,9 @@
       <AdditionalDependencies>lib\glew32.lib;lib\SOIL\SOIL.lib;lib\SDL2.lib;lib\SDL2main.lib;opengl32.lib;lib\SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /d /y "$(ProjectDir)images\*.*" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
