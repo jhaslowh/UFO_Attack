@@ -43,7 +43,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	handlers.sceneryHandler = sceneryHandler;
 	handlers.camera = &camera;
 	handlers.levelProps = &levelProps;
-	handlers.player = &player;
+	handlers.player = player;
 	handlers.projHandler = projHandler;
 	handlers.npcHandler = npcHandler;
 

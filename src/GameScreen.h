@@ -10,8 +10,10 @@ class GameScreen : public UIScreen
 	// Player save data
 	SaveData* savedata;
 
-	// States 
+	// States properties
 	bool paused, gameover;
+	float gameoverTime;
+	float cGameoverTime;
 
 	// Screen size for reference 
 	float screenWidth, screenHeight;
