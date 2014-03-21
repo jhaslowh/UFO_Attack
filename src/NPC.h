@@ -6,6 +6,10 @@
 
 #define GRAVITY 980.0f
 
+// NPC types
+#define NPC_ANIMAL 1
+#define NPC_HUMAN 2
+
 class NPC
 {
 protected:
@@ -25,6 +29,7 @@ protected:
 	bool alive;
 
 	float health;
+	int type;
 
 public:
 	NPC* next;

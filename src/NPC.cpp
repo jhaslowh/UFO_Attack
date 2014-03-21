@@ -18,6 +18,7 @@ NPC::NPC()
 	beingAbducted = false;
 	alive = true;
 	health = 100.0f;
+	type = NPC_HUMAN;
 }
 
 NPC::~NPC()
