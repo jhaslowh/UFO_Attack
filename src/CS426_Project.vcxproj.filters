@@ -144,9 +144,6 @@
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SettingsScreen.h">
       <Filter>Header Files\ui\screens</Filter>
     </ClInclude>
@@ -297,6 +294,15 @@
     <ClInclude Include="NPC.h">
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCBasicCollision.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCSoldier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -361,9 +367,6 @@
     </ClCompile>
     <ClCompile Include="MainScreen.cpp">
       <Filter>Source Files\ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="Settings.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SettingsScreen.cpp">
       <Filter>Source Files\ui\screens</Filter>
@@ -514,6 +517,15 @@
     </ClCompile>
     <ClCompile Include="NPC.cpp">
       <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCBasicCollision.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCSoldier.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

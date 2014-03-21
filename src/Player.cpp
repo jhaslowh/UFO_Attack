@@ -680,3 +680,4 @@ void Player::setCollRec(Rec* r, float x, float y){
 	r->setX(x - originX + r->getX());
 	r->setY(y - originY + r->getY());
 }
+

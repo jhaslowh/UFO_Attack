@@ -12,13 +12,16 @@ NPC::NPC()
 	rotation = 0.0f;
 	scale = 1.0f;
 	imageID = 0;
-	collisionRec = new Rec();
 	next = NULL;
+	
+	canBeObducted = true;
+	beingAbducted = false;
+	alive = true;
+	health = 100.0f;
 }
 
 NPC::~NPC()
 {
-	delete collisionRec;
 	delete next;
 }
 
@@ -59,19 +62,35 @@ void NPC::setImageID(int id){
 int NPC::getImageID(){return imageID;}
 
 // Returns npc collision rec
-Rec* NPC::getCollisionRec(){return collisionRec;}
+Rec* NPC::getCollisionRec(){return &collisionRec;}
 
 // Fix collision rec location 
 void NPC::fixCollRec(){
-	if (collisionRec){
-		collisionRec->setLocation(locX - originX, locY - originY);
-		collisionRec->setSize(width, height);
-	}
+	collisionRec.setLocation(locX - originX + bounds.getX(), locY - originY + bounds.getX());
+	collisionRec.setSize(bounds.getWidth(), bounds.getHeight());
+}
+
+// Update movement of the NPC 
+// This method should set the movement values for the npc.
+void NPC::updateMovement(float deltaTime, Handlers* handlers){
+	// Nothing to do
+}
+
+// Update collision of NPC 
+// This method should check if the npc is being abducted, if it is
+// it should ignore the movement from the update movement method and 
+// if it isnt, it should resolve the movement and collisions. 
+void NPC::updateCollision(float deltaTime, Handlers* handlers){
+	// TODO check if being abducted
+
+	beingAbducted = false;
 }
 
 // Update game state of the npc object
+// Do any non movement or collision detection updates
+// (weapons and the like) 
 void NPC::update(float deltaTime, Handlers* handlers){
-	// Nothing to do 
+	// Nothing to do
 }
 
 // Draw any light this object has 
@@ -81,6 +100,5 @@ void NPC::drawLight(GLHandler* mgl, GameAtlas* mGame){
 
 // Draw object to the screen
 void NPC::draw(GLHandler* mgl, GameAtlas* mGame){
-	mGame->draw(mgl,imageID, locX, locY, scale, rotation, originX, originY);
+	// Nothing to do
 }
-

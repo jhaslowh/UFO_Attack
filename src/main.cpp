@@ -630,6 +630,7 @@ void soundStuff(){
 		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
 	
-	Mix_PlayMusic(menuMusic, 1 );
-
+	if (settings->getMasterVol() * settings->getMusicVol() > 0.0f){
+		Mix_PlayMusic(menuMusic, 1 );
+	}
 }

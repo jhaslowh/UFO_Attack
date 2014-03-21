@@ -3,8 +3,8 @@
 #include "Handlers.h"
 #include "GLHandler.h"
 #include "GameAtlas.h"
-#include "MouseHandler.h"
-#include "KeyHandler.h"
+
+#define GRAVITY 980.0f
 
 class NPC
 {
@@ -16,7 +16,15 @@ protected:
 	float rotation;
 	float scale;
 	int imageID;
-	Rec* collisionRec;
+	Rec bounds;				// Bounds used when making collision rec
+	Rec collisionRec;		// Collision rec to check collisions with 
+
+	// States 
+	bool canBeObducted;
+	bool beingAbducted;
+	bool alive;
+
+	float health;
 
 public:
 	NPC* next;
@@ -50,7 +58,19 @@ public:
 	// Fix collision rec location 
 	virtual void fixCollRec();
 
+	// Update movement of the NPC 
+	// This method should set the movement values for the npc.
+	virtual void updateMovement(float deltaTime, Handlers* handlers);
+
+	// Update collision of NPC 
+	// This method should check if the npc is being abducted, if it is
+	// it should ignore the movement from the update movement method and 
+	// if it isnt, it should resolve the movement and collisions. 
+	virtual void updateCollision(float deltaTime, Handlers* handlers);
+
 	// Update game state of the npc object
+	// Do any non movement or non collision detection updates
+	// (weapons and the like) 
 	virtual void update(float deltaTime, Handlers* handlers);
 
 	// Draw any light this object has 

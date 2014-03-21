@@ -91,6 +91,8 @@ void NPCHandler::remove(NPC* obj){
 void NPCHandler::update(float deltaTime, Handlers* handlers){
 	itr = head;
 	while (itr != NULL){
+		itr->updateMovement(deltaTime, handlers);
+		itr->updateCollision(deltaTime, handlers);
 		itr->update(deltaTime, handlers);
 		itr = itr->next;
 	}

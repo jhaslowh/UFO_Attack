@@ -97,6 +97,7 @@ void Weapon::update(float deltaTime, float x, float y){
 }
 
 // Update weapon input
+// Note: if this is an NPC weapon, do not call this method
 void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
 	// Input should be handled by child class in this format
 

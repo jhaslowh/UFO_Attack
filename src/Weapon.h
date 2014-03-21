@@ -88,6 +88,7 @@ public:
 	virtual void update(float deltaTime, float x, float y);
 
 	// Update weapon input
+	// Note: if this is an NPC weapon, do not call this method
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers);
 
 	// Draw weapon to screen
