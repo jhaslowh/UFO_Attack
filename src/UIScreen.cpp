@@ -26,8 +26,8 @@ int UIScreen::getTransitionCode(){return transitionCode;}
 void UIScreen::setTransitionValue(int value){transitionCode = value;}
 
 // Initialize screen
-void UIScreen::init(float screen_width, float screen_height){
-	// Nothing to do
+void UIScreen::init(float screen_width, float screen_height, void* sh){
+	soundHandler = sh;
 }
 
 // Load screen

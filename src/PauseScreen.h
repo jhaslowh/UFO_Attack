@@ -16,7 +16,7 @@ public:
 	virtual ~PauseScreen();
 
 	// Initialize screen
-	virtual void init(float screen_width, float screen_height);
+	virtual void init(float screen_width, float screen_height, void* sh);
 
 	// Load screen
 	virtual void load(TextureAtlas* mAtlas);

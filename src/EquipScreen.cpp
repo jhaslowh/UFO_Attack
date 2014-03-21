@@ -40,8 +40,8 @@ EquipScreen::~EquipScreen()
 }
 
 // Initialize screen
-void EquipScreen::init(float screen_width, float screen_height){
-	UIScreen::init(screen_width, screen_height);
+void EquipScreen::init(float screen_width, float screen_height, void* sh){
+	UIScreen::init(screen_width, screen_height, sh);
 
 	// Menu location to easily move menu
 	float menuX = screen_width * .5f;

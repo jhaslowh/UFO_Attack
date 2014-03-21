@@ -20,8 +20,8 @@ GameScreen::~GameScreen()
 }
 
 // Initialize screen
-void GameScreen::init(float screen_width, float screen_height){
-	UIScreen::init(screen_width, screen_height);
+void GameScreen::init(float screen_width, float screen_height, void* sh){
+	UIScreen::init(screen_width, screen_height, sh);
 
 	screenWidth = screen_width;
 	screenHeight = screen_height;
@@ -30,7 +30,7 @@ void GameScreen::init(float screen_width, float screen_height){
 	level->init(screen_width, screen_height, savedata);
 
 	pauseScreen = new PauseScreen();
-	pauseScreen->init(screen_width, screen_height);
+	pauseScreen->init(screen_width, screen_height, sh);
 
 	levelEditor.init(screen_width, screen_height);
 }

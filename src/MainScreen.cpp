@@ -17,8 +17,8 @@ MainScreen::~MainScreen(){
 }
 
 // Initialize screen
-void MainScreen::init(float screen_width, float screen_height){
-	UIScreen::init(screen_width, screen_height);
+void MainScreen::init(float screen_width, float screen_height, void* sh){
+	UIScreen::init(screen_width, screen_height, sh);
 
 	buttonLevelSelect = new UIButton(screen_width *.5f - 103.0f,screen_height *.5f,100.0f,35.0f, std::string("Levels"));
 	buttonLevelSelect->setupHide(HT_VERTICAL,buttonLevelSelect->getY()+100.0f,hideTime,true);

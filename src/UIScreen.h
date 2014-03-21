@@ -43,6 +43,7 @@ protected:
 	float hideTime;		// Total screen hide time
 
 	UIObject* uio_focus; // Current focused item 
+	void* soundHandler;
 
 public:
 	UIScreen();
@@ -60,7 +61,7 @@ public:
 	virtual void setTransitionValue(int value);
 
 	// Initialize screen
-	virtual void init(float screen_width, float screen_height);
+	virtual void init(float screen_width, float screen_height, void* soundHandler);
 
 	// Load screen
 	// Note: If textures need to be loaded, they must

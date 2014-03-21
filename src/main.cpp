@@ -50,7 +50,7 @@ int init_resources()
 
 	// Set current screen as test screen 
 	screen = (UIScreen*)new IntroLoadScreen();
-	screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+	screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight(), soundHandler);
 
 	printf("Resources loaded\n");
 	return 1;
@@ -368,7 +368,7 @@ void changeScreen(){
 			}
 
 			if (screen != NULL)
-				screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+				screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight(), soundHandler);
 
 			// Resume game screen 
 			if (tcode == SCREEN_GAME_RESUME) {
@@ -376,7 +376,7 @@ void changeScreen(){
 					screen = gscreen;
 				else {
 					screen = (UIScreen*)new GameScreen(savedata);
-					screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+					screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight(), soundHandler);
 				}
 			}
 

@@ -17,14 +17,14 @@ FreePlayScreen::~FreePlayScreen()
 }
 
 // Initialize screen
-void FreePlayScreen::init(float screen_width, float screen_height){
-	UIScreen::init(screen_width, screen_height);
+void FreePlayScreen::init(float screen_width, float screen_height, void* sh){
+	UIScreen::init(screen_width, screen_height, sh);
 
 	level = new Level();
 	level->init(screen_width, screen_height, NULL);
 
 	pauseScreen = new PauseScreen();
-	pauseScreen->init(screen_width, screen_height);
+	pauseScreen->init(screen_width, screen_height, sh);
 
 	levelEditor.init(screen_width, screen_height);
 }

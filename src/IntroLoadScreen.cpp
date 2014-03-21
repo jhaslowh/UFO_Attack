@@ -7,8 +7,8 @@ IntroLoadScreen::~IntroLoadScreen(){}
 
 
 // Initialize screen
-void IntroLoadScreen::init(float screen_width, float screen_height){
-	UIScreen::init(screen_width, screen_height);
+void IntroLoadScreen::init(float screen_width, float screen_height, void* sh){
+	UIScreen::init(screen_width, screen_height, sh);
 
 	DGSplash.setPosition(screen_width * .5f, screen_height * .5f);
 	DGSplash.setOrigin(256.0f, 128.0f);

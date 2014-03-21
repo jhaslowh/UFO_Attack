@@ -55,6 +55,7 @@ GLHandler mgl;
 KeyHandler mKeyH;
 MouseHandler mMouseH;
 UIAtlas* mUIAtlas;
+void* soundHandler;
 
 // Global Settings
 Settings* settings;

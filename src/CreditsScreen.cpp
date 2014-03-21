@@ -13,8 +13,8 @@ CreditsScreen::~CreditsScreen()
 }
 
 // Initialize screen
-void CreditsScreen::init(float screen_width, float screen_height){
-	UIScreen::init(screen_width, screen_height);
+void CreditsScreen::init(float screen_width, float screen_height, void* sh){
+	UIScreen::init(screen_width, screen_height, sh);
 
 	bBack = new UIButton(
 		5.0f,
