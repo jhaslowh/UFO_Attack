@@ -301,7 +301,7 @@
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
     <ClInclude Include="NPCSoldier.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\game\npc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -525,7 +525,7 @@
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
     <ClCompile Include="NPCSoldier.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\game\npc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -12,7 +12,10 @@ NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
 	originY = 50.0f;
 	rotation = 0.0f;
 	scale = 1.0f;
-	imageID = GI_NPC_SOLDIER_M1;
+	if (rand() % 100 > 50)
+		imageID = GI_NPC_SOLDIER_M1;
+	else 
+		imageID = GI_NPC_SOLDIER_F1;
 	next = NULL;
 	alive = true;
 
