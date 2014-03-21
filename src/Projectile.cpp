@@ -12,7 +12,8 @@ Projectile::Projectile()
 	initValues();
 }
 
-Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread)
+Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, 
+	int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread)
 {
 	initValues();
 
@@ -97,6 +98,7 @@ void Projectile::updateProjectile(float deltaTime, Handlers* handlers)
 	previousX = currentX;
 	yVector+=1*size;
 	//xVector+=.25*size;
+
 	//There should be a very large section for collision based interactions
 	//Stuff like rolling on the ground and bouncing
 	currentX+=xVector*deltaTime;
@@ -115,9 +117,16 @@ void Projectile::updateProjectile(float deltaTime, Handlers* handlers)
 
 	// Fix projectile rotation 
 	rotation = (180.0f/3.14159f) * atan2(currentY - previousY, currentX - previousX);
+
+	// Check if projectile is outside level bounds, and if so, kill projectile.
+	if (currentX < levelProps->getLevelLeft() - 500 ||
+		currentX > levelProps->getLevelRight() + 500 ||
+		currentY > levelProps->getLevelBottom())
+		alive = false;
 }
 
-//This method does not need to be overloaded for different projectiles, it is the same for every unphysiced projectile
+//This method does not need to be overloaded for different projectiles, 
+//it is the same for every unphysiced projectile
 void Projectile::updateNegligableProjectile(float deltaTime)
 {
 	//cout << "negP";
@@ -128,23 +137,26 @@ void Projectile::updateNegligableProjectile(float deltaTime)
 
 }
 
-//This will need to have some cases for each different kind of projectile, but there are some basic reasons to be negligable here
+//This will need to have some cases for each different kind of projectile, 
+//but there are some basic reasons to be negligable here
 void Projectile::determineNegligance()
 {
-	//#define PROJT_BULLET 1
-	//#define PROJT_MISSILE 2
-	//#define PROJT_NSMO 3
-	//#define PROJT_BEAM 4
-	//#define PROJT_TEST 5
+	//A beam typed weapon would not be affected by gravity or wind resistance
 	if(projectileType == PROJT_BULLET || projectileType == PROJT_BEAM || projectileType == PROJT_TEST)
 	{
 		//cout << "determined negligable";
-		negligence = true; //A beam typed weapon would not be affected by gravity or wind resistance
+		negligence = true; 
 	}
+	//This is an extreme example of a case at which a projectile has enough 
+	//inertia that it will take its course before noticable change to its trajectory
 	else if(((xVector+yVector)*mass) >= 50000)
-		negligence = true; //This is an extreme example of a case at which a projectile has enough inertia that it will take its course before noticable change to its trajectory
+		negligence = true; 
+	//A sufficiently small projectile that is moving fast enough will 
+	//not be affected by wind resistance and can most likely fulfill 
+	//its course before gravity has any noticable effect
 	else if(size < 1 && (xVector+yVector) >= 20000)
-		negligence = true; //A sufficiently small projectile that is moving fast enough will not be affected by wind resistance and can most likely fulfill its course before gravity has any noticable effect
+		negligence = true; 
+	
 	//Need to figure out all the collision stuff, but here should be
 	//if(projectile == Colliding)
 	//  negligence = false;
