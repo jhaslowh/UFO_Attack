@@ -27,7 +27,7 @@ NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
 	// Animation 
 	frames = 3;
 	cframe = 0;
-	frameRate = 1.1f;
+	frameRate = .1f;
 	cframeTime = 0.0f;
 
 	// Arm 
