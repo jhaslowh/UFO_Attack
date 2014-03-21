@@ -47,6 +47,7 @@ protected:
 	float damage;
 	bool isPlayerWeapon;
 	ProjectileTemplate projTemp;
+	bool usesAmmo;					// Set to false to give unlimited ammo
 	
 	// ---------------
 	// Muzzle flash

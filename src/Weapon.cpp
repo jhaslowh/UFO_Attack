@@ -28,6 +28,7 @@ Weapon::Weapon(void)
 	barrelOffset[0] = 1;
 	damage = 0.0f;
 	isPlayerWeapon = false;
+	usesAmmo = true;
 
 	// Muzzle flash
 	muzzleImageId = -1;
@@ -205,7 +206,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 	}
 
 	// Subtract shot from clip
-	clip--;
+	if (usesAmmo) clip--;
 	// Add shot time
 	cTimeBetweenShots = timeBetweenShots;
 	// Add muzzle time
@@ -228,5 +229,5 @@ void Weapon::reload(){
 
 // Check if can fire
 bool Weapon::canFire(){
-	return clip != 0 && cTimeBetweenShots <= 0;
+	return (clip != 0 || !usesAmmo) && cTimeBetweenShots <= 0;
 }
