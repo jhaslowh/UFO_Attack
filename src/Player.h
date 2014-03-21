@@ -76,11 +76,13 @@ class Player
 	bool inAir;
 	bool inUFO;
 
-	// ------
-	// Health
-	// ------ 
+	// --------------------
+	// Gameplay properties
+	// --------------------
 	float health;
 	float maxHealth;
+	int animalAbductCount;
+	int humanAbductCount;
 
 	// ---------------------
 	// Texture and animation 
@@ -154,6 +156,10 @@ public:
 	float getHealth();
 	// Set player arm rotation
 	void setArmRotation(float value);
+	void incrAnimalCount(int value);
+	void incrHumanCount(int value);
+	int getAnimalCount();
+	int getHumanCount();
 
 	// Functions 
 

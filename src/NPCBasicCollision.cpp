@@ -250,6 +250,7 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 					(*myIterator)->collide(&projp, handlers, P_ENEMY_COLL);
 
 					// TODO NPC related collision things 
+					// TODO if killed, increment player points 
 				}
 			}
 		}

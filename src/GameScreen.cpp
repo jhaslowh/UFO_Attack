@@ -60,8 +60,9 @@ void GameScreen::update(float deltaTime){
 
 	if (!paused){
 		levelEditor.update(deltaTime, &(level->handlers));
-		if (!levelEditor.Enabled())
+		if (!levelEditor.Enabled()){
 			level->update(deltaTime);
+		}
 	}
 }
 

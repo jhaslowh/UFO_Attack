@@ -26,6 +26,8 @@ Player::Player(SaveData* savedata){
 	// Health 
 	health = 100.0f;
 	maxHealth = 100.0f;
+	animalAbductCount = 0;
+	humanAbductCount = 0;
 
 	// Animation values 
 	lookingRight = true;
@@ -136,6 +138,11 @@ void Player::setHealth(float value){health = value;}
 float Player::getHealth(){return health;}
 // Set player arm rotation
 void Player::setArmRotation(float value){armRotation = value;}
+
+void Player::incrAnimalCount(int value){animalAbductCount += value;}
+void Player::incrHumanCount(int value){humanAbductCount += value;}
+int Player::getAnimalCount(){return animalAbductCount;}
+int Player::getHumanCount(){return humanAbductCount;}
 
 // initialize level
 void Player::init(float screen_width, float screen_height){
