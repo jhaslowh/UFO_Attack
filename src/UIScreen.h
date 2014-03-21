@@ -29,6 +29,7 @@
 #define SCREEN_QUIT 9
 #define SCREEN_FREE_PLAY 10
 #define SCREEN_EQUIP 11
+#define SCREEN_CREDITS 12
 
 class UIScreen
 {

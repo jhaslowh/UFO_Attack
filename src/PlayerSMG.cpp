@@ -19,7 +19,7 @@ PlayerSMG::PlayerSMG()
 	timeBetweenShots = 0.07f;
 	firetype = FIRETYPE_RAPID;
 	barrelOffset[0] = 30;
-	barrelOffset[1] = -1;
+	barrelOffset[1] = -2;
 	damage = 1.0f;
 	isPlayerWeapon = true;
 

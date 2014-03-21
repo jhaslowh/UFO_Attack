@@ -303,6 +303,12 @@
     <ClInclude Include="NPCSoldier.h">
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
+    <ClInclude Include="CreditsScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="UICreditsBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -526,6 +532,12 @@
     </ClCompile>
     <ClCompile Include="NPCSoldier.cpp">
       <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditsScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="UICreditsBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -151,6 +151,13 @@ bool UIScreen::parseCommand(UITerminal* terminal, std::string command, std::stri
 			return true;
 		}
 
+		// Go to credits screen
+		if (args == "credits"){
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			transitionCode = SCREEN_CREDITS;
+			return true;
+		}
+
 		terminal->addLine("Unrecognized arguments given to command: screen", TL_WARNING);
 		return true;
 	}

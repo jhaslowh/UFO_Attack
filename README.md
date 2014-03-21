@@ -124,20 +124,12 @@ or run these commands. The freeglut library might not be nessesary.
 Credits
 -------
 
-**Jonathan Haslow-Hall**  
+**Created by**  
+Jonathan Haslow-Hall  
+James Dressel  
+Andrew Geyster  
 
-Programming   
-Art  
-
-**James Dressel**  
-
-Programming  
-
-**Andrew Geyster**  
-
-Programming  
-
-**Chris Dike**
-
-Player Animation and Design
+**Character Designs**
+Chris Dike  
+Lucy Niedbala  
 

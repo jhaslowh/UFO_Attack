@@ -26,6 +26,7 @@
 #include "FreePlayScreen.h"
 #include "StoreScreen.h"
 #include "EquipScreen.h"
+#include "CreditsScreen.h"
 
 // Version 
 // x.yyyy

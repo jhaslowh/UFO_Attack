@@ -7,6 +7,9 @@
 #include "Camera2D.h"
 #include "ProjectileHandler.h"
 #include "ProjectileTemplate.h"
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 
 
 // Fire types for the weapon
