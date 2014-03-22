@@ -139,10 +139,7 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 
 	// ------------------------------
 	// Draw lights 
-	mgl->lightBegin(
-		levelProps.getLight()[0], 
-		levelProps.getLight()[1],
-		levelProps.getLight()[2]);
+	mgl->lightBegin(sky.getLightValue(),sky.getLightValue(),sky.getLightValue());
 
 	mgl->setViewMatrix(camera.getMatrix());
 	mgl->setFlatColor(COLOR_WHITE);

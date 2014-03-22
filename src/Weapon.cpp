@@ -32,8 +32,6 @@ Weapon::Weapon(void)
 
 	// Muzzle flash
 	muzzleImageId = -1;
-	muzzleOffset[0] = 0;
-	muzzleOffset[1] = 0;
 	muzzleOrigin[0] = 0;
 	muzzleOrigin[1] = 0;
 	flashTime = 0;
@@ -82,15 +80,6 @@ void Weapon::update(float deltaTime, float x, float y){
 		cFlashTime -= deltaTime;
 		if (cFlashTime < .0f)
 			cFlashTime = 0.0f;
-
-		// Set muzzle location 
-		//muzzleOffset[0] = locX + (cos(mTheta) * barrelOffset[0]);
-		//muzzleOffset[1] = locY - barrelOffset[1] + (sin(mTheta) * barrelOffset[0]);
-		std::cout << "Rotation: " << rotation << "\n";
-		glm::vec2 myVec(barrelOffset[0],barrelOffset[1]);
-		myVec = glm::rotate(myVec, mTheta * (180.0f / 3.1415f));
-		muzzleOffset[0] = locX + myVec[0];
-		muzzleOffset[1] = locY + myVec[1];
 	}
 
 	// Update time between shots 

@@ -172,21 +172,6 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 
 		return true;
 	}
-	// Set the light for the level
-	else if (command == "setlight"){
-		float value = (float)toDouble(args);
-
-		if (value >= 0 && value <= 1){
-			((LevelProperties*)level->handlers.levelProps)->setLight(value, value, value);
-			terminal->addLine(command + " " + args, TL_SUCCESS);
-		}
-		else {
-			terminal->addLine(args + " is not a valid light level", TL_WARNING);
-			terminal->addLine(command + " " + args, TL_WARNING);
-		}
-
-		return true;
-	}
 	// Check for zoom command
 	else if (command == "zoom"){
 

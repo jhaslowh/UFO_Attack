@@ -44,10 +44,13 @@ class Sky
 	// Nights lights 
 	float mMaxLightAlpha;
 	GLfloat mNightLightColor[4];
+	float lightValue;
 
 public:
 	Sky();
 	~Sky();
+
+	float getLightValue();
 
 	// Set up sky 
 	void init(float screen_width, float screen_height);

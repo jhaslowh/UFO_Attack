@@ -9,9 +9,6 @@ LevelProperties::LevelProperties()
 	levelBottom = 0.0f;
 	playerSpawnX = 0.0f;
 	playerSpawnY = 0.0f;
-	light[0] = .5f;
-	light[1] = .5f;
-	light[2] = .5f;
 	screenWidth = 0.0f;
 	screenHeight = 0.0f;
 }
@@ -38,15 +35,6 @@ float LevelProperties::getPlayerSpawnX(){
 float LevelProperties::getPlayerSpawnY(){
 	return playerSpawnY;
 }
-// Set the level light
-void LevelProperties::setLight(float r, float g, float b){
-	light[0] = r;
-	light[1] = g;
-	light[2] = b;
-}
-// Get level light
-// Length is 3. 
-float* LevelProperties::getLight(){return &light[0];}
 
 // Getters and setters for screen sizes 
 void LevelProperties::setScreenWidth(float w){screenWidth = w;}

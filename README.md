@@ -67,7 +67,6 @@ Commands for Level Editor (Must be in screen with one)
 
 Commands while in Game Screen
 - "level reset" : reset the current level  
-- "setlight [double]" : set the light level for the level  
 - "zoom default" : sets the zoom to 1.0  
 - "zoom [double]" : set the level zoom to the sent value  
 - "damage ufo [damage]" : damage ufo by amount sent    

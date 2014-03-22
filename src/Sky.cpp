@@ -7,7 +7,7 @@ Sky::Sky()
 	skyState = SKY_STATE_DAY;
 	mTime = 12.0f;
 	// TODO mTime = Rand.getIntInRange(0, 24);
-	mHoursPerSecond = .05f;
+	mHoursPerSecond = 1.0f;//.05f;
 	mMaxLightAlpha = .5f;
 	scalex = 1.0f;
 	scaley = 1.0f;
@@ -42,6 +42,8 @@ Sky::~Sky()
 
 }
 
+float Sky::getLightValue(){return lightValue;}
+
 // Set up sky 
 void Sky::init(float screen_width, float screen_height){
 	scalex = screen_width;
@@ -61,16 +63,19 @@ void Sky::update(float deltaTime){
 	// Night 
 	if ((mTime >= 0 && mTime < DAWN_START) || mTime >= DUSK_END){
 		mBlueColor[3] = 0.0f;
+		lightValue = .2f;
 		skyState = SKY_STATE_NIGHT;
 	}
 	// Night to Day 
 	else if (mTime >= DAWN_START && mTime < DAWN_END){
 		mBlueColor[3]  = mOrangeColor[3] = (mTime - DAWN_START) / (DAWN_END - DAWN_START);
+		lightValue = .5 - (.3f - (((mTime - DAWN_START) / (DAWN_END - DAWN_START)) * .3f));
 		skyState = SKY_STATE_DAY;
 	}
 	// Day
 	else if (mTime >= DAWN_END && mTime < DUSK_START){
 		mBlueColor[3] = 1.0f;
+		lightValue = .5f;
 
 		// Dusk dawn fade off 
 		if (mTime < DAWN_FADEOFF)
@@ -85,6 +90,7 @@ void Sky::update(float deltaTime){
 	// Day to Night
 	else if (mTime >= DUSK_START && mTime < DUSK_END){
 		mBlueColor[3] = mOrangeColor[3] = 1.0f - ((mTime - DUSK_START) / (DUSK_END - DUSK_START));
+		lightValue = .5f - (((mTime - DUSK_START) / (DUSK_END - DUSK_START)) * .3f);
 		skyState = SKY_STATE_NIGHT;
 	}
   

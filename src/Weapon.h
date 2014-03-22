@@ -56,7 +56,6 @@ protected:
 	// Muzzle flash
 	// ---------------
 	int muzzleImageId;		// For atlas use 
-	float muzzleOffset[2]; // Similar to barrel offset 
 	float muzzleOrigin[2];
 	float flashTime;
 	float cFlashTime;
