@@ -199,11 +199,15 @@
     <LinkIncremental>
     </LinkIncremental>
     <TargetName>UFO Attack</TargetName>
+    <OutDir>$(SolutionDir)\build\</OutDir>
+    <IntDir>build\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>
     </LinkIncremental>
     <TargetName>UFO Attack</TargetName>
+    <OutDir>$(SolutionDir)\build\</OutDir>
+    <IntDir>build\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

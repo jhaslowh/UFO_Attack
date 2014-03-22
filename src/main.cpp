@@ -627,7 +627,7 @@ void soundStuff(){
 		}
 	}
 
-	menuMusic = Mix_LoadMUS("splash_screen.wav");
+	menuMusic = Mix_LoadMUS("audio/splash_screen.wav");
 	if( menuMusic == NULL ){
 		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
