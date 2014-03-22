@@ -30,6 +30,19 @@ void GameAtlas::load(){
 	// Red Proj Glow
 	vcg->addFrame(987.0f, 1.0f, 30.0f, 15.0f);
 
+	// NPC Soldier
+	// ----------
+	// Female
+	vcg->addFrame(1.0f, 922.0f, 50.0f, 50.0f);
+	vcg->addFrame(51.0f, 922.0f, 50.0f, 50.0f);
+	vcg->addFrame(101.0f, 922.0f, 50.0f, 50.0f);
+	// Male 
+	vcg->addFrame(1.0f, 973.0f, 50.0f, 50.0f);
+	vcg->addFrame(51.0f, 973.0f, 50.0f, 50.0f);
+	vcg->addFrame(101.0f, 973.0f, 50.0f, 50.0f);
+	// Arm
+	vcg->addFrame(153.0f, 1012.0f, 16.0f, 11.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

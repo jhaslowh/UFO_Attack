@@ -26,8 +26,8 @@ int UIScreen::getTransitionCode(){return transitionCode;}
 void UIScreen::setTransitionValue(int value){transitionCode = value;}
 
 // Initialize screen
-void UIScreen::init(float screen_width, float screen_height){
-	// Nothing to do
+void UIScreen::init(float screen_width, float screen_height, void* sh){
+	soundHandler = sh;
 }
 
 // Load screen
@@ -148,6 +148,13 @@ bool UIScreen::parseCommand(UITerminal* terminal, std::string command, std::stri
 		if (args == "freeplay"){
 			terminal->addLine(command + " " + args, TL_SUCCESS);
 			transitionCode = SCREEN_FREE_PLAY;
+			return true;
+		}
+
+		// Go to credits screen
+		if (args == "credits"){
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			transitionCode = SCREEN_CREDITS;
 			return true;
 		}
 

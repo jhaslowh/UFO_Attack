@@ -43,7 +43,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	handlers.sceneryHandler = sceneryHandler;
 	handlers.camera = &camera;
 	handlers.levelProps = &levelProps;
-	handlers.player = &player;
+	handlers.player = player;
 	handlers.projHandler = projHandler;
 	handlers.npcHandler = npcHandler;
 
@@ -81,6 +81,12 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	ground->add(new Point(1240.0f,550.0f));
 	ground->add(new Point(1400.0f,500.0f));
 	ground->add(new Point(2500.0f,500.0f));
+
+	npcHandler->add(new NPCSoldier(40.0f, 100.0f));
+
+	// Set level top and bottom 
+	levelProps.setLevelBottom(ground->getBottomMost());
+	levelProps.setLevelTop(ground->getTopMost() - 500.0f);
 }
 
 // Load level (use for textures)

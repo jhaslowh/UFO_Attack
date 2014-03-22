@@ -28,6 +28,7 @@ Weapon::Weapon(void)
 	barrelOffset[0] = 1;
 	damage = 0.0f;
 	isPlayerWeapon = false;
+	usesAmmo = true;
 
 	// Muzzle flash
 	muzzleImageId = -1;
@@ -83,8 +84,13 @@ void Weapon::update(float deltaTime, float x, float y){
 			cFlashTime = 0.0f;
 
 		// Set muzzle location 
-		muzzleOffset[0] = locX + (cos(mTheta) * barrelOffset[0]);
-		muzzleOffset[1] = locY - barrelOffset[1] + (sin(mTheta) * barrelOffset[0]);
+		//muzzleOffset[0] = locX + (cos(mTheta) * barrelOffset[0]);
+		//muzzleOffset[1] = locY - barrelOffset[1] + (sin(mTheta) * barrelOffset[0]);
+		std::cout << "Rotation: " << rotation << "\n";
+		glm::vec2 myVec(barrelOffset[0],barrelOffset[1]);
+		myVec = glm::rotate(myVec, mTheta * (180.0f / 3.1415f));
+		muzzleOffset[0] = locX + myVec[0];
+		muzzleOffset[1] = locY + myVec[1];
 	}
 
 	// Update time between shots 
@@ -97,6 +103,7 @@ void Weapon::update(float deltaTime, float x, float y){
 }
 
 // Update weapon input
+// Note: if this is an NPC weapon, do not call this method
 void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
 	// Input should be handled by child class in this format
 
@@ -122,7 +129,7 @@ void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 	if (rotation < -90.0f)
 		rotation += 180.0f;
 	if (rotation > 90.0f)
-		rotation += 180.0f;
+		rotation -= 180.0f;
 
 	// Check for fire shot 
 	if (canFire() && 
@@ -142,14 +149,16 @@ void Weapon::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 		mAtlas->draw(mgl, imageid, locX, locY, 1.0f, rotation, originX, originY);
 		// Draw muzzle flash 
 		if (cFlashTime > 0)
-			mAtlas->draw(mgl, muzzleImageId, muzzleOffset[0], muzzleOffset[1], 1.0f, rotation, muzzleOrigin[0], muzzleOrigin[1]);
+			mAtlas->draw(mgl, muzzleImageId, locX, locY, 1.0f, rotation, 
+			muzzleOrigin[0] - barrelOffset[0], muzzleOrigin[1] + barrelOffset[1]);
 	}
 	else{
 		glCullFace(GL_FRONT);
 		mAtlas->drawScale2(mgl, imageid, locX, locY, -1.0f, 1.0f, rotation, originX, originY);
 		// Draw muzzle flash 
 		if (cFlashTime > 0)
-			mAtlas->drawScale2(mgl, muzzleImageId, muzzleOffset[0], muzzleOffset[1],-1.0f, 1.0f, rotation, muzzleOrigin[0], muzzleOrigin[1]);
+			mAtlas->drawScale2(mgl, muzzleImageId, locX, locY,-1.0f, 1.0f, rotation, 
+			muzzleOrigin[0] - barrelOffset[0], muzzleOrigin[1] + barrelOffset[1]);
 		glCullFace(GL_BACK);
 	}
 }
@@ -204,7 +213,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 	}
 
 	// Subtract shot from clip
-	clip--;
+	if (usesAmmo) clip--;
 	// Add shot time
 	cTimeBetweenShots = timeBetweenShots;
 	// Add muzzle time
@@ -227,5 +236,5 @@ void Weapon::reload(){
 
 // Check if can fire
 bool Weapon::canFire(){
-	return clip != 0 && cTimeBetweenShots <= 0;
+	return (clip != 0 || !usesAmmo) && cTimeBetweenShots <= 0;
 }

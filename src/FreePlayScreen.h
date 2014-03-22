@@ -18,7 +18,7 @@ public:
 	virtual ~FreePlayScreen();
 
 	// Initialize screen
-	virtual void init(float screen_width, float screen_height);
+	virtual void init(float screen_width, float screen_height, void* sh);
 
 	// Load screen
 	// Note: If textures need to be loaded, they must

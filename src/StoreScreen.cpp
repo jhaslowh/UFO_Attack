@@ -39,8 +39,8 @@ StoreScreen::~StoreScreen()
 }
 
 // Initialize screen
-void StoreScreen::init(float screen_width, float screen_height){
-	UIScreen::init(screen_width, screen_height);
+void StoreScreen::init(float screen_width, float screen_height, void* sh){
+	UIScreen::init(screen_width, screen_height, sh);
 
 	// Menu location to easily move menu
 	float menuX = screen_width * .55f;

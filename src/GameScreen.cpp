@@ -9,6 +9,8 @@ GameScreen::GameScreen(SaveData* sd) : UIScreen()
 	paused = false;
 	gameover = false;
 	savedata = sd;
+	gameoverTime = 4.0f;
+	cGameoverTime = 0.0f;
 }
 
 GameScreen::~GameScreen()
@@ -18,8 +20,8 @@ GameScreen::~GameScreen()
 }
 
 // Initialize screen
-void GameScreen::init(float screen_width, float screen_height){
-	UIScreen::init(screen_width, screen_height);
+void GameScreen::init(float screen_width, float screen_height, void* sh){
+	UIScreen::init(screen_width, screen_height, sh);
 
 	screenWidth = screen_width;
 	screenHeight = screen_height;
@@ -28,7 +30,7 @@ void GameScreen::init(float screen_width, float screen_height){
 	level->init(screen_width, screen_height, savedata);
 
 	pauseScreen = new PauseScreen();
-	pauseScreen->init(screen_width, screen_height);
+	pauseScreen->init(screen_width, screen_height, sh);
 
 	levelEditor.init(screen_width, screen_height);
 }
@@ -56,12 +58,32 @@ void GameScreen::unload(){
 void GameScreen::update(float deltaTime){
 	UIScreen::update(deltaTime);
 	
-	pauseScreen->update(deltaTime);
+	// If not in gameover state, update the pause screen, 
+	// level editor and level. 
+	if (!gameover){
+		pauseScreen->update(deltaTime);
 
-	if (!paused){
-		levelEditor.update(deltaTime, &(level->handlers));
-		if (!levelEditor.Enabled())
-			level->update(deltaTime);
+		if (!paused){
+			levelEditor.update(deltaTime, &(level->handlers));
+			if (!levelEditor.Enabled()){
+				level->update(deltaTime);
+
+				// If player dies, increment save data and set gameover to true 
+				Player* player = (Player*)(level->handlers.player);
+				if (!player->alive()){
+					savedata->incrAnimalCount(player->getAnimalCount());
+					savedata->incrHumanCount(player->getHumanCount());
+					gameover = true;
+				}
+			}
+		}
+	}
+	else if (transitionCode == NO_TRANSITION) {
+		cGameoverTime += deltaTime;
+		if (cGameoverTime > gameoverTime){
+			transitionCode = SCREEN_MAIN;
+			hide();
+		}
 	}
 }
 
@@ -69,35 +91,38 @@ void GameScreen::update(float deltaTime){
 void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	UIScreen::updateInput(mKeyH, mMouseH);
 
-	if (paused){
-		pauseScreen->updateInput(mKeyH, mMouseH);
+	// Only update input if not in gameover state 
+	if (!gameover){
+		if (paused){
+			pauseScreen->updateInput(mKeyH, mMouseH);
 
-		// Check for quit
-		if (pauseScreen->getTransitionCode() == SCREEN_MAIN){
-			pauseScreen->setTransitionValue(NO_TRANSITION);
-			transitionCode = SCREEN_MAIN_SAVE_GAME;
-		}
-
-		// Check for pause/unpause
-		if (pauseScreen->getTransitionCode() == CLOSE_SCREEN ||
-			mKeyH->keyReleased(KEY_P) || mKeyH->keyReleased(KEY_ESCAPE)){
-			paused = false;
-			pauseScreen->hide();
-		}
-	}
-	else{
-		// Update level editor input 
-		levelEditor.updateInput(mKeyH, mMouseH, &(level->handlers));
-
-		// Update level input if editor off
-		if (!levelEditor.Enabled()){
-			// Check for pause/unpause
-			if (mKeyH->keyReleased(KEY_P) || mKeyH->keyReleased(KEY_ESCAPE)){
-				paused = true;
-				pauseScreen->show();
+			// Check for quit
+			if (pauseScreen->getTransitionCode() == SCREEN_MAIN){
+				pauseScreen->setTransitionValue(NO_TRANSITION);
+				transitionCode = SCREEN_MAIN_SAVE_GAME;
 			}
 
-			level->updateInput(mKeyH, mMouseH);
+			// Check for pause/unpause
+			if (pauseScreen->getTransitionCode() == CLOSE_SCREEN ||
+				mKeyH->keyReleased(KEY_P) || mKeyH->keyReleased(KEY_ESCAPE)){
+				paused = false;
+				pauseScreen->hide();
+			}
+		}
+		else{
+			// Update level editor input 
+			levelEditor.updateInput(mKeyH, mMouseH, &(level->handlers));
+
+			// Update level input if editor off
+			if (!levelEditor.Enabled()){
+				// Check for pause/unpause
+				if (mKeyH->keyReleased(KEY_P) || mKeyH->keyReleased(KEY_ESCAPE)){
+					paused = true;
+					pauseScreen->show();
+				}
+
+				level->updateInput(mKeyH, mMouseH);
+			}
 		}
 	}
 }
@@ -116,6 +141,13 @@ void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	level->drawUI(mgl, (UIAtlas*)mAtlas);
 	levelEditor.draw(mgl, (UIAtlas*)mAtlas);
 	pauseScreen->draw(mgl, mAtlas);
+
+	// Draw gameover overlay
+	if (gameover){
+		UIAtlas* mUI = (UIAtlas*)mAtlas;
+		mgl->setFlatColor(1.0f,1.0f,1.0f,1.0f);
+		mUI->mTextRender->drawText(*mgl, "Gameover", 0.0f, 0.0f, 0.0f, 72.0f);
+	}
 }
 
 

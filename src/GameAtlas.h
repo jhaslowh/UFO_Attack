@@ -14,6 +14,13 @@
 #define GI_SKY_GLOW 6
 #define GI_PROJ_RED 7
 #define GI_PROJ_RED_GLOW 8 
+#define GI_NPC_SOLDIER_F1 9
+#define GI_NPC_SOLDIER_F2 10
+#define GI_NPC_SOLDIER_F3 11
+#define GI_NPC_SOLDIER_M1 12
+#define GI_NPC_SOLDIER_M2 13
+#define GI_NPC_SOLDIER_M3 14
+#define GI_NPC_SOLDIER_ARM 15
 
 class GameAtlas : public TextureAtlas
 {

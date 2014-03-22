@@ -26,13 +26,14 @@
 #include "FreePlayScreen.h"
 #include "StoreScreen.h"
 #include "EquipScreen.h"
+#include "CreditsScreen.h"
 
 // Version 
 // x.yyyy
 // x = 0 = Alpha/Beta
 // x = 1 = Release
 // yyyy = Commit number 
-double VERSION = 0.208;
+double VERSION = 0.231;
 
 bool WINDOW_VISIBLE = false;
 
@@ -54,6 +55,7 @@ GLHandler mgl;
 KeyHandler mKeyH;
 MouseHandler mMouseH;
 UIAtlas* mUIAtlas;
+void* soundHandler;
 
 // Global Settings
 Settings* settings;

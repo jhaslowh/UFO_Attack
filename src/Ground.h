@@ -48,10 +48,13 @@ public:
 	void fixVertsForPoint(Point* p);
 	// Get the number of ground points
 	int getPointCount();
+	// Get bottom most point value
+	float getBottomMost();
+	// Get top mose point value
+	float getTopMost();
 
 	// Draw ground 
 	void draw(GLHandler* mgl);
-
 
 private:
 	// Call to fix the vertex, index, and cord arrays 

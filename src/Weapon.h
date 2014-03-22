@@ -7,6 +7,9 @@
 #include "Camera2D.h"
 #include "ProjectileHandler.h"
 #include "ProjectileTemplate.h"
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 
 
 // Fire types for the weapon
@@ -47,6 +50,7 @@ protected:
 	float damage;
 	bool isPlayerWeapon;
 	ProjectileTemplate projTemp;
+	bool usesAmmo;					// Set to false to give unlimited ammo
 	
 	// ---------------
 	// Muzzle flash
@@ -88,6 +92,7 @@ public:
 	virtual void update(float deltaTime, float x, float y);
 
 	// Update weapon input
+	// Note: if this is an NPC weapon, do not call this method
 	virtual void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers);
 
 	// Draw weapon to screen

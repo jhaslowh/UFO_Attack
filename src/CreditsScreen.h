@@ -1,37 +1,17 @@
 #pragma once
 #include "UIScreen.h"
-#include "UILabel.h"
 #include "UIButton.h"
-#include "UICheckbox.h"
-#include "Settings.h"
-#include "FileHelper.h"
-#include "UIValueSlider.h"
-#include "UIBox.h"
-#include "UIComboBox.h"
+#include "UICreditsBox.h"
 
-class SettingsScreen : public UIScreen
+class CreditsScreen : public UIScreen
 {
-	Settings* settings;
-
-	UILabel* labelTitle;
-	UICheckbox* cFullscreen;
-	UIButton* buttonBack;
-	UIButton* buttonApply;
-	UIValueSlider* vMasterVol;
-	UIValueSlider* vMusicVol;
-	UIValueSlider* vSfxVol;
-	UIComboBox* cbResolutions;
-
-	UILabel* lFullscreen;
-	UILabel* lMasterVolume;
-	UILabel* lMusicVol;
-	UILabel* lSfxVol;
-
-	UIBox* bBG;
+	UIButton* bBack;
+	int creditsCount;
+	UICreditsBox* creditsBoxes;
 
 public:
-	SettingsScreen(Settings* s);
-	virtual ~SettingsScreen();
+	CreditsScreen();
+	virtual ~CreditsScreen();
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height, void* sh);
@@ -57,10 +37,5 @@ public:
 	// All UI elements in the hide screen method should have show 
 	// calls here. 
 	virtual void show();
-
-private:
-
-	// Parse a resolution line 
-	void parseResLine(std::string line);
 };
 

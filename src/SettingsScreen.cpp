@@ -28,8 +28,8 @@ SettingsScreen::~SettingsScreen()
 }
 
 // Initialize screen
-void SettingsScreen::init(float screen_width, float screen_height){
-	UIScreen::init(screen_width, screen_height);
+void SettingsScreen::init(float screen_width, float screen_height, void* sh){
+	UIScreen::init(screen_width, screen_height, sh);
 
 	labelTitle = new UILabel(std::string("Settings"));
 	labelTitle->setLocation(screen_width, screen_height);

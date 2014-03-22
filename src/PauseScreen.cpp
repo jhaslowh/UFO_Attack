@@ -14,8 +14,8 @@ PauseScreen::~PauseScreen()
 }
 
 // Initialize screen
-void PauseScreen::init(float screen_width, float screen_height){
-	UIScreen::init(screen_width, screen_height);
+void PauseScreen::init(float screen_width, float screen_height, void* sh){
+	UIScreen::init(screen_width, screen_height, sh);
 
 	bgOverlay.setSize(screen_width, screen_height);
 

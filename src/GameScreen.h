@@ -10,8 +10,10 @@ class GameScreen : public UIScreen
 	// Player save data
 	SaveData* savedata;
 
-	// States 
+	// States properties
 	bool paused, gameover;
+	float gameoverTime;
+	float cGameoverTime;
 
 	// Screen size for reference 
 	float screenWidth, screenHeight;
@@ -25,7 +27,7 @@ public:
 	virtual ~GameScreen();
 
 	// Initialize screen
-	virtual void init(float screen_width, float screen_height);
+	virtual void init(float screen_width, float screen_height, void* sh);
 
 	// Load screen
 	// Note: If textures need to be loaded, they must

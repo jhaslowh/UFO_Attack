@@ -50,7 +50,7 @@ int init_resources()
 
 	// Set current screen as test screen 
 	screen = (UIScreen*)new IntroLoadScreen();
-	screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+	screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight(), soundHandler);
 
 	printf("Resources loaded\n");
 	return 1;
@@ -335,6 +335,7 @@ void changeScreen(){
 		case SCREEN_GAME_NEW:
 		case SCREEN_GAME_RESUME:
 		case SCREEN_EQUIP:
+		case SCREEN_CREDITS:
 
 			// Delete screen if it is not game screen 
 			if (tcode != SCREEN_MAIN_SAVE_GAME){
@@ -359,6 +360,7 @@ void changeScreen(){
 			else if (tcode == SCREEN_SETTINGS)	screen = (UIScreen*)new SettingsScreen(settings);
 			else if (tcode == SCREEN_FREE_PLAY)	screen = (UIScreen*)new FreePlayScreen();
 			else if (tcode == SCREEN_EQUIP)		screen = (UIScreen*)new EquipScreen(savedata);
+			else if (tcode == SCREEN_CREDITS)	screen = (UIScreen*)new CreditsScreen();
 			else if (tcode == SCREEN_GAME_NEW) {
 				screen = (UIScreen*)new GameScreen(savedata);
 				gscreen_unload = gscreen;
@@ -366,7 +368,7 @@ void changeScreen(){
 			}
 
 			if (screen != NULL)
-				screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+				screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight(), soundHandler);
 
 			// Resume game screen 
 			if (tcode == SCREEN_GAME_RESUME) {
@@ -374,7 +376,7 @@ void changeScreen(){
 					screen = gscreen;
 				else {
 					screen = (UIScreen*)new GameScreen(savedata);
-					screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+					screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight(), soundHandler);
 				}
 			}
 
@@ -630,6 +632,7 @@ void soundStuff(){
 		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
 	
-	Mix_PlayMusic(menuMusic, 1 );
-
+	if (settings->getMasterVol() * settings->getMusicVol() > 0.0f){
+		Mix_PlayMusic(menuMusic, 1 );
+	}
 }

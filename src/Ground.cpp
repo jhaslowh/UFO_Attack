@@ -173,6 +173,38 @@ int Ground::getPointCount(){
 	return pointCount;
 }
 
+// Get bottom most point value
+float Ground::getBottomMost(){
+	if (points == NULL)
+		return 0;
+
+	int value = points->getY();
+	itr = points->next;
+	while (itr != NULL){
+		if (itr->getY() > value)
+			value = itr->getY();
+		itr = itr->next;
+	}
+
+	return value;
+}
+
+// Get top mose point value
+float Ground::getTopMost(){
+	if (points == NULL)
+		return 0;
+
+	int value = points->getY();
+	itr = points->next;
+	while (itr != NULL){
+		if (itr->getY() < value)
+			value = itr->getY();
+		itr = itr->next;
+	}
+
+	return value;
+}
+
 // Draw ground 
 void Ground::draw(GLHandler* mgl){
 	// ----------------- // 

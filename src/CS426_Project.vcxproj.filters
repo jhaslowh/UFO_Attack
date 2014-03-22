@@ -5,10 +5,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Header Files\gfx">
       <UniqueIdentifier>{016015b7-e292-41b8-bdbd-16cfadca8d3c}</UniqueIdentifier>
     </Filter>
@@ -79,6 +75,10 @@
     <Filter Include="Source Files\game\npc">
       <UniqueIdentifier>{5fa3a2ed-915c-48d6-a11f-eeb86c5eabaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h">
@@ -142,9 +142,6 @@
       <Filter>Header Files\ui\screens</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SettingsScreen.h">
@@ -297,6 +294,21 @@
     <ClInclude Include="NPC.h">
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCBasicCollision.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCSoldier.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditsScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
+    <ClInclude Include="UICreditsBox.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -361,9 +373,6 @@
     </ClCompile>
     <ClCompile Include="MainScreen.cpp">
       <Filter>Source Files\ui\screens</Filter>
-    </ClCompile>
-    <ClCompile Include="Settings.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SettingsScreen.cpp">
       <Filter>Source Files\ui\screens</Filter>
@@ -514,6 +523,21 @@
     </ClCompile>
     <ClCompile Include="NPC.cpp">
       <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCBasicCollision.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCSoldier.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditsScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
+    </ClCompile>
+    <ClCompile Include="UICreditsBox.cpp">
+      <Filter>Source Files\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
