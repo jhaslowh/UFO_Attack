@@ -8,9 +8,11 @@ src/Debug/settings
 src/Release/settings
 src/Debug/*.exe
 src/Release/*.exe
+src/Build/*.exe
 src/Build/savedata
 src/Debug/savedata
 src/Release/savedata
+src/Build/*.txt
 
 # Visual Studio Garbage #
 *.ipch
