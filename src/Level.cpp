@@ -144,15 +144,19 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 		levelProps.getLight()[1],
 		levelProps.getLight()[2]);
 
-	// Draw Scenery Lights 
 	mgl->setViewMatrix(camera.getMatrix());
 	mgl->setFlatColor(COLOR_WHITE);
 	sceneryHandler->drawLight(mgl, &gameAtlas);
 	projHandler->drawLight(mgl, &gameAtlas);
+	player->drawLight(mgl);
 
 	mgl->lightEnd();
 	
 	// ------------------------------
+	// Bind Game Atlas buffers
+	gameAtlas.bindBuffers(mgl);
+	gameAtlas.bindTextureFast(mgl);
+
 	// Enable lights 
 	mgl->enableLight(true);
 

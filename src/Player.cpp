@@ -622,6 +622,14 @@ void Player::drawHud(GLHandler* mgl){
 	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudArmorLocX, hudArmorLocY, hudArmorScale, 1.0f);
 }
 
+// Draw player light
+void Player::drawLight(GLHandler* mgl){
+	playerAtlas.bindTexture(mgl);
+	playerAtlas.bindBuffers(mgl);
+
+	ufo->drawLights(mgl, &playerAtlas, inUFO);
+}
+
 // Stop player if they are jumping
 void Player::stopJump(){
 	airT = 0;

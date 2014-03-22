@@ -16,15 +16,15 @@ public:
 
 	/// Getters and settings
 
-	void setLocation(float, float);
-	void setX(float);
+	void setLocation(float x, float y);
+	void setX(float x);
 	float getX();
-	void setY(float);
+	void setY(float y);
 	float getY();
-	void setSize(float, float);
-	void setWidth(float);
+	void setSize(float width, float height);
+	void setWidth(float w);
 	float getWidth();
-	void setHeight(float);
+	void setHeight(float h);
 	float getHeight();
 
 	/// Functions

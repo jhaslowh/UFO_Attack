@@ -191,6 +191,9 @@ public:
 	// Draw player hud
 	void drawHud(GLHandler* mgl);
 
+	// Draw player light
+	void drawLight(GLHandler* mgl);
+
 	// Physics Helpers
 
 	// Stop player if they are jumping

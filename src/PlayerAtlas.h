@@ -25,6 +25,7 @@
 #define PI_GUN_SHOTGUN 18
 #define PI_GUN_SHOTGUN_MUZ 19
 #define PI_GUN_SMG 20
+#define PI_UFO_RAY 21
 
 class PlayerAtlas : public TextureAtlas
 {

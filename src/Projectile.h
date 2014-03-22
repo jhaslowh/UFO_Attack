@@ -89,9 +89,9 @@ public:
 	//Base update methods, to be inherited and edited within each projectile
 	//For different projectiles, if you ask how you want them to behave I can write their update methods
 	//IE: arc'ed projectile, beam, fast moving, light, heavy
-	void updateProjectile(float deltaTime, Handlers* handlers);
-	void updateNegligableProjectile(float deltaTime);
-	void determineNegligance();
+	virtual void updateProjectile(float deltaTime, Handlers* handlers);
+	virtual void updateNegligableProjectile(float deltaTime);
+	virtual void determineNegligance();
 
 	// Draw projectile to screen
 	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);

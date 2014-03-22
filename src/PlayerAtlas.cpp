@@ -47,6 +47,9 @@ void PlayerAtlas::load(){
 	// Player shotgun 
 	vcg->addFrame(311.0f, 51.0f, 32.0f, 23.0f);
 
+	// UFO Ray
+	vcg->addFrame(1.0f, 474.0f,248.0f,37.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

@@ -9,15 +9,18 @@
 
 class UFO
 {
-	// Locations
+	// Base Properties
 	float locX, locY;
 	float nextX, nextY;
 	float originX, originY;
+	float width, height;
 
 	// Collision properties 
 	Point vertA;
 	Point vertB;
 	float minDistFromGround;  // Minimum distance UFO must be from ground 
+	Rec collisionArea;
+	Rec abductRayArea;
 
 	// Physics and movement
 	float direcX, direcY;
@@ -32,6 +35,18 @@ class UFO
 	// How long it takes from the last time ship took damage to when it recharges
 	float timeTillCharge;		
 	float cTimeTillCharge;
+
+	// Abduction Ray
+	bool rayOn;
+	int rayCircleCount;
+	float rayMoveSpeed;
+	float rayOffset;
+	float rayOffsetMax;
+	float rayScaleMin;
+	float rayScaleMax;
+	float rayWidth;
+	float rayHeight;
+	float rayCircleHeight;
 
 public:
 	UFO();
@@ -49,6 +64,13 @@ public:
 	float getMaxShield();
 	void setShield(float value);
 	float getShield();
+
+	// Check if abduction ray is turned on 
+	bool isRayOn();
+	// Get the area for collision detection with ship
+	Rec* getUFOArea();
+	// Get the area for collision detection with abduction ray
+	Rec* getAbductArea();
 
 	// Init 
 	void init();
@@ -69,7 +91,10 @@ public:
 	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
 
 	// Draw UFO
-	void draw(GLHandler* mgl, PlayerAtlas* mGame, bool inUFO);
+	void draw(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO);
+
+	// Draw UFO lights
+	void drawLights(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO);
 
 	// Apply damage to the ship 
 	void applyDamage(float damage);

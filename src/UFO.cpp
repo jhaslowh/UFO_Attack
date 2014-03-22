@@ -8,6 +8,8 @@ UFO::UFO(){
 	originY = 50.0f;
 	speed = 300.0f;
 	minDistFromGround = 200.0f;
+	width = 100.0f;
+	height = 50.0f;
 
 	armor = 100.0f;
 	maxArmor = 100.0f;
@@ -16,6 +18,17 @@ UFO::UFO(){
 	shieldChargeRate = 100.0f; // Charge per second 
 	timeTillCharge = 5.0f;
 	cTimeTillCharge = 0.0f;
+
+	rayOn = false;
+	rayCircleHeight = 37.0f;
+	rayMoveSpeed = 100.0f;
+	rayWidth = 248.0f;
+	rayHeight = 300.0f;
+	rayCircleCount = 14;
+	rayOffsetMax = (rayHeight - rayCircleHeight) / (float)rayCircleCount;
+	rayOffset = rayOffsetMax;
+	rayScaleMin = 0.5f;
+	rayScaleMax = 1.0f;
 }
 UFO::~UFO(){}
 
@@ -34,6 +47,13 @@ void UFO::setMaxShield(float value){maxShield = value;}
 float UFO::getMaxShield(){return maxShield;}
 void UFO::setShield(float value){shield = value;}
 float UFO::getShield(){return shield;}
+
+// Check if abduction ray is turned on 
+bool UFO::isRayOn(){return rayOn;}
+// Get the area for collision detection with ship
+Rec* UFO::getUFOArea(){return &collisionArea;}
+// Get the area for collision detection with abduction ray
+Rec* UFO::getAbductArea(){return &abductRayArea;}
 
 // Init 
 void UFO::init(){}
@@ -63,6 +83,11 @@ void UFO::update(float deltaTime, Handlers* handlers){
 		if (shield >= maxShield)
 			shield = maxShield;
 	}
+
+	// Update abduct ray
+	rayOffset -= deltaTime * rayMoveSpeed;
+	if (rayOffset <= 0.0f)
+		rayOffset = rayOffsetMax;
 }
 
 // Check collision 
@@ -103,6 +128,13 @@ void UFO::checkCollision(Handlers* handlers){
 void UFO::resolveCollision(Handlers* handlers){
 	locX = nextX;
 	locY = nextY;
+
+	// Fix areas 
+	collisionArea.setLocation(locX - originX, locY - originY);
+	collisionArea.setSize(width, height);
+
+	abductRayArea.setLocation(locX - (rayWidth / 2.0f), locY);
+	abductRayArea.setSize(rayWidth, rayHeight);
 }
 
 // Update ufo input
@@ -121,14 +153,45 @@ void UFO::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		direcY = 1.0f;
 	else 
 		direcY = 0.0f;
+
+	// Check fro abduction ray press
+	if (mKeyH->keyPressed(KEY_E))
+		rayOn = !rayOn;
 }
 
 // Draw UFO
-void UFO::draw(GLHandler* mgl, PlayerAtlas* mGame, bool inUFO){
+void UFO::draw(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO){
 	if (inUFO)
-		mGame->draw(mgl, UFO_BEAR_FRAME, locX,locY,1.0f,0,originX, originY);
+		mAtlas->draw(mgl, UFO_BEAR_FRAME, locX,locY,1.0f,0,originX, originY);
 	else 
-		mGame->draw(mgl, UFO_FRAME, locX,locY,1.0f,0,originX, originY);
+		mAtlas->draw(mgl, UFO_FRAME, locX,locY,1.0f,0,originX, originY);
+}
+
+// Draw UFO lights
+void UFO::drawLights(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO){
+	if (inUFO){
+		// Draw abduction ray 
+		if (rayOn){
+			float y;
+			for (int i = 0; i < rayCircleCount; i++){
+				// Determine y offset for each ray circle
+				y = rayOffset + (i * rayOffsetMax);
+
+				// Fade out circles on top and bottom 
+				if (y < 100.0f) 
+					mgl->setFlatColor(1.0f,1.0f,1.0f,y/100.0f);
+				else if (y + rayCircleHeight > rayHeight - 100.0f)
+					mgl->setFlatColor(1.0f,1.0f,1.0f,(rayHeight - (y + rayCircleHeight))/100.0f);
+				else 
+					mgl->setFlatColor(1.0f,1.0f,1.0f,1.0f);
+		
+				// Draw ray 
+				mAtlas->draw(mgl, PI_UFO_RAY, locX, locY + y,
+					rayScaleMin + ((y/rayHeight) * (rayScaleMax - rayScaleMin)),
+					1.0f, rayWidth/2.0f, 0.0f);
+			}
+		}
+	}
 }
 
 // Apply damage to the ship 
