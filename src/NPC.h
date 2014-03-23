@@ -37,6 +37,7 @@ protected:
 	bool alive;
 
 	float health;
+	float healthMax;
 	int type;
 
 	// Abduction properties

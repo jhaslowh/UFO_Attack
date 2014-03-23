@@ -43,6 +43,11 @@ void GameAtlas::load(){
 	// Arm
 	vcg->addFrame(153.0f, 1012.0f, 16.0f, 11.0f);
 
+	// NPC health bar
+	vcg->addFrame(171.0f, 1017.0f, 40.0f, 6.0f);
+	// NPC health bar outline 
+	vcg->addFrame(171.0f, 1011.0f, 38.0f, 4.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

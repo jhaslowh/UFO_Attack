@@ -69,7 +69,7 @@ void Sky::update(float deltaTime){
 	// Night to Day 
 	else if (mTime >= DAWN_START && mTime < DAWN_END){
 		mBlueColor[3]  = mOrangeColor[3] = (mTime - DAWN_START) / (DAWN_END - DAWN_START);
-		lightValue = .5 - (.3f - (((mTime - DAWN_START) / (DAWN_END - DAWN_START)) * .3f));
+		lightValue = .5f - (.3f - (((mTime - DAWN_START) / (DAWN_END - DAWN_START)) * .3f));
 		skyState = SKY_STATE_DAY;
 	}
 	// Day

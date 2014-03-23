@@ -17,7 +17,7 @@ NPC::NPC()
 	canBeObducted = true;
 	beingAbducted = false;
 	alive = true;
-	health = 100.0f;
+	health = healthMax = 100.0f;
 	type = NPC_HUMAN;
 }
 
@@ -144,7 +144,11 @@ void NPC::drawLight(GLHandler* mgl, GameAtlas* mGame){
 
 // Draw object to the screen
 void NPC::draw(GLHandler* mgl, GameAtlas* mGame){
-	// Nothing to do
+	// Draw health bar
+	if (alive){
+		mGame->draw(mgl, GI_NPC_HEALTH_BAR_OUTLINE, locX - 20.0f, locY - height);
+		mGame->drawScale2(mgl, GI_NPC_HEALTH_BAR,locX - 19.0f, locY - height + 1.0f, health / healthMax, 1.0f);
+	}
 }
 
 

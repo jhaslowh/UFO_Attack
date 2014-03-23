@@ -21,6 +21,8 @@
 #define GI_NPC_SOLDIER_M2 13
 #define GI_NPC_SOLDIER_M3 14
 #define GI_NPC_SOLDIER_ARM 15
+#define GI_NPC_HEALTH_BAR_OUTLINE 16
+#define GI_NPC_HEALTH_BAR 17
 
 class GameAtlas : public TextureAtlas
 {
