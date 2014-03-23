@@ -107,18 +107,32 @@ Player::Player(SaveData* savedata){
 	armOffsetsR[22] = 24;	armOffsetsR[23] = 23;
 
 	// Load weapon based off savedata
+	usingWeapon1 = true;
 	if (savedata != NULL){
+		weapon1 = NULL;
+		weapon2 = NULL;
+
+		// Load player weapon 1 from savedata 
 		if (savedata->getPlayerWeapon1() == StoreItems::SID_PLAYER_WEAPON_LASER)
-			weapon = (Weapon*)new PlayerLaserGun();
+			weapon1 = (Weapon*)new PlayerLaserGun();
 		else if (savedata->getPlayerWeapon1() == StoreItems::SID_PLAYER_WEAPON_SHOTGUN)
-			weapon = (Weapon*)new PlayerShotgun();
+			weapon1 = (Weapon*)new PlayerShotgun();
 		else if (savedata->getPlayerWeapon1() == StoreItems::SID_PLAYER_WEAPON_SMG)
-			weapon = (Weapon*)new PlayerSMG();
+			weapon1 = (Weapon*)new PlayerSMG();
+
+		// Load player weapon 2 from savedata 
+		if (savedata->getPlayerWeapon2() == StoreItems::SID_PLAYER_WEAPON_LASER)
+			weapon2 = (Weapon*)new PlayerLaserGun();
+		else if (savedata->getPlayerWeapon2() == StoreItems::SID_PLAYER_WEAPON_SHOTGUN)
+			weapon2 = (Weapon*)new PlayerShotgun();
+		else if (savedata->getPlayerWeapon2() == StoreItems::SID_PLAYER_WEAPON_SMG)
+			weapon2 = (Weapon*)new PlayerSMG();
 	}
 }
 Player::~Player(){
 	delete ufo;
-	delete weapon;
+	delete weapon1;
+	delete weapon2;
 }
 
 // Getters and setters
@@ -477,26 +491,44 @@ void Player::update2(float deltaTime, Handlers* handlers){
 			else 
 				animationState = PLAYERS_IDLE;
 
-			// Upadate weapon
-			if (weapon != NULL){
-				// Set weapon direction
-				//weapon->setFacingDirec(lookingRight);
-
+			// Update weapons
+			if (usingWeapon1 && weapon1 != NULL){
+				// Update weapon 
 				if (lookingRight){
-					 weapon->update(deltaTime, 
+					 weapon1->update(deltaTime, 
 					  locX - originX + armOffsetsR[currentFrame*2],
 						locY - originY + armOffsetsR[currentFrame*2 + 1]);
 				}
 				else {
-					 weapon->update(deltaTime, 
+					 weapon1->update(deltaTime, 
 					  locX - originX + (width - armOffsetsR[currentFrame*2]),
 						locY - originY + armOffsetsR[currentFrame*2 + 1]);
 				}
 
-				lookingRight = weapon->getFacingDirecton();
+				// Set facing direction from weapon 
+				lookingRight = weapon1->getFacingDirecton();
 
 				// Get weapon angle 
-				armRotation = weapon->getRotation();
+				armRotation = weapon1->getRotation();
+			}
+			else if (!usingWeapon1 && weapon2 != NULL){
+				// Update weapon 
+				if (lookingRight){
+					 weapon2->update(deltaTime, 
+					  locX - originX + armOffsetsR[currentFrame*2],
+						locY - originY + armOffsetsR[currentFrame*2 + 1]);
+				}
+				else {
+					 weapon2->update(deltaTime, 
+					  locX - originX + (width - armOffsetsR[currentFrame*2]),
+						locY - originY + armOffsetsR[currentFrame*2 + 1]);
+				}
+
+				// Set facing direction from weapon 
+				lookingRight = weapon2->getFacingDirecton();
+
+				// Get weapon angle 
+				armRotation = weapon2->getRotation();
 			}
 		}
 	}
@@ -546,8 +578,15 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 				inAir = true;
 			}
 
+			// Switch weapons 
+			if (weapon1 != NULL && weapon2 != NULL && mKeyH->keyPressed(KEY_F))
+				usingWeapon1 = !usingWeapon1;
+
 			// Update player weapon
-			weapon->updateInput(mKeyH, mMouseH, handlers);
+			if (usingWeapon1 && weapon1 != NULL)
+				weapon1->updateInput(mKeyH, mMouseH, handlers);
+			else if (!usingWeapon1 && weapon2 != NULL)
+				weapon2->updateInput(mKeyH, mMouseH, handlers);
 		}
 
 		// Switch from ufo to on foot 
@@ -580,7 +619,10 @@ void Player::draw(GLHandler* mgl){
 		}
 
 		// Draw weapon
-		weapon->draw(mgl, &playerAtlas);
+		if (usingWeapon1 && weapon1)
+			weapon1->draw(mgl, &playerAtlas);
+		else if (!usingWeapon1 && weapon2)
+			weapon2->draw(mgl, &playerAtlas);
 
 		// Draw player arm 
 		if (lookingRight){

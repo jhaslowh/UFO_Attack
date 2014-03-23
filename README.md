@@ -10,6 +10,7 @@ Player/UFO:
 AWSD : Move Player / UFO  
 Q : Switch Between player and ufo   
 R : Reload  
+F : Switch weapon   
 
 Player:  
 Space: Jump

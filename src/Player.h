@@ -133,7 +133,9 @@ class Player
 	// -------------
 	// Weapon
 	// -------------
-	Weapon* weapon;
+	Weapon* weapon1;
+	Weapon* weapon2;
+	bool usingWeapon1;
 
 public:
 
