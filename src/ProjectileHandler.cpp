@@ -56,7 +56,7 @@ void ProjectileHandler::addNewProjectile(Projectile* newProjectile)
 
 void ProjectileHandler::addProjectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode)
 {
-
+	// TODO implement
 }
 
 void ProjectileHandler::updateProjectiles(float deltaTime, Handlers* handlers)

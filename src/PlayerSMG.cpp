@@ -20,7 +20,7 @@ PlayerSMG::PlayerSMG()
 	firetype = FIRETYPE_RAPID;
 	barrelOffset[0] = 30;
 	barrelOffset[1] = -2;
-	damage = 1.0f;
+	damage = 10.0f;
 	isPlayerWeapon = true;
 
 	// Muzzle flash

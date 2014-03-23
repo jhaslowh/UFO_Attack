@@ -20,7 +20,7 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	firetype = FIRETYPE_SINGLE;
 	barrelOffset[0] = 22;
 	barrelOffset[1] = -4;
-	damage = 1.0f;
+	damage = 15.0f;
 	isPlayerWeapon = true;
 
 	// Muzzle flash

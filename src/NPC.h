@@ -94,5 +94,9 @@ public:
 
 	// Draw object to the screen
 	virtual void draw(GLHandler* mgl, GameAtlas* mGame);
+
+	// Damage the npc by sent damage amout.
+	// Will set npc to !alive if too much damage taken
+	virtual void damage(float amount);
 };
 

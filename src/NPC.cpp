@@ -146,3 +146,12 @@ void NPC::drawLight(GLHandler* mgl, GameAtlas* mGame){
 void NPC::draw(GLHandler* mgl, GameAtlas* mGame){
 	// Nothing to do
 }
+
+
+// Damage the npc by sent damage amout.
+// Will set npc to !alive if too much damage taken
+void NPC::damage(float amount){
+	health -= amount;
+	if (health <= 0.0f)
+		alive = false;
+}

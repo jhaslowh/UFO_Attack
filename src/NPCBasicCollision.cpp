@@ -239,7 +239,7 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 		// Check all projectiles for collision 
 		for(std::list<Projectile*>::iterator myIterator = projs.begin(); myIterator != projs.end(); myIterator++)
 		{
-			// Null check 
+			// Null check / Alive check / shot by player 
 			if (*myIterator != NULL && (*myIterator)->getAlive() && (*myIterator)->getFiredBy() == PFB_PLAYER){
 				// Check for collision 
 				if (checkRecSeg(&collRecXY, 
@@ -249,7 +249,8 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 					// Tell projectile we had a player collision 
 					(*myIterator)->collide(&projp, handlers, P_ENEMY_COLL);
 
-					// TODO NPC related collision things 
+					// Apply projectile damage to npc
+					damage((*myIterator)->getDamage());
 				}
 			}
 		}

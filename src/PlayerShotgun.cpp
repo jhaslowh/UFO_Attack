@@ -20,7 +20,7 @@ PlayerShotgun::PlayerShotgun(): Weapon()
 	firetype = FIRETYPE_SINGLE;
 	barrelOffset[0] = 36;
 	barrelOffset[1] = -4;
-	damage = 1.0f;
+	damage = 25.0f;
 	isPlayerWeapon = true;
 
 	// Muzzle flash
