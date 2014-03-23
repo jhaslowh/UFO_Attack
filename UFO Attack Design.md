@@ -18,7 +18,6 @@ Transitions:
 **Main Menu**  
 Transitions:  
 - Level Select Screen (Button)  
-- Free Play Screen (Button)  
 - Store Screen (Button)  
 - Equip Screen (Button)  
 - Settings Screen (Button)  
@@ -31,11 +30,6 @@ Either a map of the world where the player selects locations or just a list of l
 Transitions:  
 - Main Menu  (Button)  
 - Game Screen  (Button)  
-
-**Free Play Screen**  
-Player can play endlessly in this screen.  
-Transitions:  
-- Main Menu  (Through pause menu or failure) 
 
 **Game Screen**  
 Used to play levels.  
@@ -141,3 +135,5 @@ Difficulty: Medium/Easy
 - Farm plants 
 - Barn Side  
 - Barn Roof  
+- Wall  
+- Floor  

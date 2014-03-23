@@ -136,7 +136,7 @@ Jonathan Haslow-Hall
 James Dressel  
 Andrew Geyster  
 
-**Character Designs**
+**Character Designs**  
 Chris Dike  
 Lucy Niedbala  
 
