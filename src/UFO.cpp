@@ -10,6 +10,7 @@ UFO::UFO(){
 	minDistFromGround = 200.0f;
 	width = 100.0f;
 	height = 50.0f;
+	lookingRight = true;
 
 	armor = 100.0f;
 	maxArmor = 100.0f;
@@ -147,10 +148,14 @@ void UFO::resolveCollision(Handlers* handlers){
 // Update ufo input
 void UFO::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// Check Movement controls 
-	if (mKeyH->keyDown(KEY_D))
+	if (mKeyH->keyDown(KEY_D)){
 		direcX = 1.0f;
-	else if (mKeyH->keyDown(KEY_A))
+		lookingRight = true;
+	}
+	else if (mKeyH->keyDown(KEY_A)){
 		direcX = -1.0f;
+		lookingRight = false;
+	}
 	else 
 		direcX = 0.0f;
 
@@ -168,10 +173,20 @@ void UFO::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 // Draw UFO
 void UFO::draw(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO){
-	if (inUFO)
-		mAtlas->draw(mgl, UFO_BEAR_FRAME, locX,locY,1.0f,0,originX, originY);
-	else 
-		mAtlas->draw(mgl, UFO_FRAME, locX,locY,1.0f,0,originX, originY);
+	if (lookingRight){
+		if (inUFO)
+			mAtlas->draw(mgl, UFO_BEAR_FRAME, locX,locY,1.0f,0,originX, originY);
+		else 
+			mAtlas->draw(mgl, UFO_FRAME, locX,locY,1.0f,0,originX, originY);
+	}
+	else {
+		glCullFace(GL_FRONT);
+		if (inUFO)
+			mAtlas->drawScale2(mgl, UFO_BEAR_FRAME, locX,locY,-1.0f,1.0f,0,originX, originY);
+		else 
+			mAtlas->drawScale2(mgl, UFO_FRAME, locX,locY,-1.0f,1.0f,0,originX, originY);
+		glCullFace(GL_BACK);
+	}
 }
 
 // Draw UFO lights

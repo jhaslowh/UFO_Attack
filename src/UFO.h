@@ -25,6 +25,7 @@ class UFO
 	// Physics and movement
 	float direcX, direcY;
 	float speed;
+	bool lookingRight;
 
 	// Shields and armor 
 	float armor;				// Ships current armor
