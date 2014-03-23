@@ -6,7 +6,7 @@ UFO::UFO(){
 	locY = 0.0f;
 	originX = 50.0f;
 	originY = 50.0f;
-	speed = 300.0f;
+	speed = 375.0f;
 	minDistFromGround = 200.0f;
 	width = 100.0f;
 	height = 50.0f;
@@ -94,10 +94,17 @@ void UFO::update(float deltaTime, Handlers* handlers){
 void UFO::checkCollision(Handlers* handlers){
 	// Make sure UFO cannot leave level on left or right side
 
-	if (nextX - 50.0f < ((LevelProperties*)(handlers->levelProps))->getLevelLeft())
-		nextX = ((LevelProperties*)(handlers->levelProps))->getLevelLeft() + 50.0f;
-	if (nextX + 50.0f > ((LevelProperties*)(handlers->levelProps))->getLevelRight())
-		nextX = ((LevelProperties*)(handlers->levelProps))->getLevelRight() - 50.0f;
+	LevelProperties* lp = (LevelProperties*)(handlers->levelProps);
+
+	if (nextX - 50.0f < lp->getLevelLeft())
+		nextX = lp->getLevelLeft() + 50.0f;
+	if (nextX + 50.0f > lp->getLevelRight())
+		nextX = lp->getLevelRight() - 50.0f;
+
+	// Keep UFO from leaving top of level
+
+	if (nextY < lp->getLevelTop())
+		nextY = lp->getLevelTop();
 
 	// ----------------------------------
 	// Check UFO collision with ground 
