@@ -220,6 +220,9 @@ public:
 	// Apply damage to health
 	void applyDamage(float damage);
 
+	// Check if the player is currently in the ufo
+	bool isInUFO();
+
 private:
 
 	// Set the given collision rectangle to the given location

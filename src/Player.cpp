@@ -688,6 +688,9 @@ void Player::applyDamage(float damage){
 		health = 0.0f;
 }
 
+// Check if the player is currently in the ufo
+bool Player::isInUFO(){return inUFO;}
+
 // Set the given collision rectangle to the given location
 void Player::setCollRec(Rec* r, float x, float y){
 	r->copy(&collRec);

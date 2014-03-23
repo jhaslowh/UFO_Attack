@@ -3,12 +3,20 @@
 #include "Handlers.h"
 #include "GLHandler.h"
 #include "GameAtlas.h"
+#include "Collision.h"
+#include "Player.h"
+#include "UFO.h"
 
 #define GRAVITY 980.0f
 
 // NPC types
 #define NPC_ANIMAL 1
 #define NPC_HUMAN 2
+
+// Global abduction properties
+#define ABDUCT_START_SPEED 200.0f
+#define ABDUCT_MAX_SPEED 300.0f
+#define ABDUCT_ACCEL 50.0f
 
 class NPC
 {
@@ -30,6 +38,9 @@ protected:
 
 	float health;
 	int type;
+
+	// Abduction properties
+	float cAbductSpeed;
 
 public:
 	NPC* next;

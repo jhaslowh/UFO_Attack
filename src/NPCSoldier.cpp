@@ -23,7 +23,8 @@ NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
 	direcX = 1.0f;
 	speed = 200.0f;
 
-	// Collision Values 
+	// Collision Values
+	bounds.reset(0.0f,0.0f,50.0f,50.0f);
 	waistHeight = 35.0f;
 	depthForDepthCheck = 20.0f;
 
@@ -51,7 +52,9 @@ NPCSoldier::~NPCSoldier()
 void NPCSoldier::updateMovement(float deltaTime, Handlers* handlers){
 	NPCBasicCollision::updateMovement(deltaTime, handlers);
 
-	nextX = locX + (speed * direcX * deltaTime);
+	if (alive && !beingAbducted){
+		nextX = locX + (speed * direcX * deltaTime);
+	}
 }
 
 // Update game state of the npc object
@@ -76,7 +79,7 @@ void NPCSoldier::update(float deltaTime, Handlers* handlers){
 void NPCSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 	NPCBasicCollision::draw(mgl, mGame);
 	
-	if (alive && !beingAbducted){
+	if (alive){
 		if (direcX > 0){
 			mGame->draw(mgl, imageID+cframe,locX,locY,scale, rotation, originX, originY);
 			// Draw arm 

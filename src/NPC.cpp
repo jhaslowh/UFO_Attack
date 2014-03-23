@@ -82,9 +82,52 @@ void NPC::updateMovement(float deltaTime, Handlers* handlers){
 // it should ignore the movement from the update movement method and 
 // if it isnt, it should resolve the movement and collisions. 
 void NPC::updateCollision(float deltaTime, Handlers* handlers){
-	// TODO check if being abducted
+	// Update Abduction 
+	if (canBeObducted){
+		fixCollRec();
 
-	beingAbducted = false;
+		// Check if ufo is being abducted 
+		UFO* ufo = (UFO*)((Player*)handlers->player)->ufo;
+		Player* player = (Player*)handlers->player;
+		if (player->isInUFO() && ufo->isRayOn()  && checkRecRec(&collisionRec, ufo->getAbductArea())){
+			if (!beingAbducted){
+				beingAbducted = true;
+				cAbductSpeed = ABDUCT_START_SPEED;
+			}
+		}
+		else 
+			beingAbducted = false;
+
+		// Move to ship if being abducted 
+		if (beingAbducted){
+			// Get angle to ship 
+			float mTheta = (float)atan2((double)(ufo->getY() - locY), (double)(ufo->getX() - locX));
+
+			// Convert angle to direction 
+			float direcX = cos(mTheta);
+			float direcY = sin(mTheta);
+
+			// Accelerate 
+			cAbductSpeed += deltaTime * ABDUCT_ACCEL;
+			if (cAbductSpeed > ABDUCT_MAX_SPEED)
+				cAbductSpeed = ABDUCT_MAX_SPEED;
+
+			// Move to ship 
+			locX += deltaTime * direcX * cAbductSpeed;
+			locY += deltaTime * direcY * cAbductSpeed;
+
+			// Check if touching ship
+			if (checkRecRec(&collisionRec, ufo->getUFOArea())){
+				alive = false;
+
+				// Increment points 
+				if (type == NPC_ANIMAL)
+					player->incrAnimalCount(1);
+				else if (type == NPC_HUMAN)
+					player->incrHumanCount(1);
+			}
+		}
+	}
 }
 
 // Update game state of the npc object

@@ -250,7 +250,6 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 					(*myIterator)->collide(&projp, handlers, P_ENEMY_COLL);
 
 					// TODO NPC related collision things 
-					// TODO if killed, increment player points 
 				}
 			}
 		}
@@ -260,6 +259,12 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 
 		locX = nextX;
 		locY = nextY;
+	}
+	else {
+		// Reset states if being abducted
+		nextX = locX;
+		nextY = yo = locY;
+		airT = 0.0f;
 	}
 }
 
