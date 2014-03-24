@@ -18,6 +18,11 @@ protected:
 	int mHideType;
 	float mOpacity;
 	bool mFadeOut;
+	
+	// Hide time of the object, 0 is shown
+	// chideTime == hideTime is hidden. 
+	float chideTime;
+	float hideTime;
 
 	// States 
 	TransitionState mState;

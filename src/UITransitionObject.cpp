@@ -9,6 +9,8 @@ UITransitionObject::UITransitionObject() : UIObject(){
 	mHide = false;
 	mFadeOut = false;
 	mOpacity = 1.0f;
+	chideTime = 0.0f;
+	hideTime = 1.0f;
 }
 UITransitionObject::~UITransitionObject(){}
 
@@ -18,10 +20,11 @@ UITransitionObject::~UITransitionObject(){}
 float UITransitionObject::getOpacity(){return mOpacity;}
 
 // Quick one step setup 
-void UITransitionObject::setupHide(int hideType, float hideLoc, float hideTime, bool fadeOut){
+void UITransitionObject::setupHide(int hideType, float hideLoc, float ht, bool fadeOut){
 	setHideType(hideType);
 	mHideLoc = hideLoc;
-	setHideSpeedOnTime(hideTime);
+	hideTime = ht;
+	setHideSpeedOnTime(ht);
 	mFadeOut = fadeOut;
 }
 
@@ -55,92 +58,45 @@ void UITransitionObject::setHideSpeedOnTime(float time){
 // Set to true to fade out the object when hiding
 void UITransitionObject::setFadeOut(bool value){mFadeOut = value;}
 
-
 // Update the object
 void UITransitionObject::update(float deltaTime){
-	if (mHideType == HT_HOROZONTAL){
-		if (mNormalLoc > mHideLoc){
-			if (mHide){
-				if (loc_x != mHideLoc){
-					loc_x -= deltaTime * mHideSpeed;
-					if (loc_x < mHideLoc){
-						loc_x = mHideLoc;
-						mState = HIDDEN;
-					}
-				}
-			}else {
-				if (loc_x != mNormalLoc){
-					loc_x += deltaTime * mHideSpeed;
-					if (loc_x > mNormalLoc){
-						loc_x = mNormalLoc;
-						mState = SHOWN;
-					}
-				}
-			}
+	if (mHideType != HT_NONE){
+		// Update hide time 
+		if (mHide){
+			chideTime += deltaTime;
+			if (chideTime > hideTime)
+				chideTime = hideTime;
 		}
-		else if (mNormalLoc < mHideLoc){
-			if (mHide){
-				if (loc_x != mHideLoc){
-					loc_x += deltaTime * mHideSpeed;
-					if (loc_x > mHideLoc){
-						loc_x = mHideLoc;
-						mState = HIDDEN;
-					}
-				}
-			}else {
-				if (loc_x != mNormalLoc){
-					loc_x -= deltaTime * mHideSpeed;
-					if (loc_x < mNormalLoc){
-						loc_x = mNormalLoc;
-						mState = SHOWN;
-					}
-				}
-			}
+		else {
+			chideTime -= deltaTime;
+			if (chideTime < 0.0f)
+				chideTime = 0.0f;
 		}
+
+		// Get percentage
+		float per = chideTime / hideTime;
+
+		// Fix position 
+		if (mHideType == HT_HOROZONTAL){
+			loc_x = mNormalLoc + (per * (mHideLoc - mNormalLoc));
+
+			if (loc_x == mHideLoc)
+				mState = HIDDEN;
+			if (loc_x == mNormalLoc)
+				mState = SHOWN;
+		}
+		else if (mHideType == HT_VERTICAL){
+			loc_y = mNormalLoc + (per * (mHideLoc - mNormalLoc));
+
+			if (loc_y == mHideLoc)
+				mState = HIDDEN;
+			if (loc_y == mNormalLoc) 
+				mState = SHOWN;
+		}
+
+		// Fade out if set 
 		if (mFadeOut) 
-			mOpacity = (float)abs(loc_x - mHideLoc) / (float)abs(mNormalLoc - mHideLoc);
-	}
-	else if (mHideType == HT_VERTICAL){
-		if (mNormalLoc > mHideLoc){
-			if (mHide){
-				if (loc_y != mHideLoc){
-					loc_y -= deltaTime * mHideSpeed;
-					if (loc_y < mHideLoc){
-						loc_y = mHideLoc;
-						mState = HIDDEN;
-					}
-				}
-			}else {
-				if (loc_y != mNormalLoc){
-					loc_y += deltaTime * mHideSpeed;
-					if (loc_y > mNormalLoc){
-						loc_y = mNormalLoc;
-						mState = SHOWN;
-					}
-				}
-			}
-		}else if (mNormalLoc < mHideLoc){
-			if (mHide){
-				if (loc_y != mHideLoc){
-					loc_y += deltaTime * mHideSpeed;
-					if (loc_y > mHideLoc){
-						loc_y = mHideLoc;
-						mState = HIDDEN;
-					}
-				}
-			}else {
-				if (loc_y != mNormalLoc){
-					loc_y -= deltaTime * mHideSpeed;
-					if (loc_y < mNormalLoc){
-						loc_y = mNormalLoc;
-						mState = SHOWN;
-					}
-				}
-			}
-		}
-	
-		if (mFadeOut) 
-			mOpacity = (float)abs(loc_y - mHideLoc) / (float)abs(mHideLoc - mNormalLoc);
+			mOpacity = 1.0f - per;
 	}
 }
 
@@ -180,6 +136,7 @@ bool UITransitionObject::shown(){
 void UITransitionObject::setHidden(){
 	mState = HIDDEN; 
 	mHide = true;
+	chideTime = hideTime;
 	if (mFadeOut) mOpacity = 0.0f;
 		
 	if (mHideType == HT_HOROZONTAL)
@@ -192,6 +149,7 @@ void UITransitionObject::setHidden(){
 void UITransitionObject::setShown(){
 	mState = SHOWN;
 	mHide = false;
+	chideTime = 0.0f;
 	if (mFadeOut) mOpacity = 1.0f;
 	
 	if (mHideType == HT_HOROZONTAL)

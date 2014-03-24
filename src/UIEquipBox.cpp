@@ -57,9 +57,9 @@ void UIEquipBox::unload(){
 void UIEquipBox::update(float deltaTime){
 	UITransitionObject::update(deltaTime);
 
-	bBG->setAlpha(flatColor[3]);
-	label->setAlpha(flatColor[3]);
-	imageSprite.setAlpha(flatColor[3]);
+	bBG->setAlpha(flatColor[3] * mOpacity);
+	label->setAlpha(flatColor[3] * mOpacity);
+	imageSprite.setAlpha(flatColor[3] * mOpacity);
 }
 
 // Update input 
@@ -110,6 +110,25 @@ void UIEquipBox::drawSprite(GLHandler* mgl){
 	}
 
 	imageSprite.draw(*mgl, loc_x, loc_y);
+}
+
+
+// Instantly hide the object
+void UIEquipBox::setHidden(){
+	UITransitionObject::setHidden();
+	
+	bBG->setAlpha(flatColor[3] * mOpacity);
+	label->setAlpha(flatColor[3] * mOpacity);
+	imageSprite.setAlpha(flatColor[3] * mOpacity);
+}
+
+// Instantly show the object 
+void UIEquipBox::setShown(){
+	UITransitionObject::setShown();
+	
+	bBG->setAlpha(flatColor[3] * mOpacity);
+	label->setAlpha(flatColor[3] * mOpacity);
+	imageSprite.setAlpha(flatColor[3] * mOpacity);
 }
 
 // Check if the box was clicked 

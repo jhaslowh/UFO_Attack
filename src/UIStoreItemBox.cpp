@@ -143,15 +143,23 @@ void UIStoreItemBox::draw(GLHandler* mgl, UIAtlas* mAtlas){
 // Instantly hide the object
 void UIStoreItemBox::setHidden(){
 	UITransitionObject::setHidden();
-
-	bBG->setAlpha(0.0f);
+	
+	bBG->setAlpha(flatColor[3] * mOpacity);
+	lName->setAlpha(flatColor[3] * mOpacity);
+	lPriceA->setAlpha(flatColor[3] * mOpacity);
+	lPriceH->setAlpha(flatColor[3] * mOpacity);
+	lPurchase->setAlpha(flatColor[3] * mOpacity);
 }
 
 // Instantly show the object 
 void UIStoreItemBox::setShown(){
 	UITransitionObject::setShown();
-
-	bBG->setAlpha(1.0f);
+	
+	bBG->setAlpha(flatColor[3] * mOpacity);
+	lName->setAlpha(flatColor[3] * mOpacity);
+	lPriceA->setAlpha(flatColor[3] * mOpacity);
+	lPriceH->setAlpha(flatColor[3] * mOpacity);
+	lPurchase->setAlpha(flatColor[3] * mOpacity);
 }
 
 // Check if the button was clicked 

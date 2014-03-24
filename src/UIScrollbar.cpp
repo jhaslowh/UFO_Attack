@@ -86,9 +86,6 @@ void UIScrollbar::setSliderSize(float s){
 // Set value
 void UIScrollbar::setValue(float value){
 	if (value < minVal || value > maxVal) return;
-	
-	std::cout << sliderArea.getY() << "\n";
-
 	if (mType == SCROLLBAR_HOR){
 		sliderArea.setX(
 			loc_x + ((width - sliderArea.getWidth()) * (value/(maxVal - minVal))));
@@ -97,8 +94,6 @@ void UIScrollbar::setValue(float value){
 		sliderArea.setY(
 			loc_y + ((height - sliderArea.getHeight()) * (value/(maxVal - minVal))));
 	}
-
-	std::cout << sliderArea.getY() << "\n";
 }
 // Get value
 float UIScrollbar::getValue(){

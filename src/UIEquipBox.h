@@ -40,6 +40,11 @@ public:
 
 	// Call to draw image sprite 
 	void drawSprite(GLHandler* mgl);
+	
+	// Instantly hide the object
+	virtual void setHidden();
+	// Instantly show the object 
+	virtual void setShown();
 
 	// Check if the box was clicked 
 	bool wasClicked();

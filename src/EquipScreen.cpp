@@ -193,7 +193,7 @@ void EquipScreen::update(float deltaTime){
 	// Update weapon list
 	if (weaponList != NULL){
 		for (int i = 0; i < weaponListCount; i++){
-			weaponList[i].setAlpha(lTitle->getOpacity());
+			//weaponList[i].setAlpha(bBack->getOpacity());
 			weaponList[i].update(deltaTime);
 		}
 	}
@@ -444,7 +444,7 @@ void EquipScreen::fixWeaponList(){
 			weaponList[i].setLocation(weaponListLocX, 
 				weaponListLocY + (i * 95.0f));
 			weaponList[i].setItem(indexes[i]);
-			weaponList[i].setAlpha(0.0f);
+			//weaponList[i].setAlpha(0.0f);
 		}
 
 		// Fix scrollbar 

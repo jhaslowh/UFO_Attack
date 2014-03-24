@@ -86,7 +86,7 @@ void MainScreen::update(float deltaTime){
 	if (buttonResume != NULL) 
 		buttonResume->update(deltaTime);
 	
-	logo.setAlpha(buttonQuit->getColor()[3]);
+	logo.setAlpha(buttonQuit->getOpacity());
 }
 
 // Update input to the screen 
