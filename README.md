@@ -78,19 +78,22 @@ Technical Information
 
 ### Implemented  
 
-* PNG Loading (Use FileHelper::loadPNG(char* file))
+* Image Loading (using SOIL)
 * Orthographic Projection 
 * Perspective Projection
-* 2D Lighting with Overlay blending & FBO  
+* 2D Lighting with Linear Light Blending & FBO  
 * 2D Sprite
 * 3D Cube
-* Matrix Transforms (Use GLM) 
+* Matrix Transforms (Using GLM) 
 * KeyBoard IO
 * Mouse IO
 * Text Rendering 
 * UI Screens
 * UI Buttons 
 * UI Checkbox
+* UI Combobox
+* UI Scrollbar
+* Debug Terminal
 * Texture Atlas Stucture
 * Basic Collision Detection Functions 
 * Settings (And Settings Save/Load) 
