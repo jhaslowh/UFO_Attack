@@ -1,7 +1,7 @@
 #include "Ground.h"
 
 
-Ground::Ground(){
+Ground::Ground(int type){
 	points = NULL;
 	indicies = NULL;
 	verts = NULL;
@@ -16,6 +16,7 @@ Ground::Ground(){
 	grass.setScale(.5f);
 	grassLength = 55.0f * grass.getScale();
 	textureScale = 80.0f;
+	groundType = type;
 }
 Ground::~Ground(){
 	while (points != NULL){
@@ -28,12 +29,25 @@ Ground::~Ground(){
 	delete[] cords;
 }
 
+// This will have no effect if called after load is called
+void Ground::setType(int type){
+	groundType = type;
+}
+
 // Load texture
 void Ground::load(){
-	textureID = loadPNG("images/dirt.png");
-	grass.setup(64.0f,32.0f,"images/grass.png");
-	grass.setColor(0.0f,1.0f,0.0f);
-	grass.setOrigin(5.0f,22.0f);
+	if (groundType == GROUND_DIRT){
+		textureID = loadPNG("images/dirt.png");
+		grass.setup(64.0f,32.0f,"images/grass.png");
+		grass.setColor(0.0f,1.0f,0.0f);
+		grass.setOrigin(5.0f,22.0f);
+	}
+	else if (groundType == GROUND_CEMENT){
+		textureID = loadPNG("images/cement.png");
+		grass.setup(64.0f,32.0f,"images/cementTop.png");
+		grass.setColor(1.0f,1.0f,1.0f);
+		grass.setOrigin(5.0f,22.0f);
+	}
 }
 
 // Unload ground
@@ -230,7 +244,7 @@ void Ground::draw(GLHandler* mgl){
 			// Set rotation for grass segment 
 			grass.setRotation(angle(*itr, *(itr->next)));
 
-			// Do not draw crass on steep hills
+			// Do not draw grass on steep hills
 			if (grass.getRotation() < 70.0f && grass.getRotation() > -70.0f){
 				// Set starting location 
 				grass.setPosition(itr->getX(), itr->getY());
@@ -334,7 +348,6 @@ void Ground::fixArrays(){
 	}
 
 	// This is alittle crazy, but we are creatings a polygon strip. 
-	// TODO: Diagram. 
 	for (int i = 0; i < pointCount - 1; i++){
 		indicies[(i * 6)]	  = (GLushort)(i * 2);
 		indicies[(i * 6) + 1] = (GLushort)((i * 2) + 1);

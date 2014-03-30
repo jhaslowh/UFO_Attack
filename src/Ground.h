@@ -7,6 +7,9 @@
 #include "Collision.h"
 #include "Sprite.h"
 
+#define GROUND_DIRT 0
+#define GROUND_CEMENT 1 
+
 class Ground
 {
 	// List of ground points 
@@ -19,6 +22,7 @@ class Ground
 	Sprite grass;
 	float grassLength;
 	float textureScale;
+	int groundType;
 
 	int indicieCount;
 	GLushort* indicies;
@@ -28,8 +32,11 @@ class Ground
 	GLuint textureID;
 
 public:
-	Ground();
+	Ground(int type);
 	~Ground();
+	
+	// This will have no effect if called after load is called
+	void setType(int type);
 
 	// Load texture
 	void load();

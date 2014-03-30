@@ -30,7 +30,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	// Create npc handler
 	npcHandler = new NPCHandler();
 	// Create ground 
-	ground = new Ground();
+	ground = new Ground(GROUND_CEMENT);
 	// Create proj handler 
 	projHandler = new ProjectileHandler();
 
