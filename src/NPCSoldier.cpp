@@ -40,6 +40,10 @@ NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
 	armOriginX = 2.5f;
 	armOriginY = 3.0f;
 	armRotation = 30.0f;
+
+	// Weapon properties 
+	weapon = (Weapon*)new PlayerSMG();
+	weapon->setIsPlayerWeapon(false);
 }
 
 NPCSoldier::~NPCSoldier()
@@ -72,6 +76,18 @@ void NPCSoldier::update(float deltaTime, Handlers* handlers){
 			if (cframe >= frames)
 				cframe = 0;
 		}
+
+		// Update weapon
+		Player* player = (Player*)handlers->player;
+		weapon->update(deltaTime, 
+			locX - originX + armOffsetX, 
+			locY - originY + armOffsetY);
+		// Try to fire at player 
+		if ((player->getX() > locX && direcX > 0.0f) || 
+			(player->getX() < locX && direcX < 0.0f) ){
+			weapon->npcFire(player->getCenterX(), player->getCenterY(), handlers);
+		}
+		armRotation = weapon->getRotation();
 	}
 }
 
@@ -98,6 +114,8 @@ void NPCSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 				-1.0f,1.0f,armRotation,armOriginX,armOriginY);
 			glCullFace(GL_BACK);
 		}
+
+		weapon->draw(mgl, mGame);
 	}
 }
 

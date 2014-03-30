@@ -148,6 +148,10 @@ public:
 	void setLocation(float x, float y);
 	float getX();
 	float getY();
+	// Get x center loc
+	float getCenterX();
+	// Get y center loc
+	float getCenterY();
 	// Set max health
 	void setMaxHealth(float value);
 	// Get max health

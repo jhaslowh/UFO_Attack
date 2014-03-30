@@ -18,6 +18,9 @@ class NPCSoldier : public NPCBasicCollision
 	float armOriginX, armOriginY;
 	float armRotation;
 
+	// Weapon Properties 
+	Weapon* weapon;
+
 public:
 	NPCSoldier(float x, float y);
 	virtual ~NPCSoldier();

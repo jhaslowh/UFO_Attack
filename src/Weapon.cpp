@@ -94,8 +94,6 @@ void Weapon::update(float deltaTime, float x, float y){
 // Update weapon input
 // Note: if this is an NPC weapon, do not call this method
 void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
-	// Input should be handled by child class in this format
-
 	// Get target shot location
 	float targetX = ((Camera2D*)handlers->camera)->toLevelX(mMouseH->getX());
 	float targetY = ((Camera2D*)handlers->camera)->toLevelY(mMouseH->getY());
@@ -149,6 +147,36 @@ void Weapon::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 			mAtlas->drawScale2(mgl, muzzleImageId, locX, locY,-1.0f, 1.0f, rotation, 
 			muzzleOrigin[0] - barrelOffset[0], muzzleOrigin[1] + barrelOffset[1]);
 		glCullFace(GL_BACK);
+	}
+}
+
+// Use with the npc to fire at a requested target
+// Will not fire if not allowed to (out of ammo etc.)
+// NOTE: If you do not restrict fire radius in the calling method
+// this method will fire in any direction. 
+void Weapon::npcFire(float targetx, float targety, Handlers* handlers){
+	// Set shooting direction 
+	if (targetx > locX )
+		lookingRight = true;
+	if (targetx < locX)
+		lookingRight = false;
+
+	// Set the rotation because the class that calls this might 
+	// need it even if it does not fire successfully. 
+	// Get angle 
+	mTheta = (float)atan2((double)(targety - locY), (double)(targetx - locX));
+	// Set rotation
+	rotation = (float)(mTheta * (180.0f / 3.14159f));
+
+	// Clamp rotation
+	if (rotation < -90.0f)
+		rotation += 180.0f;
+	if (rotation > 90.0f)
+		rotation -= 180.0f;
+
+	// Check for fire shot 
+	if (canFire()){
+		fire(targetx, targety, handlers);
 	}
 }
 

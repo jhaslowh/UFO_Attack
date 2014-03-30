@@ -142,6 +142,10 @@ void Player::setLocation(float x, float y){
 }
 float Player::getX(){return locX;}
 float Player::getY(){return locY;}
+// Get x center loc
+float Player::getCenterX(){return locX - originX + (width/2.0f);}
+// Get y center loc
+float Player::getCenterY(){return locY - originY + (height/2.0f);}
 // Set max health
 void Player::setMaxHealth(float value){maxHealth = value;}
 // Get max health

@@ -43,6 +43,7 @@ protected:
 	float cReloadTime;
 	float timeBetweenShots;
 	float cTimeBetweenShots;
+	// This property has no effect on npc weapons 
 	int firetype;
 	// To get the barrel of the weapon, get the cords of the end of the barrel
 	// relative to the sprite and subtrace the origin for it. 
@@ -96,6 +97,12 @@ public:
 
 	// Draw weapon to screen
 	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+
+	// Use with the npc to fire at a requested target
+	// Will not fire if not allowed to (out of ammo etc.).
+	// NOTE: If you do not restrict fire radius in the calling method
+	// this method will fire in any direction. 
+	virtual void npcFire(float targetx, float targety, Handlers* handlers);
 
 	// Fire the weapon
 	virtual void fire(float targetx, float targety, Handlers* handlers);
