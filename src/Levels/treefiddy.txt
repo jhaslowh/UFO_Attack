@@ -1,0 +1,35 @@
+Location: .\Levels\treefiddy.txt 
+Level: treefiddy 
+PlayerX
+100
+PlayerY
+100
+LevelLeft
+-500
+LevelRight
+1800
+LevelTop
+-10
+levelBottom
+590
+ 
+ground
+x y
+-1500;500
+-200;500
+30;500
+120;490
+180;500
+407;568
+500;590
+650;570
+1000;510
+1240;550
+1400;500
+2500;500
+ 
+scenery
+x y width height rotation scale imageid collides stopplayer
+321;550;100;100;0;1;0;0;0
+907;540;100;100;0;1;0;0;0
+1124;533;100;100;0;1;0;0;0

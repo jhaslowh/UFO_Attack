@@ -17,6 +17,8 @@
 #include "Crate.h"
 #include "Fence.h"
 #include "GLColors.h"
+#include <iostream>
+#include <fstream>
 
 // Level editor states
 #define LES_NONE 0
