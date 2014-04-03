@@ -56,47 +56,8 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	// Replace with real loading code
 	// ------------------------------
 
-<<<<<<< HEAD
 	// Set player spawn location
 	loadLevelData();
-=======
-	// Set player spawn location 
-	levelProps.setPlayerSpawn(100.0f,100.0f);
-	player->ufo->setLocation(levelProps.getPlayerSpawnX(), levelProps.getPlayerSpawnY());
-
-	levelProps.setLevelLeft(-500.0f);
-	levelProps.setLevelRight(1800.0f);
-
-	SceneryObject* obj = (SceneryObject*)new Tree();
-	obj->setLocation(321.0f,550.0f);
-	sceneryHandler->add(obj);
-	obj = (SceneryObject*)new Tree();
-	obj->setLocation(907.0f,540.0f);
-	sceneryHandler->add(obj);
-	obj = (SceneryObject*)new Tree();
-	obj->setLocation(1124.0f,533.0f);
-	sceneryHandler->add(obj);
-
-	ground->add(new Point(-1500.0f,500.0f));
-	ground->add(new Point(-200.0f,500.0f));
-	ground->add(new Point(30.0f,500.0f));
-	ground->add(new Point(120.0f,490.0f));
-	ground->add(new Point(180.0f,500.0f));
-	ground->add(new Point(407.0f,568.0f));
-	ground->add(new Point(500.0f,590.0f));
-	ground->add(new Point(650.0f,570.0f));
-	ground->add(new Point(1000.0f,510.0f));
-	ground->add(new Point(1240.0f,550.0f));
-	ground->add(new Point(1400.0f,500.0f));
-	ground->add(new Point(2500.0f,500.0f));
-
-	npcHandler->add(new NPCSoldier(40.0f, 250.0f));
-
-	// Set level top and bottom 
-	levelProps.setLevelBottom(ground->getBottomMost());
-	levelProps.setLevelTop(ground->getTopMost() - 500.0f);
-	levelProps.setEnemyCount(1);
->>>>>>> 0af97f7658e28190643faefd440dcbf1e3ee8c93
 }
 
 // Load level (use for textures)
@@ -201,7 +162,6 @@ void Level::drawUI(GLHandler* mgl, UIAtlas* mAtlas){
 	sceneryHandler->drawUI(mgl, mAtlas);
 }
 
-<<<<<<< HEAD
 //Load Level Data
 void Level::loadLevelData()
 {
@@ -346,9 +306,9 @@ void Level::loadLevelData()
 		levelProps.setLevelBottom(ground->getBottomMost());
 		levelProps.setLevelTop(ground->getTopMost() - 500.0f);
 	}
-=======
+}
+
 // Returns current victory state
 bool Level::getVictory(){
 	return victory;
->>>>>>> 0af97f7658e28190643faefd440dcbf1e3ee8c93
 }

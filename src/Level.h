@@ -65,12 +65,10 @@ public:
 	// Draw level 
 	void drawUI(GLHandler* mgl, UIAtlas* mAtlas);
 
-<<<<<<< HEAD
 	void loadLevelData();
 	//Reads in the data from the file
-=======
+
 	// Returns current victory state
 	bool getVictory();
->>>>>>> 0af97f7658e28190643faefd440dcbf1e3ee8c93
 };
 
