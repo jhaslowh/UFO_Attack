@@ -61,6 +61,7 @@ protected:
 	// Used to determine if projectile should be drawn 
 	bool drawProj;
 	float rotation;
+	GLfloat drawColor[4];
 
 	// -----------
 	// States 
@@ -123,6 +124,7 @@ public:
 	void setDamage(float value);
 	void setFiredBy(int value);
 	void setExplodes(bool value);
+	void setDrawColor(GLfloat* color);
 	//Setter methods 
 
 private:

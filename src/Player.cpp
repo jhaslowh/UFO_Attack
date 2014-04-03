@@ -453,8 +453,6 @@ void Player::checkCollision(Handlers* handlers){
 			{
 				// Null check 
 				if (*myIterator != NULL && (*myIterator)->getAlive() && (*myIterator)->getFiredBy() == PFB_ENEMY){
-					// TODO might need to check if player fired or enemy fired 
-
 					// Check for collision 
 					if (checkRecSeg(&collRecXY, 
 						(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
@@ -463,7 +461,8 @@ void Player::checkCollision(Handlers* handlers){
 						// Tell projectile we had a player collision 
 						(*myIterator)->collide(&projp, handlers, P_PLAYER_COLL);
 
-						// TODO Player related collision things 
+						// Apply projectile damage to player
+						applyDamage((*myIterator)->getDamage());
 					}
 				}
 			}

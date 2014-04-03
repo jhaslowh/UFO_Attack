@@ -2,7 +2,7 @@
 
 Crate::Crate() : SceneryObject()
 {
-
+	type = "crate";
 	width = 25.0f;
 	height = 25.0f;
 	imageID = GI_CRATE;

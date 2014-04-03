@@ -9,6 +9,7 @@ class LevelProperties
 	float playerSpawnY;
 	float screenWidth;
 	float screenHeight;
+	int enemyCount;
 
 public:
 	LevelProperties();
@@ -33,5 +34,10 @@ public:
 	float getScreenWidth();
 	void setScreenHeight(float h);
 	float getScreenHeight();
+
+	// Return level enemy count
+	int getEnemyCount();
+	// Set level enemy count
+	void setEnemyCount(int value);
 };
 

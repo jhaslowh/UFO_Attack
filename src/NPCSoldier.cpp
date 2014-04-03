@@ -42,8 +42,9 @@ NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
 	armRotation = 30.0f;
 
 	// Weapon properties 
-	weapon = (Weapon*)new PlayerSMG();
+	weapon = (Weapon*)new NPCSMG();
 	weapon->setIsPlayerWeapon(false);
+	weaponRange = 300.0f;
 }
 
 NPCSoldier::~NPCSoldier()
@@ -67,27 +68,51 @@ void NPCSoldier::updateMovement(float deltaTime, Handlers* handlers){
 void NPCSoldier::update(float deltaTime, Handlers* handlers){
 	NPCBasicCollision::update(deltaTime, handlers);
 
-	if (alive && !beingAbducted){
-		// Update frames 
-		cframeTime += deltaTime;
-		if (cframeTime > frameRate){
-			cframeTime = 0.0f;
-			cframe++;
-			if (cframe >= frames)
-				cframe = 0;
-		}
-
-		// Update weapon
-		Player* player = (Player*)handlers->player;
+	if (alive){
+		// Allways update weapon
 		weapon->update(deltaTime, 
 			locX - originX + armOffsetX, 
 			locY - originY + armOffsetY);
-		// Try to fire at player 
-		if ((player->getX() > locX && direcX > 0.0f) || 
-			(player->getX() < locX && direcX < 0.0f) ){
-			weapon->npcFire(player->getCenterX(), player->getCenterY(), handlers);
+
+		if (!beingAbducted){
+			// Update frames 
+			cframeTime += deltaTime;
+			if (cframeTime > frameRate){
+				cframeTime = 0.0f;
+				cframe++;
+				if (cframe >= frames)
+					cframe = 0;
+			}
+
+			// Update weapon
+			Player* player = (Player*)handlers->player;
+		
+
+			// Try and attack player 
+			if (player->isInUFO() && 
+				dist(locX, locY, player->ufo->getCenterX(), player->ufo->getCenterY()) < weaponRange){
+				// Try to fire at ufo
+				if ((player->ufo->getX() > locX && direcX > 0.0f) || 
+					(player->ufo->getX() < locX && direcX < 0.0f) ){
+					weapon->npcFire(player->ufo->getCenterX(), player->ufo->getCenterY(), handlers);
+				}
+			}
+			else if (!player->isInUFO() && 
+				dist(locX, locY, player->getCenterX(), player->getCenterY()) < weaponRange){
+				// Try to fire at player 
+				if ((player->getX() > locX && direcX > 0.0f) || 
+					(player->getX() < locX && direcX < 0.0f) ){
+					weapon->npcFire(player->getCenterX(), player->getCenterY(), handlers);
+				}
+			}
+			else {
+				// Reset gun if can't find target
+				weapon->setRotation(0.0f);
+				weapon->setFacingDirec(direcX > 0.0f);
+			}
+
+			armRotation = weapon->getRotation();
 		}
-		armRotation = weapon->getRotation();
 	}
 }
 
@@ -97,7 +122,10 @@ void NPCSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 	
 	if (alive){
 		if (direcX > 0){
+			// Draw body 
 			mGame->draw(mgl, imageID+cframe,locX,locY,scale, rotation, originX, originY);
+			// Draw weapon 
+			weapon->draw(mgl, mGame);
 			// Draw arm 
 			mGame->draw(mgl, GI_NPC_SOLDIER_ARM,
 				locX-originX+armOffsetX,
@@ -106,8 +134,15 @@ void NPCSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 		}
 		else {
 			glCullFace(GL_FRONT);
+			// Draw body 
 			mGame->drawScale2(mgl, imageID+cframe,locX,locY,-scale,scale, rotation, originX, originY);
+			glCullFace(GL_BACK);
+
+			// Draw weapon 
+			weapon->draw(mgl, mGame);
+
 			// Draw arm 
+			glCullFace(GL_FRONT);
 			mGame->drawScale2(mgl, GI_NPC_SOLDIER_ARM,
 				locX-originX+(width-armOffsetX),
 				locY-originY+armOffsetY,
@@ -115,7 +150,6 @@ void NPCSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 			glCullFace(GL_BACK);
 		}
 
-		weapon->draw(mgl, mGame);
 	}
 }
 

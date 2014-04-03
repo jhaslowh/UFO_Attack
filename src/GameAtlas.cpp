@@ -25,10 +25,10 @@ void GameAtlas::load(){
 	vcg->addFrame(1022.0f, 1.0f, 1.0f, 1022.0f);
 	// Sky Glow 
 	vcg->addFrame(1019.0f, 1.0f, 1.0f, 1022.0f);
-	// Red Proj
-	vcg->addFrame(997.0f, 18.0f, 20.0f, 8.0f);
-	// Red Proj Glow
-	vcg->addFrame(987.0f, 1.0f, 30.0f, 15.0f);
+	// Proj
+	vcg->addFrame(1007.0f, 10.0f, 10.0f, 4.0f);
+	// Proj Glow
+	vcg->addFrame(1002.0f, 10.0f, 15.0f, 8.0f);
 
 	// NPC Soldier
 	// ----------
@@ -47,6 +47,13 @@ void GameAtlas::load(){
 	vcg->addFrame(171.0f, 1017.0f, 40.0f, 6.0f);
 	// NPC health bar outline 
 	vcg->addFrame(171.0f, 1011.0f, 38.0f, 4.0f);
+
+	// NPC Smg
+	vcg->addFrame(153.0f, 992.0f, 26.0f, 17.0f);
+	// NPC Smg flash
+	vcg->addFrame(181.0f, 1003.0f, 15.0f, 6.0f);
+	// SCenery crate long 
+	vcg->addFrame(209.0f, 1.0f,100.0f, 10.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

@@ -3,6 +3,7 @@
 
 SceneryObject::SceneryObject()
 {
+	type = "basic";
 	locX = 0.0f;
 	locY = 0.0f;
 	width = 0.0f;
@@ -71,6 +72,8 @@ bool SceneryObject::getStopPlayer(){return stopsPlayer;}
 // Get next pointer
 SceneryObject* SceneryObject::getNext(){ return next;}
 void SceneryObject::setNext(SceneryObject* n){next = n;}
+// Return type string
+std::string SceneryObject::getType(){return type;}
 
 // Returns scenery collision rec
 Rec* SceneryObject::getCollisionRec(){return collisionRec;}

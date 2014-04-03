@@ -1,14 +1,13 @@
-#include "PlayerSMG.h"
+#include "NPCSMG.h"
 
-
-PlayerSMG::PlayerSMG()
-{
-	imageid = PI_GUN_SMG;
-	originX = 2.0f; 
-	originY = 7.0f;
+NPCSMG::NPCSMG()
+{	
+	imageid = GI_NPC_SMG;
+	originX = -5.0f; 
+	originY = 8.0f;
 
 	// Weapon properties 
-	typeId = PI_GUN_SMG;
+	typeId = GI_NPC_SMG;
 	clipCapacity = 45;
 	clip = clipCapacity;
 	spread = .04f; // In radians
@@ -18,16 +17,16 @@ PlayerSMG::PlayerSMG()
 	reloadTime = 0.8f;
 	timeBetweenShots = 0.07f;
 	firetype = FIRETYPE_RAPID;
-	barrelOffset[0] = 30;
-	barrelOffset[1] = -2;
-	damage = 10.0f;
+	barrelOffset[0] = 31;
+	barrelOffset[1] = 2.4;
+	damage = 4.0f;
 	isPlayerWeapon = true;
 
 	// Muzzle flash
-	muzzleImageId = PI_GUN_SHOTGUN_MUZ;
+	muzzleImageId = GI_NPC_SMG_FLASH;
 	muzzleOrigin[0] = 0;
-	muzzleOrigin[1] = 6;
-	flashTime = 0.05f;
+	muzzleOrigin[1] = 3;
+	flashTime = 0.15f;
 
 	// Setup projectile 
 	projTemp.speed = 700.0f;
@@ -37,10 +36,12 @@ PlayerSMG::PlayerSMG()
 	projTemp.glowImageId = GI_PROJ_GLOW;
 	projTemp.glowImageOrigin[0] = 7.5f; 
 	projTemp.glowImageOrigin[1] = 2.0f; 
+	projTemp.setColor(1.0f, .95f, .21f, 1.0f);
 	projTemp.explodes = false;
 }
 
-PlayerSMG::~PlayerSMG()
+
+NPCSMG::~NPCSMG()
 {
 
 }

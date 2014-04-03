@@ -1,5 +1,6 @@
 #pragma once
 #include "NPCBasicCollision.h"
+#include "NPCSMG.h"
 
 class NPCSoldier : public NPCBasicCollision
 {
@@ -20,6 +21,7 @@ class NPCSoldier : public NPCBasicCollision
 
 	// Weapon Properties 
 	Weapon* weapon;
+	float weaponRange;
 
 public:
 	NPCSoldier(float x, float y);

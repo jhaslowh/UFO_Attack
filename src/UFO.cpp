@@ -40,6 +40,10 @@ void UFO::setLocation(float x, float y){
 }
 float UFO::getX(){return locX;}
 float UFO::getY(){return locY;}
+// Returns center x coord of ufo
+float UFO::getCenterX(){return locX;}
+// Returns center y coord of ufo
+float UFO::getCenterY(){return locY - (height * .5f);}
 void UFO::setMaxArmor(float value){maxArmor = value;}
 float UFO::getMaxArmor(){return maxArmor;}
 void UFO::setArmor(float value){armor = value;}
@@ -129,6 +133,35 @@ void UFO::checkCollision(Handlers* handlers){
 			break;
 		}
 		itr = itr->next;
+	}
+
+	// ---------------------------------------------
+	// Check ufo collision with enemy projectiles  
+	// ---------------------------------------------
+	// Fix collision rectangle for next step
+	collisionArea.setLocation(locX - originX, locY - originY);
+	collisionArea.setSize(width, height);
+
+	std::list<Projectile*> projs = ((ProjectileHandler*)handlers->projHandler)->getProjList();
+	Point projp;
+
+	// Check all projectiles for collision 
+	for(std::list<Projectile*>::iterator myIterator = projs.begin(); myIterator != projs.end(); myIterator++)
+	{
+		// Null check 
+		if (*myIterator != NULL && (*myIterator)->getAlive() && (*myIterator)->getFiredBy() == PFB_ENEMY){
+			// Check for collision 
+			if (checkRecSeg(&collisionArea, 
+				(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
+				(*myIterator)->getPrevX(), (*myIterator)->getPrevY(), &projp)){
+
+				// Tell projectile we had a player collision 
+				(*myIterator)->collide(&projp, handlers, P_PLAYER_COLL);
+
+				// Apply projectile damage to player
+				applyDamage((*myIterator)->getDamage());
+			}
+		}
 	}
 }
 

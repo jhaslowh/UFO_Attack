@@ -80,6 +80,10 @@ void Projectile::clone(Projectile* p){
 	rotation = p->rotation;
 	damage = p->damage;
 	firedBy = p->firedBy;
+	drawColor[0] = p->drawColor[0];
+	drawColor[1] = p->drawColor[1];
+	drawColor[2] = p->drawColor[2];
+	drawColor[3] = p->drawColor[3];
 }
 
 void Projectile::reset()
@@ -167,17 +171,15 @@ void Projectile::determineNegligance()
 // Draw projectile to screen
 void Projectile::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (alive && drawProj){
-		// Uncomment to draw 
+		mgl->setFlatColor(drawColor);
 		mAtlas->draw(mgl, imageId, currentX, currentY, 1.0f, rotation, offsetX, offsetY);
-
-		// You will want to change this to 
-		//mAtlas->draw(mgl, [Item index to draw], currentX, currentY, 1.0f, [rotation], [origin x], [origin y]);
 	}
 }
 
 // Draw projectile light to screen
 void Projectile::drawLight(GLHandler* mgl, TextureAtlas* mAtlas){
 	if (alive && drawProj && imageGlowId != -1){
+		mgl->setFlatColor(drawColor);
 		mAtlas->draw(mgl, imageGlowId, currentX, currentY, 1.0f, rotation, glowOffsetX, glowOffsetY);
 	}
 }
@@ -218,6 +220,12 @@ void Projectile::setGlowOffset(float x, float y){glowOffsetX = x; glowOffsetY = 
 void Projectile::setDamage(float value){damage = value;}
 void Projectile::setFiredBy(int value){firedBy = value;}
 void Projectile::setExplodes(bool value){doesExplode = value;}
+void Projectile::setDrawColor(GLfloat* color){
+	drawColor[0] = color[0];
+	drawColor[1] = color[1];
+	drawColor[2] = color[2];
+	drawColor[3] = color[3];
+}
 
 // Setup basic values for all variables 
 void Projectile::initValues(){
@@ -244,4 +252,8 @@ void Projectile::initValues(){
 	rotation = 0;
 	damage = 0.0f;
 	firedBy = PFB_ENEMY;
+	drawColor[0] = 1.0f;
+	drawColor[1] = 1.0f;
+	drawColor[2] = 1.0f;
+	drawColor[3] = 1.0f;
 }

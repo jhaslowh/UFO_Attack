@@ -44,7 +44,7 @@ void PlayerAtlas::load(){
 	vcg->addFrame(311.0f, 32.0f, 34.0f, 17.0f);
 	// Player Shotgun flash 
 	vcg->addFrame(348.0f, 13.0f, 18.0f, 12.0f);
-	// Player shotgun 
+	// Player SMG
 	vcg->addFrame(311.0f, 51.0f, 32.0f, 23.0f);
 
 	// UFO Ray

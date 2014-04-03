@@ -571,6 +571,24 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 				return true;
 			}
 
+			// Add new long crate to level
+			if (subCommand == "longCrate" || subCommand == "5"){
+				terminal->addLine(command + " " + args, TL_SUCCESS);
+				LongCrate* longc = new LongCrate();
+				longc->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
+				sceneryHandler->add((SceneryObject*)longc);
+				return true;
+			}
+
+			// Add new tall crate to level
+			if (subCommand == "tallCrate" || subCommand == "6"){
+				terminal->addLine(command + " " + args, TL_SUCCESS);
+				TallCrate* tallc = new TallCrate();
+				tallc->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
+				sceneryHandler->add((SceneryObject*)tallc);
+				return true;
+			}
+
 			terminal->addLine("scenery add " + subCommand + " " + subArgs, TL_WARNING);
 			terminal->addLine("Unrecognized arguments given to command: scenery add", TL_WARNING);
 			return true;
@@ -612,7 +630,8 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 	{
 		// No arguments given
 		if (args == "none"){
-			terminal->addLine("No arguments given to command: editor", TL_WARNING);
+			terminal->addLine("No arguments given to command: saveFile", TL_WARNING);
+			terminal->addLine(command, TL_WARNING);
 			return true;
 		}
 		//filename given
@@ -662,6 +681,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 
 			outfile.close();
 			terminal->addLine("Writing to file... ", TL_SUCCESS);
+			return true;
 		}
 	}
 

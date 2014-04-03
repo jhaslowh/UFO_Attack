@@ -31,12 +31,12 @@ PlayerShotgun::PlayerShotgun(): Weapon()
 
 	// Setup projectile 
 	projTemp.speed = 700.0f;
-	projTemp.imageId = GI_PROJ_RED;
-	projTemp.imageOrigin[0] = 10.0f;
-	projTemp.imageOrigin[1] = 4.0f;
-	projTemp.glowImageId = GI_PROJ_RED_GLOW;
-	projTemp.glowImageOrigin[0] = 15.0f; 
-	projTemp.glowImageOrigin[1] = 7.5f; 
+	projTemp.imageId = GI_PROJ;
+	projTemp.imageOrigin[0] = 5.0f;
+	projTemp.imageOrigin[1] = 2.0f;
+	projTemp.glowImageId = GI_PROJ_GLOW;
+	projTemp.glowImageOrigin[0] = 7.5f; 
+	projTemp.glowImageOrigin[1] = 2.0f; 
 	projTemp.explodes = false;
 }
 

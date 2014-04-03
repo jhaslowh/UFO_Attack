@@ -12,8 +12,8 @@
 #define GI_FENCE 4
 #define GI_SKY 5
 #define GI_SKY_GLOW 6
-#define GI_PROJ_RED 7
-#define GI_PROJ_RED_GLOW 8 
+#define GI_PROJ 7
+#define GI_PROJ_GLOW 8 
 #define GI_NPC_SOLDIER_F1 9
 #define GI_NPC_SOLDIER_F2 10
 #define GI_NPC_SOLDIER_F3 11
@@ -23,6 +23,9 @@
 #define GI_NPC_SOLDIER_ARM 15
 #define GI_NPC_HEALTH_BAR_OUTLINE 16
 #define GI_NPC_HEALTH_BAR 17
+#define GI_NPC_SMG 18
+#define GI_NPC_SMG_FLASH 19
+#define GI_CRATE_LONG 20
 
 class GameAtlas : public TextureAtlas
 {

@@ -6,6 +6,8 @@
 #include "MouseHandler.h"
 #include "Camera2D.h"
 #include "LevelProperties.h"
+#include "Projectile.h"
+#include "ProjectileHandler.h"
 
 class UFO
 {
@@ -56,6 +58,10 @@ public:
 	// Set location of the player 
 	void setLocation(float x, float y);
 	float getX();
+	// Returns center x coord of ufo
+	float getCenterX();
+	// Returns center y coord of ufo
+	float getCenterY();
 	float getY();
 	void setMaxArmor(float value);
 	float getMaxArmor();
