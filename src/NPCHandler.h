@@ -4,9 +4,10 @@ class NPCHandler
 {
 	// Head object for class
 	NPC* head;
-	// Iterator object, dont need to save it,
-	// but will make out code faster. 
-	NPC* itr;
+
+	// Iteraters for game methods 
+	NPC* uitr;		// For update thread
+	NPC* ditr;		// For draw thread 
 
 public:
 	NPCHandler();

@@ -13,7 +13,7 @@ NPCHandler::~NPCHandler()
 
 // Get number of objects 
 int NPCHandler::getSize(){
-	itr = head;
+	NPC* itr = head;
 	int count = 0;
 	while (itr != NULL){
 		count++;
@@ -39,7 +39,7 @@ void NPCHandler::add(NPC* obj){
 		return;
 	}
 	
-	itr = head;
+	NPC* itr = head;
 	while (itr != NULL)
 	{
 		if (itr->next == NULL){
@@ -56,13 +56,13 @@ void NPCHandler::add(NPC* obj){
 void NPCHandler::remove(NPC* obj){
 	// Check it obj is head
 	if (obj == head){
-		itr = head;
+		NPC* itr = head;
 		head = head->next;
 		delete itr;
 	}
 
 	// Setup for list
-	itr = head;
+	NPC* itr = head;
 	NPC* prev = NULL;
 
 	// Go through list and find item to remove 
@@ -89,33 +89,33 @@ void NPCHandler::remove(NPC* obj){
 
 // Update objects
 int NPCHandler::update(float deltaTime, Handlers* handlers){
-	itr = head;
+	uitr = head;
 	int count = 0;
-	while (itr != NULL){
-		if (itr->getAlive()) count++;
-		itr->updateMovement(deltaTime, handlers);
-		itr->updateCollision(deltaTime, handlers);
-		itr->update(deltaTime, handlers);
-		itr = itr->next;
+	while (uitr != NULL){
+		if (uitr->getAlive()) count++;
+		uitr->updateMovement(deltaTime, handlers);
+		uitr->updateCollision(deltaTime, handlers);
+		uitr->update(deltaTime, handlers);
+		uitr = uitr->next;
 	}
 	return count;
 }
 
 // Draw object lights 
 void NPCHandler::drawLight(GLHandler* mgl, GameAtlas* mGame){
-	itr = head;
-	while (itr != NULL){
-		itr->drawLight(mgl, mGame);
-		itr = itr->next;
+	ditr = head;
+	while (ditr != NULL){
+		ditr->drawLight(mgl, mGame);
+		ditr = ditr->next;
 	}
 }
 
 // Draw objects
 void NPCHandler::draw(GLHandler* mgl, GameAtlas* mGame){
-	itr = head;
-	while (itr != NULL){
-		itr->draw(mgl, mGame);
-		itr = itr->next;
+	ditr = head;
+	while (ditr != NULL){
+		ditr->draw(mgl, mGame);
+		ditr = ditr->next;
 	}
 }
 
