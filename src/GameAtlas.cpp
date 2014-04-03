@@ -25,10 +25,10 @@ void GameAtlas::load(){
 	vcg->addFrame(1022.0f, 1.0f, 1.0f, 1022.0f);
 	// Sky Glow 
 	vcg->addFrame(1019.0f, 1.0f, 1.0f, 1022.0f);
-	// Red Proj
-	vcg->addFrame(997.0f, 18.0f, 20.0f, 8.0f);
-	// Red Proj Glow
-	vcg->addFrame(987.0f, 1.0f, 30.0f, 15.0f);
+	// Proj
+	vcg->addFrame(1007.0f, 10.0f, 10.0f, 4.0f);
+	// Proj Glow
+	vcg->addFrame(1002.0f, 10.0f, 15.0f, 8.0f);
 
 	// NPC Soldier
 	// ----------

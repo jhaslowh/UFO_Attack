@@ -223,6 +223,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		p->setOffset(projTemp.imageOrigin[0], projTemp.imageOrigin[1]);
 		p->setGlowOffset(projTemp.glowImageOrigin[0], projTemp.glowImageOrigin[1]);
 		p->setExplodes(projTemp.explodes);
+		p->setDrawColor(projTemp.drawColor);
 		p->setDamage(damage/(float)bulletsPerShot);
 
 		if (isPlayerWeapon)

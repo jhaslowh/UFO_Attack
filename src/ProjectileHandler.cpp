@@ -96,6 +96,9 @@ void ProjectileHandler::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 		if(*myIterator != NULL)
 			(*myIterator)->draw(mgl, mAtlas);
 	}
+
+	// Reset flat color here instead of every time a projectile draws
+	mgl->setFlatColor(1.0f,1.0f,1.0f,1.0f);
 }
 
 // Draw all projectiles lights 
@@ -105,6 +108,9 @@ void ProjectileHandler::drawLight(GLHandler* mgl, TextureAtlas* mAtlas){
 		if(*myIterator != NULL)
 			(*myIterator)->drawLight(mgl, mAtlas);
 	}
+
+	// Reset flat color here instead of every time a projectile draws
+	mgl->setFlatColor(1.0f,1.0f,1.0f,1.0f);
 }
 
 void ProjectileHandler::cleanUp()
