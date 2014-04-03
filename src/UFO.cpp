@@ -40,6 +40,10 @@ void UFO::setLocation(float x, float y){
 }
 float UFO::getX(){return locX;}
 float UFO::getY(){return locY;}
+// Returns center x coord of ufo
+float UFO::getCenterX(){return locX;}
+// Returns center y coord of ufo
+float UFO::getCenterY(){return locY - (height * .5);}
 void UFO::setMaxArmor(float value){maxArmor = value;}
 float UFO::getMaxArmor(){return maxArmor;}
 void UFO::setArmor(float value){armor = value;}

@@ -23,6 +23,8 @@
 #define GI_NPC_SOLDIER_ARM 15
 #define GI_NPC_HEALTH_BAR_OUTLINE 16
 #define GI_NPC_HEALTH_BAR 17
+#define GI_NPC_SMG 18
+#define GI_NPC_SMG_FLASH 19
 
 class GameAtlas : public TextureAtlas
 {

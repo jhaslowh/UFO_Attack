@@ -44,9 +44,13 @@ Weapon::Weapon(void)
 
 Weapon::~Weapon(){}
 
-// Call to get rotation
+// Returns current weapon rotation
 float Weapon::getRotation(){
 	return rotation;
+}
+// Set the current weapon rotation
+void Weapon::setRotation(float value){
+	rotation = value;
 }
 
 // Set the facing direction for the weapon

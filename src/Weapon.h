@@ -75,8 +75,10 @@ public:
 	Weapon(void);
 	virtual ~Weapon(void);
 
-	// Call to get rotation
+	// Returns current weapon rotation
 	float getRotation();
+	// Set the current weapon rotation
+	void setRotation(float value);
 
 	// Set the facing direction for the weapon
 	void setFacingDirec(bool value);

@@ -48,6 +48,11 @@ void GameAtlas::load(){
 	// NPC health bar outline 
 	vcg->addFrame(171.0f, 1011.0f, 38.0f, 4.0f);
 
+	// NPC Smg
+	vcg->addFrame(153.0f, 992.0f, 26.0f, 17.0f);
+	// NPC Smg flash
+	vcg->addFrame(181.0f, 1003.0f, 15.0f, 6.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

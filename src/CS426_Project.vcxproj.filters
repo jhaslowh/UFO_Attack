@@ -309,6 +309,9 @@
     <ClInclude Include="UICreditsBox.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
+    <ClInclude Include="NPCSMG.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -538,6 +541,9 @@
     </ClCompile>
     <ClCompile Include="UICreditsBox.cpp">
       <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCSMG.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

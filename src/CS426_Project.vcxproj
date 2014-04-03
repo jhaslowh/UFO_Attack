@@ -19,6 +19,7 @@
     <ClInclude Include="NPC.h" />
     <ClInclude Include="NPCBasicCollision.h" />
     <ClInclude Include="NPCHandler.h" />
+    <ClInclude Include="NPCSMG.h" />
     <ClInclude Include="NPCSoldier.h" />
     <ClInclude Include="UICreditsBox.h" />
     <ClInclude Include="UIEquipBox.h" />
@@ -97,6 +98,7 @@
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="NPCBasicCollision.cpp" />
     <ClCompile Include="NPCHandler.cpp" />
+    <ClCompile Include="NPCSMG.cpp" />
     <ClCompile Include="NPCSoldier.cpp" />
     <ClCompile Include="UICreditsBox.cpp" />
     <ClCompile Include="UIEquipBox.cpp" />
