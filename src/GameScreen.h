@@ -21,6 +21,10 @@ class GameScreen : public UIScreen
 	float gameOverX, gameOverY;
 
 	// Victory 
+	bool victory;
+	float victoryTime;
+	float cVictoryTime;
+	float victoryX, victoryY;
 
 	// Screen size for reference 
 	float screenWidth, screenHeight;

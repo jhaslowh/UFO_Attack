@@ -88,14 +88,17 @@ void NPCHandler::remove(NPC* obj){
 }
 
 // Update objects
-void NPCHandler::update(float deltaTime, Handlers* handlers){
+int NPCHandler::update(float deltaTime, Handlers* handlers){
 	itr = head;
+	int count = 0;
 	while (itr != NULL){
+		if (itr->getAlive()) count++;
 		itr->updateMovement(deltaTime, handlers);
 		itr->updateCollision(deltaTime, handlers);
 		itr->update(deltaTime, handlers);
 		itr = itr->next;
 	}
+	return count;
 }
 
 // Draw object lights 

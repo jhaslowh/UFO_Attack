@@ -32,6 +32,7 @@ class Level
 
 	// States 
 	bool loaded;
+	bool victory;
 
 public:
 	Handlers handlers;
@@ -59,5 +60,8 @@ public:
 
 	// Draw level 
 	void drawUI(GLHandler* mgl, UIAtlas* mAtlas);
+
+	// Returns current victory state
+	bool getVictory();
 };
 

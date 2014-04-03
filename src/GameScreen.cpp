@@ -7,13 +7,19 @@ GameScreen::GameScreen(SaveData* sd) : UIScreen()
 	pauseScreen = NULL;
 	level = NULL;
 	paused = false;
-
-
 	savedata = sd;
+
+	// Gameover 
 	gameover = false;
 	gameoverTime = 2.0f;
 	cGameoverTime = 0.0f;
 	gameOverX = gameOverY = 0.0f;
+
+	// Victory 
+	victory = false;
+	victoryTime = 2.0f;
+	cVictoryTime = 0.0f;
+	victoryX = victoryY = 0.0f;
 }
 
 GameScreen::~GameScreen()
@@ -50,6 +56,9 @@ void GameScreen::load(TextureAtlas* mAtlas){
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 	gameOverX = (screenWidth * .5f) - (mUI->mTextRender->measureString("Gameover", 72.0f)*.5f);
 	gameOverY = (screenHeight * .5f) - (72.0f * .5f);
+
+	victoryX = (screenWidth * .5f) - (mUI->mTextRender->measureString("Victory", 72.0f)*.5f);
+	victoryY = (screenHeight * .5f) - (72.0f * .5f);
 }
 
 
@@ -65,15 +74,17 @@ void GameScreen::unload(){
 void GameScreen::update(float deltaTime){
 	UIScreen::update(deltaTime);
 	
-	// If not in gameover state, update the pause screen, 
+	// If not in gameover state or victory state, update the pause screen, 
 	// level editor and level. 
-	if (!gameover){
+	if (!gameover && !victory){
 		pauseScreen->update(deltaTime);
 
 		if (!paused){
 			levelEditor.update(deltaTime, &(level->handlers));
 			if (!levelEditor.Enabled()){
 				level->update(deltaTime);
+				// Check for victory 
+				victory = level->getVictory();
 
 				// If player dies, increment save data and set gameover to true 
 				Player* player = (Player*)(level->handlers.player);
@@ -85,11 +96,20 @@ void GameScreen::update(float deltaTime){
 			}
 		}
 	}
-	else if (transitionCode == NO_TRANSITION) {
-		cGameoverTime += deltaTime;
-		if (cGameoverTime > gameoverTime){
-			transitionCode = SCREEN_GAME_NEW;
-			hide();
+	else {
+		if (gameover){
+			cGameoverTime += deltaTime;
+			if (cGameoverTime > gameoverTime){
+				transitionCode = SCREEN_GAME_NEW;
+				hide();
+			}
+		}
+		else if (victory){
+			cVictoryTime += deltaTime;
+			if (cVictoryTime > victoryTime){
+				transitionCode = SCREEN_CREDITS;
+				hide();
+			}
 		}
 	}
 }
@@ -99,7 +119,7 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	UIScreen::updateInput(mKeyH, mMouseH);
 
 	// Only update input if not in gameover state 
-	if (!gameover){
+	if (!gameover && !victory){
 		if (paused){
 			pauseScreen->updateInput(mKeyH, mMouseH);
 
@@ -156,6 +176,14 @@ void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 		mUI->drawScale2(mgl, UII_REC,0.0f,0.0f,screenWidth,screenHeight);
 		mgl->setFlatColor(COLOR_UI_LABEL);
 		mUI->mTextRender->drawText(*mgl, "Gameover", gameOverX, gameOverY, 0.0f, 72.0f);
+	}
+	// Draw victory overlay 
+	else if (victory){
+		UIAtlas* mUI = (UIAtlas*)mAtlas;
+		mgl->setFlatColor(COLOR_BLACK_50);
+		mUI->drawScale2(mgl, UII_REC,0.0f,0.0f,screenWidth,screenHeight);
+		mgl->setFlatColor(COLOR_UI_LABEL);
+		mUI->mTextRender->drawText(*mgl, "Victory", victoryX, victoryY, 0.0f, 72.0f);
 	}
 }
 

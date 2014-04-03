@@ -7,6 +7,7 @@ Level::Level(){
 	npcHandler = NULL;
 	projHandler = NULL;
 	loaded = false;
+	victory = false;
 }
 Level::~Level(){
 	delete player;
@@ -87,6 +88,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	// Set level top and bottom 
 	levelProps.setLevelBottom(ground->getBottomMost());
 	levelProps.setLevelTop(ground->getTopMost() - 500.0f);
+	levelProps.setEnemyCount(1);
 }
 
 // Load level (use for textures)
@@ -112,7 +114,10 @@ void Level::unload(){
 void Level::update(float deltaTime){
 	sky.update(deltaTime);
 	sceneryHandler->update(deltaTime, &handlers);
-	npcHandler->update(deltaTime, &handlers);
+	int n = npcHandler->update(deltaTime, &handlers);
+	// Check for victory
+	if (levelProps.getEnemyCount() != 0 && (n/levelProps.getEnemyCount()) < .1f)
+		victory = true;
 	projHandler->updateProjectiles(deltaTime, &handlers);
 
 	player->update(deltaTime, &handlers);
@@ -186,4 +191,9 @@ void Level::drawUI(GLHandler* mgl, UIAtlas* mAtlas){
 		return;
 
 	sceneryHandler->drawUI(mgl, mAtlas);
+}
+
+// Returns current victory state
+bool Level::getVictory(){
+	return victory;
 }

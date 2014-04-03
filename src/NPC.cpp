@@ -61,6 +61,7 @@ void NPC::setImageID(int id){
 	imageID = id;
 }
 int NPC::getImageID(){return imageID;}
+bool NPC::getAlive(){return alive;}
 
 // Returns npc collision rec
 Rec* NPC::getCollisionRec(){return &collisionRec;}

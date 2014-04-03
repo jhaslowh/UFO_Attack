@@ -11,6 +11,7 @@ LevelProperties::LevelProperties()
 	playerSpawnY = 0.0f;
 	screenWidth = 0.0f;
 	screenHeight = 0.0f;
+	enemyCount = 0;
 }
 
 LevelProperties::~LevelProperties(){}
@@ -42,3 +43,7 @@ float LevelProperties::getScreenWidth(){return screenWidth;}
 void LevelProperties::setScreenHeight(float h){screenHeight = h;}
 float LevelProperties::getScreenHeight(){return screenHeight;}
 
+// Return level enemy count
+int LevelProperties::getEnemyCount(){return enemyCount;}
+// Set level enemy count
+void LevelProperties::setEnemyCount(int value){enemyCount = value;}

@@ -26,8 +26,10 @@ public:
 	// Remove object from handler
 	void remove(NPC* obj);
 
-	// Update objects
-	void update(float deltaTime, Handlers* handlers);
+	// Update objects.
+	// Returns number of living npc's.
+	// [0-n]
+	int update(float deltaTime, Handlers* handlers);
 
 	// Draw object lights 
 	void drawLight(GLHandler* mgl, GameAtlas* mGame);

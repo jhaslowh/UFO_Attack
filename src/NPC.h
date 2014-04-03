@@ -68,6 +68,7 @@ public:
 	// Set the image id to draw for this npc
 	void setImageID(int id);
 	int getImageID();
+	bool getAlive();
 
 	// Returns npc collision rec
 	virtual Rec* getCollisionRec();
