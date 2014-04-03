@@ -6,11 +6,13 @@
 #include "Handlers.h"
 #include "MouseHandler.h"
 #include "KeyHandler.h"
+#include <string>
 
 class SceneryObject
 {
 protected:
 
+	std::string type;
 	float locX, locY;
 	float width, height;
 	float originX, originY;
@@ -57,6 +59,8 @@ public:
 	// Get next pointer
 	SceneryObject* getNext();
 	void setNext(SceneryObject* );
+	// Return type string
+	std::string getType();
 
 	// Returns scenery collision rec
 	virtual Rec* getCollisionRec();

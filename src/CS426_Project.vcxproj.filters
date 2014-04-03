@@ -312,6 +312,12 @@
     <ClInclude Include="NPCSMG.h">
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
+    <ClInclude Include="LongCrate.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="TallCrate.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -544,6 +550,12 @@
     </ClCompile>
     <ClCompile Include="NPCSMG.cpp">
       <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="LongCrate.cpp">
+      <Filter>Source Files\game\scenery</Filter>
+    </ClCompile>
+    <ClCompile Include="TallCrate.cpp">
+      <Filter>Source Files\game\scenery</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

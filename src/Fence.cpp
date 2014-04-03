@@ -3,6 +3,7 @@
 
 Fence::Fence(): SceneryObject()
 {
+	type = "fence";
 	width = 25.0f;
 	height = 25.0f;
 	imageID = GI_FENCE;

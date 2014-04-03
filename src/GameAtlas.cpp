@@ -52,6 +52,8 @@ void GameAtlas::load(){
 	vcg->addFrame(153.0f, 992.0f, 26.0f, 17.0f);
 	// NPC Smg flash
 	vcg->addFrame(181.0f, 1003.0f, 15.0f, 6.0f);
+	// SCenery crate long 
+	vcg->addFrame(209.0f, 1.0f,100.0f, 10.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

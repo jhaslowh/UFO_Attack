@@ -64,6 +64,10 @@ Commands for Level Editor (Must be in screen with one)
 - "scenery add 3" : same as previous  
 - "scenery add fence" : add new fence  
 - "scenery add 4" : same as previous  
+- "scenery add longCrate" : add new long crate  
+- "scenery add 5" : same as previous  
+- "scenery add tallCrate" : add new tall crate  
+- "scenery add 6" : same as previous  
 
 
 Commands while in Game Screen

@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+#include <fstream>
+
 #include "Sprite.h"
 #include "Handlers.h"
 #include "SceneryHandler.h"
@@ -16,9 +19,9 @@
 #include "AtlasSprite.h"
 #include "Crate.h"
 #include "Fence.h"
+#include "LongCrate.h"
+#include "TallCrate.h"
 #include "GLColors.h"
-#include <iostream>
-#include <fstream>
 
 // Level editor states
 #define LES_NONE 0
