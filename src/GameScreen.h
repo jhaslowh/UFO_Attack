@@ -4,6 +4,7 @@
 #include "Level.h"
 #include "LevelEditor.h"
 #include "SaveData.h"
+#include "GLColors.h"
 
 class GameScreen : public UIScreen
 {
@@ -11,9 +12,15 @@ class GameScreen : public UIScreen
 	SaveData* savedata;
 
 	// States properties
-	bool paused, gameover;
+	bool paused;
+	
+	// Gameovers
+	bool gameover;
 	float gameoverTime;
 	float cGameoverTime;
+	float gameOverX, gameOverY;
+
+	// Victory 
 
 	// Screen size for reference 
 	float screenWidth, screenHeight;

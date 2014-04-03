@@ -7,10 +7,13 @@ GameScreen::GameScreen(SaveData* sd) : UIScreen()
 	pauseScreen = NULL;
 	level = NULL;
 	paused = false;
-	gameover = false;
+
+
 	savedata = sd;
-	gameoverTime = 4.0f;
+	gameover = false;
+	gameoverTime = 2.0f;
 	cGameoverTime = 0.0f;
+	gameOverX = gameOverY = 0.0f;
 }
 
 GameScreen::~GameScreen()
@@ -43,6 +46,10 @@ void GameScreen::load(TextureAtlas* mAtlas){
 
 	levelEditor.load(mAtlas);
 	levelEditor.setHandlers(&level->handlers);
+
+	UIAtlas* mUI = (UIAtlas*)mAtlas;
+	gameOverX = (screenWidth * .5f) - (mUI->mTextRender->measureString("Gameover", 72.0f)*.5f);
+	gameOverY = (screenHeight * .5f) - (72.0f * .5f);
 }
 
 
@@ -81,7 +88,7 @@ void GameScreen::update(float deltaTime){
 	else if (transitionCode == NO_TRANSITION) {
 		cGameoverTime += deltaTime;
 		if (cGameoverTime > gameoverTime){
-			transitionCode = SCREEN_MAIN;
+			transitionCode = SCREEN_GAME_NEW;
 			hide();
 		}
 	}
@@ -145,8 +152,10 @@ void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Draw gameover overlay
 	if (gameover){
 		UIAtlas* mUI = (UIAtlas*)mAtlas;
-		mgl->setFlatColor(1.0f,1.0f,1.0f,1.0f);
-		mUI->mTextRender->drawText(*mgl, "Gameover", 0.0f, 0.0f, 0.0f, 72.0f);
+		mgl->setFlatColor(COLOR_BLACK_50);
+		mUI->drawScale2(mgl, UII_REC,0.0f,0.0f,screenWidth,screenHeight);
+		mgl->setFlatColor(COLOR_UI_LABEL);
+		mUI->mTextRender->drawText(*mgl, "Gameover", gameOverX, gameOverY, 0.0f, 72.0f);
 	}
 }
 

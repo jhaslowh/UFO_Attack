@@ -36,6 +36,7 @@ NPCSMG::NPCSMG()
 	projTemp.glowImageId = GI_PROJ_GLOW;
 	projTemp.glowImageOrigin[0] = 7.5f; 
 	projTemp.glowImageOrigin[1] = 2.0f; 
+	projTemp.setColor(1.0f, .95f, .21f, 1.0f);
 	projTemp.explodes = false;
 }
 

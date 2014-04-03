@@ -108,6 +108,7 @@ void NPCSoldier::update(float deltaTime, Handlers* handlers){
 			else {
 				// Reset gun if can't find target
 				weapon->setRotation(0.0f);
+				weapon->setFacingDirec(direcX > 0.0f);
 			}
 
 			armRotation = weapon->getRotation();

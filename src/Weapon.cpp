@@ -54,7 +54,10 @@ void Weapon::setRotation(float value){
 }
 
 // Set the facing direction for the weapon
-void Weapon::setFacingDirec(bool value){lookingRight = value;}
+// Set to true if looking right. 
+void Weapon::setFacingDirec(bool value){
+	lookingRight = value;
+}
 // Get the facing direction of the weapon
 bool Weapon::getFacingDirecton(){return lookingRight;}
 
