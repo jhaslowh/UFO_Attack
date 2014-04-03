@@ -3,6 +3,7 @@
 // Using the standard output for printf 
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
 // Use glew.h instead of gl.h to get all the GL prototypes declared 
 #include <glew.h>
 // Using the SDL library for the base windowing setup 
@@ -27,6 +28,7 @@
 #include "StoreScreen.h"
 #include "EquipScreen.h"
 #include "CreditsScreen.h"
+#include "LevelSelectScreen.h"
 
 // Version 
 // x.yyyy
@@ -61,6 +63,11 @@ void* soundHandler;
 Settings* settings;
 // Player save data 
 SaveData* savedata;
+// Global Level Loading String
+//std::string levelToLoad;
+//bool doLoad = false;
+//std::vector<string> levelList;
+//short levelNumber;
 
 // GUI Stuff
 SDL_Window* window;

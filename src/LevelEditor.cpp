@@ -646,6 +646,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 			{
 				outfile << ground->getPoint(i)->getX() << ";" << ground->getPoint(i)->getY() << std::endl;
 			}
+			outfile << "end" << std::endl;
 
 			outfile << " " <<std::endl;
 			outfile << "scenery" << std::endl;
@@ -656,6 +657,8 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 				outfile << headPoint->getX() << ";" << headPoint->getY() << ";" << headPoint->getWidth() << ";" << headPoint->getHeight() << ";" << headPoint->getRotation() << ";" << headPoint->getScale() << ";" << headPoint->getImageID() << ";" << headPoint->getCollides() << ";" << headPoint->getStopPlayer() << std::endl;
 				headPoint = headPoint->getNext();
 			}
+			outfile << "end" << std::endl;
+			outfile << " " << std::endl;
 
 			outfile.close();
 			terminal->addLine("Writing to file... ", TL_SUCCESS);

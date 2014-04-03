@@ -17,6 +17,7 @@ class GameScreen : public UIScreen
 
 	// Screen size for reference 
 	float screenWidth, screenHeight;
+	//string levelToLoad;
 
 	Level* level;
 	PauseScreen* pauseScreen;
@@ -24,6 +25,7 @@ class GameScreen : public UIScreen
 
 public:
 	GameScreen(SaveData* sd);
+	//GameScreen(SaveData* sd, string levelLoad);
 	virtual ~GameScreen();
 
 	// Initialize screen

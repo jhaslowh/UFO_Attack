@@ -1,7 +1,7 @@
-Location: .\Levels\treefiddy.txt 
-Level: treefiddy 
+Location: .\Levels\stuf.txt 
+Level: stuf 
 PlayerX
-100
+150
 PlayerY
 100
 LevelLeft
@@ -15,15 +15,15 @@ levelBottom
  
 ground
 x y
--1500;500
--200;500
-30;500
+-1500;600
+-200;600
+30;600
 120;490
-180;500
+180;600
 407;568
-500;590
+500;290
 650;570
-1000;510
+1000;310
 1240;550
 1400;500
 2500;500

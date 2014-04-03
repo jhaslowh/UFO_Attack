@@ -30,6 +30,7 @@
 #define SCREEN_FREE_PLAY 10
 #define SCREEN_EQUIP 11
 #define SCREEN_CREDITS 12
+#define SCREEN_FROM_FILE 13
 
 class UIScreen
 {

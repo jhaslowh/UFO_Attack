@@ -125,7 +125,9 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// TODO this should be level select, but will be 
 	// this until level select is implemented.
 	if (buttonLevelSelect->wasClicked()){
-		transitionCode = SCREEN_GAME_NEW; 
+		transitionCode = SCREEN_LEVEL_SELECT; 
+		std::cout << "button hit\n";
+		std::cout << transitionCode << "\n";
 		hide();
 	}
 

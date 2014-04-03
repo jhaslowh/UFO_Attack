@@ -213,6 +213,7 @@ void checkCommand(string line){
 		terminal->addLine("screen show: show screen");
 		terminal->addLine("test: load test screen");
 		terminal->addLine("exit: exit game");
+		terminal->addLine("saveFile: exports a level config to file");
 
 		return;
 	}
@@ -313,13 +314,14 @@ void changeScreen(){
 		// This must be done after the hide on close check. 
 		screen->setTransitionValue(NO_TRANSITION);
 
+		cout << "switch statement\n";
 		switch (tcode){
 		case NO_TRANSITION: 
 			break;
 		case SCREEN_LOAD:
 			break;
-		case SCREEN_LEVEL_SELECT:
-			break;
+		//case SCREEN_LEVEL_SELECT:
+		//	break;
 		case SCREEN_QUIT:
 			running = false;
 			break;
@@ -336,6 +338,8 @@ void changeScreen(){
 		case SCREEN_GAME_RESUME:
 		case SCREEN_EQUIP:
 		case SCREEN_CREDITS:
+		case SCREEN_LEVEL_SELECT:
+		case SCREEN_FROM_FILE:
 
 			// Delete screen if it is not game screen 
 			if (tcode != SCREEN_MAIN_SAVE_GAME){
@@ -352,7 +356,8 @@ void changeScreen(){
 				gscreen = (GameScreen*)screen;
 				screen = NULL;
 			}
-
+			cout << "set new screen\n";
+			cout << tcode << "\n";
 			// Set new screen 
 			if (tcode == SCREEN_MAIN || 
 				tcode == SCREEN_MAIN_SAVE_GAME)	screen = (UIScreen*)new MainScreen(gscreen != NULL);
@@ -361,6 +366,17 @@ void changeScreen(){
 			else if (tcode == SCREEN_FREE_PLAY)	screen = (UIScreen*)new FreePlayScreen();
 			else if (tcode == SCREEN_EQUIP)		screen = (UIScreen*)new EquipScreen(savedata);
 			else if (tcode == SCREEN_CREDITS)	screen = (UIScreen*)new CreditsScreen();
+			else if (tcode == SCREEN_LEVEL_SELECT) 
+			{
+				cout << "tcode level select";
+				screen = (UIScreen*)new LevelSelectScreen();
+				
+			}
+			else if (tcode == SCREEN_FROM_FILE)
+			{
+				cout << "tcode screen from file";
+				screen = (UIScreen*)new GameScreen(savedata);
+			}
 			else if (tcode == SCREEN_GAME_NEW) {
 				screen = (UIScreen*)new GameScreen(savedata);
 				gscreen_unload = gscreen;

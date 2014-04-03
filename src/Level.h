@@ -17,6 +17,10 @@
 #include "Sky.h"
 #include "TextureAtlas.h"
 #include "Tree.h"
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
 
 class Level
 {
@@ -59,5 +63,8 @@ public:
 
 	// Draw level 
 	void drawUI(GLHandler* mgl, UIAtlas* mAtlas);
+
+	void loadLevelData();
+	//Reads in the data from the file
 };
 

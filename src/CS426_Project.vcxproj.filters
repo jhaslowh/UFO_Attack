@@ -309,6 +309,9 @@
     <ClInclude Include="UICreditsBox.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
+    <ClInclude Include="LevelSelectScreen.h">
+      <Filter>Header Files\ui\screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cube.cpp">
@@ -538,6 +541,9 @@
     </ClCompile>
     <ClCompile Include="UICreditsBox.cpp">
       <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelSelectScreen.cpp">
+      <Filter>Source Files\ui\screens</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

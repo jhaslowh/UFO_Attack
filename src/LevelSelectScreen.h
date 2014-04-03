@@ -1,24 +1,27 @@
 #pragma once
+#include <windows.h>
+#include <iostream>
+#include <fstream>
 #include "UIScreen.h"
 #include "UIAtlas.h"
 #include "UIButton.h"
 #include "Sprite.h"
-#include <stdio.h>
+#include <string>
+#include <vector>
 
-class MainScreen : public UIScreen
+class LevelSelectScreen: public UIScreen
 {
-	UIButton* buttonLevelSelect;
-	UIButton* buttonStore;
-	UIButton* buttonEquip;
-	UIButton* buttonSettings;
-	UIButton* buttonResume;
-	UIButton* buttonQuit;
+	UIButton* buttonMainMenu;
+	UIButton* buttonLevels[20];
+	//std::vector<std::string> levelsList;
+	std::string levelsList[20];
+	int numberOfLevels;
 	Sprite logo;
-	bool showResume;
+	float screen_width, screen_height;
 
 public:
-	MainScreen(bool showResume);
-	virtual ~MainScreen();
+	LevelSelectScreen();
+	virtual ~LevelSelectScreen();
 
 	// Initialize screen
 	virtual void init(float screen_width, float screen_height, void* sh);
@@ -44,5 +47,7 @@ public:
 	// All UI elements in the hide screen method should have show 
 	// calls here. 
 	virtual void show();
-};
 
+	void loadLevelList();
+	//loads the list of levels from the master level file
+};
