@@ -612,7 +612,8 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 	{
 		// No arguments given
 		if (args == "none"){
-			terminal->addLine("No arguments given to command: editor", TL_WARNING);
+			terminal->addLine("No arguments given to command: saveFile", TL_WARNING);
+			terminal->addLine(command, TL_WARNING);
 			return true;
 		}
 		//filename given
@@ -659,6 +660,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 
 			outfile.close();
 			terminal->addLine("Writing to file... ", TL_SUCCESS);
+			return true;
 		}
 	}
 
