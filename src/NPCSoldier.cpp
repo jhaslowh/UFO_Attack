@@ -3,7 +3,8 @@
 
 NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
 {
-	// Basic NPC Properties 
+	// Basic NPC Properties
+	stype = "soldier";
 	locX = x;
 	locY = yo = y;
 	width = 50.0f;

@@ -34,6 +34,11 @@ void Ground::setType(int type){
 	groundType = type;
 }
 
+int Ground::getType()
+{
+	return groundType;
+}
+
 // Load texture
 void Ground::load(){
 	if (groundType == GROUND_DIRT){

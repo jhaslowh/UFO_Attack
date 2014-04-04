@@ -37,6 +37,7 @@ public:
 	
 	// This will have no effect if called after load is called
 	void setType(int type);
+	int getType();
 
 	// Load texture
 	void load();
