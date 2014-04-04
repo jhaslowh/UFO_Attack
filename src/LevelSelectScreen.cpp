@@ -17,7 +17,7 @@ LevelSelectScreen::~LevelSelectScreen(){
 void LevelSelectScreen::init(float screen_width, float screen_height, void* sh){
 	UIScreen::init(screen_width, screen_height, sh);
 
-	buttonMainMenu = new UIButton(100,screen_height -100,100.0f,35.0f, std::string("Main Menu"));
+	buttonMainMenu = new UIButton(100,screen_height -100,100.0f,35.0f, std::string("MainMenu"));
 	buttonMainMenu->setupHide(HT_VERTICAL,buttonMainMenu->getY()+100.0f,hideTime,true);
 	buttonMainMenu->setHidden();
 

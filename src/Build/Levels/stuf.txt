@@ -15,6 +15,7 @@ levelBottom
  
 ground
 x y
+1
 -1500;600
 -200;600
 30;600
@@ -31,7 +32,13 @@ end
  
 scenery
 x y width height rotation scale imageid collides stopplayer
-321;550;100;100;0;1;0;0;0
-907;540;100;100;0;1;0;0;0
-1124;533;100;100;0;1;0;0;0
+321;550;100;100;0;1;0;0;0;0
+907;540;100;100;0;1;0;0;0;0
+1124;533;100;100;0;1;0;0;0;0
+end
+signs
+end
+
+npcs
+x y type
 end

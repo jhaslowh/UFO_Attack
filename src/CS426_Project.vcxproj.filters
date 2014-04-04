@@ -309,10 +309,8 @@
     <ClInclude Include="UICreditsBox.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="LevelSelectScreen.h">
       <Filter>Header Files\ui\screens</Filter>
-=======
     <ClInclude Include="NPCSMG.h">
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
@@ -321,7 +319,6 @@
     </ClInclude>
     <ClInclude Include="TallCrate.h">
       <Filter>Header Files\game\scenery</Filter>
->>>>>>> 0af97f7658e28190643faefd440dcbf1e3ee8c93
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -553,10 +550,8 @@
     <ClCompile Include="UICreditsBox.cpp">
       <Filter>Source Files\ui</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="LevelSelectScreen.cpp">
       <Filter>Source Files\ui\screens</Filter>
-=======
     <ClCompile Include="NPCSMG.cpp">
       <Filter>Source Files\game\weap</Filter>
     </ClCompile>
@@ -565,7 +560,6 @@
     </ClCompile>
     <ClCompile Include="TallCrate.cpp">
       <Filter>Source Files\game\scenery</Filter>
->>>>>>> 0af97f7658e28190643faefd440dcbf1e3ee8c93
     </ClCompile>
   </ItemGroup>
 </Project>

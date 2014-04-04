@@ -34,6 +34,13 @@ void NPC::setLocation(float x, float y){
 }
 float NPC::getX(){return locX;}
 float NPC::getY(){return locY;}
+
+std::string NPC::getSType()
+{
+	return stype;
+}
+// Returns the type of npc as a string
+
 // Set the width and height of the npc
 void NPC::setSize(float w, float h){
 	width = w;

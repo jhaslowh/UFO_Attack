@@ -41,6 +41,7 @@ void LevelEditor::setHandlers(Handlers* handlers){
 	sceneryHandler = (SceneryHandler*)(handlers->sceneryHandler);
 	levelProps = (LevelProperties*)(handlers->levelProps);
 	ground = (Ground*)handlers->ground;
+	myNPCS = (NPCHandler*)(handlers->npcHandler);
 }
 
 // Check if turned on
@@ -661,6 +662,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 			outfile << " " << std::endl;
 			outfile << "ground" << std::endl;
 			outfile << "x y" << std::endl;
+			outfile << ground->getType() << std::endl;
 			for(int i=0;i<ground->getPointCount();i++)
 			{
 				outfile << ground->getPoint(i)->getX() << ";" << ground->getPoint(i)->getY() << std::endl;
@@ -669,15 +671,34 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 
 			outfile << " " <<std::endl;
 			outfile << "scenery" << std::endl;
-			outfile << "x y width height rotation scale imageid collides stopplayer" << std::endl;
+			outfile << "x y width height rotation scale imageid collides stopplayer type text" << std::endl;
 			SceneryObject* headPoint = sceneryHandler->getHead();
 			for(int i=0;i<sceneryHandler->getSize();i++)
 			{
-				outfile << headPoint->getX() << ";" << headPoint->getY() << ";" << headPoint->getWidth() << ";" << headPoint->getHeight() << ";" << headPoint->getRotation() << ";" << headPoint->getScale() << ";" << headPoint->getImageID() << ";" << headPoint->getCollides() << ";" << headPoint->getStopPlayer() << std::endl;
+				if(headPoint->getType().compare("sign")!=0)
+					outfile << headPoint->getX() << ";" << headPoint->getY() << ";" << headPoint->getWidth() << ";" << headPoint->getHeight() << ";" << headPoint->getRotation() << ";" << headPoint->getScale() << ";" << headPoint->getImageID() << ";" << headPoint->getCollides() << ";" << headPoint->getStopPlayer() << ";" << headPoint->getType() << ";" << std::endl;
+				headPoint = headPoint->getNext();
+			}
+			headPoint = sceneryHandler->getHead();
+			outfile << "end" << std::endl;
+			outfile << "signs" << std::endl;
+			for(int i=0;i<sceneryHandler->getSize();i++)
+			{
+				if(headPoint->getType().compare("sign")==0)
+					outfile << headPoint->getX() << ";" << headPoint->getY() << ";" << headPoint->getWidth() << ";" << headPoint->getHeight() << ";" << headPoint->getRotation() << ";" << headPoint->getScale() << ";" << headPoint->getImageID() << ";" << headPoint->getCollides() << ";" << headPoint->getStopPlayer() << ";" << headPoint->getType() << ";" << ((Sign*)headPoint)->getText() << std::endl;
 				headPoint = headPoint->getNext();
 			}
 			outfile << "end" << std::endl;
 			outfile << " " << std::endl;
+			
+			outfile << "npcs" << std::endl;
+			outfile << "x y type" << std::endl;
+			NPC* head = myNPCS->getHead();
+			for(int i=0;i<myNPCS->getSize();i++)
+			{
+				outfile << head->getX() << ";" << head->getY() << ";" << head->getSType() << std::endl;
+			}
+			outfile << "end" << std::endl;
 
 			outfile.close();
 			terminal->addLine("Writing to file... ", TL_SUCCESS);

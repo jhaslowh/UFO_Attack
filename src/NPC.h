@@ -39,6 +39,7 @@ protected:
 	float health;
 	float healthMax;
 	int type;
+	std::string stype;
 
 	// Abduction properties
 	float cAbductSpeed;
@@ -53,6 +54,8 @@ public:
 	void setLocation(float x, float y);
 	float getX();
 	float getY();
+	std::string getSType();
+	// get the npc type as a string
 	// Set the width and height of the npc
 	void setSize(float w, float h);
 	float getWidth();
