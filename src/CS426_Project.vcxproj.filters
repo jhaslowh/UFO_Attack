@@ -1,13 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NPC.cpp">
-      <Filter>Source Files\game\npc</Filter>
-    </ClCompile>
-    <ClCompile Include="NPCSoldier.cpp">
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
     <ClCompile Include="NPCBasicCollision.cpp">
@@ -16,475 +10,26 @@
     <ClCompile Include="NPCHandler.cpp">
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
-    <ClCompile Include="NPCSMG.cpp">
+    <ClCompile Include="NPCSoldier.cpp">
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
-    <ClCompile Include="UIValueSlider.cpp">
-      <Filter>Source Files\ui</Filter>
+    <ClCompile Include="BeamProjectile.cpp">
+      <Filter>Source Files\game\proj</Filter>
     </ClCompile>
-    <ClCompile Include="UIBox.cpp">
-      <Filter>Source Files\ui</Filter>
+    <ClCompile Include="BulletProjectile.cpp">
+      <Filter>Source Files\game\proj</Filter>
     </ClCompile>
-    <ClCompile Include="UIButton.cpp">
-      <Filter>Source Files\ui</Filter>
+    <ClCompile Include="MissileProjectile.cpp">
+      <Filter>Source Files\game\proj</Filter>
     </ClCompile>
-    <ClCompile Include="UICheckbox.cpp">
-      <Filter>Source Files\ui</Filter>
+    <ClCompile Include="NSMOProjectile.cpp">
+      <Filter>Source Files\game\proj</Filter>
     </ClCompile>
-    <ClCompile Include="UIComboBox.cpp">
-      <Filter>Source Files\ui</Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Header Files\gfx">
-      <UniqueIdentifier>{016015b7-e292-41b8-bdbd-16cfadca8d3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Source Files\gfx">
-      <UniqueIdentifier>{6c2bd305-eeab-44b4-993e-168e074423e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io">
-      <UniqueIdentifier>{30ae0246-17b8-446d-9991-eefedfdc0c96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\io">
-      <UniqueIdentifier>{5832fbbb-9cee-4dd2-9f66-40cfa7619c57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\geom">
-      <UniqueIdentifier>{b97c6923-b203-4d29-82ea-29d4dd8e5707}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\geom">
-      <UniqueIdentifier>{3528a001-04a8-4bf8-8cef-d000ee0f71c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ui">
-      <UniqueIdentifier>{da72781d-ddd4-4912-a831-29e390b28200}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ui">
-      <UniqueIdentifier>{3852e5b3-9079-46c0-8d00-3432df21719c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ui\screens">
-      <UniqueIdentifier>{852e3f07-0dfe-4371-ac13-b7ee103adc73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ui\screens">
-      <UniqueIdentifier>{c1524971-0e50-4779-9433-01df62409bab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\phys">
-      <UniqueIdentifier>{0ff39a66-6552-4dfd-b47d-ed7973c65d59}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\phys">
-      <UniqueIdentifier>{37ed4b7f-9088-4300-accc-8cb8fdd5a020}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\game">
-      <UniqueIdentifier>{2640233d-e7d1-4601-99c0-485de42f1d91}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\game">
-      <UniqueIdentifier>{0482df06-88b5-4a8d-be68-92eac411846e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\game\scenery">
-      <UniqueIdentifier>{b299516b-6058-4787-ba53-13c53ff1ee9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\game\scenery">
-      <UniqueIdentifier>{db19746b-8f89-4cf7-b42e-0b9a3df7c0c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\game\weap">
-      <UniqueIdentifier>{506e4c00-a0ae-4fb9-90f9-c6251f6378f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\game\weap">
-      <UniqueIdentifier>{fd2f7f65-049b-40a0-923a-31bc412cc0a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\game\proj">
-      <UniqueIdentifier>{d8be5326-93eb-4425-ab92-a37f05ba320a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\game\proj">
-      <UniqueIdentifier>{a4cd2652-6a96-4024-9a52-106459a6db8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\game\npc">
-      <UniqueIdentifier>{38463e8e-4829-4549-bb6c-4f54f777b5ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\game\npc">
-      <UniqueIdentifier>{5fa3a2ed-915c-48d6-a11f-eeb86c5eabaf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Cube.h">
-      <Filter>Header Files\geom</Filter>
-    </ClInclude>
-    <ClInclude Include="GLHandler.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files\geom</Filter>
-    </ClInclude>
-    <ClInclude Include="FileHelper.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyHandler.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="VertCordGenerator.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="TextRender.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="UIScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureAtlas.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="UIAtlas.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseHandler.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="UIButton.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="UICheckbox.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="UIObject.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="UITransitionObject.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Header Files\phys</Filter>
-    </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>Header Files\phys</Filter>
-    </ClInclude>
-    <ClInclude Include="Rec.h">
-      <Filter>Header Files\phys</Filter>
-    </ClInclude>
-    <ClInclude Include="IntroLoadScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="MainScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SettingsScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="UILabel.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="PauseScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="Ground.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelEditor.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="Handlers.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="GameAtlas.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="UFO.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneryObject.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneryHandler.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="Tree.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="UITerminal.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera2D.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelProperties.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="FreePlayScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerAtlas.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="AtlasSprite.h">
-      <Filter>Header Files\geom</Filter>
-    </ClInclude>
-    <ClInclude Include="Sign.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="Crate.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="HayBale.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="Fence.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="GLColors.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="UIValueSlider.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="UIBox.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="StoreScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="StoreItems.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="UIStoreItemBox.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="UIScrollbar.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="Projectile.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjectileHandler.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="StoreItem.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerLaserGun.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveData.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="BeamProjectile.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="BulletProjectile.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="NSMOProjectile.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="MissileProjectile.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerShotgun.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
-    <ClInclude Include="UIComboBox.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="Sky.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerSMG.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjectileTemplate.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
-    <ClInclude Include="EquipScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="UIEquipBox.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="NPCHandler.h">
-      <Filter>Header Files\game\npc</Filter>
-    </ClInclude>
-    <ClInclude Include="NPC.h">
-      <Filter>Header Files\game\npc</Filter>
-    </ClInclude>
-    <ClInclude Include="Settings.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="NPCBasicCollision.h">
-      <Filter>Header Files\game\npc</Filter>
-    </ClInclude>
-    <ClInclude Include="NPCSoldier.h">
-      <Filter>Header Files\game\npc</Filter>
-    </ClInclude>
-    <ClInclude Include="CreditsScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    </ClInclude>
-    <ClInclude Include="UICreditsBox.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelSelectScreen.h">
-      <Filter>Header Files\ui\screens</Filter>
-    <ClInclude Include="NPCSMG.h">
-      <Filter>Header Files\game\npc</Filter>
-    </ClInclude>
-    <ClInclude Include="LongCrate.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="TallCrate.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Source Files\geom</Filter>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files\game\proj</Filter>
     </ClCompile>
-    <ClCompile Include="UICreditsBox.cpp">
-      <Filter>Source Files\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="UIEquipBox.cpp">
-      <Filter>Source Files\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="UILabel.cpp">
-      <Filter>Source Files\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="UIObject.cpp">
-      <Filter>Source Files\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="UIScrollbar.cpp">
-      <Filter>Source Files\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="UIStoreItemBox.cpp">
-      <Filter>Source Files\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="UITerminal.cpp">
-      <Filter>Source Files\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="UITransitionObject.cpp">
-      <Filter>Source Files\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="UIScreen.cpp">
-      <Filter>Source Files\ui\screen</Filter>
-    </ClCompile>
-    <ClCompile Include="FileHelper.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyHandler.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="MouseHandler.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveData.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="Settings.cpp">
-      <Filter>Source Files\io</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera2D.cpp">
-      <Filter>Source Files\gfx</Filter>
-    </ClCompile>
-    <ClCompile Include="GameAtlas.cpp">
-      <Filter>Source Files\gfx</Filter>
-    </ClCompile>
-    <ClCompile Include="GLColors.cpp">
-      <Filter>Source Files\gfx</Filter>
-    </ClCompile>
-    <ClCompile Include="GLHandler.cpp">
-      <Filter>Source Files\gfx</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerAtlas.cpp">
-      <Filter>Source Files\gfx</Filter>
-    </ClCompile>
-    <ClCompile Include="TextRender.cpp">
-      <Filter>Source Files\gfx</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureAtlas.cpp">
-      <Filter>Source Files\gfx</Filter>
-    </ClCompile>
-    <ClCompile Include="VertCordGenerator.cpp">
-      <Filter>Source Files\gfx</Filter>
-    </ClCompile>
-    <ClCompile Include="UIAtlas.cpp">
-      <Filter>Source Files\gfx</Filter>
-    </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>Source Files\phys</Filter>
-    </ClCompile>
-    <ClCompile Include="Point.cpp">
-      <Filter>Source Files\phys</Filter>
-    </ClCompile>
-    <ClCompile Include="Rec.cpp">
-      <Filter>Source Files\phys</Filter>
-    </ClCompile>
-    <ClCompile Include="Ground.cpp">
-      <Filter>Source Files\game</Filter>
-    </ClCompile>
-    <ClCompile Include="Handlers.cpp">
-      <Filter>Source Files\game</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Source Files\game</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelEditor.cpp">
-      <Filter>Source Files\game</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelProperties.cpp">
-      <Filter>Source Files\game</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\game</Filter>
-    </ClCompile>
-    <ClCompile Include="Sky.cpp">
-      <Filter>Source Files\game</Filter>
-    </ClCompile>
-    <ClCompile Include="UFO.cpp">
-      <Filter>Source Files\game</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Source Files\geom</Filter>
-    </ClCompile>
-    <ClCompile Include="AtlasSprite.cpp">
-      <Filter>Source Files\geom</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files\geom</Filter>
-    </ClCompile>
-    <ClCompile Include="CreditsScreen.cpp">
-      <Filter>Source Files\ui\screen</Filter>
-    </ClCompile>
-    <ClCompile Include="EquipScreen.cpp">
-      <Filter>Source Files\ui\screen</Filter>
-    </ClCompile>
-    <ClCompile Include="FreePlayScreen.cpp">
-      <Filter>Source Files\ui\screen</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScreen.cpp">
-      <Filter>Source Files\ui\screen</Filter>
-    </ClCompile>
-    <ClCompile Include="IntroLoadScreen.cpp">
-      <Filter>Source Files\ui\screen</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelSelectScreen.cpp">
-      <Filter>Source Files\ui\screen</Filter>
+    <ClCompile Include="ProjectileHandler.cpp">
+      <Filter>Source Files\game\proj</Filter>
     </ClCompile>
     <ClCompile Include="Crate.cpp">
       <Filter>Source Files\game\scenery</Filter>
@@ -513,23 +58,170 @@
     <ClCompile Include="Tree.cpp">
       <Filter>Source Files\game\scenery</Filter>
     </ClCompile>
-    <ClCompile Include="BeamProjectile.cpp">
-      <Filter>Source Files\game\proj</Filter>
+    <ClCompile Include="NPCSMG.cpp">
+      <Filter>Source Files\game\weap</Filter>
     </ClCompile>
-    <ClCompile Include="BulletProjectile.cpp">
-      <Filter>Source Files\game\proj</Filter>
+    <ClCompile Include="PlayerLaserGun.cpp">
+      <Filter>Source Files\game\weap</Filter>
     </ClCompile>
-    <ClCompile Include="MissileProjectile.cpp">
-      <Filter>Source Files\game\proj</Filter>
+    <ClCompile Include="PlayerShotgun.cpp">
+      <Filter>Source Files\game\weap</Filter>
     </ClCompile>
-    <ClCompile Include="NSMOProjectile.cpp">
-      <Filter>Source Files\game\proj</Filter>
+    <ClCompile Include="PlayerSMG.cpp">
+      <Filter>Source Files\game\weap</Filter>
     </ClCompile>
-    <ClCompile Include="ProjectileHandler.cpp">
-      <Filter>Source Files\game\proj</Filter>
+    <ClCompile Include="ProjectileTemplate.cpp">
+      <Filter>Source Files\game\weap</Filter>
     </ClCompile>
-    <ClCompile Include="Projectile.cpp">
-      <Filter>Source Files\game\proj</Filter>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Handlers.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelEditor.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelProperties.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sky.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="UFO.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="AtlasSprite.cpp">
+      <Filter>Source Files\geom</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Source Files\geom</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\geom</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera2D.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="GameAtlas.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="GLColors.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="GLHandler.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAtlas.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRender.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAtlas.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="UIAtlas.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="VertCordGenerator.cpp">
+      <Filter>Source Files\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHelper.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyHandler.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseHandler.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveData.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="Rec.cpp">
+      <Filter>Source Files\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Source Files\phys</Filter>
+    </ClCompile>
+    <ClCompile Include="UIValueSlider.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="StoreItem.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="StoreItems.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UIBox.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButton.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UICheckbox.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UIComboBox.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UICreditsBox.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UIEquipBox.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UILabel.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UIObject.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UIScrollbar.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UIStoreItemBox.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UITerminal.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="UITransitionObject.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditsScreen.cpp">
+      <Filter>Source Files\ui\screen</Filter>
+    </ClCompile>
+    <ClCompile Include="EquipScreen.cpp">
+      <Filter>Source Files\ui\screen</Filter>
+    </ClCompile>
+    <ClCompile Include="FreePlayScreen.cpp">
+      <Filter>Source Files\ui\screen</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreen.cpp">
+      <Filter>Source Files\ui\screen</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroLoadScreen.cpp">
+      <Filter>Source Files\ui\screen</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelSelectScreen.cpp">
+      <Filter>Source Files\ui\screen</Filter>
     </ClCompile>
     <ClCompile Include="MainScreen.cpp">
       <Filter>Source Files\ui\screen</Filter>
@@ -540,44 +232,18 @@
     <ClCompile Include="SettingsScreen.cpp">
       <Filter>Source Files\ui\screen</Filter>
     </ClCompile>
+    <ClCompile Include="UIScreen.cpp">
+      <Filter>Source Files\ui\screen</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="StoreScreen.cpp">
       <Filter>Source Files\ui\screen</Filter>
     </ClCompile>
-    <ClCompile Include="StoreItem.cpp">
-      <Filter>Source Files\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="StoreItems.cpp">
-      <Filter>Source Files\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerLaserGun.cpp">
-      <Filter>Source Files\game\weap</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerShotgun.cpp">
-      <Filter>Source Files\game\weap</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerSMG.cpp">
-    <ClCompile Include="LevelSelectScreen.cpp">
-      <Filter>Source Files\ui\screens</Filter>
-    <ClCompile Include="NPCSMG.cpp">
-      <Filter>Source Files\game\weap</Filter>
-    </ClCompile>
-    <ClCompile Include="ProjectileTemplate.cpp">
-      <Filter>Source Files\game\weap</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Source Files\game\weap</Filter>
-    <ClCompile Include="TallCrate.cpp">
-      <Filter>Source Files\game\scenery</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NPC.h">
-      <Filter>Header Files\game\npc</Filter>
-    </ClInclude>
-    <ClInclude Include="NPCSoldier.h">
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
     <ClInclude Include="NPCBasicCollision.h">
@@ -586,10 +252,163 @@
     <ClInclude Include="NPCHandler.h">
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
-    <ClInclude Include="NPCSMG.h">
+    <ClInclude Include="NPCSoldier.h">
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
+    <ClInclude Include="BeamProjectile.h">
+      <Filter>Header Files\game\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletProjectile.h">
+      <Filter>Header Files\game\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="MissileProjectile.h">
+      <Filter>Header Files\game\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="NSMOProjectile.h">
+      <Filter>Header Files\game\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files\game\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileHandler.h">
+      <Filter>Header Files\game\proj</Filter>
+    </ClInclude>
+    <ClInclude Include="Crate.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="Fence.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="HayBale.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="LongCrate.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneryHandler.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneryObject.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="Sign.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="TallCrate.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCSMG.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLaserGun.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerShotgun.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSMG.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileTemplate.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Handlers.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelEditor.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelProperties.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Sky.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="UFO.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="AtlasSprite.h">
+      <Filter>Header Files\geom</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Header Files\geom</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\geom</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera2D.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="GameAtlas.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="GLColors.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="GLHandler.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAtlas.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRender.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAtlas.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="UIAtlas.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="VertCordGenerator.h">
+      <Filter>Header Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHelper.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyHandler.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseHandler.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveData.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Header Files\phys</Filter>
+    </ClInclude>
+    <ClInclude Include="Rec.h">
+      <Filter>Header Files\phys</Filter>
+    </ClInclude>
     <ClInclude Include="UIValueSlider.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="StoreItem.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="StoreItems.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
     <ClInclude Include="UIBox.h">
@@ -628,94 +447,13 @@
     <ClInclude Include="UITransitionObject.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
-    <ClInclude Include="UIScreen.h">
-      <Filter>Header Files\ui\screen</Filter>
-    </ClInclude>
-    <ClInclude Include="FileHelper.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyHandler.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseHandler.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="Settings.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveData.h">
-      <Filter>Header Files\io</Filter>
-    </ClInclude>
-    <ClInclude Include="AtlasSprite.h">
-      <Filter>Header Files\geom</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Header Files\geom</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files\geom</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera2D.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="GameAtlas.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="GLColors.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="GLHandler.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerAtlas.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="TextRender.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureAtlas.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="UIAtlas.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="VertCordGenerator.h">
-      <Filter>Header Files\gfx</Filter>
-    </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Header Files\phys</Filter>
-    </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>Header Files\phys</Filter>
-    </ClInclude>
-    <ClInclude Include="Rec.h">
-      <Filter>Header Files\phys</Filter>
-    </ClInclude>
-    <ClInclude Include="Ground.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="Handlers.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelEditor.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelProperties.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="Sky.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
-    <ClInclude Include="UFO.h">
-      <Filter>Header Files\game</Filter>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CreditsScreen.h">
+      <Filter>Header Files\ui\screen</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsScreen.h">
       <Filter>Header Files\ui\screen</Filter>
     </ClInclude>
     <ClInclude Include="EquipScreen.h">
@@ -733,160 +471,94 @@
     <ClInclude Include="LevelSelectScreen.h">
       <Filter>Header Files\ui\screen</Filter>
     </ClInclude>
-    <ClInclude Include="Crate.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="Fence.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="HayBale.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="LongCrate.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneryHandler.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneryObject.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="Sign.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="TallCrate.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="Tree.h">
-      <Filter>Header Files\game\scenery</Filter>
-    </ClInclude>
-    <ClInclude Include="BeamProjectile.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="BulletProjectile.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="MissileProjectile.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="NSMOProjectile.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="Projectile.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjectileHandler.h">
-      <Filter>Header Files\game\proj</Filter>
-    </ClInclude>
-    <ClInclude Include="StoreScreen.h">
-      <Filter>Header Files\ui\screen</Filter>
-    </ClInclude>
-    <ClInclude Include="SettingsScreen.h">
+    <ClInclude Include="MainScreen.h">
       <Filter>Header Files\ui\screen</Filter>
     </ClInclude>
     <ClInclude Include="PauseScreen.h">
       <Filter>Header Files\ui\screen</Filter>
     </ClInclude>
-    <ClInclude Include="MainScreen.h">
+    <ClInclude Include="StoreScreen.h">
       <Filter>Header Files\ui\screen</Filter>
     </ClInclude>
-    <ClInclude Include="StoreItem.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="StoreItems.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerLaserGun.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerShotgun.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjectileTemplate.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerSMG.h">
-      <Filter>Header Files\game\weap</Filter>
+    <ClInclude Include="UIScreen.h">
+      <Filter>Header Files\ui\screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{b1ae0fb6-b63b-4f4a-9f73-dc970250d069}</UniqueIdentifier>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8afd7d6d-9701-4cc7-9d1b-ebeec6db2765}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{e55ec00f-e277-4be2-985a-30f48d63d5e0}</UniqueIdentifier>
+      <UniqueIdentifier>{a1ad580f-84f7-4c51-b6f6-a292b822a44a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{8079dea5-1349-4e12-aa61-061694f85604}</UniqueIdentifier>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{f7afac8b-eafa-47fb-8765-c4ceb6a517a7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\game">
-      <UniqueIdentifier>{bbac05d4-25a1-4329-8da8-825ac07cafc8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\game">
-      <UniqueIdentifier>{0b40022a-a177-48c8-ac2c-e874e021ce2b}</UniqueIdentifier>
+      <UniqueIdentifier>{328a1017-2408-4146-97ca-ba2aa9889d75}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\game\npc">
-      <UniqueIdentifier>{cf1bde43-1f6b-4cb2-ac8e-4ab9244c8e32}</UniqueIdentifier>
+      <UniqueIdentifier>{260e85e6-afcd-4098-8803-8acd627102af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\game\proj">
-      <UniqueIdentifier>{6b27fd57-4c20-49e7-a334-5f328e40e2ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\game\scenery">
-      <UniqueIdentifier>{c48a30e6-1186-40d3-b0d6-2f1c12908494}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\game\weap">
-      <UniqueIdentifier>{c6d5449b-af2a-4d01-83f0-3e8dfa0f2119}</UniqueIdentifier>
+    <Filter Include="Source Files\game">
+      <UniqueIdentifier>{eed70ea1-4a2a-4d3d-8076-efd80cd4130d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\game\npc">
-      <UniqueIdentifier>{12b519af-f4bf-44dc-ba92-17e0e556faa3}</UniqueIdentifier>
+      <UniqueIdentifier>{79723bae-bf91-4e08-9e1c-7df438cc9700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\proj">
+      <UniqueIdentifier>{de3a4318-66a4-4085-9c40-a6d5ed0dd422}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\game\proj">
-      <UniqueIdentifier>{351af128-f765-4ad2-8548-c333440807ef}</UniqueIdentifier>
+      <UniqueIdentifier>{a4416483-fbec-4285-9bb7-9cd62e49d3a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\game\weap">
-      <UniqueIdentifier>{5ea15d1d-e390-4f50-b7d2-3a2054b2acfe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\geom">
-      <UniqueIdentifier>{281bf847-f0e8-4dde-8fb7-3672f2a971bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\io">
-      <UniqueIdentifier>{f3f40375-2d6d-4e05-9e92-030527afa725}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ui">
-      <UniqueIdentifier>{647da71a-f6b3-4f06-b038-19f65bd057e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\geom">
-      <UniqueIdentifier>{85177daa-0402-4d75-b575-2151e71dca28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gfx">
-      <UniqueIdentifier>{308ec013-244a-4a68-8868-30d1f52d1351}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\phys">
-      <UniqueIdentifier>{9cfeaf39-3f54-4f36-a5e7-b7dcdc4b11cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ui">
-      <UniqueIdentifier>{ef669d94-d089-4419-8429-d39a4ebd65c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ui\screen">
-      <UniqueIdentifier>{a456ea8d-ac2f-4602-8498-b74cda06cdf7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ui\screen">
-      <UniqueIdentifier>{fa7fe49e-2348-4934-a74d-61032fb90274}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\io">
-      <UniqueIdentifier>{17667ebd-e7ae-4736-8bcf-48ee95d51219}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gfx">
-      <UniqueIdentifier>{86fd1670-5c68-4da9-948f-bff74a3bfe4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\phys">
-      <UniqueIdentifier>{ff9a2d0c-0cd1-4733-b7c6-9c064cfb6035}</UniqueIdentifier>
+    <Filter Include="Header Files\game\scenery">
+      <UniqueIdentifier>{d8232146-be89-48a1-98f9-a4454dc81c99}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\game\scenery">
-      <UniqueIdentifier>{2ed9bd5e-6814-4070-bae0-d07dc091c969}</UniqueIdentifier>
+      <UniqueIdentifier>{75f2de60-8356-4e2c-b5c4-3ed2e81f2b65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\weap">
+      <UniqueIdentifier>{743b612d-36a4-4f10-93c7-7d1be1f39f6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game\weap">
+      <UniqueIdentifier>{3cd5798f-3be0-4e18-997b-7dc7a21031de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\geom">
+      <UniqueIdentifier>{01db97fb-0d53-4cbe-a45d-f70710269ba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\geom">
+      <UniqueIdentifier>{2516a082-4dff-4a7f-98bc-f301124099df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gfx">
+      <UniqueIdentifier>{f029fa5b-6950-494c-85c2-44da30c63ebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gfx">
+      <UniqueIdentifier>{3709fc08-d4f8-437c-9e10-af8fd7b13158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io">
+      <UniqueIdentifier>{145e7c09-6799-4ad8-8a00-91fbe4594b1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io">
+      <UniqueIdentifier>{b8e0b1d3-5acf-44ed-add4-744c6d2c94d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\phys">
+      <UniqueIdentifier>{7037167d-820f-48fa-8d4b-d3e1fd5481c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\phys">
+      <UniqueIdentifier>{d42c679f-ef34-401e-b237-c0a6bc82dc3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ui">
+      <UniqueIdentifier>{58419894-ae14-4978-8fb9-1ee82489edc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ui\screen">
+      <UniqueIdentifier>{a9f9882b-79e2-4091-9649-54c7dde9e824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ui">
+      <UniqueIdentifier>{437555da-e43f-44cc-81d3-2816113f3023}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ui\screen">
+      <UniqueIdentifier>{9b3de1d5-3c4c-4392-b57b-09c9e7933d57}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
