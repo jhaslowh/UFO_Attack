@@ -8,6 +8,7 @@ SceneryHandler::SceneryHandler()
 
 SceneryHandler::~SceneryHandler()
 {
+	SceneryObject* itr;
 	while (head != NULL){
 		itr = head;
 		head = head->getNext();
@@ -17,7 +18,7 @@ SceneryHandler::~SceneryHandler()
 
 // Get number of scenery objects 
 int SceneryHandler::getSize(){
-	itr = head;
+	SceneryObject* itr = head;
 	int count = 0;
 	while (itr != NULL){
 		count++;
@@ -42,7 +43,7 @@ void SceneryHandler::add(SceneryObject* obj){
 		return;
 	}
 	
-	itr = head;
+	SceneryObject* itr = head;
 	while (itr != NULL)
 	{
 		if (itr->getNext() == NULL){
@@ -57,46 +58,46 @@ void SceneryHandler::add(SceneryObject* obj){
 
 // Update objects
 void SceneryHandler::update(float deltaTime, Handlers* handlers){
-	itr = head;
-	while (itr != NULL){
-		itr->update(deltaTime, handlers);
-		itr = itr->getNext();
+	uitr = head;
+	while (uitr != NULL){
+		uitr->update(deltaTime, handlers);
+		uitr = uitr->getNext();
 	}
 }
 
 // Update objects input 
 void SceneryHandler::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
-	itr = head;
-	while (itr != NULL){
-		itr->updateInput(mKeyH, mMouseH, handlers);
-		itr = itr->getNext();
+	uitr = head;
+	while (uitr != NULL){
+		uitr->updateInput(mKeyH, mMouseH, handlers);
+		uitr = uitr->getNext();
 	}
 }
 
 // Draw object lights 
 void SceneryHandler::drawLight(GLHandler* mgl, GameAtlas* mGame){
-	itr = head;
-	while (itr != NULL){
-		itr->drawLight(mgl, mGame);
-		itr = itr->getNext();
+	ditr = head;
+	while (ditr != NULL){
+		ditr->drawLight(mgl, mGame);
+		ditr = ditr->getNext();
 	}
 }
 
 // Draw objects
 void SceneryHandler::draw(GLHandler* mgl, GameAtlas* mGame){
-	itr = head;
-	while (itr != NULL){
-		itr->draw(mgl, mGame);
-		itr = itr->getNext();
+	ditr = head;
+	while (ditr != NULL){
+		ditr->draw(mgl, mGame);
+		ditr = ditr->getNext();
 	}
 }
 
 // Draw object ui elements 
 void SceneryHandler::drawUI(GLHandler* mgl, UIAtlas* mUI){
-	itr = head;
-	while (itr != NULL){
-		itr->drawUI(mgl, mUI);
-		itr = itr->getNext();
+	ditr = head;
+	while (ditr != NULL){
+		ditr->drawUI(mgl, mUI);
+		ditr = ditr->getNext();
 	}
 }
 

@@ -6,9 +6,10 @@ class SceneryHandler
 {
 	// Head object for class
 	SceneryObject* head;
-	// Iterator object, dont need to save it,
-	// but will make out code faster. 
-	SceneryObject* itr;
+	
+	// Iterators for update and draw
+	SceneryObject* ditr;
+	SceneryObject* uitr;
 
 public:
 	SceneryHandler();
