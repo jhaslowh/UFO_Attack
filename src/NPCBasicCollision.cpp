@@ -164,8 +164,10 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 						sitr->onCollide();
 
 						// Stop player if object is physical
-						if (sitr->getStopPlayer()) 
+						if (sitr->getStopPlayer()) {
 							xpass = false;
+							hitWall();
+						}
 					}
 				}
 			
