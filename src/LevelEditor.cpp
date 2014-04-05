@@ -638,7 +638,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 		//filename given
 		else
 		{
-			//terminal->addLine("Writing to file... ", TL_WARNING);
+			terminal->addLine("Writing to file... ", TL_SUCCESS);
 			std::string fileLocation = ".\\Levels\\";
 			fileLocation.append(args);
 			fileLocation.append(".txt");
@@ -682,6 +682,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 			headPoint = sceneryHandler->getHead();
 			outfile << "end" << std::endl;
 			outfile << "signs" << std::endl;
+			outfile << "x y width height rotation scale imageid collides stopplayer type text" << std::endl;
 			for(int i=0;i<sceneryHandler->getSize();i++)
 			{
 				if(headPoint->getType().compare("sign")==0)
@@ -701,7 +702,7 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 			outfile << "end" << std::endl;
 
 			outfile.close();
-			terminal->addLine("Writing to file... ", TL_SUCCESS);
+			terminal->addLine("Save successful", TL_SUCCESS);
 			return true;
 		}
 	}

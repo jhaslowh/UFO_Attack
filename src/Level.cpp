@@ -166,6 +166,7 @@ void Level::drawUI(GLHandler* mgl, UIAtlas* mAtlas){
 //Load Level Data
 void Level::loadLevelData()
 {
+	bool debug = false;
 	string line;
 	ifstream myfile (".\\Levels\\temp.txt");
 	if (myfile.is_open())
@@ -221,7 +222,7 @@ void Level::loadLevelData()
 					getline(myfile, line);
 					while(line.compare("end")!=0)
 					{
-						cout << "new ground point\n";
+						if (debug) cout << "new ground point\n";
 						size_t pos = 0;
 						string storage[2];
 						std::string delimiter = ";";
@@ -234,21 +235,23 @@ void Level::loadLevelData()
 						}
 						storage[counter] = line;
 						ground->add(new Point((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str())));
-						cout << "X: " << (float)atoi(storage[0].c_str()) << " Y: " << (float)atoi(storage[1].c_str()) << " \n";
+						if (debug) cout << "X: " << (float)atoi(storage[0].c_str()) << " Y: " << (float)atoi(storage[1].c_str()) << " \n";
 						getline(myfile, line);
 					}
 				}
 				else if(line.compare("scenery")==0)
 				{
-					getline(myfile, line);
 					SceneryObject* obj;
-					cout << "enter scenery" << std::endl;
+					if (debug) cout << "enter scenery" << std::endl;
+
 					getline(myfile, line);
 					//x y width height rotation scale imageid collides stopplayer
+					getline(myfile, line);
+
 					while(line.compare("end")!=0)
 					{
 						//getline(myfile, line);
-						cout << "SceneryLine: " << line << std::endl;
+						if (debug) cout << "SceneryLine: " << line << std::endl;
 						size_t pos = 0;
 						string storage[11];
 						std::string delimiter = ";";
@@ -265,7 +268,7 @@ void Level::loadLevelData()
 							obj = (SceneryObject*)new Tree();
 							obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
 							sceneryHandler->add(obj);
-							cout << "tree" << std::endl;
+							if (debug) cout << "tree" << std::endl;
 						}
 						else if(storage[9].compare("fence")==0)
 						{
@@ -297,7 +300,7 @@ void Level::loadLevelData()
 							obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
 							sceneryHandler->add(obj);
 						}
-						cout << "looping" << std::endl;
+						if (debug) cout << "looping" << std::endl;
 						getline(myfile, line);
 					}
 				}
@@ -305,12 +308,12 @@ void Level::loadLevelData()
 				{
 					getline(myfile, line);
 					//x y width height rotation scale imageid collides stopplayer
-					SceneryObject* obj;
 					getline(myfile, line);
+					SceneryObject* obj;
 					while(line.compare("end")!=0)
 					{
 						//getline(myfile, line);
-						cout << "StartLine: " << line << std::endl;
+						if (debug) cout << "StartLine: " << line << std::endl;
 						size_t pos = 0;
 						string storage[11];
 						std::string delimiter = ";";
@@ -321,12 +324,12 @@ void Level::loadLevelData()
 							line.erase(0, pos + delimiter.length());
 							counter++;
 						}
-						cout << "Line: " << line << std::endl;
+						if (debug) cout << "Line: " << line << std::endl;
 						storage[counter] = line;
 						//if((float)atoi(storage[0].c_str()))
 						obj = (SceneryObject*)new Sign();
 						((Sign*)obj)->setText(storage[10]);
-						cout << "Sign text: " << storage[10] << std::endl;
+						if (debug) cout << "Sign text: " << storage[10] << std::endl;
 						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
 						sceneryHandler->add(obj);
 						getline(myfile, line);
@@ -334,6 +337,7 @@ void Level::loadLevelData()
 				}
 				else if(line.compare("npcs")==0)
 				{
+					std::cout << "parsing npcs\n";
 					int npcCounter=0;
 					getline(myfile, line);
 					getline(myfile, line);
@@ -370,7 +374,7 @@ void Level::loadLevelData()
 		}
 		else
 		{
-			cout << "requested level not found\n";
+			cout << "level file not found\n";
 		}
 	}
 	else

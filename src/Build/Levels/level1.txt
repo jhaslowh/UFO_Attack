@@ -1,0 +1,54 @@
+Location: .\Levels\level1.txt 
+Level: level1 
+PlayerX
+100
+PlayerY
+0
+LevelLeft
+-500
+LevelRight
+1800
+LevelTop
+-87
+levelBottom
+549
+ 
+ground
+x y
+0
+-1500;500
+-200;500
+-118.5;492.75
+-46.5;507.75
+10.5;523.75
+58.5;544.75
+95.5;558.75
+119.5;562.75
+169.5;556.75
+225.5;555.75
+328;542
+500;490
+650;470
+1000;510
+1240;500
+1400;500
+2500;500
+end
+ 
+scenery
+x y width height rotation scale imageid collides stopplayer type text
+291;551;100;100;0;1;0;0;0;tree;
+905;509;100;100;0;1;0;0;0;tree;
+1160;514;100;100;0;1;0;0;0;tree;
+88;550;25;25;0;1;2;0;0;hayBale;
+737;454;25;25;0;1;3;1;1;crate;
+541;454;25;25;0;1;4;1;1;fence;
+end
+signs
+x y width height rotation scale imageid collides stopplayer type text
+end
+ 
+npcs
+x y type
+200;300;soldier
+end
