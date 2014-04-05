@@ -19,14 +19,17 @@ LevelSelectScreen::~LevelSelectScreen(){
 void LevelSelectScreen::init(float screen_width, float screen_height, void* sh){
 	UIScreen::init(screen_width, screen_height, sh);
 
-	buttonMainMenu = new UIButton(100,screen_height -100,100.0f,35.0f, std::string("MainMenu"));
-	buttonMainMenu->setupHide(HT_VERTICAL,buttonMainMenu->getY()+100.0f,hideTime,true);
+	this->screen_width = screen_width;
+	this->screen_height = screen_height;
+
+	buttonMainMenu = new UIButton(10.0f,screen_height -45.0f,100.0f,35.0f, std::string("MainMenu"));
+	buttonMainMenu->setupHide(HT_HOROZONTAL,buttonMainMenu->getX()-100.0f,hideTime,true);
 	buttonMainMenu->setHidden();
 
 	loadLevelList();
 
-	logo.setPosition(0.0f, 0.0f);//(screen_width * .5f, screen_height * .5f - 150.0f);
-	logo.setOrigin(0.0f, 0.0f);
+	logo.setPosition(screen_width * .5f, screen_height * .5f);
+	logo.setOrigin(512.0f, 256.0f);
 	logo.setAlpha(0.0f);
 }
 
@@ -37,7 +40,7 @@ void LevelSelectScreen::load(TextureAtlas* mAtlas){
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 	buttonMainMenu->centerText(mUI->mTextRender);
 
-	logo.setup(1280.0f, 720.0f, "images/unitedStatesMap.png");
+	logo.setup(1024.0f, 512.0f, "images/us_map_white.png");
 	
 	show();
 }
@@ -149,8 +152,15 @@ void LevelSelectScreen::loadLevelList(){
 			storage[counter] = line;
 			//cout << storage[1] << " \n";
 			//cout << storage[2] << " \n";
-			buttonLevels[i] = new UIButton(screen_width * .5f + (float)atoi(storage[1].c_str()),screen_height * .5f + (float)atoi(storage[2].c_str()),100.0f,35.0f, storage[0]);
-			buttonLevels[i]->setupHide(HT_VERTICAL,buttonLevels[i]->getY()+100.0f,hideTime,true);
+			buttonLevels[i] = new UIButton(
+				// Start at center, move to top left of background. Move to button location, 
+				// then minus half of width and height to center button on location. 
+				((screen_width * .5f) - 512.0f) + ((float)atoi(storage[1].c_str()) - 25.0f),
+				((screen_height * .5f) - 256.0f) + ((float)atoi(storage[2].c_str()) - 25.0f),50.0f,50.0f, "");//, storage[0]);
+			buttonLevels[i]->setupHide(HT_VERTICAL,buttonLevels[i]->getY()+10.0f,hideTime,true);
+			buttonLevels[i]->setImageId(UII_LS_TARGET_DARK);
+			buttonLevels[i]->setImageIdHover(UII_LS_TARGET_LIGHT);
+			buttonLevels[i]->setImageIdClick(UII_LS_TARGET_LIGHT);
 			buttonLevels[i]->setHidden();
 			//levelsList[i].push_back((storage[0].c_str()));
 			levelsList[i] = storage[0];

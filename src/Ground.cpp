@@ -197,7 +197,7 @@ float Ground::getBottomMost(){
 	if (points == NULL)
 		return 0;
 
-	int value = points->getY();
+	float value = points->getY();
 	itr = points->next;
 	while (itr != NULL){
 		if (itr->getY() > value)
@@ -213,7 +213,7 @@ float Ground::getTopMost(){
 	if (points == NULL)
 		return 0;
 
-	int value = points->getY();
+	float value = points->getY();
 	itr = points->next;
 	while (itr != NULL){
 		if (itr->getY() < value)

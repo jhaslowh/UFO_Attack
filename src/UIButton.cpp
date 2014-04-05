@@ -20,6 +20,10 @@ UIButton::UIButton() : UITransitionObject()
 	shadowOffX = 4.0f;
 	shadowOffY = 4.0f;
 
+	imageID = UII_BUTTON_NORMAL;
+	imageIDClick = UII_BUTTON_CLICK;
+	imageIDHover = UII_BUTTON_HOVER;
+
 	setHideType(HT_VERTICAL);
 	setHideLocByDistance(100.0f);
 }
@@ -48,6 +52,10 @@ UIButton::UIButton(float x, float y, float w, float h, std::string l) : UITransi
 	shadowOffX = 4.0f;
 	shadowOffY = 4.0f;
 
+	imageID = UII_BUTTON_NORMAL;
+	imageIDClick = UII_BUTTON_CLICK;
+	imageIDHover = UII_BUTTON_HOVER;
+
 	setHideType(HT_VERTICAL);
 	setHideLocByDistance(100.0f);
 }
@@ -57,6 +65,10 @@ void UIButton::setLabel(std::string l){
 	label = l;
 }
 std::string UIButton::getLabel(){return label;}
+
+void UIButton::setImageId(int value){imageID = value;}
+void UIButton::setImageIdClick(int value){imageIDClick = value;}
+void UIButton::setImageIdHover(int value){imageIDHover = value;}
 
 // Update Button
 void UIButton::update(float deltaTime){
@@ -94,31 +106,31 @@ void UIButton::draw(GLHandler* mgl, UIAtlas* mAtlas){
 			// Draw shadow 
 			if (drawShadow){
 				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3] * mOpacity);
-				mAtlas->draw(mgl, UII_BUTTON_CLICK, loc_x + shadowOffX, loc_y + shadowOffY);
+				mAtlas->draw(mgl, imageIDClick, loc_x + shadowOffX, loc_y + shadowOffY);
 			}
 			// Draw image 
 			mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
-			mAtlas->draw(mgl, UII_BUTTON_CLICK, loc_x, loc_y);
+			mAtlas->draw(mgl, imageIDClick, loc_x, loc_y);
 		}
 		else if (hovered){
 			// Draw shadow 
 			if (drawShadow){
 				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3] * mOpacity);
-				mAtlas->draw(mgl, UII_BUTTON_HOVER, loc_x + shadowOffX, loc_y + shadowOffY);
+				mAtlas->draw(mgl, imageIDHover, loc_x + shadowOffX, loc_y + shadowOffY);
 			}
 			// Draw image 
 			mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
-			mAtlas->draw(mgl, UII_BUTTON_HOVER, loc_x, loc_y);
+			mAtlas->draw(mgl, imageIDHover, loc_x, loc_y);
 		}
 		else {
 			// Draw shadow 
 			if (drawShadow){
 				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3] * mOpacity);
-				mAtlas->draw(mgl, UII_BUTTON_NORMAL, loc_x + shadowOffX, loc_y + shadowOffY);
+				mAtlas->draw(mgl, imageID, loc_x + shadowOffX, loc_y + shadowOffY);
 			}
 			// Draw image 
 			mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
-			mAtlas->draw(mgl, UII_BUTTON_NORMAL, loc_x, loc_y);
+			mAtlas->draw(mgl, imageID, loc_x, loc_y);
 		}
 
 		mgl->setFlatColor(textColor, textColor[3] * mOpacity);

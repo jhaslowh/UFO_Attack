@@ -18,7 +18,7 @@ NPCSMG::NPCSMG()
 	timeBetweenShots = 0.07f;
 	firetype = FIRETYPE_RAPID;
 	barrelOffset[0] = 31;
-	barrelOffset[1] = 2.4;
+	barrelOffset[1] = 2.4f;
 	damage = 4.0f;
 	isPlayerWeapon = true;
 

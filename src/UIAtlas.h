@@ -29,6 +29,9 @@
 #define UII_CURRENCY_ANIMAL 20
 #define UII_CURRENCY_HUMAN 21
 #define UII_COMBOBOX_ARROW 22
+#define UII_LS_TARGET_LIGHT 23
+#define UII_LS_TARGET_DARK 24
+#define UII_LS_HOME 25
 
 class UIAtlas : public TextureAtlas
 {

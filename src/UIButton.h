@@ -12,6 +12,10 @@ class UIButton : public UITransitionObject
 	bool clicked, hovered, down;
 	// Text 
 	std::string label;
+	// Images
+	int imageID;
+	int imageIDClick;
+	int imageIDHover;
 	
 	GLfloat textColor[4];
 
@@ -28,6 +32,10 @@ public:
 	// Getters and Setters 
 	void setLabel(std::string l);
 	std::string getLabel();
+
+	void setImageId(int value);
+	void setImageIdClick(int value);
+	void setImageIdHover(int value);
 
 	// Update button 
 	virtual void update(float deltaTime);

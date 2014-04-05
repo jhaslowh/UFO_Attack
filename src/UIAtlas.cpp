@@ -71,6 +71,14 @@ void UIAtlas::load(){
 	// Combo box arrow
 	vcg->addFrame(632.0f, 152.0f, 20.0f, 20.0f);
 
+	// LS Buttons
+	// LS Target Light
+	vcg->addFrame(798.0f, 1.0f, 50.0f, 50.0f);
+	// LS Target Dark
+	vcg->addFrame(850.0f, 1.0f, 50.0f, 50.0f);
+	// LS Home
+	vcg->addFrame(902.0f, 1.0f, 50.0f, 50.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();
