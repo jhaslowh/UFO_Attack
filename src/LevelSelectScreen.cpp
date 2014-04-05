@@ -5,11 +5,14 @@ using namespace std;
 LevelSelectScreen::LevelSelectScreen() : UIScreen(){
 	hideOnClose = true;
 	numberOfLevels = 0;
+	for (int i = 0; i < numberOfLevels && i < 20; i++)
+		buttonLevels[i] = NULL;
 }
 
 LevelSelectScreen::~LevelSelectScreen(){
 	delete buttonMainMenu;
-	//delete buttonLevels;
+	for (int i = 0; i < numberOfLevels && i < 20; i++)
+		delete buttonLevels[i];
 }
 
 // Initialize screen

@@ -122,13 +122,13 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		hide();
 	}
 
-	// TODO this should be level select, but will be 
-	// this until level select is implemented.
+	// Open Level Select Screen
 	if (buttonLevelSelect->wasClicked()){
 		transitionCode = SCREEN_LEVEL_SELECT; 
 		hide();
 	}
 
+	// Resume game if resume clicked 
 	if (buttonResume != NULL && buttonResume->wasClicked()) {
 		transitionCode = SCREEN_GAME_RESUME;
 		hide();
