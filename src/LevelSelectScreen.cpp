@@ -5,7 +5,6 @@ using namespace std;
 LevelSelectScreen::LevelSelectScreen() : UIScreen(){
 	hideOnClose = true;
 	numberOfLevels = 0;
-	//std::vector<std::string> levelsList(20);
 }
 
 LevelSelectScreen::~LevelSelectScreen(){
@@ -26,12 +25,12 @@ void LevelSelectScreen::init(float screen_width, float screen_height, void* sh){
 	logo.setPosition(0.0f, 0.0f);//(screen_width * .5f, screen_height * .5f - 150.0f);
 	logo.setOrigin(0.0f, 0.0f);
 	logo.setAlpha(0.0f);
-	cout << "initialized";
 }
 
 // Load screen
 void LevelSelectScreen::load(TextureAtlas* mAtlas){
 	UIScreen::load(mAtlas);
+
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 	buttonMainMenu->centerText(mUI->mTextRender);
 
@@ -56,8 +55,6 @@ void LevelSelectScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	UIScreen::updateInput(mKeyH, mMouseH);
 
 	buttonMainMenu->updateInput(mKeyH, mMouseH);
-	for(int i=0;i<numberOfLevels;i++)
-		buttonLevels[i]->updateInput(mKeyH, mMouseH);
 
 	// Close game
 	if (buttonMainMenu->wasClicked()){
@@ -65,8 +62,10 @@ void LevelSelectScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		hide();
 	}
 
+	// Update level button input 
 	for(int i=0;i<numberOfLevels;i++)
 	{
+		buttonLevels[i]->updateInput(mKeyH, mMouseH);
 		if(buttonLevels[i]->wasClicked())
 		{
 			transitionCode = SCREEN_GAME_NEW;
@@ -99,7 +98,6 @@ void LevelSelectScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	buttonMainMenu->draw(mgl, mUI);
 	for(int i=0;i<numberOfLevels;i++)
 		buttonLevels[i]->draw(mgl, mUI);
-	//cout << "drawing";
 }
 
 // Hide the entire screen.
@@ -129,7 +127,7 @@ void LevelSelectScreen::loadLevelList(){
 	ifstream myfile (".\\Levels\\MasterLevelFile.txt");
 	if (myfile.is_open())
 	{
-		cout << "if it crashes after this but before next messege than someone formatted something wrong.";
+		cout << "Loading level list..\n";
 		getline(myfile, line);
 		numberOfLevels = atoi(line.c_str());
 		for(int i=0;i<numberOfLevels && i<20;i++)
@@ -146,8 +144,8 @@ void LevelSelectScreen::loadLevelList(){
 				counter++;
 			}			
 			storage[counter] = line;
-			cout << storage[1] << " \n";
-			cout << storage[2] << " \n";
+			//cout << storage[1] << " \n";
+			//cout << storage[2] << " \n";
 			buttonLevels[i] = new UIButton(screen_width * .5f + (float)atoi(storage[1].c_str()),screen_height * .5f + (float)atoi(storage[2].c_str()),100.0f,35.0f, storage[0]);
 			buttonLevels[i]->setupHide(HT_VERTICAL,buttonLevels[i]->getY()+100.0f,hideTime,true);
 			buttonLevels[i]->setHidden();
@@ -155,11 +153,11 @@ void LevelSelectScreen::loadLevelList(){
 			levelsList[i] = storage[0];
 		}
 		myfile.close();
-		cout << "howdy ho\n.";
+		cout << "Done loading level list.\n";
 	}
 	else
 	{
-		cout << "Unable to open file, file not found.";
+		cout << "Unable to open master level list file.\n";
 	}
 }
 
