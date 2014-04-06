@@ -2,11 +2,12 @@
 
 using namespace std;
 
-LevelSelectScreen::LevelSelectScreen() : UIScreen(){
+LevelSelectScreen::LevelSelectScreen(SaveData* s) : UIScreen(){
 	hideOnClose = true;
 	numberOfLevels = 0;
 	for (int i = 0; i < numberOfLevels && i < 20; i++)
 		buttonLevels[i] = NULL;
+	sd = s;
 }
 
 LevelSelectScreen::~LevelSelectScreen(){
@@ -75,10 +76,11 @@ void LevelSelectScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		if(buttonLevels[i]->wasClicked())
 		{
 			transitionCode = SCREEN_GAME_NEW;
-			std::string fileLocation = ".\\Levels\\temp.txt";
+			/*std::string fileLocation = ".\\Levels\\temp.txt";
 			std::ofstream outfile (fileLocation);
 			outfile << levelsList[i] <<std::endl;
-			outfile.close();
+			outfile.close();*/
+			sd->levelToLoad = levelsList[i];
 			hide();
 		}
 	}

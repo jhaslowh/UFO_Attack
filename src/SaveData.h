@@ -17,6 +17,8 @@ class SaveData
 	int ufoWeapon2;
 
 public:
+	std::string levelToLoad;
+
 	SaveData();
 	~SaveData();
 

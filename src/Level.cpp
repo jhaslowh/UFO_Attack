@@ -52,13 +52,8 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	handlers.projHandler = projHandler;
 	handlers.npcHandler = npcHandler;
 
-	// ------------------------------
-	// DEBUG TEST LEVEL
-	// Replace with real loading code
-	// ------------------------------
-
 	// Set player spawn location
-	loadLevelData();
+	loadLevelData(savedata->levelToLoad);
 }
 
 // Load level (use for textures)
@@ -164,222 +159,213 @@ void Level::drawUI(GLHandler* mgl, UIAtlas* mAtlas){
 }
 
 //Load Level Data
-void Level::loadLevelData()
+void Level::loadLevelData(std::string levelFile)
 {
 	bool debug = false;
 	string line;
-	ifstream myfile (".\\Levels\\temp.txt");
-	if (myfile.is_open())
+
+	levelFile.append(".txt");
+	levelFile.insert(0, ".\\Levels\\");
+	ifstream myfile (levelFile);
+
+	if(myfile.is_open())
 	{
-		cout << "beginning level load process, please wait...\n";
+		cout << "opening level now...\n";
+		cout << "assuming correct format...\n";
 		getline(myfile, line);
-		myfile.close();
-		line.append(".txt");
-		line.insert(0, ".\\Levels\\");
-		ifstream myfile (line);
-		if(myfile.is_open())
+		getline(myfile, line);
+		while(!myfile.eof())
 		{
-			cout << "opening level now...\n";
-			cout << "assuming correct format...\n";
 			getline(myfile, line);
-			getline(myfile, line);
-			while(!myfile.eof())
+			if(line.compare("PlayerX")==0)
 			{
 				getline(myfile, line);
-				if(line.compare("PlayerX")==0)
+				float tempX = (float)atoi(line.c_str());
+				getline(myfile, line);
+				levelProps.setPlayerSpawn(tempX,(float)atoi(line.c_str()));
+				player->ufo->setLocation(levelProps.getPlayerSpawnX(), levelProps.getPlayerSpawnY());
+			}
+			else if(line.compare("LevelLeft")==0)
+			{
+				getline(myfile, line);
+				levelProps.setLevelLeft((float)atoi(line.c_str()));
+			}
+			else if(line.compare("LevelRight")==0)
+			{
+				getline(myfile, line);
+				levelProps.setLevelRight((float)atoi(line.c_str()));
+			}
+			/*else if(line.compare("LevelTop")==0)
+			{
+				getline(myfile, line);
+				levelProps.setLevelTop((float)atoi(line.c_str()));
+			}
+			else if(line.compare("LevelBottom")==0)
+			{
+				getline(myfile, line);
+				levelProps.setLevelBottom((float)atoi(line.c_str()));
+			}*/
+			else if(line.compare("ground")==0)
+			{
+				getline(myfile, line);
+				getline(myfile, line);
+				ground->setType((int)atoi(line.c_str()));
+				getline(myfile, line);
+				while(line.compare("end")!=0)
 				{
-					getline(myfile, line);
-					float tempX = (float)atoi(line.c_str());
-					getline(myfile, line);
-					levelProps.setPlayerSpawn(tempX,(float)atoi(line.c_str()));
-					player->ufo->setLocation(levelProps.getPlayerSpawnX(), levelProps.getPlayerSpawnY());
-				}
-				else if(line.compare("LevelLeft")==0)
-				{
-					getline(myfile, line);
-					levelProps.setLevelLeft((float)atoi(line.c_str()));
-				}
-				else if(line.compare("LevelRight")==0)
-				{
-					getline(myfile, line);
-					levelProps.setLevelRight((float)atoi(line.c_str()));
-				}
-				/*else if(line.compare("LevelTop")==0)
-				{
-					getline(myfile, line);
-					levelProps.setLevelTop((float)atoi(line.c_str()));
-				}
-				else if(line.compare("LevelBottom")==0)
-				{
-					getline(myfile, line);
-					levelProps.setLevelBottom((float)atoi(line.c_str()));
-				}*/
-				else if(line.compare("ground")==0)
-				{
-					getline(myfile, line);
-					getline(myfile, line);
-					ground->setType((int)atoi(line.c_str()));
-					getline(myfile, line);
-					while(line.compare("end")!=0)
+					if (debug) cout << "new ground point\n";
+					size_t pos = 0;
+					string storage[2];
+					std::string delimiter = ";";
+					int counter = 0;
+					while ((pos = line.find(delimiter)) != std::string::npos) 
 					{
-						if (debug) cout << "new ground point\n";
-						size_t pos = 0;
-						string storage[2];
-						std::string delimiter = ";";
-						int counter = 0;
-						while ((pos = line.find(delimiter)) != std::string::npos) 
-						{
-							storage[counter] = line.substr(0, pos);
-							line.erase(0, pos + delimiter.length());
-							counter++;
-						}
-						storage[counter] = line;
-						ground->add(new Point((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str())));
-						if (debug) cout << "X: " << (float)atoi(storage[0].c_str()) << " Y: " << (float)atoi(storage[1].c_str()) << " \n";
-						getline(myfile, line);
+						storage[counter] = line.substr(0, pos);
+						line.erase(0, pos + delimiter.length());
+						counter++;
 					}
+					storage[counter] = line;
+					ground->add(new Point((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str())));
+					if (debug) cout << "X: " << (float)atoi(storage[0].c_str()) << " Y: " << (float)atoi(storage[1].c_str()) << " \n";
+					getline(myfile, line);
 				}
-				else if(line.compare("scenery")==0)
+			}
+			else if(line.compare("scenery")==0)
+			{
+				SceneryObject* obj;
+				if (debug) cout << "enter scenery" << std::endl;
+
+				getline(myfile, line);
+				//x y width height rotation scale imageid collides stopplayer
+				getline(myfile, line);
+
+				while(line.compare("end")!=0)
 				{
-					SceneryObject* obj;
-					if (debug) cout << "enter scenery" << std::endl;
-
-					getline(myfile, line);
-					//x y width height rotation scale imageid collides stopplayer
-					getline(myfile, line);
-
-					while(line.compare("end")!=0)
+					//getline(myfile, line);
+					if (debug) cout << "SceneryLine: " << line << std::endl;
+					size_t pos = 0;
+					string storage[11];
+					std::string delimiter = ";";
+					int counter = 0;
+					while ((pos = line.find(delimiter)) != std::string::npos) 
 					{
-						//getline(myfile, line);
-						if (debug) cout << "SceneryLine: " << line << std::endl;
-						size_t pos = 0;
-						string storage[11];
-						std::string delimiter = ";";
-						int counter = 0;
-						while ((pos = line.find(delimiter)) != std::string::npos) 
-						{
-							storage[counter] = line.substr(0, pos);
-							line.erase(0, pos + delimiter.length());
-							counter++;
-						}
-						storage[counter] = line;
-						if(storage[9].compare("tree")==0)
-						{
-							obj = (SceneryObject*)new Tree();
-							obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-							sceneryHandler->add(obj);
-							if (debug) cout << "tree" << std::endl;
-						}
-						else if(storage[9].compare("fence")==0)
-						{
-							obj = (SceneryObject*)new Fence();
-							obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-							sceneryHandler->add(obj);
-						}
-						else if(storage[9].compare("crate")==0)
-						{
-							obj = (SceneryObject*)new Crate();
-							obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-							sceneryHandler->add(obj);
-						}
-						else if(storage[9].compare("longcrate")==0)
-						{
-							obj = (SceneryObject*)new LongCrate();
-							obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-							sceneryHandler->add(obj);
-						}
-						else if(storage[9].compare("tallcrate")==0)
-						{
-							obj = (SceneryObject*)new TallCrate();
-							obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-							sceneryHandler->add(obj);
-						}
-						else if(storage[9].compare("hayBale")==0)
-						{
-							obj = (SceneryObject*)new HayBale();
-							obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-							sceneryHandler->add(obj);
-						}
-						if (debug) cout << "looping" << std::endl;
-						getline(myfile, line);
+						storage[counter] = line.substr(0, pos);
+						line.erase(0, pos + delimiter.length());
+						counter++;
 					}
-				}
-				else if(line.compare("signs")==0)
-				{
-					getline(myfile, line);
-					//x y width height rotation scale imageid collides stopplayer
-					getline(myfile, line);
-					SceneryObject* obj;
-					while(line.compare("end")!=0)
+					storage[counter] = line;
+					if(storage[9].compare("tree")==0)
 					{
-						//getline(myfile, line);
-						if (debug) cout << "StartLine: " << line << std::endl;
-						size_t pos = 0;
-						string storage[11];
-						std::string delimiter = ";";
-						int counter = 0;
-						while ((pos = line.find(delimiter)) != std::string::npos) 
-						{
-							storage[counter] = line.substr(0, pos);
-							line.erase(0, pos + delimiter.length());
-							counter++;
-						}
-						if (debug) cout << "Line: " << line << std::endl;
-						storage[counter] = line;
-						//if((float)atoi(storage[0].c_str()))
-						obj = (SceneryObject*)new Sign();
-						((Sign*)obj)->setText(storage[10]);
-						if (debug) cout << "Sign text: " << storage[10] << std::endl;
+						obj = (SceneryObject*)new Tree();
 						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
 						sceneryHandler->add(obj);
-						getline(myfile, line);
+						if (debug) cout << "tree" << std::endl;
 					}
-				}
-				else if(line.compare("npcs")==0)
-				{
-					std::cout << "parsing npcs\n";
-					int npcCounter=0;
-					getline(myfile, line);
-					getline(myfile, line);
-					while(line.compare("end")!=0)
+					else if(storage[9].compare("fence")==0)
 					{
-						size_t pos = 0;
-						string storage[3];
-						std::string delimiter = ";";
-						int counter = 0;
-						while ((pos = line.find(delimiter)) != std::string::npos) 
-						{
-							storage[counter] = line.substr(0, pos);
-							line.erase(0, pos + delimiter.length());
-							counter++;
-						}
-						storage[counter] = line;
-						if(storage[2].compare("soldier")==0)
-						{
-							npcHandler->add(new NPCSoldier((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str())));
-							cout << "made npc" << std::endl;
-						}
-						npcCounter++;
-						getline(myfile, line);
-						cout << "NPC Counter: " << npcCounter << std::endl;
+						obj = (SceneryObject*)new Fence();
+						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
+						sceneryHandler->add(obj);
 					}
-					levelProps.setEnemyCount(npcCounter);
+					else if(storage[9].compare("crate")==0)
+					{
+						obj = (SceneryObject*)new Crate();
+						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
+						sceneryHandler->add(obj);
+					}
+					else if(storage[9].compare("longcrate")==0)
+					{
+						obj = (SceneryObject*)new LongCrate();
+						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
+						sceneryHandler->add(obj);
+					}
+					else if(storage[9].compare("tallcrate")==0)
+					{
+						obj = (SceneryObject*)new TallCrate();
+						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
+						sceneryHandler->add(obj);
+					}
+					else if(storage[9].compare("hayBale")==0)
+					{
+						obj = (SceneryObject*)new HayBale();
+						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
+						sceneryHandler->add(obj);
+					}
+					if (debug) cout << "looping" << std::endl;
+					getline(myfile, line);
 				}
-				levelProps.setLevelBottom(ground->getBottomMost());
-				levelProps.setLevelTop(ground->getTopMost() - 500.0f);
-
 			}
-			myfile.close();
-			//npcHandler->add(new NPCSoldier(40.0f, 100.0f));
+			else if(line.compare("signs")==0)
+			{
+				getline(myfile, line);
+				//x y width height rotation scale imageid collides stopplayer
+				getline(myfile, line);
+				SceneryObject* obj;
+				while(line.compare("end")!=0)
+				{
+					//getline(myfile, line);
+					if (debug) cout << "StartLine: " << line << std::endl;
+					size_t pos = 0;
+					string storage[11];
+					std::string delimiter = ";";
+					int counter = 0;
+					while ((pos = line.find(delimiter)) != std::string::npos) 
+					{
+						storage[counter] = line.substr(0, pos);
+						line.erase(0, pos + delimiter.length());
+						counter++;
+					}
+					if (debug) cout << "Line: " << line << std::endl;
+					storage[counter] = line;
+					//if((float)atoi(storage[0].c_str()))
+					obj = (SceneryObject*)new Sign();
+					((Sign*)obj)->setText(storage[10]);
+					if (debug) cout << "Sign text: " << storage[10] << std::endl;
+					obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
+					sceneryHandler->add(obj);
+					getline(myfile, line);
+				}
+			}
+			else if(line.compare("npcs")==0)
+			{
+				if (debug) std::cout << "parsing npcs\n";
+				int npcCounter=0;
+				getline(myfile, line);
+				getline(myfile, line);
+				while(line.compare("end")!=0)
+				{
+					size_t pos = 0;
+					string storage[3];
+					std::string delimiter = ";";
+					int counter = 0;
+					while ((pos = line.find(delimiter)) != std::string::npos) 
+					{
+						storage[counter] = line.substr(0, pos);
+						line.erase(0, pos + delimiter.length());
+						counter++;
+					}
+					storage[counter] = line;
+					if(storage[2].compare("soldier")==0)
+					{
+						npcHandler->add(new NPCSoldier((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str())));
+						if (debug) cout << "made npc" << std::endl;
+					}
+					npcCounter++;
+					getline(myfile, line);
+					if (debug) cout << "NPC Counter: " << npcCounter << std::endl;
+				}
+				levelProps.setEnemyCount(npcCounter);
+			}
+			levelProps.setLevelBottom(ground->getBottomMost());
+			levelProps.setLevelTop(ground->getTopMost() - 500.0f);
+
 		}
-		else
-		{
-			cout << "level file not found\n";
-		}
+		myfile.close();
+		//npcHandler->add(new NPCSoldier(40.0f, 100.0f));
 	}
 	else
 	{
-		cout << "no temp file found\n";
+		cout << "level file not found\n";
 		levelProps.setPlayerSpawn(100.0f,100.0f);
 		player->ufo->setLocation(levelProps.getPlayerSpawnX(), levelProps.getPlayerSpawnY());
 

@@ -9,6 +9,7 @@ class Settings
 	float sfxVol;
 
 public:
+
 	Settings();
 
 	// Getters and setters

@@ -2,15 +2,17 @@
 #include <windows.h>
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <vector>
 #include "UIScreen.h"
 #include "UIAtlas.h"
 #include "UIButton.h"
 #include "Sprite.h"
-#include <string>
-#include <vector>
+#include "SaveData.h"
 
 class LevelSelectScreen: public UIScreen
 {
+	SaveData* sd;
 	UIButton* buttonMainMenu;
 	UIButton* buttonLevels[20];
 	Sprite logo;
@@ -20,7 +22,7 @@ class LevelSelectScreen: public UIScreen
 	float screen_width, screen_height;
 
 public:
-	LevelSelectScreen();
+	LevelSelectScreen(SaveData* s);
 	virtual ~LevelSelectScreen();
 
 	// Initialize screen

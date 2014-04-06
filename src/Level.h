@@ -72,7 +72,7 @@ public:
 	// Draw level 
 	void drawUI(GLHandler* mgl, UIAtlas* mAtlas);
 
-	void loadLevelData();
+	void loadLevelData(std::string levelFile);
 	//Reads in the data from the file
 
 	// Returns current victory state

@@ -364,7 +364,7 @@ void changeScreen(){
 			else if (tcode == SCREEN_FREE_PLAY)	screen = (UIScreen*)new FreePlayScreen();
 			else if (tcode == SCREEN_EQUIP)		screen = (UIScreen*)new EquipScreen(savedata);
 			else if (tcode == SCREEN_CREDITS)	screen = (UIScreen*)new CreditsScreen();
-			else if (tcode == SCREEN_LEVEL_SELECT) screen = (UIScreen*)new LevelSelectScreen();
+			else if (tcode == SCREEN_LEVEL_SELECT) screen = (UIScreen*)new LevelSelectScreen(savedata);
 			else if (tcode == SCREEN_FROM_FILE)
 			{
 				screen = (UIScreen*)new GameScreen(savedata);

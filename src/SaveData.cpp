@@ -13,6 +13,7 @@ SaveData::SaveData()
 	playerWeapon2 = -1;
 	ufoWeapon1 = -1;
 	ufoWeapon2 = -1;
+	levelToLoad = "none";
 }
 
 SaveData::~SaveData()

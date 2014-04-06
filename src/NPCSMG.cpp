@@ -20,7 +20,7 @@ NPCSMG::NPCSMG()
 	barrelOffset[0] = 31;
 	barrelOffset[1] = 2.4f;
 	damage = 4.0f;
-	isPlayerWeapon = true;
+	isPlayerWeapon = false;
 
 	// Muzzle flash
 	muzzleImageId = GI_NPC_SMG_FLASH;

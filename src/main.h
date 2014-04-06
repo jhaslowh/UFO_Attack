@@ -63,11 +63,6 @@ void* soundHandler;
 Settings* settings;
 // Player save data 
 SaveData* savedata;
-// Global Level Loading String
-//std::string levelToLoad;
-//bool doLoad = false;
-//std::vector<string> levelList;
-//short levelNumber;
 
 // GUI Stuff
 SDL_Window* window;

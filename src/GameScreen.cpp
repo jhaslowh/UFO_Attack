@@ -22,18 +22,6 @@ GameScreen::GameScreen(SaveData* sd) : UIScreen()
 	victoryX = victoryY = 0.0f;
 }
 
-/*GameScreen::GameScreen(SaveData* sd, string levelLoad) : UIScreen()
-{
-	pauseScreen = NULL;
-	level = NULL;
-	paused = false;
-	gameover = false;
-	savedata = sd;
-	gameoverTime = 4.0f;
-	cGameoverTime = 0.0f;
-	levelToLoad = levelLoad;
-}*/
-
 GameScreen::~GameScreen()
 {
 	delete level;
