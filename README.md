@@ -6,16 +6,16 @@ Controls
 --------
 
 **Level Normal Controls**  
-Player/UFO:  
+_Player/UFO_  
 AWSD : Move Player / UFO  
 Q : Switch Between player and ufo   
 R : Reload  
 F : Switch weapon   
 
-Player:  
+_Player_  
 Space: Jump
 
-UFO:  
+_UFO_  
 E : Abduction Ray  
 
 **Level Editor Controls**  

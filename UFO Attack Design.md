@@ -89,7 +89,7 @@ Use harder enemies to increase difficulty.
 Both military and civilians in a level can be abducted to buy upgrades.  
 
 **Enemies**  
-*Soldier rifle*  
+*Soldier rifle [Done]*  
 Discription: Soldier with a weak rifle.  
 Difficulty: Easy  
 
@@ -130,10 +130,7 @@ Difficulty: Medium/Easy
 - Grass [Done]   
 - Sign [Done]  
 - Hay Bale [Done]   
-- Crate  [Done]  
-- Fence  [Done]  
-- Farm plants 
-- Barn Side  
-- Barn Roof  
-- Wall  
-- Floor  
+- Crate [Done]  
+- Fence [Done]  
+- Wall [Done]  
+- Floor [Done]  
