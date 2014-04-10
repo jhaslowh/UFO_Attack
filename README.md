@@ -52,6 +52,7 @@ Commands:
 - "fullscreen [on | off]" : toggle fullscreen  
 
 Commands for Level Editor (Must be in screen with one)  
+- "saveFile [file]" : save level to specified file (without extension, it will be added)  
 - "editor open" : open level editor  
 - "editor close" : close level editor  
 - "scenery add tree" : add new tree to level 
