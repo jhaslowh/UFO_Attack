@@ -91,7 +91,7 @@ void NPC::updateMovement(float deltaTime, Handlers* handlers){
 // if it isnt, it should resolve the movement and collisions. 
 void NPC::updateCollision(float deltaTime, Handlers* handlers){
 	// Update Abduction 
-	if (canBeObducted){
+	if (alive && canBeObducted){
 		fixCollRec();
 
 		// Check if ufo is being abducted 

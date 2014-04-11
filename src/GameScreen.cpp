@@ -100,6 +100,10 @@ void GameScreen::update(float deltaTime){
 		if (gameover){
 			cGameoverTime += deltaTime;
 			if (cGameoverTime > gameoverTime){
+				// Add abductions to player savedata 
+				savedata->incrAnimalCount(((Player*)(level->handlers.player))->getAnimalCount());
+				savedata->incrHumanCount(((Player*)(level->handlers.player))->getHumanCount());
+				saveSaveData(savedata);
 				transitionCode = SCREEN_GAME_NEW;
 				hide();
 			}
@@ -107,6 +111,10 @@ void GameScreen::update(float deltaTime){
 		else if (victory){
 			cVictoryTime += deltaTime;
 			if (cVictoryTime > victoryTime){
+				// Add abductions to player savedata 
+				savedata->incrAnimalCount(((Player*)(level->handlers.player))->getAnimalCount());
+				savedata->incrHumanCount(((Player*)(level->handlers.player))->getHumanCount());
+				saveSaveData(savedata);
 				transitionCode = SCREEN_CREDITS;
 				hide();
 			}

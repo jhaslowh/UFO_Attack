@@ -7,6 +7,7 @@
 #include "MouseHandler.h"
 #include "TextureAtlas.h"
 #include "UITerminal.h"
+#include "FileHelper.h"
 
 // These codes are for transitionCode
 
