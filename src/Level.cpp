@@ -10,7 +10,6 @@ Level::Level(){
 	projHandler = NULL;
 	loaded = false;
 	victory = false;
-	loadData = false;
 }
 
 Level::~Level(){
@@ -79,9 +78,9 @@ void Level::unload(){
 void Level::update(float deltaTime){
 	sky.update(deltaTime);
 	sceneryHandler->update(deltaTime, &handlers);
-	int n = npcHandler->update(deltaTime, &handlers);
+	float n = (float)npcHandler->update(deltaTime, &handlers);
 	// Check for victory
-	if (levelProps.getEnemyCount() != 0 && (n/levelProps.getEnemyCount()) < .1f && loadData)
+	if (levelProps.getEnemyCount() != 0 && (n/levelProps.getEnemyCount()) < .1f)
 		victory = true;
 	projHandler->updateProjectiles(deltaTime, &handlers);
 
@@ -150,12 +149,14 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	player->drawHud(mgl);
 }
 
-// Draw level 
+// Draw level ui
+// Note: this will not use the level's Camera view
 void Level::drawUI(GLHandler* mgl, UIAtlas* mAtlas){
 	if (!loaded)
 		return;
 
 	sceneryHandler->drawUI(mgl, mAtlas);
+	player->drawUI(mgl, mAtlas);
 }
 
 //Load Level Data
@@ -401,7 +402,6 @@ void Level::loadLevelData(std::string levelFile)
 		levelProps.setLevelBottom(ground->getBottomMost());
 		levelProps.setLevelTop(ground->getTopMost() - 500.0f);
 	}
-	loadData = true;
 }
 
 // Returns current victory state

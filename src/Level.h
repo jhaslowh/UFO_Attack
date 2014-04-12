@@ -1,4 +1,8 @@
 #pragma once
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
 #include "Camera2D.h"
 #include "FileHelper.h"
 #include "GameAtlas.h"
@@ -23,10 +27,6 @@
 #include "LongCrate.h"
 #include "HayBale.h"
 #include "Sign.h"
-#include <string>
-#include <vector>
-#include <iostream>
-#include <fstream>
 
 class Level
 {
@@ -43,7 +43,6 @@ class Level
 	// States 
 	bool loaded;
 	bool victory;
-	bool loadData;
 
 public:
 	Handlers handlers;
@@ -69,7 +68,8 @@ public:
 	// Draw level 
 	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
 
-	// Draw level 
+	// Draw level ui
+	// Note: this will not use the level's Camera views
 	void drawUI(GLHandler* mgl, UIAtlas* mAtlas);
 
 	void loadLevelData(std::string levelFile);

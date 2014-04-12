@@ -595,7 +595,7 @@ void createGame(){
 	
 	// Load resources 
 	init_resources();
-	
+
 	// ======= Run ======= //
 
 	// Create game loop thread 

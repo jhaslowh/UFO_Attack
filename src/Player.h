@@ -18,6 +18,7 @@
 #include "PlayerSMG.h"
 #include "SaveData.h"
 #include "StoreItems.h"
+#include "GLColors.h"
 
 #define GRAVITY 980.0f
 
@@ -109,21 +110,28 @@ class Player
 	// ----------
 	//    Hud 
 	// ----------
-	// Scale values
+	// Health
 	float hudHealthScale;
 	float hudHealthMaxScale;
+	float hudHealthLocX;
+	float hudHealthLocY;
+	// Armor
 	float hudArmorScale;
 	float hudArmorMaxScale;
+	float hudArmorLocX;
+	float hudArmorLocY;
+	// Shield
 	float hudShieldScale;
 	float hudShieldMaxScale;
 	float hudShieldScaleY;
-	// Locations 
-	float hudArmorLocX;
-	float hudArmorLocY;
 	float hudShieldLocX;
 	float hudShieldLocY;
-	float hudHealthLocX;
-	float hudHealthLocY;
+	// Score
+	float scoreTextSize;
+	float scoreTextOffsetX, scoreTextOffsetY;
+	float locScoreAnimalX, locScoreAnimalY;
+	float locScoreHumanX, locScoreHumanY;
+
 	// Colors
 	GLfloat hudHealthColor[4];
 	GLfloat hudShieldColor[4];
@@ -196,6 +204,9 @@ public:
 
 	// Draw player hud
 	void drawHud(GLHandler* mgl);
+
+	// Draw player objects that need the UIAtlas
+	void drawUI(GLHandler* mgl, UIAtlas* mUI);
 
 	// Draw player light
 	void drawLight(GLHandler* mgl);

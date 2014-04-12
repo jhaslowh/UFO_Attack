@@ -68,6 +68,15 @@ Player::Player(SaveData* savedata){
 	hudHealthLocX = 0.0f;
 	hudHealthLocY = 0.0f;
 
+	// Score values 
+	scoreTextSize = 21.0f;
+	scoreTextOffsetX = 22.0f;
+	scoreTextOffsetY = 3.0f;
+	locScoreAnimalX = 180.0f;
+	locScoreAnimalY = 5.0f;
+	locScoreHumanX = 240.0f;
+	locScoreHumanY = 5.0f;
+
 	// Hud Colors
 	hudHealthColor[0] = 1.0f;
 	hudHealthColor[1] = 0.27f;
@@ -665,6 +674,23 @@ void Player::drawHud(GLHandler* mgl){
 	// Draw armor 
 	mgl->setFlatColor(hudArmorColor);
 	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudArmorLocX, hudArmorLocY, hudArmorScale, 1.0f);
+}
+
+// Draw player objects that need the UIAtlas
+void Player::drawUI(GLHandler* mgl, UIAtlas* mUI){
+	mgl->setFlatColor(COLOR_UI_LABEL);
+
+	// Draw animal abduct count
+	mUI->draw(mgl, UII_CURRENCY_ANIMAL, locScoreAnimalX, locScoreAnimalY);
+	mUI->mTextRender->drawText(*mgl,"" + toString(animalAbductCount),
+		locScoreAnimalX+scoreTextOffsetX, 
+		locScoreAnimalY+scoreTextOffsetY,0.0f,scoreTextSize);
+
+	// Draw human abduct count 
+	mUI->draw(mgl, UII_CURRENCY_HUMAN, locScoreHumanX, locScoreHumanY);
+	mUI->mTextRender->drawText(*mgl,"" + toString(humanAbductCount),
+		locScoreHumanX+scoreTextOffsetX, 
+		locScoreHumanY+scoreTextOffsetY,0.0f,scoreTextSize);
 }
 
 // Draw player light
