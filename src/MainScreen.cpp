@@ -52,9 +52,15 @@ void MainScreen::init(float screen_width, float screen_height, void* sh){
 		buttonQuit->setHidden();
 	}
 
-	logo.setPosition(screen_width * .5f, screen_height * .5f - 150.0f);
-	logo.setOrigin(256.0f, 128.0f);
+	// Scale main menu logo if screen is small 
+	float lscale = 1.0f;
+	if (screen_height < 600.0f)
+		lscale = screen_height / 600.0f;
+
+	logo.setPosition(screen_width * .5f, screen_height * .5f - 22.0f);
+	logo.setOrigin(256.0f, 256.0f);
 	logo.setAlpha(0.0f);
+	logo.setScale(lscale);
 }
 
 // Load screen
