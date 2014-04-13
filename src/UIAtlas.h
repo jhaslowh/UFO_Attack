@@ -32,6 +32,8 @@
 #define UII_LS_TARGET_LIGHT 23
 #define UII_LS_TARGET_DARK 24
 #define UII_LS_HOME 25
+#define UII_LS_TARGET_LIGHT_CHECK 26
+#define UII_LS_TARGET_DARK_CHECK 27
 
 class UIAtlas : public TextureAtlas
 {

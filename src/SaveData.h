@@ -1,8 +1,10 @@
 #pragma once
+#include <list>
 #include "StoreItems.h"
 
 class SaveData
 {
+
 	// Bool of all purchased items 
 	bool* purchasedItems;
 	// Number of abducted humans 
@@ -15,6 +17,9 @@ class SaveData
 	int playerWeapon2;
 	int ufoWeapon1;
 	int ufoWeapon2;
+
+	// Completed levels
+	std::list<std::string> levels;
 
 public:
 	std::string levelToLoad;
@@ -53,5 +58,14 @@ public:
 	void incrAnimalCount(int value);
 	// Change the abduction count of humans by the sent amout
 	void incrHumanCount(int value);
+
+	// Add level to list
+	void addLevel(std::string name);
+	// Check if level is in list
+	bool levelCompleted(std::string name);
+	// Clear level completed list
+	void clearLevelList();
+	// Return string of all unlocked levels
+	std::string levelsToString();
 };
 

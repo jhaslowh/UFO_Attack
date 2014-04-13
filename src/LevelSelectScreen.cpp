@@ -76,10 +76,6 @@ void LevelSelectScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		if(buttonLevels[i]->wasClicked())
 		{
 			transitionCode = SCREEN_GAME_NEW;
-			/*std::string fileLocation = ".\\Levels\\temp.txt";
-			std::ofstream outfile (fileLocation);
-			outfile << levelsList[i] <<std::endl;
-			outfile.close();*/
 			sd->levelToLoad = levelsList[i];
 			hide();
 		}
@@ -160,11 +156,21 @@ void LevelSelectScreen::loadLevelList(){
 				((screen_width * .5f) - 512.0f) + ((float)atoi(storage[1].c_str()) - 25.0f),
 				((screen_height * .5f) - 256.0f) + ((float)atoi(storage[2].c_str()) - 25.0f),50.0f,50.0f, "");//, storage[0]);
 			buttonLevels[i]->setupHide(HT_VERTICAL,buttonLevels[i]->getY()+10.0f,hideTime,true);
-			buttonLevels[i]->setImageId(UII_LS_TARGET_DARK);
-			buttonLevels[i]->setImageIdHover(UII_LS_TARGET_LIGHT);
-			buttonLevels[i]->setImageIdClick(UII_LS_TARGET_LIGHT);
+			
+			// Set level to check mark if completed 
+			if (sd->levelCompleted(storage[0])){
+				buttonLevels[i]->setImageId(UII_LS_TARGET_DARK_CHECK);
+				buttonLevels[i]->setImageIdHover(UII_LS_TARGET_LIGHT_CHECK);
+				buttonLevels[i]->setImageIdClick(UII_LS_TARGET_LIGHT_CHECK);
+			}
+			else {
+				buttonLevels[i]->setImageId(UII_LS_TARGET_DARK);
+				buttonLevels[i]->setImageIdHover(UII_LS_TARGET_LIGHT);
+				buttonLevels[i]->setImageIdClick(UII_LS_TARGET_LIGHT);
+			}
 			buttonLevels[i]->setHidden();
-			//levelsList[i].push_back((storage[0].c_str()));
+
+			// Add level name to list 
 			levelsList[i] = storage[0];
 		}
 		myfile.close();

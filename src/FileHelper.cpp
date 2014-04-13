@@ -197,6 +197,19 @@ void loadSaveData(SaveData* sd){
 		token = getSetting(str, std::string("ufow2"));
 		if(token != "null") sd->setUFOWeapon2(toInt(token));
 
+		// Grab level list 
+		token = getSetting(str, std::string("clevels"));
+		// Parse levels out of token 
+		if (token != "null"){
+			int spaceLoc = token.find(std::string(" "));
+			while (spaceLoc != -1){
+				sd->addLevel(token.substr(0, spaceLoc));
+				token = token.substr(spaceLoc+1, token.length());
+				spaceLoc = token.find(std::string(" "));
+			}
+			sd->addLevel(token);
+		}
+
 		std::cout << "Savedata loaded\n";
 	}
 	else 
@@ -242,6 +255,11 @@ void saveSaveData(SaveData* sd){
 	str += ";\n";
 	str += "ufow2 ";
 	str += toString(sd->getUFOWeapon2());
+	str += ";\n";
+
+	// Completed levels
+	str += "clevels";
+	str += sd->levelsToString();
 	str += ";\n";
 
 	// Save 
@@ -302,6 +320,10 @@ std::string getSetting(std::string fileString, std::string setting){
 	int end = token.find(std::string(";"));
 	if (front == -1 || end == -1) return "null"; // Return null if either are invalid 
 	token = token.substr(front, end);
+
+	// Check if setting has anything after the name
+	// If it doesn't, return null 
+	if (token.compare(setting) == 0) return "null";
 
 	// Cut off settings name 
 	front = token.find(std::string(" ")) + 1;

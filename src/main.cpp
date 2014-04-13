@@ -541,7 +541,6 @@ int main(int argc, char* argv[])
 
 // Game a new game 
 void createGame(){
-	
 	// Load Data 
 	settings = new Settings();
 	loadSettings(settings);

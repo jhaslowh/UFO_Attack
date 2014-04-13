@@ -33,6 +33,7 @@ class GameScreen : public UIScreen
 	Level* level;
 	PauseScreen* pauseScreen;
 	LevelEditor levelEditor;
+	std::string levelFile;
 
 public:
 	GameScreen(SaveData* sd);

@@ -20,6 +20,8 @@ GameScreen::GameScreen(SaveData* sd) : UIScreen()
 	victoryTime = 2.0f;
 	cVictoryTime = 0.0f;
 	victoryX = victoryY = 0.0f;
+
+	levelFile = "none";
 }
 
 GameScreen::~GameScreen()
@@ -37,6 +39,7 @@ void GameScreen::init(float screen_width, float screen_height, void* sh){
 
 	level = new Level();
 	level->init(screen_width, screen_height, savedata);
+	levelFile = savedata->levelToLoad;
 
 	pauseScreen = new PauseScreen();
 	pauseScreen->init(screen_width, screen_height, sh);
@@ -114,6 +117,8 @@ void GameScreen::update(float deltaTime){
 				// Add abductions to player savedata 
 				savedata->incrAnimalCount(((Player*)(level->handlers.player))->getAnimalCount());
 				savedata->incrHumanCount(((Player*)(level->handlers.player))->getHumanCount());
+				// Set current level as completed
+				savedata->addLevel(levelFile);
 				saveSaveData(savedata);
 				transitionCode = SCREEN_CREDITS;
 				hide();

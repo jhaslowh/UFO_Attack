@@ -58,3 +58,28 @@ void SaveData::incrAnimalCount(int value){animalAbductCount += value;}
 
 // Change the abduction count of humans by the sent amout
 void SaveData::incrHumanCount(int value){humanAbductCount += value;}
+
+// Add level to list
+void SaveData::addLevel(std::string name){
+	if (!levelCompleted(name))
+		levels.push_back(name);
+}
+
+// Check if level is in list
+bool SaveData::levelCompleted(std::string name){
+	for (std::list<std::string>::iterator it = levels.begin(); it != levels.end(); it++)
+		if ((*it).compare(name) == 0)
+			return true;
+	return false;
+}
+
+// Clear level completed list
+void SaveData::clearLevelList(){levels.clear();}
+
+// Return string of all unlocked levels
+std::string SaveData::levelsToString(){
+	std::string levelString;
+	for (std::list<std::string>::iterator it = levels.begin(); it != levels.end(); it++)
+		levelString += " " + *it;
+	return levelString;
+}

@@ -78,6 +78,10 @@ void UIAtlas::load(){
 	vcg->addFrame(850.0f, 1.0f, 50.0f, 50.0f);
 	// LS Home
 	vcg->addFrame(902.0f, 1.0f, 50.0f, 50.0f);
+	// LS Target Light Check 
+	vcg->addFrame(798.0f, 53.0f, 50.0f, 50.0f);
+	// LS Target Dark Check 
+	vcg->addFrame(850.0f, 53.0f, 50.0f, 50.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();
