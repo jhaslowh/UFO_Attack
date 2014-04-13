@@ -7,12 +7,9 @@ KeyHandler::KeyHandler()
 	for (int i = 0; i < KEY_COUNT; i++){
 		keys[i] = false;
 		keyDownTime[i] = 0.0f;
-		keyUpTime[i] = 0.0f;
 	}
 	timeForRepeat = .5f;
 	timeForMultiRepeat = .45f;
-
-	keyTime = .01f;
 }
 
 KeyHandler::~KeyHandler(){}
