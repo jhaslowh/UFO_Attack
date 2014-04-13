@@ -16,6 +16,7 @@
     <ClInclude Include="BulletProjectile.h" />
     <ClInclude Include="Crate.h" />
     <ClInclude Include="CreditsScreen.h" />
+    <ClInclude Include="LevelIO.h" />
     <ClInclude Include="LevelSelectScreen.h" />
     <ClInclude Include="LongCrate.h" />
     <ClInclude Include="NPC.h" />
@@ -98,6 +99,7 @@
     <ClCompile Include="BulletProjectile.cpp" />
     <ClCompile Include="Crate.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
+    <ClCompile Include="LevelIO.cpp" />
     <ClCompile Include="LevelSelectScreen.cpp" />
     <ClCompile Include="LongCrate.cpp" />
     <ClCompile Include="NPC.cpp" />

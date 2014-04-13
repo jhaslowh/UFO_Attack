@@ -24,6 +24,7 @@
 #include "GLColors.h"
 #include "NPC.h"
 #include "NPCHandler.h"
+#include "LevelIO.h"
 
 // Level editor states
 #define LES_NONE 0
@@ -47,7 +48,6 @@ class LevelEditor
 	float shrinkSpeed;
 	// Selected ground point 
 	Point* selectedPoint;
-	NPCHandler* myNPCS; 
 	// Point under mouse loc 
 	bool pointHighlighted;
 	// Distance to select point
@@ -116,6 +116,8 @@ class LevelEditor
 	SceneryHandler* sceneryHandler;
 	LevelProperties* levelProps;
 	Ground* ground;
+	Handlers* handlers;
+	NPCHandler* npcHandler;
 
 public:
 	LevelEditor();

@@ -27,6 +27,7 @@
 #include "LongCrate.h"
 #include "HayBale.h"
 #include "Sign.h"
+#include "LevelIO.h"
 
 class Level
 {

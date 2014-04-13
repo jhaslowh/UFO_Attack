@@ -241,6 +241,7 @@
     <ClCompile Include="StoreScreen.cpp">
       <Filter>Source Files\ui\screen</Filter>
     </ClCompile>
+    <ClCompile Include="LevelIO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -483,6 +484,7 @@
     <ClInclude Include="UIScreen.h">
       <Filter>Header Files\ui\screen</Filter>
     </ClInclude>
+    <ClInclude Include="LevelIO.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
