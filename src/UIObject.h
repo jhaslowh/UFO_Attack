@@ -9,6 +9,7 @@ class UIObject
 protected:
 	// Location settings 
 	float loc_x,loc_y,width,height;
+	float scale;
 	GLfloat flatColor[4];
 	bool reqFocus;
 
@@ -31,6 +32,8 @@ public:
 	// Set the transparency value of the object 
 	void setAlpha(float a);
 	float getAlpha();
+	void setScale(float s);
+	float getScale();
 
 	// Call if object has child objects that need to be set up
 	virtual void init(float screen_width, float screen_height);

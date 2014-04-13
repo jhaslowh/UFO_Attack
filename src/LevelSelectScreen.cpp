@@ -27,11 +27,25 @@ void LevelSelectScreen::init(float screen_width, float screen_height, void* sh){
 	buttonMainMenu->setupHide(HT_HOROZONTAL,buttonMainMenu->getX()-100.0f,hideTime,true);
 	buttonMainMenu->setHidden();
 
-	loadLevelList();
+	// Setup map
+	float scalex = 1.0f;
+	float scaley = 1.0f;
+	if (screen_width < 1024.0f)
+		scalex = screen_width / 1024.0f;
+	if (screen_height < 512.0f)
+		scaley = screen_height / 512.0f;
 
-	logo.setPosition(screen_width * .5f, screen_height * .5f);
-	logo.setOrigin(512.0f, 256.0f);
-	logo.setAlpha(0.0f);
+	if (scaley < scalex)
+		scalex = scaley;
+
+	map.setPosition(screen_width * .5f, screen_height * .5f);
+	map.setOrigin(512.0f, 256.0f);
+	map.setAlpha(0.0f);
+	map.setScale(scalex);
+
+	// Load the levels and create buttons
+	// Must be done after map is created 
+	loadLevelList();
 }
 
 // Load screen
@@ -41,7 +55,7 @@ void LevelSelectScreen::load(TextureAtlas* mAtlas){
 	UIAtlas* mUI = (UIAtlas*)mAtlas;
 	buttonMainMenu->centerText(mUI->mTextRender);
 
-	logo.setup(1024.0f, 512.0f, "images/us_map_white.png");
+	map.setup(1024.0f, 512.0f, "images/us_map_white.png");
 	
 	show();
 }
@@ -54,7 +68,7 @@ void LevelSelectScreen::update(float deltaTime){
 	for(int i=0;i<numberOfLevels;i++)
 		buttonLevels[i]->update(deltaTime);
 
-	logo.setAlpha(buttonMainMenu->getOpacity());
+	map.setAlpha(buttonMainMenu->getOpacity());
 }
 
 // Update input to the screen 
@@ -93,7 +107,7 @@ void LevelSelectScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Setup world matrix
 	mgl->setProjectionMatrix(mgl->orthoMatrix);
 
-	logo.draw(*mgl);
+	map.draw(*mgl);
 
 	// Bind bufferes
 	mUI->bindBuffers(mgl);
@@ -127,6 +141,7 @@ void LevelSelectScreen::show(){
 }
 
 void LevelSelectScreen::loadLevelList(){
+	float mapScale = map.getScale();
 	string line;
 	ifstream myfile (".\\Levels\\MasterLevelFile.txt");
 	if (myfile.is_open())
@@ -153,8 +168,10 @@ void LevelSelectScreen::loadLevelList(){
 			buttonLevels[i] = new UIButton(
 				// Start at center, move to top left of background. Move to button location, 
 				// then minus half of width and height to center button on location. 
-				((screen_width * .5f) - 512.0f) + ((float)atoi(storage[1].c_str()) - 25.0f),
-				((screen_height * .5f) - 256.0f) + ((float)atoi(storage[2].c_str()) - 25.0f),50.0f,50.0f, "");//, storage[0]);
+				((screen_width * .5f) - (512.0f*mapScale)) + (((float)atoi(storage[1].c_str()) - 25.0f)*mapScale),
+				((screen_height * .5f) - (256.0f*mapScale)) + (((float)atoi(storage[2].c_str()) - 25.0f)*mapScale),
+				50.0f * mapScale,
+				50.0f * mapScale, "");
 			buttonLevels[i]->setupHide(HT_VERTICAL,buttonLevels[i]->getY()+10.0f,hideTime,true);
 			
 			// Set level to check mark if completed 
@@ -169,6 +186,7 @@ void LevelSelectScreen::loadLevelList(){
 				buttonLevels[i]->setImageIdClick(UII_LS_TARGET_LIGHT);
 			}
 			buttonLevels[i]->setHidden();
+			buttonLevels[i]->setScale(map.getScale());
 
 			// Add level name to list 
 			levelsList[i] = storage[0];

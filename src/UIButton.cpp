@@ -106,36 +106,36 @@ void UIButton::draw(GLHandler* mgl, UIAtlas* mAtlas){
 			// Draw shadow 
 			if (drawShadow){
 				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3] * mOpacity);
-				mAtlas->draw(mgl, imageIDClick, loc_x + shadowOffX, loc_y + shadowOffY);
+				mAtlas->draw(mgl, imageIDClick, loc_x + shadowOffX, loc_y + shadowOffY,scale);
 			}
 			// Draw image 
 			mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
-			mAtlas->draw(mgl, imageIDClick, loc_x, loc_y);
+			mAtlas->draw(mgl, imageIDClick, loc_x, loc_y,scale);
 		}
 		else if (hovered){
 			// Draw shadow 
 			if (drawShadow){
 				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3] * mOpacity);
-				mAtlas->draw(mgl, imageIDHover, loc_x + shadowOffX, loc_y + shadowOffY);
+				mAtlas->draw(mgl, imageIDHover, loc_x + shadowOffX, loc_y + shadowOffY,scale);
 			}
 			// Draw image 
 			mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
-			mAtlas->draw(mgl, imageIDHover, loc_x, loc_y);
+			mAtlas->draw(mgl, imageIDHover, loc_x, loc_y,scale);
 		}
 		else {
 			// Draw shadow 
 			if (drawShadow){
 				mgl->setFlatColor(shadowColor, shadowColor[3] * flatColor[3] * mOpacity);
-				mAtlas->draw(mgl, imageID, loc_x + shadowOffX, loc_y + shadowOffY);
+				mAtlas->draw(mgl, imageID, loc_x + shadowOffX, loc_y + shadowOffY,scale);
 			}
 			// Draw image 
 			mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
-			mAtlas->draw(mgl, imageID, loc_x, loc_y);
+			mAtlas->draw(mgl, imageID, loc_x, loc_y,scale);
 		}
 
 		mgl->setFlatColor(textColor, textColor[3] * mOpacity);
 		mAtlas->mTextRender->drawText(*mgl, label, 
-			loc_x + text_x, loc_y + text_y, 0, UIB_TEXT_SIZE);
+			loc_x + text_x, loc_y + text_y, 0, UIB_TEXT_SIZE * scale);
 	}
 }
 

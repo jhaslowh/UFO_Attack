@@ -15,11 +15,13 @@ class LevelSelectScreen: public UIScreen
 	SaveData* sd;
 	UIButton* buttonMainMenu;
 	UIButton* buttonLevels[20];
-	Sprite logo;
 	std::string levelsList[20];
 
 	int numberOfLevels;
 	float screen_width, screen_height;
+	
+	// Map variables 
+	Sprite map;
 
 public:
 	LevelSelectScreen(SaveData* s);

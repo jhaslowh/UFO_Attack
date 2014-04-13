@@ -10,6 +10,7 @@ UIObject::UIObject(){
 	flatColor[2] = 1.0f;
 	flatColor[3] = 1.0f;
 	reqFocus = false;
+	scale = 1.0f;
 }
 UIObject::~UIObject(){}
 
@@ -37,6 +38,8 @@ GLfloat* UIObject::getColor(){return flatColor;}
 // Set the transparency value of the object 
 void UIObject::setAlpha(float a){flatColor[3] = a;}
 float UIObject::getAlpha(){return flatColor[3];}
+void UIObject::setScale(float s){scale = s;}
+float UIObject::getScale(){return scale;}
 
 // Call if object has child objects that need to be set up
 void UIObject::init(float screen_width, float screen_height){
