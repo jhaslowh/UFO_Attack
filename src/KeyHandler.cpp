@@ -7,17 +7,22 @@ KeyHandler::KeyHandler()
 	for (int i = 0; i < KEY_COUNT; i++){
 		keys[i] = false;
 		keyDownTime[i] = 0.0f;
+		keyUpTime[i] = 0.0f;
 	}
 	timeForRepeat = .5f;
 	timeForMultiRepeat = .45f;
+
+	keyTime = .01f;
 }
 
 KeyHandler::~KeyHandler(){}
 
 // Update keys 
 void KeyHandler::update(float deltaTime){
+	// Swap out keys 
 	for (int i = 0; i < KEY_COUNT; i++){
 		keysOld[i] = keys[i];
+		keys[i] = keysNext[i];
 	}
 
 	for (int i = 0; i < KEY_COUNT; i++){
@@ -36,12 +41,12 @@ void KeyHandler::updateState(SDL_Event windowEvent){
         case SDL_KEYDOWN:
 			key = keyIndex((int)windowEvent.key.keysym.scancode);
 			if (key >= 0)
-				keys[key] = true;
+				keysNext[key] = true;
 			break;
         case SDL_KEYUP:
 			key = keyIndex((int)windowEvent.key.keysym.scancode);
 			if (key >= 0)
-				keys[key] = false;
+				keysNext[key] = false;
             break;
         default:
             break;
@@ -74,7 +79,7 @@ bool KeyHandler::keyPressed(int key){
 // (was up and just pressed) or has been 
 // held for a set amout of time 
 bool KeyHandler::keyPressedHold(int key){
-	if ((keys[key] && !keysOld[key]) || keyDownTime[key] >= timeForRepeat){
+	if (keyPressed(key) || keyDownTime[key] >= timeForRepeat){
 		if (keyDownTime[key] >= timeForRepeat) keyDownTime[key] = timeForMultiRepeat;
 		return true;
 	}

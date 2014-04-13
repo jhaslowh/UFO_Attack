@@ -61,11 +61,14 @@ class KeyHandler
 {
 	// List of keys 
 	bool keys[KEY_COUNT];
+	bool keysNext[KEY_COUNT];
 	bool keysOld[KEY_COUNT];
 	float keyDownTime[KEY_COUNT];
-	float timeForRepeat;		// Time to wait till key is repeated
-	float timeForMultiRepeat;   // Time to start multiply repeats at 
-	
+	// Time to wait till key is repeated.
+	float timeForRepeat;		
+	// Time to start multiply repeats at 
+	float timeForMultiRepeat;   
+
 public:
 	KeyHandler();
 	~KeyHandler();
