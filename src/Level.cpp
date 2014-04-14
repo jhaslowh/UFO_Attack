@@ -83,7 +83,9 @@ void Level::update(float deltaTime){
 	if (levelProps.getEnemyCount() != 0 && (n/levelProps.getEnemyCount()) < .1f)
 		victory = true;
 	projHandler->updateProjectiles(deltaTime, &handlers);
-
+	
+	// Set player enemy size for hud
+	player->setEnemyBarScale(n/levelProps.getEnemyCount());
 	player->update(deltaTime, &handlers);
 	player->checkCollision(&handlers);
 	player->update2(deltaTime, &handlers);

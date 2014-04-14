@@ -1,14 +1,25 @@
 #include "GLHandler.h"
 
-GLHandler::GLHandler(){}
+GLHandler::GLHandler(){
+	screen_width = 0.0f;
+	screen_height = 0.0f;
+}
 GLHandler::~GLHandler(){
 	glDeleteProgram(program);
 }
+
+// Return screen width 
+float GLHandler::getScreenWidth(){return screen_width;}
+// Return screen height
+float GLHandler::getScreenHeight(){return screen_height;}
 
 /**
 * Setup the shaders used for rendering 
 */
 int GLHandler::load(float screen_width, float screen_height){
+	this->screen_width = screen_width;
+	this->screen_height = screen_height;
+
 	// ---------------
 	// Compile shaders
 	// ---------------

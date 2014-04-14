@@ -131,6 +131,12 @@ class Player
 	float scoreTextOffsetX, scoreTextOffsetY;
 	float locScoreAnimalX, locScoreAnimalY;
 	float locScoreHumanX, locScoreHumanY;
+	// Enemies left
+	std::string elText;
+	float elTextSize;
+	float elTextX, elTextY;
+	float elBarX, elBarY;
+	float elScale;
 
 	// Colors
 	GLfloat hudHealthColor[4];
@@ -174,6 +180,8 @@ public:
 	void incrHumanCount(int value);
 	int getAnimalCount();
 	int getHumanCount();
+	// Set enemy left bar size
+	void setEnemyBarScale(float value);
 
 	// Functions 
 

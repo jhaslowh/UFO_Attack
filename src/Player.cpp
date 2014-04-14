@@ -77,6 +77,15 @@ Player::Player(SaveData* savedata){
 	locScoreHumanX = 240.0f;
 	locScoreHumanY = 5.0f;
 
+	// Enemies Left
+	elText = "Enemies Left";
+	elTextSize = 20.0f;
+	elTextX = 0.0f;
+	elTextY = 3.0f;
+	elBarX = 0;
+	elBarY = 8.0f + elTextSize;
+	elScale = 1.0f;
+
 	// Hud Colors
 	hudHealthColor[0] = 1.0f;
 	hudHealthColor[1] = 0.27f;
@@ -170,6 +179,8 @@ void Player::incrAnimalCount(int value){animalAbductCount += value;}
 void Player::incrHumanCount(int value){humanAbductCount += value;}
 int Player::getAnimalCount(){return animalAbductCount;}
 int Player::getHumanCount(){return humanAbductCount;}
+// Set enemy left bar size
+void Player::setEnemyBarScale(float value){elScale = value;}
 
 // initialize level
 void Player::init(float screen_width, float screen_height){
@@ -184,6 +195,8 @@ void Player::init(float screen_width, float screen_height){
 	hudHealthLocY = 30.0f;
 
 	cameraOffsetY = screen_height * .25f;
+	
+	elBarX = (screen_width / 2.0f) - 50.0f;
 }
 
 // Load level (use for textures)
@@ -674,10 +687,25 @@ void Player::drawHud(GLHandler* mgl){
 	// Draw armor 
 	mgl->setFlatColor(hudArmorColor);
 	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudArmorLocX, hudArmorLocY, hudArmorScale, 1.0f);
+
+	// Draw enemy left bar
+	mgl->setFlatColor(hudBlack);
+	playerAtlas.draw(mgl, PI_HEALTH_BAR, elBarX, elBarY);
+	mgl->setFlatColor(hudHealthColor);
+	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, elBarX, elBarY, elScale, 1.0f);
+	mgl->setFlatColor(.09f, 1.0f, .05f, .75f);
+	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, elBarX, elBarY, .1f, 1.0f);
 }
 
 // Draw player objects that need the UIAtlas
 void Player::drawUI(GLHandler* mgl, UIAtlas* mUI){
+	// Set text location 
+	if (elTextX == 0.0f){
+		elTextX = 
+			(mgl->getScreenWidth() / 2.0f) - 
+			(mUI->mTextRender->measureString(elText, elTextSize) / 2.0f);
+	}
+
 	mgl->setFlatColor(COLOR_UI_LABEL);
 
 	// Draw animal abduct count
@@ -691,6 +719,9 @@ void Player::drawUI(GLHandler* mgl, UIAtlas* mUI){
 	mUI->mTextRender->drawText(*mgl,"" + toString(humanAbductCount),
 		locScoreHumanX+scoreTextOffsetX, 
 		locScoreHumanY+scoreTextOffsetY,0.0f,scoreTextSize);
+
+	// Draw enemy left text
+	mUI->mTextRender->drawText(*mgl, elText, elTextX, elTextY, 0.0f, elTextSize);
 }
 
 // Draw player light

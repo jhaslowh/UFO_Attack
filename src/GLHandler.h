@@ -39,9 +39,18 @@ public:
 	glm::mat4 orthoMatrix;
 	glm::mat4 camera3DMatrix;
 
+	// Screen Size
+	float screen_width;
+	float screen_height;
+
 	// Functions
 	GLHandler();
-	~GLHandler(void);
+	~GLHandler();
+
+	// Return screen width 
+	float getScreenWidth();
+	// Return screen height
+	float getScreenHeight();
 
 	// Call to load 
 	int load(float screen_width, float screen_height);
