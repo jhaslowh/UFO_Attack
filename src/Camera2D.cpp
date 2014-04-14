@@ -30,6 +30,8 @@ void Camera2D::setLocation(float x, float y){
 	targetX = -x;
 	targetY = -y;
 }
+float Camera2D::getX(){ return -locX;}
+float Camera2D::getY(){ return -locY;}
 // Set target location
 void Camera2D::setTarget(float x, float y){
 	// Invert locations so that transforms work correctly 
@@ -41,8 +43,8 @@ void Camera2D::setTarget(float x, float y){
 	direcY = sin(angle);
 	direcX = cos(angle);
 }
-float Camera2D::getX(){ return -locX;}
-float Camera2D::getY(){ return -locY;}
+float Camera2D::getTargetX(){return -targetX;}
+float Camera2D::getTargetY(){return -targetY;}
 // Set camera rotation
 void Camera2D::setRotation(float r){
 	rotation = r;

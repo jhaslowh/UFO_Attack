@@ -32,6 +32,8 @@ public:
 	float getY();
 	// Set target location
 	void setTarget(float x, float y);
+	float getTargetX();
+	float getTargetY();
 	// Set camera rotation
 	void setRotation(float r);
 	// Set camera zoom

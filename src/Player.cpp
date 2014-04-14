@@ -107,7 +107,8 @@ Player::Player(SaveData* savedata){
 	hudBlack[2] = 0.0f;
 	hudBlack[3] = 0.5f;
 	
-	cameraOffsetY = 0.0f;
+	camera = NULL;
+	cameraEdge = 160.0f;
 	ufo = new UFO();
 
 	// Arm offsets 
@@ -194,7 +195,8 @@ void Player::init(float screen_width, float screen_height){
 	hudHealthLocX = 5.0f;
 	hudHealthLocY = 30.0f;
 
-	cameraOffsetY = screen_height * .25f;
+	cameraRec.reset(cameraEdge, cameraEdge, 
+		screen_width - (cameraEdge*2.0f), screen_height - (cameraEdge*2.0f));
 	
 	elBarX = (screen_width / 2.0f) - 50.0f;
 }
@@ -495,18 +497,37 @@ void Player::checkCollision(Handlers* handlers){
 // Resolve any collisions found 
 void Player::update2(float deltaTime, Handlers* handlers){
 	if (alive()){
+		// Set camera reference if null 
+		if (camera ==NULL)
+			camera = (Camera2D*)(handlers->camera);
+
 		if (inUFO){
 			ufo->resolveCollision(handlers);
 
 			// Set camera location 
-			((Camera2D*)(handlers->camera))->setTarget(ufo->getX(), ufo->getY() + cameraOffsetY);
+			if (camera->toScreenX(ufo->getX()) < cameraRec.getX())
+				camera->setTarget(ufo->getX() + (cameraRec.getWidth() * .5f), camera->getTargetY());
+			if (camera->toScreenX(ufo->getX()) > cameraRec.getX() + cameraRec.getWidth())
+				camera->setTarget(ufo->getX() - (cameraRec.getWidth() * .5f), camera->getTargetY());
+			if (camera->toScreenY(ufo->getY()) < cameraRec.getY())
+				camera->setTarget(camera->getTargetX(), ufo->getY() + (cameraRec.getHeight() * .5f));
+			if (camera->toScreenY(ufo->getY()) > cameraRec.getHeight())
+				camera->setTarget(camera->getTargetX(), ufo->getY() - 
+				((cameraRec.getHeight() * .5f) - cameraRec.getY()));
 		}
 		else {
 			locX = nextX;
 			locY = nextY;
 
 			// Set camera location 
-			((Camera2D*)(handlers->camera))->setTarget(locX, locY - cameraOffsetY);
+			if (camera->toScreenX(locX) < cameraRec.getX())
+				camera->setTarget(locX + (cameraRec.getWidth() * .5f), camera->getTargetY());
+			if (camera->toScreenX(locX) > cameraRec.getX() + cameraRec.getWidth())
+				camera->setTarget(locX - (cameraRec.getWidth() * .5f), camera->getTargetY());
+			if (camera->toScreenY(locY) < cameraRec.getY())
+				camera->setTarget(camera->getTargetX(), locY + (cameraRec.getHeight() * .5f));
+			if (camera->toScreenY(locY) > cameraRec.getY() + cameraRec.getHeight())
+				camera->setTarget(camera->getTargetX(), locY - (cameraRec.getHeight() * .5f));
 
 			// Set player animation state 
 			if (inAir)

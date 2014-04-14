@@ -32,8 +32,12 @@ class Player
 	// Basic properties 
 	float locX, locY;
 	float originX, originY;
+
 	// Camera 
-	float cameraOffsetY;
+	Rec cameraRec;
+	float cameraEdge;
+	Camera2D* camera;
+
 
 	// --------------------
 	// Collision Properties 
