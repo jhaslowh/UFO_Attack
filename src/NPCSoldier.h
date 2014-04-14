@@ -7,6 +7,10 @@ class NPCSoldier : public NPCBasicCollision
 	// Movement
 	float direcX;
 	float speed;
+	float distanceTillFlop;
+	float minDistanceTFlop;
+	float maxDistanceTFlop;
+	float currentDistance;
 
 	// Animation 
 	int frames;

@@ -15,7 +15,7 @@ NPCSMG::NPCSMG()
 	horizontalDisplacement = 15;
 	bulletsPerShot = 1;
 	reloadTime = 0.8f;
-	timeBetweenShots = 0.07f;
+	timeBetweenShots = 0.1f;
 	firetype = FIRETYPE_RAPID;
 	barrelOffset[0] = 31;
 	barrelOffset[1] = 2.4f;

@@ -50,4 +50,5 @@ end
  
 npcs
 x y type
+-364.999;500;soldier
 end

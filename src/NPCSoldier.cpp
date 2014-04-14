@@ -20,9 +20,13 @@ NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
 	next = NULL;
 	alive = true;
 
-	// Soldier properties
+	// Movement properties
 	direcX = 1.0f;
-	speed = 200.0f;
+	speed = 140.0f;
+	minDistanceTFlop = 150.0f;
+	maxDistanceTFlop = 400.0f;
+	distanceTillFlop = 200.0f;
+	currentDistance = 0.0f;
 
 	// Collision Values
 	bounds.reset(0.0f,0.0f,50.0f,50.0f);
@@ -48,10 +52,7 @@ NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
 	weaponRange = 300.0f;
 }
 
-NPCSoldier::~NPCSoldier()
-{
-
-}
+NPCSoldier::~NPCSoldier(){}
 
 // Update movement of the NPC 
 // This method should set the movement values for the npc.
@@ -60,6 +61,15 @@ void NPCSoldier::updateMovement(float deltaTime, Handlers* handlers){
 
 	if (alive && !beingAbducted){
 		nextX = locX + (speed * direcX * deltaTime);
+
+		// Flop soldier
+		currentDistance += speed * deltaTime;
+		if (currentDistance > distanceTillFlop){
+			distanceTillFlop = minDistanceTFlop + 
+				(rand() % (int)(maxDistanceTFlop - minDistanceTFlop)); 
+			currentDistance = 0.0f;
+			direcX = -direcX;
+		}
 	}
 }
 
