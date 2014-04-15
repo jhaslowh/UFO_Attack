@@ -244,6 +244,12 @@
     <ClCompile Include="LevelIO.cpp">
       <Filter>Source Files\io</Filter>
     </ClCompile>
+    <ClCompile Include="NPCSniperSoldier.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCSniper.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -488,6 +494,12 @@
     </ClInclude>
     <ClInclude Include="LevelIO.h">
       <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCSniperSoldier.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCSniper.h">
+      <Filter>Header Files\game\weap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

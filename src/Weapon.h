@@ -110,6 +110,9 @@ public:
 	// Fire the weapon
 	virtual void fire(float targetx, float targety, Handlers* handlers);
 
+	// Set the rotation of the weapon based off the sent target 
+	void setRotationByTarget(float targetx, float targety);
+
 	// Check if the gun is reloading 
 	virtual bool reloading();
 

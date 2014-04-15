@@ -25,7 +25,8 @@
 #define GI_NPC_HEALTH_BAR 17
 #define GI_NPC_SMG 18
 #define GI_NPC_SMG_FLASH 19
-#define GI_CRATE_LONG 20
+#define GI_NPC_SNIPER 20
+#define GI_CRATE_LONG 21
 
 class GameAtlas : public TextureAtlas
 {

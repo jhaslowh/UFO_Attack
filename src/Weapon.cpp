@@ -245,6 +245,28 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 	cFlashTime = flashTime;
 }
 
+// Set the rotation of the weapon based off the sent target 
+void Weapon::setRotationByTarget(float targetx, float targety){
+	// Set shooting direction 
+	if (targetx > locX )
+		lookingRight = true;
+	if (targetx < locX)
+		lookingRight = false;
+
+	// Set the rotation because the class that calls this might 
+	// need it even if it does not fire successfully. 
+	// Get angle 
+	mTheta = (float)atan2((double)(targety - locY), (double)(targetx - locX));
+	// Set rotation
+	rotation = (float)(mTheta * (180.0f / 3.14159f));
+
+	// Clamp rotation
+	if (rotation < -90.0f)
+		rotation += 180.0f;
+	if (rotation > 90.0f)
+		rotation -= 180.0f;
+}
+
 // Check if the gun is reloading 
 bool Weapon::reloading(){
 	return cReloadTime > 0.0f;

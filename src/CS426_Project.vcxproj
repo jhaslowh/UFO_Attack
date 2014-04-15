@@ -23,6 +23,8 @@
     <ClInclude Include="NPCBasicCollision.h" />
     <ClInclude Include="NPCHandler.h" />
     <ClInclude Include="NPCSMG.h" />
+    <ClInclude Include="NPCSniper.h" />
+    <ClInclude Include="NPCSniperSoldier.h" />
     <ClInclude Include="NPCSoldier.h" />
     <ClInclude Include="TallCrate.h" />
     <ClInclude Include="UICreditsBox.h" />
@@ -106,6 +108,8 @@
     <ClCompile Include="NPCBasicCollision.cpp" />
     <ClCompile Include="NPCHandler.cpp" />
     <ClCompile Include="NPCSMG.cpp" />
+    <ClCompile Include="NPCSniper.cpp" />
+    <ClCompile Include="NPCSniperSoldier.cpp" />
     <ClCompile Include="NPCSoldier.cpp" />
     <ClCompile Include="TallCrate.cpp" />
     <ClCompile Include="UICreditsBox.cpp" />
