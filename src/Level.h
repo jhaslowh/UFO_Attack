@@ -27,6 +27,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include "NPCcow.h"
 
 class Level
 {

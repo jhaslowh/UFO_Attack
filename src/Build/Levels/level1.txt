@@ -50,5 +50,5 @@ end
  
 npcs
 x y type
-200;300;soldier
+200;300;cow
 end

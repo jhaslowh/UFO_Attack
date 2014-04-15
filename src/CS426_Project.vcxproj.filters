@@ -241,6 +241,9 @@
     <ClCompile Include="StoreScreen.cpp">
       <Filter>Source Files\ui\screen</Filter>
     </ClCompile>
+    <ClCompile Include="NPCcow.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -482,6 +485,9 @@
     </ClInclude>
     <ClInclude Include="UIScreen.h">
       <Filter>Header Files\ui\screen</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCcow.h">
+      <Filter>Header Files\game\npc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
