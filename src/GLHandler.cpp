@@ -382,11 +382,11 @@ void GLHandler::useGLTexture(int index){
 // Target           : glm::vec(0,0,0)
 void GLHandler::setCamera3DMatrix(const glm::vec3 cameraLocation, const glm::vec3 targetLocation, const float aspectRatio)
 {
-	glm::mat4 Projection = glm::perspective(45.0f, aspectRatio, 0.1f, 1000.0f);
+	glm::mat4 Projection = glm::perspective(45.0f, aspectRatio, 0.1f, 10000.0f);
 	glm::mat4 View       = glm::lookAt(
 		cameraLocation,   // Camera location
 		targetLocation,   // Target look at location 
-		glm::vec3(0,1,0)  // Camera 
+		glm::vec3(0,-1,0)  // Camera Up
 	);  
 	camera3DMatrix = Projection * View;
 }

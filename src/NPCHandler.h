@@ -1,5 +1,8 @@
 #pragma once
 #include "NPC.h"
+#include "NPCSoldier.h"
+#include "NPCSniperSoldier.h"
+
 class NPCHandler
 {
 	// Head object for class
@@ -23,6 +26,10 @@ public:
 
 	// Add an object to the list 
 	void add(NPC* obj);
+
+	// Add new object to list by name.
+	// Returns true if name is matched. 
+	bool addByName(std::string name, float x, float y);
 
 	// Remove object from handler
 	void remove(NPC* obj);

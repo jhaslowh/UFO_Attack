@@ -268,15 +268,8 @@ void loadLevel(Handlers* handlers, std::string file){
 					}
 					storage[counter] = line;
 
-					// Check what type of npc to import as 
-					if (storage[2].compare("soldier") == 0){
-						npcHandler->add(new NPCSoldier((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str())));
-						if (debug) cout << "made npc" << std::endl;
-					}
-					else if (storage[2].compare("sniper") == 0){
-						npcHandler->add(new NPCSniperSoldier((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str())));
-						if (debug) cout << "made npc" << std::endl;
-					}
+					// Add npc to npc handler
+					npcHandler->addByName(storage[2], (float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
 
 					npcCounter++;
 					getline(myfile, line);

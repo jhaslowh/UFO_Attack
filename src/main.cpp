@@ -21,8 +21,11 @@ int init_resources()
 	glUseProgram(mgl.program);
 	// Setup ortho matrix
 	mgl.setOrthoMatrix((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
-	// Setup basic testing projection matrix 
-	mgl.setCamera3DMatrix(glm::vec3(0,20,50), glm::vec3(0,0,0), 
+	// Setup basic projection matrix 
+	mgl.setCamera3DMatrix(
+		glm::vec3((float)settings->getScreenWidth()*.5f,(float)settings->getScreenHeight()*.5f,
+		-((settings->getScreenHeight()/2.0f) / tan((3.14159f * 22.5f)/180.0f))), 
+		glm::vec3((float)settings->getScreenWidth()*.5f,(float)settings->getScreenHeight()*.5f,0), 
 		(float)settings->getScreenWidth()/(float)settings->getScreenHeight());
 	// Set view matrix to identity to avoid rendering problems
 	mgl.setViewMatrix(glm::mat4());

@@ -52,6 +52,20 @@ void NPCHandler::add(NPC* obj){
 	std::cout << "Error: could not add item to NPC linked list\n";
 }
 
+// Add new object to list by name.
+// Returns true if name is matched. 
+bool NPCHandler::addByName(std::string name, float x, float y){
+	if (name.compare("soldier") == 0){
+		add(new NPCSoldier(x,y));
+		return true;
+	}
+	else if (name.compare("sniper") == 0){
+		add(new NPCSniperSoldier(x,y));
+		return true;
+	}
+	return false;
+}
+
 // Remove object from handler
 void NPCHandler::remove(NPC* obj){
 	// Check it obj is head
