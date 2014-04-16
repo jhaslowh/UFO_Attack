@@ -295,7 +295,7 @@ void Player::checkCollision(Handlers* handlers){
 
 			if (nextX - (collRec.getWidth()/2.0f) < ((LevelProperties*)(handlers->levelProps))->getLevelLeft())
 				nextX = ((LevelProperties*)(handlers->levelProps))->getLevelLeft() + (collRec.getWidth()/2.0f);
-			if (nextX + (collRec.getWidth()/2.0f) > ((LevelProperties*)(handlers->levelProps))->getLevelRight())
+			else if (nextX + (collRec.getWidth()/2.0f) > ((LevelProperties*)(handlers->levelProps))->getLevelRight())
 				nextX = ((LevelProperties*)(handlers->levelProps))->getLevelRight() - (collRec.getWidth()/2.0f);
 
 			// ----------------------------------
@@ -317,10 +317,13 @@ void Player::checkCollision(Handlers* handlers){
 			// This check stops the player from walking up steep surfaces 
 			itr = handlers->ground->getPoints();
 			while (itr->next != NULL){
-				if (checkSegSeg(horA, horB, *itr, *(itr->next), &p)){
-					nextX = locX;
-					hitWall();
-					break;
+				// Check if player is close to point
+				if ((*itr).getX() - 50 <= nextX && (*(itr->next)).getX() + 50 >= nextX){
+					if (checkSegSeg(horA, horB, *itr, *(itr->next), &p)){
+						nextX = locX;
+						hitWall();
+						break;
+					}
 				}
 				itr = itr->next;
 			}
@@ -337,11 +340,14 @@ void Player::checkCollision(Handlers* handlers){
 			if (!jumping){
 				itr = handlers->ground->getPoints();
 				while (itr->next != NULL){
-					if (checkSegSeg(vertA, vertB, *itr, *(itr->next), &p)){
-						nextX = p.getX();
-						nextY = p.getY();
-						hitGround();
-						break;
+					// Check if player is close to point
+					if ((*itr).getX() <= nextX && (*(itr->next)).getX() >= nextX){
+						if (checkSegSeg(vertA, vertB, *itr, *(itr->next), &p)){
+							nextX = p.getX();
+							nextY = p.getY();
+							hitGround();
+							break;
+						}
 					}
 					itr = itr->next;
 				}
@@ -365,11 +371,14 @@ void Player::checkCollision(Handlers* handlers){
 			if (airT < minAirtForInAir && !jumping && !inAir){
 				itr = handlers->ground->getPoints();
 				while (itr->next != NULL){
-					if (checkSegSeg(vertBotA, vertBotB, *itr, *(itr->next), &p)){
-						nextX = p.getX();
-						nextY = p.getY();
-						hitGround();
-						break;
+					// Check if player is close to point
+					if ((*itr).getX() <= nextX && (*(itr->next)).getX() >= nextX){
+						if (checkSegSeg(vertBotA, vertBotB, *itr, *(itr->next), &p)){
+							nextX = p.getX();
+							nextY = p.getY();
+							hitGround();
+							break;
+						}
 					}
 					itr = itr->next;
 				}
@@ -477,16 +486,19 @@ void Player::checkCollision(Handlers* handlers){
 			{
 				// Null check 
 				if (*myIterator != NULL && (*myIterator)->getAlive() && (*myIterator)->getFiredBy() == PFB_ENEMY){
-					// Check for collision 
-					if (checkRecSeg(&collRecXY, 
-						(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
-						(*myIterator)->getPrevX(), (*myIterator)->getPrevY(), &projp)){
+					// Quick distance check 
+					if (dist(nextX, nextY,(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY()) <100){ 
+						// Check for collision 
+						if (checkRecSeg(&collRecXY, 
+							(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
+							(*myIterator)->getPrevX(), (*myIterator)->getPrevY(), &projp)){
 
-						// Tell projectile we had a player collision 
-						(*myIterator)->collide(&projp, handlers, P_PLAYER_COLL);
+							// Tell projectile we had a player collision 
+							(*myIterator)->collide(&projp, handlers, P_PLAYER_COLL);
 
-						// Apply projectile damage to player
-						applyDamage((*myIterator)->getDamage());
+							// Apply projectile damage to player
+							applyDamage((*myIterator)->getDamage());
+						}
 					}
 				}
 			}

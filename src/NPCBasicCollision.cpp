@@ -59,7 +59,7 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 			nextX = ((LevelProperties*)(handlers->levelProps))->getLevelLeft() + (width/2.0f);
 			hitWall();
 		}
-		if (nextX + (width/2.0f) > ((LevelProperties*)(handlers->levelProps))->getLevelRight()){
+		else if (nextX + (width/2.0f) > ((LevelProperties*)(handlers->levelProps))->getLevelRight()){
 			nextX = ((LevelProperties*)(handlers->levelProps))->getLevelRight() - (width/2.0f);
 			hitWall();
 		}
@@ -83,10 +83,13 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 		// This check stops the player from walking up steep surfaces 
 		itr = handlers->ground->getPoints();
 		while (itr->next != NULL){
-			if (checkSegSeg(horA, horB, *itr, *(itr->next), &p)){
-				nextX = locX;
-				hitWall();
-				break;
+			// Check if npc is close to point
+			if ((*itr).getX() - 50 <= nextX && (*(itr->next)).getX() + 50 >= nextX){
+				if (checkSegSeg(horA, horB, *itr, *(itr->next), &p)){
+					nextX = locX;
+					hitWall();
+					break;
+				}
 			}
 			itr = itr->next;
 		}
@@ -102,11 +105,14 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 		// player will be stuck to the ground. 
 		itr = handlers->ground->getPoints();
 		while (itr->next != NULL){
-			if (checkSegSeg(vertA, vertB, *itr, *(itr->next), &p)){
-				nextX = p.getX();
-				nextY = p.getY();
-				hitFloor();
-				break;
+			// Check if npc is close to point
+			if ((*itr).getX() <= nextX && (*(itr->next)).getX() >= nextX){
+				if (checkSegSeg(vertA, vertB, *itr, *(itr->next), &p)){
+					nextX = p.getX();
+					nextY = p.getY();
+					hitFloor();
+					break;
+				}
 			}
 			itr = itr->next;
 		}
@@ -129,11 +135,14 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 		if (airT < minAirtForInAir && !inAir){
 			itr = handlers->ground->getPoints();
 			while (itr->next != NULL){
-				if (checkSegSeg(vertBotA, vertBotB, *itr, *(itr->next), &p)){
-					nextX = p.getX();
-					nextY = p.getY();
-					hitFloor();
-					break;
+				// Check if npc is close to point
+				if ((*itr).getX() <= nextX && (*(itr->next)).getX() >= nextX){
+					if (checkSegSeg(vertBotA, vertBotB, *itr, *(itr->next), &p)){
+						nextX = p.getX();
+						nextY = p.getY();
+						hitFloor();
+						break;
+					}
 				}
 				itr = itr->next;
 			}
@@ -242,17 +251,20 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 		for(std::list<Projectile*>::iterator myIterator = projs.begin(); myIterator != projs.end(); myIterator++)
 		{
 			// Null check / Alive check / shot by player 
-			if (*myIterator != NULL && (*myIterator)->getAlive() && (*myIterator)->getFiredBy() == PFB_PLAYER){
-				// Check for collision 
-				if (checkRecSeg(&collRecXY, 
-					(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
-					(*myIterator)->getPrevX(), (*myIterator)->getPrevY(), &projp)){
+			if (*myIterator != NULL && (*myIterator)->getAlive() && (*myIterator)->getFiredBy() == PFB_PLAYER){	
+				// Quick distance check 
+				if (dist(nextX, nextY,(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY()) <100){ 
+					// Check for collision 
+					if (checkRecSeg(&collRecXY, 
+						(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
+						(*myIterator)->getPrevX(), (*myIterator)->getPrevY(), &projp)){
 
-					// Tell projectile we had a player collision 
-					(*myIterator)->collide(&projp, handlers, P_ENEMY_COLL);
+						// Tell projectile we had a player collision 
+						(*myIterator)->collide(&projp, handlers, P_ENEMY_COLL);
 
-					// Apply projectile damage to npc
-					damage((*myIterator)->getDamage());
+						// Apply projectile damage to npc
+						damage((*myIterator)->getDamage());
+					}
 				}
 			}
 		}

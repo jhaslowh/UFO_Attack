@@ -127,10 +127,13 @@ void UFO::checkCollision(Handlers* handlers){
 	// Normal ground check: 
 	itr = handlers->ground->getPoints();
 	while (itr->next != NULL){
-		if (checkSegSeg(vertA, vertB, *itr, *(itr->next), &p)){
-			nextX = p.getX();
-			nextY = p.getY() - minDistFromGround;
-			break;
+		// Check if player is close to point
+		if ((*itr).getX() <= nextX && (*(itr->next)).getX() >= nextX){
+			if (checkSegSeg(vertA, vertB, *itr, *(itr->next), &p)){
+				nextX = p.getX();
+				nextY = p.getY() - minDistFromGround;
+				break;
+			}
 		}
 		itr = itr->next;
 	}
@@ -150,16 +153,19 @@ void UFO::checkCollision(Handlers* handlers){
 	{
 		// Null check 
 		if (*myIterator != NULL && (*myIterator)->getAlive() && (*myIterator)->getFiredBy() == PFB_ENEMY){
-			// Check for collision 
-			if (checkRecSeg(&collisionArea, 
-				(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
-				(*myIterator)->getPrevX(), (*myIterator)->getPrevY(), &projp)){
+			// Quick distance check 
+			if (dist(nextX, nextY,(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY()) <100){ 
+				// Check for collision 
+				if (checkRecSeg(&collisionArea, 
+					(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
+					(*myIterator)->getPrevX(), (*myIterator)->getPrevY(), &projp)){
 
-				// Tell projectile we had a player collision 
-				(*myIterator)->collide(&projp, handlers, P_PLAYER_COLL);
+					// Tell projectile we had a player collision 
+					(*myIterator)->collide(&projp, handlers, P_PLAYER_COLL);
 
-				// Apply projectile damage to player
-				applyDamage((*myIterator)->getDamage());
+					// Apply projectile damage to player
+					applyDamage((*myIterator)->getDamage());
+				}
 			}
 		}
 	}

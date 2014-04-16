@@ -95,8 +95,8 @@ void NPC::updateCollision(float deltaTime, Handlers* handlers){
 		fixCollRec();
 
 		// Check if ufo is being abducted 
-		UFO* ufo = (UFO*)((Player*)handlers->player)->ufo;
-		Player* player = (Player*)handlers->player;
+		static UFO* ufo = (UFO*)((Player*)handlers->player)->ufo;
+		static Player* player = (Player*)handlers->player;
 		if (player->isInUFO() && ufo->isRayOn()  && checkRecRec(&collisionRec, ufo->getAbductArea())){
 			if (!beingAbducted){
 				beingAbducted = true;
