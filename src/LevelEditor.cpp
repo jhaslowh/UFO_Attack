@@ -645,6 +645,35 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 			return true;
 		}
 	}
+	// Check for npc command
+	else if (command == "npc"){
+		// No arguments given
+		if (args == "none"){
+			terminal->addLine("No arguments given to command: npc", TL_WARNING);
+			return true;
+		}
+
+		// Grab commands and args 
+		UITerminal::getCommandAndArgs(&args, &subCommand, &subArgs);
+
+		// Check commands 
+		if (subCommand == "add"){
+			UITerminal::getCommandAndArgs(&subArgs, &subCommand, &subArgs);
+
+			if (npcHandler->addByName(subCommand,
+				camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f))){
+				// Increment enemy level count
+				levelProps->setEnemyCount(levelProps->getEnemyCount() + 1);
+				// Add success line to terminal
+				terminal->addLine(command + " " + args, TL_SUCCESS);
+				return true;
+			}
+			else {
+				terminal->addLine(command + " " + args, TL_WARNING);
+				return true;
+			}
+		}
+	}
 
 	return false;
 }

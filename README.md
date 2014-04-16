@@ -69,6 +69,8 @@ Commands for Level Editor (Must be in screen with one)
 - "scenery add 5" : same as previous  
 - "scenery add tallCrate" : add new tall crate  
 - "scenery add 6" : same as previous  
+- "npc add soldier" : add new soldier npc to level  
+- "npc add sniper" : add new sniper npc to level  
 
 
 Commands while in Game Screen
