@@ -6,6 +6,7 @@ class NPCcow :	public NPCBasicCollision
 	// Movement
 	float direcX;
 	float speed;
+	float afraidSpeed;
 
 	// Animation
 	int frames;
@@ -13,6 +14,7 @@ class NPCcow :	public NPCBasicCollision
 	float frameRate;
 	float cframeTime;
 	bool afraid; 
+
 
 
 public:
@@ -25,5 +27,9 @@ public:
 	virtual void draw(GLHandler* mgl, GameAtlas* mGame);
 
 	virtual void hitWall();
+	
+	void goLeft();
+	void goRight();
+	bool isPlayerToLeft(Player* player);
 };
 

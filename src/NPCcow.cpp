@@ -24,6 +24,7 @@ NPCcow::NPCcow(float x, float y) : NPCBasicCollision()
 	// Soldier properties
 	direcX = 1.0f;
 	speed = 10.0f;
+	afraidSpeed = 3 * speed; // TODO this is clunky
 
 	// Collision Values
 	bounds.reset(0.0f,0.0f,50.0f,50.0f);
@@ -63,17 +64,51 @@ void NPCcow::updateMovement(float deltaTime, Handlers* handlers){
 void NPCcow::update(float deltaTime, Handlers* handlers){
 	NPCBasicCollision::update(deltaTime, handlers);
 	
-	if(health<healthMax){//ideally this should be placed somewhere it only runs once, such as where the code to reduce NPC health. }
+	if(health<healthMax){//TODO ideally this should be placed somewhere it only runs once, such as where the code to reduce NPC health. }
 		afraid = true;
 	}
 
-	//if not afraid
-
-	//if afraid
 
 	if (alive){
 		if (!beingAbducted){
-			// Update frames 
+			// Update frames
+			// Update weapon
+			Player* player = (Player*)handlers->player;
+
+
+
+			//direction to the playerss
+			float direction = 0;
+			bool playerIsToLeft = isPlayerToLeft(player);
+
+
+			
+
+			if(playerIsToLeft){
+				cout << "to the left" << endl;
+			}else{
+				cout << "to the right " << endl;
+			}
+
+			if(afraid){
+				//affraid, run away from player
+				if(playerIsToLeft){
+					goRight();
+				} else {
+					goLeft();
+				}
+			} else {
+				//not afraid, go to player
+				if(playerIsToLeft){
+					goLeft();
+				} else {
+					goRight();
+				}
+
+			}
+
+
+
 			cframeTime += deltaTime;
 			if (cframeTime > frameRate){
 				cframeTime = 0.0f;
@@ -82,8 +117,7 @@ void NPCcow::update(float deltaTime, Handlers* handlers){
 					cframe = 0;
 			}
 
-			// Update weapon
-			Player* player = (Player*)handlers->player;
+
 		}
 	}
 }
@@ -115,3 +149,29 @@ void NPCcow::hitWall(){
 
 	direcX = -direcX;
 }
+
+
+void NPCcow::goLeft(){
+	direcX = -1;
+}
+
+void NPCcow::goRight(){
+	direcX = 1;
+}
+
+bool NPCcow::isPlayerToLeft(Player* player){
+	if(player->isInUFO()){
+		if(player->ufo->getCenterX()-locX > 0){
+			return false;
+		} else {
+			return true;
+		}
+	} else {
+		if(player->getCenterX()-locX > 0){
+			return false;
+		} else {
+			return true;
+		}
+	}
+}
+
