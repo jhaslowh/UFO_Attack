@@ -53,6 +53,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 
 	// Load level from file 
 	loadLevel(&handlers, savedata->levelToLoad);
+
 }
 
 // Load level (use for textures)

@@ -28,6 +28,12 @@
 #include "HayBale.h"
 #include "Sign.h"
 #include "LevelIO.h"
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include "NPCcow.h"
+
 
 class Level
 {

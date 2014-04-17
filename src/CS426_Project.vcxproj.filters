@@ -250,6 +250,9 @@
     <ClCompile Include="NPCSniper.cpp">
       <Filter>Source Files\game\weap</Filter>
     </ClCompile>
+    <ClCompile Include="NPCcow.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -500,6 +503,9 @@
     </ClInclude>
     <ClInclude Include="NPCSniper.h">
       <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCcow.h">
+      <Filter>Header Files\game\npc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
