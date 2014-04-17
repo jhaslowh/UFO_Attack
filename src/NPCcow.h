@@ -22,6 +22,8 @@ class NPCcow :	public NPCBasicCollision
 	Weapon* weapon;
 	float weaponRange;
 
+	bool afraid; 
+
 
 public:
 	NPCcow(float x, float y);

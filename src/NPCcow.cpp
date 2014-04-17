@@ -1,5 +1,6 @@
 #include "NPCcow.h"
-
+#include <iostream>
+using namespace std;
 
 NPCcow::NPCcow(float x, float y) : NPCBasicCollision()
 {
@@ -47,6 +48,10 @@ NPCcow::NPCcow(float x, float y) : NPCBasicCollision()
 	weapon->setIsPlayerWeapon(false);
 	weaponRange = 300.0f;
 
+
+	afraid = false;
+
+
 }
 
 
@@ -70,6 +75,14 @@ void NPCcow::updateMovement(float deltaTime, Handlers* handlers){
 // (weapons and the like) 
 void NPCcow::update(float deltaTime, Handlers* handlers){
 	NPCBasicCollision::update(deltaTime, handlers);
+	
+	if(health<healthMax){//ideally this should be placed somewhere it only runs once, such as where the code to reduce NPC health. }
+		afraid = true;
+	}
+
+	//if not afraid
+
+	//if afraid
 
 	if (alive){
 		// Allways update weapon
