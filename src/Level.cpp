@@ -54,10 +54,10 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 
 	// Set player spawn location
 	loadLevelData(savedata->levelToLoad);
-//	levelProps.setEnemyCount(0);
+	levelProps.setEnemyCount(0);
 
-	//npcHandler->add((NPC*)new NPCcow(660,360));
-	//npcHandler->add((NPC*)new NPCcow(650,370));
+	npcHandler->add((NPC*)new NPCcow(660,360));
+	npcHandler->add((NPC*)new NPCcow(650,370));
 }
 
 // Load level (use for textures)
