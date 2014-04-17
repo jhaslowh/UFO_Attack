@@ -406,7 +406,7 @@ void changeScreen(){
 void onDraw()
 {
 	// Clear screen
-	glClearColor(0.25f, 0.25f, 0.3f, 1.0f);
+	glClearColor(0.137f, 0.137f, 0.137f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// Draw Screen

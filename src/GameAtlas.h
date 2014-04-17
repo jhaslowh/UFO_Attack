@@ -27,6 +27,8 @@
 #define GI_NPC_SMG_FLASH 19
 #define GI_NPC_SNIPER 20
 #define GI_CRATE_LONG 21
+#define GI_NPC_COW_1 22
+#define GI_NPC_COW_2 23
 
 class GameAtlas : public TextureAtlas
 {

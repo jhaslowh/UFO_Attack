@@ -58,6 +58,11 @@ void GameAtlas::load(){
 	// SCenery crate long 
 	vcg->addFrame(209.0f, 1.0f,100.0f, 10.0f);
 
+	// NPC Cow 1 
+	vcg->addFrame(1.0f, 886.0f, 50.0f, 35.0f);
+	// NPC Cow 2
+	vcg->addFrame(52.0f, 886.0f, 50.0f, 35.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

@@ -63,6 +63,10 @@ bool NPCHandler::addByName(std::string name, float x, float y){
 		add(new NPCSniperSoldier(x,y));
 		return true;
 	}
+	else if (name.compare("cow") == 0){
+		add(new NPCcow(x,y));
+		return true;
+	}
 	return false;
 }
 

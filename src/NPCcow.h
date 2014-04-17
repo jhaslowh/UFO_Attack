@@ -1,4 +1,5 @@
 #pragma once
+//#include <iostream>
 #include "NPCBasicCollision.h"
 
 class NPCcow :	public NPCBasicCollision
@@ -15,8 +16,6 @@ class NPCcow :	public NPCBasicCollision
 	float cframeTime;
 	bool afraid; 
 
-
-
 public:
 	NPCcow(float x, float y);
 	virtual ~NPCcow();
@@ -31,5 +30,9 @@ public:
 	void goLeft();
 	void goRight();
 	bool isPlayerToLeft(Player* player);
+	
+	// Damage the npc by sent damage amout.
+	// Will set npc to !alive if too much damage taken
+	virtual void damage(float amount);
 };
 
