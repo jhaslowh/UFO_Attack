@@ -98,9 +98,15 @@ void NPCSniperSoldier::update(float deltaTime, Handlers* handlers){
 
 	if (alive){
 		// Allways update weapon
-		weapon->update(deltaTime, 
-			locX - originX + armOffsetX, 
-			locY - originY + armOffsetY);
+		if (direcX > 0)
+			weapon->update(deltaTime, 
+				locX - originX + armOffsetX, 
+				locY - originY + armOffsetY);
+		else 
+			weapon->update(deltaTime, 
+				locX - originX + (width - armOffsetX), 
+				locY - originY + armOffsetY);
+
 
 		if (!beingAbducted){
 			// Update weapon

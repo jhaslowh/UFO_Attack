@@ -27,6 +27,8 @@
     <ClInclude Include="NPCSniper.h" />
     <ClInclude Include="NPCSniperSoldier.h" />
     <ClInclude Include="NPCSoldier.h" />
+    <ClInclude Include="NPCStinger.h" />
+    <ClInclude Include="NPCStingerSoldier.h" />
     <ClInclude Include="TallCrate.h" />
     <ClInclude Include="UICreditsBox.h" />
     <ClInclude Include="UIEquipBox.h" />
@@ -113,6 +115,8 @@
     <ClCompile Include="NPCSniper.cpp" />
     <ClCompile Include="NPCSniperSoldier.cpp" />
     <ClCompile Include="NPCSoldier.cpp" />
+    <ClCompile Include="NPCStinger.cpp" />
+    <ClCompile Include="NPCStingerSoldier.cpp" />
     <ClCompile Include="TallCrate.cpp" />
     <ClCompile Include="UICreditsBox.cpp" />
     <ClCompile Include="UIEquipBox.cpp" />

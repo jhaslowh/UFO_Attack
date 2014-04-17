@@ -1,10 +1,10 @@
-#include "NPCSoldier.h"
+#include "NPCStingerSoldier.h"
 
 
-NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
+NPCStingerSoldier::NPCStingerSoldier(float x, float y) : NPCBasicCollision()
 {
 	// Basic NPC Properties
-	stype = "soldier";
+	stype = "stinger";
 	locX = x;
 	locY = yo = y;
 	width = 50.0f;
@@ -22,9 +22,9 @@ NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
 
 	// Movement properties
 	direcX = 1.0f;
-	speed = 140.0f;
-	minDistanceTFlop = 150.0f;
-	maxDistanceTFlop = 400.0f;
+	speed = 100.0f;
+	minDistanceTFlop = 100.0f;
+	maxDistanceTFlop = 300.0f;
 	distanceTillFlop = 200.0f;
 	currentDistance = 0.0f;
 
@@ -47,36 +47,54 @@ NPCSoldier::NPCSoldier(float x, float y) : NPCBasicCollision()
 	armRotation = 30.0f;
 
 	// Weapon properties 
-	weapon = (Weapon*)new NPCSMG();
-	weapon->setIsPlayerWeapon(false);
-	weaponRange = 300.0f;
+	weapon = (Weapon*)new NPCStinger();
+	weaponRange = 600.0f;
+	playerInRange = false;
+	caquireTime = 0.0f;
+	aquireTime = 1.0f;
 }
 
-NPCSoldier::~NPCSoldier(){}
+NPCStingerSoldier::~NPCStingerSoldier(){}
 
 // Update movement of the NPC 
 // This method should set the movement values for the npc.
-void NPCSoldier::updateMovement(float deltaTime, Handlers* handlers){
+void NPCStingerSoldier::updateMovement(float deltaTime, Handlers* handlers){
 	NPCBasicCollision::updateMovement(deltaTime, handlers);
 
 	if (alive && !beingAbducted){
-		nextX = locX + (speed * direcX * deltaTime);
+		// Walk if not shooting 
+		if (!playerInRange){
+			nextX = locX + (speed * direcX * deltaTime);
 
-		// Flop soldier
-		currentDistance += speed * deltaTime;
-		if (currentDistance > distanceTillFlop){
-			distanceTillFlop = minDistanceTFlop + 
-				(rand() % (int)(maxDistanceTFlop - minDistanceTFlop)); 
-			currentDistance = 0.0f;
-			direcX = -direcX;
+			// Flop soldier
+			currentDistance += speed * deltaTime;
+			if (currentDistance > distanceTillFlop){
+				distanceTillFlop = minDistanceTFlop + 
+					(rand() % (int)(maxDistanceTFlop - minDistanceTFlop)); 
+				currentDistance = 0.0f;
+				direcX = -direcX;
+			}
+
+			// Update walk frames 
+			cframeTime += deltaTime;
+			if (cframeTime > frameRate){
+				cframeTime = 0.0f;
+				cframe++;
+				if (cframe >= frames)
+					cframe = 0;
+			}
 		}
+		else 
+			// Set current frame to 0 if not shooting so NPC
+			// doesn't walk in place. 
+			cframe = 0;
 	}
 }
 
 // Update game state of the npc object
 // Do any non movement or collision detection updates
 // (weapons and the like) 
-void NPCSoldier::update(float deltaTime, Handlers* handlers){
+void NPCStingerSoldier::update(float deltaTime, Handlers* handlers){
 	NPCBasicCollision::update(deltaTime, handlers);
 
 	if (alive){
@@ -91,42 +109,39 @@ void NPCSoldier::update(float deltaTime, Handlers* handlers){
 				locY - originY + armOffsetY);
 
 		if (!beingAbducted){
-			// Update frames 
-			cframeTime += deltaTime;
-			if (cframeTime > frameRate){
-				cframeTime = 0.0f;
-				cframe++;
-				if (cframe >= frames)
-					cframe = 0;
-			}
-
-			// ------------------------------
 			// Update weapon
-			// ------------------------------
 			Player* player = (Player*)handlers->player;
-		
+			UFO* ufo = player->ufo;
 
 			// Try and attack player 
 			if (player->isInUFO() && 
-				dist(locX, locY, player->ufo->getCenterX(), player->ufo->getCenterY()) < weaponRange){
-				// Try to fire at ufo
-				if ((player->ufo->getX() > locX && direcX > 0.0f) || 
-					(player->ufo->getX() < locX && direcX < 0.0f) ){
-					weapon->npcFire(player->ufo->getCenterX(), player->ufo->getCenterY(), handlers);
+				dist(locX, locY, ufo->getCenterX(), ufo->getCenterY()) < weaponRange &&
+				((ufo->getX() > locX && direcX > 0.0f) || 
+				(ufo->getX() < locX && direcX < 0.0f) )){
+
+				// Aquire Target 
+				playerInRange = true;
+				caquireTime += deltaTime;
+
+				// Fire when target aquired 
+				if (caquireTime >= aquireTime){
+					// Try to fire at player 
+					weapon->npcFire(ufo->getCenterX(), ufo->getCenterY(), handlers);
 				}
-			}
-			else if (!player->isInUFO() && 
-				dist(locX, locY, player->getCenterX(), player->getCenterY()) < weaponRange){
-				// Try to fire at player 
-				if ((player->getX() > locX && direcX > 0.0f) || 
-					(player->getX() < locX && direcX < 0.0f) ){
-					weapon->npcFire(player->getCenterX(), player->getCenterY(), handlers);
+				else {
+					// These need to be called, otherwise the weapon will glitch
+					// while the npc is aquiring target. 
+					weapon->setRotation(0.0f);
+					weapon->setFacingDirec(direcX > 0.0f);
+					weapon->setRotationByTarget(ufo->getCenterX(), ufo->getCenterY());
 				}
 			}
 			else {
 				// Reset gun if can't find target
 				weapon->setRotation(0.0f);
 				weapon->setFacingDirec(direcX > 0.0f);
+				playerInRange = false;
+				caquireTime = 0.0f;
 			}
 
 			armRotation = weapon->getRotation();
@@ -135,7 +150,7 @@ void NPCSoldier::update(float deltaTime, Handlers* handlers){
 }
 
 // Draw object to the screen
-void NPCSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
+void NPCStingerSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 	NPCBasicCollision::draw(mgl, mGame);
 	
 	if (alive){
@@ -173,7 +188,7 @@ void NPCSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 
 
 // Called when the NPC runs into a wall
-void NPCSoldier::hitWall(){
+void NPCStingerSoldier::hitWall(){
 	NPCBasicCollision::hitWall();
 
 	direcX = -direcX;

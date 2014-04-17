@@ -253,6 +253,12 @@
     <ClCompile Include="NPCcow.cpp">
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
+    <ClCompile Include="NPCStingerSoldier.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCStinger.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -506,6 +512,12 @@
     </ClInclude>
     <ClInclude Include="NPCcow.h">
       <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCStingerSoldier.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCStinger.h">
+      <Filter>Header Files\game\weap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

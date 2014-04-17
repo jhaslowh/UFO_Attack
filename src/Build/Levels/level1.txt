@@ -5,7 +5,7 @@ PlayerX
 PlayerY
 0
 LevelLeft
--1458.33
+-1458
 LevelRight
 3550
 LevelTop
@@ -32,7 +32,7 @@ x y
 1000;510
 1240;500
 1400;500
-3619.33;489.333
+3619;489
 end
  
 scenery
@@ -50,5 +50,6 @@ end
  
 npcs
 x y type
--364.999;500;sniper
+-245.599;500;sniper
+103.325;559.388;stinger
 end

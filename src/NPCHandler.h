@@ -2,6 +2,7 @@
 #include "NPC.h"
 #include "NPCSoldier.h"
 #include "NPCSniperSoldier.h"
+#include "NPCStingerSoldier.h"
 #include "NPCcow.h"
 
 class NPCHandler
