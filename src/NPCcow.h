@@ -1,6 +1,5 @@
 #pragma once
 #include "NPCBasicCollision.h"
-#include "NPCSMG.h"
 
 class NPCcow :	public NPCBasicCollision
 {
@@ -13,15 +12,6 @@ class NPCcow :	public NPCBasicCollision
 	int cframe;
 	float frameRate;
 	float cframeTime;
-
-	// Arm
-	float armOffsetX, armOffsetY;
-	float armOriginX, armOriginY;
-	float armRotation;
-	
-	Weapon* weapon;
-	float weaponRange;
-
 	bool afraid; 
 
 

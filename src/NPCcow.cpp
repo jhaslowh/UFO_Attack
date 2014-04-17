@@ -36,19 +36,6 @@ NPCcow::NPCcow(float x, float y) : NPCBasicCollision()
 	frameRate = .1f;
 	cframeTime = 0.0f;
 
-	// Arm 
-	armOffsetX = 23.0f;
-	armOffsetY = 25.0f;
-	armOriginX = 2.5f;
-	armOriginY = 3.0f;
-	armRotation = 30.0f;
-
-	// Weapon properties 
-	weapon = (Weapon*)new NPCSMG();
-	weapon->setIsPlayerWeapon(false);
-	weaponRange = 300.0f;
-
-
 	afraid = false;
 
 
@@ -85,11 +72,6 @@ void NPCcow::update(float deltaTime, Handlers* handlers){
 	//if afraid
 
 	if (alive){
-		// Allways update weapon
-		weapon->update(deltaTime, 
-			locX - originX + armOffsetX, 
-			locY - originY + armOffsetY);
-
 		if (!beingAbducted){
 			// Update frames 
 			cframeTime += deltaTime;
@@ -102,32 +84,6 @@ void NPCcow::update(float deltaTime, Handlers* handlers){
 
 			// Update weapon
 			Player* player = (Player*)handlers->player;
-		
-
-			// Try and attack player 
-			if (player->isInUFO() && 
-				dist(locX, locY, player->ufo->getCenterX(), player->ufo->getCenterY()) < weaponRange){
-				// Try to fire at ufo
-				if ((player->ufo->getX() > locX && direcX > 0.0f) || 
-					(player->ufo->getX() < locX && direcX < 0.0f) ){
-					weapon->npcFire(player->ufo->getCenterX(), player->ufo->getCenterY(), handlers);
-				}
-			}
-			else if (!player->isInUFO() && 
-				dist(locX, locY, player->getCenterX(), player->getCenterY()) < weaponRange){
-				// Try to fire at player 
-				if ((player->getX() > locX && direcX > 0.0f) || 
-					(player->getX() < locX && direcX < 0.0f) ){
-					weapon->npcFire(player->getCenterX(), player->getCenterY(), handlers);
-				}
-			}
-			else {
-				// Reset gun if can't find target
-				weapon->setRotation(0.0f);
-				weapon->setFacingDirec(direcX > 0.0f);
-			}
-
-			armRotation = weapon->getRotation();
 		}
 	}
 }
@@ -140,13 +96,6 @@ void NPCcow::draw(GLHandler* mgl, GameAtlas* mGame){
 		if (direcX > 0){
 			// Draw body 
 			mGame->draw(mgl, imageID+cframe,locX,locY,scale, rotation, originX, originY);
-			// Draw weapon 
-			weapon->draw(mgl, mGame);
-			// Draw arm 
-			mGame->draw(mgl, GI_NPC_SOLDIER_ARM,
-				locX-originX+armOffsetX,
-				locY-originY+armOffsetY,
-				1.0f,armRotation,armOriginX,armOriginY);
 		}
 		else {
 			glCullFace(GL_FRONT);
@@ -154,16 +103,6 @@ void NPCcow::draw(GLHandler* mgl, GameAtlas* mGame){
 			mGame->drawScale2(mgl, imageID+cframe,locX,locY,-scale,scale, rotation, originX, originY);
 			glCullFace(GL_BACK);
 
-			// Draw weapon 
-			weapon->draw(mgl, mGame);
-
-			// Draw arm 
-			glCullFace(GL_FRONT);
-			mGame->drawScale2(mgl, GI_NPC_SOLDIER_ARM,
-				locX-originX+(width-armOffsetX),
-				locY-originY+armOffsetY,
-				-1.0f,1.0f,armRotation,armOriginX,armOriginY);
-			glCullFace(GL_BACK);
 		}
 
 	}
