@@ -259,6 +259,12 @@
     <ClCompile Include="NPCStinger.cpp">
       <Filter>Source Files\game\weap</Filter>
     </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Source Files\game\expl</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplHandler.cpp">
+      <Filter>Source Files\game\expl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -519,6 +525,12 @@
     <ClInclude Include="NPCStinger.h">
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>Header Files\game\expl</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplHandler.h">
+      <Filter>Header Files\game\expl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
@@ -595,6 +607,12 @@
     </Filter>
     <Filter Include="Source Files\ui\screen">
       <UniqueIdentifier>{9b3de1d5-3c4c-4392-b57b-09c9e7933d57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game\expl">
+      <UniqueIdentifier>{65367d15-2dc4-4598-973f-9479c7803fb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\expl">
+      <UniqueIdentifier>{6d2783c6-6f76-49f5-b8c8-11df5180d619}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

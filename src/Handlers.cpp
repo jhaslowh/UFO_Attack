@@ -9,6 +9,7 @@ Handlers::Handlers()
 	camera = NULL;
 	levelProps = NULL;
 	player = NULL;
+	explHander = NULL;
 }
 
 Handlers::~Handlers(){}

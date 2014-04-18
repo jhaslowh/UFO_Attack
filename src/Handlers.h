@@ -10,6 +10,7 @@ public:
 	void* npcHandler;
 	void* projHandler;
 	void* sceneryHandler;
+	void* explHander;
 	Ground* ground;
 	void* camera;
 	void* levelProps;

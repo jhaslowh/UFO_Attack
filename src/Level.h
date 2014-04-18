@@ -1,39 +1,25 @@
 #pragma once
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <vector>
 #include "Camera2D.h"
 #include "FileHelper.h"
+#include "LevelIO.h"
 #include "GameAtlas.h"
 #include "GLColors.h"
 #include "GLHandler.h"
 #include "Ground.h"
 #include "Handlers.h"
 #include "KeyHandler.h"
-#include "MouseHandler.h"
-#include "LevelProperties.h"
-#include "NPCHandler.h"
-#include "NPCSoldier.h"
-#include "Player.h"
 #include "ProjectileHandler.h"
 #include "SceneryHandler.h"
+#include "ExplHandler.h"
+#include "MouseHandler.h"
+#include "NPCHandler.h"
+#include "LevelProperties.h"
+#include "Player.h"
 #include "Sky.h"
 #include "TextureAtlas.h"
-#include "Tree.h"
-#include "Fence.h"
-#include "Crate.h"
-#include "TallCrate.h"
-#include "LongCrate.h"
-#include "HayBale.h"
-#include "Sign.h"
-#include "LevelIO.h"
-#include <string>
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include "NPCcow.h"
-
 
 class Level
 {
@@ -45,6 +31,7 @@ class Level
 	ProjectileHandler* projHandler;
 	Camera2D camera;
 	LevelProperties levelProps;
+	ExplHandler* explHandler;
 	Sky sky;
 
 	// States 

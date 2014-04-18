@@ -8,6 +8,7 @@ Level::Level(){
 	sceneryHandler = NULL;
 	npcHandler = NULL;
 	projHandler = NULL;
+	explHandler = NULL;
 	loaded = false;
 	victory = false;
 }
@@ -18,6 +19,7 @@ Level::~Level(){
 	delete sceneryHandler;
 	delete projHandler;
 	delete npcHandler;
+	delete explHandler;
 }
 
 // initialize level
@@ -37,6 +39,8 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	ground = new Ground(GROUND_CEMENT);
 	// Create proj handler 
 	projHandler = new ProjectileHandler();
+	// Create explosion handler
+	explHandler = new ExplHandler();
 
 	// Give screen size to level properties 
 	levelProps.setScreenWidth(screen_width);
@@ -50,6 +54,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	handlers.player = player;
 	handlers.projHandler = projHandler;
 	handlers.npcHandler = npcHandler;
+	handlers.explHander = explHandler;
 
 	// Load level from file 
 	loadLevel(&handlers, savedata->levelToLoad);
@@ -77,18 +82,23 @@ void Level::unload(){
 // Update level state
 void Level::update(float deltaTime){
 	sky.update(deltaTime);
-	sceneryHandler->update(deltaTime, &handlers);
-	float n = (float)npcHandler->update(deltaTime, &handlers);
-	// Check for victory
-	if (levelProps.getEnemyCount() != 0 && (n/levelProps.getEnemyCount()) < .1f)
-		victory = true;
+
 	projHandler->updateProjectiles(deltaTime, &handlers);
+	explHandler->update(deltaTime);
 	
 	// Set player enemy size for hud
-	player->setEnemyBarScale(n/levelProps.getEnemyCount());
 	player->update(deltaTime, &handlers);
 	player->checkCollision(&handlers);
 	player->update2(deltaTime, &handlers);
+
+	sceneryHandler->update(deltaTime, &handlers);
+	
+	// Update enemies and check for victory 
+	float n = (float)npcHandler->update(deltaTime, &handlers);
+	if (levelProps.getEnemyCount() != 0 && (n/levelProps.getEnemyCount()) < .1f)
+		victory = true;
+	// Tell player the enemy count to draw 
+	player->setEnemyBarScale(n/levelProps.getEnemyCount());
 
 	camera.update(deltaTime);
 }
@@ -138,7 +148,8 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	mgl->setFlatColor(COLOR_WHITE);
 	sceneryHandler->draw(mgl, &gameAtlas);
 	npcHandler->draw(mgl, &gameAtlas);
-	projHandler->draw(mgl, &gameAtlas);			
+	projHandler->draw(mgl, &gameAtlas);		
+	explHandler->draw(mgl, &gameAtlas);
 	player->draw(mgl);							
 	ground->draw(mgl);							
 	
