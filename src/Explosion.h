@@ -1,0 +1,91 @@
+#pragma once
+#include "GLHandler.h"
+#include "TextureAtlas.h"
+#include "Collision.h"
+
+#define PLAYER_EXP 0
+#define ENEMY_EXP 1
+
+class Explosion
+{
+protected:
+
+	// --- Drawing 
+	// Image id to draw 
+	int imageID;
+	float locX, locY;
+	float originX, originY;
+	float rotation;
+
+	// --- Exploding
+	// Damage of explosion 
+	float damage;
+	// Explosion range 
+	float range;
+	// Explosion time
+	float explTime;			// Time explosion is active for
+	float cexplTime;		// Current explosion time 
+
+	// --- Animation
+	bool animates;
+	int frames;
+	int cframe;
+	float frameTime;
+	float cframeTime;
+
+	// --- States/Types
+	bool valid;
+	int type;
+
+public:
+	Explosion();
+	~Explosion();
+
+	// Clone this explosion off the sent one 
+	void clone(Explosion* e);
+
+	// ------------------------
+	// Getters and Setters 
+	// ------------------------
+
+	// Returns explosion damage
+	float getDamage();
+
+	// Set exp location 
+	void setLocation(float x, float y);
+
+	// Set exp type
+	void setType(int t);
+
+	// Returns explosion type 
+	int getType();
+
+	// Returns true if fired by player
+	bool firedByPlayer();
+	
+	// Returns true if fired by enemy 
+	bool firedByEnemy();
+	
+	// ------------------------
+	// Member functions 
+	// ------------------------
+
+	// Update explosion state
+	void update(float deltaTime);
+
+	// Draw Explosion 
+	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+
+	// Draw Explosion Light
+	void drawLight(GLHandler* mgl, TextureAtlas* mAtlas);
+
+	// Check if explosion is valid
+	bool isValid();
+
+	// Check if explosion is active
+	bool active(); 
+
+	// Check if position is in range
+	bool inRange(float x, float y);
+};
+

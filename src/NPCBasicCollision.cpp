@@ -147,7 +147,7 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 				itr = itr->next;
 			}
 		}
-
+		
 		// -----------------------------------
 		// Check player collision with scenery
 		// -----------------------------------
@@ -235,7 +235,7 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 			nextX = locX;
 		if (!ypass)
 			nextY = locY;
-
+			
 		// ---------------------------------------------
 		// Check NPC collision with player projectiles  
 		// ---------------------------------------------
