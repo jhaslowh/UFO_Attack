@@ -25,6 +25,11 @@ Explosion::Explosion()
 	// --- States
 	valid = false;
 	type = PLAYER_EXP;
+	next = NULL;
+}
+
+Explosion::Explosion(Explosion* e){
+	clone(e);
 }
 
 Explosion::~Explosion()
@@ -58,6 +63,7 @@ void Explosion::clone(Explosion* e){
 	// --- States
 	valid = true;
 	type = e->type;
+	next = e->next;
 }
 	
 // Returns explosion damage

@@ -38,7 +38,10 @@ protected:
 	int type;
 
 public:
+	Explosion* next;
+
 	Explosion();
+	Explosion(Explosion* e);
 	~Explosion();
 
 	// Clone this explosion off the sent one 
