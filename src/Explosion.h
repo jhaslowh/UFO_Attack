@@ -88,7 +88,7 @@ public:
 	// Check if explosion is active
 	bool active(); 
 
-	// Check if position is in range
-	bool inRange(float x, float y);
+	// Check if rec is in range
+	bool inRadius(Rec* r);
 };
 

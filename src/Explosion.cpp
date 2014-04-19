@@ -141,7 +141,12 @@ bool Explosion::active(){
 	return cexplTime < explTime;
 }
 
-// Check if position is in range
-bool Explosion::inRange(float x, float y){
-	return dist(x,y,locX,locY) < range;
+
+// Check if rec is in range
+bool Explosion::inRadius(Rec* r){
+	return 
+		!(r->bottom() < locY - range ||
+		  r->getY()   > locY + range ||
+		  r->right()  < locX - range ||
+		  r->getX()   > locY + range);
 }
