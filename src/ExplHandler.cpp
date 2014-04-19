@@ -21,6 +21,8 @@ ExplHandler::~ExplHandler()
 // This method will clone the sent pointer. So 
 // do not send it pointers that you do not delete. 
 void ExplHandler::add(Explosion* e){
+	if (e == NULL) return;
+
 	// Check if list is empty 
 	if (head == NULL){
 		head = new Explosion(e);
@@ -85,7 +87,7 @@ void ExplHandler::update(float deltaTime){
 }
 
 // Draw explosion objects 
-void ExplHandler::draw(GLHandler* mgl, TextureAtlas* mAtlas){
+void ExplHandler::draw(GLHandler* mgl, GameAtlas* mAtlas){
 	Explosion* itr = head;
 	while (itr != NULL){
 		itr->draw(mgl, mAtlas);

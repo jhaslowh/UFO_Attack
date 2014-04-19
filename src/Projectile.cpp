@@ -54,7 +54,9 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, flo
 }
 //builds a default typed projectile, not to be used with projectile, only in inheritance
 
-Projectile::~Projectile(){}
+Projectile::~Projectile(){
+	// Dont delete explosion pointer, it is not owned by this class 
+}
 
 // Clone all the properties from the sent projectiles into this one
 void Projectile::clone(Projectile* p){
@@ -84,6 +86,7 @@ void Projectile::clone(Projectile* p){
 	drawColor[1] = p->drawColor[1];
 	drawColor[2] = p->drawColor[2];
 	drawColor[3] = p->drawColor[3];
+	explosion = p->explosion;
 }
 
 void Projectile::reset()
@@ -199,6 +202,17 @@ void Projectile::collide(Point* p, Handlers* handlers, int collType)
 	// Kill if dies on impact
 	if (diesOnImpact)
 		alive = false;
+
+	// Add explosion to explosion list if explodes 
+	if (doesExplode){
+		// Reset the projectiles location
+		explosion->setLocation(currentX, currentY);
+		// Set fired by for projectile 
+		if (firedBy == PFB_PLAYER) explosion->setType(PLAYER_EXP);
+		else explosion->setType(ENEMY_EXP);
+		// Add to handler list 
+		((ExplHandler*)handlers->explHander)->add(explosion);
+	}
 }
 
 short Projectile::getProjectileType(){return projectileType;}
@@ -211,6 +225,7 @@ int Projectile::getUID(){return UID;}
 bool Projectile::getAlive(){return alive;}
 float Projectile::getDamage(){return damage;}
 int Projectile::getFiredBy(){return firedBy;}
+Explosion* Projectile::getExplosion(){return explosion;}
 void Projectile::setUID(int newUID){UID = newUID;}
 void Projectile::setAlive(bool value){alive = value;}
 void Projectile::setImageId(int value){imageId = value;}
@@ -225,6 +240,9 @@ void Projectile::setDrawColor(GLfloat* color){
 	drawColor[1] = color[1];
 	drawColor[2] = color[2];
 	drawColor[3] = color[3];
+}
+void Projectile::setExplosion(Explosion* e){
+	explosion = e;
 }
 
 // Setup basic values for all variables 
@@ -256,4 +274,5 @@ void Projectile::initValues(){
 	drawColor[1] = 1.0f;
 	drawColor[2] = 1.0f;
 	drawColor[3] = 1.0f;
+	explosion = NULL;
 }

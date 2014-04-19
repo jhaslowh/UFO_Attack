@@ -1,5 +1,7 @@
 #pragma once
 #include "glew.h"
+#include "Explosion.h"
+
 class ProjectileTemplate
 {
 public:
@@ -10,6 +12,7 @@ public:
 	float glowImageOrigin[2]; 
 	GLfloat drawColor[4];
 	bool explodes;
+	Explosion* explosion;
 
 	ProjectileTemplate();
 	~ProjectileTemplate();

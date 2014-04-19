@@ -7,6 +7,8 @@
 #include "Point.h"
 #include "LevelProperties.h"
 #include "Camera2D.h"
+#include "Explosion.h"
+#include "ExplHandler.h"
 
 //Projectile Types Include
 //Type 1 = Bullet
@@ -68,6 +70,7 @@ protected:
 	// -----------
 	bool alive;
 	bool doesExplode;
+	Explosion* explosion;
 	bool isColliding;
 	// Set to true to kill the projectile on impact 
 	bool diesOnImpact;
@@ -113,6 +116,7 @@ public:
 	bool getAlive();
 	float getDamage();
 	int getFiredBy();
+	Explosion* getExplosion();
 	//Getter methods, 
 
 	void setUID(int newUID);
@@ -125,6 +129,7 @@ public:
 	void setFiredBy(int value);
 	void setExplodes(bool value);
 	void setDrawColor(GLfloat* color);
+	void setExplosion(Explosion* e);
 	//Setter methods 
 
 private:

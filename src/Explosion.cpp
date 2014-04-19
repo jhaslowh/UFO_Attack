@@ -120,14 +120,14 @@ void Explosion::update(float deltaTime){
 }
 
 // Draw Explosion 
-void Explosion::draw(GLHandler* mgl, TextureAtlas* mAtlas){
+void Explosion::draw(GLHandler* mgl, GameAtlas* mAtlas){
 	if (valid && ((animates && cframe < frames) || !animates)){
 		mAtlas->draw(mgl,imageID + cframe, locX, locY, 1.0f, rotation, originX, originY);
 	}
 }
 
 // Draw Explosion Light
-void Explosion::drawLight(GLHandler* mgl, TextureAtlas* mAtlas){
+void Explosion::drawLight(GLHandler* mgl, GameAtlas* mAtlas){
 	// TODO 
 }
 

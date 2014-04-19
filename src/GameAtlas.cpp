@@ -65,6 +65,17 @@ void GameAtlas::load(){
 	// NPC Cow 2
 	vcg->addFrame(52.0f, 886.0f, 50.0f, 35.0f);
 
+	// Missile
+	vcg->addFrame(980.0f, 1.0f, 20.0f, 11.0f);
+	// Basic Expl 1 
+	vcg->addFrame(1.0f, 103.0f, 60.0f, 60.0f);
+	// Basic Expl 2
+	vcg->addFrame(63.0f, 103.0f, 60.0f, 60.0f);
+	// Basic Expl 3 
+	vcg->addFrame(125.0f, 103.0f, 60.0f, 60.0f);
+	// Basic Expl 4 
+	vcg->addFrame(187.0f, 103.0f, 60.0f, 60.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

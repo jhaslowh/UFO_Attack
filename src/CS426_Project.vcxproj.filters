@@ -265,6 +265,9 @@
     <ClCompile Include="ExplHandler.cpp">
       <Filter>Source Files\game\expl</Filter>
     </ClCompile>
+    <ClCompile Include="BasicExplosion.cpp">
+      <Filter>Source Files\game\expl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -529,6 +532,9 @@
       <Filter>Header Files\game\expl</Filter>
     </ClInclude>
     <ClInclude Include="ExplHandler.h">
+      <Filter>Header Files\game\expl</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicExplosion.h">
       <Filter>Header Files\game\expl</Filter>
     </ClInclude>
   </ItemGroup>

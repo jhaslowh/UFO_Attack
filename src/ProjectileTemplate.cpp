@@ -15,9 +15,12 @@ ProjectileTemplate::ProjectileTemplate()
 	drawColor[1] = 1.0f;
 	drawColor[2] = 1.0f;
 	drawColor[3] = 1.0f;
+	explosion = NULL;
 }
 
-ProjectileTemplate::~ProjectileTemplate(){}
+ProjectileTemplate::~ProjectileTemplate(){
+	delete explosion;
+}
 
 // Set the color for the template
 void ProjectileTemplate::setColor(float r, float g, float b, float a){

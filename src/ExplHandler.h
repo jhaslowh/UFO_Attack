@@ -22,6 +22,6 @@ public:
 	void update(float deltaTime);
 
 	// Draw explosion objects 
-	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+	void draw(GLHandler* mgl, GameAtlas* mAtlas);
 };
 

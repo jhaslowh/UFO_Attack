@@ -1,6 +1,6 @@
 #pragma once
 #include "GLHandler.h"
-#include "TextureAtlas.h"
+#include "GameAtlas.h"
 #include "Collision.h"
 
 #define PLAYER_EXP 0
@@ -77,10 +77,10 @@ public:
 	void update(float deltaTime);
 
 	// Draw Explosion 
-	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+	void draw(GLHandler* mgl, GameAtlas* mAtlas);
 
 	// Draw Explosion Light
-	void drawLight(GLHandler* mgl, TextureAtlas* mAtlas);
+	void drawLight(GLHandler* mgl, GameAtlas* mAtlas);
 
 	// Check if explosion is valid
 	bool isValid();

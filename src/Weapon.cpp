@@ -228,11 +228,14 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		p->setExplodes(projTemp.explodes);
 		p->setDrawColor(projTemp.drawColor);
 		p->setDamage(damage/(float)bulletsPerShot);
-
-		if (isPlayerWeapon)
+		if (projTemp.explodes)
+			p->setExplosion(projTemp.explosion);
+		if (isPlayerWeapon){
 			p->setFiredBy(PFB_PLAYER);
-		else 
+		}
+		else {
 			p->setFiredBy(PFB_ENEMY);
+		}
 
 		((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(p));
 	}

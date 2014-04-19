@@ -30,6 +30,11 @@
 #define GI_CRATE_LONG 22
 #define GI_NPC_COW_1 23
 #define GI_NPC_COW_2 24
+#define GI_MISSILE 25
+#define GI_BASIC_EXPL_1 26
+#define GI_BASIC_EXPL_2 27
+#define GI_BASIC_EXPL_3 28
+#define GI_BASIC_EXPL_4 29
 
 class GameAtlas : public TextureAtlas
 {

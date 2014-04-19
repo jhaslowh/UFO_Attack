@@ -20,7 +20,7 @@ NPCStinger::NPCStinger() : Weapon()
 	firetype = FIRETYPE_SINGLE;
 	barrelOffset[0] = 27.0f;
 	barrelOffset[1] = 1.0f;
-	damage = 20.0f;
+	damage = 0.0f;
 	isPlayerWeapon = false;
 	usesAmmo = false;
 
@@ -32,14 +32,15 @@ NPCStinger::NPCStinger() : Weapon()
 
 	// Setup projectile 
 	projTemp.speed = 1000.0f;
-	projTemp.imageId = GI_PROJ;
-	projTemp.imageOrigin[0] = 5.0f;
-	projTemp.imageOrigin[1] = 2.0f;
-	projTemp.glowImageId = GI_PROJ_GLOW;
-	projTemp.glowImageOrigin[0] = 7.5f; 
-	projTemp.glowImageOrigin[1] = 2.0f; 
-	projTemp.setColor(.5f, .5f, .5f, 1.0f);
-	projTemp.explodes = false;
+	projTemp.imageId = GI_MISSILE;
+	projTemp.imageOrigin[0] = 10.0f;
+	projTemp.imageOrigin[1] = 5.5f;
+	projTemp.glowImageId = GI_MISSILE;
+	projTemp.glowImageOrigin[0] = 10.0f; 
+	projTemp.glowImageOrigin[1] = 5.5f; 
+	projTemp.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+	projTemp.explodes = true;
+	projTemp.explosion = new BasicExplosion();
 }
 
 NPCStinger::~NPCStinger(){}
