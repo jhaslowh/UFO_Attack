@@ -6,7 +6,6 @@
 #include "MouseHandler.h"
 #include "Camera2D.h"
 #include "LevelProperties.h"
-#include "Projectile.h"
 #include "ProjectileHandler.h"
 
 class UFO

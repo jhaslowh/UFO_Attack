@@ -1,17 +1,14 @@
 #include "ProjectileHandler.h"
-//almost did ifndef/endif out of habit
 
 ProjectileHandler::ProjectileHandler()
 {
-	// Make new projectile list
-	projectiles = std::list<Projectile*>();
-	// Fill with dead projectiles 
-	for (int i = 0; i < 100; i++)
-		projectiles.push_back(new Projectile());
-	
-	addIndex = projectiles.begin();
-
-	UIDIterator = 0;
+	// Make array 
+	size = 250;
+	lastActive = 0;
+	projs = new Projectile*[size];
+	for (int i = 0; i < size; i++){
+		projs[i] = new Projectile();
+	}
 }
 ProjectileHandler::~ProjectileHandler()
 {
@@ -19,82 +16,63 @@ ProjectileHandler::~ProjectileHandler()
 }
 //Constructor and Deconstructor
 
-
 // Returns the projectile list
-std::list<Projectile*> ProjectileHandler::getProjList(){return projectiles;}
+Projectile** ProjectileHandler::getProjList(){return projs;}
+
+// Return size
+int ProjectileHandler::getSize(){return size;}
+
+// Returns last active 
+int ProjectileHandler::getLastActive(){return lastActive;}
 
 //Pass in a constructor Projectile to be contained by the list
 void ProjectileHandler::addNewProjectile(Projectile* newProjectile)
 {
-	int skipped = 0;
-
-	// Add until dead or limit reached 
-	while (skipped < (int)projectiles.size()){
+	for (int i = 0; i < size; i++){
 		// If current projectile is dead, add in place
-		if (!(*addIndex)->getAlive()){
-			(*addIndex)->clone(newProjectile);
+		if (!projs[i]->getAlive()){
+			projs[i]->clone(newProjectile);
 			delete newProjectile;
-			addIndex++;
-			if (addIndex == projectiles.end())
-				addIndex = projectiles.begin();
 			return;
 		}
-		// If slot filled, check next slot 
-		else {
-			skipped++;
-			addIndex++;
-			if (addIndex == projectiles.end())
-				addIndex = projectiles.begin();
+
+		// Check if current is null
+		if (projs[i] == NULL){
+			projs[i] = new Projectile();
+			projs[i]->clone(newProjectile);
+			delete newProjectile;
+			return;
 		}
 	}
 
-	// If list filled, add to end 
-	newProjectile->setUID(UIDIterator);
-	projectiles.push_back(newProjectile);
-	UIDIterator++;
-}
-
-void ProjectileHandler::addProjectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode)
-{
-	// TODO implement
+	// NOTE: this will not add the projectile if there is no space in the array 
 }
 
 void ProjectileHandler::updateProjectiles(float deltaTime, Handlers* handlers)
 {
-	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
-	{
-		// Null check 
-		if (*myIterator != NULL && (*myIterator)->getAlive()){
-			(*myIterator)->determineNegligance();
-			if((*myIterator)->getNegligence())
-			{
-				//std::cout << "Negligable";
-				(*myIterator)->updateNegligableProjectile(deltaTime);
-			}
+	// Update 
+	lastActive = 0;
+	for (int i = 0; i < size; i++){
+		// Null and alive check 
+		if (projs[i] != NULL && projs[i]->getAlive()){
+			lastActive = i;
+			projs[i]->determineNegligance();
+			if(projs[i]->getNegligence())
+				projs[i]->updateNegligableProjectile(deltaTime);
 			else
-			{
-				//std::cout << "Physicsable";
-				(*myIterator)->updateProjectile(deltaTime, handlers);
-			}
+				projs[i]->updateProjectile(deltaTime, handlers);
+			projs[i]->checkCollision(deltaTime, handlers);
 		}
-	}
-}
-
-void ProjectileHandler::removeProjectile(Projectile* removeProjectile)
-{
-	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
-	{
-		if(*myIterator != NULL && *myIterator == removeProjectile && (*myIterator)->getUID() ==removeProjectile->getUID())
-			projectiles.erase(myIterator);
 	}
 }
 
 // Draw all projectiles 
 void ProjectileHandler::draw(GLHandler* mgl, TextureAtlas* mAtlas){
-	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
-	{
-		if(*myIterator != NULL)
-			(*myIterator)->draw(mgl, mAtlas);
+	for (int i = 0; i < size; i++){
+		// Null and alive check 
+		if (projs[i] != NULL && projs[i]->getAlive()){
+			projs[i]->draw(mgl, mAtlas);
+		}
 	}
 
 	// Reset flat color here instead of every time a projectile draws
@@ -103,10 +81,11 @@ void ProjectileHandler::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 
 // Draw all projectiles lights 
 void ProjectileHandler::drawLight(GLHandler* mgl, TextureAtlas* mAtlas){
-	for(std::list<Projectile*>::iterator myIterator = projectiles.begin(); myIterator != projectiles.end(); myIterator++)
-	{
-		if(*myIterator != NULL)
-			(*myIterator)->drawLight(mgl, mAtlas);
+	for (int i = 0; i < size; i++){
+		// Null and alive check 
+		if (projs[i] != NULL && projs[i]->getAlive()){
+			projs[i]->drawLight(mgl, mAtlas);
+		}
 	}
 
 	// Reset flat color here instead of every time a projectile draws
@@ -115,5 +94,10 @@ void ProjectileHandler::drawLight(GLHandler* mgl, TextureAtlas* mAtlas){
 
 void ProjectileHandler::cleanUp()
 {
-	projectiles.clear();
+	for (int i = 0; i < size; i++){
+		delete projs[i];
+		projs[i] = NULL;
+	}
+	delete[] projs;
+	projs = NULL;
 }

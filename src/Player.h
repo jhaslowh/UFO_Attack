@@ -19,6 +19,7 @@
 #include "SaveData.h"
 #include "StoreItems.h"
 #include "GLColors.h"
+#include "ProjectileHandler.h"
 
 #define GRAVITY 980.0f
 

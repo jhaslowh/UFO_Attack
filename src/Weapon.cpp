@@ -1,7 +1,6 @@
 #include "Weapon.h"
 
-
-Weapon::Weapon(void)
+Weapon::Weapon()
 {
 	imageid = -1;
 	locX = 0.0f;

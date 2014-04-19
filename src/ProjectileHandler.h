@@ -1,5 +1,4 @@
 #pragma once
-#include <list>
 #include "Projectile.h"
 #include "BeamProjectile.h"
 #include "BulletProjectile.h"
@@ -9,10 +8,13 @@
 class ProjectileHandler
 {
 private:
-	std::list<Projectile*> projectiles;
-	int UIDIterator;
+	// Current size of list
+	int size;
+	// Last active element in list 
+	int lastActive;
 
-	std::list<Projectile*>::iterator addIndex;
+	// List of projectiles 
+	Projectile** projs;
 
 public:
 	ProjectileHandler();
@@ -20,15 +22,19 @@ public:
 	//Constructor and Deconstructor
 
 	// Returns the projectile list
-	std::list<Projectile*> getProjList();
+	Projectile** getProjList();
 
+	// Return size
+	int getSize();
+
+	// Returns last active 
+	int getLastActive();
+
+	// Add new projectile to list of projectiles 
 	void addNewProjectile(Projectile* newProjectile);
-	void addProjectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode);
+	
+	// Update current projectile states 
 	void updateProjectiles(float deltaTime, Handlers* handlers);
-	void removeProjectile(Projectile* removeProjectile);
-	//main methods to interact with projectiles
-	//add projectile takes in same as constructor so it sets a current dead projectile to the new stats
-	//add new projectile actually creates a new projectile
 
 	// Draw all projectiles 
 	void draw(GLHandler* mgl, TextureAtlas* mAtlas);

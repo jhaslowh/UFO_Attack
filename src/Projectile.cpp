@@ -112,24 +112,6 @@ void Projectile::updateProjectile(float deltaTime, Handlers* handlers)
 	currentY+=yVector*deltaTime;
 	//cout << "yVector: " << yVector << " /n";
 	//cout << "currentY: " << currentY << " /n";
-
-	// Check if projectile should be drawn 
-	Camera2D* cam = (Camera2D*)handlers->camera;
-	LevelProperties* levelProps = (LevelProperties*)handlers->levelProps;
-	if (cam->toScreenX(currentX) > -50 && cam->toScreenX(currentX) < levelProps->getScreenWidth() + 50 &&
-		cam->toScreenY(currentY) > -50 && cam->toScreenY(currentY) < levelProps->getScreenHeight() + 50)
-		drawProj = true;
-	else 
-		drawProj = false;
-
-	// Fix projectile rotation 
-	rotation = (180.0f/3.14159f) * atan2(currentY - previousY, currentX - previousX);
-
-	// Check if projectile is outside level bounds, and if so, kill projectile.
-	if (currentX < levelProps->getLevelLeft() - 500 ||
-		currentX > levelProps->getLevelRight() + 500 ||
-		currentY > levelProps->getLevelBottom())
-		alive = false;
 }
 
 //This method does not need to be overloaded for different projectiles, 
@@ -141,7 +123,6 @@ void Projectile::updateNegligableProjectile(float deltaTime)
 	previousX = currentX;
 	currentX+=xVector*deltaTime;
 	currentY+=yVector*deltaTime;
-
 }
 
 //This will need to have some cases for each different kind of projectile, 
@@ -170,6 +151,26 @@ void Projectile::determineNegligance()
 	
 }
 
+// Check projectile collision 
+void Projectile::checkCollision(float deltaTime, Handlers* handlers){
+	// Check if projectile should be drawn 
+	Camera2D* cam = (Camera2D*)handlers->camera;
+	LevelProperties* levelProps = (LevelProperties*)handlers->levelProps;
+	if (cam->toScreenX(currentX) > -50 && cam->toScreenX(currentX) < levelProps->getScreenWidth() + 50 &&
+		cam->toScreenY(currentY) > -50 && cam->toScreenY(currentY) < levelProps->getScreenHeight() + 50)
+		drawProj = true;
+	else 
+		drawProj = false;
+
+	// Fix projectile rotation 
+	rotation = (180.0f/3.14159f) * atan2(currentY - previousY, currentX - previousX);
+
+	// Check if projectile is outside level bounds, and if so, kill projectile.
+	if (currentX < levelProps->getLevelLeft() - 500 ||
+		currentX > levelProps->getLevelRight() + 500 ||
+		currentY > levelProps->getLevelBottom())
+		alive = false;
+}
 
 // Draw projectile to screen
 void Projectile::draw(GLHandler* mgl, TextureAtlas* mAtlas){
@@ -221,15 +222,16 @@ float Projectile::getCurrentY(){return currentY;}
 float Projectile::getPrevX(){return previousX;}
 float Projectile::getPrevY(){return previousY;}
 bool Projectile::getNegligence(){return negligence;}
-int Projectile::getUID(){return UID;}
 bool Projectile::getAlive(){return alive;}
 float Projectile::getDamage(){return damage;}
 int Projectile::getFiredBy(){return firedBy;}
 Explosion* Projectile::getExplosion(){return explosion;}
-void Projectile::setUID(int newUID){UID = newUID;}
+
+void Projectile::setType(short type){projectileType = type;}
 void Projectile::setAlive(bool value){alive = value;}
 void Projectile::setImageId(int value){imageId = value;}
 void Projectile::setImageGlowId(int value){imageGlowId = value;}
+void Projectile::setPosition(float x, float y){currentX = x, currentY = y;}
 void Projectile::setOffset(float x, float y){offsetX = x; offsetY = y;}
 void Projectile::setGlowOffset(float x, float y){glowOffsetX = x; glowOffsetY = y;}
 void Projectile::setDamage(float value){damage = value;}

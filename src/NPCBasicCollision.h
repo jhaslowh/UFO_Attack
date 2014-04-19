@@ -1,7 +1,6 @@
 #pragma once
 #include "NPC.h"
 #include "LevelProperties.h"
-#include "ProjectileHandler.h"
 #include "SceneryHandler.h"
 #include "Collision.h"
 

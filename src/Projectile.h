@@ -48,7 +48,6 @@ protected:
 	int mass; //Mass is the weight of the object
 	int size; //Size is relative, no need to calculate area just use different ints to determine whether it is small/medium/large and so on
 	bool negligence;
-	int UID;//Unique identifer number
 	float damage;
 	int firedBy;
 
@@ -79,7 +78,7 @@ public:
 	Projectile();
 	Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread);
 	Projectile(short ProjectileType, float CurrentX, float CurrentY, float xLocation, float yLocation);
-	virtual ~Projectile();
+	~Projectile();
 	//Constructor and deconstructor
 
 	//Clone all the properties from the sent projectiles into this one
@@ -93,18 +92,21 @@ public:
 	//Base update methods, to be inherited and edited within each projectile
 	//For different projectiles, if you ask how you want them to behave I can write their update methods
 	//IE: arc'ed projectile, beam, fast moving, light, heavy
-	virtual void updateProjectile(float deltaTime, Handlers* handlers);
-	virtual void updateNegligableProjectile(float deltaTime);
-	virtual void determineNegligance();
+	void updateProjectile(float deltaTime, Handlers* handlers);
+	void updateNegligableProjectile(float deltaTime);
+	void determineNegligance();
+
+	// Check projectile collision 
+	void checkCollision(float deltaTime, Handlers* handlers);
 
 	// Draw projectile to screen
-	virtual void draw(GLHandler* mgl, TextureAtlas* mAtlas);
+	void draw(GLHandler* mgl, TextureAtlas* mAtlas);
 
 	// Draw projectile light to screen
-	virtual void drawLight(GLHandler* mgl, TextureAtlas* mAtlas);
+	void drawLight(GLHandler* mgl, TextureAtlas* mAtlas);
 
 	// Called when projectile collides with something
-	virtual void collide(Point* p, Handlers* handlers, int collType);
+	void collide(Point* p, Handlers* handlers, int collType);
 
 	short getProjectileType();
 	float getCurrentX();
@@ -112,17 +114,17 @@ public:
 	float getPrevX();
 	float getPrevY();
 	bool getNegligence();
-	int getUID();
 	bool getAlive();
 	float getDamage();
 	int getFiredBy();
 	Explosion* getExplosion();
 	//Getter methods, 
 
-	void setUID(int newUID);
+	void setType(short type);
 	void setAlive(bool value);
 	void setImageId(int value);
 	void setImageGlowId(int value);
+	void setPosition(float x, float y);
 	void setOffset(float x, float y);
 	void setGlowOffset(float x, float y);
 	void setDamage(float value);

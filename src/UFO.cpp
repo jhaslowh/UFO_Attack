@@ -145,26 +145,25 @@ void UFO::checkCollision(Handlers* handlers){
 	collisionArea.setLocation(locX - originX, locY - originY);
 	collisionArea.setSize(width, height);
 
-	std::list<Projectile*> projs = ((ProjectileHandler*)handlers->projHandler)->getProjList();
+	Projectile** projs = ((ProjectileHandler*)handlers->projHandler)->getProjList();
 	Point projp;
 
 	// Check all projectiles for collision 
-	for(std::list<Projectile*>::iterator myIterator = projs.begin(); myIterator != projs.end(); myIterator++)
-	{
+	for (int i = 0; i <= ((ProjectileHandler*)handlers->projHandler)->getLastActive(); i++){
 		// Null check 
-		if (*myIterator != NULL && (*myIterator)->getAlive() && (*myIterator)->getFiredBy() == PFB_ENEMY){
+		if (projs[i] != NULL && projs[i]->getAlive() && projs[i]->getFiredBy() == PFB_ENEMY){
 			// Quick distance check 
-			if (dist(nextX, nextY,(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY()) <100){ 
+			if (dist(nextX, nextY,projs[i]->getCurrentX(), projs[i]->getCurrentY()) <100){ 
 				// Check for collision 
 				if (checkRecSeg(&collisionArea, 
-					(*myIterator)->getCurrentX(), (*myIterator)->getCurrentY(), 
-					(*myIterator)->getPrevX(), (*myIterator)->getPrevY(), &projp)){
+					projs[i]->getCurrentX(), projs[i]->getCurrentY(), 
+					projs[i]->getPrevX(), projs[i]->getPrevY(), &projp)){
 
 					// Tell projectile we had a player collision 
-					(*myIterator)->collide(&projp, handlers, P_PLAYER_COLL);
+					projs[i]->collide(&projp, handlers, P_PLAYER_COLL);
 
 					// Apply projectile damage to player
-					applyDamage((*myIterator)->getDamage());
+					applyDamage(projs[i]->getDamage());
 				}
 			}
 		}
