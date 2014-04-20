@@ -240,8 +240,6 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 		// Check NPC collision with player projectiles  
 		// ---------------------------------------------
 		// Fix collision rectangles for next steps
-		setCollRec(&collRecX, nextX, locY);
-		setCollRec(&collRecY, locX, nextY);
 		setCollRec(&collRecXY, nextX, nextY);
 
 		Projectile** projs = ((ProjectileHandler*)handlers->projHandler)->getProjList();
@@ -264,6 +262,20 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 						// Apply projectile damage to npc
 						damage(projs[i] ->getDamage());
 					}
+				}
+			}
+		}
+
+		// ---------------------------------------------
+		// Check ufo collision with player explosions  
+		// ---------------------------------------------
+
+		Explosion** expls = ((ExplHandler*)handlers->explHander)->getExpls();
+
+		for (int i = 0; i <= ((ExplHandler*)handlers->explHander)->getLastActive(); i++){
+			if (expls[i] != NULL && expls[i]->isValid()){
+				if (expls[i]->firedByPlayer() && expls[i]->inRadius(&collRecXY)){
+					damage(expls[i]->getDamage());
 				}
 			}
 		}

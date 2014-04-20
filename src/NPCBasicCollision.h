@@ -3,6 +3,7 @@
 #include "LevelProperties.h"
 #include "SceneryHandler.h"
 #include "Collision.h"
+#include "ExplHandler.h"
 
 class NPCBasicCollision : public NPC
 {
