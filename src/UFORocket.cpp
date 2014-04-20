@@ -1,7 +1,6 @@
 #include "UFORocket.h"
 
-
-UFORocket::UFORocket()
+UFORocket::UFORocket() : Weapon()
 {
 	imageid = PI_UFO_ROCKET;
 	originX = 0.0f; 
@@ -31,19 +30,17 @@ UFORocket::UFORocket()
 	flashTime = 0.15f;
 
 	// Setup projectile 
-	projTemp.speed = 1000.0f;
-	projTemp.imageId = GI_MISSILE;
-	projTemp.imageOrigin[0] = 10.0f;
-	projTemp.imageOrigin[1] = 5.5f;
-	projTemp.glowImageId = GI_MISSILE;
-	projTemp.glowImageOrigin[0] = 10.0f; 
-	projTemp.glowImageOrigin[1] = 5.5f; 
-	projTemp.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-	projTemp.explodes = true;
-	projTemp.explosion = new BasicExplosion();
+	projTemp->speed = 1000.0f;
+	projTemp->imageId = GI_MISSILE;
+	projTemp->imageOrigin[0] = 10.0f;
+	projTemp->imageOrigin[1] = 5.5f;
+	projTemp->glowImageId = GI_MISSILE;
+	projTemp->glowImageOrigin[0] = 10.0f; 
+	projTemp->glowImageOrigin[1] = 5.5f; 
+	projTemp->setColor(1.0f, 1.0f, 1.0f, 1.0f);
+	projTemp->explodes = true;
+	projTemp->explosion = new BasicExplosion();
 }
 
-UFORocket::~UFORocket()
-{
-
+UFORocket::~UFORocket(){
 }

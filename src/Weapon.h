@@ -50,7 +50,7 @@ protected:
 	float barrelOffset[2];	
 	float damage;
 	bool isPlayerWeapon;
-	ProjectileTemplate projTemp;
+	ProjectileTemplate* projTemp;
 	bool usesAmmo;					// Set to false to give unlimited ammo
 	float minAngle;
 	float maxAngle;
@@ -74,8 +74,8 @@ protected:
 	float x, y;
 
 public:
-	Weapon(void);
-	virtual ~Weapon(void);
+	Weapon();
+	virtual ~Weapon();
 
 	// Returns current weapon rotation
 	float getRotation();

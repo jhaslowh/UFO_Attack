@@ -8,8 +8,8 @@
 #include "LevelProperties.h"
 #include "ProjectileHandler.h"
 #include "ExplHandler.h"
-#include "Weapon.h"
 #include "UFORocket.h"
+#include "PlayerLaserGun.h"
 
 class UFO
 {
@@ -56,9 +56,9 @@ class UFO
 	// -------------
 	// Weapon
 	// -------------
-	Weapon* weapon1;
-	Weapon* weapon2;
 	bool usingWeapon1;
+	Weapon* uweapon1;
+	Weapon* uweapon2;
 
 public:
 	UFO(SaveData* savedata);

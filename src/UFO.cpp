@@ -33,23 +33,23 @@ UFO::UFO(SaveData* savedata){
 
 	// Load weapon based off savedata
 	usingWeapon1 = true;
-	weapon1 = NULL;
-	weapon2 = NULL;
+	uweapon1 = NULL;
+	uweapon2 = NULL;
 	if (savedata != NULL){
 		// Load player weapon 1 from savedata 
 		if (savedata->getUFOWeapon1() == StoreItems::SID_UFO_WEAPON_MISSILE)
-			weapon1 = (Weapon*)new UFORocket();
+			uweapon1 = (Weapon*)new UFORocket();
 
 		// Load player weapon 2 from savedata 
 		if (savedata->getUFOWeapon2() == StoreItems::SID_UFO_WEAPON_MISSILE)
-			weapon2 = (Weapon*)new UFORocket();
+			uweapon2 = (Weapon*)new UFORocket();
 	}
 }
 UFO::~UFO(){
-	delete weapon1;
-	weapon1 = NULL;
-	delete weapon2;
-	weapon2 = NULL;
+	delete uweapon1;
+	uweapon1 = NULL;
+	delete uweapon2;
+	uweapon2 = NULL;
 }
 
 // Set location of the player
@@ -217,29 +217,25 @@ void UFO::resolveCollision(float deltaTime, Handlers* handlers){
 
 	
 	// Update weapons
-	if (usingWeapon1 && weapon1 != NULL){
+	if (usingWeapon1 && uweapon1 != NULL){
 		// Update weapon 
-		if (lookingRight){
-				weapon1->update(deltaTime,locX,locY-(height*.5f));
-		}
-		else {
-				weapon1->update(deltaTime,locX,locY-(height*.5f));
-		}
+		if (lookingRight)
+			uweapon1->update(deltaTime,locX,locY-(height*.5f));
+		else 
+			uweapon1->update(deltaTime,locX,locY-(height*.5f));
 
 		// Set facing direction from weapon 
-		lookingRight = weapon1->getFacingDirecton();
+		lookingRight = uweapon1->getFacingDirecton();
 	}
-	else if (!usingWeapon1 && weapon2 != NULL){
+	else if (!usingWeapon1 && uweapon2 != NULL){
 		// Update weapon 
-		if (lookingRight){
-				weapon2->update(deltaTime, locX,locY-(height*.5f));
-		}
-		else {
-				weapon2->update(deltaTime, locX,locY-(height*.5f));
-		}
+		if (lookingRight)
+			uweapon2->update(deltaTime, locX,locY-(height*.5f));
+		else 
+			uweapon2->update(deltaTime, locX,locY-(height*.5f));
 
 		// Set facing direction from weapon 
-		lookingRight = weapon2->getFacingDirecton();
+		lookingRight = uweapon2->getFacingDirecton();
 	}
 }
 
@@ -248,12 +244,12 @@ void UFO::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handle
 	// Check Movement controls 
 	if (mKeyH->keyDown(KEY_D)){
 		direcX = 1.0f;
-		if (weapon1 == NULL && weapon2 == NULL) 
+		if (uweapon1 == NULL && uweapon2 == NULL) 
 			lookingRight = true;
 	}
 	else if (mKeyH->keyDown(KEY_A)){
 		direcX = -1.0f;
-		if (weapon1 == NULL && weapon2 == NULL)
+		if (uweapon1 == NULL && uweapon2 == NULL)
 			lookingRight = false;
 	}
 	else 
@@ -271,24 +267,24 @@ void UFO::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handle
 		rayOn = !rayOn;
 
 	// Switch weapons 
-	if (weapon1 != NULL && weapon2 != NULL && mKeyH->keyPressed(KEY_F))
+	if (uweapon1 != NULL && uweapon2 != NULL && mKeyH->keyPressed(KEY_F))
 		usingWeapon1 = !usingWeapon1;
 
 	// Update player weapon
-	if (usingWeapon1 && weapon1 != NULL)
-		weapon1->updateInput(mKeyH, mMouseH, handlers);
-	else if (!usingWeapon1 && weapon2 != NULL)
-		weapon2->updateInput(mKeyH, mMouseH, handlers);
+	if (usingWeapon1 && uweapon1 != NULL)
+		uweapon1->updateInput(mKeyH, mMouseH, handlers);
+	else if (!usingWeapon1 && uweapon2 != NULL)
+		uweapon2->updateInput(mKeyH, mMouseH, handlers);
 }
 
 // Draw UFO
 void UFO::draw(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO){
 	
 	// Draw weapon
-	if (usingWeapon1 && weapon1)
-		weapon1->draw(mgl, mAtlas);
-	else if (!usingWeapon1 && weapon2)
-		weapon2->draw(mgl, mAtlas);
+	if (usingWeapon1 && uweapon1)
+		uweapon1->draw(mgl, mAtlas);
+	else if (!usingWeapon1 && uweapon2)
+		uweapon2->draw(mgl, mAtlas);
 
 	if (lookingRight){
 		if (inUFO)

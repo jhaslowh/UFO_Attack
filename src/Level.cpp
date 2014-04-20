@@ -15,11 +15,17 @@ Level::Level(){
 
 Level::~Level(){
 	delete player;
+	player = NULL;
 	delete ground;
+	ground = NULL;
 	delete sceneryHandler;
+	sceneryHandler = NULL;
 	delete projHandler;
+	projHandler = NULL;
 	delete npcHandler;
+	npcHandler = NULL;
 	delete explHandler;
+	explHandler = NULL;
 }
 
 // initialize level

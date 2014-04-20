@@ -127,10 +127,9 @@ Player::Player(SaveData* savedata){
 
 	// Load weapon based off savedata
 	usingWeapon1 = true;
+	weapon1 = NULL;
+	weapon2 = NULL;
 	if (savedata != NULL){
-		weapon1 = NULL;
-		weapon2 = NULL;
-
 		// Load player weapon 1 from savedata 
 		if (savedata->getPlayerWeapon1() == StoreItems::SID_PLAYER_WEAPON_LASER)
 			weapon1 = (Weapon*)new PlayerLaserGun();
@@ -150,8 +149,11 @@ Player::Player(SaveData* savedata){
 }
 Player::~Player(){
 	delete ufo;
+	ufo = NULL;
 	delete weapon1;
+	weapon1 = NULL;
 	delete weapon2;
+	weapon2 = NULL;
 }
 
 // Getters and setters

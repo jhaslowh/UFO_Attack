@@ -20,6 +20,7 @@ ProjectileTemplate::ProjectileTemplate()
 
 ProjectileTemplate::~ProjectileTemplate(){
 	delete explosion;
+	explosion = NULL;
 }
 
 // Set the color for the template
