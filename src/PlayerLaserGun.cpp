@@ -30,15 +30,15 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	flashTime = 0.1f;
 
 	// Setup projectile 
-	projTemp->speed = 700.0f;
-	projTemp->imageId = GI_PROJ;
-	projTemp->imageOrigin[0] = 5.0f;
-	projTemp->imageOrigin[1] = 2.0f;
-	projTemp->glowImageId = GI_PROJ_GLOW;
-	projTemp->glowImageOrigin[0] = 7.5f; 
-	projTemp->glowImageOrigin[1] = 2.0f; 
-	projTemp->setColor(1.0f, 0.0f, 0.0f, 1.0f);
-	projTemp->explodes = false;
+	projTemp.speed = 700.0f;
+	projTemp.imageId = GI_PROJ;
+	projTemp.imageOrigin[0] = 5.0f;
+	projTemp.imageOrigin[1] = 2.0f;
+	projTemp.glowImageId = GI_PROJ_GLOW;
+	projTemp.glowImageOrigin[0] = 7.5f; 
+	projTemp.glowImageOrigin[1] = 2.0f; 
+	projTemp.setColor(1.0f, 0.0f, 0.0f, 1.0f);
+	projTemp.explodes = false;
 }
 
 PlayerLaserGun::~PlayerLaserGun(){}

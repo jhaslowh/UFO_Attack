@@ -505,12 +505,12 @@ void Player::checkCollision(Handlers* handlers){
 			// Check ufo collision with enemy explosions  
 			// ---------------------------------------------
 
-			Explosion** expls = ((ExplHandler*)handlers->explHander)->getExpls();
+			Explosion* expls = ((ExplHandler*)handlers->explHander)->getExpls();
 
 			for (int i = 0; i <= ((ExplHandler*)handlers->explHander)->getLastActive(); i++){
-				if (expls[i] != NULL && expls[i]->isValid()){
-					if (expls[i]->firedByEnemy() && expls[i]->inRadius(&collRecXY)){
-						applyDamage(expls[i]->getDamage());
+				if (expls[i].isValid()){
+					if (expls[i].firedByEnemy() && expls[i].inRadius(&collRecXY)){
+						applyDamage(expls[i].getDamage());
 					}
 				}
 			}

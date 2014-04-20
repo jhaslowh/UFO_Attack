@@ -39,8 +39,6 @@ protected:
 
 public:
 	Explosion();
-	Explosion(Explosion* e);
-	~Explosion();
 
 	// Clone this explosion off the sent one 
 	void cloneE(Explosion* e);
@@ -88,5 +86,11 @@ public:
 
 	// Check if rec is in range
 	bool inRadius(Rec* r);
+
+
+	// --------------------------------
+
+	// Set as a basic explosion
+	void setAsBasic();
 };
 

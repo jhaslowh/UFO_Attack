@@ -66,7 +66,7 @@ void free_resources()
 {
 	printf("Free Resources...\n");
 	// Wait for update thread to finish
-	//while (inUpdate){}
+	while (inUpdate){}
 
 	// Delete gscreens 
 	if (gscreen_unload != NULL){

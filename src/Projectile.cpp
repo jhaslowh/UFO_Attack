@@ -55,7 +55,7 @@ Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, flo
 //builds a default typed projectile, not to be used with projectile, only in inheritance
 
 Projectile::~Projectile(){
-	// Dont delete explosion pointer, it is not owned by this class 
+
 }
 
 // Clone all the properties from the sent projectiles into this one
@@ -86,7 +86,7 @@ void Projectile::clone(Projectile* p){
 	drawColor[1] = p->drawColor[1];
 	drawColor[2] = p->drawColor[2];
 	drawColor[3] = p->drawColor[3];
-	explosion = p->explosion;
+	explosion.cloneE(&(p->explosion));
 }
 
 void Projectile::reset()
@@ -170,7 +170,22 @@ void Projectile::checkCollision(float deltaTime, Handlers* handlers){
 		currentX > levelProps->getLevelRight() + 500 ||
 		currentY > levelProps->getLevelBottom()){
 		alive = false;
-		explosion = NULL;
+	}
+
+	// Ground collision 
+	Point* itr = handlers->ground->getPoints();
+	Point p;
+	while (itr->next != NULL){
+		// Check if player is close to point
+		if ((*itr).getX() - 50 <= currentX && (*(itr->next)).getX() + 50 >= currentX){
+			if (checkSegSeg(
+				Point(currentX,currentY), Point(previousX,previousY), 
+				*itr, *(itr->next), &p)){
+				collide(&p, handlers, P_GROUND_COLL);
+				break;
+			}
+		}
+		itr = itr->next;
 	}
 }
 
@@ -205,18 +220,17 @@ void Projectile::collide(Point* p, Handlers* handlers, int collType)
 	// Add explosion to explosion list if explodes 
 	if (doesExplode){
 		// Reset the projectiles location
-		explosion->setLocation(currentX, currentY);
+		explosion.setLocation(p->getX(), p->getY());
 		// Set fired by for projectile 
-		if (firedBy == PFB_PLAYER) explosion->setType(PLAYER_EXP);
-		else explosion->setType(ENEMY_EXP);
+		if (firedBy == PFB_PLAYER) explosion.setType(PLAYER_EXP);
+		else explosion.setType(ENEMY_EXP);
 		// Add to handler list 
-		((ExplHandler*)handlers->explHander)->add(explosion);
+		((ExplHandler*)handlers->explHander)->add(&explosion);
 	}
 
 	// Kill if dies on impact
 	if (diesOnImpact){
 		alive = false;
-		explosion = NULL;
 	}
 }
 
@@ -229,7 +243,7 @@ bool Projectile::getNegligence(){return negligence;}
 bool Projectile::getAlive(){return alive;}
 float Projectile::getDamage(){return damage;}
 int Projectile::getFiredBy(){return firedBy;}
-Explosion* Projectile::getExplosion(){return explosion;}
+Explosion Projectile::getExplosion(){return explosion;}
 
 void Projectile::setType(short type){projectileType = type;}
 void Projectile::setAlive(bool value){alive = value;}
@@ -247,8 +261,8 @@ void Projectile::setDrawColor(GLfloat* color){
 	drawColor[2] = color[2];
 	drawColor[3] = color[3];
 }
-void Projectile::setExplosion(Explosion* e){
-	explosion = e;
+void Projectile::setExplosion(Explosion e){
+	explosion.cloneE(&e);
 }
 
 // Setup basic values for all variables 
@@ -280,5 +294,4 @@ void Projectile::initValues(){
 	drawColor[1] = 1.0f;
 	drawColor[2] = 1.0f;
 	drawColor[3] = 1.0f;
-	explosion = NULL;
 }

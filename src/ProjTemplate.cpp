@@ -1,6 +1,6 @@
-#include "ProjectileTemplate.h"
+#include "ProjTemplate.h"
 
-ProjectileTemplate::ProjectileTemplate()
+ProjTemplate::ProjTemplate()
 {
 	speed = 1000.0f;
 	imageId = -1;
@@ -14,16 +14,10 @@ ProjectileTemplate::ProjectileTemplate()
 	drawColor[1] = 1.0f;
 	drawColor[2] = 1.0f;
 	drawColor[3] = 1.0f;
-	explosion = NULL;
-}
-
-ProjectileTemplate::~ProjectileTemplate(){
-	delete explosion;
-	explosion = NULL;
 }
 
 // Set the color for the template
-void ProjectileTemplate::setColor(float r, float g, float b, float a){
+void ProjTemplate::setColor(float r, float g, float b, float a){
 	drawColor[0] = r;
 	drawColor[1] = g;
 	drawColor[2] = b;

@@ -40,13 +40,8 @@ Weapon::Weapon()
 
 	// Math values 
 	mTheta = 0.0f;
-
-	projTemp = new ProjectileTemplate();
 }
-Weapon::~Weapon(){
-	delete projTemp;
-	projTemp = NULL;
-}
+Weapon::~Weapon(){}
 
 // Returns current weapon rotation
 float Weapon::getRotation(){
@@ -266,16 +261,16 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		y += direcY * dispY;
 
 		// Add projectile to list in handlers 
-		Projectile* p = new BulletProjectile(x, y, (int)projTemp->speed, true, direcX, direcY);
-		p->setImageId(projTemp->imageId);
-		p->setImageGlowId(projTemp->glowImageId);
-		p->setOffset(projTemp->imageOrigin[0], projTemp->imageOrigin[1]);
-		p->setGlowOffset(projTemp->glowImageOrigin[0], projTemp->glowImageOrigin[1]);
-		p->setExplodes(projTemp->explodes);
-		p->setDrawColor(projTemp->drawColor);
+		Projectile* p = new BulletProjectile(x, y, (int)projTemp.speed, true, direcX, direcY);
+		p->setImageId(projTemp.imageId);
+		p->setImageGlowId(projTemp.glowImageId);
+		p->setOffset(projTemp.imageOrigin[0], projTemp.imageOrigin[1]);
+		p->setGlowOffset(projTemp.glowImageOrigin[0], projTemp.glowImageOrigin[1]);
+		p->setExplodes(projTemp.explodes);
+		p->setDrawColor(projTemp.drawColor);
 		p->setDamage(damage/(float)bulletsPerShot);
-		if (projTemp->explodes)
-			p->setExplosion((Explosion*)(projTemp->explosion));
+		if (projTemp.explodes)
+			p->setExplosion(projTemp.explosion);
 		if (isPlayerWeapon)
 			p->setFiredBy(PFB_PLAYER);
 		else 

@@ -27,15 +27,6 @@ Explosion::Explosion()
 	type = PLAYER_EXP;
 }
 
-Explosion::Explosion(Explosion* e){
-	cloneE(e);
-}
-
-Explosion::~Explosion()
-{
-
-}
-
 // Clone this explosion off the sent one 
 void Explosion::cloneE(Explosion* e){
 	// --- Drawing 
@@ -146,5 +137,27 @@ bool Explosion::inRadius(Rec* r){
 		!(r->bottom() < locY - range ||
 		  r->getY()   > locY + range ||
 		  r->right()  < locX - range ||
-		  r->getX()   > locY + range);
+		  r->getX()   > locX + range);
+}
+
+// Set as a basic explosion
+void Explosion::setAsBasic(){
+	// --- Drawing 
+	imageID = GI_BASIC_EXPL_1;
+	locX = locY = 0.0f;
+	originX = originY = 30.0f;
+	rotation = 0.0f;
+
+	// --- Exploding
+	damage = 2.0f;
+	range = 40.0f;
+	explTime = 0.25f;			
+	cexplTime = 0.0f;		
+
+	// --- Animation
+	animates = true;
+	frames = 4;
+	cframe = 0;
+	frameTime = 0.05f;
+	cframeTime = 0.0f;
 }

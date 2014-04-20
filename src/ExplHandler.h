@@ -9,7 +9,7 @@ class ExplHandler
 	int lastActive;
 
 	// List of explosions 
-	Explosion** expls;
+	Explosion* expls;
 
 public:
 	ExplHandler();
@@ -22,7 +22,7 @@ public:
 	int getLastActive();
 
 	// Returns the double linked list of the explosions
-	Explosion** getExpls();
+	Explosion* getExpls();
 
 	// Add new explosion to hander
 	// This method will clone the sent pointer. So 

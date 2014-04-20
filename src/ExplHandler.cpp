@@ -6,19 +6,12 @@ ExplHandler::ExplHandler()
 	// Make array 
 	size = 150;
 	lastActive = 0;
-	expls = new Explosion*[size];
-	for (int i = 0; i < size; i++){
-		expls[i] = new Explosion();
-	}
+	expls = new Explosion[size];
 }
 
 ExplHandler::~ExplHandler()
 {
 	if (expls == NULL) return;
-	for (int i = 0; i < size; i++){
-		delete expls[i];
-		expls[i] = NULL;
-	}
 	delete[] expls;
 	expls = NULL;
 }
@@ -30,7 +23,7 @@ int ExplHandler::getSize(){return size;}
 int ExplHandler::getLastActive(){return lastActive;}
 
 // Returns the double linked list of the explosions
-Explosion** ExplHandler::getExpls(){return expls;}
+Explosion* ExplHandler::getExpls(){return expls;}
 
 // Add new explosion to hander
 // This method will clone the sent pointer. So 
@@ -40,15 +33,8 @@ void ExplHandler::add(Explosion* e){
 
 	for (int i = 0; i < size; i++){
 		// If current explosion is dead, add in place
-		if (!expls[i]->isValid()){
-			expls[i]->cloneE(e);
-			return;
-		}
-
-		// Check if current is null
-		if (expls[i] == NULL){
-			expls[i] = new Explosion();
-			expls[i]->cloneE(e);
+		if (!expls[i].isValid()){
+			expls[i].cloneE(e);
 			return;
 		}
 	}
@@ -59,8 +45,8 @@ void ExplHandler::update(float deltaTime){
 	// Update 
 	lastActive = 0;
 	for (int i = 0; i < size; i++){
-		if (expls[i] != NULL && expls[i]->isValid()){
-			expls[i]->update(deltaTime);
+		if (expls[i].isValid()){
+			expls[i].update(deltaTime);
 			lastActive = i;
 		}
 	}
@@ -69,6 +55,6 @@ void ExplHandler::update(float deltaTime){
 // Draw explosion objects 
 void ExplHandler::draw(GLHandler* mgl, GameAtlas* mAtlas){
 	for (int i = 0; i <= lastActive; i++){
-		expls[i]->draw(mgl, mAtlas);
+		expls[i].draw(mgl, mAtlas);
 	}
 }
