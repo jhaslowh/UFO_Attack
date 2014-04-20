@@ -191,7 +191,7 @@ public:
 	// Functions 
 
 	// initialize player
-	void init(float screen_width, float screen_height);
+	void init(float screen_width, float screen_height, SaveData* savedata);
 
 	// Load player (use for textures)
 	void load(GLHandler* mgl);

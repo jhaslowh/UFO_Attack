@@ -44,7 +44,7 @@ Weapon::Weapon()
 	projTemp = new ProjectileTemplate();
 }
 Weapon::~Weapon(){
-	delete projTemp;
+	// TODO this causes bug delete projTemp;
 	projTemp = NULL;
 }
 

@@ -34,7 +34,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	sky.init(screen_width, screen_height);
 	// Create player 
 	player = new Player(savedata);
-	player->init(screen_width, screen_height);
+	player->init(screen_width, screen_height, savedata);
 	// Initialize camera 
 	camera.init(screen_width, screen_height);
 	// Create scenery handler 

@@ -109,7 +109,7 @@ Player::Player(SaveData* savedata){
 	
 	camera = NULL;
 	cameraEdge = 160.0f;
-	ufo = new UFO(savedata);
+	ufo = NULL;
 
 	// Arm offsets 
 	armOffsetsR[0] = 24;	armOffsetsR[1] = 25;
@@ -186,7 +186,8 @@ int Player::getHumanCount(){return humanAbductCount;}
 void Player::setEnemyBarScale(float value){elScale = value;}
 
 // initialize level
-void Player::init(float screen_width, float screen_height){
+void Player::init(float screen_width, float screen_height, SaveData* savedata){
+	ufo = new UFO(savedata);
 	ufo->init();
 
 	// Set hud locations
