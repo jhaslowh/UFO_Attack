@@ -214,8 +214,6 @@ void StoreScreen::update(float deltaTime){
 		else 
 			mStoreBoxes[i].setAlpha(1.0f);
 	}
-
-	siImage.unload();
 }
 
 // Update input to the screen 

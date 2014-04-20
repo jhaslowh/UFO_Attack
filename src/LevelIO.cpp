@@ -16,7 +16,7 @@ void saveLevel(Handlers* handlers, std::string file){
 	std::string fileLocation = ".\\Levels\\";
 	fileLocation.append(file);
 	fileLocation.append(".txt");
-	std::ofstream outfile (fileLocation);
+	std::ofstream outfile (fileLocation.c_str());
 
 	// Write file to file?
 	outfile << "Location: " << fileLocation << " " << std::endl;
@@ -93,7 +93,7 @@ void loadLevel(Handlers* handlers, std::string file){
 	file.insert(0, ".\\Levels\\");
 	
 	// Make input file stream 
-	ifstream myfile(file);
+	ifstream myfile(file.c_str());
 
 	// Try and open file 
 	if(myfile.is_open())

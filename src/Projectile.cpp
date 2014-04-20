@@ -168,8 +168,10 @@ void Projectile::checkCollision(float deltaTime, Handlers* handlers){
 	// Check if projectile is outside level bounds, and if so, kill projectile.
 	if (currentX < levelProps->getLevelLeft() - 500 ||
 		currentX > levelProps->getLevelRight() + 500 ||
-		currentY > levelProps->getLevelBottom())
+		currentY > levelProps->getLevelBottom()){
 		alive = false;
+		explosion = NULL;
+	}
 }
 
 // Draw projectile to screen
@@ -200,10 +202,6 @@ void Projectile::collide(Point* p, Handlers* handlers, int collType)
 	// Please do collide stuff here, maybe set a variable for what 
 	// it collides with, player/enemy/ground, and what side it collides on.
 
-	// Kill if dies on impact
-	if (diesOnImpact)
-		alive = false;
-
 	// Add explosion to explosion list if explodes 
 	if (doesExplode){
 		// Reset the projectiles location
@@ -213,6 +211,12 @@ void Projectile::collide(Point* p, Handlers* handlers, int collType)
 		else explosion->setType(ENEMY_EXP);
 		// Add to handler list 
 		((ExplHandler*)handlers->explHander)->add(explosion);
+	}
+
+	// Kill if dies on impact
+	if (diesOnImpact){
+		alive = false;
+		explosion = NULL;
 	}
 }
 

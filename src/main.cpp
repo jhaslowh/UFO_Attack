@@ -633,7 +633,8 @@ void createGame(){
 
 
 void soundStuff(){	
-	if(SDL_Init(SDL_INIT_AUDIO)<0){
+	// TODO uncomment, needed to run on linux 
+	/*if(SDL_Init(SDL_INIT_AUDIO)<0){
 		// errors
 		printf("Error initializing audio. SDL Error info %s\n", SDL_GetError());
 	} else {
@@ -652,5 +653,5 @@ void soundStuff(){
 	
 	if (settings->getMasterVol() * settings->getMusicVol() > 0.0f){
 		Mix_PlayMusic(menuMusic, 1 );
-	}
+	}*/
 }

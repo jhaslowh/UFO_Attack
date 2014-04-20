@@ -25,11 +25,10 @@ Explosion::Explosion()
 	// --- States
 	valid = false;
 	type = PLAYER_EXP;
-	next = NULL;
 }
 
 Explosion::Explosion(Explosion* e){
-	clone(e);
+	cloneE(e);
 }
 
 Explosion::~Explosion()
@@ -38,7 +37,7 @@ Explosion::~Explosion()
 }
 
 // Clone this explosion off the sent one 
-void Explosion::clone(Explosion* e){
+void Explosion::cloneE(Explosion* e){
 	// --- Drawing 
 	imageID = e->imageID;
 	locX = e->locX;
@@ -63,7 +62,6 @@ void Explosion::clone(Explosion* e){
 	// --- States
 	valid = true;
 	type = e->type;
-	next = e->next;
 }
 	
 // Returns explosion damage

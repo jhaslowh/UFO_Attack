@@ -41,14 +41,14 @@ void ExplHandler::add(Explosion* e){
 	for (int i = 0; i < size; i++){
 		// If current explosion is dead, add in place
 		if (!expls[i]->isValid()){
-			expls[i]->clone(e);
+			expls[i]->cloneE(e);
 			return;
 		}
 
 		// Check if current is null
 		if (expls[i] == NULL){
 			expls[i] = new Explosion();
-			expls[i]->clone(e);
+			expls[i]->cloneE(e);
 			return;
 		}
 	}

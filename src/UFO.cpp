@@ -145,16 +145,18 @@ void UFO::checkCollision(Handlers* handlers){
 
 	// Normal ground check: 
 	itr = handlers->ground->getPoints();
-	while (itr->next != NULL){
-		// Check if player is close to point
-		if ((*itr).getX() <= nextX && (*(itr->next)).getX() >= nextX){
-			if (checkSegSeg(vertA, vertB, *itr, *(itr->next), &p)){
-				nextX = p.getX();
-				nextY = p.getY() - minDistFromGround;
-				break;
+	if (itr != NULL){
+		while (itr->next != NULL){
+			// Check if player is close to point
+			if ((*itr).getX() <= nextX && (*(itr->next)).getX() >= nextX){
+				if (checkSegSeg(vertA, vertB, *itr, *(itr->next), &p)){
+					nextX = p.getX();
+					nextY = p.getY() - minDistFromGround;
+					break;
+				}
 			}
+			itr = itr->next;
 		}
-		itr = itr->next;
 	}
 
 	// ---------------------------------------------

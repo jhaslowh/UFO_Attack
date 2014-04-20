@@ -38,14 +38,12 @@ protected:
 	int type;
 
 public:
-	Explosion* next;
-
 	Explosion();
 	Explosion(Explosion* e);
 	~Explosion();
 
 	// Clone this explosion off the sent one 
-	void clone(Explosion* e);
+	void cloneE(Explosion* e);
 
 	// ------------------------
 	// Getters and Setters 
