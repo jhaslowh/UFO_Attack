@@ -28,6 +28,8 @@ Weapon::Weapon()
 	damage = 0.0f;
 	isPlayerWeapon = false;
 	usesAmmo = true;
+	minAngle = -90;
+	maxAngle = 90;
 
 	// Muzzle flash
 	muzzleImageId = -1;
@@ -124,6 +126,20 @@ void Weapon::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 	if (rotation > 90.0f)
 		rotation -= 180.0f;
 
+	// Check if rotation is valid and restrict angle
+	if (lookingRight){
+		if (rotation < minAngle)
+			rotation = minAngle;
+		else if (rotation > maxAngle)
+			rotation = maxAngle;
+	}
+	else {
+		if (rotation > -minAngle)
+			rotation = -minAngle;
+		else if (rotation < -maxAngle)
+			rotation = -maxAngle;
+	}
+
 	// Check for fire shot 
 	if (canFire() && 
 		((firetype == FIRETYPE_SINGLE && mMouseH->isLeftDown() && !mMouseH->wasLeftDown()) ||
@@ -179,6 +195,20 @@ void Weapon::npcFire(float targetx, float targety, Handlers* handlers){
 		rotation += 180.0f;
 	if (rotation > 90.0f)
 		rotation -= 180.0f;
+	
+	// Check if rotation is valid and restrict angle
+	if (lookingRight){
+		if (rotation < minAngle)
+			rotation = minAngle;
+		else if (rotation > maxAngle)
+			rotation = maxAngle;
+	}
+	else {
+		if (rotation > -minAngle)
+			rotation = -minAngle;
+		else if (rotation < -maxAngle)
+			rotation = -maxAngle;
+	}
 
 	// Check for fire shot 
 	if (canFire()){
@@ -196,6 +226,20 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 
 		// Get angle between weapon loc and target
 		mTheta = (float)atan2((double)(targety - locY), (double)(targetx - locX));
+
+		// Clamp theta 
+		if (lookingRight){
+			if (mTheta < minAngle * DEG_TO_RAD)
+				mTheta = minAngle * DEG_TO_RAD;
+			else if (mTheta > maxAngle * DEG_TO_RAD)
+				mTheta = maxAngle * DEG_TO_RAD;
+		}
+		else {
+			if (mTheta < 0.0f && mTheta > ((-180.0f-minAngle) * DEG_TO_RAD))
+				mTheta = ((-180.0f-minAngle) * DEG_TO_RAD);
+			else if (mTheta > 0.0f && mTheta < (180.0f-maxAngle) * DEG_TO_RAD)
+				mTheta = (180.0f-maxAngle) * DEG_TO_RAD;
+		}
 
 		// Apply spread to angle.
 		spr = ((float)rand() / (float)RAND_MAX) * spread;
@@ -267,6 +311,20 @@ void Weapon::setRotationByTarget(float targetx, float targety){
 		rotation += 180.0f;
 	if (rotation > 90.0f)
 		rotation -= 180.0f;
+	
+	// Check if rotation is valid and restrict angle
+	if (lookingRight){
+		if (rotation < minAngle)
+			rotation = minAngle;
+		else if (rotation > maxAngle)
+			rotation = maxAngle;
+	}
+	else {
+		if (rotation > -minAngle)
+			rotation = -minAngle;
+		else if (rotation < -maxAngle)
+			rotation = -maxAngle;
+	}
 }
 
 // Check if the gun is reloading 

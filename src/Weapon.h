@@ -15,9 +15,10 @@
 #define FIRETYPE_SINGLE 0
 #define FIRETYPE_RAPID 1
 
+const float DEG_TO_RAD = (3.14159f/180.0f);
+
 class Weapon
 {
-
 protected: 
 	// ---------------
 	// Drawing 
@@ -51,6 +52,8 @@ protected:
 	bool isPlayerWeapon;
 	ProjectileTemplate projTemp;
 	bool usesAmmo;					// Set to false to give unlimited ammo
+	float minAngle;
+	float maxAngle;
 	
 	// ---------------
 	// Muzzle flash

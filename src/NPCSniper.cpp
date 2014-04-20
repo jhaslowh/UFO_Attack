@@ -23,6 +23,8 @@ NPCSniper::NPCSniper() : Weapon()
 	damage = 20.0f;
 	isPlayerWeapon = false;
 	usesAmmo = false;
+	minAngle = -40;
+	maxAngle = 40;
 
 	// Muzzle flash
 	muzzleImageId = GI_NPC_SMG_FLASH;
