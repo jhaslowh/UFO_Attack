@@ -268,6 +268,9 @@
     <ClCompile Include="BasicExplosion.cpp">
       <Filter>Source Files\game\expl</Filter>
     </ClCompile>
+    <ClCompile Include="UFORocket.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -536,6 +539,9 @@
     </ClInclude>
     <ClInclude Include="BasicExplosion.h">
       <Filter>Header Files\game\expl</Filter>
+    </ClInclude>
+    <ClInclude Include="UFORocket.h">
+      <Filter>Header Files\game\weap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

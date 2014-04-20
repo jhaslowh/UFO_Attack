@@ -65,6 +65,8 @@ int init_resources()
 void free_resources()
 {
 	printf("Free Resources...\n");
+	// Wait for update thread to finish
+	while (inUpdate){}
 
 	// Delete gscreens 
 	if (gscreen_unload != NULL){
@@ -442,6 +444,8 @@ int gameLoop(void *ptr){
 
 	// Main update loop for the game 
 	while(running){
+		inUpdate = true;
+
 		// Get the current system time in miliseconds 
 		beginTime = SDL_GetTicks(); 
 					
@@ -469,6 +473,8 @@ int gameLoop(void *ptr){
 			sleepTime += FRAME_PERIOD;
 			framesSkipped++;
 		}
+
+		inUpdate = false;
 	}
 
 	return 0;

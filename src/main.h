@@ -51,6 +51,7 @@ bool running = true;
 bool render = false;        // Set to true each time game needs to be rendered 
 bool unloadScreen = false;
 bool restart = false;
+bool inUpdate = false;
 
 // Handlers
 GLHandler mgl;

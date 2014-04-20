@@ -109,7 +109,7 @@ Player::Player(SaveData* savedata){
 	
 	camera = NULL;
 	cameraEdge = 160.0f;
-	ufo = new UFO();
+	ufo = new UFO(savedata);
 
 	// Arm offsets 
 	armOffsetsR[0] = 24;	armOffsetsR[1] = 25;
@@ -523,7 +523,7 @@ void Player::update2(float deltaTime, Handlers* handlers){
 			camera = (Camera2D*)(handlers->camera);
 
 		if (inUFO){
-			ufo->resolveCollision(handlers);
+			ufo->resolveCollision(deltaTime, handlers);
 
 			// Set camera location 
 			if (camera->toScreenX(ufo->getX()) < cameraRec.getX())
@@ -619,7 +619,7 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 	if (alive()){
 		// Update ufo input
 		if (inUFO){
-			ufo->updateInput(mKeyH, mMouseH);
+			ufo->updateInput(mKeyH, mMouseH, handlers);
 		}
 		// Update player input 
 		else {

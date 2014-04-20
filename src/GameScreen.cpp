@@ -27,7 +27,9 @@ GameScreen::GameScreen(SaveData* sd) : UIScreen()
 GameScreen::~GameScreen()
 {
 	delete level;
+	level = NULL;
 	delete pauseScreen;
+	pauseScreen = NULL;
 }
 
 // Initialize screen

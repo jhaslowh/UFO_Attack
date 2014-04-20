@@ -8,6 +8,8 @@
 #include "LevelProperties.h"
 #include "ProjectileHandler.h"
 #include "ExplHandler.h"
+#include "Weapon.h"
+#include "UFORocket.h"
 
 class UFO
 {
@@ -51,8 +53,15 @@ class UFO
 	float rayHeight;
 	float rayCircleHeight;
 
+	// -------------
+	// Weapon
+	// -------------
+	Weapon* weapon1;
+	Weapon* weapon2;
+	bool usingWeapon1;
+
 public:
-	UFO();
+	UFO(SaveData* savedata);
 	~UFO();
 
 	// Set location of the player 
@@ -92,10 +101,10 @@ public:
 	void checkCollision(Handlers* handlers);
 
 	// Resolve collisions
-	void resolveCollision(Handlers* handlers);
+	void resolveCollision(float deltaTime, Handlers* handlers);
 
 	// Update ufo input
-	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH);
+	void updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers);
 
 	// Draw UFO
 	void draw(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO);

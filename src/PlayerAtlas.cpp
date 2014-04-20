@@ -50,6 +50,9 @@ void PlayerAtlas::load(){
 	// UFO Ray
 	vcg->addFrame(1.0f, 474.0f,248.0f,37.0f);
 
+	// UFO Rocket
+	vcg->addFrame(347.0f, 27.0f, 43.0f, 17.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();
