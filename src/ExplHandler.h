@@ -21,6 +21,9 @@ public:
 	// Returns last active 
 	int getLastActive();
 
+	// Returns the double linked list of the explosions
+	Explosion** getExpls();
+
 	// Add new explosion to hander
 	// This method will clone the sent pointer. So 
 	// do not send it pointers that you do not delete. 

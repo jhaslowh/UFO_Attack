@@ -9,7 +9,7 @@ BasicExplosion::BasicExplosion() : Explosion()
 	rotation = 0.0f;
 
 	// --- Exploding
-	damage = 10.0f;
+	damage = 2.0f;
 	range = 35.0f;
 	explTime = 0.25f;			
 	cexplTime = 0.0f;		

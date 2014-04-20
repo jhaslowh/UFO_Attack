@@ -29,6 +29,9 @@ int ExplHandler::getSize(){return size;}
 // Returns last active 
 int ExplHandler::getLastActive(){return lastActive;}
 
+// Returns the double linked list of the explosions
+Explosion** ExplHandler::getExpls(){return expls;}
+
 // Add new explosion to hander
 // This method will clone the sent pointer. So 
 // do not send it pointers that you do not delete. 

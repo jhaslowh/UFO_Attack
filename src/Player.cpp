@@ -473,8 +473,6 @@ void Player::checkCollision(Handlers* handlers){
 			// Check player collision with enemy projectiles  
 			// ---------------------------------------------
 			// Fix collision rectangles for next steps
-			setCollRec(&collRecX, nextX, locY);
-			setCollRec(&collRecY, locX, nextY);
 			setCollRec(&collRecXY, nextX, nextY);
 
 			Projectile** projs = ((ProjectileHandler*)handlers->projHandler)->getProjList();
@@ -496,6 +494,20 @@ void Player::checkCollision(Handlers* handlers){
 							// Apply projectile damage to player
 							applyDamage(projs[i]->getDamage());
 						}
+					}
+				}
+			}
+
+			// ---------------------------------------------
+			// Check ufo collision with enemy explosions  
+			// ---------------------------------------------
+
+			Explosion** expls = ((ExplHandler*)handlers->explHander)->getExpls();
+
+			for (int i = 0; i <= ((ExplHandler*)handlers->explHander)->getLastActive(); i++){
+				if (expls[i] != NULL && expls[i]->isValid()){
+					if (expls[i]->firedByEnemy() && expls[i]->inRadius(&collRecXY)){
+						applyDamage(expls[i]->getDamage());
 					}
 				}
 			}
