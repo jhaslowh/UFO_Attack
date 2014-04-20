@@ -68,7 +68,7 @@ void ProjectileHandler::updateProjectiles(float deltaTime, Handlers* handlers)
 
 // Draw all projectiles 
 void ProjectileHandler::draw(GLHandler* mgl, TextureAtlas* mAtlas){
-	for (int i = 0; i < size; i++){
+	for (int i = 0; i <= lastActive; i++){
 		// Null and alive check 
 		if (projs[i] != NULL && projs[i]->getAlive()){
 			projs[i]->draw(mgl, mAtlas);
@@ -81,7 +81,7 @@ void ProjectileHandler::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 
 // Draw all projectiles lights 
 void ProjectileHandler::drawLight(GLHandler* mgl, TextureAtlas* mAtlas){
-	for (int i = 0; i < size; i++){
+	for (int i = 0; i <= lastActive; i++){
 		// Null and alive check 
 		if (projs[i] != NULL && projs[i]->getAlive()){
 			projs[i]->drawLight(mgl, mAtlas);
@@ -94,6 +94,7 @@ void ProjectileHandler::drawLight(GLHandler* mgl, TextureAtlas* mAtlas){
 
 void ProjectileHandler::cleanUp()
 {
+	if (projs == NULL) return;
 	for (int i = 0; i < size; i++){
 		delete projs[i];
 		projs[i] = NULL;
