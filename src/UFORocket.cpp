@@ -1,5 +1,6 @@
 #include "UFORocket.h"
 
+
 UFORocket::UFORocket() : Weapon()
 {
 	imageid = PI_UFO_ROCKET;

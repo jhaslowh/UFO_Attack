@@ -1,7 +1,7 @@
 #include "UFO.h"
 
 
-UFO::UFO(SaveData* savedata){
+UFO::UFO(){
 	locX = 0.0f;
 	locY = 0.0f;
 	originX = 50.0f;
@@ -35,15 +35,6 @@ UFO::UFO(SaveData* savedata){
 	usingWeapon1 = true;
 	uweapon1 = NULL;
 	uweapon2 = NULL;
-	if (savedata != NULL){
-		// Load player weapon 1 from savedata 
-		if (savedata->getUFOWeapon1() == StoreItems::SID_UFO_WEAPON_MISSILE)
-			uweapon1 = (Weapon*)new UFORocket();
-
-		// Load player weapon 2 from savedata 
-		if (savedata->getUFOWeapon2() == StoreItems::SID_UFO_WEAPON_MISSILE)
-			uweapon2 = (Weapon*)new UFORocket();
-	}
 }
 UFO::~UFO(){
 	delete uweapon1;
@@ -80,7 +71,17 @@ Rec* UFO::getUFOArea(){return &collisionArea;}
 Rec* UFO::getAbductArea(){return &abductRayArea;}
 
 // Init 
-void UFO::init(){}
+void UFO::init(SaveData* savedata){
+	if (savedata != NULL){
+		// Load player weapon 1 from savedata 
+		if (savedata->getUFOWeapon1() == StoreItems::SID_UFO_WEAPON_MISSILE)
+			uweapon1 = (Weapon*)new UFORocket();
+
+		// Load player weapon 2 from savedata 
+		if (savedata->getUFOWeapon2() == StoreItems::SID_UFO_WEAPON_MISSILE)
+			uweapon2 = (Weapon*)new UFORocket();
+	}
+}
 	
 // Load images
 void UFO::load(){

@@ -1,6 +1,5 @@
 #include "ProjectileTemplate.h"
 
-
 ProjectileTemplate::ProjectileTemplate()
 {
 	speed = 1000.0f;

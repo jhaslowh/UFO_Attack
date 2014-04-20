@@ -61,7 +61,7 @@ class UFO
 	Weapon* uweapon2;
 
 public:
-	UFO(SaveData* savedata);
+	UFO();
 	~UFO();
 
 	// Set location of the player 
@@ -89,7 +89,7 @@ public:
 	Rec* getAbductArea();
 
 	// Init 
-	void init();
+	void init(SaveData* savedata);
 	
 	// Load images
 	void load();

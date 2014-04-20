@@ -44,7 +44,7 @@ Weapon::Weapon()
 	projTemp = new ProjectileTemplate();
 }
 Weapon::~Weapon(){
-	// TODO this causes bug delete projTemp;
+	delete projTemp;
 	projTemp = NULL;
 }
 
@@ -275,7 +275,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		p->setDrawColor(projTemp->drawColor);
 		p->setDamage(damage/(float)bulletsPerShot);
 		if (projTemp->explodes)
-			p->setExplosion(projTemp->explosion);
+			p->setExplosion((Explosion*)(projTemp->explosion));
 		if (isPlayerWeapon)
 			p->setFiredBy(PFB_PLAYER);
 		else 

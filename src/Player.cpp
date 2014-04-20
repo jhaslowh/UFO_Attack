@@ -187,8 +187,8 @@ void Player::setEnemyBarScale(float value){elScale = value;}
 
 // initialize level
 void Player::init(float screen_width, float screen_height, SaveData* savedata){
-	ufo = new UFO(savedata);
-	ufo->init();
+	ufo = new UFO();
+	ufo->init(savedata);
 
 	// Set hud locations
 	hudArmorLocX = 10.0f;
