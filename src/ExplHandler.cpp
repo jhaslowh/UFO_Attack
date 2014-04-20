@@ -3,19 +3,31 @@
 
 ExplHandler::ExplHandler()
 {
-	head = NULL;
+	// Make array 
+	size = 150;
+	lastActive = 0;
+	expls = new Explosion*[size];
+	for (int i = 0; i < size; i++){
+		expls[i] = new Explosion();
+	}
 }
 
 ExplHandler::~ExplHandler()
 {
-	// Delete head list 
-	Explosion* itr;
-	while (head != NULL){
-		itr = head->next;
-		delete head;
-		head = itr;
+	if (expls == NULL) return;
+	for (int i = 0; i < size; i++){
+		delete expls[i];
+		expls[i] = NULL;
 	}
+	delete[] expls;
+	expls = NULL;
 }
+
+// Return size
+int ExplHandler::getSize(){return size;}
+
+// Returns last active 
+int ExplHandler::getLastActive(){return lastActive;}
 
 // Add new explosion to hander
 // This method will clone the sent pointer. So 
@@ -23,74 +35,37 @@ ExplHandler::~ExplHandler()
 void ExplHandler::add(Explosion* e){
 	if (e == NULL) return;
 
-	// Check if list is empty 
-	if (head == NULL){
-		head = new Explosion(e);
-		return;
-	}
-
-	// Add explosion to list 
-	Explosion* itr = head;
-	Explosion* last = NULL;
-
-	while (itr != NULL){
-		// Insert into list if current is not valid 
-		if (!itr->isValid()){
-			itr->clone(e);
+	for (int i = 0; i < size; i++){
+		// If current explosion is dead, add in place
+		if (!expls[i]->isValid()){
+			expls[i]->clone(e);
 			return;
 		}
 
-		// Move to next and set last 
-		if (itr->next == NULL)
-			last = itr;
-		itr = itr->next;
-	}
-
-	// Add to end of list if no spots found 
-	last->next = new Explosion(e);
-}
-
-// Remove explosion from handler
-void ExplHandler::remove(Explosion* e){
-	Explosion* hold = NULL;
-	
-	// Check if head 
-	if (head == e){
-		hold = head->next;
-		delete head;
-		head = hold;
-		return;
-	}
-
-	// Iterate through list and check for pointer 
-	Explosion* itr = head;
-	while (itr != NULL){
-		// Delete if found 
-		if (itr == e){
-			hold->next = itr->next;
-			delete itr;
+		// Check if current is null
+		if (expls[i] == NULL){
+			expls[i] = new Explosion();
+			expls[i]->clone(e);
 			return;
 		}
-
-		hold = itr;
-		itr = itr->next;
 	}
 }
 
 // Update explosion object states 
 void ExplHandler::update(float deltaTime){
-	Explosion* itr = head;
-	while (itr != NULL){
-		itr->update(deltaTime);
-		itr = itr->next;
+	// Update 
+	lastActive = 0;
+	for (int i = 0; i < size; i++){
+		if (expls[i] != NULL && expls[i]->isValid()){
+			expls[i]->update(deltaTime);
+			lastActive = i;
+		}
 	}
 }
 
 // Draw explosion objects 
 void ExplHandler::draw(GLHandler* mgl, GameAtlas* mAtlas){
-	Explosion* itr = head;
-	while (itr != NULL){
-		itr->draw(mgl, mAtlas);
-		itr = itr->next;
+	for (int i = 0; i <= lastActive; i++){
+		expls[i]->draw(mgl, mAtlas);
 	}
 }

@@ -3,20 +3,28 @@
 
 class ExplHandler
 {
-	// Head explosion object 
-	Explosion* head;
+	// Current size of list
+	int size;
+	// Last active element in list 
+	int lastActive;
+
+	// List of explosions 
+	Explosion** expls;
 
 public:
 	ExplHandler();
 	~ExplHandler();
 
+	// Return size
+	int getSize();
+
+	// Returns last active 
+	int getLastActive();
+
 	// Add new explosion to hander
 	// This method will clone the sent pointer. So 
 	// do not send it pointers that you do not delete. 
 	void add(Explosion* e);
-
-	// Remove explosion from handler
-	void remove(Explosion* e);
 
 	// Update explosion object states 
 	void update(float deltaTime);
