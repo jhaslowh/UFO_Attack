@@ -186,6 +186,15 @@ void StoreScreen::load(TextureAtlas* mAtlas){
 	show();
 }
 
+
+// Unload screen textures
+// THIS MUST BE CALLED IF YOU LOAD STUFF.
+void StoreScreen::unload(){
+	UIScreen::unload();
+
+	siImage.unload();
+}
+
 // Update the state of the screen
 void StoreScreen::update(float deltaTime){
 	UIScreen::update(deltaTime);

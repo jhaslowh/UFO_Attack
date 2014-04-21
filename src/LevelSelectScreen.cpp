@@ -60,6 +60,15 @@ void LevelSelectScreen::load(TextureAtlas* mAtlas){
 	show();
 }
 
+
+// Unload screen textures
+// THIS MUST BE CALLED IF YOU LOAD STUFF.
+void LevelSelectScreen::unload(){
+	UIScreen::unload();
+
+	map.unload();
+}
+
 // Update the state of the screen
 void LevelSelectScreen::update(float deltaTime){
 	UIScreen::update(deltaTime);
