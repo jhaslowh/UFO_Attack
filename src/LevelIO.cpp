@@ -94,6 +94,8 @@ void saveLevel(Handlers* handlers, std::string file){
 	// Close output file 
 	outfile.close();
 
+
+	// Read in master level file to add new level to it
 	int numberOfLevels;
 	//line;
 	std::vector<std::string> data;
@@ -111,10 +113,11 @@ void saveLevel(Handlers* handlers, std::string file){
 		numberOfLevels++;
 		myfile.close();
 	}
-	else
-	{
-		//terminal->addLine("Could not find master level file... ", TL_SUCCESS);
+	else{
+		std::cout << "ERROR: Could not find master level file\n";
 	}
+
+	// Write levels back to master file 
 	std::ofstream newOutfile (".\\Levels\\MasterLevelFile.txt");
 	if(newOutfile.is_open())
 	{
@@ -240,13 +243,13 @@ void loadLevel(Handlers* handlers, std::string file){
 						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
 						sceneryHandler->add(obj);
 					}
-					else if(storage[9].compare("longcrate")==0)
+					else if(storage[9].compare("longCrate")==0)
 					{
 						obj = (SceneryObject*)new LongCrate();
 						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
 						sceneryHandler->add(obj);
 					}
-					else if(storage[9].compare("tallcrate")==0)
+					else if(storage[9].compare("tallCrate")==0)
 					{
 						obj = (SceneryObject*)new TallCrate();
 						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));

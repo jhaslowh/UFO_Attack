@@ -1,7 +1,4 @@
-6
-treefiddy.100.150
-Stuf.300.300
-teef.200.150
-dude.400.400
-styvv.50.50
-blah.150.200
+3
+level1.100.150
+level2.300.300
+level3.200.105
