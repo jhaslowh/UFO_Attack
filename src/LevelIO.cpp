@@ -12,9 +12,22 @@ void saveLevel(Handlers* handlers, std::string file){
 	SceneryHandler* sceneryHandler = (SceneryHandler*)handlers->sceneryHandler;
 	NPCHandler* npcHandler = (NPCHandler*)handlers->npcHandler;
 
+	size_t pos = 0;
+	string storage[3];
+	std::string delimiter = ".";
+	int counter = 0;
+	std::string line = file;
+	while ((pos = line.find(delimiter)) != std::string::npos) 
+	{
+		storage[counter] = line.substr(0, pos);
+		line.erase(0, pos + delimiter.length());
+		counter++;
+	}
+	storage[counter] = line;
+
 	// Create file to save to 
 	std::string fileLocation = ".\\Levels\\";
-	fileLocation.append(file);
+	fileLocation.append(storage[0]);
 	fileLocation.append(".txt");
 	std::ofstream outfile (fileLocation.c_str());
 
@@ -80,6 +93,38 @@ void saveLevel(Handlers* handlers, std::string file){
 
 	// Close output file 
 	outfile.close();
+
+	int numberOfLevels;
+	//line;
+	std::vector<std::string> data;
+	ifstream myfile (".\\Levels\\MasterLevelFile.txt");
+	if(myfile.is_open())
+	{
+		getline(myfile, line);
+		numberOfLevels = atoi(line.c_str());
+		for(int i=0;i<numberOfLevels;i++)
+		{
+			getline(myfile, line);
+			data.push_back(line);
+		}
+		data.push_back(file);
+		numberOfLevels++;
+		myfile.close();
+	}
+	else
+	{
+		//terminal->addLine("Could not find master level file... ", TL_SUCCESS);
+	}
+	std::ofstream newOutfile (".\\Levels\\MasterLevelFile.txt");
+	if(newOutfile.is_open())
+	{
+		newOutfile << numberOfLevels << std::endl;
+		for(int i=0;i<numberOfLevels;i++)
+		{
+			newOutfile << data[i] << std::endl;
+		}
+		newOutfile.close();
+	}
 }
 
 // Load the level from the sent file into the sent level pointer

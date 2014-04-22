@@ -1,0 +1,44 @@
+Location: .\Levels\stuf.txt 
+Level: stuf 
+PlayerX
+150
+PlayerY
+100
+LevelLeft
+-500
+LevelRight
+1800
+LevelTop
+-10
+levelBottom
+590
+ 
+ground
+x y
+1
+-1500;600
+-200;600
+30;600
+120;490
+180;600
+407;568
+500;290
+650;570
+1000;310
+1240;550
+1400;500
+2500;500
+end
+ 
+scenery
+x y width height rotation scale imageid collides stopplayer
+321;550;100;100;0;1;0;0;0;0
+907;540;100;100;0;1;0;0;0;0
+1124;533;100;100;0;1;0;0;0;0
+end
+signs
+end
+
+npcs
+x y type
+end

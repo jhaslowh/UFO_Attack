@@ -163,7 +163,7 @@ void LevelSelectScreen::loadLevelList(){
 			getline(myfile, line);
 			size_t pos = 0;
 			string storage[3];
-			std::string delimiter = ";";
+			std::string delimiter = ".";
 			int counter = 0;
 			while ((pos = line.find(delimiter)) != std::string::npos) 
 			{
