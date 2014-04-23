@@ -268,7 +268,9 @@
     <ClCompile Include="ProjTemplate.cpp">
       <Filter>Source Files\game\weap</Filter>
     </ClCompile>
-    <ClCompile Include="UILevelButton.cpp" />
+    <ClCompile Include="UILevelButton.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -538,7 +540,9 @@
     <ClInclude Include="ProjTemplate.h">
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
-    <ClInclude Include="UILevelButton.h" />
+    <ClInclude Include="UILevelButton.h">
+      <Filter>Header Files\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
