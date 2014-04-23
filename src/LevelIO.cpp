@@ -104,13 +104,21 @@ void saveLevel(Handlers* handlers, std::string file){
 	{
 		getline(myfile, line);
 		numberOfLevels = atoi(line.c_str());
+		std::string fileChecker;
+		bool findRedudancy = false;
 		for(int i=0;i<numberOfLevels;i++)
 		{
 			getline(myfile, line);
 			data.push_back(line);
+			fileChecker = line.substr(0, line.find("."));
+			if(fileChecker.compare(file.substr(0, line.find("."))) == 0)
+				findRedudancy = true;
 		}
-		data.push_back(file);
-		numberOfLevels++;
+		if(!findRedudancy)
+		{
+			data.push_back(file);
+			numberOfLevels++;
+		}
 		myfile.close();
 	}
 	else{
