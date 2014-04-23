@@ -218,7 +218,7 @@ void checkCommand(string line){
 		terminal->addLine("screen show: show screen");
 		terminal->addLine("test: load test screen");
 		terminal->addLine("exit: exit game");
-		terminal->addLine("saveFile: exports a level config to file");
+		terminal->addLine("saveFile [file].[x].[y]: exports a level config to file");
 
 		return;
 	}
