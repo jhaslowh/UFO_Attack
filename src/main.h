@@ -35,7 +35,7 @@
 // x = 0 = Alpha/Beta
 // x = 1 = Release
 // yyyy = Commit number 
-double VERSION = 0.264;
+double VERSION = 0.333;
 
 bool WINDOW_VISIBLE = false;
 

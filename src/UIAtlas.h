@@ -34,6 +34,10 @@
 #define UII_LS_HOME 25
 #define UII_LS_TARGET_LIGHT_CHECK 26
 #define UII_LS_TARGET_DARK_CHECK 27
+#define UII_DIFFICULTY1 28
+#define UII_DIFFICULTY2 29
+#define UII_DIFFICULTY3 30
+
 
 class UIAtlas : public TextureAtlas
 {

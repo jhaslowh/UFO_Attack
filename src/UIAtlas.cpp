@@ -83,6 +83,13 @@ void UIAtlas::load(){
 	// LS Target Dark Check 
 	vcg->addFrame(850.0f, 53.0f, 50.0f, 50.0f);
 
+	// Difficulty 1
+	vcg->addFrame(705.0f, 106.0f, 30.0f, 30.0f);
+	// Difficulty 2
+	vcg->addFrame(737.0f, 106.0f, 30.0f, 30.0f);
+	// Difficulty 3
+	vcg->addFrame(769.0f, 106.0f, 30.0f, 30.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();
