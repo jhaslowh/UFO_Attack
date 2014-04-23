@@ -174,26 +174,21 @@ void LevelSelectScreen::loadLevelList(){
 			storage[counter] = line;
 			//cout << storage[1] << " \n";
 			//cout << storage[2] << " \n";
-			buttonLevels[i] = new UIButton(
+			buttonLevels[i] = new UILevelButton(
 				// Start at center, move to top left of background. Move to button location, 
 				// then minus half of width and height to center button on location. 
 				((screen_width * .5f) - (512.0f*mapScale)) + (((float)atoi(storage[1].c_str()) - 25.0f)*mapScale),
 				((screen_height * .5f) - (256.0f*mapScale)) + (((float)atoi(storage[2].c_str()) - 25.0f)*mapScale),
 				50.0f * mapScale,
-				50.0f * mapScale, "");
+				50.0f * mapScale);
 			buttonLevels[i]->setupHide(HT_VERTICAL,buttonLevels[i]->getY()+10.0f,hideTime,true);
 			
 			// Set level to check mark if completed 
-			if (sd->levelCompleted(storage[0])){
-				buttonLevels[i]->setImageId(UII_LS_TARGET_DARK_CHECK);
-				buttonLevels[i]->setImageIdHover(UII_LS_TARGET_LIGHT_CHECK);
-				buttonLevels[i]->setImageIdClick(UII_LS_TARGET_LIGHT_CHECK);
-			}
-			else {
-				buttonLevels[i]->setImageId(UII_LS_TARGET_DARK);
-				buttonLevels[i]->setImageIdHover(UII_LS_TARGET_LIGHT);
-				buttonLevels[i]->setImageIdClick(UII_LS_TARGET_LIGHT);
-			}
+			if (sd->levelCompleted(storage[0]))
+				buttonLevels[i]->setCompleted(true);
+			// Uncomment this to lock a level
+			//buttonLevels[i]->setLocked(true);
+			buttonLevels[i]->setDifficulty((rand() % 4)-1);
 			buttonLevels[i]->setHidden();
 			buttonLevels[i]->setScale(map.getScale());
 

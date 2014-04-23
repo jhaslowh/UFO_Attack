@@ -6,6 +6,7 @@
 
 class UIButton : public UITransitionObject
 {
+protected: 
 	// Test offset 
 	float text_x, text_y;
 	// States

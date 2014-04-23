@@ -90,6 +90,7 @@
     <ClInclude Include="UICheckbox.h" />
     <ClInclude Include="UIComboBox.h" />
     <ClInclude Include="UILabel.h" />
+    <ClInclude Include="UILevelButton.h" />
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UIScreen.h" />
     <ClInclude Include="UIScrollbar.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="UICheckbox.cpp" />
     <ClCompile Include="UIComboBox.cpp" />
     <ClCompile Include="UILabel.cpp" />
+    <ClCompile Include="UILevelButton.cpp" />
     <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="UIScreen.cpp" />
     <ClCompile Include="UIScrollbar.cpp" />

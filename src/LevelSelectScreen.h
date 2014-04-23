@@ -7,6 +7,7 @@
 #include "UIScreen.h"
 #include "UIAtlas.h"
 #include "UIButton.h"
+#include "UILevelButton.h"
 #include "Sprite.h"
 #include "SaveData.h"
 
@@ -14,7 +15,7 @@ class LevelSelectScreen: public UIScreen
 {
 	SaveData* sd;
 	UIButton* buttonMainMenu;
-	UIButton* buttonLevels[20];
+	UILevelButton* buttonLevels[20];
 	std::string levelsList[20];
 
 	int numberOfLevels;
