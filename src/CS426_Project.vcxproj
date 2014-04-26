@@ -31,6 +31,7 @@
     <ClInclude Include="NPCSoldier.h" />
     <ClInclude Include="NPCStinger.h" />
     <ClInclude Include="NPCStingerSoldier.h" />
+    <ClInclude Include="SoundHandler.h" />
     <ClInclude Include="TallCrate.h" />
     <ClInclude Include="UFORocket.h" />
     <ClInclude Include="UICreditsBox.h" />
@@ -123,6 +124,7 @@
     <ClCompile Include="NPCSoldier.cpp" />
     <ClCompile Include="NPCStinger.cpp" />
     <ClCompile Include="NPCStingerSoldier.cpp" />
+    <ClCompile Include="SoundHandler.cpp" />
     <ClCompile Include="TallCrate.cpp" />
     <ClCompile Include="UFORocket.cpp" />
     <ClCompile Include="UICreditsBox.cpp" />

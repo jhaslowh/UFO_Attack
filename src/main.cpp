@@ -5,6 +5,9 @@
 
 #include "main.h"
 
+
+#include "SoundHandler.h"//TODO: this should be moved
+
 using namespace std;
 
 /**
@@ -633,6 +636,9 @@ void createGame(){
 
 
 void soundStuff(){	
+
+	SoundHandler *stuffwe = new SoundHandler();
+
 	if(SDL_Init(SDL_INIT_AUDIO)<0){
 		// errors
 		printf("Error initializing audio. SDL Error info %s\n", SDL_GetError());
