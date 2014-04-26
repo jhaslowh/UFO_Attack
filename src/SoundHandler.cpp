@@ -18,19 +18,11 @@
 
 
 
-using namespace std;
 
 SoundHandler::SoundHandler(void)
 {
-	cout << "SOUND" << endl;
-	cout << "SOUND" << endl;
-	cout << "SOUND" << endl;
-	cout << "SOUND" << endl;
-	cout << "SOUND" << endl;
-	cout << "SOUND" << endl;
-	cout << "SOUND" << endl;
-	cout << "SOUND" << endl;
-	cout << "SOUND" << endl;
+	std::cout << "SOUND" << std::endl;
+	std::cout << "SOUND" << std::endl;
 }
 
 
