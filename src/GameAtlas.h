@@ -35,6 +35,12 @@
 #define GI_BASIC_EXPL_2 27
 #define GI_BASIC_EXPL_3 28
 #define GI_BASIC_EXPL_4 29
+#define GI_SPHERE 30
+#define GI_SMOKE1 31
+#define GI_SMOKE2 32
+#define GI_SMOKE3 33
+#define GI_SMOKE4 34
+#define GI_SMOKE5 35
 
 class GameAtlas : public TextureAtlas
 {

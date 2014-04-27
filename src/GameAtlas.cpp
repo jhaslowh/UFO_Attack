@@ -76,6 +76,19 @@ void GameAtlas::load(){
 	// Basic Expl 4 
 	vcg->addFrame(187.0f, 103.0f, 60.0f, 60.0f);
 
+	// Particle sphere
+	vcg->addFrame(1.0f, 166.0f, 30.0f, 30.0f);
+	// Particle smoke 1
+	vcg->addFrame(33.0f, 165.0f, 20.0f, 20.0f);
+	// Particle smoke 2
+	vcg->addFrame(55.0f, 165.0f, 20.0f, 20.0f);
+	// Particle smoke 3
+	vcg->addFrame(77.0f, 165.0f, 20.0f, 20.0f);
+	// Particle smoke 4
+	vcg->addFrame(99.0f, 165.0f, 20.0f, 20.0f);
+	// Particle smoke 5
+	vcg->addFrame(121.0f, 165.0f, 20.0f, 20.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();
