@@ -29,7 +29,7 @@ public:
 		float rotationSpeed, float scaleSpeed);
 	
 	// Update current particle states 
-	void updateProjectiles(float deltaTime);
+	void update(float deltaTime);
 
 	// Draw all particles 
 	void draw(GLHandler* mgl, GameAtlas* mAtlas);

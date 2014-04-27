@@ -8,6 +8,7 @@ Level::Level(){
 	sceneryHandler = NULL;
 	npcHandler = NULL;
 	projHandler = NULL;
+	partHandler = NULL;
 	explHandler = NULL;
 	loaded = false;
 	victory = false;
@@ -22,6 +23,8 @@ Level::~Level(){
 	sceneryHandler = NULL;
 	delete projHandler;
 	projHandler = NULL;
+	delete partHandler;
+	partHandler = NULL;
 	delete npcHandler;
 	npcHandler = NULL;
 	delete explHandler;
@@ -45,6 +48,8 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	ground = new Ground(GROUND_CEMENT);
 	// Create proj handler 
 	projHandler = new ProjectileHandler();
+	// Create Particle handler
+	partHandler = new ParticleHandler();
 	// Create explosion handler
 	explHandler = new ExplHandler();
 
@@ -61,6 +66,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	handlers.projHandler = projHandler;
 	handlers.npcHandler = npcHandler;
 	handlers.explHander = explHandler;
+	handlers.partHandler = partHandler;
 
 	// Load level from file 
 	loadLevel(&handlers, savedata->levelToLoad);
@@ -105,6 +111,8 @@ void Level::update(float deltaTime){
 		victory = true;
 	// Tell player the enemy count to draw 
 	player->setEnemyBarScale(n/levelProps.getEnemyCount());
+
+	partHandler->update(deltaTime);
 
 	camera.update(deltaTime);
 }
@@ -152,6 +160,8 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Draw level 
 	mgl->setViewMatrix(camera.getMatrix());
 	mgl->setFlatColor(COLOR_WHITE);
+
+	partHandler->draw(mgl, &gameAtlas);
 	sceneryHandler->draw(mgl, &gameAtlas);
 	npcHandler->draw(mgl, &gameAtlas);
 	projHandler->draw(mgl, &gameAtlas);		

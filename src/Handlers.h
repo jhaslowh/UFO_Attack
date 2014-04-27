@@ -9,6 +9,7 @@ public:
 	// Handlers for each handler we  need in the game.
 	void* npcHandler;
 	void* projHandler;
+	void* partHandler;
 	void* sceneryHandler;
 	void* explHander;
 	Ground* ground;

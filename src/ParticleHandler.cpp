@@ -50,7 +50,7 @@ Particle* ParticleHandler::add(int image, float x, float y, float originX, float
 }
 
 // Update current particle states 
-void ParticleHandler::updateProjectiles(float deltaTime){
+void ParticleHandler::update(float deltaTime){
 	for (int i = 0; i < size; i++)
 		parts[i].update(deltaTime);
 }

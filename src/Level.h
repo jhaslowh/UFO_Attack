@@ -12,6 +12,7 @@
 #include "Handlers.h"
 #include "KeyHandler.h"
 #include "ProjectileHandler.h"
+#include "ParticleHandler.h"
 #include "SceneryHandler.h"
 #include "ExplHandler.h"
 #include "MouseHandler.h"
@@ -29,6 +30,7 @@ class Level
 	SceneryHandler* sceneryHandler;
 	NPCHandler* npcHandler;
 	ProjectileHandler* projHandler;
+	ParticleHandler* partHandler;
 	Camera2D camera;
 	LevelProperties levelProps;
 	ExplHandler* explHandler;
