@@ -79,6 +79,7 @@ void Particle::update(float deltaTime){
 		locX += direcX * speed * deltaTime;
 		locY += direcY * speed * deltaTime;
 		scale += scaleSpeed * deltaTime;
+		if (scale <= 0.0f) valid = false;
 		rotation += rotationSpeed * deltaTime;
 
 		// Update lifetime 

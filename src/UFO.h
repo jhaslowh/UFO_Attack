@@ -10,6 +10,7 @@
 #include "ExplHandler.h"
 #include "UFORocket.h"
 #include "PlayerLaserGun.h"
+#include "ParticleHandler.h"
 
 class UFO
 {
@@ -25,6 +26,10 @@ class UFO
 	float minDistFromGround;  // Minimum distance UFO must be from ground 
 	Rec collisionArea;
 	Rec abductRayArea;
+
+	// Particles
+	float partRate;
+	float cpartRate;
 
 	// Physics and movement
 	float direcX, direcY;

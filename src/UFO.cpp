@@ -12,6 +12,9 @@ UFO::UFO(){
 	height = 50.0f;
 	lookingRight = true;
 
+	partRate = .1f;
+	cpartRate = 0.0f;
+
 	armor = 100.0f;
 	maxArmor = 100.0f;
 	shield = 100.0f;
@@ -107,6 +110,23 @@ void UFO::update(float deltaTime, Handlers* handlers){
 		shield += shieldChargeRate * deltaTime;
 		if (shield >= maxShield)
 			shield = maxShield;
+	}
+
+	// Create particles 
+	cpartRate += deltaTime;
+	if (cpartRate >= partRate){
+		cpartRate = 0.0f;
+		// This will get a random angle that is +-45 degrees from strait down
+		float angle = (((rand() % 1000)/1000.0f) * 1.57f) + .785f;
+		((ParticleHandler*)handlers->partHandler)->add(
+			GI_SPHERE,	// Image
+			locX,locY-(height*.5f),	// Location
+			15.0f,15.0f,// Origin
+			cos(angle),sin(angle),	// Direction
+			75.0f,		// Speed
+			2.0f,		// Life
+			0.0f,		// Rotation speed
+			-1.0f);		// Scale speed 
 	}
 
 	// Update abduct ray
