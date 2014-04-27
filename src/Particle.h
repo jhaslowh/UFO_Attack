@@ -33,6 +33,8 @@ class Particle
 public:
 	Particle();
 
+	void clone(Particle* p);
+
 	// Getters and setters 
 	void setImageId(int i);
 	int getImageId();

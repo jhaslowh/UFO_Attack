@@ -14,6 +14,7 @@ ProjTemplate::ProjTemplate()
 	drawColor[1] = 1.0f;
 	drawColor[2] = 1.0f;
 	drawColor[3] = 1.0f;
+	smokeTrail = false;
 }
 
 // Set the color for the template

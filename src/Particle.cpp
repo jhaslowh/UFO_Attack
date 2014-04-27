@@ -30,6 +30,37 @@ Particle::Particle()
 	valid = false;
 }
 
+void Particle::clone(Particle* p){
+	// Drawing properties 
+	imageId = p->imageId;
+	locX = p->locX;
+	locY = p->locY;
+	originX = p->originX;
+	originY = p->originY;
+	scale = p->scale;
+	rotation = p->rotation;
+
+	// Movement
+	speed = p->speed;
+	direcX = p->direcX;
+	direcY = p->direcY;
+	rotationSpeed = p->rotationSpeed;
+	scaleSpeed = p->scaleSpeed;
+	
+	// Animation
+	animated = p->animated;
+	loops = p->loops;
+	cframe = p->cframe;
+	frames = p->frames;
+	frameTime = p->frameTime;
+	cframeTime = p->cframeTime;
+
+	// State
+	lifeTime = p->lifeTime;
+	clifeTime = p->clifeTime;
+	valid = p->valid;
+}
+
 // Getters and setters 
 void Particle::setImageId(int i){imageId = i;}
 int Particle::getImageId(){return imageId;}

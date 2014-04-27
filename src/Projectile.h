@@ -10,6 +10,7 @@
 #include "Explosion.h"
 #include "ExplHandler.h"
 #include "Ground.h"
+#include "ParticleHandler.h"
 
 //Projectile Types Include
 //Type 1 = Bullet
@@ -64,6 +65,12 @@ protected:
 	bool drawProj;
 	float rotation;
 	GLfloat drawColor[4];
+
+	// ---------------------
+	// Particles
+	// ---------------------
+	bool smokeTrail;
+	float partTime;
 
 	// -----------
 	// States 
@@ -133,6 +140,7 @@ public:
 	void setExplodes(bool value);
 	void setDrawColor(GLfloat* color);
 	void setExplosion(Explosion e);
+	void setSmokeTrail(bool value);
 	//Setter methods 
 
 private:

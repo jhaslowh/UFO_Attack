@@ -49,6 +49,18 @@ Particle* ParticleHandler::add(int image, float x, float y, float originX, float
 	return NULL;
 }
 
+// Add by clone
+Particle* ParticleHandler::add(Particle* p){
+	for (int i = 0; i < size; i++){
+		if (!parts[i].getValid()){
+			parts[i].clone(p);
+			parts[i].setValid(true);
+			return &parts[i];
+		}
+	}
+	return NULL;
+}
+
 // Update current particle states 
 void ParticleHandler::update(float deltaTime){
 	for (int i = 0; i < size; i++)

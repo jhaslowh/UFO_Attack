@@ -1,6 +1,7 @@
 #pragma once
 #include "glew.h"
 #include "Explosion.h"
+#include "Particle.h"
 
 class ProjTemplate
 {
@@ -13,6 +14,7 @@ public:
 	GLfloat drawColor[4];
 	bool explodes;
 	Explosion explosion;
+	bool smokeTrail;
 
 	ProjTemplate();
 

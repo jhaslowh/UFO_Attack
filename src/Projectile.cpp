@@ -1,12 +1,6 @@
 #include "Projectile.h"
 using namespace std;
 
-//Projectile Types Include
-//Type 1 = Bullet
-//Type 2 = Missle
-//Type 3 = Non-Standard Moving Object (cows/rocks/cars/people)
-//Type 4 = Beam
-
 Projectile::Projectile()
 {
 	initValues();
@@ -86,6 +80,9 @@ void Projectile::clone(Projectile* p){
 	drawColor[1] = p->drawColor[1];
 	drawColor[2] = p->drawColor[2];
 	drawColor[3] = p->drawColor[3];
+	smokeTrail = p->smokeTrail;
+	partTime = p->partTime;
+
 	explosion.cloneE(&(p->explosion));
 }
 
@@ -187,6 +184,27 @@ void Projectile::checkCollision(float deltaTime, Handlers* handlers){
 		}
 		itr = itr->next;
 	}
+
+	// Update particles 
+	if (smokeTrail){
+		partTime += deltaTime;
+		if (partTime >= .1f){
+			Particle* p = ((ParticleHandler*)handlers->partHandler)->add(
+				GI_SMOKE1,	// Image
+				currentX,currentY,	// Location
+				10.0f,10.0f,// Origin
+				0.0f,0.0f,	// Direction
+				0.0f,		// Speed
+				1.0f,		// Life
+				((((rand()%100)/100.0f)*2.0f)-1.0f)*100.0f,		// Rotation speed
+				((rand()%100)/100.0f)*-1.0f);		// Scale speed 
+
+			p->setAnimates(true);
+			p->setFrames(5);
+			p->setFrameTime(.02f);
+			p->setRotation(((rand()%100)/100.0f)*360.0f);
+		}
+	}
 }
 
 // Draw projectile to screen
@@ -264,6 +282,7 @@ void Projectile::setDrawColor(GLfloat* color){
 void Projectile::setExplosion(Explosion e){
 	explosion.cloneE(&e);
 }
+void Projectile::setSmokeTrail(bool value){smokeTrail = value;}
 
 // Setup basic values for all variables 
 void Projectile::initValues(){
@@ -294,4 +313,6 @@ void Projectile::initValues(){
 	drawColor[1] = 1.0f;
 	drawColor[2] = 1.0f;
 	drawColor[3] = 1.0f;
+	smokeTrail = false;
+	partTime = 0.0f;
 }

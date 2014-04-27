@@ -275,6 +275,7 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 			p->setFiredBy(PFB_PLAYER);
 		else 
 			p->setFiredBy(PFB_ENEMY);
+		p->setSmokeTrail(projTemp.smokeTrail);
 
 		((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(p));
 	}

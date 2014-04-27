@@ -27,6 +27,8 @@ public:
 	Particle* add(int image, float x, float y, float originX, float originY, 
 		float direcX, float direcY, float speed, float lifeTime, 
 		float rotationSpeed, float scaleSpeed);
+	// Add by clone
+	Particle* add(Particle* p);
 	
 	// Update current particle states 
 	void update(float deltaTime);
