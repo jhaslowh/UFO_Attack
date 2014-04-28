@@ -1,14 +1,11 @@
 #include "NSMOProjectile.h"
 
-NSMOProjectile::NSMOProjectile()
+NSMOProjectile::NSMOProjectile() : Projectile()
 {
 	projectileType = PROJT_NSMO;
 	speed = 100;
 	mass = 1;
 	size = 1;
-	negligence = false;
-	alive = false;
-	doesExplode = false;
 }
 
 NSMOProjectile::NSMOProjectile(float CurrentX, float CurrentY, int speed, bool doesExplode, float directionx, float directiony) : Projectile()

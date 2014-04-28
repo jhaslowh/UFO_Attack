@@ -7,9 +7,6 @@ MissileProjectile::MissileProjectile() : Projectile()
 	speed = 500;
 	mass = 40;
 	size = 5;
-	negligence = false;
-	alive = false;
-	doesExplode = false;
 }
 
 MissileProjectile::MissileProjectile(float CurrentX, float CurrentY, int speed, bool doesExplode, float directionx, float directiony) : Projectile()

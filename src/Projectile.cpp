@@ -22,7 +22,6 @@ void Projectile::clone(Projectile* p){
 	mass = p->mass; 
 	size = p->size; 
 	negligence = p->negligence;
-	alive = true;
 	doesExplode = p->doesExplode;
 	diesOnImpact = p->diesOnImpact;
 	imageId = p->imageId;
@@ -40,6 +39,8 @@ void Projectile::clone(Projectile* p){
 	drawColor[3] = p->drawColor[3];
 	smokeTrail = p->smokeTrail;
 	partTime = p->partTime;
+	
+	alive = true;
 
 	explosion.cloneE(&(p->explosion));
 }
@@ -77,13 +78,14 @@ void Projectile::determineNegligance()
 	//A beam typed weapon would not be affected by gravity or wind resistance
 	if(projectileType == PROJT_BULLET || projectileType == PROJT_BEAM || projectileType == PROJT_TEST)
 	{
-		//cout << "determined negligable";
 		negligence = true; 
 	}
+
 	//This is an extreme example of a case at which a projectile has enough 
 	//inertia that it will take its course before noticable change to its trajectory
 	else if(((xVector+yVector)*mass) >= 50000)
 		negligence = true; 
+
 	//A sufficiently small projectile that is moving fast enough will 
 	//not be affected by wind resistance and can most likely fulfill 
 	//its course before gravity has any noticable effect

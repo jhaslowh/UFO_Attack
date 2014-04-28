@@ -5,10 +5,7 @@ BulletProjectile::BulletProjectile() : Projectile()
 	projectileType = PROJT_BULLET;
 	speed = 200;
 	mass = 1;
-	size = 1;//.5;
-	negligence = true;
-	alive = false;
-	doesExplode = false;
+	size = 1;
 }
 
 BulletProjectile::BulletProjectile(float CurrentX, float CurrentY, int speed, bool doesExplode, float directionx, float directiony) : Projectile()
@@ -21,7 +18,7 @@ BulletProjectile::BulletProjectile(float CurrentX, float CurrentY, int speed, bo
 	xVector = speed*directionx;
 	yVector = speed*directiony;
 	mass = 1;
-	size = 1;//.5;
+	size = 1;
 	negligence = false;
 	alive = true;
 	this->doesExplode = doesExplode;

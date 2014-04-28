@@ -7,8 +7,6 @@ BeamProjectile::BeamProjectile() : Projectile()
 	mass = 0;
 	size = 0;
 	negligence = true;
-	alive = false;
-	doesExplode = false;
 }
 
 BeamProjectile::BeamProjectile(float CurrentX, float CurrentY, int speed, bool doesExplode, float directionx, float directiony) : Projectile()
@@ -22,7 +20,7 @@ BeamProjectile::BeamProjectile(float CurrentX, float CurrentY, int speed, bool d
 	xVector = speed*directionx;
 	yVector = speed*directiony;
 	mass = 0;
-	size = 0;//.5;
+	size = 0;
 	negligence = true;
 	alive = true;
 	this->doesExplode = doesExplode;
