@@ -136,11 +136,15 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Draw lights 
 	mgl->lightBegin(sky.getLightValue(),sky.getLightValue(),sky.getLightValue());
 
+	// Draw actual lights 
 	mgl->setViewMatrix(camera.getMatrix());
 	mgl->setFlatColor(COLOR_WHITE);
 	sceneryHandler->drawLight(mgl, &gameAtlas);
 	projHandler->drawLight(mgl, &gameAtlas);
 	player->drawLight(mgl);
+
+	// Draw clipping objects for light 
+	ground->drawLight(mgl);
 
 	mgl->lightEnd();
 	
