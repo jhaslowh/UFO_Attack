@@ -31,17 +31,16 @@ UFORocket::UFORocket() : Weapon()
 	flashTime = 0.15f;
 
 	// Setup projectile 
-	projTemp.speed = 1000.0f;
-	projTemp.imageId = GI_MISSILE;
-	projTemp.imageOrigin[0] = 10.0f;
-	projTemp.imageOrigin[1] = 5.5f;
-	projTemp.glowImageId = GI_MISSILE;
-	projTemp.glowImageOrigin[0] = 10.0f; 
-	projTemp.glowImageOrigin[1] = 5.5f; 
-	projTemp.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-	projTemp.explodes = true;
-	projTemp.explosion.setAsBasic();
-	projTemp.smokeTrail = true;
+	proj = new Projectile();
+	proj->setSpeed(1000.0f);
+	proj->setImageId(GI_MISSILE);
+	proj->setOffset(10.0f,5.5f);
+	proj->setImageGlowId(GI_MISSILE);
+	proj->setGlowOffset(10.0f,5.5f);
+	proj->setDrawColor(1.0f, 1.0f, 1.0f, 1.0f);
+	proj->setExplodes(true);
+	proj->getExplRef()->setAsBasic();
+	proj->setSmokeTrail(true);
 }
 
 UFORocket::~UFORocket(){

@@ -50,7 +50,7 @@ protected:
 	float barrelOffset[2];	
 	float damage;
 	bool isPlayerWeapon;
-	ProjTemplate projTemp;
+	Projectile* proj;
 	bool usesAmmo;					// Set to false to give unlimited ammo
 	float minAngle;
 	float maxAngle;

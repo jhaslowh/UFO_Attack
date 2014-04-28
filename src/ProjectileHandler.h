@@ -19,7 +19,6 @@ private:
 public:
 	ProjectileHandler();
 	~ProjectileHandler();
-	//Constructor and Deconstructor
 
 	// Returns the projectile list
 	Projectile** getProjList();

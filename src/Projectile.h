@@ -37,7 +37,9 @@
 class Projectile
 {
 protected:
-	glm::vec4 velocityVectors;
+	// -------------------
+	// Physics
+	// -------------------
 	short projectileType;
 	float previousX;
 	float previousY;
@@ -86,6 +88,9 @@ public:
 
 	//Clone all the properties from the sent projectiles into this one
 	void clone(Projectile* p);
+
+	// Returns a clone pointer of this projectile 
+	virtual void* clone();
 	
 	//Base update methods, to be inherited and edited within each projectile
 	//For different projectiles, if you ask how you want them to behave I can write their update methods
@@ -116,6 +121,7 @@ public:
 	float getDamage();
 	int getFiredBy();
 	Explosion getExplosion();
+	Explosion* getExplRef();
 	//Getter methods, 
 
 	void setType(short type);
@@ -129,8 +135,11 @@ public:
 	void setFiredBy(int value);
 	void setExplodes(bool value);
 	void setDrawColor(GLfloat* color);
+	void setDrawColor(float r, float g, float b, float a);
 	void setExplosion(Explosion e);
 	void setSmokeTrail(bool value);
+	void setSpeed(float s);
+	void setDirec(float x, float y);
 	//Setter methods 
 
 private:

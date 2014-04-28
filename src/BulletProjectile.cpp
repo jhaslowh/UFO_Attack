@@ -19,7 +19,6 @@ BulletProjectile::BulletProjectile(float CurrentX, float CurrentY, int speed, bo
 	yVector = speed*directiony;
 	mass = 1;
 	size = 1;
-	negligence = false;
 	alive = true;
 	this->doesExplode = doesExplode;
 }

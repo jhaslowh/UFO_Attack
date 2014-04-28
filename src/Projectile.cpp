@@ -40,9 +40,55 @@ void Projectile::clone(Projectile* p){
 	smokeTrail = p->smokeTrail;
 	partTime = p->partTime;
 	
-	alive = true;
+	alive = p->alive;
 
 	explosion.cloneE(&(p->explosion));
+}
+
+
+// Returns a clone pointer of this projectile 
+void* Projectile::clone(){
+	Projectile* p = new Projectile();
+	// Physics 
+	p->projectileType = projectileType;
+	p->previousX = previousX;
+	p->previousY = previousY;
+	p->currentX = currentX;
+	p->currentY = currentY;
+	p->xVector = xVector;
+	p->yVector= yVector;
+	p->speed = speed;
+	p->mass = mass; 
+	p->size = size; 
+	p->negligence = negligence;
+	p->damage = damage;
+	p->firedBy = firedBy;
+
+	// Drawing properties 
+	p->imageId = imageId;
+	p->imageGlowId = imageGlowId;
+	p->offsetX = offsetX;
+	p->offsetY = offsetY;
+	p->glowOffsetX = glowOffsetX;
+	p->glowOffsetY = glowOffsetY;
+	p->drawProj = drawProj;
+	p->rotation = rotation;
+	p->drawColor[0] = drawColor[0];
+	p->drawColor[1] = drawColor[1];
+	p->drawColor[2] = drawColor[2];
+	p->drawColor[3] = drawColor[3];
+
+	// Particles
+	p->smokeTrail = smokeTrail;
+	p->partTime = partTime;
+
+	// States 
+	p->alive = alive;
+	p->doesExplode = doesExplode;
+	p->explosion.cloneE(&explosion);
+	p->diesOnImpact = diesOnImpact;
+
+	return p;
 }
 
 //UpdateProjectile does the heavier stuff for projectiles with complicated movement, and will handle collision detection
@@ -210,12 +256,16 @@ bool Projectile::getAlive(){return alive;}
 float Projectile::getDamage(){return damage;}
 int Projectile::getFiredBy(){return firedBy;}
 Explosion Projectile::getExplosion(){return explosion;}
+Explosion* Projectile::getExplRef(){return &explosion;}
 
 void Projectile::setType(short type){projectileType = type;}
 void Projectile::setAlive(bool value){alive = value;}
 void Projectile::setImageId(int value){imageId = value;}
 void Projectile::setImageGlowId(int value){imageGlowId = value;}
-void Projectile::setPosition(float x, float y){currentX = x, currentY = y;}
+void Projectile::setPosition(float x, float y){
+	currentX = x, currentY = y;
+	previousX = currentX, previousY = currentY;
+}
 void Projectile::setOffset(float x, float y){offsetX = x; offsetY = y;}
 void Projectile::setGlowOffset(float x, float y){glowOffsetX = x; glowOffsetY = y;}
 void Projectile::setDamage(float value){damage = value;}
@@ -227,10 +277,21 @@ void Projectile::setDrawColor(GLfloat* color){
 	drawColor[2] = color[2];
 	drawColor[3] = color[3];
 }
+void Projectile::setDrawColor(float r, float g, float b, float a){
+	drawColor[0] = r;
+	drawColor[1] = g;
+	drawColor[2] = b;
+	drawColor[3] = a;
+}
 void Projectile::setExplosion(Explosion e){
 	explosion.cloneE(&e);
 }
 void Projectile::setSmokeTrail(bool value){smokeTrail = value;}
+void Projectile::setSpeed(float s){speed = s;}
+void Projectile::setDirec(float x, float y){
+	xVector = speed*x;
+	yVector = speed*y;
+}
 
 // Setup basic values for all variables 
 void Projectile::initValues(){
