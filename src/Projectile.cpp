@@ -6,48 +6,6 @@ Projectile::Projectile()
 	initValues();
 }
 
-Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, 
-	int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread)
-{
-	initValues();
-
-	projectileType = ProjectileType;
-	previousX = CurrentX;
-	previousY = CurrentY;
-	currentX = CurrentX;
-	currentY = CurrentY;
-	spread = Spread;
-	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
-	xVector = speed*(cos(angle));
-	yVector = speed*(sin(angle));
-	mass = Mass;
-	size = Size;
-	if(projectileType == PROJT_BULLET || projectileType == PROJT_BEAM || projectileType == PROJT_TEST)
-		negligence = false;
-	alive = true;
-}
-
-Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, float xLocation, float yLocation)
-{
-	initValues();
-
-	projectileType = ProjectileType;
-	previousX = CurrentX;
-	previousY = CurrentY;
-	currentX = CurrentX;
-	currentY = CurrentY;
-	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
-	xVector = speed*(cos(angle));
-	yVector = speed*(sin(angle));
-	mass = 1;
-	size = 1;// .5;
-	if(projectileType == PROJT_BULLET || projectileType == PROJT_BEAM || projectileType == PROJT_TEST)
-		negligence = false;
-	alive = true;
-
-}
-//builds a default typed projectile, not to be used with projectile, only in inheritance
-
 Projectile::~Projectile(){
 
 }
@@ -84,11 +42,6 @@ void Projectile::clone(Projectile* p){
 	partTime = p->partTime;
 
 	explosion.cloneE(&(p->explosion));
-}
-
-void Projectile::reset()
-{
-	initValues();
 }
 
 //UpdateProjectile does the heavier stuff for projectiles with complicated movement, and will handle collision detection
@@ -286,14 +239,12 @@ void Projectile::initValues(){
 	currentY = 0.0f;
 	xVector = 0.0f;
 	yVector = 0.0f;
-	spread = 0;
 	speed = 200;
 	mass = 0;
 	size = 0;
 	negligence = false;
 	alive = false;
 	doesExplode = false;
-	isColliding = false;
 	diesOnImpact = true;
 	drawProj = false;
 	imageId = 0;

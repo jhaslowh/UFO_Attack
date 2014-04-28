@@ -3,78 +3,29 @@
 NSMOProjectile::NSMOProjectile()
 {
 	projectileType = PROJT_NSMO;
-	previousX = 0.0f;
-	previousY = 0.0f;
-	currentX = 0.0f;
-	currentY = 0.0f;
-	xVector = 0.0f;
-	yVector = 0.0f;
-	spread = 60;
 	speed = 100;
 	mass = 1;
 	size = 1;
 	negligence = false;
 	alive = false;
 	doesExplode = false;
-	isColliding = false;
 }
 
-NSMOProjectile::NSMOProjectile(float CurrentX, float CurrentY, int Mass, int Size, int speed, bool doesExplode, float directionx, float directiony)
+NSMOProjectile::NSMOProjectile(float CurrentX, float CurrentY, int speed, bool doesExplode, float directionx, float directiony) : Projectile()
 {
 	projectileType = PROJT_NSMO;
 	previousX = CurrentX;
 	previousY = CurrentY;
 	currentX = CurrentX;
 	currentY = CurrentY;
-	spread = 0;
+	speed = speed;
 	xVector = speed*directionx;
 	yVector = speed*directiony;
-	mass = Mass;
-	size = Size;
-	negligence = false;
-	alive = true;
-	isColliding = false;
-	this->doesExplode = doesExplode;
-}
-
-
-NSMOProjectile::NSMOProjectile(float CurrentX, float CurrentY, int Mass, int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread)
-{
-	projectileType = PROJT_NSMO;
-	previousX = CurrentX;
-	previousY = CurrentY;
-	currentX = CurrentX;
-	currentY = CurrentY;
-	spread = Spread;
-	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY),
-		(double)(xLocation + (rand() % spread) - CurrentX));
-	xVector = speed*(cos(angle));
-	yVector = speed*(sin(angle));
-	mass = Mass;
-	size = Size;
-	negligence = false;
-	alive = true;
-	isColliding = false;
-	this->doesExplode = doesExplode;
-}
-
-NSMOProjectile::NSMOProjectile(float CurrentX, float CurrentY, float xLocation, float yLocation)
-{
-	projectileType = PROJT_NSMO;
-	previousX = CurrentX;
-	previousY = CurrentY;
-	currentX = CurrentX;
-	currentY = CurrentY;
-	speed = 100;
-	spread = 60;
-	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
-	xVector = speed*(cos(angle));
-	yVector = speed*(sin(angle));
 	mass = 1;
 	size = 1;
 	negligence = false;
 	alive = true;
-	isColliding = false;
+	this->doesExplode = doesExplode;
 }
 
 NSMOProjectile::~NSMOProjectile()
@@ -104,5 +55,4 @@ void NSMOProjectile::updateNegligableProjectile(float deltaTime)
 	xVector-=1*size*deltaTime;
 	currentX+=xVector*deltaTime;
 	currentY+=yVector*deltaTime;
-
 }

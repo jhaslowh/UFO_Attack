@@ -14,7 +14,6 @@ ProjectileHandler::~ProjectileHandler()
 {
 	cleanUp();
 }
-//Constructor and Deconstructor
 
 // Returns the projectile list
 Projectile** ProjectileHandler::getProjList(){return projs;}
