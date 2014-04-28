@@ -265,9 +265,6 @@
     <ClCompile Include="UFORocket.cpp">
       <Filter>Source Files\game\weap</Filter>
     </ClCompile>
-    <ClCompile Include="ProjTemplate.cpp">
-      <Filter>Source Files\game\weap</Filter>
-    </ClCompile>
     <ClCompile Include="UILevelButton.cpp">
       <Filter>Source Files\ui</Filter>
     </ClCompile>
@@ -541,9 +538,6 @@
       <Filter>Header Files\game\expl</Filter>
     </ClInclude>
     <ClInclude Include="UFORocket.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
-    <ClInclude Include="ProjTemplate.h">
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
     <ClInclude Include="UILevelButton.h">
