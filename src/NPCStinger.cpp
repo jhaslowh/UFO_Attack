@@ -41,6 +41,7 @@ NPCStinger::NPCStinger() : Weapon()
 	projTemp.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 	projTemp.explodes = true;
 	projTemp.explosion.setAsBasic();
+	projTemp.smokeTrail = true;
 }
 
 NPCStinger::~NPCStinger(){}

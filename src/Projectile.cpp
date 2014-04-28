@@ -95,9 +95,6 @@ void Projectile::reset()
 //This will act as a default in case a projectile doesn't have its own updateProjectile method
 void Projectile::updateProjectile(float deltaTime, Handlers* handlers)
 {
-	//cout << "updatingP/n";
-	//cout << "yVector: " << yVector << " /n";
-	//cout << "currentY: " << currentY << " /n";
 	previousY = currentY;
 	previousX = currentX;
 	yVector+=1*size;
@@ -107,8 +104,6 @@ void Projectile::updateProjectile(float deltaTime, Handlers* handlers)
 	//Stuff like rolling on the ground and bouncing
 	currentX+=xVector*deltaTime;
 	currentY+=yVector*deltaTime;
-	//cout << "yVector: " << yVector << " /n";
-	//cout << "currentY: " << currentY << " /n";
 }
 
 //This method does not need to be overloaded for different projectiles, 
@@ -188,21 +183,19 @@ void Projectile::checkCollision(float deltaTime, Handlers* handlers){
 	// Update particles 
 	if (smokeTrail){
 		partTime += deltaTime;
-		if (partTime >= .1f){
+		if (partTime >= .005f){
+			partTime = 0.0f;
 			Particle* p = ((ParticleHandler*)handlers->partHandler)->add(
-				GI_SMOKE1,	// Image
+				GI_SMOKE3,	// Image
 				currentX,currentY,	// Location
 				10.0f,10.0f,// Origin
 				0.0f,0.0f,	// Direction
 				0.0f,		// Speed
 				1.0f,		// Life
 				((((rand()%100)/100.0f)*2.0f)-1.0f)*100.0f,		// Rotation speed
-				((rand()%100)/100.0f)*-1.0f);		// Scale speed 
+				((rand()%100)/100.0f)*-2.0f - 2.0f);		// Scale speed 
 
-			p->setAnimates(true);
-			p->setFrames(5);
-			p->setFrameTime(.02f);
-			p->setRotation(((rand()%100)/100.0f)*360.0f);
+			if (p != NULL) p->setRotation(((rand()%100)/100.0f)*360.0f);
 		}
 	}
 }
