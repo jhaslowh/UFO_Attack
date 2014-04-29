@@ -1,6 +1,9 @@
 CS 426 Project
 ==============
 
+About
+-----
+Game created for CS 426  
 
 Controls
 --------
