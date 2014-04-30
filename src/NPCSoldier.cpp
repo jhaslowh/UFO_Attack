@@ -138,7 +138,7 @@ void NPCSoldier::update(float deltaTime, Handlers* handlers){
 void NPCSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 	NPCBasicCollision::draw(mgl, mGame);
 	
-	if (alive){
+	if (alive && mdraw){
 		if (direcX > 0){
 			// Draw body 
 			mGame->draw(mgl, imageID+cframe,locX,locY,scale, rotation, originX, originY);

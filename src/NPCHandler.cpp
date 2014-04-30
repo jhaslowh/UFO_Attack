@@ -135,6 +135,7 @@ void NPCHandler::drawLight(GLHandler* mgl, GameAtlas* mGame){
 // Draw objects
 void NPCHandler::draw(GLHandler* mgl, GameAtlas* mGame){
 	ditr = head;
+
 	while (ditr != NULL){
 		ditr->draw(mgl, mGame);
 		ditr = ditr->next;

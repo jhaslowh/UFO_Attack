@@ -56,6 +56,8 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	// Give screen size to level properties 
 	levelProps.setScreenWidth(screen_width);
 	levelProps.setScreenHeight(screen_height);
+	levelProps.screenRec.setWidth(screen_width + 100.0f);
+	levelProps.screenRec.setHeight(screen_height + 100.0f);
 
 	// Set Handler references 
 	handlers.ground = ground;
@@ -93,12 +95,19 @@ void Level::unload(){
 
 // Update level state
 void Level::update(float deltaTime){
+	// Set screen rec area 
+	levelProps.screenRec.setLocation(
+		camera.toLevelX(0.0f) - 50.0f,
+		camera.toLevelY(0.0f) - 50.0f);
+
+	// Update sky 
 	sky.update(deltaTime);
 
+	// Update projectiles and explosions 
 	projHandler->updateProjectiles(deltaTime, &handlers);
 	explHandler->update(deltaTime);
 	
-	// Set player enemy size for hud
+	// Update player
 	player->update(deltaTime, &handlers);
 	player->checkCollision(&handlers);
 	player->update2(deltaTime, &handlers);

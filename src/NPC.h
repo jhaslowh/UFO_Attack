@@ -35,6 +35,7 @@ protected:
 	bool canBeObducted;
 	bool beingAbducted;
 	bool alive;
+	bool mdraw; // Toggle whether the npc will draw this iteration 
 
 	float health;
 	float healthMax;
@@ -72,6 +73,7 @@ public:
 	void setImageID(int id);
 	int getImageID();
 	bool getAlive();
+	bool getDraw();
 
 	// Returns npc collision rec
 	virtual Rec* getCollisionRec();
