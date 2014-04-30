@@ -3,7 +3,7 @@ CS 426 Project
 
 About
 -----
-Game created for CS 426  
+In this game you play a alien bear and your goal is to defeat the military and abduct people.   
 
 Controls
 --------
@@ -16,7 +16,7 @@ R : Reload
 F : Switch weapon   
 
 _Player_  
-Space: Jump
+Space: Jump  
 
 _UFO_  
 E : Abduction Ray  
