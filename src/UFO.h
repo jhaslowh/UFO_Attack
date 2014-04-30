@@ -58,6 +58,14 @@ class UFO
 	float rayHeight;
 	float rayCircleHeight;
 
+	// Energy
+	float energy;
+	float energyMax;
+	float eCharge; // Charge rate
+	float eDrain; // Drain rate 
+	float timeTilCharge;
+	float ctimeTilCharge;
+
 	// -------------
 	// Weapon
 	// -------------
@@ -92,6 +100,9 @@ public:
 	Rec* getUFOArea();
 	// Get the area for collision detection with abduction ray
 	Rec* getAbductArea();
+
+	// Returns the percent of current energy 
+	float getEnergyPercent();
 
 	// Init 
 	void init(SaveData* savedata);

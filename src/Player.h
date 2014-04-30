@@ -142,12 +142,18 @@ class Player
 	float elTextX, elTextY;
 	float elBarX, elBarY;
 	float elScale;
+	// Energy 
+	float hudEnergyScale;
+	float hudEnergyMaxScale;
+	float hudEnergyLocX;
+	float hudEnergyLocY;
 
 	// Colors
 	GLfloat hudHealthColor[4];
 	GLfloat hudShieldColor[4];
 	GLfloat hudArmorColor[4];
 	GLfloat hudBlack[4];
+	GLfloat hudEnergyColor[4];
 
 	// -------------
 	// Weapon

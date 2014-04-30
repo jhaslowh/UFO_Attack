@@ -77,6 +77,12 @@ Player::Player(SaveData* savedata){
 	locScoreHumanX = 240.0f;
 	locScoreHumanY = 5.0f;
 
+	// Energy values 
+	hudEnergyScale = 1.0f;
+	hudEnergyMaxScale = 1.0f;
+	hudEnergyLocX = 0.0f;
+	hudEnergyLocY = 0.0f;
+
 	// Enemies Left
 	elText = "Enemies Left";
 	elTextSize = 20.0f;
@@ -106,6 +112,11 @@ Player::Player(SaveData* savedata){
 	hudBlack[1] = 0.0f;
 	hudBlack[2] = 0.0f;
 	hudBlack[3] = 0.5f;
+
+	hudEnergyColor[0] = 0.0f;
+	hudEnergyColor[1] = 1.0f;
+	hudEnergyColor[2] = 0.0f;
+	hudEnergyColor[3] = 1.0f;
 	
 	camera = NULL;
 	cameraEdge = 160.0f;
@@ -197,6 +208,8 @@ void Player::init(float screen_width, float screen_height, SaveData* savedata){
 	hudShieldLocY = 5.0f;
 	hudHealthLocX = 5.0f;
 	hudHealthLocY = 30.0f;
+	hudEnergyLocX = 5.0f;
+	hudEnergyLocY = 45.0f;
 
 	cameraRec.reset(cameraEdge, cameraEdge, 
 		screen_width - (cameraEdge*2.0f), screen_height - (cameraEdge*2.0f));
@@ -607,6 +620,7 @@ void Player::update2(float deltaTime, Handlers* handlers){
 	hudHealthScale = (health / maxHealth) * hudHealthMaxScale;
 	hudArmorScale = (ufo->getArmor() / ufo->getMaxArmor()) * hudArmorMaxScale;
 	hudShieldScale = (ufo->getShield() / ufo->getMaxShield()) * hudShieldMaxScale;
+	hudEnergyScale = ufo->getEnergyPercent() * hudEnergyMaxScale;
 
 	// Get current frame 
 	if (animationState == PLAYERS_RUN)
@@ -722,6 +736,7 @@ void Player::drawHud(GLHandler* mgl){
 	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudHealthLocX, hudHealthLocY, hudHealthMaxScale, 1.0f);
 	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudShieldLocX, hudShieldLocY, hudShieldMaxScale, hudShieldScaleY);
 	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudArmorLocX, hudArmorLocY, hudArmorMaxScale, 1.0f);
+	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudEnergyLocX, hudEnergyLocY, hudEnergyMaxScale, 1.0f);
 
 	// Draw health 
 	mgl->setFlatColor(hudHealthColor);
@@ -732,6 +747,9 @@ void Player::drawHud(GLHandler* mgl){
 	// Draw armor 
 	mgl->setFlatColor(hudArmorColor);
 	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudArmorLocX, hudArmorLocY, hudArmorScale, 1.0f);
+	// Draw energy 
+	mgl->setFlatColor(hudEnergyColor);
+	playerAtlas.drawScale2(mgl, PI_HEALTH_BAR, hudEnergyLocX, hudEnergyLocY, hudEnergyScale, 1.0f);
 
 	// Draw enemy left bar
 	mgl->setFlatColor(hudBlack);
