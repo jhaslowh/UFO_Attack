@@ -8,7 +8,6 @@
 #include "KeyHandler.h"
 #include "Handlers.h"
 #include "Camera2D.h"
-#include "ProjTemplate.h"
 #include "ProjectileHandler.h"
 
 // Fire types for the weapon
