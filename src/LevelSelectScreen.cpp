@@ -57,6 +57,11 @@ void LevelSelectScreen::load(TextureAtlas* mAtlas){
 
 	map.setup(1024.0f, 512.0f, "images/us_map_white.png");
 	
+	// Fix level button text
+	for (int i = 0; i < numberOfLevels; i++){
+		buttonLevels[i]->fixTextLoc(mUI->mTextRender);
+	}
+
 	show();
 }
 
@@ -191,6 +196,8 @@ void LevelSelectScreen::loadLevelList(){
 			buttonLevels[i]->setDifficulty((rand() % 4)-1);
 			buttonLevels[i]->setHidden();
 			buttonLevels[i]->setScale(map.getScale());
+			buttonLevels[i]->setTitle("Temp Title");
+			buttonLevels[i]->setDesc("Temp Description\nLine two");
 
 			// Add level name to list 
 			levelsList[i] = storage[0];
