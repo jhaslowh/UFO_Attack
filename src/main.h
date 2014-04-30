@@ -102,7 +102,3 @@ void eventAndRenderLoop();
 
 // Game a new game 
 void createGame();
-
-// Debug sound function
-void soundStuff();
-

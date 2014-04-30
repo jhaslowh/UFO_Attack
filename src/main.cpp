@@ -15,7 +15,7 @@ using namespace std;
 */
 int init_resources()
 {
-	soundStuff();
+	soundHandler = new SoundHandler();
 
 	printf("Loading Resources...\n");
 
@@ -632,10 +632,4 @@ void createGame(){
 		restart = false;
 		createGame();
 	}
-}
-
-
-void soundStuff(){	
-
-	soundHandler = new SoundHandler();
 }
