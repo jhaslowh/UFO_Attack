@@ -11,7 +11,7 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 	typeId = PI_GUN_LASER;
 	clipCapacity = 15;
 	clip = clipCapacity;
-	spread = 0; // In radians
+	spread = 0.2f; // In radians
 	verticalDisplacement = 0;
 	horizontalDisplacement = 0;
 	bulletsPerShot = 1;

@@ -11,7 +11,7 @@ UFORocket::UFORocket() : Weapon()
 	typeId = PI_UFO_ROCKET;
 	clipCapacity = 4;
 	clip = clipCapacity;
-	spread = 0.2f; // In radians
+	spread = 0.23f; // In radians
 	verticalDisplacement = 0;
 	horizontalDisplacement = 0;
 	bulletsPerShot = 1;

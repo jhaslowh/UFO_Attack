@@ -11,7 +11,7 @@ PlayerSMG::PlayerSMG()
 	typeId = PI_GUN_SMG;
 	clipCapacity = 45;
 	clip = clipCapacity;
-	spread = .04f; // In radians
+	spread = .28f; // In radians
 	verticalDisplacement = 0;
 	horizontalDisplacement = 15;
 	bulletsPerShot = 1;
@@ -36,7 +36,7 @@ PlayerSMG::PlayerSMG()
 	proj->setOffset(5.0f,2.0f);
 	proj->setImageGlowId(GI_PROJ_GLOW);
 	proj->setGlowOffset(7.5f,2.0f);
-	proj->setDrawColor(1.0f, 1.0f, 1.0f, 1.0f);
+	proj->setDrawColor(.4f, .4f, .4f, 1.0f);
 	proj->setExplodes(false);
 }
 
