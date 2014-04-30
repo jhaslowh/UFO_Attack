@@ -637,6 +637,5 @@ void createGame(){
 
 void soundStuff(){	
 
-	SoundHandler *stuffwe = new SoundHandler();
-
+	soundHandler = new SoundHandler();
 }
