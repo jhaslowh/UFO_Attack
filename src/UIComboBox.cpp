@@ -175,6 +175,8 @@ bool UIComboBox::updateInputFocus(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown()){
 			selectedItem = mouseItem;
 			itemSelected = true;
+			showList = false;
+			return false;
 		}
 	}
 
