@@ -71,6 +71,10 @@ bool NPCHandler::addByName(std::string name, float x, float y){
 		add(new NPCStingerSoldier(x,y));
 		return true;
 	}
+	else if (name.compare("hsoldier") == 0){
+		add(new NPCHeavySoldier(x,y));
+		return true;
+	}
 	return false;
 }
 

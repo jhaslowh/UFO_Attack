@@ -1,6 +1,7 @@
 #pragma once
 #include "NPC.h"
 #include "NPCSoldier.h"
+#include "NPCHeavySoldier.h"
 #include "NPCSniperSoldier.h"
 #include "NPCStingerSoldier.h"
 #include "NPCcow.h"

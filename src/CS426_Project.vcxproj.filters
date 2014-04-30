@@ -274,6 +274,9 @@
     <ClCompile Include="Particle.cpp">
       <Filter>Source Files\game\part</Filter>
     </ClCompile>
+    <ClCompile Include="NPCHeavySoldier.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -548,6 +551,9 @@
     </ClInclude>
     <ClInclude Include="Particle.h">
       <Filter>Header Files\game\part</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCHeavySoldier.h">
+      <Filter>Header Files\game\npc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

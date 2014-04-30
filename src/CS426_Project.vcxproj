@@ -25,6 +25,7 @@
     <ClInclude Include="NPCBasicCollision.h" />
     <ClInclude Include="NPCcow.h" />
     <ClInclude Include="NPCHandler.h" />
+    <ClInclude Include="NPCHeavySoldier.h" />
     <ClInclude Include="NPCSMG.h" />
     <ClInclude Include="NPCSniper.h" />
     <ClInclude Include="NPCSniperSoldier.h" />
@@ -118,6 +119,7 @@
     <ClCompile Include="NPCBasicCollision.cpp" />
     <ClCompile Include="NPCcow.cpp" />
     <ClCompile Include="NPCHandler.cpp" />
+    <ClCompile Include="NPCHeavySoldier.cpp" />
     <ClCompile Include="NPCSMG.cpp" />
     <ClCompile Include="NPCSniper.cpp" />
     <ClCompile Include="NPCSniperSoldier.cpp" />
