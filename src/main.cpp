@@ -15,9 +15,10 @@ using namespace std;
 */
 int init_resources()
 {
+	printf("Loading Resources...\n");
+
 	soundHandler = new SoundHandler(settings);
 	soundHandler->playMusic(SE_MENU_MUSIC);
-	printf("Loading Resources...\n");
 	
 	// Set up shaders 
 	mgl.load((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
@@ -102,6 +103,7 @@ void free_resources()
 	// Delete allocations 
 	delete mUIAtlas;
 	delete terminal;
+	delete soundHandler;
 
 	// Save data 
 	saveSettings(settings);
@@ -627,6 +629,9 @@ void createGame(){
 
 	// Unload SDL
 	SDL_Quit();
+	// Unload SDL sound
+	Mix_CloseAudio();
+	Mix_Quit();
 
 	if (restart){
 		restart = false;
