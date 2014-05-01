@@ -284,7 +284,7 @@
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
     <ClCompile Include="SoundHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\io</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -571,7 +571,7 @@
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
     <ClInclude Include="SoundHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\io</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

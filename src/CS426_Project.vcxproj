@@ -36,7 +36,7 @@
     <ClInclude Include="NPCTankBarrel.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleHandler.h" />
-    <ClInclude Include="soundhandler.h" />
+    <ClInclude Include="SoundHandler.h" />
     <ClInclude Include="TallCrate.h" />
     <ClInclude Include="UFORocket.h" />
     <ClInclude Include="UICreditsBox.h" />
