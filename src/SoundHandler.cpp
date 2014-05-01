@@ -1,9 +1,9 @@
 #include "SoundHandler.h"
 #include "Settings.h" // gives access to settings
 
-SoundHandler::SoundHandler(void)
+SoundHandler::SoundHandler(Settings * settingsHandlerPointer)
 {
-
+	
 	if(SDL_Init(SDL_INIT_AUDIO)<0){
 		// errors
 		printf("Error initializing audio. SDL Error info %s\n", SDL_GetError());
@@ -20,10 +20,10 @@ SoundHandler::SoundHandler(void)
 	if( menuMusic == NULL ){
 		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
-	
-	//if (settings->getMasterVol() * settings->getMusicVol() > 0.0f){
+
+	if (settingsHandlerPointer->getMasterVol() * settingsHandlerPointer->getMusicVol() > 0.0f){
 		Mix_PlayMusic(menuMusic, 1 );
-	//}
+	}
 }
 
 SoundHandler::~SoundHandler(void)

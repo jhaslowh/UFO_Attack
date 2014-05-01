@@ -16,7 +16,7 @@
 class SoundHandler
 {
 public:
-	SoundHandler(void);
+	SoundHandler(Settings * settingsHandler);
 	~SoundHandler(void);
 	Mix_Music *menuMusic;
 };

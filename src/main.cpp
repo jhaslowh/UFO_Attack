@@ -15,7 +15,7 @@ using namespace std;
 */
 int init_resources()
 {
-	soundHandler = new SoundHandler();
+	soundHandler = new SoundHandler(settings);
 
 	printf("Loading Resources...\n");
 
