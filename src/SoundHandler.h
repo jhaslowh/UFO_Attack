@@ -14,7 +14,7 @@
 
 //Sound Effects
 #define SE_PLAYER_LASER_SOUND 10000
-
+#define SE_NPC_SMG_SOUND 10001
 class SoundHandler
 {
 public:
@@ -22,6 +22,7 @@ public:
 	~SoundHandler(void);
 	Mix_Music *menuMusic;
 	Mix_Chunk *blasterSound;
+	Mix_Chunk *npcSMGSound;
 	void playMusic(int musicID);
 	void playSoundEffect(int soundID);
 private:
