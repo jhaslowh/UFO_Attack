@@ -58,6 +58,8 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata, vo
 	levelProps.setScreenHeight(screen_height);
 	levelProps.screenRec.setWidth(screen_width + 100.0f);
 	levelProps.screenRec.setHeight(screen_height + 100.0f);
+	// Set particles reference to screen rec
+	partHandler->screenRec = &(levelProps.screenRec);
 
 	// Set Handler references 
 	handlers.ground = ground;
@@ -149,9 +151,10 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Draw actual lights 
 	mgl->setViewMatrix(camera.getMatrix());
 	mgl->setFlatColor(COLOR_WHITE);
+	explHandler->draw(mgl, &gameAtlas);
 	sceneryHandler->drawLight(mgl, &gameAtlas);
 	projHandler->drawLight(mgl, &gameAtlas);
-	player->drawLight(mgl);
+	player->drawLight(mgl); // Draw last, it binds its own buffer 
 
 	// Draw clipping objects for light 
 	ground->drawLight(mgl);
@@ -178,8 +181,8 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	partHandler->draw(mgl, &gameAtlas);
 	sceneryHandler->draw(mgl, &gameAtlas);
 	npcHandler->draw(mgl, &gameAtlas);
-	projHandler->draw(mgl, &gameAtlas);		
-	explHandler->draw(mgl, &gameAtlas);
+	projHandler->draw(mgl, &gameAtlas);	
+	explHandler->draw(mgl, &gameAtlas);	
 	player->draw(mgl);							
 	ground->draw(mgl);							
 	

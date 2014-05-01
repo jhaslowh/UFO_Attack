@@ -14,7 +14,7 @@ class GLHandler
 {
 	// Used to save memory 
 	GLfloat color[4];
-
+	
 public:
 	// Shader handles 
 	GLuint program;
@@ -34,6 +34,7 @@ public:
 	// 2D lighting
 	GLuint lightTextureId;			// Light texture ID
 	GLuint lightFBOId;				// Light FBO id
+	GLfloat lightClearColor[4];
 
 	// Matrix's
 	glm::mat4 orthoMatrix;

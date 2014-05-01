@@ -234,7 +234,7 @@ void Ground::drawLight(GLHandler* mgl){
 		mgl->setModelMatrix(mMatrix);
 
 		/// Set shader flat color ///
-		mgl->setFlatColor(.5f,.5f,.5f,1.0f);
+		mgl->setFlatColor(mgl->lightClearColor);
 
 		/// Set up vertex and coord buffers ///
 		glEnableVertexAttribArray(mgl->mPositionHandle);

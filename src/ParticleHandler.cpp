@@ -32,6 +32,10 @@ Particle* ParticleHandler::add(int image, float x, float y, float originX, float
 // Add new particle to list of particle 
 Particle* ParticleHandler::add(int image, float x, float y, float originX, float originY, 
 	float direcX, float direcY, float speed, float lifeTime, float rotationSpeed, float scaleSpeed){
+	
+	// Return if particle is not on screen 
+	if (!screenRec->contains(x,y)) return NULL;
+		
 	for (int i = 0; i < size; i++){
 		if (!parts[i].getValid()){
 			parts[i].reset();
