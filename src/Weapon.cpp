@@ -200,16 +200,28 @@ void Weapon::npcFire(float targetx, float targety, Handlers* handlers){
 	
 	// Check if rotation is valid and restrict angle
 	if (lookingRight){
-		if (rotation < minAngle)
-			rotation = minAngle;
-		else if (rotation > maxAngle)
-			rotation = maxAngle;
+		if (rotation < minAngle){
+			//rotation = minAngle;
+			rotation = 0.0f;
+			return;
+		}
+		else if (rotation > maxAngle){
+			//rotation = maxAngle;
+			rotation = 0.0f;
+			return;
+		}
 	}
 	else {
-		if (rotation > -minAngle)
-			rotation = -minAngle;
-		else if (rotation < -maxAngle)
-			rotation = -maxAngle;
+		if (rotation > -minAngle){
+			//rotation = -minAngle;
+			rotation = 0.0f;
+			return;
+		}
+		else if (rotation < -maxAngle){
+			//rotation = -maxAngle;
+			rotation = 0.0f;
+			return;
+		}
 	}
 
 	// Check for fire shot 

@@ -96,6 +96,11 @@ void GameAtlas::load(){
 	// NPC Heavy Soldier Arm
 	vcg->addFrame(153.0f, 979.0f, 16.0f, 11.0f);
 
+	// NPC Tank 
+	vcg->addFrame(1.0f, 782.0f, 124.0f, 50.0f);
+	// NPC Tank Barrel
+	vcg->addFrame(181.0f, 994.0f, 65.0f, 7.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

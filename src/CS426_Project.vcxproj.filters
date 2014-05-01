@@ -277,8 +277,14 @@
     <ClCompile Include="NPCHeavySoldier.cpp">
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
+    <ClCompile Include="NPCTankBarrel.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCTank.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
     <ClCompile Include="SoundHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\io</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -558,7 +564,15 @@
     <ClInclude Include="NPCHeavySoldier.h">
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
-    <ClInclude Include="soundhandler.h" />
+    <ClInclude Include="NPCTank.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCTankBarrel.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundHandler.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
