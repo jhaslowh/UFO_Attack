@@ -277,6 +277,9 @@
     <ClCompile Include="NPCHeavySoldier.cpp">
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
+    <ClCompile Include="SoundHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -555,6 +558,7 @@
     <ClInclude Include="NPCHeavySoldier.h">
       <Filter>Header Files\game\npc</Filter>
     </ClInclude>
+    <ClInclude Include="soundhandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

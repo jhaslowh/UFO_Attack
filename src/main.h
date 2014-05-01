@@ -30,6 +30,8 @@
 #include "CreditsScreen.h"
 #include "LevelSelectScreen.h"
 
+#include "SoundHandler.h"
+
 // Version 
 // x.yyyy
 // x = 0 = Alpha/Beta
@@ -58,7 +60,7 @@ GLHandler mgl;
 KeyHandler mKeyH;
 MouseHandler mMouseH;
 UIAtlas* mUIAtlas;
-void* soundHandler;
+SoundHandler* soundHandler;
 
 // Global Settings
 Settings* settings;
@@ -100,10 +102,3 @@ void eventAndRenderLoop();
 
 // Game a new game 
 void createGame();
-
-// Debug sound function
-void soundStuff();
-
-//The music that will be played
-Mix_Music *menuMusic = NULL;
-
