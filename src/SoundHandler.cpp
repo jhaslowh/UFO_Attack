@@ -41,11 +41,14 @@ void SoundHandler::playMusic(int musicID){
 }
 
 void SoundHandler::loadSound(void){
-	blasterSound = Mix_LoadWAV("audio/blaster_sound.wav");
+	//blasterSound = Mix_LoadWAV("audio/blaster_sound.wav");
+	blasterSound = Mix_LoadWAV("audio/lightning_bolt.wav");
 	npcSMGSound = Mix_LoadWAV("audio/smg_fire.wav");
 	npcSniperSound = Mix_LoadWAV("audio/sniper_fire.wav");
 	npcRocketLaunchSound = Mix_LoadWAV("audio/rocket_launch.wav");
 	npcTankFireSound = Mix_LoadWAV("audio/tank_blast.wav");
+	ufoRocketLaunchSound = Mix_LoadWAV("audio/ufo_rocket_launch.wav");
+	rocketExplodeSound = Mix_LoadWAV("audio/rocket_explosion.wav");
 }
 
 
@@ -66,6 +69,12 @@ void SoundHandler::playSoundEffect(int soundID){
 			break;
 		case SE_NPC_TANK_FIRE:
 			Mix_PlayChannel(-1, npcTankFireSound, 0);
+			break;
+		case SE_UFO_ROCKET_LAUNCH_SOUND:
+			Mix_PlayChannel(-1, ufoRocketLaunchSound, 0);
+			break;
+		case SE_ROCKET_EXPLODE_SOUND:
+			Mix_PlayChannel(-1, rocketExplodeSound, 0);
 			break;
 	}
 }

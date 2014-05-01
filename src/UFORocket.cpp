@@ -3,6 +3,7 @@
 
 UFORocket::UFORocket() : Weapon()
 {
+	weaponSoundId = SE_UFO_ROCKET_LAUNCH_SOUND;
 	imageid = PI_UFO_ROCKET;
 	originX = 0.0f; 
 	originY = 9.0f;
