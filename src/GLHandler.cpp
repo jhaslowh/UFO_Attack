@@ -3,6 +3,11 @@
 GLHandler::GLHandler(){
 	screen_width = 0.0f;
 	screen_height = 0.0f;
+
+	lightClearColor[0] = 0.0f;
+	lightClearColor[1] = 0.0f;
+	lightClearColor[2] = 0.0f;
+	lightClearColor[3] = 0.0f;
 }
 GLHandler::~GLHandler(){
 	glDeleteProgram(program);
@@ -408,6 +413,11 @@ void GLHandler::lightBegin(){
 	// This is the neutral color and will have no effect
 	glClearColor(.5f,.5f,.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+	
+	lightClearColor[0] = 0.5f;
+	lightClearColor[1] = 0.5f;
+	lightClearColor[2] = 0.5f;
+	lightClearColor[3] = 1.0f;
 }
 
 // Begin light rendering with the given color
@@ -418,6 +428,11 @@ void GLHandler::lightBegin(float r, float g, float b){
 	// This is the neutral color and will have no effect
 	glClearColor(r,g,b, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	lightClearColor[0] = r;
+	lightClearColor[1] = g;
+	lightClearColor[2] = b;
+	lightClearColor[3] = 1.0f;
 }
 
 // End light rendering
