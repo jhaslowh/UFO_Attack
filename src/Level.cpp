@@ -58,6 +58,8 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	levelProps.setScreenHeight(screen_height);
 	levelProps.screenRec.setWidth(screen_width + 100.0f);
 	levelProps.screenRec.setHeight(screen_height + 100.0f);
+	// Set particles reference to screen rec
+	partHandler->screenRec = &(levelProps.screenRec);
 
 	// Set Handler references 
 	handlers.ground = ground;

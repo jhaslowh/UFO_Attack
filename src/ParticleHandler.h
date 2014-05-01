@@ -1,5 +1,6 @@
 #pragma once
 #include "Particle.h"
+#include "Rec.h"
 
 class ParticleHandler
 {
@@ -11,6 +12,11 @@ class ParticleHandler
 	Particle* parts;
 
 public:
+	// Screen rec reference, used to make sure new particles 
+	// are on screen. Do not edit in this class. It is a reference
+	// to the one in the LevelProps
+	Rec* screenRec;
+
 	ParticleHandler();
 	~ParticleHandler();
 
