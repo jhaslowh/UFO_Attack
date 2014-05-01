@@ -3,6 +3,7 @@
 
 NPCSniper::NPCSniper() : Weapon()
 {
+	weaponSoundId = SE_NPC_SNIPER_SOUND;
 	imageid = GI_NPC_SNIPER;
 	originX = -5.0f; 
 	originY = 8.0f;

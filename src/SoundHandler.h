@@ -9,9 +9,15 @@
 #include <SDL/SDL_mixer.h>
 
 
-//The music that will be played
+//Music
+#define SE_MENU_MUSIC 11000
 
-
+//Sound Effects
+#define SE_PLAYER_LASER_SOUND 10000
+#define SE_NPC_SMG_SOUND 10001
+#define SE_NPC_SNIPER_SOUND 10002
+#define SE_NPC_ROCKET_LAUNCH_SOUND 10003
+#define SE_NPC_TANK_FIRE 10004
 
 class SoundHandler
 {
@@ -19,5 +25,17 @@ public:
 	SoundHandler(Settings * settingsHandler);
 	~SoundHandler(void);
 	Mix_Music *menuMusic;
+	Mix_Chunk *blasterSound;
+	Mix_Chunk *npcSMGSound;
+	Mix_Chunk *npcSniperSound;
+	Mix_Chunk *npcRocketLaunchSound;
+	Mix_Chunk *npcTankFireSound;
+
+	void playMusic(int musicID);
+	void playSoundEffect(int soundID);
+private:
+	void loadMusic();
+	void loadSound();
+
 };
 

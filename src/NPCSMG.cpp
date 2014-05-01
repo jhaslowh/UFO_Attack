@@ -2,6 +2,7 @@
 
 NPCSMG::NPCSMG() :Weapon()
 {	
+	weaponSoundId = SE_NPC_SMG_SOUND;
 	imageid = GI_NPC_SMG;
 	originX = -5.0f; 
 	originY = 8.0f;

@@ -16,9 +16,9 @@ using namespace std;
 int init_resources()
 {
 	soundHandler = new SoundHandler(settings);
-
+	soundHandler->playMusic(SE_MENU_MUSIC);
 	printf("Loading Resources...\n");
-
+	
 	// Set up shaders 
 	mgl.load((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
 	glUseProgram(mgl.program);

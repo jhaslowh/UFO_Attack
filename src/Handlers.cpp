@@ -11,6 +11,7 @@ Handlers::Handlers()
 	levelProps = NULL;
 	player = NULL;
 	explHander = NULL;
+	soundHandler = NULL;
 }
 
 Handlers::~Handlers(){}

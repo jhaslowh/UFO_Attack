@@ -26,7 +26,10 @@ void Settings::setMusicVol(float value){
 	Mix_VolumeMusic((MIX_MAX_VOLUME*value*masterVol));
 }
 float Settings::getSfxVol(){return sfxVol;}
-void Settings::setSfxVol(float value){sfxVol = value;}
+void Settings::setSfxVol(float value){
+	sfxVol = value;
+
+}
 
 // Get this value when setting the volume for the game
 float Settings::getMusicPlaybackVol(){return masterVol * musicVol;}

@@ -47,7 +47,7 @@ public:
 	~Level();
 
 	// initialize level
-	void init(float screen_width, float screen_height, SaveData* savedata);
+	void init(float screen_width, float screen_height, SaveData* savedata, void* soundHandler);
 
 	// Load level (use for textures)
 	void load(GLHandler* mgl);

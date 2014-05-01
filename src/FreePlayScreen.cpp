@@ -21,7 +21,7 @@ void FreePlayScreen::init(float screen_width, float screen_height, void* sh){
 	UIScreen::init(screen_width, screen_height, sh);
 
 	level = new Level();
-	level->init(screen_width, screen_height, NULL);
+	level->init(screen_width, screen_height, NULL, NULL);
 
 	pauseScreen = new PauseScreen();
 	pauseScreen->init(screen_width, screen_height, sh);

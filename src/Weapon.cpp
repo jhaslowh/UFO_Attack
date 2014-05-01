@@ -2,6 +2,8 @@
 
 Weapon::Weapon()
 {
+	weaponSoundId = 0;
+
 	imageid = -1;
 	locX = 0.0f;
 	locY = 0.0f;
@@ -232,6 +234,9 @@ void Weapon::npcFire(float targetx, float targety, Handlers* handlers){
 
 // Fire the weapon
 void Weapon::fire(float targetx, float targety, Handlers* handlers){
+	// Sound
+	SoundHandler * sh = (SoundHandler*)handlers->soundHandler;
+	sh->playSoundEffect(weaponSoundId);
 	// Fire shots 
 	for (int i = 0; i < bulletsPerShot; i++){
 		// Calculate weapon location 

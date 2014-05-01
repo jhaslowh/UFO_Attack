@@ -3,6 +3,7 @@
 
 NPCStinger::NPCStinger() : Weapon()
 {
+	weaponSoundId = SE_NPC_ROCKET_LAUNCH_SOUND;
 	imageid = GI_NPC_STINGER;
 	originX = 22.0f; 
 	originY = 8.0f;
