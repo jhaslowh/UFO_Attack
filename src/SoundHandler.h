@@ -10,10 +10,10 @@
 
 
 //Music
-
+#define SE_MENU_MUSIC 11000
 
 //Sound Effects
-#define SE_MENU_MUSIC 11000
+
 
 class SoundHandler
 {
@@ -21,9 +21,10 @@ public:
 	SoundHandler(Settings * settingsHandler);
 	~SoundHandler(void);
 	Mix_Music *menuMusic;
-
+	void playMusic(int musicID);
 private:
 	void loadMusic();
+	
 
 };
 
