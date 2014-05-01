@@ -283,6 +283,9 @@
     <ClCompile Include="NPCTank.cpp">
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
+    <ClCompile Include="SoundHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -566,6 +569,9 @@
     </ClInclude>
     <ClInclude Include="NPCTankBarrel.h">
       <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundHandler.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
