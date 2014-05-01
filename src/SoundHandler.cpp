@@ -41,7 +41,8 @@ void SoundHandler::playMusic(int musicID){
 }
 
 void SoundHandler::loadSound(void){
-	blasterSound = Mix_LoadWAV("audio/blaster_sound.wav");
+	//blasterSound = Mix_LoadWAV("audio/blaster_sound.wav");
+	blasterSound = Mix_LoadWAV("audio/lightning_bolt.wav");
 	npcSMGSound = Mix_LoadWAV("audio/smg_fire.wav");
 	npcSniperSound = Mix_LoadWAV("audio/sniper_fire.wav");
 	npcRocketLaunchSound = Mix_LoadWAV("audio/rocket_launch.wav");
