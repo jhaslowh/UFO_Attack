@@ -16,6 +16,7 @@ public:
 	void* camera;
 	void* levelProps;
 	void* player;
+	void* soundHandler;
 
 	Handlers();
 	~Handlers();

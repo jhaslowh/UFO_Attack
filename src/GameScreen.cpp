@@ -40,7 +40,7 @@ void GameScreen::init(float screen_width, float screen_height, void* sh){
 	screenHeight = screen_height;
 
 	level = new Level();
-	level->init(screen_width, screen_height, savedata);
+	level->init(screen_width, screen_height, savedata, soundHandler);
 	levelFile = savedata->levelToLoad;
 
 	pauseScreen = new PauseScreen();
@@ -217,7 +217,7 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		delete level;
 
 		level = new Level();
-		level->init(screenWidth, screenHeight, savedata);
+		level->init(screenWidth, screenHeight, savedata, soundHandler);
 		// TODO this should load the level file in the future 
 
 		terminal->addLine("level reset", TL_SUCCESS);

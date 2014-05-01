@@ -16,6 +16,8 @@
 
 const float DEG_TO_RAD = (3.14159f/180.0f);
 
+#include "SoundHandler.h" //used for the defines
+
 class Weapon
 {
 protected: 
@@ -122,5 +124,8 @@ public:
 
 	// Check if can fire
 	bool canFire();
+
+	// Used to determine which sound to play when the weapon fires
+	int weaponSoundId;
 };
 

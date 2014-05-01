@@ -32,7 +32,7 @@ Level::~Level(){
 }
 
 // initialize level
-void Level::init(float screen_width, float screen_height, SaveData* savedata){
+void Level::init(float screen_width, float screen_height, SaveData* savedata, void * soundHandler){
 	// Setup sky 
 	sky.init(screen_width, screen_height);
 	// Create player 
@@ -69,6 +69,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	handlers.npcHandler = npcHandler;
 	handlers.explHander = explHandler;
 	handlers.partHandler = partHandler;
+	handlers.soundHandler = soundHandler;
 
 	// Load level from file 
 	loadLevel(&handlers, savedata->levelToLoad);
