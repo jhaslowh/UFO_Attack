@@ -21,15 +21,11 @@ SoundHandler::SoundHandler(Settings * settingsHandlerPointer)
 	if( menuMusic == NULL ){
 		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
-
-
-	
 }
 
 void SoundHandler::loadMusic(void){
 	//Until performance issues crop up we load all of the sound files at once. 
 	menuMusic = Mix_LoadMUS("audio/splash_screen.wav");
-
 }
 
 void SoundHandler::playMusic(int musicID){
@@ -79,7 +75,14 @@ void SoundHandler::playSoundEffect(int soundID){
 	}
 }
 
-SoundHandler::~SoundHandler(void)
+SoundHandler::~SoundHandler()
 {
-	//TODO cleanup SDL for graceful exit
+	// Cleanup SDL for graceful exit
+	Mix_FreeMusic(menuMusic);
+
+	Mix_FreeChunk(blasterSound);
+	Mix_FreeChunk(npcSMGSound);
+	Mix_FreeChunk(npcSniperSound);
+	Mix_FreeChunk(npcRocketLaunchSound);
+	Mix_FreeChunk(npcTankFireSound);
 }
