@@ -238,6 +238,9 @@ void Projectile::collide(Point* p, Handlers* handlers, int collType)
 		else explosion.setType(ENEMY_EXP);
 		// Add to handler list 
 		((ExplHandler*)handlers->explHander)->add(&explosion);
+
+		SoundHandler * sh = (SoundHandler*)handlers->soundHandler;
+		sh->playSoundEffect(SE_ROCKET_EXPLODE_SOUND);
 	}
 
 	// Kill if dies on impact

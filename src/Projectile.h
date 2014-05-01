@@ -11,6 +11,7 @@
 #include "ExplHandler.h"
 #include "Ground.h"
 #include "ParticleHandler.h"
+#include "SoundHandler.h"
 
 //Projectile Types Include
 //Type 1 = Bullet
