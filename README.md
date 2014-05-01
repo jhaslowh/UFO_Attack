@@ -76,6 +76,7 @@ Commands for Level Editor (Must be in screen with one)
 - "npc add sniper" : add new sniper npc to level  
 - "npc add cow" : add new cow npc to level  
 - "npc add hsoldier" : add new heavy soldier npc to level  
+- "npc add tank" : add new tank npc to level  
 
 Commands while in Game Screen
 - "level reset" : reset the current level  

@@ -5,6 +5,7 @@
 #include "NPCSniperSoldier.h"
 #include "NPCStingerSoldier.h"
 #include "NPCcow.h"
+#include "NPCTank.h"
 
 class NPCHandler
 {

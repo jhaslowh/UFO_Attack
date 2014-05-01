@@ -277,6 +277,12 @@
     <ClCompile Include="NPCHeavySoldier.cpp">
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
+    <ClCompile Include="NPCTankBarrel.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCTank.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -554,6 +560,12 @@
     </ClInclude>
     <ClInclude Include="NPCHeavySoldier.h">
       <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCTank.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCTankBarrel.h">
+      <Filter>Header Files\game\weap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

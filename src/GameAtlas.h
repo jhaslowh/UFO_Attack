@@ -45,6 +45,8 @@
 #define GI_NPC_HSOLDIER2 37
 #define GI_NPC_HSOLDIER3 38
 #define GI_NPC_HSOLDIER_ARM 39
+#define GI_TANK 40
+#define GI_TANK_BARREL 41 
 
 class GameAtlas : public TextureAtlas
 {
