@@ -29,3 +29,6 @@ src/Build/*.txt
 *.intermediate.manifest
 *.cache
 *.unsuccessfulbuild
+
+# Windows file
+*Thumbs.db
