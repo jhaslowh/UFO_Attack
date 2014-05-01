@@ -47,6 +47,7 @@ void SoundHandler::loadSound(void){
 	npcSniperSound = Mix_LoadWAV("audio/sniper_fire.wav");
 	npcRocketLaunchSound = Mix_LoadWAV("audio/rocket_launch.wav");
 	npcTankFireSound = Mix_LoadWAV("audio/tank_blast.wav");
+	ufoRocketLaunchSound = Mix_LoadWAV("audio/ufo_rocket_launch.wav");
 }
 
 
@@ -67,6 +68,9 @@ void SoundHandler::playSoundEffect(int soundID){
 			break;
 		case SE_NPC_TANK_FIRE:
 			Mix_PlayChannel(-1, npcTankFireSound, 0);
+			break;
+		case SE_UFO_ROCKET_LAUNCH_SOUND:
+			Mix_PlayChannel(-1, ufoRocketLaunchSound, 0);
 			break;
 	}
 }
