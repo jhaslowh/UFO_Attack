@@ -3,6 +3,7 @@
 
 NPCTankBarrel::NPCTankBarrel() : Weapon()
 {
+	weaponSoundId = SE_NPC_TANK_FIRE;
 	imageid = GI_TANK_BARREL;
 	originX = 0.0f; 
 	originY = 3.5f;

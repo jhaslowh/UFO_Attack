@@ -17,7 +17,7 @@
 #define SE_NPC_SMG_SOUND 10001
 #define SE_NPC_SNIPER_SOUND 10002
 #define SE_NPC_ROCKET_LAUNCH_SOUND 10003
-
+#define SE_NPC_TANK_FIRE 10004
 
 class SoundHandler
 {
@@ -29,6 +29,7 @@ public:
 	Mix_Chunk *npcSMGSound;
 	Mix_Chunk *npcSniperSound;
 	Mix_Chunk *npcRocketLaunchSound;
+	Mix_Chunk *npcTankFireSound;
 
 	void playMusic(int musicID);
 	void playSoundEffect(int soundID);
