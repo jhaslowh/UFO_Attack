@@ -3,7 +3,6 @@
 
 SoundHandler::SoundHandler(Settings * settingsHandlerPointer)
 {
-	
 	if(SDL_Init(SDL_INIT_AUDIO)<0){
 		// errors
 		printf("Error initializing audio. SDL Error info %s\n", SDL_GetError());
@@ -16,7 +15,9 @@ SoundHandler::SoundHandler(Settings * settingsHandlerPointer)
 		}
 	}
 
-	menuMusic = Mix_LoadMUS("audio/splash_screen.wav");
+	loadMusic();
+
+	
 	if( menuMusic == NULL ){
 		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
@@ -24,6 +25,12 @@ SoundHandler::SoundHandler(Settings * settingsHandlerPointer)
 	if (settingsHandlerPointer->getMasterVol() * settingsHandlerPointer->getMusicVol() > 0.0f){
 		Mix_PlayMusic(menuMusic, 1 );
 	}
+}
+
+void SoundHandler::loadMusic(void){
+	//Until performance issues crop up we load all of the sound files at once. 
+	menuMusic = Mix_LoadMUS("audio/splash_screen.wav");
+
 }
 
 SoundHandler::~SoundHandler(void)

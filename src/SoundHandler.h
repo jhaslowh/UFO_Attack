@@ -9,9 +9,11 @@
 #include <SDL/SDL_mixer.h>
 
 
-//The music that will be played
+//Music
 
 
+//Sound Effects
+#define SE_MENU_MUSIC 11000
 
 class SoundHandler
 {
@@ -19,5 +21,9 @@ public:
 	SoundHandler(Settings * settingsHandler);
 	~SoundHandler(void);
 	Mix_Music *menuMusic;
+
+private:
+	void loadMusic();
+
 };
 
