@@ -15,6 +15,9 @@
 //Sound Effects
 #define SE_PLAYER_LASER_SOUND 10000
 #define SE_NPC_SMG_SOUND 10001
+#define SE_NPC_SNIPER_SOUND 10002
+
+
 class SoundHandler
 {
 public:
@@ -23,6 +26,8 @@ public:
 	Mix_Music *menuMusic;
 	Mix_Chunk *blasterSound;
 	Mix_Chunk *npcSMGSound;
+	Mix_Chunk *npcSniperSound;
+
 	void playMusic(int musicID);
 	void playSoundEffect(int soundID);
 private:

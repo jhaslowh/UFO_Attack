@@ -43,7 +43,7 @@ void SoundHandler::playMusic(int musicID){
 void SoundHandler::loadSound(void){
 	blasterSound = Mix_LoadWAV("audio/blaster_sound.wav");
 	npcSMGSound = Mix_LoadWAV("audio/smg_fire.wav");
-
+	npcSniperSound = Mix_LoadWAV("audio/sniper_fire.wav");
 }
 
 
@@ -55,6 +55,9 @@ void SoundHandler::playSoundEffect(int soundID){
 			break;
 		case SE_NPC_SMG_SOUND:
 			Mix_PlayChannel(-1, npcSMGSound, 0);
+			break;
+		case SE_NPC_SNIPER_SOUND:
+			Mix_PlayChannel(-1, npcSniperSound, 0);
 			break;
 	}
 }
