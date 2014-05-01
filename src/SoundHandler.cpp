@@ -16,14 +16,14 @@ SoundHandler::SoundHandler(Settings * settingsHandlerPointer)
 	}
 
 	loadMusic();
-
+	loadSound();
 	
 	if( menuMusic == NULL ){
 		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
 
 
-		playMusic(1);
+	
 }
 
 void SoundHandler::loadMusic(void){
@@ -36,6 +36,20 @@ void SoundHandler::playMusic(int musicID){
 	switch(musicID){
 		case SE_MENU_MUSIC:
 			Mix_PlayMusic(menuMusic, 1 );
+			break;
+	}
+}
+
+void SoundHandler::loadSound(void){
+	blasterSound = Mix_LoadWAV("audio/blaster_sound.wav");
+}
+
+
+//example playSoundEffect(SE_BLASTER_SOUND);
+void SoundHandler::playSoundEffect(int soundID){
+	switch(soundID){
+		case SE_BLASTER_SOUND:
+			Mix_PlayChannel(-1, blasterSound, 0);
 			break;
 	}
 }
