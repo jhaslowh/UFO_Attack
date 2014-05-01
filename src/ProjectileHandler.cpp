@@ -14,7 +14,6 @@ ProjectileHandler::~ProjectileHandler()
 {
 	cleanUp();
 }
-//Constructor and Deconstructor
 
 // Returns the projectile list
 Projectile** ProjectileHandler::getProjList(){return projs;}
@@ -29,18 +28,18 @@ int ProjectileHandler::getLastActive(){return lastActive;}
 void ProjectileHandler::addNewProjectile(Projectile* newProjectile)
 {
 	for (int i = 0; i < size; i++){
-		// If current projectile is dead, add in place
-		if (!projs[i]->getAlive()){
-			projs[i]->clone(newProjectile);
-			delete newProjectile;
-			return;
-		}
-
 		// Check if current is null
 		if (projs[i] == NULL){
-			projs[i] = new Projectile();
-			projs[i]->clone(newProjectile);
-			delete newProjectile;
+			delete projs[i];
+			projs[i] = newProjectile;
+			projs[i]->setAlive(true);
+			return;
+		}
+		// If current projectile is dead, add in place
+		else if (!projs[i]->getAlive()){
+			delete projs[i];
+			projs[i] = newProjectile;
+			projs[i]->setAlive(true);
 			return;
 		}
 	}

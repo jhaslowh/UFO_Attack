@@ -61,6 +61,8 @@ public:
 	// Get top mose point value
 	float getTopMost();
 
+	// Draw ground light layer
+	void drawLight(GLHandler* mgl);
 	// Draw ground 
 	void draw(GLHandler* mgl);
 

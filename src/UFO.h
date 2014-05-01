@@ -10,6 +10,7 @@
 #include "ExplHandler.h"
 #include "UFORocket.h"
 #include "PlayerLaserGun.h"
+#include "ParticleHandler.h"
 
 class UFO
 {
@@ -25,6 +26,10 @@ class UFO
 	float minDistFromGround;  // Minimum distance UFO must be from ground 
 	Rec collisionArea;
 	Rec abductRayArea;
+
+	// Particles
+	float partRate;
+	float cpartRate;
 
 	// Physics and movement
 	float direcX, direcY;
@@ -52,6 +57,14 @@ class UFO
 	float rayWidth;
 	float rayHeight;
 	float rayCircleHeight;
+
+	// Energy
+	float energy;
+	float energyMax;
+	float eCharge; // Charge rate
+	float eDrain; // Drain rate 
+	float timeTilCharge;
+	float ctimeTilCharge;
 
 	// -------------
 	// Weapon
@@ -87,6 +100,9 @@ public:
 	Rec* getUFOArea();
 	// Get the area for collision detection with abduction ray
 	Rec* getAbductArea();
+
+	// Returns the percent of current energy 
+	float getEnergyPercent();
 
 	// Init 
 	void init(SaveData* savedata);

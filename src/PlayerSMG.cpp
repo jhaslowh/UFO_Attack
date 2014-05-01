@@ -11,7 +11,7 @@ PlayerSMG::PlayerSMG()
 	typeId = PI_GUN_SMG;
 	clipCapacity = 45;
 	clip = clipCapacity;
-	spread = .04f; // In radians
+	spread = .28f; // In radians
 	verticalDisplacement = 0;
 	horizontalDisplacement = 15;
 	bulletsPerShot = 1;
@@ -30,14 +30,14 @@ PlayerSMG::PlayerSMG()
 	flashTime = 0.05f;
 
 	// Setup projectile 
-	projTemp.speed = 700.0f;
-	projTemp.imageId = GI_PROJ;
-	projTemp.imageOrigin[0] = 5.0f;
-	projTemp.imageOrigin[1] = 2.0f;
-	projTemp.glowImageId = GI_PROJ_GLOW;
-	projTemp.glowImageOrigin[0] = 7.5f; 
-	projTemp.glowImageOrigin[1] = 2.0f; 
-	projTemp.explodes = false;
+	proj = new Projectile();
+	proj->setSpeed(700.0f);
+	proj->setImageId(GI_PROJ);
+	proj->setOffset(5.0f,2.0f);
+	proj->setImageGlowId(GI_PROJ_GLOW);
+	proj->setGlowOffset(7.5f,2.0f);
+	proj->setDrawColor(.4f, .4f, .4f, 1.0f);
+	proj->setExplodes(false);
 }
 
 PlayerSMG::~PlayerSMG(){}

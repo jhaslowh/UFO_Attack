@@ -33,15 +33,14 @@ NPCSniper::NPCSniper() : Weapon()
 	flashTime = 0.15f;
 
 	// Setup projectile 
-	projTemp.speed = 1500.0f;
-	projTemp.imageId = GI_PROJ;
-	projTemp.imageOrigin[0] = 5.0f;
-	projTemp.imageOrigin[1] = 2.0f;
-	projTemp.glowImageId = GI_PROJ_GLOW;
-	projTemp.glowImageOrigin[0] = 7.5f; 
-	projTemp.glowImageOrigin[1] = 2.0f; 
-	projTemp.setColor(1.0f, .95f, .21f, 1.0f);
-	projTemp.explodes = false;
+	proj = new Projectile();
+	proj->setSpeed(1500.0f);
+	proj->setImageId(GI_PROJ);
+	proj->setOffset(5.0f,2.0f);
+	proj->setImageGlowId(GI_PROJ_GLOW);
+	proj->setGlowOffset(7.5f,2.0f);
+	proj->setDrawColor(1.0f, .95f, .21f, 1.0f);
+	proj->setExplodes(false);
 }
 
 NPCSniper::~NPCSniper(){}

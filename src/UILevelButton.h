@@ -1,4 +1,5 @@
 #pragma once
+#include "GLColors.h"
 #include "UITransitionObject.h"
 
 class UILevelButton : public UITransitionObject
@@ -15,6 +16,14 @@ protected:
 	GLfloat shadowColor[4];
 	bool drawShadow;
 	float shadowOffX, shadowOffY;
+
+	// Labels
+	std::string title;
+	float titleLocX, titleLocY;
+	float titleTextSize;
+	std::string desc;
+	float descLocX, descLocY;
+	float descTextSize;
 
 	// Difficulty setting
 	int difficulty;
@@ -33,6 +42,14 @@ public:
 	bool getCompleted();
 	void setLocked(bool l);
 	bool getLocked();
+	void setTitle(std::string t);
+	std::string getTitle();
+	void setDesc(std::string d);
+	std::string getDesc();
+
+	// Center title text and fix location of title and description
+	// Note: call the after the title and scale have been set 
+	void fixTextLoc(TextRender* mTR);
 
 	// Update button 
 	virtual void update(float deltaTime);

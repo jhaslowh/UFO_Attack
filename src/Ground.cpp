@@ -224,6 +224,43 @@ float Ground::getTopMost(){
 	return value;
 }
 
+
+// Draw ground light layer
+void Ground::drawLight(GLHandler* mgl){
+	if (pointCount > 1){
+		/// Matrix transform ///
+		// Starting matrix 
+		glm::mat4 mMatrix;
+		mgl->setModelMatrix(mMatrix);
+
+		/// Set shader flat color ///
+		mgl->setFlatColor(.5f,.5f,.5f,1.0f);
+
+		/// Set up vertex and coord buffers ///
+		glEnableVertexAttribArray(mgl->mPositionHandle);
+		// Describe our vertices array to OpenGL
+		glVertexAttribPointer(
+			mgl->mPositionHandle, // attribute
+			2,                 // number of elements per vertex, here (x,y)
+			GL_FLOAT,          // the type of each element
+			GL_FALSE,          // take our values as-is
+			0,                 // no extra data between each position
+			verts  // pointer to the C array
+		);
+ 
+		mgl->toggleTextures(false);
+
+		// Draw the sent indicies 
+		glDrawElements(GL_TRIANGLES, indicieCount, GL_UNSIGNED_SHORT, indicies);
+
+		// Disable arrays
+		glDisableVertexAttribArray(mgl->mPositionHandle);
+		glDisableVertexAttribArray(mgl->mTextCordHandle);
+
+		mgl->toggleTextures(true);
+	}
+}
+
 // Draw ground 
 void Ground::draw(GLHandler* mgl){
 	// ----------------- // 

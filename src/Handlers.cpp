@@ -4,6 +4,7 @@ Handlers::Handlers()
 {
 	npcHandler = NULL;
 	projHandler = NULL;
+	partHandler = NULL;
 	sceneryHandler = NULL;
 	ground = NULL;
 	camera = NULL;

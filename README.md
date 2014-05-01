@@ -1,6 +1,9 @@
 CS 426 Project
 ==============
 
+About
+-----
+In this game you play a alien bear and your goal is to defeat the military and abduct people.   
 
 Controls
 --------
@@ -13,7 +16,7 @@ R : Reload
 F : Switch weapon   
 
 _Player_  
-Space: Jump
+Space: Jump  
 
 _UFO_  
 E : Abduction Ray  
@@ -31,8 +34,8 @@ Editor Modes
 **Terminal**  
 ` or ~ : Toggle on/off  
 Commands:  
-- "help" : print out commands 
-- "off" : turn off terminal 
+- "help" : print out commands  
+- "off" : turn off terminal  
 - "restart" : restart entire game  
 - "clear" : clear terminal  
 - "version" : prints out version  
@@ -71,7 +74,8 @@ Commands for Level Editor (Must be in screen with one)
 - "scenery add 6" : same as previous  
 - "npc add soldier" : add new soldier npc to level  
 - "npc add sniper" : add new sniper npc to level  
-
+- "npc add cow" : add new cow npc to level  
+- "npc add hsoldier" : add new heavy soldier npc to level  
 
 Commands while in Game Screen
 - "level reset" : reset the current level  
@@ -100,10 +104,11 @@ Technical Information
 * UI Checkbox
 * UI Combobox
 * UI Scrollbar
-* Debug Terminal
-* Texture Atlas Stucture
-* Basic Collision Detection Functions 
-* Settings (And Settings Save/Load) 
+* Debug Terminal  
+* Texture Atlas Stucture  
+* Basic Collision Detection Functions for AABB's and Line segments's  
+* Settings (And Settings IO)  
+* Savedata (And Savedata IO)   
 
 ### Libraries
 
@@ -125,6 +130,16 @@ Used for matrix math
 **SOIL**  
 [http://www.lonesock.net/soil.html](http://www.lonesock.net/soil.html)  
 Used to load texture files 
+
+Building
+--------
+
+### Windows  
+To compile on windows, run the project with Visual Studio 2010 or greater and build it.  
+
+### Linux  
+Currently the linux build is not finished until the linux version of SLDmixer is found.  
+If you get errors while building on linux, you may need the opengl header files (See below).  
 
 OpenGL Headers for linux
 ------------------------

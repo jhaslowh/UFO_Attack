@@ -17,6 +17,7 @@ NPC::NPC()
 	canBeObducted = true;
 	beingAbducted = false;
 	alive = true;
+	mdraw = false;
 	health = healthMax = 100.0f;
 	type = NPC_HUMAN;
 }
@@ -69,6 +70,7 @@ void NPC::setImageID(int id){
 }
 int NPC::getImageID(){return imageID;}
 bool NPC::getAlive(){return alive;}
+bool NPC::getDraw(){return mdraw;}
 
 // Returns npc collision rec
 Rec* NPC::getCollisionRec(){return &collisionRec;}
@@ -90,49 +92,58 @@ void NPC::updateMovement(float deltaTime, Handlers* handlers){
 // it should ignore the movement from the update movement method and 
 // if it isnt, it should resolve the movement and collisions. 
 void NPC::updateCollision(float deltaTime, Handlers* handlers){
-	// Update Abduction 
-	if (alive && canBeObducted){
+	
+	if (alive){
 		fixCollRec();
 
-		// Check if ufo is being abducted 
-		UFO* ufo = (UFO*)((Player*)handlers->player)->ufo;
-		Player* player = (Player*)handlers->player;
-		if (player->isInUFO() && ufo->isRayOn()  && checkRecRec(&collisionRec, ufo->getAbductArea())){
-			if (!beingAbducted){
-				beingAbducted = true;
-				cAbductSpeed = ABDUCT_START_SPEED;
+		// Check if NPC is on screen toggle draw 
+		if (checkRecRec(&collisionRec, &((LevelProperties*)handlers->levelProps)->screenRec))
+			mdraw = true;
+		else mdraw = false;
+
+
+		// Update Abduction 
+		if (canBeObducted){
+			// Check if ufo is being abducted 
+			UFO* ufo = (UFO*)((Player*)handlers->player)->ufo;
+			Player* player = (Player*)handlers->player;
+			if (player->isInUFO() && ufo->isRayOn()  && checkRecRec(&collisionRec, ufo->getAbductArea())){
+				if (!beingAbducted){
+					beingAbducted = true;
+					cAbductSpeed = ABDUCT_START_SPEED;
+				}
 			}
-		}
-		else 
-			beingAbducted = false;
+			else 
+				beingAbducted = false;
 
-		// Move to ship if being abducted 
-		if (beingAbducted){
-			// Get angle to ship 
-			float mTheta = (float)atan2((double)(ufo->getY() - locY), (double)(ufo->getX() - locX));
+			// Move to ship if being abducted 
+			if (beingAbducted){
+				// Get angle to ship 
+				float mTheta = (float)atan2((double)(ufo->getY() - locY), (double)(ufo->getX() - locX));
 
-			// Convert angle to direction 
-			float direcX = cos(mTheta);
-			float direcY = sin(mTheta);
+				// Convert angle to direction 
+				float direcX = cos(mTheta);
+				float direcY = sin(mTheta);
 
-			// Accelerate 
-			cAbductSpeed += deltaTime * ABDUCT_ACCEL;
-			if (cAbductSpeed > ABDUCT_MAX_SPEED)
-				cAbductSpeed = ABDUCT_MAX_SPEED;
+				// Accelerate 
+				cAbductSpeed += deltaTime * ABDUCT_ACCEL;
+				if (cAbductSpeed > ABDUCT_MAX_SPEED)
+					cAbductSpeed = ABDUCT_MAX_SPEED;
 
-			// Move to ship 
-			locX += deltaTime * direcX * cAbductSpeed;
-			locY += deltaTime * direcY * cAbductSpeed;
+				// Move to ship 
+				locX += deltaTime * direcX * cAbductSpeed;
+				locY += deltaTime * direcY * cAbductSpeed;
 
-			// Check if touching ship
-			if (checkRecRec(&collisionRec, ufo->getUFOArea())){
-				alive = false;
+				// Check if touching ship
+				if (checkRecRec(&collisionRec, ufo->getUFOArea())){
+					alive = false;
 
-				// Increment points 
-				if (type == NPC_ANIMAL)
-					player->incrAnimalCount(1);
-				else if (type == NPC_HUMAN)
-					player->incrHumanCount(1);
+					// Increment points 
+					if (type == NPC_ANIMAL)
+						player->incrAnimalCount(1);
+					else if (type == NPC_HUMAN)
+						player->incrHumanCount(1);
+				}
 			}
 		}
 	}
@@ -153,7 +164,7 @@ void NPC::drawLight(GLHandler* mgl, GameAtlas* mGame){
 // Draw object to the screen
 void NPC::draw(GLHandler* mgl, GameAtlas* mGame){
 	// Draw health bar
-	if (alive){
+	if (alive && mdraw){
 		mGame->draw(mgl, GI_NPC_HEALTH_BAR_OUTLINE, locX - 20.0f, locY - height);
 		mGame->drawScale2(mgl, GI_NPC_HEALTH_BAR,locX - 19.0f, locY - height + 1.0f, health / healthMax, 1.0f);
 	}

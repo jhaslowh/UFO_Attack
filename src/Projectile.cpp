@@ -1,58 +1,10 @@
 #include "Projectile.h"
 using namespace std;
 
-//Projectile Types Include
-//Type 1 = Bullet
-//Type 2 = Missle
-//Type 3 = Non-Standard Moving Object (cows/rocks/cars/people)
-//Type 4 = Beam
-
 Projectile::Projectile()
 {
 	initValues();
 }
-
-Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, int Mass, 
-	int Size, float xLocation, float yLocation, int speed, bool doesExplode, int Spread)
-{
-	initValues();
-
-	projectileType = ProjectileType;
-	previousX = CurrentX;
-	previousY = CurrentY;
-	currentX = CurrentX;
-	currentY = CurrentY;
-	spread = Spread;
-	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
-	xVector = speed*(cos(angle));
-	yVector = speed*(sin(angle));
-	mass = Mass;
-	size = Size;
-	if(projectileType == PROJT_BULLET || projectileType == PROJT_BEAM || projectileType == PROJT_TEST)
-		negligence = false;
-	alive = true;
-}
-
-Projectile::Projectile(short ProjectileType, float CurrentX, float CurrentY, float xLocation, float yLocation)
-{
-	initValues();
-
-	projectileType = ProjectileType;
-	previousX = CurrentX;
-	previousY = CurrentY;
-	currentX = CurrentX;
-	currentY = CurrentY;
-	float angle = (float)atan2((double)(yLocation + (rand() % spread) - CurrentY), (double)(xLocation + (rand() % spread) - CurrentX));
-	xVector = speed*(cos(angle));
-	yVector = speed*(sin(angle));
-	mass = 1;
-	size = 1;// .5;
-	if(projectileType == PROJT_BULLET || projectileType == PROJT_BEAM || projectileType == PROJT_TEST)
-		negligence = false;
-	alive = true;
-
-}
-//builds a default typed projectile, not to be used with projectile, only in inheritance
 
 Projectile::~Projectile(){
 
@@ -70,7 +22,6 @@ void Projectile::clone(Projectile* p){
 	mass = p->mass; 
 	size = p->size; 
 	negligence = p->negligence;
-	alive = true;
 	doesExplode = p->doesExplode;
 	diesOnImpact = p->diesOnImpact;
 	imageId = p->imageId;
@@ -86,21 +37,64 @@ void Projectile::clone(Projectile* p){
 	drawColor[1] = p->drawColor[1];
 	drawColor[2] = p->drawColor[2];
 	drawColor[3] = p->drawColor[3];
+	smokeTrail = p->smokeTrail;
+	partTime = p->partTime;
+	
+	alive = p->alive;
+
 	explosion.cloneE(&(p->explosion));
 }
 
-void Projectile::reset()
-{
-	initValues();
+
+// Returns a clone pointer of this projectile 
+void* Projectile::clone(){
+	Projectile* p = new Projectile();
+	// Physics 
+	p->projectileType = projectileType;
+	p->previousX = previousX;
+	p->previousY = previousY;
+	p->currentX = currentX;
+	p->currentY = currentY;
+	p->xVector = xVector;
+	p->yVector= yVector;
+	p->speed = speed;
+	p->mass = mass; 
+	p->size = size; 
+	p->negligence = negligence;
+	p->damage = damage;
+	p->firedBy = firedBy;
+
+	// Drawing properties 
+	p->imageId = imageId;
+	p->imageGlowId = imageGlowId;
+	p->offsetX = offsetX;
+	p->offsetY = offsetY;
+	p->glowOffsetX = glowOffsetX;
+	p->glowOffsetY = glowOffsetY;
+	p->drawProj = drawProj;
+	p->rotation = rotation;
+	p->drawColor[0] = drawColor[0];
+	p->drawColor[1] = drawColor[1];
+	p->drawColor[2] = drawColor[2];
+	p->drawColor[3] = drawColor[3];
+
+	// Particles
+	p->smokeTrail = smokeTrail;
+	p->partTime = partTime;
+
+	// States 
+	p->alive = alive;
+	p->doesExplode = doesExplode;
+	p->explosion.cloneE(&explosion);
+	p->diesOnImpact = diesOnImpact;
+
+	return p;
 }
 
 //UpdateProjectile does the heavier stuff for projectiles with complicated movement, and will handle collision detection
 //This will act as a default in case a projectile doesn't have its own updateProjectile method
 void Projectile::updateProjectile(float deltaTime, Handlers* handlers)
 {
-	//cout << "updatingP/n";
-	//cout << "yVector: " << yVector << " /n";
-	//cout << "currentY: " << currentY << " /n";
 	previousY = currentY;
 	previousX = currentX;
 	yVector+=1*size;
@@ -110,8 +104,6 @@ void Projectile::updateProjectile(float deltaTime, Handlers* handlers)
 	//Stuff like rolling on the ground and bouncing
 	currentX+=xVector*deltaTime;
 	currentY+=yVector*deltaTime;
-	//cout << "yVector: " << yVector << " /n";
-	//cout << "currentY: " << currentY << " /n";
 }
 
 //This method does not need to be overloaded for different projectiles, 
@@ -132,13 +124,14 @@ void Projectile::determineNegligance()
 	//A beam typed weapon would not be affected by gravity or wind resistance
 	if(projectileType == PROJT_BULLET || projectileType == PROJT_BEAM || projectileType == PROJT_TEST)
 	{
-		//cout << "determined negligable";
 		negligence = true; 
 	}
+
 	//This is an extreme example of a case at which a projectile has enough 
 	//inertia that it will take its course before noticable change to its trajectory
 	else if(((xVector+yVector)*mass) >= 50000)
 		negligence = true; 
+
 	//A sufficiently small projectile that is moving fast enough will 
 	//not be affected by wind resistance and can most likely fulfill 
 	//its course before gravity has any noticable effect
@@ -186,6 +179,25 @@ void Projectile::checkCollision(float deltaTime, Handlers* handlers){
 			}
 		}
 		itr = itr->next;
+	}
+
+	// Update particles 
+	if (smokeTrail){
+		partTime += deltaTime;
+		if (partTime >= .005f){
+			partTime = 0.0f;
+			Particle* p = ((ParticleHandler*)handlers->partHandler)->add(
+				GI_SMOKE3,	// Image
+				currentX,currentY,	// Location
+				10.0f,10.0f,// Origin
+				0.0f,0.0f,	// Direction
+				0.0f,		// Speed
+				1.0f,		// Life
+				((((rand()%100)/100.0f)*2.0f)-1.0f)*100.0f,		// Rotation speed
+				((rand()%100)/100.0f)*-2.0f - 2.0f);		// Scale speed 
+
+			if (p != NULL) p->setRotation(((rand()%100)/100.0f)*360.0f);
+		}
 	}
 }
 
@@ -244,12 +256,16 @@ bool Projectile::getAlive(){return alive;}
 float Projectile::getDamage(){return damage;}
 int Projectile::getFiredBy(){return firedBy;}
 Explosion Projectile::getExplosion(){return explosion;}
+Explosion* Projectile::getExplRef(){return &explosion;}
 
 void Projectile::setType(short type){projectileType = type;}
 void Projectile::setAlive(bool value){alive = value;}
 void Projectile::setImageId(int value){imageId = value;}
 void Projectile::setImageGlowId(int value){imageGlowId = value;}
-void Projectile::setPosition(float x, float y){currentX = x, currentY = y;}
+void Projectile::setPosition(float x, float y){
+	currentX = x, currentY = y;
+	previousX = currentX, previousY = currentY;
+}
 void Projectile::setOffset(float x, float y){offsetX = x; offsetY = y;}
 void Projectile::setGlowOffset(float x, float y){glowOffsetX = x; glowOffsetY = y;}
 void Projectile::setDamage(float value){damage = value;}
@@ -261,8 +277,20 @@ void Projectile::setDrawColor(GLfloat* color){
 	drawColor[2] = color[2];
 	drawColor[3] = color[3];
 }
+void Projectile::setDrawColor(float r, float g, float b, float a){
+	drawColor[0] = r;
+	drawColor[1] = g;
+	drawColor[2] = b;
+	drawColor[3] = a;
+}
 void Projectile::setExplosion(Explosion e){
 	explosion.cloneE(&e);
+}
+void Projectile::setSmokeTrail(bool value){smokeTrail = value;}
+void Projectile::setSpeed(float s){speed = s;}
+void Projectile::setDirec(float x, float y){
+	xVector = speed*x;
+	yVector = speed*y;
 }
 
 // Setup basic values for all variables 
@@ -274,14 +302,12 @@ void Projectile::initValues(){
 	currentY = 0.0f;
 	xVector = 0.0f;
 	yVector = 0.0f;
-	spread = 0;
 	speed = 200;
 	mass = 0;
 	size = 0;
 	negligence = false;
 	alive = false;
 	doesExplode = false;
-	isColliding = false;
 	diesOnImpact = true;
 	drawProj = false;
 	imageId = 0;
@@ -294,4 +320,6 @@ void Projectile::initValues(){
 	drawColor[1] = 1.0f;
 	drawColor[2] = 1.0f;
 	drawColor[3] = 1.0f;
+	smokeTrail = false;
+	partTime = 0.0f;
 }

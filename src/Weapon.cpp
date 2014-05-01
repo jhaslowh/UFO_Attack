@@ -30,6 +30,7 @@ Weapon::Weapon()
 	usesAmmo = true;
 	minAngle = -90;
 	maxAngle = 90;
+	proj = NULL;
 
 	// Muzzle flash
 	muzzleImageId = -1;
@@ -41,7 +42,10 @@ Weapon::Weapon()
 	// Math values 
 	mTheta = 0.0f;
 }
-Weapon::~Weapon(){}
+Weapon::~Weapon(){
+	delete proj;
+	proj = NULL;
+}
 
 // Returns current weapon rotation
 float Weapon::getRotation(){
@@ -261,22 +265,16 @@ void Weapon::fire(float targetx, float targety, Handlers* handlers){
 		y += direcY * dispY;
 
 		// Add projectile to list in handlers 
-		Projectile* p = new BulletProjectile(x, y, (int)projTemp.speed, true, direcX, direcY);
-		p->setImageId(projTemp.imageId);
-		p->setImageGlowId(projTemp.glowImageId);
-		p->setOffset(projTemp.imageOrigin[0], projTemp.imageOrigin[1]);
-		p->setGlowOffset(projTemp.glowImageOrigin[0], projTemp.glowImageOrigin[1]);
-		p->setExplodes(projTemp.explodes);
-		p->setDrawColor(projTemp.drawColor);
-		p->setDamage(damage/(float)bulletsPerShot);
-		if (projTemp.explodes)
-			p->setExplosion(projTemp.explosion);
-		if (isPlayerWeapon)
-			p->setFiredBy(PFB_PLAYER);
-		else 
-			p->setFiredBy(PFB_ENEMY);
-
-		((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)(p));
+		if (proj != NULL){
+			proj->setPosition(x,y);
+			proj->setDirec(direcX, direcY);
+			proj->setDamage(damage/(float)bulletsPerShot);
+			if (isPlayerWeapon)
+				proj->setFiredBy(PFB_PLAYER);
+			else 
+				proj->setFiredBy(PFB_ENEMY);
+			((ProjectileHandler*)handlers->projHandler)->addNewProjectile((Projectile*)proj->clone());
+		}
 	}
 
 	// Subtract shot from clip

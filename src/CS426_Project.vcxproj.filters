@@ -265,11 +265,17 @@
     <ClCompile Include="UFORocket.cpp">
       <Filter>Source Files\game\weap</Filter>
     </ClCompile>
-    <ClCompile Include="ProjTemplate.cpp">
-      <Filter>Source Files\game\weap</Filter>
-    </ClCompile>
     <ClCompile Include="UILevelButton.cpp">
       <Filter>Source Files\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleHandler.cpp">
+      <Filter>Source Files\game\part</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Source Files\game\part</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCHeavySoldier.cpp">
+      <Filter>Source Files\game\npc</Filter>
     </ClCompile>
     <ClCompile Include="SoundHandler.cpp">
       <Filter>Source Files</Filter>
@@ -540,15 +546,19 @@
     <ClInclude Include="UFORocket.h">
       <Filter>Header Files\game\weap</Filter>
     </ClInclude>
-    <ClInclude Include="ProjTemplate.h">
-      <Filter>Header Files\game\weap</Filter>
-    </ClInclude>
     <ClInclude Include="UILevelButton.h">
       <Filter>Header Files\ui</Filter>
     </ClInclude>
-    <ClInclude Include="SoundHandler.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ParticleHandler.h">
+      <Filter>Header Files\game\part</Filter>
     </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Header Files\game\part</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCHeavySoldier.h">
+      <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="soundhandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
@@ -562,9 +572,6 @@
     </Filter>
     <Filter Include="Header Files\game">
       <UniqueIdentifier>{328a1017-2408-4146-97ca-ba2aa9889d75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\game\npc">
-      <UniqueIdentifier>{260e85e6-afcd-4098-8803-8acd627102af}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\game">
       <UniqueIdentifier>{eed70ea1-4a2a-4d3d-8076-efd80cd4130d}</UniqueIdentifier>
@@ -631,6 +638,15 @@
     </Filter>
     <Filter Include="Header Files\game\expl">
       <UniqueIdentifier>{6d2783c6-6f76-49f5-b8c8-11df5180d619}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game\part">
+      <UniqueIdentifier>{c2c02bb9-3ce8-46c6-b8fc-191333c99436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\part">
+      <UniqueIdentifier>{eb903101-1269-40ba-867e-f6c92ca36303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\npc">
+      <UniqueIdentifier>{260e85e6-afcd-4098-8803-8acd627102af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -2,6 +2,8 @@
 UFO Attack 
 ==========
 
+NOTE: This was created when we started and may not reflect the current state of the game.  
+
 ### Gameplay  
 When in a level, the players objective is to take over the place. The player does this by destroying most of the military on the level (>90%). The player will face many kinds of enemies. Some of these will require the player to beam out of his ship to destroy and others will require the use of the ship to destroy. People and military can also be abducted during gameplay for use later to buy upgrades.  
 
@@ -126,11 +128,11 @@ Discription: Strong air vehicle against UFO, cannot hurt alien on foot.
 Difficulty: Medium/Easy  
 
 **Scenery**  
-- Trees [Done]  
-- Grass [Done]   
-- Sign [Done]  
-- Hay Bale [Done]   
-- Crate [Done]  
-- Fence [Done]  
-- Wall [Done]  
-- Floor [Done]  
+- Trees   
+- Grass     
+- Sign   
+- Hay Bale     
+- Crate   
+- Fence   
+- Wall   
+- Floor  

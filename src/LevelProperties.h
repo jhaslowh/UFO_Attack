@@ -1,17 +1,25 @@
 #pragma once
 class LevelProperties
 {
+	// These are the bounds of the level itself 
 	float levelLeft;
 	float levelRight;
 	float levelTop;			
 	float levelBottom;		
+
+	// Player spawn location 
 	float playerSpawnX;
 	float playerSpawnY;
+
+	// Screen size 
 	float screenWidth;
 	float screenHeight;
 	int enemyCount;
 
 public:
+	// Rec of visible screen area 
+	Rec screenRec;
+
 	LevelProperties();
 	~LevelProperties();
 

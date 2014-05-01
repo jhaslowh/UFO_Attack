@@ -12,6 +12,9 @@ UFO::UFO(){
 	height = 50.0f;
 	lookingRight = true;
 
+	partRate = .1f;
+	cpartRate = 0.0f;
+
 	armor = 100.0f;
 	maxArmor = 100.0f;
 	shield = 100.0f;
@@ -30,6 +33,14 @@ UFO::UFO(){
 	rayOffset = rayOffsetMax;
 	rayScaleMin = 0.5f;
 	rayScaleMax = 1.0f;
+
+	// Energy
+	energy = 100.0f;
+	energyMax = 100.0f;
+	eCharge = 34.0f; // Charge rate
+	eDrain = 20.0f; // Drain rate 
+	timeTilCharge = 4.0f;
+	ctimeTilCharge = timeTilCharge;
 
 	// Load weapon based off savedata
 	usingWeapon1 = true;
@@ -70,6 +81,9 @@ Rec* UFO::getUFOArea(){return &collisionArea;}
 // Get the area for collision detection with abduction ray
 Rec* UFO::getAbductArea(){return &abductRayArea;}
 
+// Returns the percent of current energy 
+float UFO::getEnergyPercent(){return energy/energyMax;}
+
 // Init 
 void UFO::init(SaveData* savedata){
 	if (savedata != NULL){
@@ -109,10 +123,51 @@ void UFO::update(float deltaTime, Handlers* handlers){
 			shield = maxShield;
 	}
 
+	// Create particles 
+	cpartRate += deltaTime;
+	if (cpartRate >= partRate){
+		cpartRate = 0.0f;
+		// This will get a random angle that is +-45 degrees from strait down
+		float angle = (((rand() % 1000)/1000.0f) * 1.57f) + .785f;
+		((ParticleHandler*)handlers->partHandler)->add(
+			GI_SPHERE,	// Image
+			locX,locY-(height*.5f),	// Location
+			15.0f,15.0f,// Origin
+			cos(angle),sin(angle),	// Direction
+			75.0f,		// Speed
+			2.0f,		// Life
+			0.0f,		// Rotation speed
+			-1.0f);		// Scale speed 
+	}
+
 	// Update abduct ray
 	rayOffset -= deltaTime * rayMoveSpeed;
 	if (rayOffset <= 0.0f)
 		rayOffset = rayOffsetMax;
+	
+	// Update energy charge time 
+	ctimeTilCharge += deltaTime;
+	if (ctimeTilCharge >= timeTilCharge){
+		ctimeTilCharge = timeTilCharge;
+	}
+
+	// Update energy amount
+	if (energy != energyMax && ctimeTilCharge >= timeTilCharge){
+		energy += eCharge * deltaTime;
+		if (energy > energyMax){
+			energy = energyMax;
+		}
+	}
+
+	// Draw energy if ray is on 
+	if (rayOn){
+		energy -= eDrain * deltaTime;
+		ctimeTilCharge = 0.0f;
+		if (energy <= 0.0f){
+			rayOn = false;
+			energy = 0.0f;
+		}
+	}
 }
 
 // Check collision 
@@ -266,7 +321,7 @@ void UFO::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handle
 		direcY = 0.0f;
 
 	// Check fro abduction ray press
-	if (mKeyH->keyPressed(KEY_E))
+	if (mKeyH->keyPressed(KEY_E) && ((rayOn) || (!rayOn && energy > 0.0f)))
 		rayOn = !rayOn;
 
 	// Switch weapons 

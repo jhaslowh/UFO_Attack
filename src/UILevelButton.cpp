@@ -24,6 +24,14 @@ UILevelButton::UILevelButton() : UITransitionObject()
 	completed = false;
 	locked = false;
 
+	// Labels 
+	title = "";
+	titleLocX = titleLocY = 0.0f;
+	titleTextSize = 14.0f;
+	desc = "";
+	descLocX = descLocY = 0.0f;
+	descTextSize = 12.0f;
+
 	setHideType(HT_VERTICAL);
 	setHideLocByDistance(100.0f);
 }
@@ -55,6 +63,14 @@ UILevelButton::UILevelButton(float x, float y, float w, float h) : UITransitionO
 	difficulty = 0;
 	completed = false;
 	locked = false;
+	
+	// Labels 
+	title = "";
+	titleLocX = titleLocY = 0.0f;
+	titleTextSize = 14.0f;
+	desc = "";
+	descLocX = descLocY = 0.0f;
+	descTextSize = 12.0f;
 
 	setHideType(HT_VERTICAL);
 	setHideLocByDistance(100.0f);
@@ -115,6 +131,22 @@ void UILevelButton::setLocked(bool l){
 }
 bool UILevelButton::getLocked(){return locked;}
 
+void UILevelButton::setTitle(std::string t){title = t;}
+std::string UILevelButton::getTitle(){return title;}
+void UILevelButton::setDesc(std::string d){desc = d;}
+std::string UILevelButton::getDesc(){return desc;}
+
+// Center title text and fix location of title and description 
+// Note: call the after the title and scale have been set 
+void UILevelButton::fixTextLoc(TextRender* mTR){
+	float offset = mTR->measureString(title, titleTextSize) /2.0f;
+	titleLocX = (width/2.0f) - offset;
+	titleLocY = -titleTextSize;
+
+	descLocX = width * 1.2f;
+	descLocY = 0.0f;
+}
+
 // Update button input 
 void UILevelButton::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	if (shown() && !locked){
@@ -152,6 +184,10 @@ void UILevelButton::draw(GLHandler* mgl, UIAtlas* mAtlas){
 			// Draw image 
 			mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 			mAtlas->draw(mgl, imageHover, loc_x, loc_y,scale);
+
+			// Draw description
+			mgl->setFlatColor(COLOR_UI_DARKBLUE, COLOR_UI_DARKBLUE[3] * mOpacity);
+			mAtlas->mTextRender->drawText(*mgl, desc, loc_x + descLocX, loc_y + descLocY, 0.0f, descTextSize);
 		}
 		else {
 			// Draw shadow 
@@ -167,6 +203,10 @@ void UILevelButton::draw(GLHandler* mgl, UIAtlas* mAtlas){
 		// Draw diff  
 		mgl->setFlatColor(flatColor, flatColor[3] * mOpacity);
 		mAtlas->draw(mgl, diffIcon, loc_x + diffOffsetX, loc_y + diffOffsetY,scale);
+
+		// Draw title 
+		mgl->setFlatColor(COLOR_UI_DARKBLUE, COLOR_UI_DARKBLUE[3] * mOpacity);
+		mAtlas->mTextRender->drawText(*mgl, title, loc_x + titleLocX, loc_y + titleLocY, 0.0f, titleTextSize);
 	}
 }
 

@@ -8,7 +8,6 @@
 #include "KeyHandler.h"
 #include "Handlers.h"
 #include "Camera2D.h"
-#include "ProjTemplate.h"
 #include "ProjectileHandler.h"
 
 // Fire types for the weapon
@@ -50,7 +49,7 @@ protected:
 	float barrelOffset[2];	
 	float damage;
 	bool isPlayerWeapon;
-	ProjTemplate projTemp;
+	Projectile* proj;
 	bool usesAmmo;					// Set to false to give unlimited ammo
 	float minAngle;
 	float maxAngle;

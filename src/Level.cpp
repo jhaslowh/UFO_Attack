@@ -8,6 +8,7 @@ Level::Level(){
 	sceneryHandler = NULL;
 	npcHandler = NULL;
 	projHandler = NULL;
+	partHandler = NULL;
 	explHandler = NULL;
 	loaded = false;
 	victory = false;
@@ -22,6 +23,8 @@ Level::~Level(){
 	sceneryHandler = NULL;
 	delete projHandler;
 	projHandler = NULL;
+	delete partHandler;
+	partHandler = NULL;
 	delete npcHandler;
 	npcHandler = NULL;
 	delete explHandler;
@@ -45,12 +48,16 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	ground = new Ground(GROUND_CEMENT);
 	// Create proj handler 
 	projHandler = new ProjectileHandler();
+	// Create Particle handler
+	partHandler = new ParticleHandler();
 	// Create explosion handler
 	explHandler = new ExplHandler();
 
 	// Give screen size to level properties 
 	levelProps.setScreenWidth(screen_width);
 	levelProps.setScreenHeight(screen_height);
+	levelProps.screenRec.setWidth(screen_width + 100.0f);
+	levelProps.screenRec.setHeight(screen_height + 100.0f);
 
 	// Set Handler references 
 	handlers.ground = ground;
@@ -61,6 +68,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata){
 	handlers.projHandler = projHandler;
 	handlers.npcHandler = npcHandler;
 	handlers.explHander = explHandler;
+	handlers.partHandler = partHandler;
 
 	// Load level from file 
 	loadLevel(&handlers, savedata->levelToLoad);
@@ -87,12 +95,19 @@ void Level::unload(){
 
 // Update level state
 void Level::update(float deltaTime){
+	// Set screen rec area 
+	levelProps.screenRec.setLocation(
+		camera.toLevelX(0.0f) - 50.0f,
+		camera.toLevelY(0.0f) - 50.0f);
+
+	// Update sky 
 	sky.update(deltaTime);
 
+	// Update projectiles and explosions 
 	projHandler->updateProjectiles(deltaTime, &handlers);
 	explHandler->update(deltaTime);
 	
-	// Set player enemy size for hud
+	// Update player
 	player->update(deltaTime, &handlers);
 	player->checkCollision(&handlers);
 	player->update2(deltaTime, &handlers);
@@ -105,6 +120,8 @@ void Level::update(float deltaTime){
 		victory = true;
 	// Tell player the enemy count to draw 
 	player->setEnemyBarScale(n/levelProps.getEnemyCount());
+
+	partHandler->update(deltaTime);
 
 	camera.update(deltaTime);
 }
@@ -128,11 +145,15 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Draw lights 
 	mgl->lightBegin(sky.getLightValue(),sky.getLightValue(),sky.getLightValue());
 
+	// Draw actual lights 
 	mgl->setViewMatrix(camera.getMatrix());
 	mgl->setFlatColor(COLOR_WHITE);
 	sceneryHandler->drawLight(mgl, &gameAtlas);
 	projHandler->drawLight(mgl, &gameAtlas);
 	player->drawLight(mgl);
+
+	// Draw clipping objects for light 
+	ground->drawLight(mgl);
 
 	mgl->lightEnd();
 	
@@ -152,6 +173,8 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Draw level 
 	mgl->setViewMatrix(camera.getMatrix());
 	mgl->setFlatColor(COLOR_WHITE);
+
+	partHandler->draw(mgl, &gameAtlas);
 	sceneryHandler->draw(mgl, &gameAtlas);
 	npcHandler->draw(mgl, &gameAtlas);
 	projHandler->draw(mgl, &gameAtlas);		

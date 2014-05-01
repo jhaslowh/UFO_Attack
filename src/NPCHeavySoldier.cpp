@@ -1,9 +1,10 @@
-#include "NPCSniperSoldier.h"
+#include "NPCHeavySoldier.h"
 
-NPCSniperSoldier::NPCSniperSoldier(float x, float y) : NPCBasicCollision()
+
+NPCHeavySoldier::NPCHeavySoldier(float x, float y) : NPCBasicCollision()
 {
 	// Basic NPC Properties
-	stype = "sniper";
+	stype = "hsoldier";
 	locX = x;
 	locY = yo = y;
 	width = 50.0f;
@@ -12,18 +13,18 @@ NPCSniperSoldier::NPCSniperSoldier(float x, float y) : NPCBasicCollision()
 	originY = 50.0f;
 	rotation = 0.0f;
 	scale = 1.0f;
-	if (rand() % 100 > 50)
-		imageID = GI_NPC_SOLDIER_M1;
-	else 
-		imageID = GI_NPC_SOLDIER_F1;
+	imageID = GI_NPC_HSOLDIER1;
 	next = NULL;
 	alive = true;
+	health = 200.0f;
+	healthMax = 200.0f;
+	//anBeObducted = false;
 
 	// Movement properties
 	direcX = 1.0f;
-	speed = 100.0f;
-	minDistanceTFlop = 100.0f;
-	maxDistanceTFlop = 300.0f;
+	speed = 140.0f;
+	minDistanceTFlop = 150.0f;
+	maxDistanceTFlop = 400.0f;
 	distanceTillFlop = 200.0f;
 	currentDistance = 0.0f;
 
@@ -46,54 +47,40 @@ NPCSniperSoldier::NPCSniperSoldier(float x, float y) : NPCBasicCollision()
 	armRotation = 30.0f;
 
 	// Weapon properties 
-	weapon = (Weapon*)new NPCSniper();
-	weaponRange = 650.0f;
-	playerInRange = false;
-	caquireTime = 0.0f;
-	aquireTime = 2.0f;
+	weapon = (Weapon*)new NPCSMG();
+	weapon->setIsPlayerWeapon(false);
+	weaponRange = 350.0f;
 }
 
-NPCSniperSoldier::~NPCSniperSoldier(){}
+
+NPCHeavySoldier::~NPCHeavySoldier(void)
+{
+
+}
 
 // Update movement of the NPC 
 // This method should set the movement values for the npc.
-void NPCSniperSoldier::updateMovement(float deltaTime, Handlers* handlers){
+void NPCHeavySoldier::updateMovement(float deltaTime, Handlers* handlers){
 	NPCBasicCollision::updateMovement(deltaTime, handlers);
 
 	if (alive && !beingAbducted){
-		// Walk if not shooting 
-		if (!playerInRange){
-			nextX = locX + (speed * direcX * deltaTime);
+		nextX = locX + (speed * direcX * deltaTime);
 
-			// Flop soldier
-			currentDistance += speed * deltaTime;
-			if (currentDistance > distanceTillFlop){
-				distanceTillFlop = minDistanceTFlop + 
-					(rand() % (int)(maxDistanceTFlop - minDistanceTFlop)); 
-				currentDistance = 0.0f;
-				direcX = -direcX;
-			}
-
-			// Update walk frames 
-			cframeTime += deltaTime;
-			if (cframeTime > frameRate){
-				cframeTime = 0.0f;
-				cframe++;
-				if (cframe >= frames)
-					cframe = 0;
-			}
+		// Flop soldier
+		currentDistance += speed * deltaTime;
+		if (currentDistance > distanceTillFlop){
+			distanceTillFlop = minDistanceTFlop + 
+				(rand() % (int)(maxDistanceTFlop - minDistanceTFlop)); 
+			currentDistance = 0.0f;
+			direcX = -direcX;
 		}
-		else 
-			// Set current frame to 0 if not shooting so NPC
-			// doesn't walk in place. 
-			cframe = 0;
 	}
 }
 
 // Update game state of the npc object
 // Do any non movement or collision detection updates
 // (weapons and the like) 
-void NPCSniperSoldier::update(float deltaTime, Handlers* handlers){
+void NPCHeavySoldier::update(float deltaTime, Handlers* handlers){
 	NPCBasicCollision::update(deltaTime, handlers);
 
 	if (alive){
@@ -107,40 +94,43 @@ void NPCSniperSoldier::update(float deltaTime, Handlers* handlers){
 				locX - originX + (width - armOffsetX), 
 				locY - originY + armOffsetY);
 
-
 		if (!beingAbducted){
+			// Update frames 
+			cframeTime += deltaTime;
+			if (cframeTime > frameRate){
+				cframeTime = 0.0f;
+				cframe++;
+				if (cframe >= frames)
+					cframe = 0;
+			}
+
+			// ------------------------------
 			// Update weapon
+			// ------------------------------
 			Player* player = (Player*)handlers->player;
+		
 
 			// Try and attack player 
-			if (!player->isInUFO() && 
-				dist(locX, locY, player->getCenterX(), player->getCenterY()) < weaponRange &&
-				((player->getX() > locX && direcX > 0.0f) || 
-				(player->getX() < locX && direcX < 0.0f) )){
-
-				// Aquire Target 
-				playerInRange = true;
-				caquireTime += deltaTime;
-
-				// Fire when target aquired 
-				if (caquireTime >= aquireTime){
-					// Try to fire at player 
-					weapon->npcFire(player->getCenterX(), player->getCenterY(), handlers);
+			if (player->isInUFO() && 
+				dist(locX, locY, player->ufo->getCenterX(), player->ufo->getCenterY()) < weaponRange){
+				// Try to fire at ufo
+				if ((player->ufo->getX() > locX && direcX > 0.0f) || 
+					(player->ufo->getX() < locX && direcX < 0.0f) ){
+					weapon->npcFire(player->ufo->getCenterX(), player->ufo->getCenterY(), handlers);
 				}
-				else {
-					// These need to be called, otherwise the weapon will glitch
-					// while the npc is aquiring target. 
-					weapon->setRotation(0.0f);
-					weapon->setFacingDirec(direcX > 0.0f);
-					weapon->setRotationByTarget(player->getCenterX(), player->getCenterY());
+			}
+			else if (!player->isInUFO() && 
+				dist(locX, locY, player->getCenterX(), player->getCenterY()) < weaponRange){
+				// Try to fire at player 
+				if ((player->getX() > locX && direcX > 0.0f) || 
+					(player->getX() < locX && direcX < 0.0f) ){
+					weapon->npcFire(player->getCenterX(), player->getCenterY(), handlers);
 				}
 			}
 			else {
 				// Reset gun if can't find target
 				weapon->setRotation(0.0f);
 				weapon->setFacingDirec(direcX > 0.0f);
-				playerInRange = false;
-				caquireTime = 0.0f;
 			}
 
 			armRotation = weapon->getRotation();
@@ -149,7 +139,7 @@ void NPCSniperSoldier::update(float deltaTime, Handlers* handlers){
 }
 
 // Draw object to the screen
-void NPCSniperSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
+void NPCHeavySoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 	NPCBasicCollision::draw(mgl, mGame);
 	
 	if (alive && mdraw){
@@ -159,7 +149,7 @@ void NPCSniperSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 			// Draw weapon 
 			weapon->draw(mgl, mGame);
 			// Draw arm 
-			mGame->draw(mgl, GI_NPC_SOLDIER_ARM,
+			mGame->draw(mgl, GI_NPC_HSOLDIER_ARM,
 				locX-originX+armOffsetX,
 				locY-originY+armOffsetY,
 				1.0f,armRotation,armOriginX,armOriginY);
@@ -175,7 +165,7 @@ void NPCSniperSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 
 			// Draw arm 
 			glCullFace(GL_FRONT);
-			mGame->drawScale2(mgl, GI_NPC_SOLDIER_ARM,
+			mGame->drawScale2(mgl, GI_NPC_HSOLDIER_ARM,
 				locX-originX+(width-armOffsetX),
 				locY-originY+armOffsetY,
 				-1.0f,1.0f,armRotation,armOriginX,armOriginY);
@@ -187,7 +177,7 @@ void NPCSniperSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 
 
 // Called when the NPC runs into a wall
-void NPCSniperSoldier::hitWall(){
+void NPCHeavySoldier::hitWall(){
 	NPCBasicCollision::hitWall();
 
 	direcX = -direcX;

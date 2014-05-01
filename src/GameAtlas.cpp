@@ -76,6 +76,26 @@ void GameAtlas::load(){
 	// Basic Expl 4 
 	vcg->addFrame(187.0f, 103.0f, 60.0f, 60.0f);
 
+	// Particle sphere
+	vcg->addFrame(1.0f, 166.0f, 30.0f, 30.0f);
+	// Particle smoke 1
+	vcg->addFrame(33.0f, 165.0f, 20.0f, 20.0f);
+	// Particle smoke 2
+	vcg->addFrame(55.0f, 165.0f, 20.0f, 20.0f);
+	// Particle smoke 3
+	vcg->addFrame(77.0f, 165.0f, 20.0f, 20.0f);
+	// Particle smoke 4
+	vcg->addFrame(99.0f, 165.0f, 20.0f, 20.0f);
+	// Particle smoke 5
+	vcg->addFrame(121.0f, 165.0f, 20.0f, 20.0f);
+
+	// NPC Heavy Soldier
+	vcg->addFrame(1.0f, 834.0f, 50.0f, 50.0f);
+	vcg->addFrame(51.0f, 834.0f, 50.0f, 50.0f);
+	vcg->addFrame(101.0f, 834.0f, 50.0f, 50.0f);
+	// NPC Heavy Soldier Arm
+	vcg->addFrame(153.0f, 979.0f, 16.0f, 11.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();
