@@ -48,7 +48,7 @@ void SoundHandler::loadSound(void){
 //example playSoundEffect(SE_BLASTER_SOUND);
 void SoundHandler::playSoundEffect(int soundID){
 	switch(soundID){
-		case SE_BLASTER_SOUND:
+		case SE_PLAYER_LASER_SOUND:
 			Mix_PlayChannel(-1, blasterSound, 0);
 			break;
 	}

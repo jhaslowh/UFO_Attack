@@ -3,6 +3,7 @@
 
 PlayerLaserGun::PlayerLaserGun() : Weapon()
 {
+	weaponSoundId = SE_PLAYER_LASER_SOUND;
 	imageid = PI_GUN_LASER;
 	originX = -2.0f; 
 	originY = 3.0f;

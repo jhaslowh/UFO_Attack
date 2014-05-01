@@ -13,7 +13,7 @@
 #define SE_MENU_MUSIC 11000
 
 //Sound Effects
-#define SE_BLASTER_SOUND 10000
+#define SE_PLAYER_LASER_SOUND 10000
 
 class SoundHandler
 {
