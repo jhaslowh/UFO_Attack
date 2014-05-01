@@ -148,9 +148,10 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	// Draw actual lights 
 	mgl->setViewMatrix(camera.getMatrix());
 	mgl->setFlatColor(COLOR_WHITE);
+	explHandler->draw(mgl, &gameAtlas);
 	sceneryHandler->drawLight(mgl, &gameAtlas);
 	projHandler->drawLight(mgl, &gameAtlas);
-	player->drawLight(mgl);
+	player->drawLight(mgl); // Draw last, it binds its own buffer 
 
 	// Draw clipping objects for light 
 	ground->drawLight(mgl);
@@ -177,8 +178,8 @@ void Level::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	partHandler->draw(mgl, &gameAtlas);
 	sceneryHandler->draw(mgl, &gameAtlas);
 	npcHandler->draw(mgl, &gameAtlas);
-	projHandler->draw(mgl, &gameAtlas);		
-	explHandler->draw(mgl, &gameAtlas);
+	projHandler->draw(mgl, &gameAtlas);	
+	explHandler->draw(mgl, &gameAtlas);	
 	player->draw(mgl);							
 	ground->draw(mgl);							
 	
