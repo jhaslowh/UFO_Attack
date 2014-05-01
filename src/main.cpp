@@ -5,6 +5,9 @@
 
 #include "main.h"
 
+
+#include "SoundHandler.h"//TODO: this should be moved
+
 using namespace std;
 
 /**
@@ -12,7 +15,7 @@ using namespace std;
 */
 int init_resources()
 {
-	soundStuff();
+	soundHandler = new SoundHandler(settings);
 
 	printf("Loading Resources...\n");
 
@@ -628,29 +631,5 @@ void createGame(){
 	if (restart){
 		restart = false;
 		createGame();
-	}
-}
-
-
-void soundStuff(){	
-	if(SDL_Init(SDL_INIT_AUDIO)<0){
-		// errors
-		printf("Error initializing audio. SDL Error info %s\n", SDL_GetError());
-	} else {
-		printf("Attempt to setup sound\n");
-
-		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) <0){
-			//TODO error
-			printf( "Error initializing SDL_mixer. Error info %s\n", Mix_GetError() );
-		}
-	}
-
-	menuMusic = Mix_LoadMUS("audio/splash_screen.wav");
-	if( menuMusic == NULL ){
-		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
-	}
-	
-	if (settings->getMasterVol() * settings->getMusicVol() > 0.0f){
-		Mix_PlayMusic(menuMusic, 1 );
 	}
 }

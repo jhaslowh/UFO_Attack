@@ -36,6 +36,7 @@
     <ClInclude Include="NPCTankBarrel.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleHandler.h" />
+    <ClInclude Include="soundhandler.h" />
     <ClInclude Include="TallCrate.h" />
     <ClInclude Include="UFORocket.h" />
     <ClInclude Include="UICreditsBox.h" />
@@ -132,6 +133,7 @@
     <ClCompile Include="NPCTankBarrel.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleHandler.cpp" />
+    <ClCompile Include="SoundHandler.cpp" />
     <ClCompile Include="TallCrate.cpp" />
     <ClCompile Include="UFORocket.cpp" />
     <ClCompile Include="UICreditsBox.cpp" />
