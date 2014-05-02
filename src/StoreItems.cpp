@@ -52,21 +52,21 @@ namespace StoreItems{
 			0,0,"images/si/sii_laser.png"));
 		sItems.push_back(StoreItem(SID_PLAYER_WEAPON_SHOTGUN,
 			"Shotgun",		"desc",
-			0,0,"images/si/sii_shotgun.png"));
+			50,10,"images/si/sii_shotgun.png"));
 		sItems.push_back(StoreItem(SID_PLAYER_WEAPON_SMG,
 			"SMG",			"desc",
-			0,0,"images/si/sii_smg.png"));
+			50,30,"images/si/sii_smg.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_MACHINE_GUN,
 			"UFO Machine Gun","desc",
-			0,0,"images/si/sii_todo.png"));
+			20,50,"images/si/sii_todo.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_MISSILE,
 			"UFO Missiles",	"desc",
-			0,0,"images/si/sii_rocket.png"));
+			0,100,"images/si/sii_rocket.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_BOMB,
 			"UFO Bombs",	"desc",
-			0,0,"images/si/sii_todo.png"));
+			0,150,"images/si/sii_todo.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_COWTAPOLT,
 			"UFO Cowtapolt",	"Launch Cows at your enemies",
-			0,0,"images/si/sii_todo.png"));
+			0,200,"images/si/sii_todo.png"));
 	}
 }
