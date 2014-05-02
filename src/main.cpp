@@ -562,15 +562,32 @@ void createGame(){
 	loadSaveData(savedata);
 	
 	// ======= Setup ======= //
+	// Get display settings 
+	SDL_Init(SDL_INIT_VIDEO); 
+	SDL_DisplayMode current;
+    if(SDL_GetCurrentDisplayMode(0, &current) == 0)
+        printf("Display #%d: current display mode is %dx%dpx @ %dhz. \n", 0, current.w, current.h, current.refresh_rate);
+	else {
+	    cout << "ERROR: " << SDL_GetError() << "\n";
+		current.w = settings->getScreenWidth() + 100.0f;
+		current.h = settings->getScreenHeight() + 100.0f;
+	}
+
 	// Setup SDL
 	SDL_Init(SDL_INIT_VIDEO);
 	// Create Window 
 	if (settings->getFullscreen())
 		window = SDL_CreateWindow("UFO Attack", 
-			40, 40, settings->getScreenWidth(),settings->getScreenHeight(), SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
+			current.w * .5f - (settings->getScreenWidth()*.5f), 
+			current.h * .5f - (settings->getScreenHeight()*.5f), 
+			settings->getScreenWidth(),settings->getScreenHeight(), 
+			SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
 	else 
 		window = SDL_CreateWindow("UFO Attack", 
-			40, 40, settings->getScreenWidth(),settings->getScreenHeight(), SDL_WINDOW_OPENGL);
+			current.w * .5f - (settings->getScreenWidth()*.5f), 
+			current.h * .5f - (settings->getScreenHeight()*.5f),  
+			settings->getScreenWidth(),settings->getScreenHeight(), SDL_WINDOW_OPENGL);
+
 	// Create the window context 
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
