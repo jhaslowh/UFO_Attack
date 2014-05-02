@@ -75,6 +75,14 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata, vo
 
 	// Load level from file 
 	loadLevel(&handlers, savedata->levelToLoad);
+
+	
+	// Update once to fix level image before tutorial lock
+	sky.setTimeOfDay(9.0f);
+	update(0.0f);
+	
+	// Setup tutorial system
+	tutSys.init(screen_width, screen_height, savedata);
 }
 
 // Load level (use for textures)
@@ -98,41 +106,49 @@ void Level::unload(){
 
 // Update level state
 void Level::update(float deltaTime){
-	// Set screen rec area 
-	levelProps.screenRec.setLocation(
-		camera.toLevelX(0.0f) - 50.0f,
-		camera.toLevelY(0.0f) - 50.0f);
+	tutSys.update(deltaTime, &handlers);
 
-	// Update sky 
-	sky.update(deltaTime);
+	if (!tutSys.getLock()){
+		// Set screen rec area 
+		levelProps.screenRec.setLocation(
+			camera.toLevelX(0.0f) - 50.0f,
+			camera.toLevelY(0.0f) - 50.0f);
 
-	// Update projectiles and explosions 
-	projHandler->updateProjectiles(deltaTime, &handlers);
-	explHandler->update(deltaTime);
+		// Update sky 
+		sky.update(deltaTime);
+
+		// Update projectiles and explosions 
+		projHandler->updateProjectiles(deltaTime, &handlers);
+		explHandler->update(deltaTime);
 	
-	// Update player
-	player->update(deltaTime, &handlers);
-	player->checkCollision(&handlers);
-	player->update2(deltaTime, &handlers);
+		// Update player
+		player->update(deltaTime, &handlers);
+		player->checkCollision(&handlers);
+		player->update2(deltaTime, &handlers);
 
-	sceneryHandler->update(deltaTime, &handlers);
+		sceneryHandler->update(deltaTime, &handlers);
 	
-	// Update enemies and check for victory 
-	float n = (float)npcHandler->update(deltaTime, &handlers);
-	if (levelProps.getEnemyCount() != 0 && (n/levelProps.getEnemyCount()) < .1f)
-		victory = true;
-	// Tell player the enemy count to draw 
-	player->setEnemyBarScale(n/levelProps.getEnemyCount());
+		// Update enemies and check for victory 
+		float n = (float)npcHandler->update(deltaTime, &handlers);
+		if (levelProps.getEnemyCount() != 0 && (n/levelProps.getEnemyCount()) < .1f)
+			victory = true;
+		// Tell player the enemy count to draw 
+		player->setEnemyBarScale(n/levelProps.getEnemyCount());
 
-	partHandler->update(deltaTime);
+		partHandler->update(deltaTime);
 
-	camera.update(deltaTime);
+		camera.update(deltaTime);
+	}
 }
 
 // Update input
 void Level::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
-	sceneryHandler->updateInput(mKeyH, mMouseH, &handlers);
-	player->updateInput(mKeyH, mMouseH, &handlers);
+	tutSys.updateInput(mKeyH, mMouseH, &handlers);
+
+	if (!tutSys.getLock()){
+		sceneryHandler->updateInput(mKeyH, mMouseH, &handlers);
+		player->updateInput(mKeyH, mMouseH, &handlers);
+	}
 }
 
 // Draw level 
@@ -203,6 +219,8 @@ void Level::drawUI(GLHandler* mgl, UIAtlas* mAtlas){
 
 	sceneryHandler->drawUI(mgl, mAtlas);
 	player->drawUI(mgl, mAtlas);
+
+	tutSys.draw(mgl, mAtlas);
 }
 
 // Returns current victory state

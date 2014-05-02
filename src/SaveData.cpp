@@ -15,6 +15,7 @@ SaveData::SaveData()
 	ufoWeapon2 = -1;
 	levelToLoad = "none";
 	levelCount = 0;
+	showTut = true;
 }
 
 SaveData::~SaveData()
@@ -41,6 +42,10 @@ void SaveData::setAnimalAbductCount(int value){animalAbductCount = value;}
 // Get Animal abduct count 
 int SaveData::getAnimalAbductCount(){return animalAbductCount;}
 	
+// Set show tut 
+void SaveData::setShowTut(bool value){showTut = value;}
+// Get show tut
+bool SaveData::getShowTut(){return showTut;}
 
 // Player starting weapons
 void SaveData::setPlayerWeapon1(int value){playerWeapon1 = value;}

@@ -21,6 +21,7 @@
 #include "Player.h"
 #include "Sky.h"
 #include "TextureAtlas.h"
+#include "TutorialSystem.h"
 
 class Level
 {
@@ -34,6 +35,7 @@ class Level
 	Camera2D camera;
 	LevelProperties levelProps;
 	ExplHandler* explHandler;
+	TutorialSystem tutSys;
 	Sky sky;
 
 	// States 

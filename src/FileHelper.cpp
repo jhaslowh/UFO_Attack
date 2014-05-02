@@ -210,6 +210,11 @@ void loadSaveData(SaveData* sd){
 			sd->addLevel(token);
 		}
 
+		// Grab tut shown
+		token = getSetting(str, std::string("showtut"));
+		if (token == "0")
+			sd->setShowTut(false);
+
 		std::cout << "Savedata loaded\n";
 	}
 	else 
@@ -261,6 +266,13 @@ void saveSaveData(SaveData* sd){
 	str += "clevels";
 	str += sd->levelsToString();
 	str += ";\n";
+
+	// Tuts shown
+	str += "showtut ";
+	if (sd->getShowTut())
+		str += "1;\n";
+	else 
+		str += "0;\n";
 
 	// Save 
 	std::ofstream myfile("savedata");

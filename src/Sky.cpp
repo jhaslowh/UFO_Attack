@@ -5,7 +5,7 @@ Sky::Sky()
 {
 	// Set properties 
 	skyState = SKY_STATE_DAY;
-	mTime = 9.0f;//(float)(rand() % 24);
+	mTime = (float)(rand() % 24);
 	mHoursPerSecond = .05f;
 	mMaxLightAlpha = .5f;
 	scalex = 1.0f;
@@ -42,6 +42,12 @@ Sky::~Sky()
 }
 
 float Sky::getLightValue(){return lightValue;}
+
+// Set the current time of day 
+void Sky::setTimeOfDay(float time){
+	if (time < 0.0f || time > 24.0f) return;
+	mTime = time;
+}
 
 // Set up sky 
 void Sky::init(float screen_width, float screen_height){

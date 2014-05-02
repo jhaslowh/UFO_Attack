@@ -52,6 +52,9 @@ public:
 
 	float getLightValue();
 
+	// Set the current time of day 
+	void setTimeOfDay(float time);
+
 	// Set up sky 
 	void init(float screen_width, float screen_height);
 

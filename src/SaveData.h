@@ -11,6 +11,8 @@ class SaveData
 	int humanAbductCount;
 	// Number of abducted animals
 	int animalAbductCount;
+	// Show tutorial 
+	bool showTut;
 
 	// Starting weapons
 	int playerWeapon1;
@@ -46,6 +48,11 @@ public:
 	void setAnimalAbductCount(int value);
 	// Get Animal abduct count 
 	int getAnimalAbductCount();
+
+	// Set show tut 
+	void setShowTut(bool value);
+	// Get show tut
+	bool getShowTut();
 	
 	// Player starting weapons
 	void setPlayerWeapon1(int value);
