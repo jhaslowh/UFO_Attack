@@ -286,6 +286,12 @@
     <ClCompile Include="SoundHandler.cpp">
       <Filter>Source Files\io</Filter>
     </ClCompile>
+    <ClCompile Include="TutorialSystem.cpp">
+      <Filter>Source Files\game\tut</Filter>
+    </ClCompile>
+    <ClCompile Include="TutBox.cpp">
+      <Filter>Source Files\game\tut</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -573,6 +579,12 @@
     <ClInclude Include="SoundHandler.h">
       <Filter>Header Files\io</Filter>
     </ClInclude>
+    <ClInclude Include="TutorialSystem.h">
+      <Filter>Header Files\game\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="TutBox.h">
+      <Filter>Header Files\game\tut</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
@@ -661,6 +673,12 @@
     </Filter>
     <Filter Include="Header Files\game\npc">
       <UniqueIdentifier>{260e85e6-afcd-4098-8803-8acd627102af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game\tut">
+      <UniqueIdentifier>{2d6a28d5-abe3-4734-8a0a-aa81aaf6023d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\tut">
+      <UniqueIdentifier>{f641703c-c3c2-45d5-84f4-c1233556a8a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

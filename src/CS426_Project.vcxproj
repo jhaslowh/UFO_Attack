@@ -38,6 +38,8 @@
     <ClInclude Include="ParticleHandler.h" />
     <ClInclude Include="SoundHandler.h" />
     <ClInclude Include="TallCrate.h" />
+    <ClInclude Include="TutBox.h" />
+    <ClInclude Include="TutorialSystem.h" />
     <ClInclude Include="UFORocket.h" />
     <ClInclude Include="UICreditsBox.h" />
     <ClInclude Include="UIEquipBox.h" />
@@ -135,6 +137,8 @@
     <ClCompile Include="ParticleHandler.cpp" />
     <ClCompile Include="SoundHandler.cpp" />
     <ClCompile Include="TallCrate.cpp" />
+    <ClCompile Include="TutBox.cpp" />
+    <ClCompile Include="TutorialSystem.cpp" />
     <ClCompile Include="UFORocket.cpp" />
     <ClCompile Include="UICreditsBox.cpp" />
     <ClCompile Include="UIEquipBox.cpp" />
