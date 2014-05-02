@@ -90,6 +90,11 @@ class Player
 	int animalAbductCount;
 	int humanAbductCount;
 
+	// --------------------
+	// Interact button 
+	// --------------------
+	bool interact;
+
 	// ---------------------
 	// Texture and animation 
 	// ---------------------
@@ -193,6 +198,7 @@ public:
 	int getHumanCount();
 	// Set enemy left bar size
 	void setEnemyBarScale(float value);
+	bool getInteract();
 
 	// Functions 
 

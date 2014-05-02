@@ -16,7 +16,8 @@ R : Reload
 F : Switch weapon   
 
 _Player_  
-Space: Jump  
+Space: Jump
+E : Interact    
 
 _UFO_  
 E : Abduction Ray  

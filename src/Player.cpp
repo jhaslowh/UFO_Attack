@@ -29,6 +29,10 @@ Player::Player(SaveData* savedata){
 	animalAbductCount = 0;
 	humanAbductCount = 0;
 
+	
+	// Interact button 
+	interact = false;
+
 	// Animation values 
 	lookingRight = true;
 	runFrameCount = 12;
@@ -195,6 +199,7 @@ int Player::getAnimalCount(){return animalAbductCount;}
 int Player::getHumanCount(){return humanAbductCount;}
 // Set enemy left bar size
 void Player::setEnemyBarScale(float value){elScale = value;}
+bool Player::getInteract(){return interact;}
 
 // initialize level
 void Player::init(float screen_width, float screen_height, SaveData* savedata){
@@ -645,12 +650,10 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 		// Update player input 
 		else {
 			// Check if player is trying to move
-			if (mKeyH->keyDown(KEY_A)){
+			if (mKeyH->keyDown(KEY_A))
 				direcX = -1.0f;
-			}
-			else if (mKeyH->keyDown(KEY_D)){
+			else if (mKeyH->keyDown(KEY_D))
 				direcX = 1.0f;
-			}
 			else 
 				direcX = 0.0f;
 
@@ -665,6 +668,11 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 				jumping = true;
 				inAir = true;
 			}
+
+			// Check interact key
+			interact = false;
+			if (mKeyH->keyPressed(KEY_E))
+				interact = true;
 
 			// Switch weapons 
 			if (weapon1 != NULL && weapon2 != NULL && mKeyH->keyPressed(KEY_F))
