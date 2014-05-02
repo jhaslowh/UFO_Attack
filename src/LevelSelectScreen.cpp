@@ -198,8 +198,8 @@ void LevelSelectScreen::loadLevelList(){
 			buttonLevels[i]->setDifficulty((rand() % 4)-1);
 			buttonLevels[i]->setHidden();
 			buttonLevels[i]->setScale(map.getScale());
-			buttonLevels[i]->setTitle("Temp Title");
-			buttonLevels[i]->setDesc("Temp Description\nLine two");
+			buttonLevels[i]->setTitle(storage[0]);
+			//buttonLevels[i]->setDesc("Temp Description\nLine two");
 
 			// Add level name to list 
 			levelsList[i] = storage[0];
