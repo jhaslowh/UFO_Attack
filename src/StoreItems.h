@@ -30,7 +30,6 @@ namespace StoreItems{
 	extern const int SID_PLAYER_WEAPON_SMG;
 	extern const int SID_UFO_WEAPON_MACHINE_GUN;	// UFO machine gun 
 	extern const int SID_UFO_WEAPON_MISSILE;		// UFO missile launcher 
-	extern const int SID_UFO_WEAPON_BOMB;			// UFO bombs
 	extern const int SID_UFO_WEAPON_COWTAPOLT;
 
 	// Indexes of ufo weapons

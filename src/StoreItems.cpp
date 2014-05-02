@@ -13,10 +13,10 @@ namespace StoreItems{
 	std::vector<StoreItem> sItems;
 
 	// Total number of store items 
-	const int STORE_ITEM_COUNT = 7;
+	const int STORE_ITEM_COUNT = 6;
 
 	// Total number of ufo weapons 
-	const int STORE_UFO_WEAPON_COUNT = 4;
+	const int STORE_UFO_WEAPON_COUNT = 3;
 	
 	// Total number of player weapons 
 	const int STORE_PLAYER_WEAPON_COUNT = 3;
@@ -27,14 +27,12 @@ namespace StoreItems{
 	const int SID_PLAYER_WEAPON_SMG = 2;
 	const int SID_UFO_WEAPON_MACHINE_GUN = 3;	// UFO machine gun 
 	const int SID_UFO_WEAPON_MISSILE = 4;		// UFO missile launcher 
-	const int SID_UFO_WEAPON_BOMB = 5;			// UFO bombs
-	const int SID_UFO_WEAPON_COWTAPOLT = 6;
+	const int SID_UFO_WEAPON_COWTAPOLT = 5;
 
 	// Indexes of ufo weapons
 	const int STORE_UFO_WEAPON_INDEXES[] = {
 		SID_UFO_WEAPON_MACHINE_GUN, 
 		SID_UFO_WEAPON_MISSILE,
-		SID_UFO_WEAPON_BOMB,
 		SID_UFO_WEAPON_COWTAPOLT
 	};
 	
@@ -62,9 +60,6 @@ namespace StoreItems{
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_MISSILE,
 			"UFO Missiles",	"desc",
 			0,100,"images/si/sii_rocket.png"));
-		sItems.push_back(StoreItem(SID_UFO_WEAPON_BOMB,
-			"UFO Bombs",	"desc",
-			0,150,"images/si/sii_todo.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_COWTAPOLT,
 			"UFO Cowtapolt",	"Launch Cows at your enemies",
 			0,200,"images/si/sii_todo.png"));
