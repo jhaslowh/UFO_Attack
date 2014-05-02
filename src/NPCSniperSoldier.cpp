@@ -26,6 +26,7 @@ NPCSniperSoldier::NPCSniperSoldier(float x, float y) : NPCBasicCollision()
 	maxDistanceTFlop = 300.0f;
 	distanceTillFlop = 200.0f;
 	currentDistance = 0.0f;
+	minDistanceToRun = 200.0f;
 
 	// Collision Values
 	bounds.reset(0.0f,0.0f,50.0f,50.0f);
@@ -63,6 +64,20 @@ void NPCSniperSoldier::updateMovement(float deltaTime, Handlers* handlers){
 	if (alive && !beingAbducted){
 		// Walk if not shooting 
 		if (!playerInRange){
+			// Check if too close to player 
+			if (abs(locX - ((Player*)handlers->player)->getCenterX()) < minDistanceToRun){
+				if (locX < ((Player*)handlers->player)->getCenterX())
+					direcX = -1.0f;
+				else if (locX > ((Player*)handlers->player)->getCenterX())
+					direcX = 1.0f;
+
+				// Reset flop 
+				distanceTillFlop = minDistanceTFlop + 
+					(rand() % (int)(maxDistanceTFlop - minDistanceTFlop)); 
+				currentDistance = 0.0f;
+			}
+
+			// Move
 			nextX = locX + (speed * direcX * deltaTime);
 
 			// Flop soldier

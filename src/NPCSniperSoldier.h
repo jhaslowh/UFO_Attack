@@ -11,6 +11,8 @@ class NPCSniperSoldier : public NPCBasicCollision
 	float minDistanceTFlop;
 	float maxDistanceTFlop;
 	float currentDistance;
+	// Min distance to run away from player
+	float minDistanceToRun; 
 
 	// Animation 
 	int frames;
