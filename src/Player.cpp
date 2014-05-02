@@ -679,10 +679,15 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 
 		// Switch from ufo to on foot 
 		if (mKeyH->keyReleased(KEY_Q)){
-			inUFO = !inUFO;
+			if (inUFO || (!inUFO && abs(locX - ufo->getCenterX()) < 100.0f)){
+				inUFO = !inUFO;
 
-			if (!inUFO)
-				dropFromShip();
+				if (!inUFO)
+					dropFromShip();
+			}
+			else {
+				// TODO play error sound 
+			}
 		}
 	}
 }
