@@ -3,18 +3,21 @@
 #include "UILabel.h"
 #include "UIButton.h"
 #include "UICheckbox.h"
-#include "Settings.h"
 #include "FileHelper.h"
 #include "UIValueSlider.h"
 #include "UIBox.h"
 #include "UIComboBox.h"
+#include "Settings.h"
+#include "SaveData.h"
 
 class SettingsScreen : public UIScreen
 {
 	Settings* settings;
+	SaveData* savedata;
 
 	UILabel* labelTitle;
 	UICheckbox* cFullscreen;
+	UICheckbox* cTutorial;
 	UIButton* buttonBack;
 	UIButton* buttonApply;
 	UIValueSlider* vMasterVol;
@@ -23,6 +26,7 @@ class SettingsScreen : public UIScreen
 	UIComboBox* cbResolutions;
 
 	UILabel* lFullscreen;
+	UILabel* lTutorial;
 	UILabel* lMasterVolume;
 	UILabel* lMusicVol;
 	UILabel* lSfxVol;
@@ -30,7 +34,7 @@ class SettingsScreen : public UIScreen
 	UIBox* bBG;
 
 public:
-	SettingsScreen(Settings* s);
+	SettingsScreen(Settings* s, SaveData* sd);
 	virtual ~SettingsScreen();
 
 	// Initialize screen
