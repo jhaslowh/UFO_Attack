@@ -111,6 +111,7 @@ Technical Information
 * Basic Collision Detection Functions for AABB's and Line segments's  
 * Settings (And Settings IO)  
 * Savedata (And Savedata IO)   
+* Sound Effect & Music system  
 
 ### Libraries
 
@@ -120,6 +121,11 @@ Used for
 - GUI's   
 - Threads  
 - Timing  
+
+**SDL mixer 2.0**  
+[http://www.libsdl.org/projects/SDL_mixer/](http://www.libsdl.org/projects/SDL_mixer/)  
+Used for  
+- Sounds & Music  
 
 **GLEW**   
 [http://glew.sourceforge.net/](http://glew.sourceforge.net/)  
