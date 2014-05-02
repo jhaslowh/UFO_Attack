@@ -298,6 +298,8 @@ void Player::checkCollision(Handlers* handlers){
 			ufo->checkCollision(handlers);
 		}
 		else {
+			ufo->checkCollision(handlers);
+
 			// Point used during collision detection 
 			Point p;
 			Point* itr;
@@ -553,6 +555,8 @@ void Player::update2(float deltaTime, Handlers* handlers){
 				((cameraRec.getHeight() * .5f) - cameraRec.getY()));
 		}
 		else {
+			ufo->resolveCollision(deltaTime, handlers);
+
 			locX = nextX;
 			locY = nextY;
 

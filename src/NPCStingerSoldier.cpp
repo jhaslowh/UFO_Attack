@@ -114,8 +114,7 @@ void NPCStingerSoldier::update(float deltaTime, Handlers* handlers){
 			UFO* ufo = player->ufo;
 
 			// Try and attack player 
-			if (player->isInUFO() && 
-				dist(locX, locY, ufo->getCenterX(), ufo->getCenterY()) < weaponRange &&
+			if (dist(locX, locY, ufo->getCenterX(), ufo->getCenterY()) < weaponRange &&
 				((ufo->getX() > locX && direcX > 0.0f) || 
 				(ufo->getX() < locX && direcX < 0.0f) )){
 
