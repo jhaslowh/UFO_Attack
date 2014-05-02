@@ -260,7 +260,7 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 						projs[i] ->collide(&projp, handlers, P_ENEMY_COLL);
 
 						// Apply projectile damage to npc
-						damage(projs[i] ->getDamage());
+						damage(projs[i]->getDamage(), handlers);
 					}
 				}
 			}
@@ -276,7 +276,7 @@ void NPCBasicCollision::updateCollision(float deltaTime, Handlers* handlers){
 		for (int i = 0; i <= ((ExplHandler*)handlers->explHander)->getLastActive(); i++){
 			if (expls[i].isValid()){
 				if (expls[i].firedByPlayer() && expls[i].inRadius(&collRecXY)){
-					damage(expls[i].getDamage());
+					damage(expls[i].getDamage(), handlers);
 				}
 			}
 		}

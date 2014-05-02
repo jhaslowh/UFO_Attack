@@ -40,5 +40,9 @@ public:
 	
 	// Called when the NPC runs into a wall
 	virtual void hitWall();
+
+	// Damage the npc by sent damage amout.
+	// Will set npc to !alive if too much damage taken
+	virtual void damage(float amount, Handlers* handlers);
 };
 

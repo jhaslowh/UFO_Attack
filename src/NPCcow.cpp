@@ -158,8 +158,8 @@ bool NPCcow::isPlayerToLeft(Player* player){
 
 // Damage the npc by sent damage amout.
 // Will set npc to !alive if too much damage taken
-void NPCcow::damage(float amount){
-	NPC::damage(amount);
+void NPCcow::damage(float amount, Handlers* handlers){
+	NPC::damage(amount, handlers);
 	
 	// Check if cow is afraid 
 	if(health < healthMax){

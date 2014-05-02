@@ -174,3 +174,17 @@ void NPCTank::hitWall(){
 
 	direcX = -direcX;
 }
+
+// Damage the npc by sent damage amout.
+// Will set npc to !alive if too much damage taken
+void NPCTank::damage(float amount, Handlers* handlers){
+	NPC::damage(amount, handlers);
+
+	// Create explosion on death 
+	if (!alive){
+		Explosion e;
+		e.setAsBasic();
+		e.setLocation(locX, locY);
+		((ExplHandler*)handlers->explHander)->add(&e);
+	}
+}
