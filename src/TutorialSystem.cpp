@@ -45,22 +45,32 @@ void TutorialSystem::init(float screen_width, float screen_height, SaveData* sd)
 		// Create health box 
 		boxes[TSTAGE_HEALTH].setText("Current UFO armor and shields.\nPlayer health and UFO energy.");
 		boxes[TSTAGE_HEALTH].setSize(220.0f, 36.0f);
-		boxes[TSTAGE_HEALTH].setLocation(10.0f, 75.0f);
+		boxes[TSTAGE_HEALTH].setLocation(10.0f, 80.0f);
+		boxes[TSTAGE_HEALTH].turnOnTutArrow(TA_TOP_LEFT);
 
-		// Create abduct count box 
-		boxes[TSTAGE_ABDUCT_COUNT].setText("Current abduction count\nfor animals and humans.");
-		boxes[TSTAGE_ABDUCT_COUNT].setSize(170.0f, 36.0f);
-		boxes[TSTAGE_ABDUCT_COUNT].setLocation(170.0f, 45.0f);
+		// Create abduct A count box 
+		boxes[TSTAGE_ABDUCT_COUNT_A].setText("Current abduction count\nfor animals.");
+		boxes[TSTAGE_ABDUCT_COUNT_A].setSize(170.0f, 36.0f);
+		boxes[TSTAGE_ABDUCT_COUNT_A].setLocation(180.0f, 50.0f);
+		boxes[TSTAGE_ABDUCT_COUNT_A].turnOnTutArrow(TA_TOP_LEFT);
+
+		// Create abduct  H count box 
+		boxes[TSTAGE_ABDUCT_COUNT_H].setText("Current abduction count\nfor humans.");
+		boxes[TSTAGE_ABDUCT_COUNT_H].setSize(170.0f, 36.0f);
+		boxes[TSTAGE_ABDUCT_COUNT_H].setLocation(240.0f, 50.0f);
+		boxes[TSTAGE_ABDUCT_COUNT_H].turnOnTutArrow(TA_TOP_LEFT);
 
 		// Create enemy count box 
 		boxes[TSTAGE_ENEMY_COUNT].setText("Current enemy population in level.\nGet the red meter to go below\nthe green for Victory.");
 		boxes[TSTAGE_ENEMY_COUNT].setSize(232.0f, 48.0f);
-		boxes[TSTAGE_ENEMY_COUNT].setLocation(screen_width*.5f-116.0f, 58.0f);
+		boxes[TSTAGE_ENEMY_COUNT].setLocation(screen_width*.5f-116.0f, 68.0f);
+		boxes[TSTAGE_ENEMY_COUNT].turnOnTutArrow(TA_TOP_MIDDLE);
 
 		// Create movement box 
 		boxes[TSTAGE_MOVE].setText("Use W A S D to move the UFO\nand the player.");
 		boxes[TSTAGE_MOVE].setSize(214.0f, 35.0f);
 		boxes[TSTAGE_MOVE].setLocation(screen_width*.1f, screen_height*.5f-17.0f);
+		boxes[TSTAGE_MOVE].turnOnTutArrow(TA_RIGHT_TOP);
 
 		// Create abduct ray box 
 		boxes[TSTAGE_ABDUCT_RAY].setText(
@@ -71,6 +81,7 @@ void TutorialSystem::init(float screen_width, float screen_height, SaveData* sd)
 			"energy left for the ray.");
 		boxes[TSTAGE_ABDUCT_RAY].setSize(200.0f, 75.0f);
 		boxes[TSTAGE_ABDUCT_RAY].setLocation(screen_width*.1f, screen_height*.5f-35.0f);
+		boxes[TSTAGE_ABDUCT_RAY].turnOnTutArrow(TA_RIGHT_TOP);
 
 		// Create switch box 
 		boxes[TSTAGE_SWITCHING].setText(
@@ -81,6 +92,7 @@ void TutorialSystem::init(float screen_width, float screen_height, SaveData* sd)
 			"into the ship.");
 		boxes[TSTAGE_SWITCHING].setSize(200.0f, 75.0f);
 		boxes[TSTAGE_SWITCHING].setLocation(screen_width*.1f, screen_height*.5f-35.0f);
+		boxes[TSTAGE_SWITCHING].turnOnTutArrow(TA_RIGHT_TOP);
 
 		// Create shooting box 
 		boxes[TSTAGE_SHOOTING].setText(
@@ -88,6 +100,7 @@ void TutorialSystem::init(float screen_width, float screen_height, SaveData* sd)
 			"screen to fire your weapon.");
 		boxes[TSTAGE_SHOOTING].setSize(195.0f, 35.0f);
 		boxes[TSTAGE_SHOOTING].setLocation(screen_width*.1f, screen_height*.5f-17.0f);
+		boxes[TSTAGE_SHOOTING].turnOnTutArrow(TA_RIGHT_TOP);
 	}
 }
 
@@ -119,9 +132,13 @@ void TutorialSystem::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handl
 	switch (currentStage){
 	case TSTAGE_HEALTH:
 		if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
-			currentStage = TSTAGE_ABDUCT_COUNT;
+			currentStage = TSTAGE_ABDUCT_COUNT_A;
 		break;
-	case TSTAGE_ABDUCT_COUNT:
+	case TSTAGE_ABDUCT_COUNT_A:
+		if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
+			currentStage = TSTAGE_ABDUCT_COUNT_H;
+		break;
+	case TSTAGE_ABDUCT_COUNT_H:
 		if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
 			currentStage = TSTAGE_ENEMY_COUNT;
 		break;

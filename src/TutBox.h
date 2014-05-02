@@ -6,6 +6,11 @@
 
 #define TUT_BOX_TEXT_SIZE 14.0f
 
+// Tut arrow locs 
+#define TA_TOP_LEFT 0
+#define TA_TOP_MIDDLE 1
+#define TA_RIGHT_TOP 2
+
 class TutBox
 {
 	// Text to display
@@ -14,6 +19,11 @@ class TutBox
 	float locX, locY;
 	// Size of box 
 	float width, height;
+
+	// Tut arrow 
+	bool showArrow;
+	float arrowRotation;
+	float arrowOffsetX, arrowOffsetY;
 
 public:
 	TutBox();
@@ -36,5 +46,13 @@ public:
 
 	// Draw ui box 
 	void draw(GLHandler* mgl, UIAtlas* mUI);
+
+	// Turn on the tut arrow and put it at the sent loc
+	// loc = TA_TOP_LEFT, TA_TOP_MIDDLE, TA_RIGHT_TOP 
+	// NOTE: Call this after size and location set 
+	void turnOnTutArrow(int loc);
+
+	// Turn off arrow
+	void turnOffTutArrow();
 };
 

@@ -90,6 +90,9 @@ void UIAtlas::load(){
 	// Difficulty 3
 	vcg->addFrame(769.0f, 106.0f, 30.0f, 30.0f);
 
+	// Tut arrow
+	vcg->addFrame(631.0f, 175.0f, 20.0f, 20.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();
