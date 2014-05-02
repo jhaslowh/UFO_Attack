@@ -44,6 +44,8 @@ protected:
 
 	// Abduction properties
 	float cAbductSpeed;
+	// Change this to slow down or speed up abductions
+	float abductRate;		
 
 public:
 	NPC* next;

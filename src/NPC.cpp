@@ -20,6 +20,8 @@ NPC::NPC()
 	mdraw = false;
 	health = healthMax = 100.0f;
 	type = NPC_HUMAN;
+	cAbductSpeed = 0.0f;
+	abductRate = 1.0f;
 }
 
 NPC::~NPC()
@@ -122,8 +124,8 @@ void NPC::updateCollision(float deltaTime, Handlers* handlers){
 				float mTheta = (float)atan2((double)(ufo->getY() - locY), (double)(ufo->getX() - locX));
 
 				// Convert angle to direction 
-				float direcX = cos(mTheta);
-				float direcY = sin(mTheta);
+				float direcX = cos(mTheta) * abductRate;
+				float direcY = sin(mTheta) * abductRate;
 
 				// Accelerate 
 				cAbductSpeed += deltaTime * ABDUCT_ACCEL;

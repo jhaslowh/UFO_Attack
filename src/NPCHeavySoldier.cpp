@@ -50,6 +50,8 @@ NPCHeavySoldier::NPCHeavySoldier(float x, float y) : NPCBasicCollision()
 	weapon = (Weapon*)new NPCSMG();
 	weapon->setIsPlayerWeapon(false);
 	weaponRange = 350.0f;
+
+	abductRate = .3f;
 }
 
 

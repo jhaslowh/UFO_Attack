@@ -35,6 +35,7 @@ NPCcow::NPCcow(float x, float y) : NPCBasicCollision()
 	cframeTime = 0.0f;
 
 	afraid = false;
+	abductRate = 1.3f;
 }
 
 
