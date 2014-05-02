@@ -139,7 +139,7 @@ void UFO::update(float deltaTime, Handlers* handlers){
 			15.0f,15.0f,// Origin
 			cos(angle),sin(angle),	// Direction
 			75.0f,		// Speed
-			2.0f,		// Life
+			1.0f,		// Life
 			0.0f,		// Rotation speed
 			-1.0f);		// Scale speed 
 	}
