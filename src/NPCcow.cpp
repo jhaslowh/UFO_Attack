@@ -18,7 +18,8 @@ NPCcow::NPCcow(float x, float y) : NPCBasicCollision()
 	alive = true;
 	type = NPC_ANIMAL;
 
-	// Soldier properties
+	// Cow properties
+	health = healthMax = 30.0f;
 	direcX = 1.0f;
 	speed = 10.0f;
 	afraidSpeed = 3 * speed; // TODO this is clunky
