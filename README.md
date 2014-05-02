@@ -3,7 +3,7 @@ CS 426 Project
 
 About
 -----
-In this game you play a alien bear and your goal is to defeat the military and abduct people.   
+In this game you play a alien space bear. Use your high tech ship and weapons to conquer the Earth. Your ship is equiped with an abduction ray that can be used to abduct people from the plant. You these people to gain new weapons and cause more destruction.  
 
 Controls
 --------
