@@ -126,6 +126,10 @@ Player::Player(SaveData* savedata){
 	cameraEdge = 160.0f;
 	ufo = NULL;
 
+	// Hit recently
+	hitTime = .05f;
+	chitTime = 0.0f;
+
 	// Arm offsets 
 	armOffsetsR[0] = 24;	armOffsetsR[1] = 25;
 	armOffsetsR[2] = 24;	armOffsetsR[3] = 27;
@@ -291,6 +295,13 @@ void Player::update(float deltaTime, Handlers* handlers){
 					if (runFrame < 0)
 						runFrame = runFrameCount-1;
 				}
+			}
+
+			// Update hit time
+			if (chitTime > 0.0f){
+				chitTime -= deltaTime;
+				if (chitTime < 0.0f)
+					chitTime = 0.0f;
 			}
 		}
 	}
@@ -709,6 +720,9 @@ void Player::draw(GLHandler* mgl){
 	
 	if (!inUFO){
 		// Draw player
+		// Set damage color
+		if (chitTime > 0.0f)
+			mgl->setFlatColor(1.0f, 0.0f, 0.0f, 1.0f);
 		if (lookingRight)
 			playerAtlas.draw(mgl, PLAYER_RUN_FRAME0 + currentFrame,
 				locX,locY,1.0f,0.0f,originX,originY);
@@ -718,13 +732,17 @@ void Player::draw(GLHandler* mgl){
 				locX,locY,-1.0f,1.0f,0.0f,originX,originY);
 			glCullFace(GL_BACK);
 		}
+		mgl->setFlatColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 		// Draw weapon
 		if (usingWeapon1 && weapon1)
 			weapon1->draw(mgl, &playerAtlas);
 		else if (!usingWeapon1 && weapon2)
 			weapon2->draw(mgl, &playerAtlas);
-
+		
+		// Set damage color
+		if (chitTime > 0.0f)
+			mgl->setFlatColor(1.0f, 0.0f, 0.0f, 1.0f);
 		// Draw player arm 
 		if (lookingRight){
 			playerAtlas.draw(mgl, PI_PLAYER_ARM,
@@ -740,6 +758,7 @@ void Player::draw(GLHandler* mgl){
 				-1.0f,1.0f,armRotation,armOriginX,armOriginY);
 			glCullFace(GL_BACK);
 		}
+		mgl->setFlatColor(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 }
 
@@ -865,6 +884,8 @@ bool Player::alive(){
 
 // Apply damage to health
 void Player::applyDamage(float damage){
+	chitTime = hitTime;
+
 	health -= damage;
 	if (health < 0.0f)
 		health = 0.0f;

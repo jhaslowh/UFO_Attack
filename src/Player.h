@@ -160,6 +160,10 @@ class Player
 	GLfloat hudBlack[4];
 	GLfloat hudEnergyColor[4];
 
+	// Hit recently
+	float hitTime;
+	float chitTime;
+
 	// -------------
 	// Weapon
 	// -------------

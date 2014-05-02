@@ -66,6 +66,10 @@ class UFO
 	float timeTilCharge;
 	float ctimeTilCharge;
 
+	// Hit recently
+	float hitTime;
+	float chitTime;
+
 	// -------------
 	// Weapon
 	// -------------

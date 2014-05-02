@@ -41,6 +41,10 @@ UFO::UFO(){
 	eDrain = 20.0f; // Drain rate 
 	timeTilCharge = 4.0f;
 	ctimeTilCharge = timeTilCharge;
+	
+	// Hit recently
+	hitTime = .05f;
+	chitTime = 0.0f;
 
 	// Load weapon based off savedata
 	usingWeapon1 = true;
@@ -171,6 +175,13 @@ void UFO::update(float deltaTime, Handlers* handlers){
 			rayOn = false;
 			energy = 0.0f;
 		}
+	}
+	
+	// Update hit time
+	if (chitTime > 0.0f){
+		chitTime -= deltaTime;
+		if (chitTime < 0.0f)
+			chitTime = 0.0f;
 	}
 }
 
@@ -348,6 +359,9 @@ void UFO::draw(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO){
 	else if (!usingWeapon1 && uweapon2)
 		uweapon2->draw(mgl, mAtlas);
 
+	// Set damage color
+	if (chitTime > 0.0f)
+		mgl->setFlatColor(1.0f, 0.0f, 0.0f, 1.0f);
 	if (lookingRight){
 		if (inUFO)
 			mAtlas->draw(mgl, UFO_BEAR_FRAME, locX,locY,1.0f,0,originX, originY);
@@ -362,6 +376,7 @@ void UFO::draw(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO){
 			mAtlas->drawScale2(mgl, UFO_FRAME, locX,locY,-1.0f,1.0f,0,originX, originY);
 		glCullFace(GL_BACK);
 	}
+	mgl->setFlatColor(1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 // Draw UFO lights
@@ -393,6 +408,8 @@ void UFO::drawLights(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO){
 
 // Apply damage to the ship 
 void UFO::applyDamage(float damage){
+	chitTime = hitTime;
+
 	// If shields are remaining, 
 	if (shield > 0.0f){
 		shield -= damage;
