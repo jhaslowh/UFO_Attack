@@ -5,7 +5,7 @@ Sky::Sky()
 {
 	// Set properties 
 	skyState = SKY_STATE_DAY;
-	mTime = (float)(rand() % 24);
+	mTime = 9.0f;//(float)(rand() % 24);
 	mHoursPerSecond = .05f;
 	mMaxLightAlpha = .5f;
 	scalex = 1.0f;
