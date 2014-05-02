@@ -18,9 +18,6 @@ namespace StoreItems{
 	// Total number of store items 
 	extern const int STORE_ITEM_COUNT;
 
-	// Total number of ufo upgrades
-	extern const int STORE_UFO_UPGRADE_COUNT;
-
 	// Total number of ufo weapons 
 	extern const int STORE_UFO_WEAPON_COUNT;
 
@@ -31,15 +28,10 @@ namespace StoreItems{
 	extern const int SID_PLAYER_WEAPON_LASER;
 	extern const int SID_PLAYER_WEAPON_SHOTGUN;
 	extern const int SID_PLAYER_WEAPON_SMG;
-	extern const int SID_UFO_ARMOR_1;		// First ufo armor upgrade
-	extern const int SID_UFO_ARMOR_2;		// Second ufo armor upgrade 
-	extern const int SID_UFO_WEAPON_LASER;	// UFO laser weapon 
 	extern const int SID_UFO_WEAPON_MACHINE_GUN;	// UFO machine gun 
 	extern const int SID_UFO_WEAPON_MISSILE;		// UFO missile launcher 
 	extern const int SID_UFO_WEAPON_BOMB;			// UFO bombs
-
-	// Indexes of ufo upgrades
-	extern const int STORE_UFO_UPGRADE_INDEXES[];
+	extern const int SID_UFO_WEAPON_COWTAPOLT;
 
 	// Indexes of ufo weapons
 	extern const int STORE_UFO_WEAPON_INDEXES[];

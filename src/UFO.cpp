@@ -90,10 +90,14 @@ void UFO::init(SaveData* savedata){
 		// Load player weapon 1 from savedata 
 		if (savedata->getUFOWeapon1() == StoreItems::SID_UFO_WEAPON_MISSILE)
 			uweapon1 = (Weapon*)new UFORocket();
+		else if (savedata->getUFOWeapon1() == StoreItems::SID_UFO_WEAPON_COWTAPOLT)
+			uweapon1 = (Weapon*)new UFORocket(); // TODO change this to cowtapolt
 
 		// Load player weapon 2 from savedata 
 		if (savedata->getUFOWeapon2() == StoreItems::SID_UFO_WEAPON_MISSILE)
 			uweapon2 = (Weapon*)new UFORocket();
+		else if (savedata->getUFOWeapon2() == StoreItems::SID_UFO_WEAPON_COWTAPOLT)
+			uweapon2 = (Weapon*)new UFORocket(); // TODO change this to cowtapolt
 	}
 }
 	
