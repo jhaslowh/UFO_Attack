@@ -101,6 +101,11 @@ void GameAtlas::load(){
 	// NPC Tank Barrel
 	vcg->addFrame(181.0f, 994.0f, 65.0f, 7.0f);
 
+	// Splat 1-3
+	vcg->addFrame(1.0f, 197.0f, 40.0f, 50.0f);
+	vcg->addFrame(43.0f, 197.0f, 40.0f, 50.0f);
+	vcg->addFrame(85.0f, 197.0f, 40.0f, 50.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();
