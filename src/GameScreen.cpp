@@ -122,8 +122,16 @@ void GameScreen::update(float deltaTime){
 				// Set current level as completed
 				savedata->addLevel(levelFile);
 				saveSaveData(savedata);
-				transitionCode = SCREEN_CREDITS;
-				hide();
+
+				// Go to credits if all levels finished
+				if (savedata->allLevelsCompleted()){
+					transitionCode = SCREEN_CREDITS;
+					hide();
+				}
+				else {
+					transitionCode = SCREEN_LEVEL_SELECT;
+					hide();
+				}
 			}
 		}
 	}

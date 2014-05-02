@@ -22,7 +22,12 @@ class SaveData
 	std::list<std::string> levels;
 
 public:
+	// Used to tell the game screen what to load
 	std::string levelToLoad;
+	// Used to check how many levels there are. 
+	// Shouldn't be saved, just set each time the list of levels
+	// is loaded for reference. 
+	int levelCount;
 
 	SaveData();
 	~SaveData();
@@ -67,5 +72,8 @@ public:
 	void clearLevelList();
 	// Return string of all unlocked levels
 	std::string levelsToString();
+
+	// Check if all levels completed 
+	bool allLevelsCompleted();
 };
 

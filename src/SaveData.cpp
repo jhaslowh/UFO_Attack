@@ -14,6 +14,7 @@ SaveData::SaveData()
 	ufoWeapon1 = -1;
 	ufoWeapon2 = -1;
 	levelToLoad = "none";
+	levelCount = 0;
 }
 
 SaveData::~SaveData()
@@ -82,4 +83,9 @@ std::string SaveData::levelsToString(){
 	for (std::list<std::string>::iterator it = levels.begin(); it != levels.end(); it++)
 		levelString += " " + *it;
 	return levelString;
+}
+
+// Check if all levels completed 
+bool SaveData::allLevelsCompleted(){
+	return levelCount == levels.size();
 }

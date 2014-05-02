@@ -163,6 +163,8 @@ void LevelSelectScreen::loadLevelList(){
 		cout << "Loading level list..\n";
 		getline(myfile, line);
 		numberOfLevels = atoi(line.c_str());
+		// Tell savedata how many levels there are
+		sd->levelCount = numberOfLevels;
 		for(int i=0;i<numberOfLevels && i<20;i++)
 		{
 			getline(myfile, line);
