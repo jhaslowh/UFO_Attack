@@ -10,10 +10,10 @@ Building / Running
 
 OpenGL 3.0 or greater is required to run the game.  
 
-### Windows  
+**Windows**  
 To compile on windows, run the project with Visual Studio 2010 or greater and build it.  
 
-### Linux  
+**Linux**  
 Currently the linux build is not finished until the linux version of SLDmixer is found.  
 If you get errors while building on linux, you may need the opengl header files (See below).  
 
