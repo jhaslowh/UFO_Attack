@@ -35,7 +35,7 @@ int GLHandler::load(float screen_width, float screen_height){
 	// Vertex shader 
 	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
 	const char *vs_source = 
-    "#version 120  \n"  // OpenGL 2.1
+    "#version 110  \n"  // OpenGL 2.0
 	"in vec4 position;        " // Position handle 
 	"in vec2 aTexCoordinate;  " // Texture coord handle 
 	"varying vec2 vTexCoordinate;    " // Texture coord handle that both shaders use 
@@ -57,7 +57,7 @@ int GLHandler::load(float screen_width, float screen_height){
 	// Fragment shader 
 	GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
 	const char *fs_source =
-    "#version 120  \n"  // OpenGL 2.1
+    "#version 120  \n"  // OpenGL 2.0
 	"uniform sampler2D texture;   " // Texture handle 
 	"uniform sampler2D lightmap;  " // Light texture
 	"uniform vec4 color;           " // Color handle

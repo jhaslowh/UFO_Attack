@@ -51,14 +51,29 @@ void TextRender::drawText(GLHandler mgl, std::string text, float x, float y, flo
 float TextRender::measureString(std::string text, float size){
 	// Variables use to get length 
 	float scale = size/72.0f;
+	float maxSize = 0.0f;
 	float length = 0;
 	int textLength = text.length();
 	char c; 
 
 	for (int i = 0; i < textLength; i++){
 		c = text.at(i);
-		length += getLetterWidth(c);
+
+		// Check if we hit the end of the line 
+		if (c == '\n'){
+			if (length > maxSize)
+				maxSize = length;
+			length = 0.0f;
+		}
+		// Otherwise add normal length 
+		else {
+			length += getLetterWidth(c);
+		}
 	}
+
+	// Check against max size 
+	if (maxSize > length)
+		length = maxSize;
 		
 	return length * scale;
 }

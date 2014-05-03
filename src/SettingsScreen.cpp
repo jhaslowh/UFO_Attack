@@ -128,6 +128,7 @@ void SettingsScreen::init(float screen_width, float screen_height, void* sh){
 	buttonApply = new UIButton(menuX - 105.0f,
 		menuY + 165.0f,100.0f,35.0f, std::string("Apply"));
 	buttonApply->setupHide(HT_VERTICAL,buttonApply->getY()+100.0f,hideTime,true);
+	buttonApply->setTooltip(std::string("Only needed for immediate\nresolution change"), 0.2f);
 	buttonApply->setHidden();
 
 	bBG = new UIBox(screen_width / 2.0f - 125.0f, menuY-5.0f,250.0f,165.0f);
@@ -254,6 +255,10 @@ void SettingsScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	if (buttonApply->wasClicked()){
 		saveSettings(settings);
 		transitionCode = RESTART_GAME;
+	}
+	if (buttonApply->requestFocus()){
+		if (uio_focus != NULL) uio_focus->focusLost(); 
+		uio_focus = buttonApply;
 	}
 }
 

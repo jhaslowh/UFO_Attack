@@ -4,10 +4,6 @@
 #endif
 
 #include "main.h"
-
-
-#include "SoundHandler.h"//TODO: this should be moved
-
 using namespace std;
 
 /**
@@ -19,9 +15,11 @@ int init_resources()
 
 	soundHandler = new SoundHandler(settings);
 	soundHandler->playMusic(SE_MENU_MUSIC);
-	
 	// Set up shaders 
-	mgl.load((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
+	if (mgl.load((float)settings->getScreenWidth(),(float)settings->getScreenHeight()) == 0){
+		cout << "Error setting up OpenGL\n";
+		return 0;
+	}
 	glUseProgram(mgl.program);
 	// Setup ortho matrix
 	mgl.setOrthoMatrix((float)settings->getScreenWidth(),(float)settings->getScreenHeight());
@@ -99,7 +97,7 @@ void free_resources()
 	}
 
 	// Unload atlas 
-	mUIAtlas->unload();
+	if (mUIAtlas != NULL) mUIAtlas->unload();
 	// Unload program
 	glUseProgram(0);
 	// Unload GLHandler
@@ -625,16 +623,16 @@ void createGame(){
 	cout << "GLSL Version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << "\n";
 	
 	// Load resources 
-	init_resources();
+	if (init_resources() == 1){
+		// ======= Run ======= //
 
-	// ======= Run ======= //
+		// Create game loop thread 
+		running = true;
+		thread = SDL_CreateThread( gameLoop, "gameLoop", (void *)NULL);
 
-	// Create game loop thread 
-	running = true;
-	thread = SDL_CreateThread( gameLoop, "gameLoop", (void *)NULL);
-
-	// Run Event and render loop 
-	eventAndRenderLoop();
+		// Run Event and render loop 
+		eventAndRenderLoop();
+	}
 	
 	// ======= Exit ======= //
 
