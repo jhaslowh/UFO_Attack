@@ -167,11 +167,10 @@ void NPC::drawLight(GLHandler* mgl, GameAtlas* mGame){
 void NPC::draw(GLHandler* mgl, GameAtlas* mGame){
 	// Draw health bar
 	if (alive && mdraw){
-		mGame->draw(mgl, GI_NPC_HEALTH_BAR_OUTLINE, locX - 20.0f, locY - height);
-		mGame->drawScale2(mgl, GI_NPC_HEALTH_BAR,locX - 19.0f, locY - height + 1.0f, health / healthMax, 1.0f);
+		mGame->draw(mgl, GI_NPC_HEALTH_BAR_OUTLINE, locX - 20.0f, locY - height- 10.0f);
+		mGame->drawScale2(mgl, GI_NPC_HEALTH_BAR,locX - 19.0f, locY - height - 9.0f, health / healthMax, 1.0f);
 	}
 }
-
 
 // Damage the npc by sent damage amout.
 // Will set npc to !alive if too much damage taken

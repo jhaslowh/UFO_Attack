@@ -79,6 +79,10 @@ bool NPCHandler::addByName(std::string name, float x, float y){
 		add(new NPCTank(x,y));
 		return true;
 	}
+	else if (name.compare("turret") == 0){
+		add(new NPCTurret(x,y));
+		return true;
+	}
 	return false;
 }
 

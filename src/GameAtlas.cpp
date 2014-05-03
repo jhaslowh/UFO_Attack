@@ -113,6 +113,13 @@ void GameAtlas::load(){
 	// Barn
 	vcg->addFrame(777.0f, 671.0f, 240.0f, 150.0f);
 
+	// Turret base
+	vcg->addFrame(676.0f, 992.0f, 50.0f, 31.0f);
+	// Sam 
+	vcg->addFrame(688.0f, 979.0f, 38.0f, 11.0f);
+	// Machine Gun
+	vcg->addFrame(684.0f, 959.0f, 42.0f, 18.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

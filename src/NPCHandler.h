@@ -6,6 +6,7 @@
 #include "NPCStingerSoldier.h"
 #include "NPCcow.h"
 #include "NPCTank.h"
+#include "NPCTurret.h"
 
 class NPCHandler
 {

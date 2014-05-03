@@ -53,6 +53,9 @@
 #define GI_HOUSE_BLUE 45
 #define GI_HOUSE_BROWN 46
 #define GI_BARN 47
+#define GI_TURRET_BASE 48
+#define GI_SAM 49
+#define GI_MACHINE_GUN 50
 
 class GameAtlas : public TextureAtlas
 {

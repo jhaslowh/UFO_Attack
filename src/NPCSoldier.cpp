@@ -167,7 +167,6 @@ void NPCSoldier::draw(GLHandler* mgl, GameAtlas* mGame){
 				-1.0f,1.0f,armRotation,armOriginX,armOriginY);
 			glCullFace(GL_BACK);
 		}
-
 	}
 }
 
