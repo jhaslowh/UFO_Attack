@@ -50,6 +50,9 @@
 #define GI_SPLAT1 42
 #define GI_SPLAT2 43
 #define GI_SPLAT3 44
+#define GI_HOUSE_BLUE 45
+#define GI_HOUSE_BROWN 46
+#define GI_BARN 47
 
 class GameAtlas : public TextureAtlas
 {

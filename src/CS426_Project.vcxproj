@@ -12,12 +12,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AtlasSprite.h" />
+    <ClInclude Include="Barn.h" />
     <ClInclude Include="BeamProjectile.h" />
     <ClInclude Include="BulletProjectile.h" />
     <ClInclude Include="Crate.h" />
     <ClInclude Include="CreditsScreen.h" />
     <ClInclude Include="ExplHandler.h" />
     <ClInclude Include="Explosion.h" />
+    <ClInclude Include="HouseBlue.h" />
+    <ClInclude Include="HouseBrown.h" />
     <ClInclude Include="LevelIO.h" />
     <ClInclude Include="LevelSelectScreen.h" />
     <ClInclude Include="LongCrate.h" />
@@ -111,12 +114,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AtlasSprite.cpp" />
+    <ClCompile Include="Barn.cpp" />
     <ClCompile Include="BeamProjectile.cpp" />
     <ClCompile Include="BulletProjectile.cpp" />
     <ClCompile Include="Crate.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
     <ClCompile Include="ExplHandler.cpp" />
     <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="HouseBlue.cpp" />
+    <ClCompile Include="HouseBrown.cpp" />
     <ClCompile Include="LevelIO.cpp" />
     <ClCompile Include="LevelSelectScreen.cpp" />
     <ClCompile Include="LongCrate.cpp" />

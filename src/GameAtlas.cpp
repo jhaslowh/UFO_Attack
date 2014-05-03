@@ -106,6 +106,13 @@ void GameAtlas::load(){
 	vcg->addFrame(43.0f, 197.0f, 40.0f, 50.0f);
 	vcg->addFrame(85.0f, 197.0f, 40.0f, 50.0f);
 
+	// Blue house
+	vcg->addFrame(728.0f, 823.0f, 150.0f, 200.0f);
+	// Brown house
+	vcg->addFrame(880.0f, 823.0f, 137.0f, 200.0f);
+	// Barn
+	vcg->addFrame(777.0f, 671.0f, 240.0f, 150.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

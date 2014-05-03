@@ -292,6 +292,15 @@
     <ClCompile Include="TutBox.cpp">
       <Filter>Source Files\game\tut</Filter>
     </ClCompile>
+    <ClCompile Include="HouseBrown.cpp">
+      <Filter>Source Files\game\scenery</Filter>
+    </ClCompile>
+    <ClCompile Include="Barn.cpp">
+      <Filter>Source Files\game\scenery</Filter>
+    </ClCompile>
+    <ClCompile Include="HouseBlue.cpp">
+      <Filter>Source Files\game\scenery</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -584,6 +593,15 @@
     </ClInclude>
     <ClInclude Include="TutBox.h">
       <Filter>Header Files\game\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="Barn.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="HouseBlue.h">
+      <Filter>Header Files\game\scenery</Filter>
+    </ClInclude>
+    <ClInclude Include="HouseBrown.h">
+      <Filter>Header Files\game\scenery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
