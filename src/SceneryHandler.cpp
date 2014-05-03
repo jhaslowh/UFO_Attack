@@ -56,6 +56,73 @@ void SceneryHandler::add(SceneryObject* obj){
 	std::cout << "Error: could not add item to scenery linked list\n";
 }
 
+// Add by name
+bool SceneryHandler::add(std::string name, std::string args, float x, float y){
+	SceneryObject* obj = NULL;
+	if (name.compare("tallCrate") == 0){
+		obj = new TallCrate();
+		obj->setLocation(x,y);
+		add(obj);
+		return true;
+	}
+	else if (name.compare("sign") == 0){
+		obj = new Sign();
+		obj->setLocation(x,y);
+		((Sign*)obj)->setText(args);
+		add(obj);
+		return true;
+	}
+	else if (name.compare("longCrate") == 0){
+		obj = new LongCrate();
+		obj->setLocation(x,y);
+		add(obj);
+		return true;
+	}
+	else if (name.compare("hayBale") == 0){
+		obj = new HayBale();
+		obj->setLocation(x,y);
+		add(obj);
+		return true;
+	}
+	else if (name.compare("fence") == 0){
+		obj = new Fence();
+		obj->setLocation(x,y);
+		add(obj);
+		return true;
+	}
+	else if (name.compare("crate") == 0){
+		obj = new Crate();
+		obj->setLocation(x,y);
+		add(obj);
+		return true;
+	}
+	else if (name.compare("tree") == 0){
+		obj = new Tree();
+		obj->setLocation(x,y);
+		add(obj);
+		return true;
+	}
+	else if (name.compare("barn") == 0){
+		obj = new Barn();
+		obj->setLocation(x,y);
+		add(obj);
+		return true;
+	}
+	else if (name.compare("houseBrown") == 0){
+		obj = new HouseBrown();
+		obj->setLocation(x,y);
+		add(obj);
+		return true;
+	}
+	else if (name.compare("houseBlue") == 0){
+		obj = new HouseBlue();
+		obj->setLocation(x,y);
+		add(obj);
+		return true;
+	}
+	return false;
+}
+
 // Update objects
 void SceneryHandler::update(float deltaTime, Handlers* handlers){
 	uitr = head;
@@ -100,4 +167,3 @@ void SceneryHandler::drawUI(GLHandler* mgl, UIAtlas* mUI){
 		ditr = ditr->getNext();
 	}
 }
-

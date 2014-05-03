@@ -527,67 +527,10 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 		if (subCommand == "add"){
 			UITerminal::getCommandAndArgs(&subArgs, &subCommand, &subArgs);
 
-			// Add new tree to level 
-			if (subCommand == "tree" || subCommand == "0"){
+			// Add new scenery object 
+			if (sceneryHandler->add(subCommand,subArgs,
+				camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f))){
 				terminal->addLine(command + " " + args, TL_SUCCESS);
-				Tree* tree = new Tree();
-				tree->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
-				sceneryHandler->add((SceneryObject*)tree);
-				return true;
-			}
-
-			// Add new sign to level
-			if (subCommand == "sign" || subCommand == "1"){
-				terminal->addLine(command + " " + args, TL_SUCCESS);
-				Sign* sign = new Sign();
-				sign->setText(subArgs);
-				sign->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
-				sceneryHandler->add((SceneryObject*)sign);
-				return true;
-			}
-
-			// Add new hay bale to level
-			if (subCommand == "hay" || subCommand == "2"){
-				terminal->addLine(command + " " + args, TL_SUCCESS);
-				HayBale* hay = new HayBale();
-				hay->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
-				sceneryHandler->add((SceneryObject*)hay);
-				return true;
-			}
-
-			// Add new crate to level
-			if (subCommand == "crate" || subCommand == "3"){
-				terminal->addLine(command + " " + args, TL_SUCCESS);
-				Crate* crate = new Crate();
-				crate->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
-				sceneryHandler->add((SceneryObject*)crate);
-				return true;
-			}
-			
-			// Add new fence to level
-			if (subCommand == "fence" || subCommand == "4"){
-				terminal->addLine(command + " " + args, TL_SUCCESS);
-				Fence* fence = new Fence();
-				fence->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
-				sceneryHandler->add((SceneryObject*)fence);
-				return true;
-			}
-
-			// Add new long crate to level
-			if (subCommand == "longCrate" || subCommand == "5"){
-				terminal->addLine(command + " " + args, TL_SUCCESS);
-				LongCrate* longc = new LongCrate();
-				longc->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
-				sceneryHandler->add((SceneryObject*)longc);
-				return true;
-			}
-
-			// Add new tall crate to level
-			if (subCommand == "tallCrate" || subCommand == "6"){
-				terminal->addLine(command + " " + args, TL_SUCCESS);
-				TallCrate* tallc = new TallCrate();
-				tallc->setLocation(camera->toLevelX(screenWidth/2.0f), camera->toLevelY(screenHeight/2.0f));
-				sceneryHandler->add((SceneryObject*)tallc);
 				return true;
 			}
 

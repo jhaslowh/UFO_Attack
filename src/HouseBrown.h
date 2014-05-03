@@ -1,8 +1,10 @@
 #pragma once
-class HouseBrown
+#include "SceneryObject.h"
+
+class HouseBrown : public SceneryObject
 {
 public:
-	HouseBrown(void);
-	~HouseBrown(void);
+	HouseBrown();
+	virtual ~HouseBrown();
 };
 

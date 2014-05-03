@@ -1,6 +1,16 @@
 #pragma once
 #include "SceneryObject.h"
 #include "Handlers.h"
+#include "TallCrate.h"
+#include "Sign.h"
+#include "LongCrate.h"
+#include "HayBale.h"
+#include "Fence.h"
+#include "Crate.h"
+#include "Tree.h"
+#include "Barn.h"
+#include "HouseBlue.h"
+#include "HouseBrown.h"
 
 class SceneryHandler
 {
@@ -24,6 +34,9 @@ public:
 
 	// Add an scenery object to the list 
 	void add(SceneryObject* obj);
+
+	// Add by name
+	bool add(std::string name, std::string args, float x, float y);
 
 	// Update objects
 	void update(float deltaTime, Handlers* handlers);

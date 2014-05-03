@@ -1,8 +1,10 @@
 #pragma once
-class Barn
+#include "SceneryObject.h"
+
+class Barn : public SceneryObject
 {
 public:
-	Barn(void);
-	~Barn(void);
+	Barn();
+	virtual ~Barn();
 };
 

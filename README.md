@@ -5,6 +5,18 @@ About
 -----
 In this game you play a alien space bear. Use your high tech ship and weapons to conquer the Earth. Your ship is equipped with an abduction ray that can be used to abduct people from the planet. You use these people to gain new weapons and cause more destruction.  
 
+Building / Running
+--------
+
+OpenGL 3.0 or greater is required to run the game.  
+
+### Windows  
+To compile on windows, run the project with Visual Studio 2010 or greater and build it.  
+
+### Linux  
+Currently the linux build is not finished until the linux version of SLDmixer is found.  
+If you get errors while building on linux, you may need the opengl header files (See below).  
+
 Controls
 --------
 
@@ -32,7 +44,7 @@ Editor Modes
 - Add Points: Use the mouse to add ground points to the ground in this mode. Points will be added between surrounding points.  
 - Remove Points: Use the mouse to select and remove ground points.   
 
-**Terminal**  
+**Terminal Commands**  
 ` or ~ : Toggle on/off  
 Commands:  
 - "help" : print out commands  
@@ -60,19 +72,15 @@ Commands for Level Editor (Must be in screen with one)
 - "editor open" : open level editor  
 - "editor close" : close level editor  
 - "scenery add tree" : add new tree to level 
-- "scenery add 0" : same as previous
 - "scenery add sign [text]" : add new sign to level (if text left blank, text will be set to "none"  
-- "scenery add 1 [text]" : same as previous
-- "scenery add hay" : add new hay bale to level  
-- "scenery add 2" : same as previous    
+- "scenery add hay" : add new hay bale to level    
 - "scenery add crate" : add new crate  
-- "scenery add 3" : same as previous  
-- "scenery add fence" : add new fence  
-- "scenery add 4" : same as previous  
+- "scenery add fence" : add new fence   
 - "scenery add longCrate" : add new long crate  
-- "scenery add 5" : same as previous  
 - "scenery add tallCrate" : add new tall crate  
-- "scenery add 6" : same as previous  
+- "scenery add barn" : add new barn  
+- "scenery add houseBrown" : add new brown house  
+- "scenery add houseBlue" : add new blue house  
 - "npc add soldier" : add new soldier npc to level  
 - "npc add sniper" : add new sniper npc to level  
 - "npc add cow" : add new cow npc to level  
@@ -91,21 +99,27 @@ Technical Information
 
 ### Implemented  
 
-* Image Loading (using SOIL)
-* Orthographic Projection 
-* Perspective Projection
+The following is a list of all engine specific implemented features.  
+
+* Image Loading (using SOIL)  
+* OpenGL Wrapper   
+* Orthographic Projection  
+* Perspective Projection  
 * 2D Lighting with Linear Light Blending & FBO  
-* 2D Sprite
-* 3D Cube
-* Matrix Transforms (Using GLM) 
-* KeyBoard IO
-* Mouse IO
-* Text Rendering 
-* UI Screens
-* UI Buttons 
-* UI Checkbox
-* UI Combobox
-* UI Scrollbar
+* 2D Sprite  
+* 3D Cube  
+* 2D Camera   
+* Matrix Transforms (Using GLM)  
+* KeyBoard IO  
+* Mouse IO  
+* Text Rendering  
+* UI Screen & Screen System   
+* UI Button  
+* UI Checkbox  
+* UI Combobox  
+* UI Scrollbar  
+* UI Value Slider  
+* Screen Transitioning  
 * Debug Terminal  
 * Texture Atlas Stucture  
 * Basic Collision Detection Functions for AABB's and Line segments's  
@@ -138,16 +152,6 @@ Used for matrix math
 **SOIL**  
 [http://www.lonesock.net/soil.html](http://www.lonesock.net/soil.html)  
 Used to load texture files 
-
-Building
---------
-
-### Windows  
-To compile on windows, run the project with Visual Studio 2010 or greater and build it.  
-
-### Linux  
-Currently the linux build is not finished until the linux version of SLDmixer is found.  
-If you get errors while building on linux, you may need the opengl header files (See below).  
 
 OpenGL Headers for linux
 ------------------------

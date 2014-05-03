@@ -231,43 +231,10 @@ void loadLevel(Handlers* handlers, std::string file){
 						counter++;
 					}
 					storage[counter] = line;
-					if(storage[9].compare("tree")==0)
-					{
-						obj = (SceneryObject*)new Tree();
-						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-						sceneryHandler->add(obj);
-						if (debug) cout << "tree" << std::endl;
-					}
-					else if(storage[9].compare("fence")==0)
-					{
-						obj = (SceneryObject*)new Fence();
-						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-						sceneryHandler->add(obj);
-					}
-					else if(storage[9].compare("crate")==0)
-					{
-						obj = (SceneryObject*)new Crate();
-						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-						sceneryHandler->add(obj);
-					}
-					else if(storage[9].compare("longCrate")==0)
-					{
-						obj = (SceneryObject*)new LongCrate();
-						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-						sceneryHandler->add(obj);
-					}
-					else if(storage[9].compare("tallCrate")==0)
-					{
-						obj = (SceneryObject*)new TallCrate();
-						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-						sceneryHandler->add(obj);
-					}
-					else if(storage[9].compare("hayBale")==0)
-					{
-						obj = (SceneryObject*)new HayBale();
-						obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-						sceneryHandler->add(obj);
-					}
+
+					sceneryHandler->add(storage[9],std::string(""),
+						(float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
+
 					if (debug) cout << "looping" << std::endl;
 					getline(myfile, line);
 				}
@@ -294,12 +261,10 @@ void loadLevel(Handlers* handlers, std::string file){
 					}
 					if (debug) cout << "Line: " << line << std::endl;
 					storage[counter] = line;
-					//if((float)atoi(storage[0].c_str()))
-					obj = (SceneryObject*)new Sign();
-					((Sign*)obj)->setText(storage[10]);
-					if (debug) cout << "Sign text: " << storage[10] << std::endl;
-					obj->setLocation((float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
-					sceneryHandler->add(obj);
+
+					sceneryHandler->add("sign",storage[10],
+						(float)atoi(storage[0].c_str()),(float)atoi(storage[1].c_str()));
+					
 					getline(myfile, line);
 				}
 			}
