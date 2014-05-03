@@ -22,6 +22,7 @@ UFO::UFO(){
 	shieldChargeRate = 100.0f; // Charge per second 
 	timeTillCharge = 5.0f;
 	cTimeTillCharge = 0.0f;
+	invincible = false;
 
 	rayOn = false;
 	rayCircleHeight = 37.0f;
@@ -77,6 +78,7 @@ void UFO::setMaxShield(float value){maxShield = value;}
 float UFO::getMaxShield(){return maxShield;}
 void UFO::setShield(float value){shield = value;}
 float UFO::getShield(){return shield;}
+void UFO::setInvincible(bool value){invincible = value;}
 
 // Check if abduction ray is turned on 
 bool UFO::isRayOn(){return rayOn;}
@@ -408,6 +410,8 @@ void UFO::drawLights(GLHandler* mgl, PlayerAtlas* mAtlas, bool inUFO){
 
 // Apply damage to the ship 
 void UFO::applyDamage(float damage){
+	if (invincible) return;
+
 	chitTime = hitTime;
 
 	// If shields are remaining, 

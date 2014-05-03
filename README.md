@@ -97,8 +97,8 @@ Commands while in Game Screen
 - "zoom [double]" : set the level zoom to the sent value  
 - "damage ufo [damage]" : damage ufo by amount sent    
 - "damage player [damage]" : damage player by amount sent  
-- "invincible" : player takes no further damage
-- "mortal" : player can start taking damage
+- "invincible" : player takes no further damage  
+- "mortal" : player can start taking damage  
 
 Technical Information
 ---------------------

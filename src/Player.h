@@ -89,6 +89,7 @@ class Player
 	float maxHealth;
 	int animalAbductCount;
 	int humanAbductCount;
+	bool invincible;
 
 	// --------------------
 	// Interact button 
@@ -269,15 +270,15 @@ public:
 	// Check if the player is currently in the ufo
 	bool isInUFO();
 
+	// Make it so the player no longer takes damage
 	void makeInvincible();
 
+	// Make it so the player will take damage 
 	void makeMortal();
 
 private:
 
 	// Set the given collision rectangle to the given location
 	void setCollRec(Rec* r, float x, float y);
-
-	bool invincible;
 };
 

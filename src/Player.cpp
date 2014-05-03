@@ -907,12 +907,16 @@ void Player::setCollRec(Rec* r, float x, float y){
 	r->setY(y - originY + r->getY());
 }
 
+// Make it so the player no longer takes damage
 void Player::makeInvincible(){
-	printf("make invincible");
+	printf("make invincible\n");
+	ufo->setInvincible(true);
 	invincible = true;
 }
 
+// Make it so the player will take damage 
 void Player::makeMortal(){
-	printf("make mortal");
+	printf("make mortal\n");
+	ufo->setInvincible(false);
 	invincible = false;
 }

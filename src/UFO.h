@@ -45,6 +45,7 @@ class UFO
 	// How long it takes from the last time ship took damage to when it recharges
 	float timeTillCharge;		
 	float cTimeTillCharge;
+	bool invincible;
 
 	// Abduction Ray
 	bool rayOn;
@@ -97,6 +98,7 @@ public:
 	float getMaxShield();
 	void setShield(float value);
 	float getShield();
+	void setInvincible(bool value);
 
 	// Check if abduction ray is turned on 
 	bool isRayOn();
