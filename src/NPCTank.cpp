@@ -17,7 +17,7 @@ NPCTank::NPCTank(float x, float y) : NPCBasicCollision()
 	alive = true;
 	health = 240.0f;
 	healthMax = 240.0f;
-	canBeObducted = false;
+	canBeAbducted = false;
 
 	// Movement properties
 	direcX = 1.0f;

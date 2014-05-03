@@ -32,7 +32,7 @@ protected:
 	Rec collisionRec;		// Collision rec to check collisions with 
 
 	// States 
-	bool canBeObducted;
+	bool canBeAbducted;
 	bool beingAbducted;
 	bool alive;
 	bool mdraw; // Toggle whether the npc will draw this iteration 

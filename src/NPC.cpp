@@ -14,7 +14,7 @@ NPC::NPC()
 	imageID = 0;
 	next = NULL;
 	
-	canBeObducted = true;
+	canBeAbducted = true;
 	beingAbducted = false;
 	alive = true;
 	mdraw = false;
@@ -105,7 +105,7 @@ void NPC::updateCollision(float deltaTime, Handlers* handlers){
 
 
 		// Update Abduction 
-		if (canBeObducted){
+		if (canBeAbducted){
 			// Check if ufo is being abducted 
 			UFO* ufo = (UFO*)((Player*)handlers->player)->ufo;
 			Player* player = (Player*)handlers->player;

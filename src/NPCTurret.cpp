@@ -16,6 +16,7 @@ NPCTurret::NPCTurret(float x, float y) : NPC()
 	imageID = GI_TURRET_BASE;
 	next = NULL;
 	alive = true;
+	canBeAbducted = false;
 
 	// Collision Values
 	bounds.reset(0.0f,0.0f,50.0f,31.0f);

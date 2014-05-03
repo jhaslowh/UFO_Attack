@@ -18,7 +18,6 @@ NPCHeavySoldier::NPCHeavySoldier(float x, float y) : NPCBasicCollision()
 	alive = true;
 	health = 200.0f;
 	healthMax = 200.0f;
-	//anBeObducted = false;
 
 	// Movement properties
 	direcX = 1.0f;
