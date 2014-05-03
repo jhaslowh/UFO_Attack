@@ -269,9 +269,15 @@ public:
 	// Check if the player is currently in the ufo
 	bool isInUFO();
 
+	void makeInvincible();
+
+	void makeMortal();
+
 private:
 
 	// Set the given collision rectangle to the given location
 	void setCollRec(Rec* r, float x, float y);
+
+	bool invincible;
 };
 

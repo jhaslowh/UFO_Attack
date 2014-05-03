@@ -28,7 +28,7 @@ Player::Player(SaveData* savedata){
 	maxHealth = 100.0f;
 	animalAbductCount = 0;
 	humanAbductCount = 0;
-
+	invincible = false;
 	
 	// Interact button 
 	interact = false;
@@ -526,7 +526,9 @@ void Player::checkCollision(Handlers* handlers){
 							projs[i]->collide(&projp, handlers, P_PLAYER_COLL);
 
 							// Apply projectile damage to player
-							applyDamage(projs[i]->getDamage());
+							if(!invincible){
+								applyDamage(projs[i]->getDamage());
+							}							
 						}
 					}
 				}
@@ -541,7 +543,9 @@ void Player::checkCollision(Handlers* handlers){
 			for (int i = 0; i <= ((ExplHandler*)handlers->explHander)->getLastActive(); i++){
 				if (expls[i].isValid()){
 					if (expls[i].firedByEnemy() && expls[i].inRadius(&collRecXY)){
-						applyDamage(expls[i].getDamage());
+						if(!invincible){
+							applyDamage(expls[i].getDamage());
+						}
 					}
 				}
 			}
@@ -885,8 +889,9 @@ bool Player::alive(){
 // Apply damage to health
 void Player::applyDamage(float damage){
 	chitTime = hitTime;
-
-	health -= damage;
+	if(!invincible){
+		health -= damage;
+	}
 	if (health < 0.0f)
 		health = 0.0f;
 }
@@ -902,3 +907,12 @@ void Player::setCollRec(Rec* r, float x, float y){
 	r->setY(y - originY + r->getY());
 }
 
+void Player::makeInvincible(){
+	printf("make invincible");
+	invincible = true;
+}
+
+void Player::makeMortal(){
+	printf("make mortal");
+	invincible = false;
+}
