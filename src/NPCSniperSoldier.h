@@ -50,5 +50,8 @@ public:
 	
 	// Called when the NPC runs into a wall
 	virtual void hitWall();
+
+	// Called when npc dies 
+	virtual void onDeath(Handlers* handlers);
 };
 

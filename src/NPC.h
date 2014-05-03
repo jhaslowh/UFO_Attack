@@ -107,5 +107,8 @@ public:
 	// Damage the npc by sent damage amout.
 	// Will set npc to !alive if too much damage taken
 	virtual void damage(float amount, Handlers* handlers);
+
+	// Called when npc dies 
+	virtual void onDeath(Handlers* handlers);
 };
 

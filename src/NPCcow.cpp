@@ -164,25 +164,27 @@ void NPCcow::damage(float amount, Handlers* handlers){
 	if(health < healthMax){
 		afraid = true;
 	}
+}
 
-	// Make blood splat 
-	if (!alive){
-		Particle* p = ((ParticleHandler*)handlers->partHandler)->add(
-			GI_SPLAT1,	// Image
-			locX,locY-(height*.5f),	// Location
-			20.0f,25.0f,// Origin
-			0.0f,0.0f,	// Direction
-			0.0f,		// Speed
-			0.1f,		// Life
-			0.0f,		// Rotation speed
-			0.0f);		// Scale speed 
+// Called when npc dies 
+void NPCcow::onDeath(Handlers* handlers){
+	NPC::onDeath(handlers);
 
-		if (p != NULL){
-			p->setAnimates(true);
-			p->setFrames(3);
-			p->setFrameTime(.05f);
-			p->setRotation(((rand()%100)/100.0f)*360.0f);
-		}
+	Particle* p = ((ParticleHandler*)handlers->partHandler)->add(
+		GI_SPLAT1,	// Image
+		locX,locY-(height*.5f),	// Location
+		20.0f,25.0f,// Origin
+		0.0f,0.0f,	// Direction
+		0.0f,		// Speed
+		0.1f,		// Life
+		0.0f,		// Rotation speed
+		0.0f);		// Scale speed 
+
+	if (p != NULL){
+		p->setAnimates(true);
+		p->setFrames(3);
+		p->setFrameTime(.05f);
+		p->setRotation(((rand()%100)/100.0f)*360.0f);
 	}
 }
 

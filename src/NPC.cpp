@@ -177,6 +177,13 @@ void NPC::draw(GLHandler* mgl, GameAtlas* mGame){
 // Will set npc to !alive if too much damage taken
 void NPC::damage(float amount, Handlers* handlers){
 	health -= amount;
-	if (health <= 0.0f)
+	if (health <= 0.0f){
 		alive = false;
+		onDeath(handlers);
+	}
+}
+
+// Called when npc dies 
+void NPC::onDeath(Handlers* handlers){
+	// Nothing to do 
 }
