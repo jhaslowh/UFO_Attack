@@ -4,12 +4,13 @@ using namespace std;
 
 // Save the sent level to the sent file
 // Note: Just use file name, no extension or directory
-void saveLevel(Handlers* handlers, std::string file){
+void saveLevel(Handlers* handlers, std::string file, bool addToMaster){
 	// Level pointers used during loading 
 	LevelProperties* levelProps = (LevelProperties*)handlers->levelProps;
 	Ground* ground = (Ground*)handlers->ground;
 	SceneryHandler* sceneryHandler = (SceneryHandler*)handlers->sceneryHandler;
 	NPCHandler* npcHandler = (NPCHandler*)handlers->npcHandler;
+
 
 	size_t pos = 0;
 	string storage[3];
@@ -26,7 +27,10 @@ void saveLevel(Handlers* handlers, std::string file){
 
 	// Create file to save to 
 	std::string fileLocation = ".\\Levels\\";
-	fileLocation.append(storage[0]);
+	if (addToMaster)
+		fileLocation.append(storage[0]);
+	else 
+		fileLocation.append(file);
 	fileLocation.append(".txt");
 	std::ofstream outfile (fileLocation.c_str());
 
@@ -93,47 +97,48 @@ void saveLevel(Handlers* handlers, std::string file){
 	// Close output file 
 	outfile.close();
 
-
-	// Read in master level file to add new level to it
-	int numberOfLevels = 0;
-	//line;
-	std::vector<std::string> data;
-	ifstream myfile (".\\Levels\\MasterLevelFile.txt");
-	if(myfile.is_open())
-	{
-		getline(myfile, line);
-		numberOfLevels = atoi(line.c_str());
-		std::string fileChecker;
-		bool findRedudancy = false;
-		for(int i=0;i<numberOfLevels;i++)
+	if (addToMaster){
+		// Read in master level file to add new level to it
+		int numberOfLevels = 0;
+		//line;
+		std::vector<std::string> data;
+		ifstream myfile (".\\Levels\\MasterLevelFile.txt");
+		if(myfile.is_open())
 		{
 			getline(myfile, line);
-			data.push_back(line);
-			fileChecker = line.substr(0, line.find("."));
-			if(fileChecker.compare(file.substr(0, line.find("."))) == 0)
-				findRedudancy = true;
+			numberOfLevels = atoi(line.c_str());
+			std::string fileChecker;
+			bool findRedudancy = false;
+			for(int i=0;i<numberOfLevels;i++)
+			{
+				getline(myfile, line);
+				data.push_back(line);
+				fileChecker = line.substr(0, line.find("."));
+				if(fileChecker.compare(file.substr(0, line.find("."))) == 0)
+					findRedudancy = true;
+			}
+			if(!findRedudancy)
+			{
+				data.push_back(file);
+				numberOfLevels++;
+			}
+			myfile.close();
 		}
-		if(!findRedudancy)
-		{
-			data.push_back(file);
-			numberOfLevels++;
+		else{
+			std::cout << "ERROR: Could not find master level file\n";
 		}
-		myfile.close();
-	}
-	else{
-		std::cout << "ERROR: Could not find master level file\n";
-	}
 
-	// Write levels back to master file 
-	std::ofstream newOutfile (".\\Levels\\MasterLevelFile.txt");
-	if(newOutfile.is_open())
-	{
-		newOutfile << numberOfLevels << std::endl;
-		for(int i=0;i<numberOfLevels;i++)
+		// Write levels back to master file 
+		std::ofstream newOutfile (".\\Levels\\MasterLevelFile.txt");
+		if(newOutfile.is_open())
 		{
-			newOutfile << data[i] << std::endl;
+			newOutfile << numberOfLevels << std::endl;
+			for(int i=0;i<numberOfLevels;i++)
+			{
+				newOutfile << data[i] << std::endl;
+			}
+			newOutfile.close();
 		}
-		newOutfile.close();
 	}
 }
 

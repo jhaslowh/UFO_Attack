@@ -583,10 +583,22 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 		else
 		{
 			terminal->addLine("Writing level to file... ", TL_SUCCESS);
-			saveLevel(handlers, args);
+			saveLevel(handlers, args, true);
 			terminal->addLine("Save successful", TL_SUCCESS);
 			return true;
 		}
+	}
+	// Check for save level command 
+	else if (command == "save"){
+		if (args != "none"){
+			terminal->addLine("Writing level to file... ", TL_SUCCESS);
+			saveLevel(handlers, args, false);
+			terminal->addLine("Save successful", TL_SUCCESS);
+			return true;
+		}
+		terminal->addLine("No arguments given to command: save", TL_WARNING);
+		terminal->addLine(command, TL_WARNING);
+		return true;
 	}
 	// Check for npc command
 	else if (command == "npc"){

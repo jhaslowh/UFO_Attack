@@ -16,7 +16,7 @@
 
 // Save the sent level to the sent file
 // Note: Just use file name, no extension or directory
-void saveLevel(Handlers* handlers, std::string file);
+void saveLevel(Handlers* handlers, std::string file, bool addToMaster);
 
 // Load the level from the sent file into the sent level pointer
 // Note: Just use file name, no extension or directory
