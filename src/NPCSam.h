@@ -1,8 +1,10 @@
 #pragma once
-class NPCSam
+#include "Weapon.h"
+#include "GameAtlas.h"
+class NPCSam : public Weapon
 {
 public:
-	NPCSam(void);
-	~NPCSam(void);
+	NPCSam();
+	virtual ~NPCSam();
 };
 

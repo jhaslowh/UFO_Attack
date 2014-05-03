@@ -1,7 +1,7 @@
 #include "NPCTurret.h"
 
 
-NPCTurret::NPCTurret(float x, float y)
+NPCTurret::NPCTurret(float x, float y) : NPC()
 {
 	// Basic NPC Properties
 	stype = "turret";
@@ -22,7 +22,7 @@ NPCTurret::NPCTurret(float x, float y)
 
 	// Weapon properties 
 	weapon = (Weapon*)new NPCTurretGun();
-	weaponRange = 300.0f;
+	weaponRange = 400.0f;
 	wOffsetX = 25.0f;
 	wOffsetY = 5.0f;
 }

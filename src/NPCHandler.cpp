@@ -83,6 +83,10 @@ bool NPCHandler::addByName(std::string name, float x, float y){
 		add(new NPCTurret(x,y));
 		return true;
 	}
+	else if (name.compare("sam") == 0){
+		add(new NPCSamSite(x,y));
+		return true;
+	}
 	return false;
 }
 

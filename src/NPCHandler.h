@@ -7,6 +7,7 @@
 #include "NPCcow.h"
 #include "NPCTank.h"
 #include "NPCTurret.h"
+#include "NPCSamSite.h"
 
 class NPCHandler
 {
