@@ -307,6 +307,12 @@
     <ClCompile Include="NPCTurretGun.cpp">
       <Filter>Source Files\game\weap</Filter>
     </ClCompile>
+    <ClCompile Include="NPCSam.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCSamSite.cpp">
+      <Filter>Source Files\game\npc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -614,6 +620,12 @@
     </ClInclude>
     <ClInclude Include="NPCTurretGun.h">
       <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCSam.h">
+      <Filter>Header Files\game\weap</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCSamSite.h">
+      <Filter>Header Files\game\npc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
