@@ -28,7 +28,6 @@ class GameScreen : public UIScreen
 
 	// Screen size for reference 
 	float screenWidth, screenHeight;
-	//string levelToLoad;
 
 	Level* level;
 	PauseScreen* pauseScreen;
