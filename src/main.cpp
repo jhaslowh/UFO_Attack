@@ -70,7 +70,7 @@ void free_resources()
 {
 	printf("Free Resources...\n");
 	// Wait for update thread to finish
-	while (inUpdate){}
+	SDL_WaitThread(thread, NULL);
 
 	// Delete gscreens 
 	if (gscreen_unload != NULL){
@@ -89,6 +89,13 @@ void free_resources()
 		screen->unload();
 		delete screen;
 		screen = NULL;
+	}
+
+	// Delete unload screen
+	if (screen_unload != NULL){
+		screen_unload->unload();
+		delete screen_unload;
+		screen_unload = NULL;
 	}
 
 	// Unload atlas 
@@ -353,12 +360,9 @@ void changeScreen(){
 			// Delete screen if it is not game screen 
 			if (tcode != SCREEN_MAIN_SAVE_GAME){
 				// Tell screen to unload 
-				unloadScreen = true;
+				screen_unload = screen;
 				// Wait for rendering and unload to finish
-				while (render || unloadScreen){} 
-				// Delete old screen 
-				delete screen;
-				screen = NULL;
+				while (render){} 
 			}
 			// Save game screen 
 			else {
@@ -449,14 +453,12 @@ int gameLoop(void *ptr){
 
 	// Main update loop for the game 
 	while(running){
-		inUpdate = true;
-
 		// Get the current system time in miliseconds 
 		beginTime = SDL_GetTicks(); 
-					
+
 		// Update Game 
 		onUpdate();
-					
+
 		// Draws Game
 		if (!render)
 			render = true;
@@ -468,7 +470,7 @@ int gameLoop(void *ptr){
 		// If sleepTime > 0 we're OK			
 		if (sleepTime > 0)
 			SDL_Delay(sleepTime);
-		
+
 		// Update if behind 
 		framesSkipped = 0; // reset the frames skipped
 		while (sleepTime < 0 && framesSkipped < MAX_FRAME_SKIPS){
@@ -478,10 +480,7 @@ int gameLoop(void *ptr){
 			sleepTime += FRAME_PERIOD;
 			framesSkipped++;
 		}
-
-		inUpdate = false;
 	}
-
 	return 0;
 }
 
@@ -493,7 +492,7 @@ void eventAndRenderLoop(){
 	while (running)
 	{
 		// Check events 
-        while( SDL_PollEvent( &windowEvent ) ){
+        while( SDL_PollEvent( &windowEvent )){
 			if (windowEvent.type == SDL_QUIT) running = false;
 
 			if (windowEvent.type == SDL_WINDOWEVENT) {
@@ -527,7 +526,7 @@ void eventAndRenderLoop(){
 			// check OpenGL error
 			GLenum err;
 			while ((err = glGetError()) != GL_NO_ERROR) {
-				printf("OpenGL error: %d\n", err);
+				cout << "OpenGL error: err - " << GLHandler::getGLErrorString(err) << "\n";
 			}
 
 			// Swap buffers 
@@ -536,10 +535,12 @@ void eventAndRenderLoop(){
 		}
 
 		// Unload screen if needed
-		if (unloadScreen && !screen->isUnloaded()){
+		if (screen_unload != NULL){//unloadScreen && !screen->isUnloaded()){
 			cout << "Screen Unloading...\n";
-			screen->unload();
-			unloadScreen = false;
+			screen_unload->unload();
+			// Delete old screen 
+			delete screen_unload;
+			screen_unload = NULL;
 			cout << "Screen Unloaded\n";
 		}
 	}

@@ -29,9 +29,10 @@ void IntroLoadScreen::update(float deltaTime){
 		waitTime -= deltaTime;
 		if (waitTime <= 0){
 			transitionCode = SCREEN_MAIN;
-			waitTime = 0;
+			waitTime = 0.0f;
 		}
 	}
+	
 }
 
 // Draw the screen

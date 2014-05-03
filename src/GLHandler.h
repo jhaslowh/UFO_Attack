@@ -129,4 +129,7 @@ public:
 
 	// Enable disable lights 
 	void enableLight(bool value);
+
+	// Get the string for the sent error 
+	static std::string getGLErrorString(int error);
 };

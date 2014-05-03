@@ -51,9 +51,7 @@ float deltaTime = 0;		// Used in game loop to tell how much time has passed
 // States 
 bool running = true;		
 bool render = false;        // Set to true each time game needs to be rendered 
-bool unloadScreen = false;
 bool restart = false;
-bool inUpdate = false;
 
 // Handlers
 GLHandler mgl;
@@ -73,6 +71,7 @@ SDL_Thread* thread;
 UIScreen* screen = NULL;
 GameScreen* gscreen = NULL;
 GameScreen* gscreen_unload = NULL;
+UIScreen* screen_unload = NULL;
 UITerminal* terminal = NULL;
 bool showTerminal = false;
 

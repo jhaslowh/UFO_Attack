@@ -459,3 +459,28 @@ void GLHandler::enableLight(bool value){
 	else 
 		glUniform1f(mUseLight, 0.0f);
 }
+
+// Get the string for the sent error 
+std::string GLHandler::getGLErrorString(int error){
+	switch (error){
+	case GL_INVALID_ENUM:
+		return std::string("GL_INVALID_ENUM");
+		break;
+	case GL_INVALID_VALUE:
+		return std::string("GL_INVALID_VALUE");
+		break;
+	case GL_INVALID_OPERATION:
+		return std::string("GL_INVALID_OPERATION");
+		break;
+	case GL_INVALID_FRAMEBUFFER_OPERATION:
+		return std::string("GL_INVALID_FRAMEBUFFER_OPERATION");
+		break;
+	case GL_OUT_OF_MEMORY:
+		return std::string("GL_OUT_OF_MEMORY");
+		break;
+	default:
+		break;
+	}
+
+	return "INVALID ERROR NUM";
+}
