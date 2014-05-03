@@ -52,7 +52,7 @@ namespace StoreItems{
 			"Shotgun",		"desc",
 			50,10,"images/si/sii_shotgun.png"));
 		sItems.push_back(StoreItem(SID_PLAYER_WEAPON_SMG,
-			"SMG",			"desc",
+			"SMG",			"Best choice in alien small\narms fire",
 			50,30,"images/si/sii_smg.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_MACHINE_GUN,
 			"UFO Machine Gun","desc",
