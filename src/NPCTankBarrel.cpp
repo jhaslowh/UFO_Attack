@@ -35,7 +35,7 @@ NPCTankBarrel::NPCTankBarrel() : Weapon()
 
 	// Setup projectile 
 	proj = new Projectile();
-	proj->setSpeed(1000.0f);
+	proj->setSpeed(1000);
 	proj->setImageId(GI_MISSILE);
 	proj->setOffset(10.0f,5.5f);
 	proj->setImageGlowId(GI_MISSILE);

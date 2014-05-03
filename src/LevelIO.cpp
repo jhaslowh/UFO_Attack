@@ -7,7 +7,6 @@ using namespace std;
 void saveLevel(Handlers* handlers, std::string file){
 	// Level pointers used during loading 
 	LevelProperties* levelProps = (LevelProperties*)handlers->levelProps;
-	Player* player = (Player*)handlers->player;
 	Ground* ground = (Ground*)handlers->ground;
 	SceneryHandler* sceneryHandler = (SceneryHandler*)handlers->sceneryHandler;
 	NPCHandler* npcHandler = (NPCHandler*)handlers->npcHandler;
@@ -96,7 +95,7 @@ void saveLevel(Handlers* handlers, std::string file){
 
 
 	// Read in master level file to add new level to it
-	int numberOfLevels;
+	int numberOfLevels = 0;
 	//line;
 	std::vector<std::string> data;
 	ifstream myfile (".\\Levels\\MasterLevelFile.txt");

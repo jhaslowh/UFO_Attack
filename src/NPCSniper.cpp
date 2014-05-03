@@ -35,7 +35,7 @@ NPCSniper::NPCSniper() : Weapon()
 
 	// Setup projectile 
 	proj = new Projectile();
-	proj->setSpeed(1500.0f);
+	proj->setSpeed(1500);
 	proj->setImageId(GI_PROJ);
 	proj->setOffset(5.0f,2.0f);
 	proj->setImageGlowId(GI_PROJ_GLOW);

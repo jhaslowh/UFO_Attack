@@ -32,7 +32,7 @@ PlayerLaserGun::PlayerLaserGun() : Weapon()
 
 	// Setup projectile 
 	proj = new Projectile();
-	proj->setSpeed(700.0f);
+	proj->setSpeed(700);
 	proj->setImageId(GI_PROJ);
 	proj->setOffset(5.0f,2.0f);
 	proj->setImageGlowId(GI_PROJ_GLOW);

@@ -63,7 +63,6 @@ void NPCcow::update(float deltaTime, Handlers* handlers){
 			Player* player = (Player*)handlers->player;
 
 			//direction to the playerss
-			float direction = 0;
 			bool playerIsToLeft = isPlayerToLeft(player);
 
 			// Uncomment this as needed, prints out too much to be

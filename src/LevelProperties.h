@@ -1,4 +1,6 @@
 #pragma once
+#include "Rec.h"
+
 class LevelProperties
 {
 	// These are the bounds of the level itself 

@@ -290,7 +290,7 @@ void Projectile::setExplosion(Explosion e){
 	explosion.cloneE(&e);
 }
 void Projectile::setSmokeTrail(bool value){smokeTrail = value;}
-void Projectile::setSpeed(float s){speed = s;}
+void Projectile::setSpeed(int s){speed = s;}
 void Projectile::setDirec(float x, float y){
 	xVector = speed*x;
 	yVector = speed*y;

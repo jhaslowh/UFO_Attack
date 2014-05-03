@@ -139,7 +139,7 @@ public:
 	void setDrawColor(float r, float g, float b, float a);
 	void setExplosion(Explosion e);
 	void setSmokeTrail(bool value);
-	void setSpeed(float s);
+	void setSpeed(int s);
 	void setDirec(float x, float y);
 	//Setter methods 
 
