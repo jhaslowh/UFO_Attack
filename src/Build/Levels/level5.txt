@@ -1,0 +1,73 @@
+Location: .\Levels\level5.txt 
+Level: level5 
+PlayerX
+-400
+PlayerY
+0
+LevelLeft
+-1278
+LevelRight
+8200
+LevelTop
+-308
+levelBottom
+562
+ 
+ground
+x y
+0
+-1500;500
+-200;500
+-118;492
+-46;507
+10;523
+58;544
+95;558
+119;562
+169;556
+225;555
+328;542
+500;490
+650;470
+1000;510
+1240;500
+1400;500
+2115;488
+2445;484
+3091;498
+3619;489
+4279;491
+4429;447
+4551;412
+4649;338
+4711;260
+4789;206
+4883;192
+5017;204
+5067;212
+5207;250
+5317;288
+5439;312
+5483;312
+5667;335
+5891;335
+6059;337
+6199;343
+6347;325
+6431;327
+7562;310
+7658;319
+8072;335
+8606;318
+end
+ 
+scenery
+x y width height rotation scale imageid collides stopplayer type text
+end
+signs
+x y width height rotation scale imageid collides stopplayer type text
+end
+ 
+npcs
+x y type
+end

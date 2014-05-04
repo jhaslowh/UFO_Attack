@@ -118,11 +118,11 @@ x y type
 110.02;560.503;soldier
 697.719;475.454;soldier
 1960.02;500;soldier
-1620.02;500;soldier
+1620.02;500;hsoldier
 3509.02;536.876;soldier
-4379.03;535.701;soldier
+4379.03;535.701;hsoldier
 5165.73;490.363;soldier
-6187.03;456.94;soldier
+6187.03;456.94;hsoldier
 6187.03;456.94;soldier
 4518.57;506.965;cow
 end

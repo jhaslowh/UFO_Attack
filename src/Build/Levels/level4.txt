@@ -113,5 +113,12 @@ x y type
 5307.71;284.79;stinger
 5307.71;284.79;stinger
 3098.71;497.869;sniper
-3098.71;497.869;sniper
+2900.71;497.869;sniper
+5000;497.869;soldier
+1230;430;soldier
+1300;430;soldier
+1400;430;soldier
+2600;430;hsoldier
+2700;430;hsoldier
+2800;430;hsoldier
 end
