@@ -9,6 +9,7 @@
 #include "ProjectileHandler.h"
 #include "ExplHandler.h"
 #include "UFORocket.h"
+#include "UFOMachineGun.h"
 #include "PlayerLaserGun.h"
 #include "ParticleHandler.h"
 

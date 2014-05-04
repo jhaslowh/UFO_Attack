@@ -52,6 +52,8 @@ void PlayerAtlas::load(){
 
 	// UFO Rocket
 	vcg->addFrame(347.0f, 27.0f, 43.0f, 17.0f);
+	// UFO Machine Gun
+	vcg->addFrame(347.0f, 46.0f, 42.0f, 11.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

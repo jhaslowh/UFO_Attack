@@ -313,6 +313,9 @@
     <ClCompile Include="NPCSamSite.cpp">
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
+    <ClCompile Include="UFOMachineGun.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -626,6 +629,9 @@
     </ClInclude>
     <ClInclude Include="NPCSamSite.h">
       <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="UFOMachineGun.h">
+      <Filter>Header Files\game\weap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

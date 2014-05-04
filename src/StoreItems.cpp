@@ -56,7 +56,7 @@ namespace StoreItems{
 			50,30,"images/si/sii_smg.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_MACHINE_GUN,
 			"UFO Machine Gun","desc",
-			20,50,"images/si/sii_todo.png"));
+			20,50,"images/si/sii_mini.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_MISSILE,
 			"UFO Missiles",	"desc",
 			0,100,"images/si/sii_rocket.png"));
