@@ -68,6 +68,7 @@ Commands:
 - "delete settings" : delete settings and set to default values  
 - "screensize [width] [height]" : reset the width and height of the screen  
 - "fullscreen [on | off]" : toggle fullscreen  
+- "unlockAllGuns" : unlock all guns in game  
 
 Commands for Level Editor (Must be in screen with one)  
 - "saveFile [file].[x].[y]" : save current level to file. It will be added to the master level file and the (x,y) values sent will be its location on the level select map.    

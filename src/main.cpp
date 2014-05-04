@@ -306,6 +306,12 @@ void checkCommand(string line){
 		terminal->addLine(line, TL_WARNING);
 		return;
 	}
+	// Unlock all guns
+	else if (command == "unlockAllGuns" || command == "unlockallguns"){
+		savedata->unlockAllWeapons();
+		terminal->addLine(line, TL_SUCCESS);
+		return;
+	}
 
 	// Send command to screen 
 	if (screen->parseCommand(terminal, command, args)) 

@@ -82,5 +82,8 @@ public:
 
 	// Check if all levels completed 
 	bool allLevelsCompleted();
+
+	// Unlock all weapons
+	void unlockAllWeapons();
 };
 

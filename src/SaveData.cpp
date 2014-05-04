@@ -94,3 +94,9 @@ std::string SaveData::levelsToString(){
 bool SaveData::allLevelsCompleted(){
 	return levelCount == levels.size();
 }
+
+// Unlock all weapons
+void SaveData::unlockAllWeapons(){
+	for (int i = 0; i < StoreItems::STORE_ITEM_COUNT; i++)
+		purchasedItems[i] = true;
+}
