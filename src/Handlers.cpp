@@ -12,6 +12,7 @@ Handlers::Handlers()
 	player = NULL;
 	explHander = NULL;
 	soundHandler = NULL;
+	sky = NULL;
 }
 
 Handlers::~Handlers(){}

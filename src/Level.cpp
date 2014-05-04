@@ -72,6 +72,7 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata, vo
 	handlers.explHander = explHandler;
 	handlers.partHandler = partHandler;
 	handlers.soundHandler = soundHandler;
+	handlers.sky = &sky;
 
 	// Load level from file 
 	loadLevel(&handlers, savedata->levelToLoad);

@@ -17,6 +17,7 @@ public:
 	void* levelProps;
 	void* player;
 	void* soundHandler;
+	void* sky;
 
 	Handlers();
 	~Handlers();

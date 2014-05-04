@@ -55,6 +55,9 @@ public:
 	// Set the current time of day 
 	void setTimeOfDay(float time);
 
+	// Set progression time
+	void setHoursPerSecond(float value);
+
 	// Set up sky 
 	void init(float screen_width, float screen_height);
 

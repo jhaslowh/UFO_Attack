@@ -100,6 +100,8 @@ Commands while in Game Screen
 - "damage player [damage]" : damage player by amount sent  
 - "invincible" : player takes no further damage  
 - "mortal" : player can start taking damage  
+- "time [0-24]" : set time of day to the sent value  
+- "timeSpeed [value]" : set how fast the time of day progresses  
 
 Technical Information
 ---------------------

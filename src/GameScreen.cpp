@@ -293,6 +293,37 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		terminal->addLine("Unrecognized commands given to command: damage", TL_WARNING);
 		return true;
 	}
+	// Set time of day
+	else if (command == "time"){
+		if (args == "none"){ 
+			terminal->addLine("Unrecognized commands given to command: time", TL_WARNING);
+			terminal->addLine(command + " " + args, TL_WARNING);
+			return true;
+		}
+
+		float value = toDouble(args);
+		((Sky*)level->handlers.sky)->setTimeOfDay(value);
+		if (value >= 0.0f && value <= 24.0f)
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+		else {
+			terminal->addLine("Invalid time given", TL_WARNING);
+			terminal->addLine(command + " " + args, TL_WARNING);
+		}
+		return true;
+	}
+	// Set day progression speed
+	else if (command == "timeSpeed"){
+		if (args == "none"){ 
+			terminal->addLine("Unrecognized commands given to command: timeSpeed", TL_WARNING);
+			terminal->addLine(command + " " + args, TL_WARNING);
+			return true;
+		}
+
+		float value = toDouble(args);
+		((Sky*)level->handlers.sky)->setHoursPerSecond(value);
+		terminal->addLine(command + " " + args, TL_SUCCESS);
+		return true;
+	}
 
 	return false;
 }

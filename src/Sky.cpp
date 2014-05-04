@@ -49,6 +49,12 @@ void Sky::setTimeOfDay(float time){
 	mTime = time;
 }
 
+
+// Set progression time
+void Sky::setHoursPerSecond(float value){
+	mHoursPerSecond = value;
+}
+
 // Set up sky 
 void Sky::init(float screen_width, float screen_height){
 	scalex = screen_width;

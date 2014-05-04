@@ -5,6 +5,7 @@
 #include "LevelEditor.h"
 #include "SaveData.h"
 #include "GLColors.h"
+#include "Sky.h"
 
 class GameScreen : public UIScreen
 {
