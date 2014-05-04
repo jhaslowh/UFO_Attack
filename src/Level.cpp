@@ -228,3 +228,8 @@ void Level::drawUI(GLHandler* mgl, UIAtlas* mAtlas){
 bool Level::getVictory(){
 	return victory;
 }
+
+// Call to skip tutorial
+void Level::skipTut(){
+	tutSys.setTutsShown();
+}

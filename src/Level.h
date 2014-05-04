@@ -75,5 +75,8 @@ public:
 
 	// Returns current victory state
 	bool getVictory();
+
+	// Call to skip tutorial
+	void skipTut();
 };
 

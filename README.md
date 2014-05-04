@@ -69,6 +69,7 @@ Commands:
 - "screensize [width] [height]" : reset the width and height of the screen  
 - "fullscreen [on | off]" : toggle fullscreen  
 - "unlockAllGuns" : unlock all guns in game  
+- "tutorial [on|off]" : toggle tutorial  
 
 Commands for Level Editor (Must be in screen with one)  
 - "saveFile [file].[x].[y]" : save current level to file. It will be added to the master level file and the (x,y) values sent will be its location on the level select map.    
@@ -103,6 +104,7 @@ Commands while in Game Screen
 - "mortal" : player can start taking damage  
 - "time [0-24]" : set time of day to the sent value  
 - "timeSpeed [value]" : set how fast the time of day progresses  
+- "tutorial skip" : skip tutorial if in it  
 
 Technical Information
 ---------------------

@@ -324,6 +324,15 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 		terminal->addLine(command + " " + args, TL_SUCCESS);
 		return true;
 	}
+	// Check for tutorial skip 
+	else if (command == "tutorial"){
+		if (args == "skip"){
+			level->skipTut();
+			savedata->setShowTut(false);
+			terminal->addLine(command + " " + args, TL_SUCCESS);
+			return true;
+		}
+	}
 
 	return false;
 }

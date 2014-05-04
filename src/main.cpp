@@ -312,6 +312,26 @@ void checkCommand(string line){
 		terminal->addLine(line, TL_SUCCESS);
 		return;
 	}
+	// Toggle tutorial 
+	else if (command == "tutorial"){
+		if (args == "on"){
+			savedata->setShowTut(true);
+			terminal->addLine(line, TL_SUCCESS);
+			return;
+		}
+		else if (args == "off"){
+			savedata->setShowTut(false);
+			terminal->addLine(line, TL_SUCCESS);
+			return;
+		}
+		else if (args == "skip"){
+			// Do nothing (game screen checks this)
+		}
+		else {
+			terminal->addLine(line, TL_WARNING);
+			return;
+		}
+	}
 
 	// Send command to screen 
 	if (screen->parseCommand(terminal, command, args)) 
