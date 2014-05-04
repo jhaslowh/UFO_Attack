@@ -119,6 +119,9 @@ public:
 	// Update UFO
 	void update(float deltaTime, Handlers* handlers);
 
+	// Update UFO when player is on foot
+	void updateOnFoot(float deltaTime, Handlers* handlers);
+
 	// Check collision 
 	void checkCollision(Handlers* handlers);
 

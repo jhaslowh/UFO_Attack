@@ -187,6 +187,16 @@ void UFO::update(float deltaTime, Handlers* handlers){
 	}
 }
 
+// Update UFO when player is on foot
+void UFO::updateOnFoot(float deltaTime, Handlers* handlers){
+	// Update hit time
+	if (chitTime > 0.0f){
+		chitTime -= deltaTime;
+		if (chitTime < 0.0f)
+			chitTime = 0.0f;
+	}
+}
+
 // Check collision 
 void UFO::checkCollision(Handlers* handlers){
 	// Make sure UFO cannot leave level on left or right side

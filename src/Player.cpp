@@ -248,6 +248,8 @@ void Player::update(float deltaTime, Handlers* handlers){
 		}
 		// Update player state if not in ufo 
 		else {
+			ufo->updateOnFoot(deltaTime, handlers);
+
 			nextX = locX;
 			nextY = locY;
 
