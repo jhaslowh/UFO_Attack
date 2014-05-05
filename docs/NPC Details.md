@@ -4,7 +4,7 @@ NPC's
 ####Cow  
 Health: 30    
 Can be abducted: Yes  
-A week animal that will walk to the player out of curiosity, but will run from the player when attacked.   
+A weak animal that will walk to the player out of curiosity, but will run from the player when attacked.   
 
 ####Soldier  
 Health: 100    
