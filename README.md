@@ -5,7 +5,7 @@ About
 -----
 In this game you play a alien space bear. Use your high tech ship and weapons to conquer the Earth. Your ship is equipped with an abduction ray that can be used to abduct people from the planet. You use these people to gain new weapons and cause more destruction.  
 
-Click on ScreenShots.md above to view some screenshots of the game.  
+In the docs folder above you can find some screenshots and details on the NPCs.  
 
 Building / Running
 --------
