@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UFO Attack</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  
+</head>
+
+<body>
+
+<hr/>
+<center>
+  <img src="images\UFOAttackLogo.png">
+</center>
+
+<center>
+  <div>
+    <h1>Overview</h1>
+      <hr/>
+      <p align="left">UFO Attack is a computer game created by James Dressel, Andrew Geyster, and myself. In this game you play a alien space bear. Use your high tech ship and weapons to conquer the Earth. Your ship is equipped with an abduction ray that can be used to abduct people from the planet. You use these people to gain new weapons and cause more destruction.
+      <br/>
+      <br/>
+      You can download the latest version of the game from our public github repository. More detailed specifications of the game can also be found on the repository. 
+      <a href="https://github.com/jhaslowh/CS426">https://github.com/jhaslowh/CS426</a>
+      </p>
+  </div>
+</center>
+
+<center>
+  <div>
+    <h1>The Team</h1>
+      <hr/>
+      <p align="left">
+        <i>Andrew Geyster:</i> <br/>
+        - Projectile System<br/>
+        - Level IO<br/><br/>
+
+        <i>James Dressel:</i><br/>
+        - Sound System<br/>
+        - Sound Effects<br/><br/>
+
+        <i>Jonathan Haslow-Hall:</i><br/>
+        - OpenGL Programming and Wrapping<br/>
+        - UI Elements<br/>
+        - Core engine programming (Game Loop, GUI event handling, and general structure)<br/><br/>
+
+        These are just the main elements each person did, feel free to check the repository for a more detailed outline.
+      </p>
+  </div>
+</center>
+
+<center>
+  <div>
+    <h1>Features</h1>
+      <hr/>
+      <p align="left">
+        (you can abduct your foes [gif]) <br/>
+        (switch between ufo and foot) <br/>
+        (different enemies take different methods to take out)  <br/>
+        (day night cycle [gif]) <br/>
+      </p>
+  </div>
+</center>
+
+<center>
+  <div>
+    <h1>Gameplay</h1>
+      <hr/>
+      <h3>NPCs</h3>
+      <p align="left">
+        <img src="images\npc\npc_cow.png" align="left" style="padding-right: 6px;">
+        <font color="#dd5c2d"><strong>Cow</strong></font><br/>
+        Health: 30 <br/>
+        Can be abducted: Yes  <br/>
+        A week animal that will walk to the player out of curiosity, but will run from the player when attacked.   <br/><br/><br/>
+
+        <img src="images\npc\npc_soldier.png" align="left" style="padding-right: 6px;">
+        <font color="#dd5c2d"><strong>Soldier</strong></font><br/>
+        Health: 100   <br/> 
+        Can be abducted: Yes  <br/>
+        Standard enemy. Will engage when facing the player is close and the soldier is facing them.   <br/><br/><br/>
+
+        <img src="images\npc\npc_hsoldier.png" align="left" style="padding-right: 6px;">
+        <font color="#dd5c2d"><strong>Heavy Soldier</strong></font><br/>  
+        Health: 200    <br/>
+        Can be abducted: Yes  <br/>
+        Strong enemy. Same as the soldier, but with more armor.<br/><br/><br/>  
+
+        <img src="images\npc\npc_sniper.png" align="left" style="padding-right: 6px;">
+        <font color="#dd5c2d"><strong>Sniper</strong></font><br/>  
+        Health: 100    <br/>
+        Can be abducted: Yes  <br/>
+        Enemy with a powerfull sniper. Will attack the player when they are on foot. Can attack from far distances and if the player gets to close, the sniper will move away. Shots do a lot of damage, so it is best to attack the sniper with the UFO.  <br/><br/>
+
+        <img src="images\npc\npc_stinger.png" align="left" style="padding-right: 6px;">
+        <font color="#dd5c2d"><strong>Stinger</strong></font><br/>  
+        Health: 100<br/>
+        Can be abducted: Yes<br/>
+        Standard enemy with a stinger. Will only shoot at UFO. Best to take out on foot.<br/><br/><br/>  
+
+        <img src="images\npc\npc_turret.png" align="left" style="padding-right: 6px;">
+        <font color="#dd5c2d"><strong>Turret</strong></font><br/>  
+        Health: 100<br/>
+        Can be abducted: No<br/>
+        A strong turret that will shoot at the player when they are on foot. It can only be damaged by explosions and is suggested to go after it while in the UFO.<br/><br/>
+
+        <img src="images\npc\npc_sam.png" align="left" style="padding-right: 6px;">
+        <font color="#dd5c2d"><strong>Sam Site</strong></font><br/>  
+        Health: 100<br/>
+        Can be abducted: No<br/>   
+        Strong anti-air defence. Will only shoot at the UFO, but will take it out quickly. Can only be deactivated on foot by walking up to it and pushing "E".<br/><br/>  
+
+        <img src="images\npc\npc_tank.png" align="left" style="padding-right: 6px;">
+        <font color="#dd5c2d"><strong>Tank</strong></font><br/>  
+        Health: 240<br/>  
+        Can be abducted: No<br/>    
+        Very strong enemy. Will shoot at both player and UFO.  Cannot shoot at extreme angles, so approaching from straight above will give you an advantage.  
+      </p>
+      <h3>Weapons</h3>
+      <p align="left">
+        TODO 
+      </p>
+  </div>
+</center>
+
+
+<center>
+  <div>
+    <h1>Controls</h1>
+      <hr/>
+      <p align="left">
+        TODO
+      </p>
+  </div>
+</center>
+
+<center>
+  <div>
+    <h1>Difficulties and Challenges</h1>
+      <hr/>
+      <p align="left">
+        Managing SDL<br/>
+        Threading<br/>
+        Pointer Management<br/>
+        Memory Management<br/>
+        Git merging filter file<br/>
+        Acquiring art assets<br/>
+      </p>
+  </div>
+</center>
+
+<center>
+  <div>
+    <h1>Gallery</h1>
+      <hr/>
+      <p align="center">
+        <a href="images\gallery\gameplay1.png">
+          <img src="images\gallery\gameplay1.png" style="width: 45%; height: 45%">
+        </a>
+        <a href="images\gallery\gameplay2.png">
+          <img src="images\gallery\gameplay2.png" style="width: 45%; height: 45%">
+        </a>
+        <a href="images\gallery\gameplay2.png">
+          <img src="images\gallery\gameplay2.png" style="width: 45%; height: 45%">
+        </a>
+        <a href="images\gallery\levelselect.png">
+          <img src="images\gallery\levelselect.png" style="width: 45%; height: 45%">
+        </a>
+        <a href="images\gallery\equipment.png">
+          <img src="images\gallery\equipment.png" style="width: 45%; height: 45%">
+        </a>
+        <a href="images\gallery\store.png">
+          <img src="images\gallery\store.png" style="width: 45%; height: 45%">
+        </a>
+      </p>
+  </div>
+</center>
+
+<center>
+  <div>
+    <h1>Video</h1>
+      <hr/>
+      <p align="left">
+
+      </p>
+  </div>
+</center>
+</body>
+</html>

@@ -1,0 +1,28 @@
+body {
+  color: #74716f;
+  background-color: #4c4d4c }
+hr {
+  border: 0;
+  width: 90%;
+  color: #444444;
+  background-color: #444444;
+  height: 1px;
+}
+div {
+  width: 800px;
+  padding: 2dpi;
+  background-color: #222222;
+}
+h1 {
+  color: #dd5c2d;
+  padding: 1px;
+  margin: 0px;
+  height: 28px;
+}
+p {
+  padding: 15px;
+}
+a:link {color:#dd5c2d;}      /* unvisited link */
+a:visited {color:#dd5c2d;}  /* visited link */
+a:hover {color:#f8a485;}  /* mouse over link */
+a:active {color:#dd5c2d;}  /* selected link */
