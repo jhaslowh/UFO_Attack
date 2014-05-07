@@ -120,6 +120,40 @@ void GameAtlas::load(){
 	// Machine Gun
 	vcg->addFrame(684.0f, 959.0f, 42.0f, 18.0f);
 
+	// Civilians 
+	// Male 1
+	vcg->addFrame(311.0f, 1.0f, 50.0f, 50.0f);
+	vcg->addFrame(361.0f, 1.0f, 50.0f, 50.0f);
+	vcg->addFrame(411.0f, 1.0f, 50.0f, 50.0f);
+	// Male Afraid 1
+	vcg->addFrame(311.0f, 53.0f, 50.0f, 50.0f);
+	vcg->addFrame(361.0f, 53.0f, 50.0f, 50.0f);
+	vcg->addFrame(411.0f, 53.0f, 50.0f, 50.0f);
+	// Male 2
+	vcg->addFrame(311.0f, 105.0f, 50.0f, 50.0f);
+	vcg->addFrame(361.0f, 105.0f, 50.0f, 50.0f);
+	vcg->addFrame(411.0f, 105.0f, 50.0f, 50.0f);
+	// Male Afraid 2
+	vcg->addFrame(311.0f, 157.0f, 50.0f, 50.0f);
+	vcg->addFrame(361.0f, 157.0f, 50.0f, 50.0f);
+	vcg->addFrame(411.0f, 157.0f, 50.0f, 50.0f);
+	// Female 1
+	vcg->addFrame(463.0f, 1.0f, 50.0f, 50.0f);
+	vcg->addFrame(513.0f, 1.0f, 50.0f, 50.0f);
+	vcg->addFrame(563.0f, 1.0f, 50.0f, 50.0f);
+	// Female afraid 1
+	vcg->addFrame(463.0f, 53.0f, 50.0f, 50.0f);
+	vcg->addFrame(513.0f, 53.0f, 50.0f, 50.0f);
+	vcg->addFrame(563.0f, 53.0f, 50.0f, 50.0f);
+	// Female 2
+	vcg->addFrame(463.0f, 105.0f, 50.0f, 50.0f);
+	vcg->addFrame(513.0f, 105.0f, 50.0f, 50.0f);
+	vcg->addFrame(563.0f, 105.0f, 50.0f, 50.0f);
+	// Female afraid 2
+	vcg->addFrame(463.0f, 157.0f, 50.0f, 50.0f);
+	vcg->addFrame(513.0f, 157.0f, 50.0f, 50.0f);
+	vcg->addFrame(563.0f, 157.0f, 50.0f, 50.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

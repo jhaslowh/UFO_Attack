@@ -57,6 +57,33 @@
 #define GI_SAM 49
 #define GI_MACHINE_GUN 50
 
+// Civilians 
+#define GI_CIVI_MALE1_1 51
+#define GI_CIVI_MALE1_2 52
+#define GI_CIVI_MALE1_3 53
+#define GI_CIVI_MALE1a_1 54
+#define GI_CIVI_MALE1a_2 55
+#define GI_CIVI_MALE1a_3 56
+#define GI_CIVI_MALE2_1 57
+#define GI_CIVI_MALE2_2 58
+#define GI_CIVI_MALE2_3 59
+#define GI_CIVI_MALE2a_1 60
+#define GI_CIVI_MALE2a_2 61
+#define GI_CIVI_MALE2a_3 62
+
+#define GI_CIVI_FEMALE1_1 63
+#define GI_CIVI_FEMALE1_2 64
+#define GI_CIVI_FEMALE1_3 65
+#define GI_CIVI_FEMALE1a_1 66
+#define GI_CIVI_FEMALE1a_2 67
+#define GI_CIVI_FEMALE1a_3 68
+#define GI_CIVI_FEMALE2_1 69
+#define GI_CIVI_FEMALE2_2 70
+#define GI_CIVI_FEMALE2_3 71
+#define GI_CIVI_FEMALE2a_1 72
+#define GI_CIVI_FEMALE2a_2 73
+#define GI_CIVI_FEMALE2a_3 74
+
 class GameAtlas : public TextureAtlas
 {
 public:
