@@ -234,10 +234,14 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 	// check for invincible command
 	else if (command == "invincible"||command == "nodamage"){
 		((Player*)(level->handlers.player))->makeInvincible();
+		terminal->addLine(command, TL_SUCCESS);
+		return true;
 	}
 	// check for mortal command
 	else if (command == "mortal"){
 		((Player*)(level->handlers.player))->makeMortal();
+		terminal->addLine(command, TL_SUCCESS);
+		return true;
 	}
 
 	// Check for zoom command
