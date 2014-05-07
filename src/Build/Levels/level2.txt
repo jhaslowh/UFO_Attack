@@ -1,11 +1,11 @@
 Location: .\Levels\level2.txt 
-Level: level2.300.300 
+Level: level2 
 PlayerX
 100
 PlayerY
 0
 LevelLeft
--1991
+-1889
 LevelRight
 6390
 LevelTop
@@ -75,14 +75,23 @@ end
  
 npcs
 x y type
--346.74;510.299;soldier
--169.74;497.249;soldier
--373.74;512.394;soldier
-686.26;544.744;soldier
-1736.26;500;soldier
-2819.26;386.116;soldier
-2819.26;386.116;soldier
-3409.26;354.116;soldier
-4434.27;315.116;soldier
-5495.27;269.116;soldier
+-145.94;495.086;soldier
+63.8201;546.202;soldier
+-188.06;498.915;soldier
+598.081;543.598;soldier
+2328.34;500;soldier
+3135.27;553.874;soldier
+2988.82;564.218;soldier
+3569.58;443.352;soldier
+3999.83;472.981;soldier
+5322.64;480.838;soldier
+-1582;457;civilian
+-1427;460;civilian
+-1230;454;civilian
+-563;437;civilian
+1981;423;civilian
+2119;423;civilian
+2263;440;civilian
+5368;414;civilian
+5554;416;civilian
 end

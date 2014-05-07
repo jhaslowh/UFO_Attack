@@ -125,4 +125,14 @@ x y type
 6187.03;456.94;hsoldier
 6187.03;456.94;soldier
 4518.57;506.965;cow
+-546;404;civilian
+-329;417;civilian
+-403;423;civilian
+1934;408;civilian
+2038;419;civilian
+2203;432;civilian
+3689;476;civilian
+4684;394;civilian
+4786;393;civilian
+5309;360;turret
 end
