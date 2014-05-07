@@ -121,7 +121,8 @@ void Ground::remove(Point* p){
 	while (itr != NULL){
 		if (itr == p){
 			itr->prev->next = itr->next;
-			itr->next->prev = itr->prev;
+			if (itr->next != NULL)
+				itr->next->prev = itr->prev;
 			itr->next = NULL;
 			itr->prev = NULL;
 			delete itr;
