@@ -214,7 +214,6 @@ void loadLevel(Handlers* handlers, std::string file){
 			}
 			else if(line.compare("scenery")==0)
 			{
-				SceneryObject* obj;
 				if (debug) cout << "enter scenery" << std::endl;
 
 				getline(myfile, line);

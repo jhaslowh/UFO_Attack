@@ -26,6 +26,7 @@
     <ClInclude Include="LongCrate.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="NPCBasicCollision.h" />
+    <ClInclude Include="NPCCivilian.h" />
     <ClInclude Include="NPCcow.h" />
     <ClInclude Include="NPCHandler.h" />
     <ClInclude Include="NPCHeavySoldier.h" />
@@ -133,6 +134,7 @@
     <ClCompile Include="LongCrate.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="NPCBasicCollision.cpp" />
+    <ClCompile Include="NPCCivilian.cpp" />
     <ClCompile Include="NPCcow.cpp" />
     <ClCompile Include="NPCHandler.cpp" />
     <ClCompile Include="NPCHeavySoldier.cpp" />
