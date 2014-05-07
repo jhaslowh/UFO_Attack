@@ -50,8 +50,8 @@ Player::Player(SaveData* savedata){
 	armOriginY = 25.0f;
 
 	// Collision Values 
-	collRec.setLocation(0.0f,0.0f);
-	collRec.setSize(50.0f,50.0f);
+	collRec.setLocation(10.0f,5.0f);
+	collRec.setSize(30.0f,45.0f);
 	waistHeight = 35.0f;
 	depthForDepthCheck = 20.0f;
 
