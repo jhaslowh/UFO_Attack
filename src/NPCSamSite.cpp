@@ -4,8 +4,8 @@ NPCSamSite::NPCSamSite(float x, float y) : NPC()
 {
 	// Basic NPC Properties
 	stype = "sam";
-	locX = x;
-	locY = y;
+	spawnX = locX = x;
+	spawnY = locY = y;
 	width = 50.0f;
 	height = 31.0f;
 	originX = 25.0f;

@@ -4,8 +4,8 @@ NPCTank::NPCTank(float x, float y) : NPCBasicCollision()
 {
 	// Basic NPC Properties
 	stype = "tank";
-	locX = x;
-	locY = yo = y;
+	spawnX = locX = x;
+	spawnY = yo = locY = y;
 	width = 124.0f;
 	height = 50.0f;
 	originX = 62.0f;

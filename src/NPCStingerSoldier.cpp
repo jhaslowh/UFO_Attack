@@ -5,8 +5,8 @@ NPCStingerSoldier::NPCStingerSoldier(float x, float y) : NPCBasicCollision()
 {
 	// Basic NPC Properties
 	stype = "stinger";
-	locX = x;
-	locY = yo = y;
+	spawnX = locX = x;
+	spawnY = yo = locY = y;
 	width = 50.0f;
 	height = 50.0f;
 	originX = 25.0f;

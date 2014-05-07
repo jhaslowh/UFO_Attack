@@ -3,8 +3,8 @@
 
 NPC::NPC()
 {	
-	locX = 0.0f;
-	locY = 0.0f;
+	spawnX = locX = 0.0f;
+	spawnY = locY = 0.0f;
 	width = 0.0f;
 	height = 0.0f;
 	originX = 0.0f;
@@ -37,6 +37,8 @@ void NPC::setLocation(float x, float y){
 }
 float NPC::getX(){return locX;}
 float NPC::getY(){return locY;}
+float NPC::getSpawnX(){return spawnX;}
+float NPC::getSpawnY(){return spawnY;}
 
 std::string NPC::getSType()
 {

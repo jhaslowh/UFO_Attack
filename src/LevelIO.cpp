@@ -89,7 +89,7 @@ void saveLevel(Handlers* handlers, std::string file, bool addToMaster){
 	outfile << "x y type" << std::endl;
 	NPC* npcItr = npcHandler->getHead();
 	while (npcItr != NULL){
-		outfile << npcItr->getX() << ";" << npcItr->getY() << ";" << npcItr->getSType() << std::endl;
+		outfile << npcItr->getSpawnX() << ";" << npcItr->getSpawnY() << ";" << npcItr->getSType() << std::endl;
 		npcItr = npcItr->next;
 	}
 	outfile << "end" << std::endl;

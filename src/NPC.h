@@ -23,6 +23,7 @@ class NPC
 protected:
 
 	float locX, locY;
+	float spawnX, spawnY;
 	float width, height;
 	float originX, originY;
 	float rotation;
@@ -57,6 +58,8 @@ public:
 	void setLocation(float x, float y);
 	float getX();
 	float getY();
+	float getSpawnX();
+	float getSpawnY();
 	std::string getSType();
 	// get the npc type as a string
 	// Set the width and height of the npc
