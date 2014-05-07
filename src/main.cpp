@@ -550,7 +550,7 @@ void eventAndRenderLoop(){
 			// check OpenGL error
 			GLenum err;
 			while ((err = glGetError()) != GL_NO_ERROR) {
-				cout << "OpenGL error: err - " << GLHandler::getGLErrorString(err) << "\n";
+				cout << "OpenGL error: " << err << " - " << GLHandler::getGLErrorString(err) << "\n";
 			}
 
 			// Swap buffers 

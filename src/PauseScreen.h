@@ -3,12 +3,17 @@
 #include "UIButton.h"
 #include "UILabel.h"
 #include "Rec.h"
+#include "Sprite.h"
 
 class PauseScreen : public UIScreen
 {
 	UILabel* lTitle;
 	UIButton* bResume;
 	UIButton* bQuit;
+	UIButton* controls;
+	UIButton* controlsBack;
+	bool showControls;
+	Sprite contrlImage;
 	Rec bgOverlay;
 
 public:
@@ -20,6 +25,10 @@ public:
 
 	// Load screen
 	virtual void load(TextureAtlas* mAtlas);
+
+	// Unload screen textures
+	// THIS MUST BE CALLED IF YOU LOAD STUFF.
+	virtual void unload();
 
 	// Update the state of the screen
 	virtual void update(float deltaTime);
