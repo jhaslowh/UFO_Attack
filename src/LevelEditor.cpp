@@ -534,13 +534,13 @@ bool LevelEditor::parseCommand(UITerminal* terminal, string command, string args
 				return true;
 			}
 
-			terminal->addLine("scenery add " + subCommand + " " + subArgs, TL_WARNING);
 			terminal->addLine("Unrecognized arguments given to command: scenery add", TL_WARNING);
+			terminal->addLine("scenery add " + subCommand + " " + subArgs, TL_WARNING);
 			return true;
 		}
 
-		terminal->addLine("scenery " + args, TL_WARNING);
 		terminal->addLine("Unrecognized arguments given to command: scenery", TL_WARNING);
+		terminal->addLine("scenery " + args, TL_WARNING);
 		return true;
 	}
 	// Check for editor commands 

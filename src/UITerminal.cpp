@@ -261,10 +261,12 @@ void UITerminal::getCommandAndArgs(std::string* line, std::string* command, std:
 	// Command has no sub commands
 	if (firstSpace == -1){
 		*command = *line;
+		*args = "";
 	}
 	// Command is followed by one space 
 	else if (firstSpace == line->length() - 1){
 		*command = line->substr(0, line->length() - 1);
+		*args = "";
 	}
 	// Command has sub commands 
 	else {
