@@ -57,6 +57,9 @@ public:
 	// calls here. 
 	virtual void show();
 
+	// Parse a command give
+	virtual bool parseCommand(UITerminal* terminal, std::string command, std::string args);
+
 	void loadLevelList();
 	//loads the list of levels from the master level file
 };

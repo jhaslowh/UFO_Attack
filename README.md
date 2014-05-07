@@ -107,6 +107,9 @@ Commands while in Game Screen
 - "timeSpeed [value]" : set how fast the time of day progresses  
 - "tutorial skip" : skip tutorial if in it  
 
+Commands while in Level Select
+- "unlockall" : unlocks all levels  
+
 Technical Information
 ---------------------
 

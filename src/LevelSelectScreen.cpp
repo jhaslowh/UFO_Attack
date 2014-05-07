@@ -154,6 +154,25 @@ void LevelSelectScreen::show(){
 		buttonLevels[i]->show();
 }
 
+// Parse a command give
+bool LevelSelectScreen::parseCommand(UITerminal* terminal, string command, string args){
+	if (UIScreen::parseCommand(terminal, command, args))
+		return true;
+
+	// Check for reset commmand
+	if (command == "unlockall"){
+		
+		for(int i=0;i<numberOfLevels;i++)
+			buttonLevels[i]->setLocked(false);
+
+		terminal->addLine(command, TL_SUCCESS);
+
+		return true;
+	}
+
+	return false;
+}
+
 void LevelSelectScreen::loadLevelList(){
 	float mapScale = map.getScale();
 	string line;

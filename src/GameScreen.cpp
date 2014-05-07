@@ -210,7 +210,6 @@ void GameScreen::draw(GLHandler* mgl, TextureAtlas* mAtlas){
 	}
 }
 
-
 // Parse a command give
 bool GameScreen::parseCommand(UITerminal* terminal, string command, string args){
 	if (UIScreen::parseCommand(terminal, command, args))
