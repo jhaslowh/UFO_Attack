@@ -93,6 +93,7 @@ Commands for Level Editor (Must be in screen with one)
 - "npc add tank" : add new tank npc to level  
 - "npc add turret" : add new turret npc to level  
 - "npc add sam" : add new sam site npc to level  
+- "npc add civilian" : add new civilian to level  
 
 Commands while in Game Screen
 - "level reset" : reset the current level  

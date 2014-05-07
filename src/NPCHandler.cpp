@@ -87,6 +87,10 @@ bool NPCHandler::addByName(std::string name, float x, float y){
 		add(new NPCSamSite(x,y));
 		return true;
 	}
+	else if (name.compare("civilian") == 0){
+		add(new NPCCivilian(x,y));
+		return true;
+	}
 	return false;
 }
 

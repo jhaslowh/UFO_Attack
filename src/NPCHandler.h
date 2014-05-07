@@ -8,6 +8,7 @@
 #include "NPCTank.h"
 #include "NPCTurret.h"
 #include "NPCSamSite.h"
+#include "NPCCivilian.h"
 
 class NPCHandler
 {

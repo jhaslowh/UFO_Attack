@@ -6,6 +6,11 @@ Health: 30
 Can be abducted: Yes  
 A weak animal that will walk to the player out of curiosity, but will run from the player when attacked.   
 
+####Civilian  
+Health: 100  
+Can be abducted: Yes  
+Standard human npc.  
+
 ####Soldier  
 Health: 100    
 Can be abducted: Yes  

@@ -64,6 +64,7 @@
 #define GI_CIVI_MALE1a_1 54
 #define GI_CIVI_MALE1a_2 55
 #define GI_CIVI_MALE1a_3 56
+
 #define GI_CIVI_MALE2_1 57
 #define GI_CIVI_MALE2_2 58
 #define GI_CIVI_MALE2_3 59
@@ -77,6 +78,7 @@
 #define GI_CIVI_FEMALE1a_1 66
 #define GI_CIVI_FEMALE1a_2 67
 #define GI_CIVI_FEMALE1a_3 68
+
 #define GI_CIVI_FEMALE2_1 69
 #define GI_CIVI_FEMALE2_2 70
 #define GI_CIVI_FEMALE2_3 71
