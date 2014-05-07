@@ -120,6 +120,12 @@ bool SceneryHandler::add(std::string name, std::string args, float x, float y){
 		add(obj);
 		return true;
 	}
+	else if (name.compare("barracks") == 0){
+		obj = new Barracks();
+		obj->setLocation(x,y);
+		add(obj);
+		return true;
+	}
 	return false;
 }
 

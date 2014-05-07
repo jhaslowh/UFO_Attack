@@ -154,6 +154,9 @@ void GameAtlas::load(){
 	vcg->addFrame(513.0f, 157.0f, 50.0f, 50.0f);
 	vcg->addFrame(563.0f, 157.0f, 50.0f, 50.0f);
 
+	// Barracks
+	vcg->addFrame(1.0f, 249.0f, 100.0f, 57.0f);
+
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();

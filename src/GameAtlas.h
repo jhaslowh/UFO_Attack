@@ -86,6 +86,8 @@
 #define GI_CIVI_FEMALE2a_2 73
 #define GI_CIVI_FEMALE2a_3 74
 
+#define GI_BARRACKS 75
+
 class GameAtlas : public TextureAtlas
 {
 public:

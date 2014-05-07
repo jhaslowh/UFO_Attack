@@ -1,8 +1,10 @@
 #pragma once
-class Barracks
+#include "SceneryObject.h"
+
+class Barracks : public SceneryObject
 {
 public:
-	Barracks(void);
-	~Barracks(void);
+	Barracks();
+	virtual ~Barracks();
 };
 

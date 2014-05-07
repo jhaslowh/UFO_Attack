@@ -11,6 +11,7 @@
 #include "Barn.h"
 #include "HouseBlue.h"
 #include "HouseBrown.h"
+#include "Barracks.h"
 
 class SceneryHandler
 {

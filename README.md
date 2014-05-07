@@ -86,6 +86,7 @@ Commands for Level Editor (Must be in screen with one)
 - "scenery add barn" : add new barn  
 - "scenery add houseBrown" : add new brown house  
 - "scenery add houseBlue" : add new blue house  
+- "scenery add barracks" : add new barracks  
 - "npc add soldier" : add new soldier npc to level  
 - "npc add sniper" : add new sniper npc to level  
 - "npc add cow" : add new cow npc to level  
