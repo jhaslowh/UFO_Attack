@@ -206,6 +206,9 @@ void NPCSniperSoldier::hitWall(){
 	NPCBasicCollision::hitWall();
 
 	direcX = -direcX;
+	distanceTillFlop = minDistanceTFlop + 
+			(rand() % (int)(maxDistanceTFlop - minDistanceTFlop)); 
+		currentDistance = 0.0f;
 }
 
 // Called when npc dies 

@@ -173,6 +173,9 @@ void NPCTank::hitWall(){
 	NPCBasicCollision::hitWall();
 
 	direcX = -direcX;
+	distanceTillFlop = minDistanceTFlop + 
+			(rand() % (int)(maxDistanceTFlop - minDistanceTFlop)); 
+		currentDistance = 0.0f;
 }
 
 // Damage the npc by sent damage amout.
