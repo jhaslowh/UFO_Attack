@@ -319,6 +319,9 @@
     <ClCompile Include="NPCCivilian.cpp">
       <Filter>Source Files\game\npc</Filter>
     </ClCompile>
+    <ClCompile Include="Barracks.cpp">
+      <Filter>Source Files\game\scenery</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -638,6 +641,9 @@
     </ClInclude>
     <ClInclude Include="NPCCivilian.h">
       <Filter>Header Files\game\npc</Filter>
+    </ClInclude>
+    <ClInclude Include="Barracks.h">
+      <Filter>Header Files\game\scenery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

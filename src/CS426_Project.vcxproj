@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="AtlasSprite.h" />
     <ClInclude Include="Barn.h" />
+    <ClInclude Include="Barracks.h" />
     <ClInclude Include="BeamProjectile.h" />
     <ClInclude Include="BulletProjectile.h" />
     <ClInclude Include="Crate.h" />
@@ -121,6 +122,7 @@
   <ItemGroup>
     <ClCompile Include="AtlasSprite.cpp" />
     <ClCompile Include="Barn.cpp" />
+    <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="BeamProjectile.cpp" />
     <ClCompile Include="BulletProjectile.cpp" />
     <ClCompile Include="Crate.cpp" />
