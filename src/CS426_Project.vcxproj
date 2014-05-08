@@ -45,6 +45,8 @@
     <ClInclude Include="NPCTurretGun.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleHandler.h" />
+    <ClInclude Include="Script.h" />
+    <ClInclude Include="ScriptHandler.h" />
     <ClInclude Include="SoundHandler.h" />
     <ClInclude Include="TallCrate.h" />
     <ClInclude Include="TutBox.h" />
@@ -154,6 +156,8 @@
     <ClCompile Include="NPCTurretGun.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleHandler.cpp" />
+    <ClCompile Include="Script.cpp" />
+    <ClCompile Include="ScriptHandler.cpp" />
     <ClCompile Include="SoundHandler.cpp" />
     <ClCompile Include="TallCrate.cpp" />
     <ClCompile Include="TutBox.cpp" />

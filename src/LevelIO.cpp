@@ -13,7 +13,7 @@ void saveLevel(Handlers* handlers, std::string file, bool addToMaster){
 
 
 	size_t pos = 0;
-	string storage[3];
+	string storage[5];
 	std::string delimiter = ".";
 	int counter = 0;
 	std::string line = file;
@@ -37,6 +37,10 @@ void saveLevel(Handlers* handlers, std::string file, bool addToMaster){
 	// Write file to file?
 	outfile << "Location: " << fileLocation << " " << std::endl;
 	outfile << "Level: " << file << " " << std::endl;
+	//Requirements: 0
+	//Difficulty: 1
+	outfile << "Requirements: " << storage[4] << " " << std::endl;
+	outfile << "Difficulty: " << storage[3] << " " << std::endl;
 
 	// Write level properties 
 	outfile << "PlayerX" << std::endl;

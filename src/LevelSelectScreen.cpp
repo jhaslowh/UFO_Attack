@@ -176,6 +176,31 @@ bool LevelSelectScreen::parseCommand(UITerminal* terminal, string command, strin
 void LevelSelectScreen::loadLevelList(){
 	float mapScale = map.getScale();
 	string line;
+	ifstream completionFile (".\\Levels\\MasterLevelFile.txt");
+	int numberOfCompletedLevels = 0;
+	if(completionFile.is_open())
+	{
+		getline(completionFile, line);
+		numberOfLevels = atoi(line.c_str());
+		for(int i=0;i<numberOfLevels;i++)
+		{
+			getline(completionFile, line);
+			size_t pos = 0;
+			string storage[5];
+			std::string delimiter = ".";
+			int counter = 0;
+			while ((pos = line.find(delimiter)) != std::string::npos) 
+			{
+				storage[counter] = line.substr(0, pos);
+				line.erase(0, pos + delimiter.length());
+				counter++;
+			}			
+			storage[counter] = line;
+			if (sd->levelCompleted(storage[0]))
+				numberOfCompletedLevels++;
+		}
+	}
+	completionFile.close();
 	ifstream myfile (".\\Levels\\MasterLevelFile.txt");
 	if (myfile.is_open())
 	{
@@ -188,7 +213,7 @@ void LevelSelectScreen::loadLevelList(){
 		{
 			getline(myfile, line);
 			size_t pos = 0;
-			string storage[3];
+			string storage[5];
 			std::string delimiter = ".";
 			int counter = 0;
 			while ((pos = line.find(delimiter)) != std::string::npos) 
@@ -212,9 +237,16 @@ void LevelSelectScreen::loadLevelList(){
 			// Set level to check mark if completed 
 			if (sd->levelCompleted(storage[0]))
 				buttonLevels[i]->setCompleted(true);
+			cout << "levelcount: " << numberOfCompletedLevels << std::endl;
+			cout << "level required: " << storage[4] << std::endl;
+			if(numberOfCompletedLevels<atoi(storage[4].c_str()))
+			{
+				buttonLevels[i]->setLocked(true);
+			}
 			// Uncomment this to lock a level
 			//buttonLevels[i]->setLocked(true);
-			buttonLevels[i]->setDifficulty((rand() % 4)-1);
+			buttonLevels[i]->setDifficulty(atoi(storage[3].c_str()));
+			//cout << "Loading Level " << i << " difficulty: " << storage[3];
 			buttonLevels[i]->setHidden();
 			buttonLevels[i]->setScale(map.getScale());
 			buttonLevels[i]->setTitle(storage[0]);

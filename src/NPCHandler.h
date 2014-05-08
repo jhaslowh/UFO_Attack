@@ -51,5 +51,7 @@ public:
 
 	// Draw objects
 	void draw(GLHandler* mgl, GameAtlas* mGame);
+
+	int getAliveCount();
 };
 

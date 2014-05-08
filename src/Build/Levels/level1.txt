@@ -1,5 +1,7 @@
 Location: .\Levels\level1.txt 
-Level: level1 
+Level: level1
+Requirements: 0
+Difficulty: 1
 PlayerX
 100
 PlayerY

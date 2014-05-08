@@ -162,3 +162,12 @@ void NPCHandler::draw(GLHandler* mgl, GameAtlas* mGame){
 	}
 }
 
+int NPCHandler::getAliveCount()
+{
+	int i=0;
+	while (uitr != NULL){
+		if (uitr->getAlive()) i++;
+	}
+	return i;
+}
+
