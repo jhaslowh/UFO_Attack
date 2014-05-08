@@ -113,5 +113,8 @@ public:
 
 	// Called when npc dies 
 	virtual void onDeath(Handlers* handlers);
+
+	// Called when npc is abducted
+	virtual void onAbduct(Handlers* handlers);
 };
 
