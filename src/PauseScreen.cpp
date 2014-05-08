@@ -33,7 +33,7 @@ void PauseScreen::init(float screen_width, float screen_height, void* sh){
 	bResume->setupHide(HT_VERTICAL,bResume->getY()+100.0f,.2f,true);
 	bResume->setHidden();
 
-	controls = new UIButton((screen_width/2.0f)-50.0f,(screen_height *.5f)+45.05,100.0f,35.0f, std::string("Controls"));
+	controls = new UIButton((screen_width/2.0f)-50.0f,(screen_height *.5f)+45.05f,100.0f,35.0f, std::string("Controls"));
 	controls->setupHide(HT_VERTICAL,controls->getY()+100.0f,.2f,true);
 	controls->setHidden();
 
@@ -41,7 +41,7 @@ void PauseScreen::init(float screen_width, float screen_height, void* sh){
 	bQuit->setupHide(HT_VERTICAL,bQuit->getY()+100.0f,.2f,true);
 	bQuit->setHidden();
 
-	controlsBack = new UIButton((screen_width/2.0f)-50.0f,(screen_height *.5f)+200.05,100.0f,35.0f, std::string("Back"));
+	controlsBack = new UIButton((screen_width/2.0f)-50.0f,(screen_height *.5f)+200.05f,100.0f,35.0f, std::string("Back"));
 	controlsBack->setupHide(HT_VERTICAL,controlsBack->getY()+100.0f,.2f,true);
 	controlsBack->setHidden();
 
@@ -52,7 +52,7 @@ void PauseScreen::init(float screen_width, float screen_height, void* sh){
 	lTitle->setupHide(HT_VERTICAL,lTitle->getY()+100.0f,.2f,true);
 	lTitle->setHidden();
 
-	contrlImage.setPosition((screen_width*.5f)-300.0f,(screen_height *.5f)-200.05);
+	contrlImage.setPosition((screen_width*.5f)-300.0f,(screen_height *.5f)-200.05f);
 }
 
 // Load screen
