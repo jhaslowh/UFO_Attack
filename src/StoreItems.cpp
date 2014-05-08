@@ -49,7 +49,7 @@ namespace StoreItems{
 			"Laser Gun",	"Standard issue pistol for all\nalien bears",
 			0,0,"images/si/sii_laser.png"));
 		sItems.push_back(StoreItem(SID_PLAYER_WEAPON_SHOTGUN,
-			"Shotgun",		"desc",
+			"Shotgun",		"Powerful ballistic weapon with\nspread for maximum\n destruction",
 			50,10,"images/si/sii_shotgun.png"));
 		sItems.push_back(StoreItem(SID_PLAYER_WEAPON_SMG,
 			"SMG",			"Best choice in alien small\narms fire",
