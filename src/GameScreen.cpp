@@ -304,7 +304,7 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 			return true;
 		}
 
-		float value = toDouble(args);
+		float value = (float)toDouble(args);
 		((Sky*)level->handlers.sky)->setTimeOfDay(value);
 		if (value >= 0.0f && value <= 24.0f)
 			terminal->addLine(command + " " + args, TL_SUCCESS);
@@ -322,7 +322,7 @@ bool GameScreen::parseCommand(UITerminal* terminal, string command, string args)
 			return true;
 		}
 
-		float value = toDouble(args);
+		float value = (float)toDouble(args);
 		((Sky*)level->handlers.sky)->setHoursPerSecond(value);
 		terminal->addLine(command + " " + args, TL_SUCCESS);
 		return true;
