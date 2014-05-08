@@ -72,7 +72,7 @@ Commands:
 - "tutorial [on|off]" : toggle tutorial  
 
 Commands for Level Editor (Must be in screen with one)  
-- "saveFile [file].[x].[y]" : save current level to file. It will be added to the master level file and the (x,y) values sent will be its location on the level select map.    
+- "saveFile [file].[x].[y].[difficulty].[levelrequirement]" : save current level to file. It will be added to the master level file and the (x,y) values sent will be its location on the level select map.    
 - "save [file]" : save current level to file. This command will not add it to the master level file.  
 - "editor open" : open level editor  
 - "editor close" : close level editor  
