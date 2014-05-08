@@ -23,7 +23,7 @@ void Settings::setMasterVol(float value){masterVol = value;}
 float Settings::getMusicVol(){return musicVol;}
 void Settings::setMusicVol(float value){
 	musicVol = value;
-	Mix_VolumeMusic((MIX_MAX_VOLUME*value*masterVol));
+	Mix_VolumeMusic((int)(MIX_MAX_VOLUME*value*masterVol));
 }
 float Settings::getSfxVol(){return sfxVol;}
 void Settings::setSfxVol(float value){
