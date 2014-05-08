@@ -248,7 +248,6 @@ void loadLevel(Handlers* handlers, std::string file){
 				getline(myfile, line);
 				//x y width height rotation scale imageid collides stopplayer
 				getline(myfile, line);
-				SceneryObject* obj;
 				while(line.compare("end")!=0)
 				{
 					//getline(myfile, line);
