@@ -1,5 +1,7 @@
 Location: .\Levels\level6.txt 
 Level: level6 
+Requirements: 5
+Difficulty: 3
 PlayerX
 -400
 PlayerY

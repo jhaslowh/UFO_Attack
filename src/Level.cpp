@@ -52,6 +52,8 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata, vo
 	partHandler = new ParticleHandler();
 	// Create explosion handler
 	explHandler = new ExplHandler();
+	// Create Script Handler
+	scriptHandler = new ScriptHandler(&handlers, savedata->levelToLoad);
 
 	// Give screen size to level properties 
 	levelProps.setScreenWidth(screen_width);
@@ -73,9 +75,12 @@ void Level::init(float screen_width, float screen_height, SaveData* savedata, vo
 	handlers.partHandler = partHandler;
 	handlers.soundHandler = soundHandler;
 	handlers.sky = &sky;
+	handlers.scriptHandler = &scriptHandler;
 
 	// Load level from file 
 	loadLevel(&handlers, savedata->levelToLoad);
+	
+
 
 	
 	// Update once to fix level image before tutorial lock
@@ -139,6 +144,7 @@ void Level::update(float deltaTime){
 		partHandler->update(deltaTime);
 
 		camera.update(deltaTime);
+		scriptHandler->updateScripts(deltaTime);
 	}
 }
 

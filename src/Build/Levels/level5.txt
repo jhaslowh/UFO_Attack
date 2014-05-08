@@ -1,5 +1,7 @@
 Location: .\Levels\level5.txt 
 Level: level5 
+Requirements: 3
+Difficulty: 2
 PlayerX
 -400
 PlayerY

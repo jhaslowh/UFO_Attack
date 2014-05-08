@@ -1,5 +1,7 @@
 Location: .\Levels\level4.txt 
-Level: level4.400.135 
+Level: level4.400.135
+Requirements: 3
+Difficulty: 2 
 PlayerX
 -400
 PlayerY

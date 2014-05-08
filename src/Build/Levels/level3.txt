@@ -1,5 +1,7 @@
 Location: .\Levels\level3.txt 
-Level: level3.200.105 
+Level: level3.200.105
+Requirements: 1
+Difficulty: 1 
 PlayerX
 100
 PlayerY

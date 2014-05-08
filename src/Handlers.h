@@ -18,6 +18,7 @@ public:
 	void* player;
 	void* soundHandler;
 	void* sky;
+	void* scriptHandler;
 
 	Handlers();
 	~Handlers();

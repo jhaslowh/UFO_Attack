@@ -13,6 +13,7 @@ Handlers::Handlers()
 	explHander = NULL;
 	soundHandler = NULL;
 	sky = NULL;
+	scriptHandler = NULL;
 }
 
 Handlers::~Handlers(){}

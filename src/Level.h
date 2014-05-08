@@ -22,6 +22,7 @@
 #include "Sky.h"
 #include "TextureAtlas.h"
 #include "TutorialSystem.h"
+#include "ScriptHandler.h"
 
 class Level
 {
@@ -35,6 +36,7 @@ class Level
 	Camera2D camera;
 	LevelProperties levelProps;
 	ExplHandler* explHandler;
+	ScriptHandler* scriptHandler;
 	TutorialSystem tutSys;
 	Sky sky;
 

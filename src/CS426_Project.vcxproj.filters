@@ -322,6 +322,12 @@
     <ClCompile Include="Barracks.cpp">
       <Filter>Source Files\game\scenery</Filter>
     </ClCompile>
+    <ClCompile Include="ScriptHandler.cpp">
+      <Filter>Source Files\game\scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Script.cpp">
+      <Filter>Source Files\game\scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -645,6 +651,12 @@
     <ClInclude Include="Barracks.h">
       <Filter>Header Files\game\scenery</Filter>
     </ClInclude>
+    <ClInclude Include="Script.h">
+      <Filter>Header Files\game\scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptHandler.h">
+      <Filter>Header Files\game\scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
@@ -739,6 +751,12 @@
     </Filter>
     <Filter Include="Header Files\game\tut">
       <UniqueIdentifier>{f641703c-c3c2-45d5-84f4-c1233556a8a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game\scripts">
+      <UniqueIdentifier>{3697e174-1fea-45de-b9ee-1631ee8ce012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game\scripts">
+      <UniqueIdentifier>{d25f02a5-d11d-457d-87bd-468cdb27fa88}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
