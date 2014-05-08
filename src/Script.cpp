@@ -82,9 +82,6 @@ void Script::updateScript(float deltaTime)
 		}
 		else
 		{
-			cout << "Script Value: " << scriptCurrentValue << std::endl;
-			cout << "Compare Value: " << scriptCompareValue << std::endl;
-			cout << "Goal: " << (float)atoi(scriptStorage[1].c_str()) << std::endl;
 			int tempValue = ((NPCHandler*)myHandles->npcHandler)->getAliveCount();
 			scriptCurrentValue += (scriptCompareValue - tempValue);
 			scriptCompareValue = ((NPCHandler*)myHandles->npcHandler)->getAliveCount();
