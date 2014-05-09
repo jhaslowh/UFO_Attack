@@ -1,6 +1,5 @@
 #include "MainScreen.h"
 
-
 MainScreen::MainScreen(bool showResume) : UIScreen(){
 	buttonResume = NULL;
 	hideOnClose = true;

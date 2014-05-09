@@ -54,6 +54,8 @@ void PlayerAtlas::load(){
 	vcg->addFrame(347.0f, 27.0f, 43.0f, 17.0f);
 	// UFO Machine Gun
 	vcg->addFrame(347.0f, 46.0f, 42.0f, 11.0f);
+	// UFO Cowtapult 
+	vcg->addFrame(347.0f, 59.0f, 90.0f, 32.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();

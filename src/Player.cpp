@@ -224,6 +224,11 @@ void Player::init(float screen_width, float screen_height, SaveData* savedata){
 		screen_width - (cameraEdge*2.0f), screen_height - (cameraEdge*2.0f));
 	
 	elBarX = (screen_width / 2.0f) - 50.0f;
+
+	ammoLocX = screen_width - 25.0f;
+	ammoLocY = 5.0f;
+	ammoOffsetX = -5.0f;
+	ammoOffsetY = 4.0f;
 }
 
 // Load level (use for textures)
@@ -826,6 +831,13 @@ void Player::drawUI(GLHandler* mgl, UIAtlas* mUI){
 		locScoreHumanX+scoreTextOffsetX, 
 		locScoreHumanY+scoreTextOffsetY,0.0f,scoreTextSize);
 
+	// Draw ammo 
+	mUI->draw(mgl, UII_HUD_AMMO, ammoLocX, ammoLocY);
+	std::string ammoS = getAmmoString();
+	mUI->mTextRender->drawText(*mgl, ammoS, 
+		ammoLocX - mUI->mTextRender->measureString(ammoS, elTextSize) + ammoOffsetX, 
+		ammoLocY + ammoOffsetY , 0.0f, elTextSize);
+
 	// Draw enemy left text
 	mUI->mTextRender->drawText(*mgl, elText, elTextX, elTextY, 0.0f, elTextSize);
 }
@@ -902,13 +914,6 @@ void Player::applyDamage(float damage){
 // Check if the player is currently in the ufo
 bool Player::isInUFO(){return inUFO;}
 
-// Set the given collision rectangle to the given location
-void Player::setCollRec(Rec* r, float x, float y){
-	r->copy(&collRec);
-
-	r->setX(x - originX + r->getX());
-	r->setY(y - originY + r->getY());
-}
 
 // Make it so the player no longer takes damage
 void Player::makeInvincible(){
@@ -922,4 +927,29 @@ void Player::makeMortal(){
 	printf("make mortal\n");
 	ufo->setInvincible(false);
 	invincible = false;
+}
+
+// Get ammo string for current weapon
+std::string Player::getAmmoString(){
+	if (inUFO){
+		return ufo->getAmmoString();
+	}
+	else {
+		if (usingWeapon1 && weapon1 != NULL){
+			return weapon1->getAmmoString();
+		}
+		else if (!usingWeapon1 && weapon2 != NULL){
+			return weapon2->getAmmoString();
+		}
+	}
+
+	return std::string("0/0");
+}
+	
+// Set the given collision rectangle to the given location
+void Player::setCollRec(Rec* r, float x, float y){
+	r->copy(&collRec);
+
+	r->setX(x - originX + r->getX());
+	r->setY(y - originY + r->getY());
 }

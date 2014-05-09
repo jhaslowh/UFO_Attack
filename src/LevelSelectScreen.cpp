@@ -204,7 +204,7 @@ void LevelSelectScreen::loadLevelList(){
 	ifstream myfile (".\\Levels\\MasterLevelFile.txt");
 	if (myfile.is_open())
 	{
-		cout << "Loading level list..\n";
+		//cout << "Loading level list..\n";
 		getline(myfile, line);
 		numberOfLevels = atoi(line.c_str());
 		// Tell savedata how many levels there are
@@ -237,8 +237,8 @@ void LevelSelectScreen::loadLevelList(){
 			// Set level to check mark if completed 
 			if (sd->levelCompleted(storage[0]))
 				buttonLevels[i]->setCompleted(true);
-			cout << "levelcount: " << numberOfCompletedLevels << std::endl;
-			cout << "level required: " << storage[4] << std::endl;
+			//cout << "levelcount: " << numberOfCompletedLevels << std::endl;
+			//cout << "level required: " << storage[4] << std::endl;
 			if(numberOfCompletedLevels<atoi(storage[4].c_str()))
 			{
 				buttonLevels[i]->setLocked(true);
@@ -256,7 +256,7 @@ void LevelSelectScreen::loadLevelList(){
 			levelsList[i] = storage[0];
 		}
 		myfile.close();
-		cout << "Done loading level list.\n";
+		//cout << "Done loading level list.\n";
 	}
 	else
 	{

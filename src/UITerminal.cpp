@@ -51,7 +51,7 @@ UITerminal::UITerminal() : UITransitionObject()
 	tline.type = 0;
 	tline.text = "";
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < T_LINE_COUNT; i++)
 		lines[i] = tline;
 }
 
@@ -101,7 +101,7 @@ void UITerminal::addLine(std::string line, int type){
 	tLine.type = type;
 
 	// Move lines back in history 
-	for (int i = 9; i > 0; i--){
+	for (int i = T_LINE_COUNT-1; i > 0; i--){
 		lines[i] = lines[i - 1];
 	}
 
@@ -111,7 +111,7 @@ void UITerminal::addLine(std::string line, int type){
 
 // Clear terminal
 void UITerminal::clear(){
-	for (int i = 0; i < 10; i++){
+	for (int i = 0; i < T_LINE_COUNT; i++){
 		lines[i].text = "";
 	}
 }
@@ -244,7 +244,7 @@ void UITerminal::draw(GLHandler* mgl, UIAtlas* mAtlas){
 
 	// Draw history lines 
 	if (shown()){
-		for (int i = 0; i < 10; i++){
+		for (int i = 0; i < T_LINE_COUNT; i++){
 			mgl->setFlatColor(tColors[lines[i].type], tColors[lines[i].type][3] * mOpacity);
 			mAtlas->mTextRender->drawText(*mgl, lines[i].text, 
 				loc_x + textOffX, loc_y - (textSize * (i+1)), 0, textSize);

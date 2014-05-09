@@ -12,6 +12,7 @@
 #include "UFOMachineGun.h"
 #include "PlayerLaserGun.h"
 #include "ParticleHandler.h"
+#include "UFOCowtapult.h"
 
 class UFO
 {
@@ -146,5 +147,8 @@ public:
 
 	// Returns true if ufo is alive 
 	bool alive();
+	
+	// Get ammo string for current weapon
+	std::string getAmmoString();
 };
 

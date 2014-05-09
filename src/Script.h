@@ -17,8 +17,8 @@ class Script
 {
 protected:
 	short scriptType;
-	int scriptCompareValue;
-	int scriptCurrentValue;
+	float scriptCompareValue;
+	float scriptCurrentValue;
 	std::string scriptStorage[7];
 	bool isScriptComplete;
 	Handlers* myHandles;
@@ -30,6 +30,8 @@ public:
 
 	void updateScript(float deltaTime);
 	void executeScript();
+	void npcDeath();
+	void npcAbduction();
 
 	bool isScriptDone();
 	bool getIsActive();

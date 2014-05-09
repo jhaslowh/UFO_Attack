@@ -62,6 +62,6 @@ namespace StoreItems{
 			0,100,"images/si/sii_rocket.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_COWTAPOLT,
 			"UFO Cowtapolt",	"Launch Cows at your enemies",
-			0,200,"images/si/sii_todo.png"));
+			0,200,"images/si/sii_cow.png"));
 	}
 }

@@ -234,6 +234,10 @@ int TextRender::getCharIndex(char c){
 			return 66;
 		case '?':
 			return 67;
+		case '[':
+			return 68;
+		case ']':
+			return 69;
 		default:
 			return 0;
 	}
@@ -383,6 +387,10 @@ float TextRender::getLetterWidth(char c){
 		return letterWidth[66];
 	case '?':
 		return letterWidth[67];
+	case '[':
+		return letterWidth[68];
+	case ']':
+		return letterWidth[69];
 	default:
 		return 30.0f;
 	}
@@ -665,4 +673,12 @@ void TextRender::createFontBuffers(VertCordGenerator* vcg){
 	// '?'
 	vcg->addFrame(564.0f, 288.0f, 43.0f, 54.0f);
 	letterWidth[67] = 43.0f;
+
+	// [
+	vcg->addFrame(0.0f, 344.0f, 22.0f, 72.0f);
+	letterWidth[68] = 22.0f;
+
+	// ]
+	vcg->addFrame(24.0f, 344.0f, 22.0f, 72.0f);
+	letterWidth[69] = 22.0f;
 }

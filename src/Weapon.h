@@ -127,5 +127,8 @@ public:
 
 	// Used to determine which sound to play when the weapon fires
 	int weaponSoundId;
+
+	// Return string for ammo count
+	std::string getAmmoString();
 };
 

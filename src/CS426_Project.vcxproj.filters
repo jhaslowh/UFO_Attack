@@ -328,6 +328,9 @@
     <ClCompile Include="Script.cpp">
       <Filter>Source Files\game\scripts</Filter>
     </ClCompile>
+    <ClCompile Include="UFOCowtapult.cpp">
+      <Filter>Source Files\game\weap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NPC.h">
@@ -656,6 +659,9 @@
     </ClInclude>
     <ClInclude Include="ScriptHandler.h">
       <Filter>Header Files\game\scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="UFOCowtapult.h">
+      <Filter>Header Files\game\weap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

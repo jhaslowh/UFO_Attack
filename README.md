@@ -1,4 +1,4 @@
-CS 426 Project
+UFO Attack
 ==============
 
 About
@@ -50,6 +50,7 @@ Editor Modes
 ` or ~ : Toggle on/off  
 Commands:  
 - "help" : print out commands  
+- "help [page]" : print out command page [1-3]    
 - "off" : turn off terminal  
 - "restart" : restart entire game  
 - "clear" : clear terminal  
@@ -63,7 +64,6 @@ Commands:
 - "screen game" : resume game screen  
 - "screen newgame" : make a new game screen  
 - "screen levelselect" : go to level select screen  
-- "screen freeplay" : go to free play screen   
 - "delete savedata" : delete savedata file and set to default values  
 - "delete settings" : delete settings and set to default values  
 - "screensize [width] [height]" : reset the width and height of the screen  
@@ -103,6 +103,7 @@ Commands while in Game Screen
 - "damage ufo [damage]" : damage ufo by amount sent    
 - "damage player [damage]" : damage player by amount sent  
 - "invincible" : player takes no further damage  
+- "nodamage" : player takes no further damage  
 - "mortal" : player can start taking damage  
 - "time [0-24]" : set time of day to the sent value  
 - "timeSpeed [value]" : set how fast the time of day progresses  

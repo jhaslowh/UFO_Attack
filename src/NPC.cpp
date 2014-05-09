@@ -1,6 +1,5 @@
 #include "NPC.h"
 
-
 NPC::NPC()
 {	
 	spawnX = locX = 0.0f;
@@ -18,6 +17,8 @@ NPC::NPC()
 	beingAbducted = false;
 	alive = true;
 	mdraw = false;
+	justDied = false;
+	justAbduct = false;
 	health = healthMax = 100.0f;
 	type = NPC_HUMAN;
 	cAbductSpeed = 0.0f;
@@ -75,6 +76,20 @@ void NPC::setImageID(int id){
 int NPC::getImageID(){return imageID;}
 bool NPC::getAlive(){return alive;}
 bool NPC::getDraw(){return mdraw;}
+bool NPC::getJustDied(){
+	if (justDied){
+		justDied = false;
+		return true;
+	}
+	return false;
+}
+bool NPC::getJustAbduct(){
+	if (justAbduct){
+		justAbduct = false;
+		return true;
+	}
+	return false;
+}
 
 // Returns npc collision rec
 Rec* NPC::getCollisionRec(){return &collisionRec;}
@@ -188,10 +203,12 @@ void NPC::damage(float amount, Handlers* handlers){
 
 // Called when npc dies 
 void NPC::onDeath(Handlers* handlers){
-	// Nothing to do 
+	//((ScriptHandler*)(handlers->scriptHandler))->wasDeathOrAbduction(1);
+	justDied = true;
 }
 
 // Called when npc is abducted
 void NPC::onAbduct(Handlers* handlers){
-	// Nothing to do 
+	//((ScriptHandler*)(handlers->scriptHandler))->wasDeathOrAbduction(2);
+	justAbduct = true;
 }

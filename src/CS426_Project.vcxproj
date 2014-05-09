@@ -51,6 +51,7 @@
     <ClInclude Include="TallCrate.h" />
     <ClInclude Include="TutBox.h" />
     <ClInclude Include="TutorialSystem.h" />
+    <ClInclude Include="UFOCowtapult.h" />
     <ClInclude Include="UFOMachineGun.h" />
     <ClInclude Include="UFORocket.h" />
     <ClInclude Include="UICreditsBox.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="TallCrate.cpp" />
     <ClCompile Include="TutBox.cpp" />
     <ClCompile Include="TutorialSystem.cpp" />
+    <ClCompile Include="UFOCowtapult.cpp" />
     <ClCompile Include="UFOMachineGun.cpp" />
     <ClCompile Include="UFORocket.cpp" />
     <ClCompile Include="UICreditsBox.cpp" />

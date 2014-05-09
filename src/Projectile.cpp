@@ -95,15 +95,29 @@ void* Projectile::clone(){
 //This will act as a default in case a projectile doesn't have its own updateProjectile method
 void Projectile::updateProjectile(float deltaTime, Handlers* handlers)
 {
-	previousY = currentY;
-	previousX = currentX;
-	yVector+=1*size;
-	//xVector+=.25*size;
+	if(projectileType==3)
+	{
+		previousY = currentY;
+		previousX = currentX;
+		yVector+=10*size*deltaTime;
+		xVector-=5*size*deltaTime;
+		//There should be a very large section for collision based interactions
+		//Stuff like rolling on the ground and bouncing
+		currentX+=xVector*deltaTime;
+		currentY+=yVector*deltaTime;
+	}
+	else
+	{
+		previousY = currentY;
+		previousX = currentX;
+		yVector+=1*size;
+		//xVector+=.25*size;
 
-	//There should be a very large section for collision based interactions
-	//Stuff like rolling on the ground and bouncing
-	currentX+=xVector*deltaTime;
-	currentY+=yVector*deltaTime;
+		//There should be a very large section for collision based interactions
+		//Stuff like rolling on the ground and bouncing
+		currentX+=xVector*deltaTime;
+		currentY+=yVector*deltaTime;
+	}
 }
 
 //This method does not need to be overloaded for different projectiles, 
@@ -261,6 +275,7 @@ int Projectile::getFiredBy(){return firedBy;}
 Explosion Projectile::getExplosion(){return explosion;}
 Explosion* Projectile::getExplRef(){return &explosion;}
 
+void Projectile::setSize(int newSize){size = newSize;}
 void Projectile::setType(short type){projectileType = type;}
 void Projectile::setAlive(bool value){alive = value;}
 void Projectile::setImageId(int value){imageId = value;}
