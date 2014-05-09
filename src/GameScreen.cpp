@@ -157,6 +157,7 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			if (pauseScreen->getTransitionCode() == CLOSE_SCREEN ||
 				mKeyH->keyReleased(KEY_P) || mKeyH->keyReleased(KEY_ESCAPE)){
 				paused = false;
+				soundHandler->playSoundEffect(SE_RESUME);
 				pauseScreen->hide();
 			}
 		}
@@ -169,6 +170,7 @@ void GameScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 				// Check for pause/unpause
 				if (mKeyH->keyReleased(KEY_P) || mKeyH->keyReleased(KEY_ESCAPE)){
 					paused = true;
+					soundHandler->playSoundEffect(SE_PAUSE);
 					pauseScreen->show();
 				}
 
