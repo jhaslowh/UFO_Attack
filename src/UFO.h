@@ -102,6 +102,7 @@ public:
 	void setShield(float value);
 	float getShield();
 	void setInvincible(bool value);
+	void setRayOn(bool value);
 
 	// Check if abduction ray is turned on 
 	bool isRayOn();

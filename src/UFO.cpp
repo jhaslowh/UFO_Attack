@@ -79,6 +79,7 @@ float UFO::getMaxShield(){return maxShield;}
 void UFO::setShield(float value){shield = value;}
 float UFO::getShield(){return shield;}
 void UFO::setInvincible(bool value){invincible = value;}
+void UFO::setRayOn(bool value){rayOn = value;}
 
 // Check if abduction ray is turned on 
 bool UFO::isRayOn(){return rayOn;}
