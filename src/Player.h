@@ -20,6 +20,7 @@
 #include "StoreItems.h"
 #include "GLColors.h"
 #include "ProjectileHandler.h"
+#include "SoundHandler.h"
 
 #define GRAVITY 980.0f
 
