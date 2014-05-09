@@ -13,6 +13,8 @@ struct TLine {
 #define TL_WARNING 2
 #define TL_SUCCESS 3
 
+#define T_LINE_COUNT 20
+
 class UITerminal : public UITransitionObject
 {
 	
@@ -37,7 +39,7 @@ class UITerminal : public UITransitionObject
 	// Type colors 
 	GLfloat** tColors;
 	// Lines
-	TLine lines[10];
+	TLine lines[T_LINE_COUNT];
 
 public:
 	UITerminal();

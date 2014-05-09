@@ -177,7 +177,7 @@ void onUpdate(){
 void checkCommand(string line){
 	// Command
 	string command;
-	string args("none");
+	string args("");
 
 	// Get command and args 
 	UITerminal::getCommandAndArgs(&line, &command, &args);
@@ -195,7 +195,7 @@ void checkCommand(string line){
 		showTerminal = false;
 		terminal->hide();
 
-		if (args != "none")
+		if (args != "")
 			terminal->addLine("Ignoring unrecognized arguments given to command: off", TL_WARNING);
 
 		return;
@@ -220,16 +220,73 @@ void checkCommand(string line){
 	else if (command == "help"){
 		terminal->clear();
 
-		terminal->addLine("off: close terminal");
-		terminal->addLine("restart: restart game");
-		terminal->addLine("clear: clear terminal");
-		terminal->addLine("version: prints out version");
-		terminal->addLine("screen hide: hide screen");
-		terminal->addLine("screen show: show screen");
-		terminal->addLine("test: load test screen");
-		terminal->addLine("exit: exit game");
-		terminal->addLine("saveFile [file].[x].[y].[difficulty].[levelrequirement]: exports a level config to file");
-
+		if (args == "" || args == "1"){
+			terminal->addLine("help [page] : print out help page [1-3]", TL_SUCCESS); 
+			terminal->addLine("off : close terminal", TL_SUCCESS); 
+			terminal->addLine("restart : restart entire game", TL_SUCCESS); 
+			terminal->addLine("clear : clear terminal", TL_SUCCESS); 
+			terminal->addLine("version : print out version", TL_SUCCESS); 
+			terminal->addLine("screen hide : hide the current screen", TL_SUCCESS); 
+			terminal->addLine("screen show : show the current screen", TL_SUCCESS); 
+			terminal->addLine("quit : exit game", TL_SUCCESS); 
+			terminal->addLine("exit : exit game", TL_SUCCESS); 
+			terminal->addLine("screen main : go to main menu screen", TL_SUCCESS); 
+			terminal->addLine("screen store : go to store screen", TL_SUCCESS); 
+			terminal->addLine("screen settings : go to settings screen", TL_SUCCESS); 
+			terminal->addLine("screen game : resume game", TL_SUCCESS); 
+			terminal->addLine("screen newgame : make new game screen", TL_SUCCESS); 
+			terminal->addLine("screen levelselect : go to level select screen", TL_SUCCESS); 
+			terminal->addLine("delete savedata : delete savedata file and set to default values", TL_SUCCESS); 
+			terminal->addLine("delete settings : delete settings and set to default values", TL_SUCCESS); 
+			terminal->addLine("screensize [width] [height] : reset width and height of the screen", TL_SUCCESS); 
+			terminal->addLine("fullscreen [on / off] : toggle fullscreen", TL_SUCCESS); 
+			terminal->addLine("tutorial [on / off] : toggle tutorial", TL_SUCCESS); 
+		}
+		else if (args == "2"){
+			terminal->addLine("-- The following commands are for the level editor --", TL_SUCCESS); 
+			terminal->addLine("saveFile [file].[x].[y].[difficulty].[levelrequirement] : save current level to file with sent args", TL_SUCCESS); 
+			terminal->addLine("save [file] : save current level to file", TL_SUCCESS); 
+			terminal->addLine("editor open : open level editor", TL_SUCCESS); 
+			terminal->addLine("editor close : close level editor", TL_SUCCESS); 
+			terminal->addLine("scenery add tree : add new tree to level", TL_SUCCESS); 
+			terminal->addLine("scenery add sign [text] : add new sign to level ", TL_SUCCESS); 
+			terminal->addLine("scenery add hay : add new hay bale to level", TL_SUCCESS); 
+			terminal->addLine("scenery add crate : add new crate", TL_SUCCESS); 
+			terminal->addLine("scenery add fence : add new fence", TL_SUCCESS); 
+			terminal->addLine("scenery add longCrate : add new long crate", TL_SUCCESS); 
+			terminal->addLine("scenery add tallCrate : add new tall crate", TL_SUCCESS); 
+			terminal->addLine("scenery add barn : add new barn", TL_SUCCESS); 
+			terminal->addLine("scenery add houseBrown : add new brown house", TL_SUCCESS); 
+			terminal->addLine("scenery add houseBlue : add new blue house", TL_SUCCESS); 
+			terminal->addLine("scenery add barracks : add new barracks", TL_SUCCESS); 
+			terminal->addLine("npc add soldier : add new soldier npc to level", TL_SUCCESS); 
+			terminal->addLine("npc add sniper : add new sniper npc to level", TL_SUCCESS); 
+			terminal->addLine("npc add cow : add new cow npc to level", TL_SUCCESS); 
+			terminal->addLine("npc add hsoldier : add new heavy soldier npc to level", TL_SUCCESS); 
+		}
+		else if (args == "3"){
+			terminal->addLine("npc add tank : add new tank npc to level", TL_SUCCESS); 
+			terminal->addLine("npc add turret : add new turret npc to level", TL_SUCCESS); 
+			terminal->addLine("npc add sam : add new sam site npc to level", TL_SUCCESS); 
+			terminal->addLine("npc add civilian : add new civilian to level", TL_SUCCESS); 
+			terminal->addLine("", TL_SUCCESS); 
+			terminal->addLine("-- The following commands are for levels --", TL_SUCCESS); 
+			terminal->addLine("level reset : reset the current level", TL_SUCCESS); 
+			terminal->addLine("zoom default : sets the zoom to 1.0", TL_SUCCESS); 
+			terminal->addLine("zoom [double] : set the level zoom to the sent value", TL_SUCCESS); 
+			terminal->addLine("damage ufo [damage] : damage ufo by amount sent", TL_SUCCESS); 
+			terminal->addLine("damage player [damage] : damage player by amount sent", TL_SUCCESS); 
+			terminal->addLine("invincible : player takes no further damage", TL_SUCCESS); 
+			terminal->addLine("nodamage : player takes no further damage", TL_SUCCESS); 
+			terminal->addLine("mortal : player can start taking damage", TL_SUCCESS); 
+			terminal->addLine("time [0-24] : set time of day to the sent value", TL_SUCCESS); 
+			terminal->addLine("timeSpeed [value] : set how fast the time of day progresses", TL_SUCCESS); 
+			terminal->addLine("tutorial skip : skip tutorial if in it", TL_SUCCESS); 
+			terminal->addLine("", TL_SUCCESS); 
+			terminal->addLine("-- The following commands are for level select --", TL_SUCCESS); 
+			terminal->addLine("unlockall : unlocks all levels", TL_SUCCESS); 
+		}
+		
 		return;
 	}
 	// Check for version command 

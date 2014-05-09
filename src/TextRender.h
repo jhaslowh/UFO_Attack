@@ -13,11 +13,11 @@
 #define TR_SPACE_LENGTH 30
 #define TR_FONT_SIZE 72.0f
 #define TR_FONT_BOTTOM_SPACE 5.0f
-#define TR_CHARACTERS 68
+#define TR_CHARACTERS 70
 
 class TextRender
 {
-	float letterWidth[68];
+	float letterWidth[TR_CHARACTERS];
 	
 	// Drawing variables 
 	GLushort indicies[6];
