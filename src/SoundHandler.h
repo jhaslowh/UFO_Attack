@@ -11,6 +11,7 @@
 
 //Music
 #define SE_MENU_MUSIC 11000
+#define SE_ABDUCT 11001
 
 //Sound Effects
 #define SE_PLACEHOLDER 11111
@@ -32,7 +33,7 @@
 #define SE_UFO_UP 10014
 #define SE_UFO_DOWN 10015
 #define SE_UFO_ERROR 10016
-
+#define SE_ABDUCT_SUCCESS 10017
 
 #define SE_BUTTON_PRESS 10014
 
@@ -51,6 +52,7 @@ public:
 	Mix_Chunk *pauseSound;
 	Mix_Chunk *resumeSound;
 	Mix_Music *menuMusic;
+	Mix_Music *abductMusic;
 	Mix_Chunk *blasterSound;
 	Mix_Chunk *npcSMGSound;
 	Mix_Chunk *npcSniperSound;
@@ -59,9 +61,12 @@ public:
 	Mix_Chunk *ufoRocketLaunchSound;
 	Mix_Chunk *rocketExplodeSound;
 	Mix_Chunk *ufoErrorSound;
+	Mix_Chunk *abductSuccessSound;
 	Settings * settings;
 
 	void playMusic(int musicID);
+	void startMusic(int musicID);
+	void stopMusic();
 	void playSoundEffect(int soundID);
 private:
 	void loadMusic();
