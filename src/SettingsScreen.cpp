@@ -244,6 +244,7 @@ void SettingsScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// Update back button 
 	buttonBack->updateInput(mKeyH, mMouseH);
 	if (buttonBack->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		transitionCode = SCREEN_MAIN;
 		saveSettings(settings);
 		saveSaveData(savedata);
@@ -253,6 +254,7 @@ void SettingsScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	// Update apply button 
 	buttonApply->updateInput(mKeyH, mMouseH);
 	if (buttonApply->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		saveSettings(settings);
 		transitionCode = RESTART_GAME;
 	}
