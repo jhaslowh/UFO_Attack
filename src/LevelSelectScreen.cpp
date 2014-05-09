@@ -93,6 +93,7 @@ void LevelSelectScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 	// Close game
 	if (buttonMainMenu->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		transitionCode = SCREEN_MAIN;
 		hide();
 	}
@@ -103,6 +104,7 @@ void LevelSelectScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		buttonLevels[i]->updateInput(mKeyH, mMouseH);
 		if(buttonLevels[i]->wasClicked())
 		{
+			soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 			transitionCode = SCREEN_GAME_NEW;
 			sd->levelToLoad = levelsList[i];
 			hide();

@@ -98,6 +98,7 @@ void PauseScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	if (showControls){
 		controlsBack->updateInput(mKeyH, mMouseH);
 		if (controlsBack->wasClicked()){
+			soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 			controls->show();
 			bResume->show();
 			bQuit->show();
@@ -111,6 +112,7 @@ void PauseScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		controls->updateInput(mKeyH, mMouseH);
 
 		if (controls->wasClicked()){
+			soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 			controls->hide();
 			bResume->hide();
 			bQuit->hide();
@@ -118,8 +120,10 @@ void PauseScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			showControls = true;
 		}
 		if (bResume->wasClicked())
+			soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 			transitionCode = CLOSE_SCREEN;
 		if (bQuit->wasClicked())
+			soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 			transitionCode = SCREEN_MAIN;
 	}
 }
