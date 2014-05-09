@@ -119,12 +119,14 @@ void PauseScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			controlsBack->show();
 			showControls = true;
 		}
-		if (bResume->wasClicked())
+		if (bResume->wasClicked()){
 			soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 			transitionCode = CLOSE_SCREEN;
-		if (bQuit->wasClicked())
+		}
+		if (bQuit->wasClicked()){
 			soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 			transitionCode = SCREEN_MAIN;
+		}
 	}
 }
 

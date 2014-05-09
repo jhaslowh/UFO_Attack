@@ -442,8 +442,7 @@ void changeScreen(){
 			if (tcode != SCREEN_MAIN_SAVE_GAME){
 				// Tell screen to unload 
 				screen_unload = screen;
-				// Wait for rendering and unload to finish
-				while (render){} 
+				screen = NULL;
 			}
 			// Save game screen 
 			else {
@@ -477,8 +476,10 @@ void changeScreen(){
 
 			// Resume game screen 
 			if (tcode == SCREEN_GAME_RESUME) {
-				if (gscreen != NULL)
+				if (gscreen != NULL){
 					screen = gscreen;
+					gscreen = NULL;
+				}
 				else {
 					screen = (UIScreen*)new GameScreen(savedata);
 					screen->init((float)settings->getScreenWidth(),(float)settings->getScreenHeight(), soundHandler);
@@ -521,6 +522,16 @@ void onDraw()
 		gscreen_unload->unload();
 		delete gscreen_unload;
 		gscreen_unload = NULL;
+	}
+
+	// Unload screen if needed
+	if (screen_unload != NULL){
+		cout << "Screen Unloading...\n";
+		screen_unload->unload();
+		// Delete old screen 
+		delete screen_unload;
+		screen_unload = NULL;
+		cout << "Screen Unloaded\n";
 	}
 }
  
@@ -613,16 +624,6 @@ void eventAndRenderLoop(){
 			// Swap buffers 
 			SDL_GL_SwapWindow(window);
 			render = false;
-		}
-
-		// Unload screen if needed
-		if (screen_unload != NULL){//unloadScreen && !screen->isUnloaded()){
-			cout << "Screen Unloading...\n";
-			screen_unload->unload();
-			// Delete old screen 
-			delete screen_unload;
-			screen_unload = NULL;
-			cout << "Screen Unloaded\n";
 		}
 	}
 }
