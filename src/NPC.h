@@ -6,6 +6,7 @@
 #include "Collision.h"
 #include "Player.h"
 #include "UFO.h"
+//#include "ScriptHandler.h"
 
 #define GRAVITY 980.0f
 

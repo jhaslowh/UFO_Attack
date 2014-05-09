@@ -75,10 +75,12 @@ void Script::updateScript(float deltaTime)
 	}
 	else if(scriptType==DEATH_CONTROL)
 	{
-		if(scriptCompareValue==0)
+		if(scriptCurrentValue>=(float)atoi(scriptStorage[1].c_str()))
+			isScriptComplete = true;
+		//old method, keeping in case need to revert
+		/*if(scriptCompareValue==0)
 		{
 			scriptCompareValue = ((NPCHandler*)myHandles->npcHandler)->getAliveCount();
-			cout << ((NPCHandler*)myHandles->npcHandler)->getAliveCount();
 		}
 		else
 		{
@@ -87,17 +89,25 @@ void Script::updateScript(float deltaTime)
 			scriptCompareValue = ((NPCHandler*)myHandles->npcHandler)->getAliveCount();
 			if(scriptCurrentValue>=(float)atoi(scriptStorage[1].c_str()))
 				isScriptComplete = true;
-		}
+		}*/
 	}
 	else if(scriptType==DISTANCE_CONTROL)
 	{
-		scriptCurrentValue = ((Player*)(myHandles->player))->getX();
-		if((float)atoi(scriptStorage[1].c_str())>=(scriptCurrentValue-scriptCompareValue))
+		if(scriptCompareValue==0 && !((Player*)(myHandles->player))->isInUFO())
+			scriptCompareValue = ((Player*)(myHandles->player))->getX();
+		cout << "ScriptCompareValue: " << scriptCompareValue << std::endl;
+		if(((Player*)(myHandles->player))->isInUFO())
+			scriptCurrentValue = ((Player*)(myHandles->player))->ufo->getX();
+		else
+			scriptCurrentValue = ((Player*)(myHandles->player))->getX();
+		cout << "ScriptCurrentValue: " << scriptCurrentValue << std::endl;
+		if((float)atoi(scriptStorage[1].c_str())<=(scriptCurrentValue-scriptCompareValue))
 			isScriptComplete = true;
 	}
 	else if(scriptType==ABDUCTION_CONTROL)
 	{
-
+		if(scriptCurrentValue>=(float)atoi(scriptStorage[1].c_str()))
+			isScriptComplete = true;
 	}
 }
 
@@ -123,6 +133,18 @@ void Script::executeScript()
 		((Player*)(myHandles->player))->applyDamage((float)atoi(scriptStorage[3].c_str()));
 	}
 	isActive = false;
+}
+
+void Script::npcAbduction()
+{
+	if(scriptType==ABDUCTION_CONTROL)
+		scriptCurrentValue++;
+}
+
+void Script::npcDeath()
+{
+	if(scriptType==DEATH_CONTROL)
+		scriptCurrentValue++;
 }
 
 bool Script::isScriptDone()

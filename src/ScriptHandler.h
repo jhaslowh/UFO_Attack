@@ -20,5 +20,6 @@ public:
 	virtual ~ScriptHandler();
 
 	void updateScripts(float deltaTime);
+	void wasDeathOrAbduction(int whichOne);
 	bool getIsActive();
 };

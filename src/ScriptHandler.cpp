@@ -51,6 +51,26 @@ void ScriptHandler::updateScripts(float deltaTime)
 	}
 }
 
+void ScriptHandler::wasDeathOrAbduction(int whichOne)
+{
+	if(whichOne==1)
+	{
+		for(int i=0;i<numberOfScripts;i++)
+		{
+			if(scriptList[i]->getIsActive())
+				scriptList[i]->npcDeath();
+		}
+	}
+	else if(whichOne==2)
+	{
+		for(int i=0;i<numberOfScripts;i++)
+		{
+			if(scriptList[i]->getIsActive())
+				scriptList[i]->npcAbduction();
+		}
+	}
+}
+
 bool ScriptHandler::getIsActive()
 {
 	return isActive;

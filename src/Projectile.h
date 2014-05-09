@@ -125,6 +125,7 @@ public:
 	Explosion* getExplRef();
 	//Getter methods, 
 
+	void setSize(int newSize);
 	void setType(short type);
 	void setAlive(bool value);
 	void setImageId(int value);

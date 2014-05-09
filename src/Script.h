@@ -30,6 +30,8 @@ public:
 
 	void updateScript(float deltaTime);
 	void executeScript();
+	void npcDeath();
+	void npcAbduction();
 
 	bool isScriptDone();
 	bool getIsActive();

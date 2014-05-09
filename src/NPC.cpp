@@ -189,9 +189,11 @@ void NPC::damage(float amount, Handlers* handlers){
 // Called when npc dies 
 void NPC::onDeath(Handlers* handlers){
 	// Nothing to do 
+	//((ScriptHandler*)(handlers->scriptHandler))->wasDeathOrAbduction(1);
 }
 
 // Called when npc is abducted
 void NPC::onAbduct(Handlers* handlers){
 	// Nothing to do 
+	//((ScriptHandler*)(handlers->scriptHandler))->wasDeathOrAbduction(2);
 }

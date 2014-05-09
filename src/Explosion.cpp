@@ -161,3 +161,25 @@ void Explosion::setAsBasic(){
 	frameTime = 0.05f;
 	cframeTime = 0.0f;
 }
+
+void Explosion::setAsSplat()
+{
+	// --- Drawing 
+	imageID = GI_SPLAT1;
+	locX = locY = 0.0f;
+	originX = originY = 30.0f;
+	rotation = 0.0f;
+
+	// --- Exploding
+	damage = 2.0f;
+	range = 40.0f;
+	explTime = 0.25f;			
+	cexplTime = 0.0f;		
+
+	// --- Animation
+	animates = true;
+	frames = 3;
+	cframe = 0;
+	frameTime = 0.05f;
+	cframeTime = 0.0f;
+}

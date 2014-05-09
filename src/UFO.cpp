@@ -99,7 +99,7 @@ void UFO::init(SaveData* savedata){
 		else if (savedata->getUFOWeapon1() == StoreItems::SID_UFO_WEAPON_MACHINE_GUN)
 			uweapon1 = (Weapon*)new UFOMachineGun(); 
 		else if (savedata->getUFOWeapon1() == StoreItems::SID_UFO_WEAPON_COWTAPOLT)
-			uweapon1 = (Weapon*)new UFORocket(); // TODO change this to cowtapolt
+			uweapon1 = (Weapon*)new UFOCowtapult(); // TODO change this to cowtapolt
 
 		// Load player weapon 2 from savedata 
 		if (savedata->getUFOWeapon2() == StoreItems::SID_UFO_WEAPON_MISSILE)
@@ -107,7 +107,7 @@ void UFO::init(SaveData* savedata){
 		else if (savedata->getUFOWeapon2() == StoreItems::SID_UFO_WEAPON_MACHINE_GUN)
 			uweapon2 = (Weapon*)new UFOMachineGun(); 
 		else if (savedata->getUFOWeapon2() == StoreItems::SID_UFO_WEAPON_COWTAPOLT)
-			uweapon2 = (Weapon*)new UFORocket(); // TODO change this to cowtapolt
+			uweapon2 = (Weapon*)new UFOCowtapult(); // TODO change this to cowtapolt
 	}
 }
 	

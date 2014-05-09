@@ -92,5 +92,7 @@ public:
 
 	// Set as a basic explosion
 	void setAsBasic();
+
+	void setAsSplat();
 };
 
