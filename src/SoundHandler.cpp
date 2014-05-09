@@ -3,6 +3,7 @@
 
 SoundHandler::SoundHandler(Settings * settingsHandlerPointer)
 {
+	settings = settingsHandlerPointer;
 	if(SDL_Init(SDL_INIT_AUDIO)<0){
 		// errors
 		printf("Error initializing audio. SDL Error info %s\n", SDL_GetError());
@@ -29,6 +30,15 @@ void SoundHandler::loadMusic(void){
 }
 
 void SoundHandler::playMusic(int musicID){
+
+	try{
+//		Mix_VolumeMusic((int)(MIX_MAX_VOLUME*settings->musicVol*settings->masterVol));
+//		Mix_Volume(-1, (int)(MIX_MAX_VOLUME*settings->sfxVol*settings->masterVol));
+	}
+	catch(int e){
+		//TODO some logging needs to happen here. I think mix_volume gets called before sdl mixer is created
+	}
+
 	switch(musicID){
 		case SE_MENU_MUSIC:
 			Mix_PlayMusic(menuMusic, 1 );
@@ -50,6 +60,15 @@ void SoundHandler::loadSound(void){
 
 //example playSoundEffect(SE_BLASTER_SOUND);
 void SoundHandler::playSoundEffect(int soundID){
+	try{
+		
+		Mix_VolumeMusic((int)(MIX_MAX_VOLUME*settings->getMusicVol()*settings->getMasterVol()));
+		Mix_Volume(-1, (int)(MIX_MAX_VOLUME*settings->getSfxVol()*settings->getMasterVol()));
+	}
+	catch(int e){
+		//TODO some logging needs to happen here. I think mix_volume gets called before sdl mixer is created
+	}
+
 	switch(soundID){
 		case SE_PLAYER_LASER_SOUND:
 			Mix_PlayChannel(-1, blasterSound, 0);
