@@ -53,6 +53,7 @@ void CreditsScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 	bBack->updateInput(mKeyH, mMouseH);
 	if (bBack->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		transitionCode = SCREEN_MAIN;
 	}
 }
