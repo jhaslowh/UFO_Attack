@@ -13,6 +13,7 @@
 #define SE_MENU_MUSIC 11000
 
 //Sound Effects
+#define SE_PLACEHOLDER 11111
 #define SE_PLAYER_LASER_SOUND 10000
 #define SE_NPC_SMG_SOUND 10001
 #define SE_NPC_SNIPER_SOUND 10002
@@ -29,11 +30,15 @@
 #define SE_PAUSE 10012
 #define SE_RESUME 10013
 
+
+#define SE_BUTTON_PRESS 10014
+
 class SoundHandler
 {
 public:
 	SoundHandler(Settings * settingsHandler);
 	~SoundHandler(void);
+	Mix_Chunk *placeholderSound;
 	Mix_Chunk *playerDamagedSound;
 	Mix_Chunk *ufoHitSound;
 	Mix_Chunk *ufoEnterSound;

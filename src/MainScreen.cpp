@@ -61,6 +61,7 @@ void MainScreen::init(float screen_width, float screen_height, void* sh){
 	logo.setOrigin(256.0f, 256.0f);
 	logo.setAlpha(0.0f);
 	logo.setScale(lscale);
+	soundHandler = (SoundHandler*)sh;
 }
 
 // Load screen
@@ -114,28 +115,33 @@ void MainScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	}
 	// Go to settings screen
 	if (buttonSettings->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		transitionCode = SCREEN_SETTINGS;
 		hide();
 	}
 	// Go to free play screen
 	if (buttonEquip->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		transitionCode = SCREEN_EQUIP;
 		hide();
 	}
 	// Go to store 
 	if (buttonStore->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		transitionCode = SCREEN_STORE;
 		hide();
 	}
 
 	// Open Level Select Screen
 	if (buttonLevelSelect->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		transitionCode = SCREEN_LEVEL_SELECT; 
 		hide();
 	}
 
 	// Resume game if resume clicked 
 	if (buttonResume != NULL && buttonResume->wasClicked()) {
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		transitionCode = SCREEN_GAME_RESUME;
 		hide();
 	}

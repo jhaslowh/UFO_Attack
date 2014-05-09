@@ -4,6 +4,7 @@
 #include "UIButton.h"
 #include "Sprite.h"
 #include <stdio.h>
+#include "SoundHandler.h"
 
 class MainScreen : public UIScreen
 {
@@ -15,6 +16,7 @@ class MainScreen : public UIScreen
 	UIButton* buttonQuit;
 	Sprite logo;
 	bool showResume;
+	SoundHandler * soundHandler;
 
 public:
 	MainScreen(bool showResume);
