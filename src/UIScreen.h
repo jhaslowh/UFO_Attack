@@ -8,7 +8,7 @@
 #include "TextureAtlas.h"
 #include "UITerminal.h"
 #include "FileHelper.h"
-
+#include "SoundHandler.h"
 // These codes are for transitionCode
 
 // Restart game code
@@ -45,8 +45,7 @@ protected:
 	float hideTime;		// Total screen hide time
 
 	UIObject* uio_focus; // Current focused item 
-	void* soundHandler;
-
+	SoundHandler * soundHandler;
 public:
 	UIScreen();
 	virtual ~UIScreen();

@@ -56,7 +56,7 @@ void SoundHandler::loadSound(void){
 	rocketExplodeSound = Mix_LoadWAV("audio/rocket_explosion.wav");
 
 	placeholderSound = Mix_LoadWAV("audio/placeholder.wav");
-
+	buttonSound = Mix_LoadWAV("audio/click.wav");
 	playerDamagedSound = Mix_LoadWAV("audio/player_hit.wav");
 	ufoHitSound= Mix_LoadWAV("audio/ufo_hit.wav");
 	ufoEnterSound = Mix_LoadWAV("audio/ufo_up.wav");
@@ -117,7 +117,9 @@ void SoundHandler::playSoundEffect(int soundID){
 		case SE_RESUME:
 			Mix_PlayChannel(-1, resumeSound, 0);
 			break;
-
+		case SE_BUTTON_PRESS:
+			Mix_PlayChannel(-1, buttonSound, 0);
+			break;
 		default:
 			Mix_PlayChannel(-1, placeholderSound, 0);
 			break;

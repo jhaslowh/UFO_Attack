@@ -38,6 +38,7 @@ class SoundHandler
 public:
 	SoundHandler(Settings * settingsHandler);
 	~SoundHandler(void);
+	Mix_Chunk *buttonSound;
 	Mix_Chunk *placeholderSound;
 	Mix_Chunk *playerDamagedSound;
 	Mix_Chunk *ufoHitSound;
