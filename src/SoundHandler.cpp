@@ -68,6 +68,9 @@ void SoundHandler::loadSound(void){
 	ufoEnterSound = Mix_LoadWAV("audio/ufo_up.wav");
 	ufoExitSound = Mix_LoadWAV("audio/ufo_down.wav");
 	ufoErrorSound = Mix_LoadWAV("audio/ufo_error.wav");
+
+	cowtapoltSound = Mix_LoadWAV("audio/cowtapolt.wav");
+
 }
 
 
@@ -133,6 +136,9 @@ void SoundHandler::playSoundEffect(int soundID){
 			break;
 		case SE_ABDUCT_SUCCESS:
 			Mix_PlayChannel(-1, abductSuccessSound, 0);
+			break;
+		case SE_COWTAPULT:
+			Mix_PlayChannel(-1, cowtapoltSound, 0);
 			break;
 		default:
 			Mix_PlayChannel(-1, placeholderSound, 0);

@@ -3,7 +3,7 @@
 
 UFOCowtapult::UFOCowtapult() : Weapon()
 {
-	weaponSoundId = NULL; //Could use a good MOOO
+	weaponSoundId = SE_COWTAPULT;
 	imageid = PI_UFO_COWTAPULT;
 	originX = 0.0f; 
 	originY = 16.0f;

@@ -31,11 +31,13 @@
 #define SE_PAUSE 10012
 #define SE_RESUME 10013
 #define SE_UFO_UP 10014
+#define SE_BUTTON_PRESS 10014 
+//TODO this seams like it should cause a problem, but has not yet
 #define SE_UFO_DOWN 10015
 #define SE_UFO_ERROR 10016
 #define SE_ABDUCT_SUCCESS 10017
+#define SE_COWTAPULT 10018
 
-#define SE_BUTTON_PRESS 10014
 
 class SoundHandler
 {
@@ -62,6 +64,7 @@ public:
 	Mix_Chunk *rocketExplodeSound;
 	Mix_Chunk *ufoErrorSound;
 	Mix_Chunk *abductSuccessSound;
+	Mix_Chunk *cowtapoltSound;
 	Settings * settings;
 
 	void playMusic(int musicID);
