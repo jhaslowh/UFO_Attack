@@ -535,6 +535,7 @@ void Player::checkCollision(Handlers* handlers){
 							// Apply projectile damage to player
 							if(!invincible){
 								applyDamage(projs[i]->getDamage());
+								((SoundHandler*)handlers->soundHandler)->playSoundEffect(SE_PLAYER_DAMAGED);
 							}							
 						}
 					}
