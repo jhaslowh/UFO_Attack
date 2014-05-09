@@ -102,6 +102,23 @@ void SoundHandler::playSoundEffect(int soundID){
 		case SE_PLAYER_DAMAGED:
 			Mix_PlayChannel(-1, playerDamagedSound, 0);
 			break;
+		case SE_UFO_HIT:
+			Mix_PlayChannel(-1, ufoHitSound, 0);
+			break;
+		case SE_ENTER_UFO:
+			Mix_PlayChannel(-1, ufoEnterSound, 0);
+			break;
+		case SE_GAME_OVER:
+			Mix_PlayChannel(-1, gameOverSound, 0);
+			break;
+		case SE_PAUSE:
+			Mix_PlayChannel(-1, pauseSound,0);
+			break;
+		case SE_RESUME:
+			Mix_PlayChannel(-1, resumeSound, 0);
+			break;
+
+
 	}
 }
 
