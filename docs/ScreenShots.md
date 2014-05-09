@@ -1,24 +1,13 @@
 Screenshots
 -----------
 
-**GamePlay**  
-
-![s1](/docs/screenshots/UFO Attack 2014-05-03 15-19-50-27.png)
-![s1](/docs/screenshots/UFO Attack 2014-05-03 15-19-54-68.png)
-![s1](/docs/screenshots/UFO Attack 2014-05-03 15-20-07-06.png)
-
-**Level Select**  
-
-![s1](/docs/screenshots/UFO Attack 2014-05-03 15-19-42-30.png)
-
-**Equipment Screen**  
-
-![s1](/docs/screenshots/UFO Attack 2014-05-03 15-17-41-19.png)
-
-**Store**  
-
-![s1](/docs/screenshots/UFO Attack 2014-05-03 15-17-34-44.png)
-
-**Main Menu**  
-
-![s1](/docs/screenshots/UFO Attack 2014-05-03 15-17-27-98.png)
+![s1](/docs/webpage/images/gallery/gameplay1.png)
+![s1](/docs/webpage/images/gallery/gameplay2.png)
+![s1](/docs/webpage/images/gallery/gameplay3.png)
+![s1](/docs/webpage/images/gallery/gameplay4.png)
+![s1](/docs/webpage/images/gallery/gameplay5.png)
+![s1](/docs/webpage/images/gallery/gameplay6.png)
+![s1](/docs/webpage/images/gallery/gameplay7.png)
+![s1](/docs/webpage/images/gallery/levelselect.png)
+![s1](/docs/webpage/images/gallery/store.png)
+![s1](/docs/webpage/images/gallery/equipment.png)

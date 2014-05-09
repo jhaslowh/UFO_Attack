@@ -356,3 +356,12 @@ void Weapon::reload(){
 bool Weapon::canFire(){
 	return (clip != 0 || !usesAmmo) && cTimeBetweenShots <= 0;
 }
+
+// Return string for ammo count
+std::string Weapon::getAmmoString(){
+	std::string ammoS("");
+	ammoS += toString(clip);
+	ammoS += "/";
+	ammoS += toString(clipCapacity);
+	return ammoS;
+}

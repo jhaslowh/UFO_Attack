@@ -38,6 +38,7 @@
 #define UII_DIFFICULTY2 29
 #define UII_DIFFICULTY3 30
 #define UII_TUT_ARROW 31
+#define UII_HUD_AMMO 32
 
 
 class UIAtlas : public TextureAtlas

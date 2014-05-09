@@ -153,6 +153,9 @@ class Player
 	float hudEnergyMaxScale;
 	float hudEnergyLocX;
 	float hudEnergyLocY;
+	// Ammo
+	float ammoLocX, ammoLocY;
+	float ammoOffsetX, ammoOffsetY;
 
 	// Colors
 	GLfloat hudHealthColor[4];
@@ -275,6 +278,9 @@ public:
 
 	// Make it so the player will take damage 
 	void makeMortal();
+
+	// Get ammo string for current weapon
+	std::string getAmmoString();
 
 private:
 

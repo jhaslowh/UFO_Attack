@@ -63,7 +63,6 @@ Commands:
 - "screen game" : resume game screen  
 - "screen newgame" : make a new game screen  
 - "screen levelselect" : go to level select screen  
-- "screen freeplay" : go to free play screen   
 - "delete savedata" : delete savedata file and set to default values  
 - "delete settings" : delete settings and set to default values  
 - "screensize [width] [height]" : reset the width and height of the screen  

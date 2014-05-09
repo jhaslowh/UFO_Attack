@@ -452,3 +452,15 @@ void UFO::replinishArmor(){
 bool UFO::alive(){
 	return armor > 0.0f;
 }
+
+// Get ammo string for current weapon
+std::string UFO::getAmmoString(){
+	if (usingWeapon1 && uweapon1 != NULL){
+		return uweapon1->getAmmoString();
+	}
+	else if (!usingWeapon1 && uweapon2 != NULL){
+		return uweapon2->getAmmoString();
+	}
+
+	return std::string("0/0");
+}

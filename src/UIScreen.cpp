@@ -144,13 +144,6 @@ bool UIScreen::parseCommand(UITerminal* terminal, std::string command, std::stri
 			return true;
 		}
 
-		// Go to free play
-		if (args == "freeplay"){
-			terminal->addLine(command + " " + args, TL_SUCCESS);
-			transitionCode = SCREEN_FREE_PLAY;
-			return true;
-		}
-
 		// Go to credits screen
 		if (args == "credits"){
 			terminal->addLine(command + " " + args, TL_SUCCESS);

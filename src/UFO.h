@@ -146,5 +146,8 @@ public:
 
 	// Returns true if ufo is alive 
 	bool alive();
+	
+	// Get ammo string for current weapon
+	std::string getAmmoString();
 };
 
