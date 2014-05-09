@@ -35,6 +35,8 @@ public:
 	Mix_Chunk *ufoRocketLaunchSound;
 	Mix_Chunk *rocketExplodeSound;
 
+	Settings * settings;
+
 	void playMusic(int musicID);
 	void playSoundEffect(int soundID);
 private:
