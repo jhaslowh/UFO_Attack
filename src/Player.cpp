@@ -728,8 +728,6 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 			}
 			else {
 				soundHand->playSoundEffect(SE_UFO_ERROR);
-
-				// TODO play error sound 
 			}
 		}
 	}
