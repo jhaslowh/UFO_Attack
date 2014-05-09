@@ -18,7 +18,7 @@ void UIAtlas::load(){
 
 	// Make text renderer 
 	mTextRender = new TextRender();
-	VertCordGenerator* vcg = new VertCordGenerator(1024,1024);
+	VertCordGenerator* vcg = new VertCordGenerator(1024,512);
 	mTextRender->createFontBuffers(vcg);
 
 	// Add UI elements to the buffers
@@ -92,6 +92,9 @@ void UIAtlas::load(){
 
 	// Tut arrow
 	vcg->addFrame(631.0f, 175.0f, 20.0f, 20.0f);
+
+	// Tut ammo
+	vcg->addFrame(801.0f, 106.0f, 20.0f, 20.0f);
 
 	// Grab the arrays 
 	verts = vcg->getVertices();
