@@ -713,10 +713,13 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 		// Switch from ufo to on foot 
 		if (mKeyH->keyReleased(KEY_Q)){
 			if (inUFO || (!inUFO && abs(locX - ufo->getCenterX()) < 100.0f)){
+
+				soundHand->stopMusic();//stop beam sound
 				inUFO = !inUFO;
 
 				if(inUFO){
 					soundHand->playSoundEffect(SE_EXIT_UFO);
+					
 				} else {
 					soundHand->playSoundEffect(SE_ENTER_UFO);
 				}
