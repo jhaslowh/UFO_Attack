@@ -55,6 +55,9 @@ void SoundHandler::loadSound(void){
 	ufoRocketLaunchSound = Mix_LoadWAV("audio/ufo_rocket_launch.wav");//TODO NEED SOUND
 	rocketExplodeSound = Mix_LoadWAV("audio/rocket_explosion.wav");
 
+	pauseSound = Mix_LoadWAV("audio/pause.wav");
+	resumeSound = Mix_LoadWAV("audio/resume.wav");
+
 	placeholderSound = Mix_LoadWAV("audio/placeholder.wav");
 	buttonSound = Mix_LoadWAV("audio/click.wav");
 	playerDamagedSound = Mix_LoadWAV("audio/player_hit.wav");
