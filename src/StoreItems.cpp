@@ -55,13 +55,13 @@ namespace StoreItems{
 			"SMG",			"Best choice in alien small\narms fire",
 			50,30,"images/si/sii_smg.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_MACHINE_GUN,
-			"UFO Machine Gun","desc",
+			"UFO Machine Gun","Rain down bullets upon \nyour enemies.",
 			20,50,"images/si/sii_mini.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_MISSILE,
-			"UFO Missiles",	"desc",
+			"UFO Missiles",	"Explosive ship-mounted weapon.",
 			0,100,"images/si/sii_rocket.png"));
 		sItems.push_back(StoreItem(SID_UFO_WEAPON_COWTAPOLT,
-			"UFO Cowtapolt",	"Launch Cows at your enemies",
+			"UFO Cowtapolt",	"Launch Cows at your \nenemies",
 			0,200,"images/si/sii_cow.png"));
 	}
 }

@@ -273,6 +273,7 @@ void UFO::checkCollision(Handlers* handlers){
 					projs[i]->collide(&projp, handlers, P_PLAYER_COLL);
 
 					// Apply projectile damage to player
+					((SoundHandler*)handlers->soundHandler)->playSoundEffect(SE_UFO_HIT);
 					applyDamage(projs[i]->getDamage());
 				}
 			}
