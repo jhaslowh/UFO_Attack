@@ -1,4 +1,4 @@
-CS 426 Project
+UFO Attack
 ==============
 
 About
