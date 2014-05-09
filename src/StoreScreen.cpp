@@ -233,6 +233,7 @@ void StoreScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	bBuy->updateInput(mKeyH, mMouseH);
 
 	if (bBack->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		transitionCode = SCREEN_MAIN;
 		hide();
 	}
@@ -249,6 +250,7 @@ void StoreScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 		// Check for click 
 		if (mStoreBoxes[i].wasClicked()){
+			soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 			setSelectedItem(mStoreBoxes[i].getIndex());
 		}
 	}
@@ -257,6 +259,7 @@ void StoreScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 	if (bBuy->wasClicked() && !savedata->isItemPurchased(selectedItem) &&
 			savedata->getAnimalAbductCount() >= (StoreItems::sItems.at(selectedItem)).getAnimalPrice() &&
 			savedata->getHumanAbductCount() >= (StoreItems::sItems.at(selectedItem)).getHumanPrice()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		// Increment player currency 
 		savedata->incrAnimalCount((StoreItems::sItems.at(selectedItem)).getAnimalPrice() * -1);
 		savedata->incrHumanCount((StoreItems::sItems.at(selectedItem)).getHumanPrice() * -1);
