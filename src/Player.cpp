@@ -665,6 +665,8 @@ void Player::update2(float deltaTime, Handlers* handlers){
 
 // Update input
 void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handlers){
+	SoundHandler* soundHand = (SoundHandler*)handlers->soundHandler;
+	
 	if (alive()){
 		// Update ufo input
 		if (inUFO){
@@ -713,10 +715,18 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 			if (inUFO || (!inUFO && abs(locX - ufo->getCenterX()) < 100.0f)){
 				inUFO = !inUFO;
 
+				if(inUFO){
+					soundHand->playSoundEffect(SE_EXIT_UFO);
+				} else {
+					soundHand->playSoundEffect(SE_ENTER_UFO);
+				}
+
 				if (!inUFO)
 					dropFromShip();
 			}
 			else {
+				soundHand->playSoundEffect(SE_UFO_ERROR);
+
 				// TODO play error sound 
 			}
 		}

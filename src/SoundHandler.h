@@ -29,6 +29,9 @@
 #define SE_GAME_OVER 10011
 #define SE_PAUSE 10012
 #define SE_RESUME 10013
+#define SE_UFO_UP 10014
+#define SE_UFO_DOWN 10015
+#define SE_UFO_ERROR 10016
 
 
 #define SE_BUTTON_PRESS 10014
@@ -55,7 +58,7 @@ public:
 	Mix_Chunk *npcTankFireSound;
 	Mix_Chunk *ufoRocketLaunchSound;
 	Mix_Chunk *rocketExplodeSound;
-
+	Mix_Chunk *ufoErrorSound;
 	Settings * settings;
 
 	void playMusic(int musicID);

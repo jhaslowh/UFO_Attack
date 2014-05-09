@@ -59,10 +59,11 @@ void SoundHandler::loadSound(void){
 	buttonSound = Mix_LoadWAV("audio/click.wav");
 	playerDamagedSound = Mix_LoadWAV("audio/player_hit.wav");
 	ufoHitSound= Mix_LoadWAV("audio/ufo_hit.wav");
-	ufoEnterSound = Mix_LoadWAV("audio/ufo_up.wav");
-	ufoExitSound = Mix_LoadWAV("audio/ufo_down.wav");
 	gameOverSound = Mix_LoadWAV("audio/game_over.wav");
 
+	ufoEnterSound = Mix_LoadWAV("audio/ufo_up.wav");
+	ufoExitSound = Mix_LoadWAV("audio/ufo_down.wav");
+	ufoErrorSound = Mix_LoadWAV("audio/ufo_error.wav");
 }
 
 
@@ -107,6 +108,12 @@ void SoundHandler::playSoundEffect(int soundID){
 			break;
 		case SE_ENTER_UFO:
 			Mix_PlayChannel(-1, ufoEnterSound, 0);
+			break;
+		case SE_EXIT_UFO:
+			Mix_PlayChannel(-1, ufoExitSound, 0);
+			break;
+		case SE_UFO_ERROR:
+			Mix_PlayChannel(-1, ufoErrorSound,0);
 			break;
 		case SE_GAME_OVER:
 			Mix_PlayChannel(-1, gameOverSound, 0);
