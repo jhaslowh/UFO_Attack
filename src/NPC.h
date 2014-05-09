@@ -6,7 +6,6 @@
 #include "Collision.h"
 #include "Player.h"
 #include "UFO.h"
-//#include "ScriptHandler.h"
 
 #define GRAVITY 980.0f
 
@@ -38,6 +37,8 @@ protected:
 	bool beingAbducted;
 	bool alive;
 	bool mdraw; // Toggle whether the npc will draw this iteration 
+	bool justDied;
+	bool justAbduct;
 
 	float health;
 	float healthMax;
@@ -80,6 +81,8 @@ public:
 	int getImageID();
 	bool getAlive();
 	bool getDraw();
+	bool getJustDied();
+	bool getJustAbduct();
 
 	// Returns npc collision rec
 	virtual Rec* getCollisionRec();

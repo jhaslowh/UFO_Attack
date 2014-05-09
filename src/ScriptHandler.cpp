@@ -18,7 +18,7 @@ ScriptHandler::ScriptHandler(Handlers* myHandlers, std::string scriptFile)
 	ifstream myfile(file);
 	if(myfile.is_open())
 	{
-		cout << "Opened script file" << std::endl;
+		//cout << "Opened script file" << std::endl;
 		std::string line;
 		getline(myfile, line);
 		numberOfScripts = (int)atoi(line.c_str());
@@ -26,11 +26,11 @@ ScriptHandler::ScriptHandler(Handlers* myHandlers, std::string scriptFile)
 		{
 			getline(myfile, line);
 			scriptList.push_back(new Script(theHandles, line));
-			cout << "I: " << i << std::endl;
+			//cout << "I: " << i << std::endl;
 		}
 	}
 	else
-		cout << "File did not open " << std::endl;
+		cout << "Could not open script file " << std::endl;
 }
 
 ScriptHandler::~ScriptHandler()
