@@ -225,18 +225,22 @@ void EquipScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 	// Check for weapon box clicks 
 	if (ebPlayer1->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		selectedType = PLAYER_WEAPON_1;
 		fixWeaponList();
 	}
 	if (ebPlayer2->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		selectedType = PLAYER_WEAPON_2;
 		fixWeaponList();
 	}
 	if (ebUFO1->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		selectedType = UFO_WEAPON_1;
 		fixWeaponList();
 	}
 	if (ebUFO2->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		selectedType = UFO_WEAPON_2;
 		fixWeaponList();
 	}
@@ -260,18 +264,22 @@ void EquipScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 			// Check input 
 			if (weaponList[i].wasClicked()){
 				if (selectedType == PLAYER_WEAPON_1){
+					soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 					ebPlayer1->setItem(weaponList[i].getItem());
 					saveData->setPlayerWeapon1(weaponList[i].getItem());
 				}
 				else if (selectedType == PLAYER_WEAPON_2){
+					soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 					ebPlayer2->setItem(weaponList[i].getItem());
 					saveData->setPlayerWeapon2(weaponList[i].getItem());
 				}
 				else if (selectedType == UFO_WEAPON_1){
+					soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 					ebUFO1->setItem(weaponList[i].getItem());
 					saveData->setUFOWeapon1(weaponList[i].getItem());
 				}
 				else if (selectedType == UFO_WEAPON_2){
+					soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 					ebUFO2->setItem(weaponList[i].getItem());
 					saveData->setUFOWeapon2(weaponList[i].getItem());
 				}
@@ -283,6 +291,7 @@ void EquipScreen::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 
 	// Quit to main menu if back was clicked 
 	if (bBack->wasClicked()){
+		soundHandler->playSoundEffect(SE_BUTTON_PRESS);
 		saveSaveData(saveData);
 		transitionCode = SCREEN_MAIN;
 		hide();
