@@ -66,6 +66,12 @@ void TutorialSystem::init(float screen_width, float screen_height, SaveData* sd)
 		boxes[TSTAGE_ENEMY_COUNT].setLocation(screen_width*.5f-116.0f, 68.0f);
 		boxes[TSTAGE_ENEMY_COUNT].turnOnTutArrow(TA_TOP_MIDDLE);
 
+		// Create ammo box 
+		boxes[TSTAGE_AMMO].setText("Current weapon ammo\nPress R to manually reload");
+		boxes[TSTAGE_AMMO].setSize(190.0f, 36.0f);
+		boxes[TSTAGE_AMMO].setLocation(screen_width-290.0f, 5.0f);
+		boxes[TSTAGE_AMMO].turnOnTutArrow(TA_RIGHT_TOP);
+
 		// Create movement box 
 		boxes[TSTAGE_MOVE].setText("Use W A S D to move the UFO\nand the player.");
 		boxes[TSTAGE_MOVE].setSize(214.0f, 35.0f);
@@ -143,6 +149,10 @@ void TutorialSystem::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handl
 			currentStage = TSTAGE_ENEMY_COUNT;
 		break;
 	case TSTAGE_ENEMY_COUNT:
+		if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown())
+			currentStage = TSTAGE_AMMO;
+		break;
+	case TSTAGE_AMMO:
 		if (mMouseH->isLeftDown() && !mMouseH->wasLeftDown()){
 			currentStage = TSTAGE_MOVE;
 			lock = false;
