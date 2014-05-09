@@ -719,10 +719,9 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 					soundHand->playSoundEffect(SE_EXIT_UFO);
 				} else {
 					soundHand->playSoundEffect(SE_ENTER_UFO);
-				}
-
-				if (!inUFO)
 					dropFromShip();
+					ufo->setRayOn(false);
+				}
 			}
 			else {
 				soundHand->playSoundEffect(SE_UFO_ERROR);
