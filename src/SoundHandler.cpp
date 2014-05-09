@@ -47,6 +47,7 @@ void SoundHandler::playMusic(int musicID){
 }
 
 void SoundHandler::loadSound(void){
+	abductMusic = Mix_LoadMUS("audio/abduct.wav");
 	blasterSound = Mix_LoadWAV("audio/blaster_sound.wav");
 	npcSMGSound = Mix_LoadWAV("audio/smg_fire.wav");//TODO NEED SOUND
 	npcSniperSound = Mix_LoadWAV("audio/sniper_fire.wav");
@@ -54,7 +55,7 @@ void SoundHandler::loadSound(void){
 	npcTankFireSound = Mix_LoadWAV("audio/tank_blast.wav");//TODO NEED SOUND
 	ufoRocketLaunchSound = Mix_LoadWAV("audio/ufo_rocket_launch.wav");//TODO NEED SOUND
 	rocketExplodeSound = Mix_LoadWAV("audio/rocket_explosion.wav");
-
+	abductSuccessSound = Mix_LoadWAV("audio/abduct_success.wav");
 	pauseSound = Mix_LoadWAV("audio/pause.wav");
 	resumeSound = Mix_LoadWAV("audio/resume.wav");
 
@@ -130,11 +131,28 @@ void SoundHandler::playSoundEffect(int soundID){
 		case SE_BUTTON_PRESS:
 			Mix_PlayChannel(-1, buttonSound, 0);
 			break;
+		case SE_ABDUCT_SUCCESS:
+			Mix_PlayChannel(-1, abductSuccessSound, 0);
+			break;
 		default:
 			Mix_PlayChannel(-1, placeholderSound, 0);
 			break;
 
 	}
+}
+
+void SoundHandler::startMusic(int musicID){
+
+	switch(musicID){
+		case SE_ABDUCT:
+			Mix_PlayMusic(abductMusic, -1 );//loop until stopped
+			break;
+	}
+}
+
+
+void SoundHandler::stopMusic(){
+	Mix_HaltMusic();
 }
 
 SoundHandler::~SoundHandler()

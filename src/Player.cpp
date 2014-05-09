@@ -197,7 +197,7 @@ float Player::getHealth(){return health;}
 // Set player arm rotation
 void Player::setArmRotation(float value){armRotation = value;}
 
-void Player::incrAnimalCount(int value){animalAbductCount += value;}
+void Player::incrAnimalCount(int value){animalAbductCount += value; }
 void Player::incrHumanCount(int value){humanAbductCount += value;}
 int Player::getAnimalCount(){return animalAbductCount;}
 int Player::getHumanCount(){return humanAbductCount;}

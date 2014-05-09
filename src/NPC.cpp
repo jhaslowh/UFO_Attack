@@ -210,5 +210,6 @@ void NPC::onDeath(Handlers* handlers){
 // Called when npc is abducted
 void NPC::onAbduct(Handlers* handlers){
 	//((ScriptHandler*)(handlers->scriptHandler))->wasDeathOrAbduction(2);
+	((SoundHandler*)handlers->soundHandler)->playSoundEffect(SE_ABDUCT_SUCCESS);
 	justAbduct = true;
 }

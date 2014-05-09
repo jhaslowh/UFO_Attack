@@ -178,8 +178,10 @@ void UFO::update(float deltaTime, Handlers* handlers){
 		energy -= eDrain * deltaTime;
 		ctimeTilCharge = 0.0f;
 		if (energy <= 0.0f){
+			((SoundHandler*)handlers->soundHandler)->stopMusic();
 			rayOn = false;
 			energy = 0.0f;
+
 		}
 	}
 	
@@ -352,8 +354,15 @@ void UFO::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* handle
 		direcY = 0.0f;
 
 	// Check fro abduction ray press
-	if (mKeyH->keyPressed(KEY_E) && ((rayOn) || (!rayOn && energy > 0.0f)))
+	if (mKeyH->keyPressed(KEY_E) && ((rayOn) || (!rayOn && energy > 0.0f))){
 		rayOn = !rayOn;
+		if(rayOn){
+			((SoundHandler*)handlers->soundHandler)->startMusic(SE_ABDUCT);
+		} else {
+			((SoundHandler*)handlers->soundHandler)->stopMusic();
+		}
+	}
+		
 
 	// Switch weapons 
 	if (uweapon1 != NULL && uweapon2 != NULL && mKeyH->keyPressed(KEY_F))

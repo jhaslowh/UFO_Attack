@@ -13,6 +13,7 @@
 #include "PlayerLaserGun.h"
 #include "ParticleHandler.h"
 #include "UFOCowtapult.h"
+#include "SoundHandler.h"
 
 class UFO
 {
