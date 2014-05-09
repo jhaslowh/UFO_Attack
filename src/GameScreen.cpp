@@ -97,6 +97,7 @@ void GameScreen::update(float deltaTime){
 					savedata->incrAnimalCount(player->getAnimalCount());
 					savedata->incrHumanCount(player->getHumanCount());
 					gameover = true;
+					soundHandler->playSoundEffect(SE_GAME_OVER);
 				}
 			}
 		}
