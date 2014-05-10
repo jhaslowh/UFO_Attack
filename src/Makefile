@@ -16,7 +16,7 @@ INCLUDES = -I ./include
 LFLAGS = -L ./lib
 
 # define any libraries to link into executable:
-LIBS = -lSOIL -lGLEW -lSDL2 -lGL
+LIBS = -lSOIL -lGLEW -lSDL2_mixer -lSDL2 -lGL
 
 # define the C++ source files
 SRCS = $(wildcard *.cpp)

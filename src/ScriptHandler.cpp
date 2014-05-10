@@ -15,7 +15,7 @@ ScriptHandler::ScriptHandler(Handlers* myHandlers, std::string scriptFile)
 	file.append(scriptFile);
 	file.append("script.txt");
 	//cout << "Script File: " << scriptFile << std::endl;
-	ifstream myfile(file);
+	ifstream myfile(file.c_str());
 	if(myfile.is_open())
 	{
 		//cout << "Opened script file" << std::endl;
