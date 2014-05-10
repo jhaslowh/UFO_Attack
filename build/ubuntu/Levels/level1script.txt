@@ -1,0 +1,6 @@
+5
+time.15.spawnNPC.cow.534.510
+abductions.5.spawnScenery.Sign.191.553.Ooo no by abducting all those cows you angered a farmer
+abductions.5.spawnNPC.soldier.534.510
+death.1.spawnScenery.sign.580.515.you killed the farmer now the world
+distance.200.spawnScenery.sign.107.586.You are an alien which means right now you need to abduct cows

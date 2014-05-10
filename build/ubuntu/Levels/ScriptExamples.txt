@@ -1,0 +1,10 @@
+5
+death.5.spawnNPC.soldier.125.125
+time.60.spawnNPC.cow.100.100
+distance.200.spawnScenery.sign.200.0.this is a sign that is spawned
+death.1.spawnScenery.sign.100.50.you killed the farmer good job
+time.30.damage.5
+
+distance is in units
+death and abductions is per npc
+time is based off of seconds
