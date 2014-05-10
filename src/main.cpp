@@ -14,7 +14,6 @@ int init_resources()
 	printf("Loading Resources...\n");
 
 	soundHandler = new SoundHandler(settings);
-	soundHandler->playMusic(SE_MENU_MUSIC);
 	// Set up shaders 
 	if (mgl.load((float)settings->getScreenWidth(),(float)settings->getScreenHeight()) == 0){
 		cout << "Error setting up OpenGL\n";
@@ -645,8 +644,9 @@ void createGame(){
 	loadSaveData(savedata);
 	
 	// ======= Setup ======= //
-	// Get display settings 
+	// Setup SDL
 	SDL_Init(SDL_INIT_VIDEO); 
+	// Get display settings 
 	SDL_DisplayMode current;
     if(SDL_GetCurrentDisplayMode(0, &current) == 0)
         printf("Display #%d: current display mode is %dx%dpx @ %dhz. \n", 0, current.w, current.h, current.refresh_rate);
@@ -656,8 +656,6 @@ void createGame(){
 		current.h = settings->getScreenHeight() + 100;
 	}
 
-	// Setup SDL
-	SDL_Init(SDL_INIT_VIDEO);
 	// Create Window 
 	if (settings->getFullscreen())
 		window = SDL_CreateWindow("UFO Attack", 

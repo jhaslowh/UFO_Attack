@@ -3,16 +3,18 @@
 
 SoundHandler::SoundHandler(Settings * settingsHandlerPointer)
 {
+	soundsSetup = true;
 	settings = settingsHandlerPointer;
 	if(SDL_Init(SDL_INIT_AUDIO)<0){
 		// errors
 		printf("Error initializing audio. SDL Error info %s\n", SDL_GetError());
+		soundsSetup = false;
 	} else {
 		printf("Attempt to setup sound\n");
 
-		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) <0){
-			//TODO error
-			printf( "Error initializing SDL_mixer. Error info %s\n", Mix_GetError() );
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) <0){
+			printf( "Error initializing SDL_mixer. Error info: %s\n", Mix_GetError() );
+			soundsSetup = false;
 		}
 	}
 
@@ -22,6 +24,13 @@ SoundHandler::SoundHandler(Settings * settingsHandlerPointer)
 	if( menuMusic == NULL ){
 		//printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
+	else {
+		// This sound is incredible distorted and loud on the 
+		// linux build. I think it might be the different audio
+		// libraries. But it makes it sound like the sounds are 
+		// broken. So I commented it out for now. 
+		//playMusic(SE_MENU_MUSIC);
+	}
 }
 
 void SoundHandler::loadMusic(void){
@@ -30,6 +39,7 @@ void SoundHandler::loadMusic(void){
 }
 
 void SoundHandler::playMusic(int musicID){
+	if (!soundsSetup) return;
 
 	try{
 //		Mix_VolumeMusic((int)(MIX_MAX_VOLUME*settings->musicVol*settings->masterVol));
@@ -76,6 +86,8 @@ void SoundHandler::loadSound(void){
 
 //example playSoundEffect(SE_BLASTER_SOUND);
 void SoundHandler::playSoundEffect(int soundID){
+	if (!soundsSetup) return;
+
 	try{
 		
 		Mix_VolumeMusic((int)(MIX_MAX_VOLUME*settings->getMusicVol()*settings->getMasterVol()));

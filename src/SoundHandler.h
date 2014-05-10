@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <iostream>
 #include <SDL/SDL.h>
-
-#include "settings.h"
 #include <SDL/SDL_mixer.h>
+
+#include "Settings.h"
 
 
 //Music
@@ -41,6 +41,8 @@
 
 class SoundHandler
 {
+	bool soundsSetup;
+
 public:
 	SoundHandler(Settings * settingsHandler);
 	~SoundHandler(void);
