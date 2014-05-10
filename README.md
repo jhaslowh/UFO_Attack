@@ -11,12 +11,13 @@ Building / Running
 --------
 
 OpenGL 3.0 or greater is required to run the game.  
+There is a precompiled version of the game for both ubuntu and windows in the build folder.   
 
 **Windows**  
 To compile on windows, run the project with Visual Studio 2010 or greater and build it.  
 
 **Linux**  
-Currently the linux build is not finished until the linux version of SLDmixer is found.  
+To compile on linux, navigate to the src folding and run make. The build will be in the Build folder and will be named "UFOAttack".  
 If you get errors while building on linux, you may need the opengl header files (See below).  
 
 Controls

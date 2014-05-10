@@ -32,7 +32,7 @@ SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 
 # define the executable file 
-MAIN = Build/CS426Project
+MAIN = Build/UFOAttack
 
 #
 # The following part of the makefile is generic; it can be used to 
@@ -43,7 +43,7 @@ MAIN = Build/CS426Project
 .PHONY: clean
 
 all: $(MAIN)
-	@echo  CS 426 Project has been compiled
+	@echo  UFO Attack has been compiled
 
 $(MAIN): $(OBJS) 
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
