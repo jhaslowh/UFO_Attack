@@ -104,6 +104,7 @@ void GameScreen::update(float deltaTime){
 	}
 	else {
 		if (gameover){
+			soundHandler->stopMusic();//Otherwise abduction ray keeps going
 			cGameoverTime += deltaTime;
 			if (cGameoverTime > gameoverTime){
 				// Add abductions to player savedata 
@@ -115,6 +116,7 @@ void GameScreen::update(float deltaTime){
 			}
 		}
 		else if (victory){
+			soundHandler->stopMusic();//Otherwise abduction ray keeps going
 			cVictoryTime += deltaTime;
 			if (cVictoryTime > victoryTime){
 				// Add abductions to player savedata 
