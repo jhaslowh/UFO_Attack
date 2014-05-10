@@ -178,7 +178,7 @@ bool LevelSelectScreen::parseCommand(UITerminal* terminal, string command, strin
 void LevelSelectScreen::loadLevelList(){
 	float mapScale = map.getScale();
 	string line;
-	ifstream completionFile (".\\Levels\\MasterLevelFile.txt");
+	ifstream completionFile ("./Levels/MasterLevelFile.txt");
 	int numberOfCompletedLevels = 0;
 	if(completionFile.is_open())
 	{
@@ -203,7 +203,7 @@ void LevelSelectScreen::loadLevelList(){
 		}
 	}
 	completionFile.close();
-	ifstream myfile (".\\Levels\\MasterLevelFile.txt");
+	ifstream myfile ("./Levels/MasterLevelFile.txt");
 	if (myfile.is_open())
 	{
 		//cout << "Loading level list..\n";

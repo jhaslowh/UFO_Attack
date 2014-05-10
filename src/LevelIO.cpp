@@ -26,7 +26,7 @@ void saveLevel(Handlers* handlers, std::string file, bool addToMaster){
 	storage[counter] = line;
 
 	// Create file to save to 
-	std::string fileLocation = ".\\Levels\\";
+	std::string fileLocation = "./Levels/";
 	if (addToMaster)
 		fileLocation.append(storage[0]);
 	else 
@@ -106,7 +106,7 @@ void saveLevel(Handlers* handlers, std::string file, bool addToMaster){
 		int numberOfLevels = 0;
 		//line;
 		std::vector<std::string> data;
-		ifstream myfile (".\\Levels\\MasterLevelFile.txt");
+		ifstream myfile ("./Levels/MasterLevelFile.txt");
 		if(myfile.is_open())
 		{
 			getline(myfile, line);
@@ -133,7 +133,7 @@ void saveLevel(Handlers* handlers, std::string file, bool addToMaster){
 		}
 
 		// Write levels back to master file 
-		std::ofstream newOutfile (".\\Levels\\MasterLevelFile.txt");
+		std::ofstream newOutfile ("./Levels/MasterLevelFile.txt");
 		if(newOutfile.is_open())
 		{
 			newOutfile << numberOfLevels << std::endl;
@@ -154,7 +154,7 @@ void loadLevel(Handlers* handlers, std::string file){
 
 	// Append and insert data to get full file location
 	file.append(".txt");
-	file.insert(0, ".\\Levels\\");
+	file.insert(0, "./Levels/");
 	
 	// Make input file stream 
 	ifstream myfile(file.c_str());

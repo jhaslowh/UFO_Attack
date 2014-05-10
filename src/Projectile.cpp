@@ -182,17 +182,19 @@ void Projectile::checkCollision(float deltaTime, Handlers* handlers){
 	// Ground collision 
 	Point* itr = handlers->ground->getPoints();
 	Point p;
-	while (itr->next != NULL){
-		// Check if player is close to point
-		if ((*itr).getX() - 50 <= currentX && (*(itr->next)).getX() + 50 >= currentX){
-			if (checkSegSeg(
-				Point(currentX,currentY), Point(previousX,previousY), 
-				*itr, *(itr->next), &p)){
-				collide(&p, handlers, P_GROUND_COLL);
-				break;
+	if (itr != NULL){
+		while (itr->next != NULL){
+			// Check if player is close to point
+			if ((*itr).getX() - 50 <= currentX && (*(itr->next)).getX() + 50 >= currentX){
+				if (checkSegSeg(
+					Point(currentX,currentY), Point(previousX,previousY), 
+					*itr, *(itr->next), &p)){
+					collide(&p, handlers, P_GROUND_COLL);
+					break;
+				}
 			}
+			itr = itr->next;
 		}
-		itr = itr->next;
 	}
 
 	// Update particles 
