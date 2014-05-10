@@ -14,6 +14,8 @@ OpenGL 3.0 or greater is required to run the game.
 There is a precompiled version of the game for both ubuntu and windows in the build folder.   
 
 **Windows**  
+To run download https://github.com/jhaslowh/UFO_Attack/blob/master/build/win32/ufo_attack_win32.zip?raw=true and unzip it. 
+
 To compile on windows, run the project with Visual Studio 2010 or greater and build it.  
 
 **Linux**  
