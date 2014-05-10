@@ -20,7 +20,7 @@ SoundHandler::SoundHandler(Settings * settingsHandlerPointer)
 	loadSound();
 	
 	if( menuMusic == NULL ){
-		printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
+		//printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
 }
 
