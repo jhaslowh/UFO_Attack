@@ -9,6 +9,8 @@ ScriptHandler::ScriptHandler()
 
 ScriptHandler::ScriptHandler(Handlers* myHandlers, std::string scriptFile)
 {
+	isActive = false;
+	numberOfScripts = 0;
 	theHandles = myHandlers;
 	//cout << "Script File: " << scriptFile << std::endl;
 	std::string file = ".\\Levels\\";
