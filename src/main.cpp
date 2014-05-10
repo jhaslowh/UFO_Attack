@@ -14,6 +14,7 @@ int init_resources()
 	printf("Loading Resources...\n");
 
 	soundHandler = new SoundHandler(settings);
+	soundHandler->playMusic(SE_MENU_MUSIC);
 	// Set up shaders 
 	if (mgl.load((float)settings->getScreenWidth(),(float)settings->getScreenHeight()) == 0){
 		cout << "Error setting up OpenGL\n";
