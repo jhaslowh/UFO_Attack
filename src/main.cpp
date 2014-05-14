@@ -648,7 +648,7 @@ void createGame(){
 	SDL_Init(SDL_INIT_VIDEO); 
 	// Get display settings 
 	SDL_DisplayMode current;
-    if(SDL_GetCurrentDisplayMode(0, &current) == 0)
+    if(SDL_GetDesktopDisplayMode(0, &current) == 0)
         printf("Display #%d: current display mode is %dx%dpx @ %dhz. \n", 0, current.w, current.h, current.refresh_rate);
 	else {
 	    cout << "ERROR: " << SDL_GetError() << "\n";
