@@ -134,15 +134,16 @@ void onUpdate(){
 	// Do main updates if window is visible 
 	if (WINDOW_VISIBLE){
 		// Show hide terminal
-		if (mKeyH.keyPressed(KEY_TILDE)){
-			if (showTerminal){
-				showTerminal = false;
-				terminal->hide();
-			}else {
-				showTerminal = true;
-				terminal->show();
-			}
+		if (!showTerminal && mKeyH.keyPressed(KEY_TILDE)){
+			showTerminal = true;
+			terminal->show();
 		}
+		else if (showTerminal && (mKeyH.keyPressed(KEY_TILDE)
+			|| mKeyH.keyPressed(KEY_ESCAPE))){
+			showTerminal = false;
+			terminal->hide();
+		}
+
 		// Update Terminal
 		else {
 			if (showTerminal) 
