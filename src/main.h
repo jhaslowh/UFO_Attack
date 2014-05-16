@@ -24,7 +24,6 @@
 #include "MainScreen.h"
 #include "SettingsScreen.h"
 #include "GameScreen.h"
-#include "FreePlayScreen.h"
 #include "StoreScreen.h"
 #include "EquipScreen.h"
 #include "CreditsScreen.h"

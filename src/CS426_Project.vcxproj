@@ -58,7 +58,6 @@
     <ClInclude Include="UIEquipBox.h" />
     <ClInclude Include="EquipScreen.h" />
     <ClInclude Include="Fence.h" />
-    <ClInclude Include="FreePlayScreen.h" />
     <ClInclude Include="GameAtlas.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="GLColors.h" />
@@ -170,7 +169,6 @@
     <ClCompile Include="UIEquipBox.cpp" />
     <ClCompile Include="EquipScreen.cpp" />
     <ClCompile Include="Fence.cpp" />
-    <ClCompile Include="FreePlayScreen.cpp" />
     <ClCompile Include="GameAtlas.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="GLColors.cpp" />

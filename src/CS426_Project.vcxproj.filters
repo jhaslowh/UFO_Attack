@@ -208,9 +208,6 @@
     <ClCompile Include="EquipScreen.cpp">
       <Filter>Source Files\ui\screen</Filter>
     </ClCompile>
-    <ClCompile Include="FreePlayScreen.cpp">
-      <Filter>Source Files\ui\screen</Filter>
-    </ClCompile>
     <ClCompile Include="GameScreen.cpp">
       <Filter>Source Files\ui\screen</Filter>
     </ClCompile>
@@ -544,9 +541,6 @@
       <Filter>Header Files\ui\screen</Filter>
     </ClInclude>
     <ClInclude Include="EquipScreen.h">
-      <Filter>Header Files\ui\screen</Filter>
-    </ClInclude>
-    <ClInclude Include="FreePlayScreen.h">
       <Filter>Header Files\ui\screen</Filter>
     </ClInclude>
     <ClInclude Include="GameScreen.h">

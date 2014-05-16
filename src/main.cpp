@@ -416,8 +416,6 @@ void changeScreen(){
 			break;
 		case SCREEN_LOAD:
 			break;
-		//case SCREEN_LEVEL_SELECT:
-		//	break;
 		case SCREEN_QUIT:
 			running = false;
 			break;
@@ -429,7 +427,6 @@ void changeScreen(){
 		case SCREEN_MAIN_SAVE_GAME:
 		case SCREEN_STORE:
 		case SCREEN_SETTINGS:
-		case SCREEN_FREE_PLAY:
 		case SCREEN_GAME_NEW:
 		case SCREEN_GAME_RESUME:
 		case SCREEN_EQUIP:
@@ -454,7 +451,6 @@ void changeScreen(){
 				tcode == SCREEN_MAIN_SAVE_GAME)	screen = (UIScreen*)new MainScreen(gscreen != NULL);
 			else if (tcode == SCREEN_STORE)		screen = (UIScreen*)new StoreScreen(savedata);
 			else if (tcode == SCREEN_SETTINGS)	screen = (UIScreen*)new SettingsScreen(settings, savedata);
-			else if (tcode == SCREEN_FREE_PLAY)	screen = (UIScreen*)new FreePlayScreen();
 			else if (tcode == SCREEN_EQUIP)		screen = (UIScreen*)new EquipScreen(savedata);
 			else if (tcode == SCREEN_CREDITS)	screen = (UIScreen*)new CreditsScreen();
 			else if (tcode == SCREEN_LEVEL_SELECT) screen = (UIScreen*)new LevelSelectScreen(savedata);
