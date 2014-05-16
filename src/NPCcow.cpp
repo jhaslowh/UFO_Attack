@@ -62,17 +62,22 @@ void NPCcow::update(float deltaTime, Handlers* handlers){
 		if (!beingAbducted){
 			Player* player = (Player*)handlers->player;
 
+			// Player location 
+			float px = 0;
+			float py = 0;
+
+			if (!player->isInUFO()){
+				px = player->getCenterX();
+				py = player->getCenterY();
+			}
+			else {
+				px = player->ufo->getCenterX();
+				py = player->ufo->getCenterY();
+			}
+
 			//direction to the playerss
 			bool playerIsToLeft = isPlayerToLeft(player);
-
-			// Uncomment this as needed, prints out too much to be
-			// left on. 
-			/*if(playerIsToLeft){
-				cout << "to the left" << endl;
-			}else{
-				cout << "to the right " << endl;
-			}*/
-
+			
 			if(afraid){
 				//affraid, run away from player
 				if(playerIsToLeft){
@@ -81,13 +86,15 @@ void NPCcow::update(float deltaTime, Handlers* handlers){
 					goLeft();
 				}
 			} else {
-				//not afraid, go to player
-				if(playerIsToLeft){
-					goLeft();
-				} else {
-					goRight();
+				// Only come close if not allready close 
+				if (dist(locX, locY, px, locY) > 100){
+					//not afraid, go to player
+					if(playerIsToLeft){
+						goLeft();
+					} else {
+						goRight();
+					}
 				}
-
 			}
 
 			// Update frames
