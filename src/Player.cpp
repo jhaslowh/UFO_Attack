@@ -204,6 +204,7 @@ int Player::getHumanCount(){return humanAbductCount;}
 // Set enemy left bar size
 void Player::setEnemyBarScale(float value){elScale = value;}
 bool Player::getInteract(){return interact;}
+Rec* Player::getCollRec(){return &collRecXY;}
 
 // initialize level
 void Player::init(float screen_width, float screen_height, SaveData* savedata){
@@ -645,6 +646,9 @@ void Player::update2(float deltaTime, Handlers* handlers){
 				// Get weapon angle 
 				armRotation = weapon2->getRotation();
 			}
+
+			// Fix collision rec for other checks 
+			setCollRec(&collRecXY, locX, locY);
 		}
 	}
 

@@ -208,6 +208,7 @@ public:
 	// Set enemy left bar size
 	void setEnemyBarScale(float value);
 	bool getInteract();
+	Rec* getCollRec();
 
 	// Functions 
 

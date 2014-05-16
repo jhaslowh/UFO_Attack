@@ -66,7 +66,10 @@ void NPCSamSite::updateCollision(float deltaTime, Handlers* handlers){
 		}
 
 		// Check if player is trying to deactivate sam site 
-		if (((Player*)handlers->player)->getInteract()){
+		Player* player = ((Player*)handlers->player);
+
+		if (!player->isInUFO() && player->getInteract() && 
+			checkRecRec(player->getCollRec(), &collisionRec)){
 			damage(100.0f, handlers);
 		}
 	}

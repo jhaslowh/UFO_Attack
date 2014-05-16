@@ -3,7 +3,7 @@
 
 ParticleHandler::ParticleHandler()
 {
-	size = 200;
+	size = 700;
 	parts = new Particle[size];
 }
 
