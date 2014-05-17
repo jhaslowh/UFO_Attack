@@ -37,7 +37,7 @@ class Player
 
 	// Camera 
 	Rec cameraRec;
-	float cameraEdge;
+	float cameraEdge, cameraEdgeTop;
 	Camera2D* camera;
 
 

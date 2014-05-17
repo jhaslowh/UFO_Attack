@@ -126,7 +126,8 @@ Player::Player(SaveData* savedata){
 	hudEnergyColor[3] = 1.0f;
 	
 	camera = NULL;
-	cameraEdge = 160.0f;
+	cameraEdge = 300.0f;
+	cameraEdgeTop = 140.0f;
 	ufo = NULL;
 
 	// Hit recently
@@ -224,8 +225,8 @@ void Player::init(float screen_width, float screen_height, SaveData* savedata){
 	hudEnergyLocX = 5.0f;
 	hudEnergyLocY = 45.0f;
 
-	cameraRec.reset(cameraEdge, cameraEdge, 
-		screen_width - (cameraEdge*2.0f), screen_height - (cameraEdge*2.0f));
+	cameraRec.reset(cameraEdge, cameraEdgeTop, 
+		screen_width - (cameraEdge*2.0f), screen_height - (cameraEdgeTop*2.0f));
 	
 	elBarX = (screen_width / 2.0f) - 50.0f;
 
@@ -233,6 +234,10 @@ void Player::init(float screen_width, float screen_height, SaveData* savedata){
 	ammoLocY = 5.0f;
 	ammoOffsetX = -5.0f;
 	ammoOffsetY = 4.0f;
+
+	if (screen_width < 600.0f){
+		cameraEdge = screen_width * .3f;
+	}
 }
 
 // Load level (use for textures)
