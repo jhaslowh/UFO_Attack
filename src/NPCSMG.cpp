@@ -11,7 +11,7 @@ NPCSMG::NPCSMG() :Weapon()
 	typeId = GI_NPC_SMG;
 	clipCapacity = 45;
 	clip = clipCapacity;
-	spread = .04f; // In radians
+	spread = .03f; // In radians
 	verticalDisplacement = 0;
 	horizontalDisplacement = 15;
 	bulletsPerShot = 1;

@@ -723,7 +723,6 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 
 				if(inUFO){
 					soundHand->playSoundEffect(SE_EXIT_UFO);
-					
 				} else {
 					soundHand->playSoundEffect(SE_ENTER_UFO);
 					dropFromShip();
