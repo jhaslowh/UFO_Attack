@@ -82,7 +82,7 @@ Commands for Level Editor (Must be in screen with one)
 - "editor close" : close level editor  
 - "scenery add tree" : add new tree to level 
 - "scenery add sign [text]" : add new sign to level (if text left blank, text will be set to "none"  
-- "scenery add hay" : add new hay bale to level    
+- "scenery add hayBale" : add new hay bale to level    
 - "scenery add crate" : add new crate  
 - "scenery add fence" : add new fence   
 - "scenery add longCrate" : add new long crate  

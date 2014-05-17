@@ -250,7 +250,7 @@ void checkCommand(string line){
 			terminal->addLine("editor close : close level editor", TL_SUCCESS); 
 			terminal->addLine("scenery add tree : add new tree to level", TL_SUCCESS); 
 			terminal->addLine("scenery add sign [text] : add new sign to level ", TL_SUCCESS); 
-			terminal->addLine("scenery add hay : add new hay bale to level", TL_SUCCESS); 
+			terminal->addLine("scenery add hayBale : add new hay bale to level", TL_SUCCESS); 
 			terminal->addLine("scenery add crate : add new crate", TL_SUCCESS); 
 			terminal->addLine("scenery add fence : add new fence", TL_SUCCESS); 
 			terminal->addLine("scenery add longCrate : add new long crate", TL_SUCCESS); 
