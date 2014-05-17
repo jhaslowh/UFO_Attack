@@ -5,6 +5,9 @@ Player::Player(SaveData* savedata){
 	// Location And Sizing 
 	locX = 0.0f;
 	locY = 0.0f;
+	nextX = 0.0f;
+	nextY = 0.0f;
+	direcX = 0.0f;
 	originX = 25.0f;
 	originY = 50.0f;
 	width = 50.0f;
@@ -717,17 +720,17 @@ void Player::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH, Handlers* han
 		// Switch from ufo to on foot 
 		if (mKeyH->keyReleased(KEY_Q)){
 			if (inUFO || (!inUFO && abs(locX - ufo->getCenterX()) < 100.0f)){
-
-				soundHand->stopMusic();//stop beam sound
-				inUFO = !inUFO;
-
+				
 				if(inUFO){
 					soundHand->playSoundEffect(SE_EXIT_UFO);
-				} else {
-					soundHand->playSoundEffect(SE_ENTER_UFO);
+					soundHand->stopMusic();//stop beam sound
 					dropFromShip();
 					ufo->setRayOn(false);
+				} else {
+					soundHand->playSoundEffect(SE_ENTER_UFO);
 				}
+
+				inUFO = !inUFO;
 			}
 			else {
 				soundHand->playSoundEffect(SE_UFO_ERROR);
