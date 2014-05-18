@@ -95,6 +95,7 @@ Commands for Level Editor (Must be in screen with one)
 - "scenery add barracks" : add new barracks  
 - "npc add soldier" : add new soldier npc to level  
 - "npc add sniper" : add new sniper npc to level  
+- "npc add stinger" : add new stinger npc to level  
 - "npc add cow" : add new cow npc to level  
 - "npc add hsoldier" : add new heavy soldier npc to level  
 - "npc add tank" : add new tank npc to level  
