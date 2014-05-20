@@ -160,5 +160,5 @@ void GameAtlas::load(){
 	// Grab the arrays 
 	verts = vcg->getVertices();
 	cords = vcg->getCoords();
-	delete(vcg);
+	delete vcg;
 }

@@ -209,7 +209,7 @@ void UITerminal::updateInput(KeyHandler* mKeyH, MouseHandler* mMouseH){
 		}
 	}
 
-	// Check if useris trying to move iterator 
+	// Check if user is trying to move iterator 
 	if (mKeyH->keyPressedHold(KEY_LEFT)){
 		iteratorLoc--;
 		if (iteratorLoc < 0)
